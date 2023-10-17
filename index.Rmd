@@ -1,0 +1,36 @@
+---
+title: "Thesis"
+author: "Hollie"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [references.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: holliebaker/thesis
+description: "Hollie Baker's thesis"
+---
+
+# WHat to include
+
+- Introduction
+
+  - introduce the concepts and definitions
+  - state what will be presented
+  - and why it is important
+
+- Existing work
+
+  - @jdh20 (regular cells, no blow-ups)
+  - @lazard10 (blow-ups in $R^3$)
+  - McCallum (projection yields smooth cells)
+  - Order invariant CAD
+
+- @bgv15
+  - Constructively proves the existence of a CAD with regular cells and satisfying the frontier condition in 3 steps
+  - Such that each cell is the graph of a quasi-affine map
+  - Refine such that each cell is monotone
+  - Refine such that the boundary $\partial C$ of every cell
+
+

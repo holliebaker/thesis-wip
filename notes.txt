@@ -1,0 +1,85 @@
+
+
+it takes ages to solve for x1 by projection. (so long i gave up)
+i factorised the jacobi and it was quicker. (10-20 seconds)
+then when i computed a GB of those functions it was FAST! (less than a second)
+  1. does gb have the same real roots as the original systim?
+  2. can projectino be skipped? i.e., don't need to do projection and can do gb stuff instead?
+
+lazard lifting went well. tested and worked in 3 and higher with some examples
+
+- due to laziness I normalise polynomials with algebraic coefficients, obtained from substituting algebraic numbers. complexity of this vs complexity of lifting with algebraic polynomials?
+it seemed to break in higher dimension (i.e., 5)
+
+
+planning thesis.
+  list of chapter titles 
+  proper title of thesis 
+  
+
+writing up
+- do in three steps
+- quasi-affine
+  - we follow bgv15 th??
+    - smooth locus. two options, 1) smooth strat 2) McCallum and Lazard (projection operator makes it automatically smooth) what does it mean to be "analytic". proper defenition, definitian of smooth ("differentiable") manifold from the differetial topology book.
+    - critical poits of projection to one and two dimensional coordinate subspcaes. it meants that we find tangent planes using partial derivatives. can define and explain things using the differential topology book
+- monotone
+  - semi-monotone
+    - following closely th ??
+  - monotone
+    - following closely th ??
+  - effectively we find the critical points of some (smooth) surface "along" some (smooth) curve. I.e., we find the critical points of some function subject to constraints. 
+  - it is the optimisation problem of "Lagrange ultipliers"
+  - formulate the problem 
+  - what is the utility function? f in Q[x1,...,xn], polynomial. we know the function has no blow-ups anywhere on the cell. what obut along it's top / bottom? Well, we know cells are smooth, and by definition they are graphs of continuous functions. therefore we do not worry about blow-ups.
+  - constraints will be "curves" they are defined by polynomials g in Q[k1,...,xk]
+  - construct that jacobi determinant, explaining that it arises because, if we find the lambdas, we get one of the functions being a linear combination of the others, thus setting the jacobi determinant to zero gives us the required values of x1,...,xn-1
+  - however we only require the x1 values, due to theorem ??
+  - a naive way is to use CAD projection to solve. 
+  - it took ages to run that, so I factorised the input and it was much quicker
+  - number of projection factors will "brow up" (by how much?) with each variable, so it makes sense to keep the number down
+  - i tried computing a GB (using singular) and it was much faster! 1 second rather than 10 seconds
+  - what about using GB elimination to solve for x1 (is it as easy as solving with Gaussian elimination?)
+  - observations
+    - due to the "shape" of the matrix, it's nearly in row echelon form, that might make calculating the det faster. 
+    - above the 0-cell means that we sub in the variables
+    - sample point might be rat or alg. if alg, the polynomials will have algebraic coefficients
+      - gb and projection algorithm expect as input a polynomial with integer or rational coefficients.
+      - luckily the defninion of algebraic number helps us here. suppose that c1,...,ck are roots of some polynomial f with algebraic coefficients. roots of polynomials are algebraic numbers and we know that any algebraic number can be represented by a polynomial and an isolating interval. so there exists another polynomial g with integer coefficients, having c1,...,ck among its roots. 
+      - this polynomial can be calculated with the AFPNORM function in saclib, and that is what is done. 
+      - roots of polynomials, being algebraic numbers, are represented as a pair (P,J) where P is a univariat polynomial and J is a left open right closed interwal (or one point interval). roots are returned in ascending order.
+      - we will store a list of "refinement points" which are points (c1,...,ck-1,ck), where first k-1 coordinates are the sample point of 0-cell above which a refinement is to be performed and ck is the root of refinement polynomial
+    - now we are ready to refine. this is a simple recursive function that "splits" cells according to the sample poitns
+      - how is algebraic number comparison done
+      - algebraic field elements are transformed to algebraic numbers
+      - number of comparison operations performed. 
+    - when splitting the 1-sector C into three cells, it is clear that sample point s is correct on only one of the cells. thus lifting phase of CAD must be performed again for the remaining two cells.
+    - can find an upper bound on the number of cells? (we can bound complex roots by using degree??)
+  - finally we refine to satisfy the frontier condition. 
+    - lazard frontier condition. a method for refining in R3, a cod in which "bad cells" are always 0-dimensional 
+    - it works by computing the saturation of an ideal with respect to a funciton. this computes the Zariski closure of a one-dimensional curve as it approaches the "bad cell" 
+    - the zariski closure intersected with the bad cell (point) p times R, gives us the refning points. 
+    - can it be extended up to R^n?. 
+      - we know blow-ups in a cad with 2-dimensional cells can have dimension at most one, by the definition of blow-up point.
+      - so the base point is (p=g1,g2) in R^2, any polynomial f1,...fk-2 is fair game for a blow-up. we can check for a blow-up by looking for a 1-dimensional sector cell above p on which one of f_i's is zero.
+      - once we find the offending f_k with the blow-up, we can stop seaching, because we know all polynomials f_k+1,...,f_n are ok
+      - so we define our bad point (9-cell) using g1,g2,f1,...,fk-1 and polynomial f. we then compute the saturation of ideal representing a 1-dimensional algebraic set by each of polynomials g1,g2,f1,...,fk-1. thus we find the zariski closure of the one-dimensional curves as they approach the bad point p. 
+      - refinement is easy. in fact even easier than last time, but I just call the same function as before. 
+        - i think sample points above the refinement need recomputing again... 
+
+
+Dear Chenqi,
+
+Lovely to hear from you, too!
+
+That is great! I am so happy that you would like to give a talk!
+
+If you can come in person, I agree that would be much better than Zoom. Let's try and arrange that. I will be in Thailand visiting my dad throughout December and January, and would really like to meet you when you come to visit. So how about we try to arrange something for next Spring (from February 2023?)
+
+Dr Willem Heijltjes is organising the seminar, so I will forward your email to him and we can fix a date for you to visit.
+
+All the best,
+Hollie
+
+
+
