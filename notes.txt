@@ -68,18 +68,40 @@ writing up
         - i think sample points above the refinement need recomputing again... 
 
 
-Dear Chenqi,
+- Introduction
 
-Lovely to hear from you, too!
+  - introduce the concepts and definitions
+  - state what will be presented
+  - and why it is important
 
-That is great! I am so happy that you would like to give a talk!
+- Existing work
 
-If you can come in person, I agree that would be much better than Zoom. Let's try and arrange that. I will be in Thailand visiting my dad throughout December and January, and would really like to meet you when you come to visit. So how about we try to arrange something for next Spring (from February 2023?)
+  - @jdh20 (regular cells, no blow-ups)
+  - @lazard10 (blow-ups in $R^3$)
+  - McCallum (projection yields smooth cells)
+  - Order invariant CAD
 
-Dr Willem Heijltjes is organising the seminar, so I will forward your email to him and we can fix a date for you to visit.
+- @bgv15
+  - Constructively proves the existence of a CAD with regular cells and satisfying the frontier condition in 3 steps
+  - Such that each cell is the graph of a quasi-affine map
+  - Refine such that each cell is monotone
+  - Refine such that the boundary $\partial C$ of every cell
 
-All the best,
-Hollie
+plan for monotone
+
+state the theorem and copy the proof.
+
+Label parts of the proof and talk the reader through it. 
+1. gamma is just top and bottom
+2. poits c are just the critical points of top/bottom
+3. inf/sup x_2 f. it handles the case of f tending to infinity, which it will either do everywhere or at a single point, or nowhere. the only issue will arise when it tends to infinity at the single point, but won't that be impossible by CAD construction?
+4. repeat for each f_j up till f_n
+5. we get the list roots, each one can be identified with a refinement point c
+
+
+
+
+
 
 
 

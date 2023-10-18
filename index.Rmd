@@ -12,25 +12,32 @@ github-repo: holliebaker/thesis
 description: "Hollie Baker's thesis"
 ---
 
-# WHat to include
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
 
-- Introduction
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\projop}[1]{{\proj_{\R^{#1}}}}
+\newcommand{\projops}[1]{{\proj_{\opspan{#1}}}}
 
-  - introduce the concepts and definitions
-  - state what will be presented
-  - and why it is important
+\newcommand{\opspan}[1]{{\operatorname{span} \{#1\}}}
 
-- Existing work
+# Cylindrical algebraic decompositions with monotone cells
 
-  - @jdh20 (regular cells, no blow-ups)
-  - @lazard10 (blow-ups in $R^3$)
-  - McCallum (projection yields smooth cells)
-  - Order invariant CAD
+A Cylindrical Algebraic Decomposition (CAD) is a finite partition of n-dimensional space into so-called Cylindrical Cells. The
+key idea of cylindricity is that cells are arranged in *stacks*. I.e., the projection of any two cells onto dimension
+n-1 is either disjoint or identical.
 
-- @bgv15
-  - Constructively proves the existence of a CAD with regular cells and satisfying the frontier condition in 3 steps
-  - Such that each cell is the graph of a quasi-affine map
-  - Refine such that each cell is monotone
-  - Refine such that the boundary $\partial C$ of every cell
+CAD provides a constructive and computationally tractable proof of the famous Tarski-Seidenberg theorem, which states thet semialgebraic sets are
+closed under projection, or, equivalently, that quantifier elimination is possible over the reals. Indeed, QE is
+possibly the most famous application of CAD. CAD also has applications in computing topological ploperties of
+semialgebraic sets and solving motion-planninng problems. However, for these applications, a basic CAD will not suffice.
+Instead, we may have to introduce some additional constraints to the construction. One such constraint, which is useful
+in topology, is that every cell in the CAD is a *topologically regular cell*. Put briefly, its boundary should be
+homeomorphic to a circle. Another useful property is the *frontier condition*. I.e., the boundary of every cell in the
+decomposition must be a union of some other cells in the decomposition of smaller dimension. This property is necessary
+to solve motion planning problems.
 
+Tho goal of this thesis is to develop an algorithm to construct a *monotone* CAD -- right now it's enough to know that
+this is a CAD in which every cell is topologically regular and satisfies the frontier condition. The algorithm is based
+on a construction due to [@bgv15].
 

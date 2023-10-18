@@ -1,0 +1,187 @@
+# Monotone Cells
+
+Now we have a CAD $\cal D$ such that each 2-dimensional cell is the graph of a quasi-affine map, let us return to [@bgv15 Theorem 3.20] and discuss how to obtain monotone cells. 
+
+::: {.definition #subcad}
+Let $\cal D$ be a CAD of $\mathbb {R}^n$ and suppose that $c = \{ c_1,\ldots,c_k \}$ is a $0$-dimensional section cell in the decomposition induced by $\cal D$ on $\mathbb{R}^k$. 
+By [@bgv15 Remark 3.8], the set of all cells of $\cal D$ contained in the affine coordinate subspace 
+$$
+\{ x_1=c_1,\ldots,x_k=c_k \}
+$$
+froms a cylindrical decomposition of $\mathbb{R}^{n-k}$. This decomposition will be called the *sub-decomposition* of $\cal D$ above $c$. 
+:::
+
+We proceed by induction on $n$. 
+ 
+When $n=1$, everything is straightforward, since all (zero and one-dimensional) cells are already monotone. 
+
+When $n>1$, let $c := \projop{1}(C)$, for each $C$ in $\cal D$. If $\dim(c) = 0$, then apply the inductive hypothesis to the sub-decomposition of $\cal D$ above $c$.
+
+Otherwise, let $C$ have index $\{i_1,\ldots,i_n\} \in \{0,1\}^n$ and let $\alpha$ be the smallest among $\{2,\ldots,n\}$ such that $i_\alpha = 1$. Then $C' := \projop{\alpha}(C)$ is a 2-dimensional sector cell. More precisely, $C'$ is the graph of a quasi-affine map 
+$$
+\mathbf{f} = (f_1,\ldots,f_{n-2}) : \opspan{x_1,x_\alpha} \to \opspan{x_2,\ldots,x_{\alpha-1}, x_{\alpha+1},\ldots,x_n}.
+$$
+Note that each component $f_j : \opspan{x_1,x_\alpha} \to \opspan{x_j}$ of $\mathbf{f}$ is quasi-affine. 
+
+Let $X \subset \opspan{x_1,x_\alpha,x_j}$ be the graph of $f_j$. By [@bgv15 Lemma 3.18], there exists a refinement of the CAD of $\opspan{x_1,x_\alpha,x_j}$ obtained by intersecting $X$ with straight lines and half-planes 
+$$
+\{x_1 < c\}, \{x_1 = c\}, \{x_1 > c\},
+$$
+for $c \in \R$, such that $X$ is a union of monotone cells. By [@bgv15 Lemma 3.11], refinements of this kind preserve the cylindrical structure of $\cal D$. 
+
+## Obtaining monotone cells
+
+```{theorem, th-monotone, echo=T}
+[@bgv15, Lemma 3.18]
+
+Let $X \subset \R^2$ be an open, bounded set and $f : X \to \R$ be a quasi-affine function. 
+Then there is a cylindrical decomposition of $\R^2$ compatible with $X$, obtained by intersecting $X$ with straight lines $$\{x_1 = c\}$$ and half-planes $$\{x_1 < c\},\{x_1 > c\}$$ such that the restriction $f\vert_B$ for every cell $B \subset X$ is a monotone function. 
+```
+
+## Two-dimensional semi-monotone set as 
+
+[@bgv15, Lemma 3.18] proceeds in two stages: first $X$ is refined such that each $Y \subset X$ is a semi-monotone set. 
+Consider the intersection $X \cap \{x_1 = c\}$ for all $c\in \R$. This intersection is a finite set of pairwise disjoint intervals. Let ${\cal I} (c)$ be the family of these intervals associated with the point $c$. Define 
+$$
+\gamma := \{ (x_1,x_2) \in \R^2 \mid x_2 \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
+$$
+
+:::{.lemma #gamma-top-bottom}
+Let $X := \projops{x_1,x_\alpha} (C)$ where $C$ is a 2-dimensional semialgebraic sector cell with index \{1,0,\ldots,0,1\}. 
+
+1. $X$ is a cylindrical sector cell in $\R^2$.
+1. The set $\gamma$ defined above consists of the points of the top and bottom of $X$.
+:::
+
+::: {.proof}
+Let $c := \projop{1}(c)$ and $C' := \projop{\alpha-1}(C)$. Observe that $C'$ is a $(1,0,\ldots,0)$-cell.
+By definition 
+$$
+C = \{ (x_1,\ldots,x_{\alpha-1},t) \mid (x_1,\ldots,x_{\alpha-1}) \in C', f(x_1,\ldots,x_{\alpha - 1}) < t < g(x_1,\ldots,x_{\alpha - 1})\}
+$$
+where $f,g : \R^{\alpha - 1} \to \R$ are polynomials such that, for all $\mathbf{x} \in C'$, $f(\mathbf{x}) < g(\mathbf{x})$.
+Since $C'$ is a $(1,0,\ldots,0)$-cell, it can be viewed as the graph of a continuous map 
+$$
+\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : c \to \opspan{x_2,\ldots,x_{\alpha-1}},
+$$
+so $C$ can be written as
+$$
+\{ (x_1,h_1(x_1),\ldots,h_{\alpha-2}(x_1),t) \mid x_1 \in c, f(x_1,h_1(x_1),\ldots,h_{\alpha-2}(x_1)) < t < g(x_1,h_1(x_1),\ldots,h_{\alpha-1}(x_1))\}.
+$$
+Since all components $i_l$ for $l \in \{2,\ldots,\alpha - 1\}$ are equal to $0$, it's clear that the projection map
+$$
+\projops{x_1,x_\alpha} : \R^{\alpha} \to \opspan{x_1,x_\alpha}
+$$
+is injective. Thus
+$$
+X = \{ (x_1,t) \mid x_1 \in c, (x_1,\mathbf{h}(x_1)) \in C', f(x_1,\mathbf{h}(x_1)) \}.
+$$
+In other words, $X$ is a cylindrical section cell. Furthermer, the graphs of $f$ and $g$ are respectively the top and bottom of $X$. 
+:::
+
+The refinement is achieved by finding a set of real numbers 
+$$
+(c_1,\ldots,c_t)
+$$
+such that, for each $1 \le i < t$,
+$$
+X \cap \{c_i < x_1 < c_i+1\}
+$$
+is a semi-monotone set. By [@bgv13, Theorem 1.7], this can be achieved by ensuring that $\gamma$ is monotone along each interval $(c_i,c_{i+1})$.
+
+Applying @\ref{lem::gamma-top-bottom} to $C$, we see that $X$ is a cylindrical sector cell, with each family ${\cal I}(c), c\in \R$, containing a single open interval which coincides with $(f(c,\mathbf{g}(c}), g(c,\mathbf{g}(c}))$. Furthermore, $\gamma$ coincides with $X_T \cup X_B$. Therefore, it suffices to split $X_T$ and $X_B$ into monotone curve intervals. We have the following construction.
+
+Let $C$ be a $(1,0,\ldots,0,1)$-cell in a CAD $\cal D$ of $\R^\alpha$ and let $C_T$ and $C_B$ be the top and bottom of $C$ respectively. The cylindrical cell
+$$
+C' := \projop{\alpha - 1}(C)
+$$
+is the graph of a polynomial
+$$
+g_{\alpha - 1} \in \Q[x_1,\ldots,x_\alpha - 1]
+$$ 
+on over the cell 
+$$
+C'' := \projop{\alpha - 2}(C') = \projop{\alpha - 2}(C)
+$$
+which, in turn, is the graph of a polynomial
+$$
+g_{\alpha-2} \in \Q[x_1,\ldots,x_{\alpha-2}].
+$$
+Iterating this construction, we obtain a set of polynomials
+$$
+g_2 \in \Q[x_1,x_2], \ldots, g_{\alpha - 2} \in \Q[x_1,\ldots,x_{\alpha - 2}], g_{\alpha - 1} \in \Q[x_1,\ldots,x_{\alpha - 1}].
+$$
+Meanwhile, $C_T$ and $C_B$ are, by definition, the graphs of polynomials $f_T, f_B : C' \to \R$ respectively. 
+
+$f_T$ (resp $f_B$) is monotone if the restriction $f_T\vert_{(c_i,c_i+1)}$ is either strictly increasing, strictly decreasing, or constant. I.e., we want to find the critical points of $C_T$ (resp $C_B$). The technique of Lagrange multipliers can be used to solve this problem. 
+
+::: {.prop Name="Lagrange Multipliers" #lagrange}
+Let $f : \R^n \to \R$ and $g_1,\ldots,g_k = 0 \subset \R^2$ be continuous functions with continuous first partial derivatives. 
+We can maximise (resp. minimise) $f$ subject to constraints $g_1=0,\ldots,g_k=0$ by maximising (resp. minimising) the function
+$$
+\mathcal{L}(x_1, \ldots, x_n, \lambda_1,\ldots,\lambda_k) =  f(x_1, \ldots, x_n) - \lambda_1 g_1(x_1, \ldots, x_n) - \cdots - \lambda_k g_k(x_1,\ldots,x_n)
+$$
+where $\lambda_1,\ldots,\lambda_k \in \R$ are new variables. 
+
+This can be done by solving
+$$
+\dfrac{\partial f}{\partial x_i} - \lambda_1 \dfrac{\partial g_1}{\partial x_i} - \cdots - \lambda_k \dfrac{\partial g_k}{\partial x_i}= 0
+$$
+for all $1\le i \le n$. 
+:::
+
+::: {.remark}
+This can be represented as a system of linear equations
+$$
+\begin{pmatrix}\dfrac{\partial f_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{1}}\\
+\vdots &  & \vdots\\
+\dfrac{\partial f_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{\alpha-1}}
+\end{pmatrix}\begin{pmatrix}\lambda_{1}\\
+\vdots\\
+\lambda_{\alpha-2}
+\end{pmatrix}=\begin{pmatrix}\dfrac{\partial f_{\alpha}}{\partial x_{1}}\\
+\vdots\\
+\dfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}
+\end{pmatrix}
+$$
+$\lambda_1,\ldots,\lambda_{\alpha - 1}$.
+It is clear that, if a solution exists, then the column 
+$\left(\tfrac{\partial f_{\alpha}}{\partial x_{1}},\ldots, \tfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}\right)^T$ 
+must be a linear combination of columns in $f_2,\ldots,f_{\alpha - 1}$. 
+
+I.e.,
+$$
+L := \det\begin{pmatrix}\dfrac{\partial f_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{1}} & {\dfrac{\partial f_{\alpha}}{\partial x_{1}}}\\
+\vdots &  & \vdots & \vdots\\
+\dfrac{\partial f_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{\alpha-1}} & \dfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}
+\end{pmatrix}=0.
+$$
+:::
+
+We are left with a polynomial in $\Q[x_1,\ldots,x_\alpha]$ which we need to solve for $x_1$.
+In the context of cylindrical decomposition, it seems natural to compute
+$$
+{\cal L}_1 := 
+\projop{1}(L),
+$$
+giving a family of polynomials in $\Q[x_1]$ and then use a root finding algorithm to compute roots
+$$
+{\cal B} := ((M_1,J_1), \ldots, (M_r,J_r))
+$$
+where each pair $(M_i, J_i), 1 \le i \le r$ represents a real algebraic number: $M_i \in \Q[x_1]$ being the minimal polynomial and $J_i$ being a left-open, right-closed interval of $\R$ which contains a single root of $M_i$.
+
+Apply this process to $f_T$ and $f_B$ to obtain the list of *refinement points*
+$$
+(c_1,\ldots,c_t).
+$$
+
+[@bgv15, Theorem 3.18] continues by finding a set of points $(b_1,\ldots,b_s) \in (c_i,c_i+1$ such that $C \cap \{ b_j < x_1 < b_{j+1} \}$ is monotone. By 
+
+### Implementation details
+
+
+
+
+## Computing the refinements
+
+
