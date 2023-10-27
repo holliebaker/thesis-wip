@@ -1,0 +1,469 @@
+# Monotone Cells
+
+Now we have a CAD $\cal D$ such that each 2-dimensional cell is the graph of a quasi-affine map, let us return to [@bgv15 Theorem 3.20] and discuss how to obtain monotone cells. 
+
+::: {.definition #sub-cad}
+Let $\cal D$ be a CAD of $\R^n$ and suppose that $c = \{ x_1 = c_1,\dots,x_k = c_k \}$ is a $0$-dimensional section cell in the decomposition induced by $\cal D$ on $\R^k$. 
+By [@bgv15 Remark 3.8], the set of all cells of $\cal D$ contained in the effing coordinate subspace 
+$$
+\{ x_1=c_1,\dots,x_k=c_k \}
+$$
+forms a cylindrical decomposition of $\R^{n-k}$. This decomposition will be called the *sub-decomposition* of $\cal D$ above $c$, and $c$ the *base cell* of the sub-decomposition. 
+:::
+
+The construction proceeds by induction on $n$. 
+
+- The base case, $n=1$ is straightforward, since $(0)$ and $(1)$-cells are already monotone. 
+
+- When $n>1$, consider each cell $C$ of $\cal D$ and let $C'' := \proj op{1}(C)$
+
+  - If $\dim(C'') = 0$, apply the inductive hypothesis to the sub-decomposition of $\cal D$ above $C''$.
+  - Otherwise, $C$ has index $\{1,i_2,\dots,i_n\} \in \{0,1\}^n$. Let $\alpha$ be the smallest among $\{2,\dots,n\}$ such that $i_\alpha = 1$. 
+    Then $C' := \proj op{\alpha}(C)$ is a 2-dimensional sector cell and $C$ is the graph of a quasi-affine map 
+    $$
+    \mathbb{f} = (f_1,\dots,f_{n-2}) : \opspan{x_1,x_\alpha} \to \opspan{x_2,\ldots,x_{\alpha - 1}, x_{\alpha+1},\ldots,x_n}.
+    $$
+    Since $\mathbb{f}$ is quasi-affine, each component $f_j : \opspan{x_1,x_\alpha} \to \opspan{x_j}$ is quasi-affine, too. 
+
+    Let $X \subset \opspan{x_1,x_\alpha}$. By [@bgv15, Lemma 3.18], there exists a refinement of the CAD of $\opspan{x_1,x_\alpha}$, obtained by intersecting $X$ with straight lines and half-planes of the kind 
+    $$
+    \{x_1 < c\}, \{x_1 = c\}, \{x_1 > c\}
+    $$
+    where $c \in \R$, such that $X$ is a union of semi-monotone sets $B$ and $f_j\vert_B$ is a monotone function.
+    By [@bgv15 Lemma 3.11], refinements of this kind preserve the cylindrical structure of $\cal D$.
+
+## Obtaining monotone cells
+
+::: {.theorem #bgv-monotone}
+[@bgv15, Lemma 3.18]
+
+Let $X \subset \R^2$ be an open, bounded set and $f : X \to \R$ be a quasi-affine function. 
+Then there is a cylindrical decomposition of $\R^2$ compatible with $X$, obtained by intersecting $X$ with straight lines $$\{x_1 = c\}$$ and half-planes $$\{x_1 < c\},\{x_1 > c\}$$ such that the restriction $f\vert_B$ for every cell $B \subset X$ is a monotone function. 
+```
+
+### Two-dimensional semi-monotone sets
+
+[@bgv15, Lemma 3.18] proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is refined such that each $Y \subset X$ is a semi-monotone set. 
+Consider the intersection $X \cap \{x_1 = c\}$ for all $c\in \R$. This intersection is a finite set of pairwise disjoint intervals. Let ${\cal I} (c)$ be the family of these intervals associated with the point $c$. Define 
+$$
+\gamma := \{ (x_1,x_2) \in \R^2 \mid x_2 \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
+$$
+
+:::{.lemma #gamma-top-bottom}
+Let $X := \projops{x_1,x_\alpha} (C)$ where $C$ is a 2-dimensional sector cell with index $(1,0,\ldots,0,1)$. 
+
+1. $X$ is a cylindrical sector cell in $\R^2$.
+1. The family ${\cal I}(C)$ is either empty or contains a single open interval for all $c\in \R$.
+1. $\gamma$ consists of the top and bottom of $X$, each of which (if non-empty) is the graph of a continuous definable function.
+:::
+
+::: {.proof}
+Let $X' := \projop{1}(C)$ and $C' := \projop{\alpha-1}(C)$. 
+Observe that $X'$ is a $(1)$-cell and $C'$ is a $(1,0,\ldots,0)$-cell.
+By definition 
+$$
+C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\}
+$$
+where $f,g : \R^{\alpha - 1} \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+
+Since $C'$ is a $(1,0,\ldots,0)$-cell, it can be viewed as the graph of a continuous definable map 
+$$
+\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : X' \to \opspan{x_2,\ldots,x_{\alpha-1}}.
+$$
+$C$ can therefore be rewritten in terms of only $x_1$ and $t$.
+$$
+C := \{ (x_1,\mathbf{h}(x_1),t) \mid x_1 \in X', f(x_1,\mathbf{h}(x_1)) < t < g(x_1,\mathbf{h}(x_1))\}.
+$$
+
+Define
+\begin{align}
+\phi &:\> C'' \to \R & \psi &:\> C'' \to \R\\
+\phi(x_1) &= f(x_1,\mathbf{h}(x_1)) & \psi(x_1) &= g(x_1,\mathbf{h}(x_1))
+
+(\#eq:phi-psi)
+\end{align}
+
+Observe that $\phi$ and $\psi$ are continuous, definable functions. By the definition of $f$ and $g$, we also have $\phi(x_1) < \psi(x_1)$ for all $x_1\in X'$. 
+
+Thus, we can write
+\begin{equation}
+X = \{ (x_1,t) \mid x \in X', \phi(x_1) < t < \psi(x_1) \}.
+
+(\#eq:cell-x)
+\end{equation}
+It is clear that $X$ is a cylindrical sector cell.
+By the definition of sector cell, the bottom of $X$ is the graph of $\phi$ and the top of $X$ is the graph of $\psi$. 
+
+Now consider the family
+$$
+{\cal I}(c) := \{ t \mid \phi(c) < t < \psi(c) \}.
+$$
+Using Equation \@ref(eq:cell-x), it is easy to deduce that if $c \in X'$ then ${\cal I}(c)$ contains a single open interval. On the other hand, if $c \not \in X'$, ${\cal I}(c)$ is clearly empty.  
+
+It follows that $\gamma$ consists of the points of the top and bottom of $X$, which are the graphs of functions $\psi$ and $\phi$ respectively. 
+:::
+
+The refinement is achieved by finding a set of real numbers 
+$$
+(c_1,\ldots,c_t)
+$$
+such that, for each $1 \le i < t$,
+$$
+X \cap \{c_i < x_1 < c_i+1\}
+$$
+is a semi-monotone set. By [@bgv13, Theorem 1.7], this can be achieved by ensuring that 
+$$
+\gamma \cap \{ c_i < x_1 < c_{i+1}\}
+$$ 
+contains only monotone curve intervals.
+
+Applying Lemma \@ref(lem:gamma-top-bottom) to $C$, we obtain continuous definable functions $\phi,\psi : X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively. 
+
+
+Let $$
+(c_1,\ldots,c_t)
+$$
+be the critical points of functions $\phi$ and $\psi$, Then, for all $1 \le i < t$, $\phi$ (resp $\psi$) is either strictly increasing in, strictly decreasing in, or independent of $x_1$ on the interval $(c_i, c_{i+1})$. 
+
+We now discuss how to find these critical points. 
+---
+
+Returning to the definition of the $(1,0,\ldots,0,1)$-cell $C'$, we see that, if they exist,
+\begin{equation}
+C'_B := \{ (\mathbf{x},x_\alpha) \in \R^{\alpha} \mid \mathbf{x} \in D, x_\alpha = f(\mathbf{x}) \}
+
+(\#eq:c-alpha-bottom)
+\end{equation}
+and 
+\begin{equation}
+C'_T := \{ (\mathbf{x},x_\alpha) \in \R^{\alpha} \mid \mathbf{x} \in D, x_\alpha = g(\mathbf{x}) \}
+
+(\#eq:c-alpha-top)
+\end{equation}
+where $D := \{ (x_1,\ldots,x_{\alpha - 1}) \mid x_1 \in C'', g_2(x_1) = 0, \ldots, g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1}) = 0 \}$.
+Recall that, by (TODO!), every cell in $\cal D$ is $C^\infty$ differentiable.
+
+This construction lends itself naturally to the problem of Lagrange multipliers. 
+
+::: {.proposition #lagrange-multipliers}
+Let $f : \R^n \to \R$ and $g_1,\ldots,g_k : \R^n \to \R$ be continuous functions with continuous first partial derivatives. 
+Local maxima and minima of $f$, subject to the constraints $g_1=0,\ldots,g_k=0$ can be found by computing the critical points of the function
+$$
+\mathcal{L}(\mathbf{x}, \lambda_1,\ldots,\lambda_k) = f(\mathbf{x}) - \lambda_1 g_1(\mathbf{x}) - \cdots - \lambda_k g_k(\mathbf{x}),
+$$
+where $\mathbf{x} \in \R^n$ and $(\lambda_1,\ldots,\lambda_k) \in \R^k$ are new (free) variables. 
+
+Critical points can be found by solving the system of equations
+\begin{equation}
+\dfrac{\partial f}{\partial x_i} - \lambda_1 \dfrac{\partial g_1}{\partial x_i} - \cdots - \lambda_k \dfrac{\partial g_k}{\partial x_i}= 0,
+
+(\#eq:lagrange)
+\end{equation}
+where $1\le i \le n$,
+
+for $\lambda_1,\ldots,\lambda_k$. 
+:::
+
+::: {.remark #lagrange-solve}
+Using variables $(x_1,\ldots,x_{\alpha-1})$, the system from Equation \@ref(eq:lagrange) can be written in matrix form as follows.
+$$
+\begin{pmatrix}\dfrac{\partial f_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{1}}\\
+\vdots &  & \vdots\\
+\dfrac{\partial f_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{\alpha-1}}
+\end{pmatrix}\begin{pmatrix}\lambda_{1}\\
+\vdots\\
+\lambda_{\alpha-2}
+\end{pmatrix}=\begin{pmatrix}\dfrac{\partial f_{\alpha}}{\partial x_{1}}\\
+\vdots\\
+\dfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}
+\end{pmatrix}
+$$
+
+It is clear that, if a solution exists, then the column 
+$\left(\tfrac{\partial f_{\alpha}}{\partial x_{1}},\ldots, \tfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}\right)^T$ 
+must be a linear combination of columns in $f_2,\ldots,f_{\alpha - 1}$. 
+
+Thus, optimal values for $(x_1,\ldots,x_{\alpha-1})$ exist, and satisfy Equation \@ref(eq:lagrange) if
+\begin{equation}
+\det\begin{pmatrix}\dfrac{\partial f_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{1}} & {\dfrac{\partial f_{\alpha}}{\partial x_{1}}}\\
+\vdots &  & \vdots & \vdots\\
+\dfrac{\partial f_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{\alpha-1}} & \dfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}.
+\end{pmatrix}=0.
+
+(\#eq:jacobi-det)
+\end{equation}
+
+This gives a direct formula for $(x_1,\ldots,x_{\alpha-1}$.
+:::
+
+Equation \@ref(eq:jacobi-det) is a polynomial in $\Q[x_1,\ldots,x_{\alpha-1}]$. Note that, to find the *refinement points* in $(c_1,\ldots,c_t)$, we need only to solve this equation for $x_1$. 
+
+Being surrounded by the machinery of cylindrical decomposition, it seems natural to simply compute the projection onto $\R^1$ of this polynomial, leaving us with a set of polynomials
+$$
+\{ f_1,\ldots,f_r \} \subset \Q[x_1]
+$$
+
+Applying this method to polynomials $f$ and $g$, defining $C'_B$ and $C'_B$, with constraints $g_2,\ldots,g_{\alpha - 1}$, we obtain a family of polynomials
+$$
+{\cal F} := \{ f_1,\ldots,f_s \} \subset \Q[x_1]
+$$
+
+We can then use a polynomial root finding algorithm to compute a list
+$$
+{\cal B} := (c_1 := (m_1,J_1), \ldots, c_t = (m_t, J_t))
+$$
+where each $c_i = (m_i,J_i)$ is a root of some polynomial $f_j \in \cal{F}$, represented as an algebraic number. I.e., the algebraic number $c_i$ is the unique root of $m_i$ in the interval $J_i$. We have computed the points
+$$
+(c_1,\ldots,c_t)
+$$
+needed for the refinement of $X$ into semi-monotone sets. Observe that, since all $c_i \in {\cal B}$ are roots of polynomials, the refinement points are always algebraic numbers. We will use $\A$ in the implementation, since these can be easily represented by in a computer. See TODO! for QEPCAD's representation of algebraic numbers. 
+
+## Two-dimensional monotone cells
+
+Let us return to [@bgv15, Theorem 3.18] to obtain 2-dimensional monotone cells. 
+Let 
+$$
+Y := \{ c_i < x_1 < c_{x+1}\} \cap X
+$$
+for $1\le i < t$ be one of the 2-dimensional semi-monotone sets in the refinement computed in TODO(previous section), and consider the function $f_j : Y \to \opspan{x_j}$. Since $f_j$ is quasi-affine, its restriction to $Y \subset X$ is also quasi-affine. Hence, $f_j$ is either strictly increasing in, strictly decreasing in, or independent of the variables $x_1$ and $x_\alpha$. In addition, the restriction $f\vert_{Y \cap \{x_\alpha = c\}}$ for any $c \in \R$ is either strictly increasing in, strictly decreasing in, or independent of $x_\alpha$. We must compute a refinement of $Y$ such that, for each $B \subset Y$ in the refinement, $f_j\vert_Y$ is a monotone function. 
+
+First, suppose that $1 < j < \alpha$. 
+Since 
+$$
+\projops{x_1,x_j}(C)
+$$
+is quasi-affine, connected and one-dimensional, the component 
+$f_j$ is already monotone and there is nothing to do. 
+
+Now suppose that $j>\alpha$.
+By [@bgv13, Theorem 3], if functions $\inf_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$ and $\sup_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$ are monotone, then $f$ is monotone. Hence, we need to find refinement points
+$$
+(b_1,\ldots,b_r) \subset (c_i,c_{i+1})
+$$
+such that, for each $1\le \ell < r$, the restrictions of both $\inf_{x_\alpha} f_j$ and  $\inf_{x_\alpha} f_j$ to $B := Y \cap \{ b_\ell < x_1 < b_{\ell + 1} \}$ are monotone.
+Can we easily compute functions $ $\inf_{x_\alpha} f_j$$ and  $\sup_{x_\alpha} f_j$?
+
+To answer this question, let us make a somewhat bold claim. (TODO! cf top-bottom-not-cylindrical)
+
+::: {.lemma #top-bottom-always-cells}
+Let $C \subset \R^3$ be a 2-dimensional section cell, which is the graph of a continuous function $f : C' \to \R$ where $C' := \projop{\R^2}(C)$. Construct a **sign-invariant** CAD compatible with $C$. Then $C_T$ (resp. $C_B$), if non-empty, is the graph of $f\vert_{C'_T}$ (resp. $f\vert_{C'_B}$). 
+:::
+
+::: {.proof}
+Let $\cal D$ be a sign-invariant CAD compatible with $C$.  
+
+Observe that $C'$ is a cylindrical sector cell. Suppose that $C'_T$ is non-empty. Then, by definition, $C'_T$ is a cylindrical section cell and the graph of a polynomial $g : \R\to \R$. 
+$C'_T$ is a cell of $\cal D$, since $\cal D$ is sign-invarient on $g$. 
+
+We claim that, if $C_T$ is non-empty, then $f\vert_{C'_T}$ is a continuous function. 
+Indeed, if $f\vert_{C'_T}$ is not defined on some point $c \in C'_T$, then it is defined nowhere on $C'_T$ and $\cl{C) \cap (C'_T \times \R) = \emptyset$. 
+Suppose that $f$ is note defined on some point $\mathbf{c}\in C'_T$. Then $\cl(C) \cap (\mathbf{c} \times \R)$ is either empty ($f$ tends to infinity) or contains an open interval in $\mathbf{c} \times \R$.
+ 
+For the first case, assume that $f$ tends to infinity as $\mathbf{y} \in C'$ approaches $\mathbf{c} \in C'_T$, but takes a real value on all other points in $C'_T$. 
+Then the graph of $f\vert_{C'_T\setminus \{ \mathbf{c} \}}$ would consist of two connected components. However, this would be impossible due to the cylindrical structure of $\cal D$. 
+Indeed, the two connected components of the graph of $f\vert_{C'_T \setminus \{\mathbf{c)\}}$ would be cylindrical cells, causing $\projop{1}(\mathbf{c})$ to be a $(0)$-cell in the decomposition induced by $\cal D$ on $\R^1$. $C'$ would be refined into three cells such that $f$ is defined as $\mathbf{y} \to \mathbf{x}$ for every $\mathbf{x} \in C'' \subset C'$, where $C''$ is one of the section cells in the refinement.    
+Therefore, the graph of $f$ must either be empty, or have the same projection onto $\R^1$ as the cell $C$.
+
+In the second case, $\cl(C) \cap \{C'_T \times \R\}$ must be a union of several cyrindrical cells, and the cylindrical structure of $\cal D$ means that this is impossible. A similar refinement as above will take place. Since $C$ has dimension $2$, blow-up points of $f$ will have dimension at most $0$. 
+
+Finally, we show that $C_T$, if non-empty, does coincides with the graph of $f\vert_{C'_T}$. 
+Since $C$ is two-dimensional, $\cl(C)$ will consist of the limits of $f$ as $\mathbf{y} \to \mathbf{x}$ for $\mathbf{x} \in \cl{C'}$, except, possibly, at a finite set of points $B' \subset \cl{C'}$. $B'$ will be a set of $(0)$-dimensional cells in the decomposition induced by $\cal{D}$ on $\R^2$, so $$C_T := \cl(C) \cap (C'_T \times \R)$$
+will either be empty or consist of the limits of $f$ as $\mathbf{y} \to \mathbf{x}$. 
+
+Apply the same argument to $C_B$. 
+:::
+
+::: {.remark #top-bottom-smooth-cells}
+Let $C$ be a 2-dimensional section cell in $\R^3$ and $\cal D$ be the sign-invarient CAD constructed in Lemma \@ref(lem:top-bottom-always-cells). Then $C_T$ (resp, $C_B$) is either empty or a one-dimensional continuous curve. If $\cal D$ is constructed using a projection operator which guarantees smooth cells, then $C_T$ (resp. $C_B$), being a cell of $\cal D$, is also smooth. 
+:::
+
+FIND HERE
+Let $C^j := \projops{x_1,x_\alpha,x_j}(C)$. 
+Apply Lemma \@ref(lem:gamma-top-bottom) and Lemma \@ref(lem:top-bottom-always-cells) to $C_j$, we get an expression for $C^j_B$ and $C^j_T$ in terms of $f_j$. I.e,
+$$
+C^j_B := \{ (x_1,x_\alpha,x_j) \mid x_1 \in C'', x_\alpha = \phi(x_1), x_j = \rho_j(x_1,x_\alpha) \}
+$$
+and ...
+
+FIND HERE. I have got myself in a twisted mess trying to define the functions for $f_j$. two problems. one is that sometimes i have $f(...) = 0$ and other times I have $x_k = g(...)$ and they are mixed up. I shouold fix on one of these. or at lesat have a consistent notation. Like $g$ for proj factors which are zero and $h$ to return a value. `9
+
+where $\phi$ and $\psi$ are difenid in Equations \@ref(eq:phi) and \@ref(eq:psi) and
+$$
+\rho_j &:\> \opspan{x_1,x_\alpha} \to \opspan{x_j}\\
+\rho_j(x_1,x_\alpha) &= f_j(x_1,,f()
+\text{where } & 
+$$
+is a shorthand for $f_j$ in terms of $x_1,x_\alpha$.
+
+
+By Equations \@ref(eq:c-alpha-bottom) and \@ref(eq:c-alpha-top), we already have formulas for the bottom and top of $C'$. 
+$$
+C^j_B := \{ (\mathbf{x},x_j) \mid \mathbf{x} \in C'_B, x_j = \rho(\mathbf{x}) \}
+$$
+and
+$$
+C^j_T := \{ (\mathbf{x},x_j) \mid \mathbf{x} \in C'_T, x_j = \rho(\mathbf{x}) \}
+$$
+
+Using this construction, we can find the critical ponts of these functions by computing the critical points of $f_j$ subject to the one-dimensional curve $\projop{\R^{j-1}}(D_T)$ (resp. $D_B$). Observe that $\projop{\R^\alpha}(D_T)$ coincides with the top of the 2-dimensional semi-monotone set $Y$. Apply the method of Lagrange multipliers followed by projection and root-finding, described above, to, $f_j = (f_{\alpha + 1}, \ldots, f_n)$ in ascending order. We obtain refinement points
+$$
+(b_1,\ldots,b_r).
+$$
+
+Thus, the restriction of each component of the map 
+$$
+\mathbf{f} = (f_2,\ldots,{f_\alpha-1}, f_{\alpha + 1}, \ldots, f_n)
+$$
+to $\{ b_\all < x_1 < b_{\ell + 1} \}$, for $(1 \le \ell < r)$, is monotone. Therefore, the map $\mathbf{f}$ is monotone on every cell ind the refinement. 
+
+### Implementation Details
+
+We now descuss the implementation. First, pseudocode is presented. 
+
+### Algorithm
+---
+**Input:** $$(k, {\cal D}, {\cal A})$$
+  - $1 \le k < n-2$,
+  - $\cal D$: Cylindrical algebraic decomposition of $\opspan{x_k,\ldots,x_n}$ above a $0$-cell $\mathbf{b} \in \A^{k-1}$. 
+  - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_n$ is the family of projection polynomials where each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$. 
+
+**Output:** ${\cal R}_k \subset \A^k$, a list of level-$k$ *refinement points* $(\mathbf{c}_1,\ldots,\mathbf{c}_t)$, each $\mathbf{c}_i = (\mathbf{b},c_i)$, such that a refinement of $\cal D$ of the kind $\{ x_k < c_i \},\{ x_k = c_i \},\{ x_k > c_i \}$ for each refinement point $\mathbf{c}_i$ consists of all monotone cells. 
+
+---
+
+For each cell $C$ of $\cal D$ with index
+$$
+(0,\ldots,0,\underbrace{1}_{i_k},0,\ldots,0,\underbrace{1}_{i_\alpha},0,\ldots,0),
+$$ do:
+
+- Let
+
+  - $C_0 := \projop{\A^{k-1}}(C)$.
+
+    Note: if $k = 0$, then $C_0$ is the unique cell in the CAD of $\A^0$. 
+  - $S_0 \in \A^{k-1}$ be the sample point of $S_0$
+  - $F = (f_{k+1},\ldots,f_{\alpha-1},f_{\alpha+1},\ldots,f_n)$ be elements of $\cal A$ such that each
+    $$f_i \in {\cal A}_i \mid f_i = 0 \text{ on } C,$$
+    for all $i \in \{ k+1\ldots,\alpha - 1, \alpha + 1,\ldots, n \}$.
+
+- Substitute $S_0 \in \A^{k-1}$ into each polynomial $f_i \in \Z[x_1,\ldots,x_i]$, to obtain a polynomial $g_i \in \A[x_1,\ldots,x_{n-k}]$. 
+- Let $C':= \projop{\R^\alpha}(C)$. By definition
+  
+  $$
+  C' = \{ (\mathbf{b},t) \mid f_{\alpha,B}(\mathbf{b}) < t < f_{\alpha,T}(\mathbf{b}) \}. 
+  $$  
+  If $f_{\alpha,B}(\mathbf{b}) \not\equiv -\infty$,
+  
+  do:
+
+  - Substitute $S_0$ into $f_{\alpha,B}$ to obtain a polynomial $g_\alpha \in \A[x_1,\ldots,x_\alpha]$. 
+  
+  - Let
+    $$
+    G := (g_{k+1,\ldots,g_{\alpha - 1}, g_{\alpha}, g_{\alpha + 1}, \ldots,g_n})  
+    $$
+    By Lemma \@ref(lem:top-bottom-always-cells), $C_T$ is defined by the set of polynomials in $G$. 
+  
+  - Let $H := (h_{k+1},\ldots,h_n)$, where each $h_\all, k+1\le \ell \le n$ is defined as follows. 
+  
+    - If all coefficients of $g_\ell$ are rational numbers, convert these coefficients into integer numbers.
+    - Otherwise, $g_\ell$ has some algebraic coefficients. 
+    
+      **Normalise** (see Subroutines) polynomial $g_\ell$ such that it has integer coefficients. 
+
+  - For $k+2 \le j \le n$,
+  
+  do:
+    - Apply Proposition \@ref(prp:lagrange-multipliers) with utility function $g_j$ and constraints $(g_{k+1},\ldots,g_{j-1})$. 
+    - We obtain a Jacobi determinant $$J \in \Q[x_1,\ldots,x_{j-1}].$$   
+    - Apply CAD projection (**McCallum Extended**) to $$(g_{k+1,\ldots,g_{j-1},J})$$
+      to obtain a list of polynomials
+      $$
+      {\cal P}_B := P_1,\ldots,P_{m_B} \subset \Z[x_1]
+      $$
+
+  Otherwise $C'_B$ does not exist. Let
+  $$
+  {\cal P}_B = \emptyset.
+  $$
+
+- If $f_{\alpha,T}(\mathbf{b}) \not\equiv \infty$,
+
+repet the process for $f_\alpha$ to obtain the set
+$$
+\cal{P}_T := P_1,\ldots,P_{m_B} \subset \Z[x_1].
+$$
+
+Otherwise, let
+$$
+{\cal P}_T = \emptyset.
+$$
+
+- Let $$
+{\cal P} := {\cal P}_B \cup {\cal P}_T = \{P_1,\ldots,P_m\} \subset \Z[x_1}.
+$$
+
+- Apply **root finding** to $\cal P$ to obtain a list
+$$
+\cal{B} := ((M_1,I_1),\ldots,(M_r,J_{r_B})).
+$$
+
+Note: Root finding algorithm returns roots in ascending order and isolating intervals are pairwise disjoint. 
+
+- if ${\cal B} = \empty$, 
+
+do:
+  - Return $\emptyset$.
+
+Otherwise:
+
+  - Let ${\cal R}_k = \emptyset$.
+  - If $S_0$ is in extended form, convert it into primitive form to give
+    $$
+    S'_0 := (M_0, I_0, \mathbf{b})
+    $$
+    
+    Otherwise
+    $$
+    S'_0 = S_0 = (M_0, I_0, \mathbf{b}).
+    $$
+
+  - For each $(M,J) \in {\cal B}$,
+
+do:
+  - ${\cal R_k} := {\cal R}_k \cup \{ S \}$ where $c$ is defined as follows.
+    - If $M$ is linear,
+    $$
+    M = a x_1 - b \Rightarrow c = b/a.
+    $$
+    
+    $$
+    S := (M_0, I_0, (\mathbf{b}, y = c \cdot 1))
+    $$
+
+    - If $\deg(M) > 1$ and $\deg(M_0) = 1$, $c$ is an algebraic number and $S_0$ is rational.
+    $$    
+    S := (M, J, (\mathbf{b}, y = 1\cdot\alpha))).
+    $$
+    
+    Othewrise, $\mathbf{b}$ is algebraicand $c$ is algebraic. Store in extended form:
+    $$
+    S := (M, J, M_0, I_0, \mathbf{b}).    
+    $$
+    
+- Return ${\cal R}_k$.
+---
+
+### Discussion on QEPCAD sample points 
+
+Subcad -> substitute
+i.e., we want polynomials only in x_1, so we bus in the base cell $c$. 
+
+present the pseudocode. 
+talk about how refinement points are nothing but sample points of new cells. 
+
+
+
+## Computing the refinements
+
+

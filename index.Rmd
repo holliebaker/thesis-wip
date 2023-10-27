@@ -14,6 +14,9 @@ description: "Hollie Baker's thesis"
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\A}{\mathbb{A}}
 
 \newcommand{\proj}{\operatorname{proj}}
 \newcommand{\projop}[1]{{\proj_{\R^{#1}}}}

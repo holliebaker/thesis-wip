@@ -1,0 +1,105 @@
+# Bits and Pieces
+
+## Definitions that don't quite fit anywhere else. 
+
+::: {.definition #definable-set}
+A structure expanding the real closed field $R$ is a collection $$
+S := (S^n)_{n \in \N}
+$$
+where each $S^n$ is a set of subsets of the affine space $R^n$ satisfying the following conditions. 
+
+1. All algebraic subsets of $R^n$ are in $S^n$.
+1. $S^n$ is a Boolean subalgebra of the powerset of $R^n$.
+1. If $A \in S^n$ and $B \in S^m$, then $A \times B \in S^{n+m}$.
+1. Let $\proj : R^{n+1} \to R$ be the projection onto the first $n$ coordinates. If $X\in R^{n+1}$, then $\proj(X) \in R^n$.
+:::
+
+::: {.definition #o-minimal-structure}
+A structure $S$ satisfying the properties of a definable set (listed in Definition \@ref(def:definable-set)) and
+
+5. The elements of $S^1$ consist of the finite unions of points and open intervals of $R$.
+:::
+
+We work in the category of *Semialgebraic sets* over the real closed field $\R$. Semialgebraic sets are, perhaps, the most well-known example of an o-minimal structure. 
+
+::: {.definition #definable-function}
+A map $f : A \to R^m$, where $A \subset R^n$, is called *definable* if its graph $G \subset R^{n+m}$ is a definable set.
+:::
+
+::: {.remark}
+Since definable sets are closed under projection, it can be easily deduced that $A$ is a definable set. 
+:::
+
+::: {.remark}
+For convenience, we will call a definable map $f : R^n \to R$ a definable *function*. 
+:::
+
+## Definition of the CAD
+
+...
+
+> A section cell $C$ is the graph, in $\R^n$, of a continuous definable function $h : C' \to \R$, where $C'$ is a cylindrical cell in $\R^{n-1}$.
+
+In reality, we are given a set of *level-$n$ projection factors* and $C$ is a real root of a polynomial $f \in \Z[x_1,\ldots,x_n]$, viewed as a polynomial in $\Z[x_1,\ldots,x_{n-1}][x_n]$. By the construction of CAD, $f$ has $k$ real roots at every point $\mathbf{c} \in C'$. 
+
+In some situations, the former representation (with functions) is more convenient (than the latter, with roots).
+
+Observe that it is easy to convert from the function representation to the root representation. Indeed, let $C\subset R^{n}$ be the graph of
+$$h : C' \to \R$$
+where $C' \subset \R^{n-1}$ is an $(i_1,\ldots,i_{n-1})$-cell in $\R^{n-1}$. For every $\mathbf{c} \in C'$, the graph $C$ can be written as a root of
+$$
+f := h(\mathbf{c}) - x_n \in Z[x_1,\ldots,x_n]
+$$
+The specific root of $f$ such that $x_n = h(\mathbf{c})$ can be isolated, by Thom's lemma, by adding some sign conditions on partial derivatives of $g$. 
+
+Now let $f \in \Z[x_1,\ldots,x_{n-1}][x_n]$ be a polynomial in $x_n$ and $C' \subset \R^{n-1}$ be a $(i_1,\ldots,i_{n-1})$-cell of $\R^{n-1}$. Then the cylinder $C' \times \R$ ("above" $C'$) contains a family of section cells
+$$
+{\cal C} := \{ (\mathbf{c},x_n) \mid \mathbf{c} \in C', f(\mathbf{c},x_n) = 0 \}.
+$$
+The family $\cal C$ consists of $k$ connected semialgebraic sets, corresponding to the $k$ section cells on which $f = 0$.
+Suppose we want to represent one of these section cells $C \in {\cal C}$ as the graph of $h : C' \to \R$. By Thom's lemma, we can write
+$$
+C = \{ (\mathbf{c},x_n) \mid \mathbf{c} \in C', f(\mathbf{c},x_n) = 0, g_1(\mathbf{c},x_n) > 0, \ldots, g_k(\mathbf{c},x_n) \}
+$$
+where $g_1,\ldots,g_k$ are partial derivatives of $f$. 
+
+$C$ is a semialgebraic set, therefore $h$ is certainly a definable function. 
+But, is $h$ a polynomial? The answer is no. This can be seen using a simple example. 
+
+::: {.example}
+Let $D \subset \R^2$ be the unit disc, a semialgebraic set defined by a quantifier-free Boolean formula
+$$
+\{ x^2 + y^2 < 1 \}.
+$$
+Construct a CAD of $\R^2$ compatible with $D$ in which $D$ is a single sector cell. Observe that the top of $D$,
+$$
+D_T = \{ -1 < x < 1, y > 0, x^2 + y^2 = 0 \}
+$$
+and 
+$$
+D' := \projop{1}(D) = \{ -1 < x < 1 \}.
+$$
+It is clear that $D_T$ is a semialgebraic (and therefore a definable) set, so there exists a definable function
+$$
+h : D' \to \R
+$$
+such that $D_T$ is the graph of $h\vert_{D'}$. Indeed, let
+$$
+h(x) = +\sqrt{1-x^2}.
+$$
+This is clearly not a polynomial.
+:::
+
+In addition, it's clear that not every definable set is the graph of a definable map. Indeed, consider
+$$
+C := \{ x^2 + y^2 = 1 \}
+$$
+and
+$$
+C' := \projop{1}(C) = \{ -1 \le x \le 1 \}.
+$$
+Both $C$ and $C'$ are clearly definable, but there is no map from $C' \to \R$ having $C$ as its graph. Indeed, at $x=0$, this map should have images $-1$ and $1$, which contradicts the definition of a map. However, in the case of a cylindrical section cell, the map $h$ always exists by definition.
+
+Therefore, when working with cylindrical section cells, the map $h : C' \to \R$ may be used, but algorithms will work solely with polynomials $f \in \Z{x_1,\ldots,x_{n-1}}[x_n]$ from the level-$n$ projection factor set. 
+
+
