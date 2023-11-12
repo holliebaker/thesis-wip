@@ -19,6 +19,8 @@ description: "Hollie Baker's thesis"
 \newcommand{\A}{\mathbb{A}}
 
 \newcommand{\proj}{\operatorname{proj}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\res}{\operatorname{Res}}
 \newcommand{\projop}[1]{{\proj_{\R^{#1}}}}
 \newcommand{\projops}[1]{{\proj_{\opspan{#1}}}}
 

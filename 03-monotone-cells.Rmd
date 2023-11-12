@@ -39,22 +39,22 @@ The construction proceeds by induction on $n$.
 
 Let $X \subset \R^2$ be an open, bounded set and $f : X \to \R$ be a quasi-affine function. 
 Then there is a cylindrical decomposition of $\R^2$ compatible with $X$, obtained by intersecting $X$ with straight lines $$\{x_1 = c\}$$ and half-planes $$\{x_1 < c\},\{x_1 > c\}$$ such that the restriction $f\vert_B$ for every cell $B \subset X$ is a monotone function. 
-```
+:::
 
-### Two-dimensional semi-monotone sets
+### Two-dimensional semi-monotone sets {#semi-monotone-sets}
 
-[@bgv15, Lemma 3.18] proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is refined such that each $Y \subset X$ is a semi-monotone set. 
-Consider the intersection $X \cap \{x_1 = c\}$ for all $c\in \R$. This intersection is a finite set of pairwise disjoint intervals. Let ${\cal I} (c)$ be the family of these intervals associated with the point $c$. Define 
+The proof of Theorem \@ref(thm:bgv-monotone) proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is refined such that each $Y \subset X$ is a semi-monotone set. 
+Consider the intersection $X \cap \{x_1 = c\}$ for all $c\in \R$. This intersection is a finite union of pairwise disjoint intervals. Let ${\cal I} (c)$ be the family of these intervals associated with the point $c$. Define 
 $$
 \gamma := \{ (x_1,x_2) \in \R^2 \mid x_2 \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
 $$
 
 :::{.lemma #gamma-top-bottom}
-Let $X := \projops{x_1,x_\alpha} (C)$ where $C$ is a 2-dimensional sector cell with index $(1,0,\ldots,0,1)$. 
+Let $C$ be a $(1,0,\ldots,0,1)$-cell and $X := \projops{x_1,x_\alpha} (C)$. Then 
 
 1. $X$ is a cylindrical sector cell in $\R^2$.
 1. The family ${\cal I}(C)$ is either empty or contains a single open interval for all $c\in \R$.
-1. $\gamma$ consists of the top and bottom of $X$, each of which (if non-empty) is the graph of a continuous definable function.
+1. $\gamma$ consists of the union of the top and bottom of $X$, each of which (if non-empty) is the graph of a continuous definable function.
 :::
 
 ::: {.proof}
@@ -119,31 +119,50 @@ contains only monotone curve intervals.
 
 Applying Lemma \@ref(lem:gamma-top-bottom) to $C$, we obtain continuous definable functions $\phi,\psi : X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively. 
 
-
 Let $$
 (c_1,\ldots,c_t)
 $$
-be the critical points of functions $\phi$ and $\psi$, Then, for all $1 \le i < t$, $\phi$ (resp $\psi$) is either strictly increasing in, strictly decreasing in, or independent of $x_1$ on the interval $(c_i, c_{i+1})$. 
+be the critical points of functions $\phi$ and $\psi$. Then, for all $1 \le i < t$, $\phi$ (resp $\psi$) is either strictly increasing in, strictly decreasing in, or independent of $x_1$ on the interval $(c_i, c_{i+1})$. 
+
+### Finding the critical points of $\phi$ and $\psi$
 
 We now discuss how to find these critical points. 
----
 
-Returning to the definition of the $(1,0,\ldots,0,1)$-cell $C'$, we see that, if they exist,
+Let 
+$$
+{\cal A} = {\cal A}_1,\ldots,{\cal A}_n,
+$$ 
+where ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$, be the projection factor set for $\cal D$. For convenience, we say that $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
+Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ and consider the $(1,0,\ldots,0)$-cell
+$$
+C' := \projop{\alpha - 1}(C)
+$$ 
+of the decomposition induced by $\cal D$ on $\R^{\alpha - 1}$. Observe that
+$$
+\projop{1}(C) = (a,b) \subset \R \cup \{-\infty, \infty\}
+$$
+and, since $C'$ is a section cell, there exist polynomials 
+$$
+g_2 \in {\cal A_2},\ldots,g_{\alpha - 1} \in {\cal A_{\alpha - 1}}
+$$ such that $g_i(\mathbf{x}) = 0$ for all $1\le i \le \alpha - 1$ and $\mathbf{x} \in (C')$. 
+Therefore, there exists a one-dimensional algebraic variety 
+$$
+V' := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha - 1}(\mathbf{x}) = 0 \right\}
+$$ 
+such that $C' \subset V'$. 
+
+Now consider the top of $C$, denoted by $C_T$. 
+By definition, if $C$ is not bounded from above, then $C_T$ does not exist. Otherwise, $C_T$ is the graph of a continuous definable function $h : C' \to \R$. 
+In the first case, there is nothing to do, since $C_T$ can be thought of as being independent of $x_\alpha$.
+In the second case, $C_T$ can be written as
 \begin{equation}
-C'_B := \{ (\mathbf{x},x_\alpha) \in \R^{\alpha} \mid \mathbf{x} \in D, x_\alpha = f(\mathbf{x}) \}
+\{ (x_1,\ldots,x_\alpha) \mid a < x_1 < b, g_2(x_1,\ldots,x_{\alpha - 1}) = 0, \ldots, g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1}) = 0, x_\alpha = h(x_1,\ldots,x_{\alpha - 1}) \}.
 
-(\#eq:c-alpha-bottom)
+(#eq:c-alpha-top)
 \end{equation}
-and 
-\begin{equation}
-C'_T := \{ (\mathbf{x},x_\alpha) \in \R^{\alpha} \mid \mathbf{x} \in D, x_\alpha = g(\mathbf{x}) \}
+By **TODO** $C_T$ is $C^\infty$ smooth, therefore $h$ is a differentiable function everywhere in $C'$. 
 
-(\#eq:c-alpha-top)
-\end{equation}
-where $D := \{ (x_1,\ldots,x_{\alpha - 1}) \mid x_1 \in C'', g_2(x_1) = 0, \ldots, g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1}) = 0 \}$.
-Recall that, by (TODO!), every cell in $\cal D$ is $C^\infty$ differentiable.
-
-This construction lends itself naturally to the problem of Lagrange multipliers. 
+This representation lends itself naturally to the problem of Lagrange multipliers. 
 
 ::: {.proposition #lagrange-multipliers}
 Let $f : \R^n \to \R$ and $g_1,\ldots,g_k : \R^n \to \R$ be continuous functions with continuous first partial derivatives. 
@@ -151,7 +170,7 @@ Local maxima and minima of $f$, subject to the constraints $g_1=0,\ldots,g_k=0$ 
 $$
 \mathcal{L}(\mathbf{x}, \lambda_1,\ldots,\lambda_k) = f(\mathbf{x}) - \lambda_1 g_1(\mathbf{x}) - \cdots - \lambda_k g_k(\mathbf{x}),
 $$
-where $\mathbf{x} \in \R^n$ and $(\lambda_1,\ldots,\lambda_k) \in \R^k$ are new (free) variables. 
+where $\mathbf{x} \in \R^n$ and $(\lambda_1,\ldots,\lambda_k) \in \R^k$ are new variables. 
 
 Critical points can be found by solving the system of equations
 \begin{equation}
@@ -159,91 +178,238 @@ Critical points can be found by solving the system of equations
 
 (\#eq:lagrange)
 \end{equation}
-where $1\le i \le n$,
+where $1\le i \le n-1$,
 
 for $\lambda_1,\ldots,\lambda_k$. 
 :::
 
 ::: {.remark #lagrange-solve}
-Using variables $(x_1,\ldots,x_{\alpha-1})$, the system from Equation \@ref(eq:lagrange) can be written in matrix form as follows.
+Using variables $(x_1,\ldots,x_{\alpha-1})$, constraints $g_2,\ldots,g_{\alpha - 1}$ and function $h$ from Equation \@ref(eq:c-alpha-top), the system from Equation \@ref(eq:lagrange) can be written in matrix form as follows.
 $$
-\begin{pmatrix}\dfrac{\partial f_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{1}}\\
+\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{1}}\\
 \vdots &  & \vdots\\
-\dfrac{\partial f_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{\alpha-1}}
+\dfrac{\partial g_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{\alpha-1}}
 \end{pmatrix}\begin{pmatrix}\lambda_{1}\\
 \vdots\\
 \lambda_{\alpha-2}
-\end{pmatrix}=\begin{pmatrix}\dfrac{\partial f_{\alpha}}{\partial x_{1}}\\
+\end{pmatrix}=\begin{pmatrix}\dfrac{\partial h}{\partial x_{1}}\\
 \vdots\\
-\dfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}
+\dfrac{\partial h}{\partial x_{\alpha-1}}
 \end{pmatrix}
 $$
 
-It is clear that, if a solution exists, then the column 
-$\left(\tfrac{\partial f_{\alpha}}{\partial x_{1}},\ldots, \tfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}\right)^T$ 
-must be a linear combination of columns in $f_2,\ldots,f_{\alpha - 1}$. 
-
-Thus, optimal values for $(x_1,\ldots,x_{\alpha-1})$ exist, and satisfy Equation \@ref(eq:lagrange) if
+It is clear that, if a solution exists, then the last column 
+$\left(\tfrac{\partial h}{\partial x_{1}},\ldots, \tfrac{\partial h}{\partial x_{\alpha-1}}\right)^T$
+will be a linear combination of the first $\alpha - 1$ columns (in $g_2,\ldots,g_{\alpha - 1}$). 
+Hence, optimal values for $(x_1,\ldots,x_{\alpha-1})$ exist and satisfy
 \begin{equation}
-\det\begin{pmatrix}\dfrac{\partial f_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{1}} & {\dfrac{\partial f_{\alpha}}{\partial x_{1}}}\\
-\vdots &  & \vdots & \vdots\\
-\dfrac{\partial f_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial f_{\alpha-1}}{\partial x_{\alpha-1}} & \dfrac{\partial f_{\alpha}}{\partial x_{\alpha-1}}.
+\det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{1}} & \dfrac{\partial h}{\partial x_{1}}\\
+\vdots &  &  & \vdots\\
+\dfrac{\partial g_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{\alpha-1}} & \dfrac{\partial h}{\partial x_{\alpha-1}}
 \end{pmatrix}=0.
 
 (\#eq:jacobi-det)
 \end{equation}
+::: 
 
-This gives a direct formula for $(x_1,\ldots,x_{\alpha-1}$.
+Equation \@ref(eq:jacobi-det) gives a direct formula for formula to solve Equation \@ref(eq:lagrange) for $x_1,\ldots,x_{\alpha - 1}$. Refinement points $(c_1,\ldots,c_t)$ are the $x_1$-coordinates of these solutions. 
+
+Since $C_T$ is a section cell, there exists a polynomial $g_\alpha \in {\cal A}_\alpha$ such that $$
+C_T := \{ \mathbf{x} \in \R^\alpha \mid \projop{\alpha - 1}(\mathbf{x}) \in C', g_\alpha(\mathbf{x}) = 0 \}.
+$$ Thus, there exists an algebraic variety 
+\begin{equation}
+V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0 g_\alpha(\mathbf{x}) = 0 \right\}
+
+(\#eq:variety-v)
+\end{equation}
+such that $C_T \subset V$, where $g_2,\ldots,g_{\alpha - 1}$ are the same polynomials appearing in Equation \@ref(eq:c-alpha-top).
+
+Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$, while $h$ from Equation \@ref(eq:jacobi-det) is expected to be a continuous differentiable function from $\R^{\alpha - 1} \to \R$. 
+We need to compute derivatives of the implicit $g_\alpha$. I.e., 
+\begin{equation}
+\dfrac{d x_\alpha}{d x_i} = \dfrac{\partial g_\alpha / \partial x_i}{\partial g_\alpha / \partial x_\alpha}
+
+(\#eq:total-deriv)
+\end{equation}
+for $1\le i \le \alpha - 1$. 
+Let $J_T$ be the determinant of partial derivatives from Equation \@ref(eq:jacobi-det) with each $\partial h / \partial x_i, 1 \le i \le \alpha - 1$ replaced with $d x_\alpha / d x_i$ from Equation \@ref(eq:total-deriv). Observe that the denominator, for all $1 \le i \le \alpha - 1$, is equal to $d := \partial g_\alpha / \partial x_\alpha$, so the last column of the matrix can be written as
+$$
+\dfrac{1}{d} \left( \partial g_{\alpha} / x_{i} , \ldots , \partial g_{\alpha} / x_{i}\right)^T
+$$
+so that
+$$
+J_T = \frac{1}{d} J'_T,
+$$
+where $J'_T$ is the matrix from Equation \@ref(eq:jacobi-det) with the $\partial h / \partial x_i$ replaced with $\partial g_\alpha / \partial x_i$ for $1\le i \le \alpha - 1$. 
+
+Suppose that $\deg(d) = 0$. I.e., $d$ is a constant. Then $1/d \in \Q$ does not affect tho solutions of $J'_T$. 
+On the other hand, if $\deg(d) > 0$, then there are solutions $\mathbf{y}_1,\ldots,\mathbf{y}_k \in \R^{\alpha}$ such that $d(\mathbf{y}_i) = 0$ and the rational function $J_T$ is not defined. 
+These are points at whith the tangent plane to $J_T$ is vertical. However, $\mathbf{y}_i \not \in C_T$ for all $1\le i \le k$, since $C_T$ is a section cell. 
+Therefore, it sufficient to find solutions $\mathbf{x}_1,\ldots,\mathbf{x}_\ell \in \R^{\alpha-1}$ such that $J'_T(\mathbf{x}_i) = 0$. 
+Of course, the determinant $\tfrac{1}{d(\mathbf{x}_i}) J'_T(\mathbf{x}_i) = 0$. 
+
+$\partial h / \partial x_i$ can be replaced with $\partial g_\alpha / \partial x_i$ for $1\le i < \alpha$ Equation \@ref(eq:jacobi-det) to obtain a polynomial $f_T \in \Z{x_1,\ldots,x_{\alpha - 1}}$.
+Repeating the process with $C_B$, if non-empty, a second polynomial $f_B \in \Z[x_1,\ldots,x_{\alpha-1}]$ is obtained.
+
+We have a system of polynomials 
+\begin{equation}
+\{ g_2,\ldots,g_{\alpga-1}, f_B, f_T \}.
+
+(#eq:lagrange-solve)
+\end{equation}
+which needs to be solved for $x_1$. 
+
+Being surrounded by the machinery of cylindrical algebraic decomposition, it seems natural to simply apply the CAD projection operator to the polynomial system
+A set of polynomials
+$$
+\cal{F} := \{ f_1,\ldots,f_r \} \subset \Z[x_1]
+$$
+is obtained, whose solutions contain the refinement points $(c_1,\ldots,c_r)$.
+The set of real roots of $\cal F$, denoted by $\cal B$, can be found using a real root isolation algorithm, such as `IPFSBM` from `SACLIB`. 
+Each real root is represented by a pair
+$$
+c_i := (m_1,J_1)
+$$
+where $c_i$ is the unique root of the polynomial $m_i \in \Z[x_1]$ in the (left-open right-closed) isolating interval $J_i$. 
+Note that $\cal B$ contains only algebraic numbers and roots will appear in ascending order.
+
+### Working with sub-decompositions above a 0-cell
+
+Note that we are working in a sub-decomposition $\cal D$ of $\R^{k+n}$ above a $0$-cell $\mathbf{c}$ of $\R^k$ ($k \ge 0$). Therefore the polynomials appearing in Equation \@ref(eq:variety-v) are actually in $\Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$. 
+From a polynomial $f \in \Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$, a polynomial $g := f(\mathbf{c}) \in \A[x_1,\ldots,x_n]$ can be obtained by evaluating $f$ at $\mathbf{c}$. Evaluated polynomials $g$ define the sub-cad of $\R^n$ above $\mathbf{c}$ because $\mathbf{c}$ is a $0$-cell. 
+
+Note that, since $\mathbf{c}$ is an algebraic number, $g$ has algebraic coefficients. Since roots of $g$ are algebraic numbers, there exists a polynomial $h \in \Z[x_1,\ldots,x_n]$ such that, $g(\mathbf{x}) = 0$ if and only if $h(\mathbf{x}) = 0$ for all $\mathbf{x} \in \R^n$. A method for obtaining the polynomial $h$ with integer coefficients is now described. 
+
+1. If $f$ is independent of all $y_1,\ldots,y_k$, there is nothing to do, just set $h := f$. Otherwise, $f$ depends on at least one of $y_1,\ldots,y_k$.
+
+1. If $\mathbf{c}$ is rational, then $g = f(\mathbf{c})$ has coefficients in $\Q$. There exists a non-zero $a \in \Z$ such that $h := a g$ has integer coefficients and the same roots as $g$. 
+
+1. Otherwise, $\mathbf{c}$ is not rational. Then $f(\mathbf{c})$ has coefficients in $\A$. There exists an algorithm, which takes $g$ as input and returns a polynoial $h \in \Z[x_1,\ldots,x_n]$ such that $g(\mathbf{x}) = 0$ if and only if $h(\mathbf{x}) = 0$ for all $\mathbf{x} \in \R^n$. 
+
+::: {.remark}
+Let $f \in \Q[x_1,\ldots,x_n]$ be a polynomial such that
+$$
+f(x_1,\ldots,x_n) = \dfrac{a_1}{b_1} m_1 + \cdots + \dfrac{a_k}{b_k} m_k
+$$
+where $m_i = x_1^{d_{i,1}} \cdots x_n^{d_{i,n}}$ for $1 \le i \le k$ is a monomial in $x_1,\ldots,x_n$.
+
+Let $M := \lcm(b_1, \ldots, b_k)$ be the least common multiple of denominators and construct
+$$
+g(x_1,\ldots,x_n) = M f(x_1,\ldots,x_n) = \dfrac{M a_1}{b_1} m_1 + \cdots + \dfrac{M a_k}{b_k} m_k.
+$$
+Each coefficient in $g$ will be an integer number since $M$ is divisible by all $b_1,\ldots,b_k$ and polynomials $f$ and $g$ have the same roots.
 :::
 
-Equation \@ref(eq:jacobi-det) is a polynomial in $\Q[x_1,\ldots,x_{\alpha-1}]$. Note that, to find the *refinement points* in $(c_1,\ldots,c_t)$, we need only to solve this equation for $x_1$. 
+::: {.definition #norm}
+Let $K$ be a field and $L$ a finite (algebraic) extension of $K$. 
+The field $L$ can be thought of as a finite dimensional vector space over $K$. 
 
-Being surrounded by the machinery of cylindrical decomposition, it seems natural to simply compute the projection onto $\R^1$ of this polynomial, leaving us with a set of polynomials
-$$
-\{ f_1,\ldots,f_r \} \subset \Q[x_1]
-$$
+Consider $f$ and $m$ as polynomials in $\Q[x_1,\ldots,x_n,x_\alpha]$. compute the resultant of $f$ and $m$ to obtain a polynomial in $\Q[x_1,\ldots,x_n]$. somehow this gives us the norm of an algebraic polynomial. 
 
-Applying this method to polynomials $f$ and $g$, defining $C'_B$ and $C'_B$, with constraints $g_2,\ldots,g_{\alpha - 1}$, we obtain a family of polynomials
-$$
-{\cal F} := \{ f_1,\ldots,f_s \} \subset \Q[x_1]
-$$
+:::
 
-We can then use a polynomial root finding algorithm to compute a list
+::: {.remark}
+Let $f \in \A[x_1,\ldots,x_n]$ be a polynomial such that
 $$
-{\cal B} := (c_1 := (m_1,J_1), \ldots, c_t = (m_t, J_t))
+f(x_1,\ldots,x_n) = a_1 m_1 + \cdots + a_k m_k
 $$
-where each $c_i = (m_i,J_i)$ is a root of some polynomial $f_j \in \cal{F}$, represented as an algebraic number. I.e., the algebraic number $c_i$ is the unique root of $m_i$ in the interval $J_i$. We have computed the points
+where $m_i = x_1^{d_{i,1}} \cdots x_n^{d_{i,n}}$ is a monomial in $x_1,\ldots,x_n$ and $a_i$ is an element of $\Q(\alpha)$ for $1 \le i \le k$.
+
+Let $m \in \Z[\alpha]$ be the minimal polynomial for $\Q(\alpha)$. $f$ can be written as a polynomial in $\Q[x_1,\ldots,x_n,\alpha]$ and $m$ can be viewed as a polynomial in $\Z[x_1,\ldots,x_n,\alpha]$ which is independent of all $x_1,\ldots,x_n$. Compute
 $$
-(c_1,\ldots,c_t)
+g := \res_\alpha (f,m)
 $$
-needed for the refinement of $X$ into semi-monotone sets. Observe that, since all $c_i \in {\cal B}$ are roots of polynomials, the refinement points are always algebraic numbers. We will use $\A$ in the implementation, since these can be easily represented by in a computer. See TODO! for QEPCAD's representation of algebraic numbers. 
+to obtain a polynomial in $\Q[x_1,\ldots,x_n]$. The property that $f(\mathbf{x}) = 0$ if and only if $g(\mathbf{x}) = 0$ follows from the following property of resultants:
+
+> Let $I = \langle f, m \rangle$ be the ideal generated by polynomials $f, m \in K[x_1,\ldots,x_n][\alpha]$, where $K$ is an algebraically closed field. If at least one of $f$ and $m$ is monic, then
+>$$
+\res_\alpha (f,m) \in I \cap R.
+>$$
+
+It follows that $\mathbf{x} \in K^n$ is a common zero of the elements of $I \cap R$ if and only if it is a zero of $\res_\alpha(f,m)$.
+
+**TODO** this property came from the wiki page on resultants. does it need proving?
+:::
 
 ## Two-dimensional monotone cells
 
-Let us return to [@bgv15, Theorem 3.18] to obtain 2-dimensional monotone cells. 
-Let 
+Recall $X := \projops{x_1,x_\alpha}(C)$ and let $(c_1,\ldots,c_r)$ be the refinement points computed in the previous section such that 
 $$
 Y := \{ c_i < x_1 < c_{x+1}\} \cap X
 $$
-for $1\le i < t$ be one of the 2-dimensional semi-monotone sets in the refinement computed in TODO(previous section), and consider the function $f_j : Y \to \opspan{x_j}$. Since $f_j$ is quasi-affine, its restriction to $Y \subset X$ is also quasi-affine. Hence, $f_j$ is either strictly increasing in, strictly decreasing in, or independent of the variables $x_1$ and $x_\alpha$. In addition, the restriction $f\vert_{Y \cap \{x_\alpha = c\}}$ for any $c \in \R$ is either strictly increasing in, strictly decreasing in, or independent of $x_\alpha$. We must compute a refinement of $Y$ such that, for each $B \subset Y$ in the refinement, $f_j\vert_Y$ is a monotone function. 
+for some $1 \le i \le r$ is a two-dimensional semi-monotone set. 
+Let us return to [@bgv15, Theorem 3.18] to further refine $Y$ such that every two-dimensional section cell is a monotone cell.
 
-First, suppose that $1 < j < \alpha$. 
-Since 
+Let $f_j : Y \to \opspan{x_j}$ be a component of the quasi-affine map $\mathbf{f} : X \to \R$. Since $\mathbf{f}$ is quasi-affine, each component of $\mathbf{f}$ is quasi-affine and the restriction of component $f_j$ to $Y$ is quasi-affine since $Y \subset X$. 
+Hence, $f_j$ is either strictly increasing in, strictly decreasing in, or independent of each variable $x_1, x_\alpha$. 
+In addition, the restriction $f\vert_{Y \cap \{x_\alpha = c\}}$ for any $c \in \R$ is either strictly increasing in, strictly decreasing in, or independent of $x_\alpha$. 
+We will compute a refinement of $Y$ such that $f_j\vert_Y$ is monotone, each $B \subset Y$ in the refinement. 
+As before, only refinements of the kind 
 $$
-\projops{x_1,x_j}(C)
+\{ x_1 < c \}, \{ x_1 = c \}, \{ x_1 > c \},
 $$
-is quasi-affine, connected and one-dimensional, the component 
-$f_j$ is already monotone and there is nothing to do. 
+$c\ in \R$, which preserves beth the cylindrical structure and existing monotone cells. 
+
+### Case 1: $2 \le j \le \alpha - 1$
+
+::: {.lemma #one-dim-qa-is-monotone}
+Let $Y \subset \R^n$ be the graph of a quasi-affine map
+$$
+\mathbf{f} : (a,b) \te \R^{k-1}
+$$ 
+such that $(a,b) \subset \R$. Then $Y$ is a monotone cell. 
+:::
+
+::: {.proof}
+It is clear that
+$$
+\dim(Y) = 1.
+$$
+Then it is sufficient to consider the projection map $\projops{x_i} : \R^n \to \opspan{x_i}$ for each $1\le i \le n$. 
+
+Suppose that the restriction
+$$
+\projops{x_i}\vert_Y
+$$
+is injective, Then it is clear that the image $\projops{x_i}(Y)$ is $1$-dimensional. On the other hand, suppose that the image
+$$
+\projops{x_i}(Y)
+$$ 
+is one-dimensional, then it is clear that $\projops{x_i}\vert_Y$ is injective if $\mathbf{f}$ is either strictly increasing in, strictly decreasing in, or independent of $x_i$. It follows that $\mathbf{f}$ is a monotone map, therefore its graph, $Y$, is a monotone cell.
+:::
+
+Suppose that $1 < j < \alpha$. 
+Since
+$$
+\projop{j}(C)
+$$
+is one-dimensional and has been constructed such that it is the graph of a quasi-affine map, it follows, by Lemma \@ref(lem:one-dim-qa-is-monotone), that $f_i$ is already monotone. There is nothing to do. 
+
+### Case 2: $\alpha + 1 < j < n$
 
 Now suppose that $j>\alpha$.
-By [@bgv13, Theorem 3], if functions $\inf_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$ and $\sup_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$ are monotone, then $f$ is monotone. Hence, we need to find refinement points
+By [@bgv13, Theorem 3], if functions $\inf_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$ and $\sup_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$ are monotone, then $f_j$ is monotone. 
+Hence, we need to find refinement points
 $$
 (b_1,\ldots,b_r) \subset (c_i,c_{i+1})
 $$
 such that, for each $1\le \ell < r$, the restrictions of both $\inf_{x_\alpha} f_j$ and  $\inf_{x_\alpha} f_j$ to $B := Y \cap \{ b_\ell < x_1 < b_{\ell + 1} \}$ are monotone.
-Can we easily compute functions $ $\inf_{x_\alpha} f_j$$ and  $\sup_{x_\alpha} f_j$?
+The difficulty arises in computing functions $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$.
 
-To answer this question, let us make a somewhat bold claim. (TODO! cf top-bottom-not-cylindrical)
+Begin with $j = \alpha+1$ and let $$
+C' := \projop{j}(C).
+$$
+$C'$ is a $(1,0,\ldots,0,1,0)$-cell. It would be very convenient if $C'_B$ and $C'_T$ were the graphs of $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ respectively.
+However, example **TODO top-bottom-not-cylindrical** shows that we cannot even guarantee that $C'_T$ (resp $C'_B$) will be the graph of a continuous function. 
+
+- suppose C'_T is not the graph of a continuous function.
+- then it will eitherl be infinity, or there will be blow-up points. 
+- since dim(C') = 2, these blow-up points 0-dimensinoal
+- it means that our usual refinements will be enough to slice $C'$ up into cells whose top and bottom are always graphs of continuous definable functions. Once we get that, we do lagrange just as before and everything works great.
+- the tricky bit is finding these poins. 
+  - option 1: we know there will be none, because CAD is sign invariant and smooth
+  - option 2: we do some kind of smooth statification thing, or maybe compute the critical points w.r.t x_\alpha of the polynomial defining them to check if the tangent plane becomes vertical anywhere.
+  
 
 ::: {.lemma #top-bottom-always-cells}
 Let $C \subset \R^3$ be a 2-dimensional section cell, which is the graph of a continuous function $f : C' \to \R$ where $C' := \projop{\R^2}(C)$. Construct a **sign-invariant** CAD compatible with $C$. Then $C_T$ (resp. $C_B$), if non-empty, is the graph of $f\vert_{C'_T}$ (resp. $f\vert_{C'_B}$). 
