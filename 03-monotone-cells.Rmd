@@ -32,7 +32,7 @@ The construction proceeds by induction on $n$.
     where $c \in \R$, such that $X$ is a union of semi-monotone sets $B$ and $f_j\vert_B$ is a monotone function.
     By [@bgv15 Lemma 3.11], refinements of this kind preserve the cylindrical structure of $\cal D$.
 
-## Obtaining monotone cells
+## Two-dimensional semi-monotone sectors
 
 ::: {.theorem #bgv-monotone}
 [@bgv15, Lemma 3.18]
@@ -129,9 +129,11 @@ be the critical points of functions $\phi$ and $\psi$. Then, for all $1 \le i < 
 We now discuss how to find these critical points. 
 
 Let 
-$$
-{\cal A} = {\cal A}_1,\ldots,{\cal A}_n,
-$$ 
+\begin{equation}
+{\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
+
+(\#eq:proj-fac-set)
+\end{equation}
 where ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$, be the projection factor set for $\cal D$. For convenience, we say that $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
 Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ and consider the $(1,0,\ldots,0)$-cell
 $$
@@ -253,7 +255,7 @@ Repeating the process with $C_B$, if non-empty, a second polynomial $f_B \in \Z[
 
 We have a system of polynomials 
 \begin{equation}
-\{ g_2,\ldots,g_{\alpga-1}, f_B, f_T \}.
+\{ g_2,\ldots,g_{\alpha-1}, f_B, f_T \}.
 
 (#eq:lagrange-solve)
 \end{equation}
@@ -331,7 +333,7 @@ It follows that $\mathbf{x} \in K^n$ is a common zero of the elements of $I \cap
 **TODO** this property came from the wiki page on resultants. does it need proving?
 :::
 
-## Two-dimensional monotone cells
+## Two-dimensional monotone sections
 
 Recall $X := \projops{x_1,x_\alpha}(C)$ and let $(c_1,\ldots,c_r)$ be the refinement points computed in the previous section such that 
 $$
@@ -355,7 +357,7 @@ $c\ in \R$, which preserves beth the cylindrical structure and existing monotone
 ::: {.lemma #one-dim-qa-is-monotone}
 Let $Y \subset \R^n$ be the graph of a quasi-affine map
 $$
-\mathbf{f} : (a,b) \te \R^{k-1}
+\mathbf{f} : (a,b) \to \R^{k-1}
 $$ 
 such that $(a,b) \subset \R$. Then $Y$ is a monotone cell. 
 :::
@@ -381,110 +383,90 @@ is one-dimensional, then it is clear that $\projops{x_i}\vert_Y$ is injective if
 Suppose that $1 < j < \alpha$. 
 Since
 $$
-\projop{j}(C)
-$$
-is one-dimensional and has been constructed such that it is the graph of a quasi-affine map, it follows, by Lemma \@ref(lem:one-dim-qa-is-monotone), that $f_i$ is already monotone. There is nothing to do. 
+\projops{x_j,\x_\alpha}(C)
+$
+is one-dimensional, connected and the graph of a quasi-affine map, it follows from Lemma \@ref(lem:one-dim-qa-is-monotone) that $\projops{x_j,x_\alpha}(C)$ is a monotone cell and $f_j\vert_Y$ is already a monotone map. 
 
-### Case 2: $\alpha + 1 < j < n$
+### Case 2: $\alpha < j < n$
 
-Now suppose that $j>\alpha$.
+Now suppose that $\alpha < j < n$.
 By [@bgv13, Theorem 3], if functions $\inf_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$ and $\sup_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$ are monotone, then $f_j$ is monotone. 
 Hence, we need to find refinement points
 $$
 (b_1,\ldots,b_r) \subset (c_i,c_{i+1})
 $$
-such that, for each $1\le \ell < r$, the restrictions of both $\inf_{x_\alpha} f_j$ and  $\inf_{x_\alpha} f_j$ to $B := Y \cap \{ b_\ell < x_1 < b_{\ell + 1} \}$ are monotone.
-The difficulty arises in computing functions $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$.
+such that, for each $1\le \ell < r$, the restrictions of both $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ to $B := Y \cap \{ b_\ell < x_1 < b_{\ell + 1} \}$ are monotone.
 
-Begin with $j = \alpha+1$ and let $$
-C' := \projop{j}(C).
+Consider $$
+Z := \projops{x_1,x_j}(C).
 $$
-$C'$ is a $(1,0,\ldots,0,1,0)$-cell. It would be very convenient if $C'_B$ and $C'_T$ were the graphs of $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ respectively.
-However, example **TODO top-bottom-not-cylindrical** shows that we cannot even guarantee that $C'_T$ (resp $C'_B$) will be the graph of a continuous function. 
-
-- suppose C'_T is not the graph of a continuous function.
-- then it will eitherl be infinity, or there will be blow-up points. 
-- since dim(C') = 2, these blow-up points 0-dimensinoal
-- it means that our usual refinements will be enough to slice $C'$ up into cells whose top and bottom are always graphs of continuous definable functions. Once we get that, we do lagrange just as before and everything works great.
-- the tricky bit is finding these poins. 
-  - option 1: we know there will be none, because CAD is sign invariant and smooth
-  - option 2: we do some kind of smooth statification thing, or maybe compute the critical points w.r.t x_\alpha of the polynomial defining them to check if the tangent plane becomes vertical anywhere.
-  
-
-::: {.lemma #top-bottom-always-cells}
-Let $C \subset \R^3$ be a 2-dimensional section cell, which is the graph of a continuous function $f : C' \to \R$ where $C' := \projop{\R^2}(C)$. Construct a **sign-invariant** CAD compatible with $C$. Then $C_T$ (resp. $C_B$), if non-empty, is the graph of $f\vert_{C'_T}$ (resp. $f\vert_{C'_B}$). 
-:::
-
-::: {.proof}
-Let $\cal D$ be a sign-invariant CAD compatible with $C$.  
-
-Observe that $C'$ is a cylindrical sector cell. Suppose that $C'_T$ is non-empty. Then, by definition, $C'_T$ is a cylindrical section cell and the graph of a polynomial $g : \R\to \R$. 
-$C'_T$ is a cell of $\cal D$, since $\cal D$ is sign-invarient on $g$. 
-
-We claim that, if $C_T$ is non-empty, then $f\vert_{C'_T}$ is a continuous function. 
-Indeed, if $f\vert_{C'_T}$ is not defined on some point $c \in C'_T$, then it is defined nowhere on $C'_T$ and $\cl{C) \cap (C'_T \times \R) = \emptyset$. 
-Suppose that $f$ is note defined on some point $\mathbf{c}\in C'_T$. Then $\cl(C) \cap (\mathbf{c} \times \R)$ is either empty ($f$ tends to infinity) or contains an open interval in $\mathbf{c} \times \R$.
- 
-For the first case, assume that $f$ tends to infinity as $\mathbf{y} \in C'$ approaches $\mathbf{c} \in C'_T$, but takes a real value on all other points in $C'_T$. 
-Then the graph of $f\vert_{C'_T\setminus \{ \mathbf{c} \}}$ would consist of two connected components. However, this would be impossible due to the cylindrical structure of $\cal D$. 
-Indeed, the two connected components of the graph of $f\vert_{C'_T \setminus \{\mathbf{c)\}}$ would be cylindrical cells, causing $\projop{1}(\mathbf{c})$ to be a $(0)$-cell in the decomposition induced by $\cal D$ on $\R^1$. $C'$ would be refined into three cells such that $f$ is defined as $\mathbf{y} \to \mathbf{x}$ for every $\mathbf{x} \in C'' \subset C'$, where $C''$ is one of the section cells in the refinement.    
-Therefore, the graph of $f$ must either be empty, or have the same projection onto $\R^1$ as the cell $C$.
-
-In the second case, $\cl(C) \cap \{C'_T \times \R\}$ must be a union of several cyrindrical cells, and the cylindrical structure of $\cal D$ means that this is impossible. A similar refinement as above will take place. Since $C$ has dimension $2$, blow-up points of $f$ will have dimension at most $0$. 
-
-Finally, we show that $C_T$, if non-empty, does coincides with the graph of $f\vert_{C'_T}$. 
-Since $C$ is two-dimensional, $\cl(C)$ will consist of the limits of $f$ as $\mathbf{y} \to \mathbf{x}$ for $\mathbf{x} \in \cl{C'}$, except, possibly, at a finite set of points $B' \subset \cl{C'}$. $B'$ will be a set of $(0)$-dimensional cells in the decomposition induced by $\cal{D}$ on $\R^2$, so $$C_T := \cl(C) \cap (C'_T \times \R)$$
-will either be empty or consist of the limits of $f$ as $\mathbf{y} \to \mathbf{x}$. 
-
-Apply the same argument to $C_B$. 
-:::
-
-::: {.remark #top-bottom-smooth-cells}
-Let $C$ be a 2-dimensional section cell in $\R^3$ and $\cal D$ be the sign-invarient CAD constructed in Lemma \@ref(lem:top-bottom-always-cells). Then $C_T$ (resp, $C_B$) is either empty or a one-dimensional continuous curve. If $\cal D$ is constructed using a projection operator which guarantees smooth cells, then $C_T$ (resp. $C_B$), being a cell of $\cal D$, is also smooth. 
-:::
-
-FIND HERE
-Let $C^j := \projops{x_1,x_\alpha,x_j}(C)$. 
-Apply Lemma \@ref(lem:gamma-top-bottom) and Lemma \@ref(lem:top-bottom-always-cells) to $C_j$, we get an expression for $C^j_B$ and $C^j_T$ in terms of $f_j$. I.e,
+If $\dim(Z) < 2$, then it is clear that $\dim(Z) = 1$, because 
 $$
-C^j_B := \{ (x_1,x_\alpha,x_j) \mid x_1 \in C'', x_\alpha = \phi(x_1), x_j = \rho_j(x_1,x_\alpha) \}
-$$
-and ...
+Y' := \projop{1}(C)
+$$ is one-dimensional.
+It follows that $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ coincide. Since $Z$ is one-dimensional, connected and quasi-affine, $f_j$ is alceady monotone. 
 
-FIND HERE. I have got myself in a twisted mess trying to define the functions for $f_j$. two problems. one is that sometimes i have $f(...) = 0$ and other times I have $x_k = g(...)$ and they are mixed up. I shouold fix on one of these. or at lesat have a consistent notation. Like $g$ for proj factors which are zero and $h$ to return a value. `9
+On the other hand, if $\dim(Z) = 2$, since $\mathbf{f}$ is quasi-affine, $\projops{x_1,x_j}\vert_C$ is injective. 
+Let $Z_T$ be the graph of $\sup_{x_\alpha} f_j$. Despite the notation, $Z_T$ is not necesarily the top of $Z$. In particular, $Z_T$ may have non-empty intersection with $Z$. 
+Since semialgebraic sets are closed under intersection and projection, there exist points 
+$$\{b_1,\ldots,b_k\} \subset (c_i,c_{i+1})
+$$ such that $$
+Z_T \cap \{ b_i < x_1 < b_{i+1} \},
+$$
+for all $1 \le i < k$, is either a subset of $Z$ or is disjoint from $Z$. 
+First suppose that $Z_T \cap \{ x_j < x_1 < b_{j+1} \} \subset Z$ for some $1 \le i < k$. 
+In this case, $\sup_{x_\alpha} f_j \vert_{\{ b_i < x_1 < b_{i+1} \}}$ is independent of $x_1$ -- there is nothing to do.
+Now suppose that $Z_T \cap \{ b_j < x_1 < b_{j+1} \} \cap Z = \emptyset$, for some $1\le i < k$.
+In this case, $Z_T \cap \{ b_i < x_1 < b_{i+1} \} \subset \projops{x_1,x_j}(C_T)$. 
+If there exists a point $b \in (b_i,b_{i+1})$ such that $\projops{x_1,x_\alpha}(C_T) \cap \{x_1 = b\} \cap Z \neq \emptyset$, 
+Then $C_T \cap \{ b_i < x_1 < b_{i+1} \}$ is not the graph of a continuous function.
+In particular, the graph contains an open interval above $(b,y) \in Y_T$. In other words, $(b,y)$ is a blow-up point of some component of the map $\mathbf{f}$ (not necesarily $f_i$). 
+Since $\dim(C) = 2$, all blow-up points have dimension $0$ and there is a finite number of them. It follows that there exist points 
+$$\{ b_{i,1}, \ldots, b_{i,k_i} \} \subset (b_i, b_{i+1})
+$$ such that, for all $1 \le j < k_i$, $C_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}$ is the grah of a continuous function. 
 
-where $\phi$ and $\psi$ are difenid in Equations \@ref(eq:phi) and \@ref(eq:psi) and
+Thus, there exist subsets $$
+W := Y \cap \{ b_{i,j} < x_1 < b_{i,j+1} \},
 $$
-\rho_j &:\> \opspan{x_1,x_\alpha} \to \opspan{x_j}\\
-\rho_j(x_1,x_\alpha) &= f_j(x_1,,f()
-\text{where } & 
-$$
-is a shorthand for $f_j$ in terms of $x_1,x_\alpha$.
+for all $1\le i < k$ and $1 \le j \le k_i$, $Z_T \cap (W \times \R^{n-1})$ is either empty, or the graph of a continuous function.
 
+**TODO, how to find these points.**
 
-By Equations \@ref(eq:c-alpha-bottom) and \@ref(eq:c-alpha-top), we already have formulas for the bottom and top of $C'$. 
-$$
-C^j_B := \{ (\mathbf{x},x_j) \mid \mathbf{x} \in C'_B, x_j = \rho(\mathbf{x}) \}
-$$
-and
-$$
-C^j_T := \{ (\mathbf{x},x_j) \mid \mathbf{x} \in C'_T, x_j = \rho(\mathbf{x}) \}
-$$
+> my idea is that $\partial g_j / \partial x_j = 0$ (denominator in the jacobi det) only when the tangent plane goes vertical. happens at "tends to infitiny" and "blow-up points". Thus, doing lagrange as before, but adding $\partial g_i / \partial x_i$ to the system will allow us to find these points. 
+>
+> It's apparent that top and bottom of our monotone cells are always either empty or graphs of continuous functions. Nice! (remember the BGV theorem that states this) 
 
-Using this construction, we can find the critical ponts of these functions by computing the critical points of $f_j$ subject to the one-dimensional curve $\projop{\R^{j-1}}(D_T)$ (resp. $D_B$). Observe that $\projop{\R^\alpha}(D_T)$ coincides with the top of the 2-dimensional semi-monotone set $Y$. Apply the method of Lagrange multipliers followed by projection and root-finding, described above, to, $f_j = (f_{\alpha + 1}, \ldots, f_n)$ in ascending order. We obtain refinement points
-$$
-(b_1,\ldots,b_r).
-$$
+Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$), then repeat for all $\alpha < j < n$.
 
-Thus, the restriction of each component of the map 
-$$
-\mathbf{f} = (f_2,\ldots,{f_\alpha-1}, f_{\alpha + 1}, \ldots, f_n)
-$$
-to $\{ b_\all < x_1 < b_{\ell + 1} \}$, for $(1 \le \ell < r)$, is monotone. Therefore, the map $\mathbf{f}$ is monotone on every cell ind the refinement. 
+### Critical points of the top and bottom of $C$
 
-### Implementation Details
+We now discuss how to refine each $W$ such that the restriction of each $f_i$ to $B \subset W$ is monotone. By [@bgv15 Lemma 3.11], since $X$ is a $2$-dimensional semi-monotone cylindrical sector cell, $W$ is also a $2$-dimensional sem-monotone sector cell. 
+Therefore $W_B$ and $W_T$, if they exist, are $1$-dimensional cylindrical section cells. Suppose that $f_j\vert_{W_T}$ is a continuous function (if not, no refinement is needed). We compute critical points of $f_j$ subject to the curve $W_T$ in a very similar way to that described in the previous section.
 
-We now descuss the implementation. First, pseudocode is presented. 
+Begin with $j = \alpha + 1$ and let $$
+C' := \projop{j-1}(C), C^j := \projop{j}(C),
+$$
+and let
+$$
+{\cal A} = ({\cal A}_1, \ldots, {\cal A}_n)
+$$
+be the projection factor set as defined in Equation \@ref(eq:proj-fac-set). 
+Since $j-1 = \alpha$, $C'$ is a cylindrical sector cell and there exists an algebraic variety $V \subset C'_T$, defined in Equation \@ref(eq:c-alpha-top). $C^j_T\cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ is assumed to be the graph of a continuous function, therefore
+$$
+C^j_T := \{ (x_1,\ldots,x_j) \mid b_{i,j} < x_1 < b_{i,j+1}, g_2(x_1,\ldots,x_j) = 0 ,\ldots , g_{j-1}(x_1,\ldots,x_j) = 0, x_j = h(x_1,\ldots,x_{j-1}) \},
+$$
+where $g_2,\ldots,g_j$ are the polynomials from Equation \@ref(eq:c-alpha-top). 
+
+Polynomials $g_2,\ldots,g_{j-1}$ provide the constraints in \@ref(eq:jacobi-det), while $\partial h / \partial x_i, 1 \le i \le j - 1$ in the last column should be replaced with $\partial g_j / \partial x_i$ since $\partial g_j / \partial x_j$ is nonzero for all $\mathbf{x} \in C^j_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}$. Denote this polynomial by $f_T$, and repeat with $C^j_B$ if appropriate.
+
+Refinement points are found be computing the $x_1$-coordinate of roots of the system
+$$
+\{ g_2, \ldots, g_{i-1}, f_B, f_T \}.
+$$
+As before, refinement points are always algebraic numbers, and are computed in a subc-cad of above a $0$-dimensional cell $\mathbf{c}$, so substitution of $\mathf{c}$ into polynomials will be performed. 
+
+## Implementation Details
+
 
 ### Algorithm
 ---
@@ -528,7 +510,7 @@ $$ do:
     $$
     G := (g_{k+1,\ldots,g_{\alpha - 1}, g_{\alpha}, g_{\alpha + 1}, \ldots,g_n})  
     $$
-    By Lemma \@ref(lem:top-bottom-always-cells), $C_T$ is defined by the set of polynomials in $G$. 
+    Be careful! top and bottom are not always cylindrical cells, have to find the preliminary refinement points first. 
   
   - Let $H := (h_{k+1},\ldots,h_n)$, where each $h_\all, k+1\le \ell \le n$ is defined as follows. 
   
