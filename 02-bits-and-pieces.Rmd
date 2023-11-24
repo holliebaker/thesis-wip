@@ -36,6 +36,9 @@ For convenience, we will call a definable map $f : R^n \to R$ a definable *funct
 
 ## Definition of the CAD
 
+Projection to the induced decomposition vs construction of stacks above cylindrical cells.
+
+
 ...
 
 > A section cell $C$ is the graph, in $\R^n$, of a continuous definable function $h : C' \to \R$, where $C'$ is a cylindrical cell in $\R^{n-1}$.

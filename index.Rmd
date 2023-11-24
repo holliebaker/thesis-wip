@@ -32,9 +32,9 @@ A Cylindrical Algebraic Decomposition (CAD) is a finite partition of n-dimension
 key idea of cylindricity is that cells are arranged in *stacks*. I.e., the projection of any two cells onto dimension
 n-1 is either disjoint or identical.
 
-CAD provides a constructive and computationally tractable proof of the famous Tarski-Seidenberg theorem, which states thet semialgebraic sets are
+CAD provides a constructive and computationally tractable proof of the famous Tarski-Seidenberg theorem, which states that semialgebraic sets are
 closed under projection, or, equivalently, that quantifier elimination is possible over the reals. Indeed, QE is
-possibly the most famous application of CAD. CAD also has applications in computing topological ploperties of
+possibly the most famous application of CAD. CAD also has applications in computing topological properties of
 semialgebraic sets and solving motion-planninng problems. However, for these applications, a basic CAD will not suffice.
 Instead, we may have to introduce some additional constraints to the construction. One such constraint, which is useful
 in topology, is that every cell in the CAD is a *topologically regular cell*. Put briefly, its boundary should be
@@ -42,7 +42,15 @@ homeomorphic to a circle. Another useful property is the *frontier condition*. I
 decomposition must be a union of some other cells in the decomposition of smaller dimension. This property is necessary
 to solve motion planning problems.
 
-Tho goal of this thesis is to develop an algorithm to construct a *monotone* CAD -- right now it's enough to know that
-this is a CAD in which every cell is topologically regular and satisfies the frontier condition. The algorithm is based
-on a construction due to [@bgv15].
+The goal of this thesis is to develop an algorithm to construct such a CAD. In fact, a CAD satisfying a slightly stronger condition -- such that every cell contained in some input set in **monotone**. It has been proved that a **monotone cell** is a **topologically regular cell**. The constructive proof that such a CAD exists is due to [@bgv15], and this thesis will aim to extract an algorithm from the formal description. 
+[@bgv15] work over the category of sub-pfaffian sets, using an algorithm due to **TODO** to construct the base cylindrical decomposition. However, the algorithm presented here will work with semialgebraic sets, using the more familiar CAD due to [@collins75]. This will allow the tools of computer algobra to be used. In addition, an implementation would not be possible over sub-pfaffian sets, as an oracle is needed to determine whether a set is empty. 
+
+## Things to explain
+
+- some background on CAD
+  - algorithms (including pfaffian one), implementations and upper bounds
+- monotone cells are obtained by refinements, i.e., more cells
+  - why might one want to introduce more cells?
+
+
 

@@ -13,9 +13,9 @@ it seemed to break in higher dimension (i.e., 5)
 
 
 planning thesis.
-  list of chapter titles 
-  proper title of thesis 
-  
+  list of chapter titles
+  proper title of thesis
+
 
 writing up
 - do in three steps
@@ -28,44 +28,44 @@ writing up
     - following closely th ??
   - monotone
     - following closely th ??
-  - effectively we find the critical points of some (smooth) surface "along" some (smooth) curve. I.e., we find the critical points of some function subject to constraints. 
+  - effectively we find the critical points of some (smooth) surface "along" some (smooth) curve. I.e., we find the critical points of some function subject to constraints.
   - it is the optimisation problem of "Lagrange ultipliers"
-  - formulate the problem 
+  - formulate the problem
   - what is the utility function? f in Q[x1,...,xn], polynomial. we know the function has no blow-ups anywhere on the cell. what obut along it's top / bottom? Well, we know cells are smooth, and by definition they are graphs of continuous functions. therefore we do not worry about blow-ups.
   - constraints will be "curves" they are defined by polynomials g in Q[k1,...,xk]
   - construct that jacobi determinant, explaining that it arises because, if we find the lambdas, we get one of the functions being a linear combination of the others, thus setting the jacobi determinant to zero gives us the required values of x1,...,xn-1
   - however we only require the x1 values, due to theorem ??
-  - a naive way is to use CAD projection to solve. 
+  - a naive way is to use CAD projection to solve.
   - it took ages to run that, so I factorised the input and it was much quicker
   - number of projection factors will "brow up" (by how much?) with each variable, so it makes sense to keep the number down
   - i tried computing a GB (using singular) and it was much faster! 1 second rather than 10 seconds
   - what about using GB elimination to solve for x1 (is it as easy as solving with Gaussian elimination?)
   - observations
-    - due to the "shape" of the matrix, it's nearly in row echelon form, that might make calculating the det faster. 
+    - due to the "shape" of the matrix, it's nearly in row echelon form, that might make calculating the det faster.
     - above the 0-cell means that we sub in the variables
     - sample point might be rat or alg. if alg, the polynomials will have algebraic coefficients
       - gb and projection algorithm expect as input a polynomial with integer or rational coefficients.
-      - luckily the defninion of algebraic number helps us here. suppose that c1,...,ck are roots of some polynomial f with algebraic coefficients. roots of polynomials are algebraic numbers and we know that any algebraic number can be represented by a polynomial and an isolating interval. so there exists another polynomial g with integer coefficients, having c1,...,ck among its roots. 
-      - this polynomial can be calculated with the AFPNORM function in saclib, and that is what is done. 
+      - luckily the defninion of algebraic number helps us here. suppose that c1,...,ck are roots of some polynomial f with algebraic coefficients. roots of polynomials are algebraic numbers and we know that any algebraic number can be represented by a polynomial and an isolating interval. so there exists another polynomial g with integer coefficients, having c1,...,ck among its roots.
+      - this polynomial can be calculated with the AFPNORM function in saclib, and that is what is done.
       - roots of polynomials, being algebraic numbers, are represented as a pair (P,J) where P is a univariat polynomial and J is a left open right closed interwal (or one point interval). roots are returned in ascending order.
       - we will store a list of "refinement points" which are points (c1,...,ck-1,ck), where first k-1 coordinates are the sample point of 0-cell above which a refinement is to be performed and ck is the root of refinement polynomial
     - now we are ready to refine. this is a simple recursive function that "splits" cells according to the sample poitns
       - how is algebraic number comparison done
       - algebraic field elements are transformed to algebraic numbers
-      - number of comparison operations performed. 
+      - number of comparison operations performed.
     - when splitting the 1-sector C into three cells, it is clear that sample point s is correct on only one of the cells. thus lifting phase of CAD must be performed again for the remaining two cells.
     - can find an upper bound on the number of cells? (we can bound complex roots by using degree??)
-  - finally we refine to satisfy the frontier condition. 
-    - lazard frontier condition. a method for refining in R3, a cod in which "bad cells" are always 0-dimensional 
-    - it works by computing the saturation of an ideal with respect to a funciton. this computes the Zariski closure of a one-dimensional curve as it approaches the "bad cell" 
-    - the zariski closure intersected with the bad cell (point) p times R, gives us the refning points. 
-    - can it be extended up to R^n?. 
+  - finally we refine to satisfy the frontier condition.
+    - lazard frontier condition. a method for refining in R3, a cod in which "bad cells" are always 0-dimensional
+    - it works by computing the saturation of an ideal with respect to a funciton. this computes the Zariski closure of a one-dimensional curve as it approaches the "bad cell"
+    - the zariski closure intersected with the bad cell (point) p times R, gives us the refning points.
+    - can it be extended up to R^n?.
       - we know blow-ups in a cad with 2-dimensional cells can have dimension at most one, by the definition of blow-up point.
       - so the base point is (p=g1,g2) in R^2, any polynomial f1,...fk-2 is fair game for a blow-up. we can check for a blow-up by looking for a 1-dimensional sector cell above p on which one of f_i's is zero.
       - once we find the offending f_k with the blow-up, we can stop seaching, because we know all polynomials f_k+1,...,f_n are ok
-      - so we define our bad point (9-cell) using g1,g2,f1,...,fk-1 and polynomial f. we then compute the saturation of ideal representing a 1-dimensional algebraic set by each of polynomials g1,g2,f1,...,fk-1. thus we find the zariski closure of the one-dimensional curves as they approach the bad point p. 
-      - refinement is easy. in fact even easier than last time, but I just call the same function as before. 
-        - i think sample points above the refinement need recomputing again... 
+      - so we define our bad point (9-cell) using g1,g2,f1,...,fk-1 and polynomial f. we then compute the saturation of ideal representing a 1-dimensional algebraic set by each of polynomials g1,g2,f1,...,fk-1. thus we find the zariski closure of the one-dimensional curves as they approach the bad point p.
+      - refinement is easy. in fact even easier than last time, but I just call the same function as before.
+        - i think sample points above the refinement need recomputing again...
 
 
 - Introduction
@@ -91,17 +91,12 @@ plan for monotone
 
 state the theorem and copy the proof.
 
-Label parts of the proof and talk the reader through it. 
+Label parts of the proof and talk the reader through it.
 1. gamma is just top and bottom
 2. poits c are just the critical points of top/bottom
 3. inf/sup x_2 f. it handles the case of f tending to infinity, which it will either do everywhere or at a single point, or nowhere. the only issue will arise when it tends to infinity at the single point, but won't that be impossible by CAD construction?
 4. repeat for each f_j up till f_n
 5. we get the list roots, each one can be identified with a refinement point c
-
-
-
-
-
 
 
 
