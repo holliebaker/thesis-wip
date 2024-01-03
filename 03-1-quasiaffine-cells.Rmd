@@ -1,0 +1,7 @@
+# Quasi-affine cells
+
+## Computing the smooth 2-dimensional locus of $V$
+
+## Ensuring that every cell is the graph of a quasi-affine map
+
+

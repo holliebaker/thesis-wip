@@ -20,11 +20,15 @@ description: "Hollie Baker's thesis"
 
 \newcommand{\proj}{\operatorname{proj}}
 \newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\lc}{\operatorna{lc}}
+\newcommand{\red}{\operatorna{red}}
+\newcommand{\prim}{\operatorna{prim}}
+\newcommand{\psrc}{\operatorna{psrc}}
 \newcommand{\res}{\operatorname{Res}}
 \newcommand{\projop}[1]{{\proj_{\R^{#1}}}}
 \newcommand{\projops}[1]{{\proj_{\opspan{#1}}}}
-
 \newcommand{\opspan}[1]{{\operatorname{span} \{#1\}}}
+\newcommand{\cl}[1]{{\operatorname{cl} \left( #1 \right)}}
 
 # Cylindrical algebraic decompositions with monotone cells
 
@@ -42,8 +46,8 @@ homeomorphic to a circle. Another useful property is the *frontier condition*. I
 decomposition must be a union of some other cells in the decomposition of smaller dimension. This property is necessary
 to solve motion planning problems.
 
-The goal of this thesis is to develop an algorithm to construct such a CAD. In fact, a CAD satisfying a slightly stronger condition -- such that every cell contained in some input set in **monotone**. It has been proved that a **monotone cell** is a **topologically regular cell**. The constructive proof that such a CAD exists is due to [@bgv15], and this thesis will aim to extract an algorithm from the formal description. 
-[@bgv15] work over the category of sub-pfaffian sets, using an algorithm due to **TODO** to construct the base cylindrical decomposition. However, the algorithm presented here will work with semialgebraic sets, using the more familiar CAD due to [@collins75]. This will allow the tools of computer algobra to be used. In addition, an implementation would not be possible over sub-pfaffian sets, as an oracle is needed to determine whether a set is empty. 
+The goal of this thesis is to develop an algorithm to construct such a CAD. In fact, a CAD satisfying a slightly stronger condition -- such that every cell contained in some input set in **monotone**. It has been proved that a **monotone cell** is a **topologically regular cell**. The constructive proof that such a CAD exists is due to [@bgv15], and this thesis will aim to extract an algorithm from the formal description.
+[@bgv15] work over the category of sub-pfaffian sets, using an algorithm due to **TODO** to construct the base cylindrical decomposition. However, the algorithm presented here will work with semialgebraic sets, using the more familiar CAD due to [@collins75]. This will allow the tools of computer algobra to be used. In addition, an implementation would not be possible over sub-pfaffian sets, as an oracle is needed to determine whether a set is empty.
 
 ## Things to explain
 

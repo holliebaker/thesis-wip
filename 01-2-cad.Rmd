@@ -1,0 +1,185 @@
+# Background: CAD
+
+@collins1975 introduced both the concept of cylindrical algebraic decomposition and an algorithm to construct one, such that each cell has constant sign on a set of input polynomials.
+
+First, we will present the formal definition of a cylindrical cell and cylindrical decomposition, closely following @bgv15 and then explain how a cylindrical decomposition can be constructed (following @coste2000, who presents a simple and concise description).
+
+::: {,definition}
+Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C$ is a connected definable subset of $\R^n$ with an *index*
+$$
+(i_1,\ldots,i_n) \in \{0,1\}^n.
+$$
+
+- When $n = 1$, a $(0)$-cell (section cell) is a point $c \in \R$ and a $(1)$-cell (sector cell) is an open interval: $(a,b)$, $(-\infty,b)$, $(a,\infty)$, $(-\infty,\infty)$ where $a,b\in \R$.
+
+- When $n > 1$, suppose that $(i_1,\ldots,i_{n-1})$-cells are already defined and let $C'$ be one of these cells.
+An $(i_1,\ldots,i_{n-1},0)$-cell (section cell) is the graph of a continuous definable function $f : C' \to \R$.
+An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C' \times \R$, either
+  $$
+\begin{aligned}
+\{ (\mathbf{x},t) &\mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\},\\
+\{ (\mathbf{x},t) &\mid \mathbf{x} \in C', -\infty < t < g(\mathbf{x})\},\\
+\{ (\mathbf{x},t) &\mid \mathbf{x} \in C', f(\mathbf{x}) < t < \infty\},\\
+\{ (\mathbf{x},t) &\mid \mathbf{x} \in C', t \in \R \}
+\end{aligned}
+  $$
+  where $f,g : C' \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+:::
+
+::: {,definition}
+Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the *frontier of $S$*
+$$
+\fr(S) := \cl(S) \setminus S,
+$$
+where $\cl(S)$ is the closure of $S$ in euclidean topology.
+:::
+
+If $C \subset \R^n$ is a cylinrical cell, then it will be convenient to partition $\fr(C)$ into three subsets: the top (denoted $C_t$), bottom (denoted $C_B$) and side wall (denoted $C_W$).  
+
+First suppose that $C$ is a sector $(i,1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by a continuous function $f : C' \to \R$, then $C_B$ is the graph of $f$. Similarly, if $C$ is bounded from above by the graph of a continuous function $g : C' \to \R$, then $C_T$ is the graph of $g$. It is clear that the top and bottom of a cylindrical sector cell (if non-empty) are alwyas cylindrical section cells.
+
+Now let $C$ be an $(i_1,\ldots,i_{k},0,\ldots,0)$-cell, where $i_{k}=1$, and $C' := \projop{k}(C)$. Since $C'$ is a sector cell, $C'_B$ and $C'_T$ are cylindrical section cells. The bottom $C_B$ of $C$ is the pre-image of $C'_B$ by the projection map $\projop{k}\vert_{\cl(C)}$ and the top $C_T$ of $C$ is the pre-image of $C'_T$ by the projection map $\projop{k-1}\vert_{\cl(C)}$. Instead of pre-images, it might be simpler to think of $C_B$ as the semialgebraic set $\cl(C) \cap (C'_B \times \R^{n - k + 1})$ and $C_T$ as the semialgebraic set $\cl(C) \cap (C'_T \times \R^{n - k + 1})$. Note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of continuous functions (see Example **TODO**).
+
+For both section and sector cells, let the side wall, $C_W$, be $\cl(C) \setminus (C_B \cup C_T)$. Of course, there is no gaurantee at all that $C_W$ will be (a union of) cylindrical cells. 
+
+::: {,definition}
+A cylindrical decomposition (not necessarily algebraic) is defined by induction on $n \ge 0$. 
+
+- When $n = 0$, the unique cylindrical decomposition of $\R^0$ is the unique point in $\R^0$.
+
+- When $n > 0$: Let $\cal D$ be a partition of $\R^n$ into cylindrical cells.
+Define $\cal D'$ to be the set of all projections $C' := \projop{n-1}(C)$ for all $C$ in $\cal D$.
+$\cal D$ is a cylindrical decomposition of $\R^n$ if $\cal D'$ is a cylindrical decomposition of $\R^{n-1}$. We call $\cal D'$ the *decomposion of $\R^{n-1}$ induced by $\cal D$.
+:::
+ 
+Less formally, a decomposition $\cal D$ of $\R^n$ is cylindrical if the projection of any two cells of $\cal D$ onto $\R^{n-1}$ is either disjoint or coincides.
+
+- maybe move this to just before the coste bit
+::: {.remark}
+A cylindrical decomposition is called *algebraic* if every cell is a semialgebraic set. We will only be working with cylindrical algebraic decompositions (CADs). 
+:::
+
+::: {.definition}
+Let $S \subset \R^n$ be a definable set. A cylindrical decomposition $\cal D$ is compatible with $S$ if every cell $C$ of $\cal D$ is either a subset of $S$ or disjoint from $S$. 
+:::
+
+--- {.definition}
+A cylindrical decomposition $\cal E$ is called a refinement of $\cal D$ if $\cal E$ is compatible with every cell of $\cal D$. I.e., every cell of $\cal D$ is a union of cells in the refinement $\cal E$.
+----
+
+::: {.definition}
+Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. A CAD $\cal D$ is called sign-invariant with respect to $\mathbf{F}$  (or $\mathbf{F}$-invariant) if every cell $C$ of $\cal D$ has constant sign (either $> 0$, $< 0$ or $= 0$) on every polynomial in $\mathbf{F}$. (Here $\mathbf{F}$ is called the set of input polynomials.)
+:::
+
+### Constructing a CAD
+
+Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm due to @collins1975 for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
+
+Let us begin with just one polynomial $f \in \Z[x_1,\ldots,x_n]$. We want to partition $\R^{n-1}$ into connected semialgebraic sets $C'$ such that, for all $\mathbf{x} \in C' $,, $f(\mathbf{x},x_n)$ has constant degree and a constant number of roots. Thus, the roots of $f(\mathbf{x},x_n$ form the section cells of the cylinder $C' \times \R$.
+
+::: {,proposition}
+Let $f \in \Z[x_1,\ldots,x_n]$ be a polynomial in $n$ variables with integer coefficients, $C' \subset \R^{n-1}$ be a connected semialgebraic set and $k \le d \in \N$ such that, for every point $\mathbf{x} \in C'$, the univariate polynomial $f(\mathbf{x},x_n) \in \A[x_n]$ has degree $d$ and exactly $k$ distinct (complex) roots in $C'$. Then Then there are $\ell \le k$ distinct definable functions $\psi_1,\ldots,\psi_\ell : C' \to \R$ such that, for every $\mathbf{x} \in C'$, the set of real roots of $f(\mathbf{x},x_n)$ is exactly $\{ \psi_1(\mathbf{x}, \ldots, \psi_\ell(\mathbf{x}) \}$. Moreover, the multiplicity of each of each root is constant. 
+:::
+
+::: {.proof}
+The argument relies on the "continuity of roots":
+
+> Fix $\mathbf{c} \in C'$ and let $z_1,\ldots,z_k$ be the distinct roots of $f(\mathbf{c},x_n)$ with multiplicities $m_1,\ldots,m_k$. 
+Choose $\varepsilon > 0$ small enough that the open discs $D(z_i,\varepsilon) z_i \subset \mathbb{C}$ (center $z_i$, radius $\varepsilon) are disjoint. If $\mathbf{b} \in C$ is sufficiently close to $\mathbf{c}$, then the polynomial $f(\mathbf{b}, x_n)$ has exactly $m_i$ roots, counted with multiplicities, in $D(z_i,\varepsilon)$ for $1\le i \le k$. 
+
+Since $f(\mathbf{b},x_n)$ has k distinct complex roots, and $d = m_1,\ldots,m_k$ complex roots counted with multiplicities, it follows that each $D(z_i,\varepsilon)$ contains exactly one root, call it $\zeta_i$, of $f(\mathbf{b},x_n)$ with multiplicity $m_i$. 
+If $z_i$ is real, then $\zeta_i$ is real, otherwise the complex conjugate of $\zeta_i$ would be another root of $f(\mathbf{b},x_n)$ in the disc $D(Z-i,\varepsilon)$. 
+If $z_i$ is complex then $\zeta_i$ is also complex, since the conjugation of every point in $D(z_i, \varepsilon)$ lies outside $D(z_i, \varepsilon)$, forming another disc $D(\overline{z_i}, \varepsilon)$.
+It follows that, if $\mathbf{b} \in C'$ is close enough to $\mathbf{c}$, then $f(\mathbf{c},x_n)$ has the same number of real roots as $f(\mathbf{c},x_n)$. Since $C'$ is connected, $f(\mathbf{x},x_n)$ has the same number of real roots at every point $\mathbf{x} \in C'$. Let the number of distinct real roots be $\ell$. 
+Define $\psi_i(\mathbf{x}) : C' \to \R$ to be the continuous (by making $\varepsilon$ small enough) definable function sending $\mathbf{x} \in C'$ to the $i$-th (in ascending order) real root of $f(\mathbf{x},x_n)$. It follows from the connectedness of $C'$ that each $\psi_i$ has constant multiplicity. 
+Observe that the graph of each $\psi_i$ can be expressed by a first-order Boolean formula (using existential quantifiers to express each of the $\ell$ roots of $f(\mathbf{x},x_n)$, and an equality condition to pick out the $i$-th root). It follows that the graph of each $\psi_i$ is a semialgebraic set. 
+:::
+
+To extend this result to several polynomials, we have to be careful that the graphs corresponding to the roots of the polynomials do not cross one another. This gives us the property that $\psi_i(\mathbf{x}) < \psi_{i+1}(\mathbf{x})$ for all $\mathbf{x} \in C'$ which is needed for the cylindrical structure.
+ This property is called delineability. 
+
+::: {.proposition}
+Let $f,g \in \Z[x_1,\ldots,x_n]$, $C' \subset \R^{n-1}$ such that the degree and number of roots of $f(\mathbf{x},x_n)$ and $g(\mathbf{x},x_n)$ is constant, and the degree of the GCD of $f(\mathbf{x},x_n)$ and $g(\mathbf{x},x_n)$ is constant for all $\mathbf{x} \in C'$. 
+Let $\phi,\psi : C' \to \R$ be continuous definable functions such that $f(\mathbf{x},\phi(\mathbf{x})) = 0$ and $g(\mathbf{x},\psi(\mathbf{x})) = 0$ for all $\mathbf{x} in C'$. If there exists $\mathbf{c} \in C'$ such that $\phi(\mathbf{c}) = \psi(\mathbf{c})$, then $\phi(\mathbf{x}) = \psi(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+:::
+
+::: {.proof}
+We use the same method of proof as in the previous proposition.
+For an arbitrary element $\mathbf{c} of C'$, let $z_1 = \phi(\mathbf{c}) = \psi(\mathbf{x}), \ldots, z_k$ be the distinct roots in $\mathbb{C}$ of the product
+$$
+f(\mathbf{c},x_n) g(\mathbf{c},x_n)
+$$
+($fg = 0$ if either $f=0$ or $g=0$).
+Let $m_i$ (resp $p_i$) be the multiplicity of $z_i$ as a root of $f(\mathbf{x},x_n)$ (resp. $g(\mathbf{x}, x_n)$) where multiplicity zero indicates that $z_i$ is not a root. 
+Thedegree of $gcd(f(\mathbf{x}, x_n), g(\mathbf{x}, x_n))$ is $\min(m_1,p_1) + \cdots + \min(m_k,p_k)$ and each $z_i$ has multiplicity $\min(m_i,p_i)$ as a root of this GCD. 
+Choose $\varepsilon > 0$ small enough that the discs $D(z_i,\varepsilon)$ are disjoint. 
+For each $\mathbf{b} \in C'$ close enough to $\mathbf{c}$, each disc contains a root of multiplicity $m_i$ of $f(\mathbf{b}, x_n)$ and a root of multiplicity $p_i$ of $g(\mathbf{b}, x_n)$. Since the degree of the GCD of $f$ and $g$ (evaluated at any $\mathbf{x}$ in $C'$) is equal to $\min(m_1,p_1) + \cdots + \min(m_k,p_k)$, the GCD must have one root of multiplicity $\min(m_i,p_i)$ in each disc $D(z_i,\varepsilon)$ such that $\min(m_i,p_i) > 0$. 
+In particular, it follows that $\phi(\mathbf{b}) = \psi(\mathbf{b})$. Since $C$ is connected, this equality holds for all $\mathbf{x} \in C'$. 
+:::
+
+We now have algebraic conditions on properties of the polynomials in $\mathbf{F}$ which allow us to construct stacks above cylindrical cells $C' \subset \R^{n-1}$.
+We can ensure that these conditions on polynomials hold by computing principal subresultant coefficients. more precisely $f$ has a fixed number of complex roots over a set where $\psrc_i(f,f')$ is either zero or nonzero and $f$ and $g$ has constant GCD over a when $\psrc_i(f, g)$ is either zero or nonzero, as long as the degrees of $f$ and $g$ are fixed. 
+In the case that, for some values of $)x_1,\ldots,x_n) \in \R^{n-1}$ the leading coefficients of $f$ and $g$ vanish, we must use the principal subresultant coefficients of the reductum (also called truncated polynomial, obtained by deleting the leading term) of $f$ and $g$. 
+
+::: {.definition}
+Consider $f \in \Z[x_1,\ldots,x_n]$ as a univariate polynomial in $x_n$ with coefficients in $\Z[x_1,\ldots,x_{n-1}]$. Denote by $\lc{f}$ the leading coefficient of $f$, and $\red(f}$ the reductum of $f$. 
+
+Let $\mathbf{f} \subset \Z[x_1,\ldots,x_n]$. We define the projection operator, $\proj(\mathbf{F})$ as follows:
+
+- Let $d := \deg(f_i)$. If $d > 1$, then $\proj(f_1,\ldots,f_i,\ldots,f_s)$ contains
+$$
+\psrc_k(f_i, \partial f_i / \partial x_n)
+$$
+for all $1\le k \le d$. 
+
+- Let $d := \min(\deg(f_i), \deg(f_j))$. If $d > 0$, then $\proj(f_1,\ldots,f_i,\ldots,f_j,\ldots,f_s)$ contains
+$$
+\psrc_j(f_i, f_j)
+$$
+for all $1 \le k \le d$. 
+
+- If $\deg(f_i) > 0$ and $\lc(f_i)$ is non-constant, then $\proj(f_1,\ldots,f_i,\ldots,f_s)$ contains
+$$
+\lc(f_i) \text[ and } \proj(f_1,\ldots,\red(f_i),\ldots,f_n).
+$$
+:::
+
+The following theorem follows immediately from the results just proved. 
+
+::: {,theorem}
+Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a family of polynomials and let $C'$ be a connected $\proj(\mathbf{F})$-invariant semialgebraic subset of $\R^{n-1}$ -- an $(i_1,\ldots,i_{n-1})$-cell. 
+Then there exist continuous definable functions 
+$$
+\psi_1,\ldots, psi_\ell : C' \to \R
+$$
+such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) \}$ coincides with the real roots of polynomials in $\mathbf{F}$, defining the $(i_1,\ldots,i_{n-1},0)$-cells in the cylinder $C' \times \R$ and $\{ -\infty < t < \psi_1(\mathbf{x}), \ldots, \psi_i(\mathbf{x}) < t < \psi_{i+1}(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) < t < \infty \}$ are the $(i_1,\ldots, i_{n-1},1)$-cells in the cylinder $C' \times \R$. 
+:::
+
+Suppose we have constructed a CAD of $\R^{k-1}$ which is sign-invariant with respect to $\proj_{k-1}(\mathbf{F})$. Then the preceding theorem can be used to construct a CAD of $\R^{k}$ which is sign-invariant with respect to $\proj_{k}(\mathbf{F})$. More precisely, the CAD is constructed by taking successive projections until the set of projection polynomials is in $\Z[x_1]$. $(0)$-cells of $\R^1$ are the roots of these polynomials, while $(1)$-cells are the open intervals in between them. "For $1\le k \le n-1$, $lifting" is then performed. I.e., for each cell $C'$ \subset \R^k$, the roots of polynomials in the projection set of $\mathbf{F}$ onto $\R^{k+1}$ are computed. See, e.g., the appendix of @pianomovers1983 for details of how this is done.
+
+Since Collins published his CAD algorithm in 1975, many variations of the projection operator have been proposed, most of which aim to minimise the number of polynomials appearing in $\proj_{k-1}(\mathbf{F})$, so as to make the algorithm more efficient in practice, while preserving the cylindrical structure. 
+@collins75 observed that, in dimension $2$, if the set $\mathbf{F} \subset \Z[x_1,x_2]$ of input polynomials is squarefree and pairwise relatively prime, then it is sufficient to include in $\proj(\mathbf{F})$ only the leading coefficients, resultants and discriminants of pairs of polynomials in $\mathbf{F}$. @mccallum1988 then proved that a similar construction is possible in dimension $3$. Later, @collins1998 improved upon his previous work by extending this result to arbitrary dimension, so long as the set of input polynomials is well oriented.
+
+::: {.definition}
+Let $\mathbf{F} \subset \Z[x_1, \ldots, x_n]$ be a set of polynomials and denote by $\prim(\mathbf{F})$ the set of all primitive parts of $\mathbf{F}$
+$\mathbf{F}$ is called well-oriented if, when $n > 1$,
+
+- for each element $f \in \prim(A)$, $f(\mathbf{x},y) = 0$ for all $y\in \R$ for only finitely many points $\mathbf{x} \in \R^{n-1}$.
+
+- $\proj(\mathbf{F})$ is well-oriented. 
+:::
+
+@brown2001 then observed that even more polynomials can be discarded, resulting in the "reduced McCallum projection operator", which is commonly used in practice.
+
+@collins1988 proves that every cell a CAD constructed to be $\mathbf{F}$-invariant (where $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ is a well-oriented set of polynomials) is an analytic submanifold [@collins1988 Theorems 2.2.3 and 2.2.4]. An analytic submanifold of $\R^n$ of dimension $k$ is a non-empty subset $S \subset \R^n$ that "looks locally like $\R^s$".
+
+::: {.definition}
+$S \subset \R^n$ is an analytic submanifold if, for every point $\mathbf{x} \in S$, there is an analytic coordinate system about $\mathbf{x}$ with respect to which $S$ is locally the intersection of $n-s$ coordinate hyperplanes. 
+:::
+
+::: {,remark}
+Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a well-oriented set of polynomials. If we want an $\mathbf{F}$-invariant CAD such that every cell is an analytic submanifold (smooth subset of $\R^n$), it suffices to use McCallum's projection operator. 
+::: 
+
+@mccallum2019 completed the proof that Lazard's projection operator is valid and also proved, without the condition on well-orientedness of input polynomials, that every cell of a sign-invariant CAD constructed using Lazard's projection operator is an analytic submanifold. 
+

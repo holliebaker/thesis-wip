@@ -8,6 +8,8 @@ For section \@ref(semi-monotone-sets):
 - $X' := \projop{1}(C)$.
 - $f,g:C'\to\R$ are continuous definable functions of which $C_B,C_T$ (respectively) is the graph
 - $\mathbf{h} : X'\to \opspan{x_2,\ldots,x_{\alpha-1}}$ is the quasi-affine map defining $C' \subset \R^{\alpha - 1}$.
-- $\phi,\psi : X' \to \R$ defines (in $\opspan{x_1,x_\alpha}$) the top and bottom of $X$. 
- 
+- $\phi,\psi : X' \to \R$ defines (in $\opspan{x_1,x_\alpha}$) the top and bottom of $X$.
+
+quantifier-free and first order formula.
+
 

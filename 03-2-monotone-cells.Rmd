@@ -322,7 +322,7 @@ $$
 where $c_i$ is the unique root of the polynomial $m_i \in \Z[x_1]$ in the (left-open right-closed) isolating interval $J_i$. 
 Note that $\cal B$ contains only algebraic numbers and roots will appear in ascending order.
 
-### Working with sub-decompositions above a 0-cell
+### Working with sub-decompositions above a 0-cell { #sec:sub-cad }
 
 Note that we are working in a sub-decomposition $\cal D$ of $\R^{k+n}$ above a $0$-cell $\mathbf{c}$ of $\R^k$ ($k \ge 0$). Therefore the polynomials appearing in Equation \@ref(eq:variety-v) are actually in $\Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$. 
 From a polynomial $f \in \Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$, a polynomial $g := f(\mathbf{c}) \in \A[x_1,\ldots,x_n]$ can be obtained by evaluating $f$ at $\mathbf{c}$. Evaluated polynomials $g$ define the sub-cad of $\R^n$ above $\mathbf{c}$ because $\mathbf{c}$ is a $0$-cell. 
@@ -463,8 +463,8 @@ Z^{b_i,b_{i+1}}_T := Z_T \cap \{ b_i < x_1 < b_{i+1} \}
 $$
 is either a subset of $Z$ or is disjoint from $Z$. 
 First suppose that $Z^{b_i,b_{i+1}}_T \subset Z$ for some $1 \le i < k$. 
-In this case, $\sup_{x_\alpha} f_j \vert_{\{ b_i < x_1 < b_{i+1} \}}$ is independent of $x_1$ and is therefore already monotone.
-Now suppose that $Z^{b_i,b_{i+1}}_T \cap Z = \emptyset$.
+In this case, $Z$ is not bounded from above, so $\sup_{x_\alpha} f_j \vert_{\{ b_i < x_1 < b_{i+1} \}}$ is independent of $x_1$ and is therefore already monotone.
+On the other hand, suppose that $Z^{b_i,b_{i+1}}_T \cap Z = \emptyset$.
 In this case, $Z^{b_i,b_{i+1}}_T \subset \projops{x_1,x_j}(C_T)$. 
 If there exists a point $b \in (b_i,b_{i+1})$ such that $\projops{x_1,x_j}(C_T) \cap \{x_1 = b\} \cap Z \neq \emptyset$, 
 then it is  clear that $C_T \cap \{ b_i < x_1 < b_{i+1} \}$ is not the graph of a continuous function.
@@ -472,23 +472,25 @@ I.e., $\projops{x_1,x_\alpha,x_j}(C_T)$ contains an open interval above $(b,y) \
 Since $\dim(C) = 2$, all blow-up points $(b,y)$ have dimension $0$ and therefore there is a finite number of them. Repeating this process for $\alpha + 1 \le j \le n$, it follows that there exist points 
 $$\{ b_{i,1}, \ldots, b_{i,k_i} \} \subset (b_i, b_{i+1})
 $$ such that, for all $1 \le j < k_i$, $C_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}$ is the grah of a continuous map. 
-In particular, $C_T \cap \{ b_{i,j} < x_i < b_{i,j+1} \}$ it is the graph of $\mathbf{f}\vert_{Y_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}}$. 
+In particular, $C_T \cap \{ b_{i,j} < x_i < b_{i,j+1} \}$ is the graph of $\mathbf{f}\vert_{Y_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}}$. 
 
-Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$) so that a refinement of the kind $\{ b_{i,j} < x_1 < b_{i,j+1} \}$. That it can be assumed that the top and bottom of each two-dimensional section cell is either empty or the graph of a continuous function. 
+Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$) so that, $C_T$ and $C_B$, if non-empty, are split into one-dimensional countinuous curves which are graphs of continuous functions, and the intervals above $0$-dimensional blow-up points. Once this property has been satisfied, we are left with a similar construction of optimisation with constraints as in Scetion \@ref(sec:lagrange-refinement).
 
-We now discuss how to perform this refinement on the CAD structure. Let us suppose that $C_T\ne \emptyset$. We must construct subsets $W \subset Y$ such that $f_j\vert_{W_B}$ and $f_j\vert_{W_T}$ are smooth, continuous functions. 
+### Critical points of the top and bottom of $C$
+
+We now discuss how to perform this refinement on the CAD structure. Let us assume that $C_T\ne \emptyset$. We must construct subsets $W \subset Y$ such that $f_j\vert_{W_T}$ is a smooth, continuous functions. 
 Let 
 $$
 {\cal A} = ({\cal A}_1, \ldots, {\cal A}_n)
 $$
-be the projection factor set as defined in Equation \@ref(eq:proj-fac-set). Begin with $j := \alpha + 1$, begin with $j = \alpha + 1$ and let
+be the projection factor set as defined in Equation \@ref(eq:proj-fac-set) and
 $$
 C' := \projop{j-1}(C), C^j := \projop{j}(C),
 $$
-Begin with $j = \alpha+1$ so that $C'$ is a cylindrical sector cell and there exists an algebraic variety $V \subset C'_T$, defined in Equation \@ref(eq:c-alpha-top).
-By definition, $$
+Begin with $j := \alpha+1$ so that $C'$ is a cylindrical sector cell and there exists an algebraic variety $V$ containing polynomials $g_2,\ldots,g_{j-1}$ with each $g_i \in {\cal A}_i, 2 \le i \le j-1$, defined in Equation \@ref(eq:c-alpha-top), such that $C'_T\subset V$.
+By definition $$
 C^j_T = \cl{C^j} \cap (C'_T \times \R)
-$$ and there exists a polynomial $g_j \in {\cal A}_j$ such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} \in C^j_T$. Since $C^j_T$ is either empty or the graph of a continuous function everywhere except for a finite number of blow-up points, we need to find $x_1$-coordinates of points in $C'_T$ such that $g_j$ is zero over an open interval. 
+$$ and there exists a polynomial $g_j \in {\cal A}_j$ such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} \in C^j_T$. Since $C^j_T$ is either empty or the graph of a continuous function everywhere except, possibly, for a finite number of blow-up points, we need to find $x_1$-coordinates of points in $C'_T$ such that $g_j$ vanishes over an open interval. 
 Since $C^j_T$ is one-dimensional, one way to achieve this is by computing a smooth stratification of $C^j_T$. If the projection of a one-dimensional stratum onto $x_1$ is a $0$-dimensional point $b \in \R$, then $b$ is the $x_1$-coordinate of a blow-up point. 
 
 Alternatively, since the refinement points form a $0$-dimensional semialgebraic subset of $\R$, this set can be represented as a first-order Boolean formula
@@ -496,30 +498,32 @@ $$
 \exists x_2,\ldots,x_{j-1} \exists_\infty x_j ((x_1,\ldots,x_{j-1}) \in C'_T, g_j(x_1,\ldots,g_j) = 0)
 $$
 where $\exists_\infty x$ is a special quantifier defined in `QEPCAD` meaning "there exist infinitely many values of $x$". 
-Using $\exists_\infty$, some algebraic computations can be avoided, thereby improving efficiency in practice.**TODO refer to qepcad user documentation.**
+Using $\exists_\infty$, som of the costly computations with algebraic numbers can be avoided, thereby improving efficiency in practice. **TODO refer to qepcad user documentation.**
 Theoretically speaking, [@bpr2006, Algorithm 14.21] provides a singly exponential upper bound for quantifier elimination. **TODO what is the bound?**
 
 Eliminating the $j-1$ quantifiers, we obtain the desired points $(b_{i,1},\ldots,b_{i,k_i})$, where each $b_{i,j}$ is the $x_1$-coordinate of a blow-up point of $g_j$. 
-Now we can assume that $C^j_T\cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ is the graph of a continuous function. More precisely, the implicit function $g_j$ can be considered as a function from $C'_T \cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ to $\R$. We have a very similar construction as in Section \@ref(sec:lagrange-refinement) and can apply a very similar construction. 
-
-That is, polynomials $g_2,\ldots,g_{j-1}$ will provide the constraints in Equation \@ref(eq:jacobi-det), while $\partial h / \partial x_i, 1 \le i \le j - 1$ in the last column should be replaced with $\partial g_j / \partial x_i$
-Denote this polynomial by $J_T$, and repeat with $C^j_B$ if appropriate. Inequalities $s_1 g_{1,1} > 0, \ldots, s_1 g_{1,\ell} > 0$ (from Equation \ref(eq:lagrange-solve-qe-ineqs)), $d_T \ne 0$ and $d_B$ (from Equation \@ref(eq:lagrange-solve-qe-denominators)) are obtained and solved for $x_1$ in a very similar way as in Section \@ref(sec:lagrange-refinement). We obtain a set of refinement points
+Now we can assume that $C^j_T\cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ is the graph of a continuous function. More precisely, the implicit function $g_j$ can be considered as a function from $C'_T \cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ to $\R$. We have a very similar construction as in Section \@ref(sec:lagrange-refinement). 
+That is, polynomials $g_2,\ldots,g_{j-1}$ will provide the constraints in the first $j-2$ columns of the matrix in Equation \@ref(eq:jacobi-det), while $\partial h / \partial x_i, 1 \le i \le j - 1$ in the last column should be replaced with $\partial g_j / \partial x_i$
+Denote this polynomial by $J_T$, and repeat with $C^j_B$ if appropriate. Inequalities $s_1 g_{1,1} > 0, \ldots, s_1 g_{1,\ell} > 0$ (from Equation \@ref(eq:lagrange-solve-qe-ineqs)), $d_T \ne 0$ and $d_B$ (from Equation \@ref(eq:lagrange-solve-qe-denominators)) are obtained and solved for $x_1$ in a very similar way as in Section \@ref(sec:lagrange-refinement). We obtain a set of refinement points
 $$
 \{ b_{j,1}, \ldots, b_{j,r_j} \} \subset (c_i,c_{i+1})
 $$
-such that each of $C^j_T$ and $c^j_B$ is either empty or the graph of a continuous, monotone function. 
+such that each of $C^j_T$ and $C^j_B$ is either empty or the graph of a continuous, monotone function. 
 
-### Critical points of the top and bottom of $C$
-
-Suppose that the refinement has been performed for $\alpha + 1 < j$. If $j = n$< we are done, and $C$ is now monotone. Otherwise, let $j := j+1$. By the construction for $\alpha < j$, we know that $C^{j-1}_T \cap \{b_{j-1,i} < x_1 b_{j-1,i+1}\}, 1 \le i < r_{j-1}$ is either empty or the graph of a continuous function. If $C^{j-1}_T = \emptyset$, there is nothing to do, since $C^j_T$ is empty. Otherwise, there are polynomials $g_{j-1} \in {\cal A}_{j-1}$ and $g_j \in {\cal A}_j$ such that $g_{j-1}(\mathbf{x}) = 0$ for all $\mathbf{x} in $C^{j-1}_T$ and $g_j(\mathbf{y}) = 0$ for all $\mathbf{y} in C^j_T$. The same construction as before should be applied. I.e., adding $g_{j-1}$ to the constraints, and using $g_j$ as the optimisation function. We obtain a set of refinement points
+The process is completed by induction in $j$. Suppose that the refinement has been performed for $\alpha + 1 \le j$. If $j = n$ we are done, and $C$ is now monotone. Otherwise, let $j := j+1$. By the induction hypothesis, we know that $C^{j-1}_T \cap \{b_{j-1,i} < x_1 < b_{j-1,i+1}\}, 1 \le i < r_{j-1}$ is either empty or the graph of a continuous function. 
+If $C^{j-1}_T = \emptyset$, there is nothing to do and the process will terminate, since $C^j_T$ is empty. 
+Otherwise, take $g_{j-1} \in {\cal A}_{j-1}$ used in the induction hypothesis and find $g_j \in {\cal A}_j$ such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} in C^j_T$. 
+Perform the same computation described abov, to refine $C^j_T$ such that one-dimensional components are graphs of continuous, monotone functions and repeat with $C^j_B$.
+As before, a set of refinement poits
 $$
-b_{j,1}, \ldots, b_{j,r_j}. 
+b_{j,1}, \ldots, b_{j,r_j}
 $$
+is obtained
 
-The union of sets of refinement points $$
+When the process terminates, the union of sets of refinement points $$
 \{b_{\alpha + 1,1}, \ldots, b_{\alpha + 1,r_{\alpha + 1}}\}, \ldots, \{b_{n,1}, \ldots, b_{n,r_n}\}
 $$
-forms the refinement of $C$ into two-dimensional monotone cells.
+forms the refinement of $C$ into two- and one-dimensional monotone cells.
 
 ## Implementation Details
 
@@ -531,21 +535,22 @@ We now discuss implementation details of this step of the algorithm. First psued
 
 **Input:** 
 $$({\cal E}, {\cal A})$$
+
   - $\cal E$: a cylindrical algebraic decomposition of $\R^{k+n}$, such that each cell is the graph of a quasi-affine map. Each cell $C$ of $\cal E$ has a truth-value (*true* or *false* attached.
   
   - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_{k+n}$ is the family of projection polynomials where each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$. 
 
 **Output:** 
 $$
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition } {\cal D} \text{ induced by } {\cal E} \text{ on } \R^k \}
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^k \}
 $$
-sucd that intersecting all cells of $\cal D$ with straight lines and half-planes $\{ x_k < c_i \},\{ x_k = c_i \},\{ x_k > c_i \}$ for all $1 \le i \le t$ produces a cad $\cal D'$ which is a refinement of $\cal D$, monotone respect to every cell $C$ of $\cal D$ such that $\dim(C) \le 2$ and $C$ is a *true* cell. 
+such that, for each ${\cal R}_\mathbf{b}$, intersecting the sub-cad $\cal D$ above $\mathbf{b}$ with straight lines and half-planes of the kind $\{x_1 < c_i \}, \{x_1 = c_i \}, \{x_1 > c_i\}, 1 \le i \le t$ results in a refinement of $\cal D$ such that each true cell of $\cal D$ with dimension at most $2$ is monotone. 
 
 ---
 
 First, define a subroutine
-$${\rm sub}_{\mathbf{y}} (g) \mid g \in \Z[y_1,\ldots,y_m,x_{m+1},\ldots,x_n], \mathbf{y} \in \A^m, m < n,$$
-which computes $h := g(\mathbf{y}) \in \A[x_{m+1},\ldots,x_m]$ and returns the normalised polynomial of $h$, in $\Z[x_{m+1},\ldots,x_n]$.
+$${\rm sub}_{\mathbf{y}} (g) \mid g \in \Z[y_1,\ldots,y_m,x_1,\ldots,x_n], \mathbf{y} \in \A^m, n > 0,$$
+which computes $h := g(\mathbf{y}) \in \A[x_{1},\ldots,x_m]$ and returns the normalised polynomial of $h$, in $\Z[x_{m+1},\ldots,x_n]$ (see Section \@ref(sec:sub-cad)). 
 
 It will be convenient to overload this operator and write ${\rm sub}_{\mathbf{y}} (L)$, where $L$ is a set (or list) of polynomials to mean $\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}$.
 
@@ -553,37 +558,36 @@ Now define a structure to store refinement polynomials
 $$
 {\cal F} := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^{k-1} \}
 $$
-and refinement points 
+and a similar structure to store refinement points 
 $$
 {\cal R} := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^{k-1} \}
 $$
-*(Note: for each $(0,\ldots,0)$-cell $\mathbf{b}$, ${\cal F}_\mathbf{b}$ is a set of univariate polynomials, ${\cal R}_{\mathbf{b}}$ is the set of roots of polynomials ${\cal F}_\mathbf{b}$.)*
+*(Note: for each $(0,\ldots,0)$-cell $\mathbf{b}$, ${\cal F}_\mathbf{b}$ is a set of univariate polynomials, ${\cal R}_{\mathbf{b}}$ is the set of roots of polynomials ${\cal F}_\mathbf{b}$. When $k=1$, then the CAD of $\R^0$ consisting of the unique point of $\R^0$ is used -- practically speaking, we work directly with the CAD $\cal E$.)*
 
 Let $\mathbf{b}$ be a $(0,\ldots,0)$-cell of the decomposition induced by $\cal E$ on $\R^{k-1}, k > 0$. Let $\cal D$ be the sub-decomposition of $\R^n$ of $\cal E$ above $\mathbf{b}$. 
 
-For each *true* cell $C$ of $\cal D$. If $\dim(C) > 2$, then **fail**. 
-Otherwise let $C$ have index
+Consider each cell $C$ of $\cal D$ with truth value *true*. Let $C$ have index
 $$
 (0,\ldots,0,1,i_{k+1},\ldots,i_{k+n})
 $$
-in $\cal E$, and let $\alpha$ be the smallest among $x+1,\ldots,k+n$ such that $i_{k+1} = \ldots = i_{\alpha - 1} = 0$ and $i_\alpha = 1$, 
-do:
+in $\cal E$. If $i_{k+1} + \cdots + i_n > 2$, then $\dim(C) > 2$ and the algorithm will fail. Otherwise, let $\alpha$ be the smallest among $x+1,\ldots,k+n$ such that $i_{k+1} = \ldots = i_{\alpha - 1} = 0$ and $i_\alpha = 1$. 
+Then:
 
 - Let
 
-  - $C_0 := \projop{k-1}(C)$,
+  - $\mathbf{b} := \projop{k-1}(C)$,
 
-    (*Note: if $k = 1$, then $C_0$ is the unique cell, $\mathbf{0}$, in the CAD of $\R^0$, and ${\rm sub}_\mathbf{0} (g) = g$.*)
+    *(Note: observe that $\mathbf{b} \in A^{k-1}$. If $k = 1$, then $\mathbf{b}$ is the unique cell, $\mathbf{0}$, in the CAD of $\R^0$. In this case, it is clear that ${\rm sub}_\mathbf{0} (g) \equiv g$.)*
 
-  - $\mathbf{b} \in \A^{k-1}$ be the sample point of $C_0$
+  - $C'' (C''_B, C''_T) \subset \A := \projop{k}(C)$,
 
-  - ${\cal G} := {\rm sub}_{\mathbf{b}} \{ (g_{k+1},\ldots,g_{\alpha-1}) \mid k+1 \le i \le \alpha - 1, g_i \in {\cal A}_i, g_i(\mathbf{x}) = 0 \ \forall \mathbf{x} \in \projop{\alpha-1}(C) \}$,
+  - ${\cal G} := {\rm sub}_{\mathbf{b}} \{ g_i \mid k+1 \le i \le \alpha - 1, g_i \in {\cal A}_i, g_i(\mathbf{x}) = 0 \ \forall \mathbf{x} \in \projop{\alpha-1}(C) \}$,
 
   - $C' := \projop{\alpha}(C)$. 
 
-- $C'_T$ and $C'_B$ be the top and bottom, respectively, of sector cell $C'$. 
+- $C'_T$ and $C'_B$ be the top and bottom, respectively, $C'$. 
   
-(*Note: If $C'$ is not bounded from above (resp. below) by a continuous definable function, then let $C'_T := \emptyset$ (resp $C'_B$) and skip any computations involving $C'_T$ (resp $C'_B$).)*
+(*Note: If $C'$ is not bounded from above (resp. below) by a continuous definable function, i.e., there is no section above (resp. below) $C'$, then let $C'_T := \emptyset$ (resp $C'_B$) and skip any computations involving $C'_T$ (resp $C'_B$).)*
 
 - Let $j = \alpha$ and do:
 
@@ -613,11 +617,13 @@ $$
       {\cal G} := {\cal G} \cup \{ g_j \}.
       $$
 
-    - If $j \ne \alpha$, let
+    - Let $j := j+1$.
+
+    - Let
       $$
       C' := \projop{j}(C)
       $$
-      and refine $C'$ into section cells such that $C'_T$ is either empty or the graph of a continuous function. I.e.,
+      $C'$ is a section cell, and its top and bottom may not be graphs of continuous functions. Use QE to compute
       $$
       ...
       $$
@@ -632,7 +638,7 @@ $$
 $$
 by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 
-- Return the family ${\cal R}$ of refinement poits. 
+- Return the family ${\cal R}$ of refinement points. 
 
 ---
 
