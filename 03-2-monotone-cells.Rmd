@@ -646,17 +646,7 @@ by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 - what if $f_j$ does not exist
 - what if $\alpha = k+1$
 
-
-### Discussion on QEPCAD sample points 
-
-Subcad -> substitute
-i.e., we want polynomials only in x_1, so we bus in the base cell $c$. 
-
-present the pseudocode. 
-talk about how refinement points are nothing but sample points of new cells. 
-
-
-
 ## Computing the refinements
 
+Now we have refinement points $\cal R$, we need to compute the refinement of the CAD $\cal D$ such that, for each $\cal R_k, 1 \le k \le n$, the points $c_i \in {\cal R_k}$ are $0$-cells in the CAD induced by $\cal D$ on $\R^k$. We proceed by induction on $k$
 
