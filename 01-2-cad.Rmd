@@ -71,7 +71,7 @@ A cylindrical decomposition $\cal E$ is called a refinement of $\cal D$ if $\cal
 Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. A CAD $\cal D$ is called sign-invariant with respect to $\mathbf{F}$  (or $\mathbf{F}$-invariant) if every cell $C$ of $\cal D$ has constant sign (either $> 0$, $< 0$ or $= 0$) on every polynomial in $\mathbf{F}$. (Here $\mathbf{F}$ is called the set of input polynomials.)
 :::
 
-### Constructing a CAD
+### Constructing a CAD {#sec:cad-construction}
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm due to @collins1975 for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
 

@@ -1,8 +1,8 @@
-# Smooth Stratification
+# Smooth Stratification {#sec:smooth-strat}
 
-We now turn our attention to an algorithm for computing a smooth stratification of a semialgebraic set. A smooth stratification is a partition of a semialgebrac set into smooth manifolds. [@whitney1965] proved that every complex (and real) analytic variety admits a smooth stratification. Later, [@thom1969] proved that every analytic set admits a smooth stratification and [@le2010] proved that any set definable in an O-minimal structure also admits a Whitney stratification. 
+We now turn our attention to an algorithm for computing a smooth stratification of a semialgebraic set. A smooth stratification is a partition of a semialgebrac set into smooth manifolds. [@whitney1965] proved that every complex (and real) analytic variety admits a smooth stratification. Later, [@thom1969] proved that every analytic set admits a smooth stratification and [@le2010] proved that any set definable in an O-minimal structure also admits a Whitney stratification.
 
-In this section, an algorithm due to [@gv1995] for computing a basic weak stratification of an elementary semi-pfaffian set, such that each of the strata is "nicely defined" will be presented. 
+In this section, an algorithm due to [@gv1995] for computing a basic weak stratification of an elementary semi-pfaffian set, such that each of the strata is "nicely defined" will be presented.
 
 ::: {,definition}
 Let $X \subset \R^n$ be a semianalytic set. $X$ is nonsingular and has dimension $k$ at a point $x_0 \in X$ if there exist real analytic functions $$
@@ -21,12 +21,12 @@ $X \subset Y$ is called effectively nonsingular (of dimension $k$) if functions 
 :::
 
 ::: {.definition}
-A basic weak stratification of a semi-pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ where each $X_k$ is effectively nonsingularand has codimension $k$. 
+A basic weak stratification of a semi-pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ where each $X_k$ is effectively nonsingularand has codimension $k$.
 :::
 
 ### Description of the algorithm
 
-We now present the algorithm from @gv1995 as it is applied to semialgebraic sets. Since polynomials are a sub-class of Pfaffian functions, the algorithm can be applied directly to semialgebraic sets. However, in the original form, a bound on the number of partial derivatives is computed. For the semialgebraic case, we simply need to take the degree of polynomials defining the semialgebraic set. 
+We now present the algorithm from @gv1995 as it is applied to semialgebraic sets. Since polynomials are a sub-class of Pfaffian functions, the algorithm can be applied directly to semialgebraic sets. However, in the original form, a bound on the number of partial derivatives is computed. For the semialgebraic case, we simply need to take the degree of polynomials defining the semialgebraic set.
 
 ::: {,definition}
 Let $f \in \Z[x_1,\ldots,x_n]$ be a polynomial and let $(m_1,\ldots,m_n) \subset \Z_{\ge 0}^n$ be a multi-index of its partial derivative. I.e., we write
@@ -48,11 +48,11 @@ $$
 \dfrac{\partial f}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial f}{\partial x_{i_{k}}} & \dfrac{\partial f}{\partial x_{j}}
 \end{pmatrix}.
 $$
-We write $\partial^m_{\mathbf{h}, \mathbf{i}, j}$ to mean the $m$-th iteration of $\partial_{\mathbf{h}, \mathbf{i}, j}$. 
+We write $\partial^m_{\mathbf{h}, \mathbf{i}, j}$ to mean the $m$-th iteration of $\partial_{\mathbf{h}, \mathbf{i}, j}$.
 :::
 
 ---
-**Input:** 
+**Input:**
 $$(k, \mathbf{G}, \mathbf{H}, \mathbf{I}, \mathbf{K})$$
 
   - $0 \le k \le n$, an integer, representing codimension of strata
@@ -64,10 +64,10 @@ $$(k, \mathbf{G}, \mathbf{H}, \mathbf{I}, \mathbf{K})$$
   - $\mathbf{I} = (i_k, \ldots, i_1,i_0) \subset \Z_{\ge 0}^k$ is a multi-index, $i_0 = 0$.
 
   - $\mathbf{K} = (g_1,\ldots,g_t) \subset \Z[x_1,\ldots,x_n]$ is a set of polynomials, those appearing in the inequalities defining the set.
-  
+
   (Note: $\mathbf{H}$ without $h_0$ and $\mathbf{I}$ without $i_0$ are the frst two arguments to the partial differential operator.)
 
-**Output:** 
+**Output:**
 $$
 (X_0, \ldots, X_n)
 $$
@@ -77,16 +77,16 @@ $$
 
 We proceed by induction on $i_0$.
 
-- Base case: $i_0 = n$, return immediately. 
+- Base case: $i_0 = n$, return immediately.
 
-- Recursive case: 
+- Recursive case:
 
   - Initialise $$X' := X.$$
-   
+
   - Consider each multi-index $\mathbf{m} = (i_n,\ldots,i_{k+1},j} \subset \Z_{\ge 0)^{n-k} \times \{1,\ldots,s\}$ in ascending lexicographical order, beginning with $$
   (0,\ldots,0,1,1).
   $$
-  
+
   Index $(i_n,\ldots,i_1,i_0)$ has the following property:
   $$
   M_{i_0} \preceq (i_n,\ldots,i_1) \preceq (0,\ldots,1), M_{i_0} = \def(f_i).
@@ -106,22 +106,22 @@ We proceed by induction on $i_0$.
     Y_k := \{ \mathbf{x} \in X' \mid s_k(\mathbf{x}) \ne 0 \}
     $$
     (Ntoe $h_1(\mathbf{x}) = 0$ for all $\mathbf{x} \in Y_k$.)
-    
+
     - Define
     $$
     U_k := \{ \mathbf{x} \in \R^n \mid h_k(\mathbf{x}) = 0, s_k(\mathbf{x} \ne 0, g_1(\mathbf{x}) > 0 , \ldots, g_l(\mathbf{}) > 0 \},
     $$
     a nonsingular subset of $\R^n$ having codimension $k-1$
-    
+
     - If $Y_k$ is an open subset of $U_k$, then $Y_k$ is nonsingular of codimension $k-1$.
-      
+
       - Update $$X_k := X_k \cup Y_k.$$
-      
+
       - Add polynomial $s_k$, i.e.,
       $$
       \mathbf{G} := \mathbf{G} \cup \{ ((i_\ell,\ldots,i_1), s_k) \}
       $$
-      
+
     - Otherwise, $Y_k$ is not smooth. Call recursively
     $$
     Stratify((k+1, \mathbf{G}, (i_\ell,i_k,\ldots,i_1,0), (s_k,h_k,\ldots,h_1,0), \mathbf{K})
@@ -131,12 +131,12 @@ We proceed by induction on $i_0$.
     $$
     X' := \{ \mathbf{x} \in X' \mid s_k(\mathbf{x}) = 0 \},
     $$
-    a proper (possibly empty) subset of old $X'$. 
-    
-    - If $X' = \emptyset$, return. Otherwise, continue with the next index with respect to lexicographical order. 
-    
+    a proper (possibly empty) subset of old $X'$.
+
+    - If $X' = \emptyset$, return. Otherwise, continue with the next index with respect to lexicographical order.
+
 ---
- 
+
 Let $X \subset \R^n := \{ f_1 = 0 \land \cdots \land f_k = 0 \land g_1 > 0 \land \cdots \land g_l > 0 \}$ be a semialgebraic set. We first apply some pre-processing to the polynomials defining $X$. Let $$
 \mathbf{G} := ((0,\ldots,0,1), f_1),\ldots, ((0,\ldots,0,s),f_s)).
 $$
@@ -145,26 +145,26 @@ $$
 $\cal{X} = \rm{tratify(0, \mathbf{G}, (0), (0), (g_1,\ldots,g_t))$.
 $$
 
-A couple of shortcuts can be taken in the implementation to make the code simpler and more efficient. 
-First, suppose that we are considering index 
+A couple of shortcuts can be taken in the implementation to make the code simpler and more efficient.
+First, suppose that we are considering index
 $$
-(0,\ldots,0,i_\ell,\ldots,i_{k+1},i_k,\ldots,i_1,i_0).$$ 
+(0,\ldots,0,i_\ell,\ldots,i_{k+1},i_k,\ldots,i_1,i_0).$$
 Partial differentials with index lexicographically less than $(i_{k+1},0,\ldots,0)$ have been computed on a previous round of induction and were passed in the argument $\mathbf{G}$.
-Furthermore, the function $h_k$, having index 
+Furthermore, the function $h_k$, having index
 $$
 (0,\ldots,0,i_{\ell -1},\ldots,i_0)
-$$ 
+$$
 has already been computed, so it can be taken directly from the list $\mathbf{G}$.
 In fact, there is a convenient way to find the function with index $(0,\ldots,0,i_\ell - 1, \ldots,i_1,i_0)$. Let us first illustrate this with an example. Let $M = (1,2,2)$ and consider the lexicographically ordered list of indices
 \begin{matrix}
 L_1 :=\ &  (0,0,0),&(0,0,1),&(0,0,2),&(0,1,0),&(0,1,1),&(0,1,2),&(1,0,0),&(1,0,1)&\ldots\\
 L_2 := \ & & (0,0,0),&(0,0,1),&(0,0,0),&(0,0,1),&(0,0,2),&(0,0,0),&(0,0,1)&\ldots.\\
 \end{matrix}
-Observe that for indices $(0,0,1)$, $(0,1,0)$ and $(1,0,0)$ in $L_1$, the corresponding element in $L_2$ is $(0,0,0)$ and the corresponding elements for subsequent indices are those in the lexicographical order. 
-I.e., we see that the index of $h_k$ "chases after" the index of $s_k$, resetting each time $\ell$ is incremented. 
-More precisely, when $\ell = 1$ and $s_1$ has index $(0,\ldots,0,i),i>0$, $h_1 has index $(0,\ldots,0,i-1)$. I.e., our initial "chase index" is the previous element in the list. When $\ell$ is incremented, we need to return to the first element in the list, $(0,\ldots,0)$ and proceed lexicographically through the indices until $\ell$ is incremented again, at which point we return to the beginning of the list. This gives us the property that when $h_k$ has index $(0,\ldots,0,i_\ell,i_{\ell-1},\ldots,i_1)$, $h_1$ will have index $(0,\ldots,0,i_\ell - 1,i_{\ell - 1},\ldots,i_1)$ while only requiring two very basic list operations: get the next element and return to the beginning. In the example, we considered only one polynomial. To extend to multiple polynomials, since each will have a different $M$, we need to keep a separate "chase list" for each one. 
+Observe that for indices $(0,0,1)$, $(0,1,0)$ and $(1,0,0)$ in $L_1$, the corresponding element in $L_2$ is $(0,0,0)$ and the corresponding elements for subsequent indices are those in the lexicographical order.
+I.e., we see that the index of $h_k$ "chases after" the index of $s_k$, resetting each time $\ell$ is incremented.
+More precisely, when $\ell = 1$ and $s_1$ has index $(0,\ldots,0,i),i>0$, $h_1 has index $(0,\ldots,0,i-1)$. I.e., our initial "chase index" is the previous element in the list. When $\ell$ is incremented, we need to return to the first element in the list, $(0,\ldots,0)$ and proceed lexicographically through the indices until $\ell$ is incremented again, at which point we return to the beginning of the list. This gives us the property that when $h_k$ has index $(0,\ldots,0,i_\ell,i_{\ell-1},\ldots,i_1)$, $h_1$ will have index $(0,\ldots,0,i_\ell - 1,i_{\ell - 1},\ldots,i_1)$ while only requiring two very basic list operations: get the next element and return to the beginning. In the example, we considered only one polynomial. To extend to multiple polynomials, since each will have a different $M$, we need to keep a separate "chase list" for each one.
 
-Since the program has been implemented in QEPCAD, which utilises linked lists, it was important to ensure that appending to the end of the list is as efficient as possible. To avoid $O(n)$ insertion complexity, we keep a pointer to the last-but-one element in the list, i.e., suppose $L = (a_1,(\ldots,(a_{r-1},(a_r,(\rm{NIL})))\ldots)$ then $L_{\rm{append}} = (a_{r-1},(a_r,(\rm{NIL})))$. Then, if we wish to append $b$ to the end of $L$, we simply need to set the reductum of $L_{\rm{append}}$ to $(a_r,(b,(NIL)))$. 
+Since the program has been implemented in QEPCAD, which utilises linked lists, it was important to ensure that appending to the end of the list is as efficient as possible. To avoid $O(n)$ insertion complexity, we keep a pointer to the last-but-one element in the list, i.e., suppose $L = (a_1,(\ldots,(a_{r-1},(a_r,(\rm{NIL})))\ldots)$ then $L_{\rm{append}} = (a_{r-1},(a_r,(\rm{NIL})))$. Then, if we wish to append $b$ to the end of $L$, we simply need to set the reductum of $L_{\rm{append}}$ to $(a_r,(b,(NIL)))$.
 
 Secondly, observe that only the last row and last column in the $(k\times k$-matrix for the partial differential operater
 $$
@@ -174,10 +174,10 @@ $$
 \dfrac{\partial f}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial f}{\partial x_{i_{k}}} & \dfrac{\partial f}{\partial x_{j}}
 \end{pmatrix}.
 $$
-depend on $f$ and $i$. As a result, we can re-use the $(k-1\times k-1)$-matrix consisting of the first $k-1$ rows and columns of $\partial_{\mathbf{h}, \mathbf{i}, j} f$. 
-In the implementation, we can receive as an argument, from the previous round of induction, this $(k-1\times k-1)$-matrix which will be used throughout that round. We still, however, need to compute the determinant for every new $s_k$. 
+depend on $f$ and $i$. As a result, we can re-use the $(k-1\times k-1)$-matrix consisting of the first $k-1$ rows and columns of $\partial_{\mathbf{h}, \mathbf{i}, j} f$.
+In the implementation, we can receive as an argument, from the previous round of induction, this $(k-1\times k-1)$-matrix which will be used throughout that round. We still, however, need to compute the determinant for every new $s_k$.
 
-We will now present, from [@gv1995, Theorem 1], the proof that this algorithm does indeed produce smooth strata and also that it terminates. 
+We will now present, from [@gv1995, Theorem 1], the proof that this algorithm does indeed produce smooth strata and also that it terminates.
 
 This algorithm is doubly exponential in the number of variables. For the polynomial case, the complexity is
 $$
@@ -185,4 +185,52 @@ s^n (d+1)^{2^{O(n)}}
 $$
 where $s$ is the number of polynomials $f_1,\ldots,f_s$, $d$ is their degree and $n$ is the number of variables. [@gv1995, Section 4]
 
+### Worked example
+
+We illustrate the smooth stratification algorithm with a worked example. Consider
+$$
+\{ z = 0, x^2-y^2=0 \} \subset \R^3.
+$$
+Note that the algorithm imposes an order on polynomials. In this case, $h_1 = z$ will be considered first. The algorithm proceeds as follows
+
+$k=1,G_{1}=\left(z,x^{2}-y^{2}\right),J=\begin{pmatrix}\partial h_{1}/\partial y_{1}\end{pmatrix}$
+\begin{equation}
+\begin{matrix}M=(0,0,\underbrace{1}_{z},1), & h_{1}=z, & s_{1}=0, & \text{skip}\\
+M=(0,0,1,2), & h_{1}=x^{2}-y^{2} & s_{1}=2x, & Y_{1}:=\left\{ z=0,x^{2}-y^{2}=0,2x\ne0\right\} =X\setminus\left\{ x=0\right\} \\
+ &  &  & U_{1}:=\left\{ x^{2}-y^{2}=0,2x\ne0\right\} 
+\end{matrix}
+\end{equation}
+$Y_{1}$ is not an open subset of $U_{1}$, recurse.
+
+$k=2,G_{2}=\left(z,x^{2}-y^{2},2x\right),J=\begin{pmatrix}2x & \partial s_{1}/\partial y_{2}\\
+\partial h_{2}/\partial x & \partial h_{2}/\partial y_{2}
+\end{pmatrix}$
+\begin{equation}
+\begin{matrix}M=(0,\underbrace{1}_{y},1), & h_{2}=z, & s_{2}=\det\begin{pmatrix}2x & 2y\\
+0 & 0
+\end{pmatrix}=0, & \text{skip}\\
+M=(0,1,2), & h_{2}=x^{2}-y^{2} & s_{2}=\det\begin{pmatrix}2x & 2y\\
+2x & 2y
+\end{pmatrix}=0 & \text{skip}\\
+M=(0,1,3) & h_{2}=2x & \det\begin{pmatrix}2x & 2y\\
+0 & 0
+\end{pmatrix}=0 & \text{skip}\\
+M=(\underbrace{1}_{z},0,1) & h_{1}=z & \det\begin{pmatrix}2x & 0\\
+0 & 1
+\end{pmatrix}=2x & Y_{2}:=Y_{1}\cap\left\{ 2x\ne0\right\} =Y_{2}\\
+ &  &  & U_{2}:=\left\{ z=0,2x\ne0\right\} 
+\end{matrix}
+\end{equation}
+$Y_{2}$ is an open subset of $U_{2}$, hence $Y_{2}=Y_{1}$ is a smooth subset of codimension $2$. Set $X_{2} = Y_{2} = Y_{1}. Return to round $k=1$, Recall that the last index considered in step $k=1$ was $(0,0,1,2)$.
+\begin{equation}
+\begin{matrix}M=(0,0,1,2), & h_{1}=x^{2}-y^{2} & s_{1}=2x, & Y_{1}:=\left\{ z=0,x^{2}-y^{2}=0,2x\ne0\right\} =X\setminus\left\{ x=0\right\} \\
+\vdots &  &  & \text{skip until next nenzero partial derivative}\\
+M=(0,1,0,2) & h_{1}=x^{2}-y^{2} & h_{1}=2y & Y_{1}:=\left\{ z=0,x^{2}-y^{2}=0,2x=0,2y\ne0\right\} =\emptyset\\
+\vdots &  &  & \text{the rest of the partial derivatives do not exist}
+\end{matrix}
+\end{equation}
+
+At the end of round $k=1$, $X_{1}=\emptyset$ and we are left with $X':=\left\{ z=0,x^{2}+y^{2}=0,2x=0,2y=0\right\=(0,0,0)$, a single point. $X_{0}$ is set to $X'$ and the algorithm terminates.
+
+Note that this weak stratification does not impose any conditions on the boundaries of strata. In particular, the boundary of a stratum need not be a union of strata. 
 
