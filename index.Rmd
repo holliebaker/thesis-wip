@@ -20,15 +20,20 @@ description: "Hollie Baker's thesis"
 
 \newcommand{\proj}{\operatorname{proj}}
 \newcommand{\lcm}{\operatorname{lcm}}
-\newcommand{\lc}{\operatorna{lc}}
-\newcommand{\red}{\operatorna{red}}
-\newcommand{\prim}{\operatorna{prim}}
-\newcommand{\psrc}{\operatorna{psrc}}
+\newcommand{\lc}{\operatorname{lc}}
+\newcommand{\lm}{\operatorname{lm}}
+\newcommand{\ldt}{\operatorname{lt}}
+\newcommand{\multideg}{\operatorname{multideg}}
+\newcommand{\red}{\operatorname{red}}
+\newcommand{\prim}{\operatorname{prim}}
+\newcommand{\psrc}{\operatorname{psrc}}
 \newcommand{\res}{\operatorname{Res}}
 \newcommand{\projop}[1]{{\proj_{\R^{#1}}}}
 \newcommand{\projops}[1]{{\proj_{\opspan{#1}}}}
 \newcommand{\opspan}[1]{{\operatorname{span} \{#1\}}}
 \newcommand{\cl}[1]{{\operatorname{cl} \left( #1 \right)}}
+\newcommand{\fr}[1]{{\operatorname{fr} \left( #1 \right)}}
+
 
 # Cylindrical algebraic decompositions with monotone cells
 
