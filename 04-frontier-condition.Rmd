@@ -1,7 +1,543 @@
 # Frontier Condition
 
-## Geteral Frontier Algorithm
+Now suppose we have a CAD $\cal D'$ monotone with respect to $V_1,\ldots,V_k$. Our final step, according to [@bgv15, Theorem 3.10] is to refine the frountier $\partial C$ of each $2$-dimensional cell $C$ such that $C \subset V$ so that $\partial C$ is a union of cells of $\cal D'$.
 
-## Lazard 3d
+For each cell $C \subset V$, compute $\partial C$. Since $C$ is monotone, we can assume that $\partial C$ is homeomorphic to a circle. Construct a partition $\cal U$ of $\partial C$ into monotone one-dimensional curves and points, such that $\cal U$ is compatible with all one-dimensional cells of $\cal D'$. 
+Let $\mathbf{c} = (c_1,\ldots,c_n)$ be one of the one-dimensional components of $\cal U$. If $c_1$ is not a $0$-dimensional cell of the decomposition induced by $\cal D'$ on $\R^1$, then perform a refinement of the kind $x_1 < c_1, x_1 = c_1, x_1 > c_1$. Recall that these refinements, according to [@bgv15, Lemma 3,11], preserve the cylindrical structure and monotone cells. Otherwise, $C_1$ is a $0$-cell. Proceed by induction on the sub-cad of $\cal D'$ above $c_1$.
 
-## Geteralisation of Lazard
+Now let $T \in {\cal U}$ be one of the one-dimensional components. If $T$ is not an existing 1-dimensional cell of $\cal D'$, then it is contained in a 2-dimensional cell, $Z$, of $\cal D'$. In fact, it divides $Z$ into two cells which, by [@bgv13, Theorem 11], $Z \setminus T$ consists of two 2-dimensional monotone cylindrical cells. Hence, replacing $Z$ by $T$ and the two components of $Z \setminus T$ makes $Z$ compatible with $\partial C$ and ensures that $Z$ is refined into monotone cells. 
+
+Repeating the process for each $0$- and $1$-dimensional components $\mathbf{c}$ of $\cal U$, we obtain a refinement of $\cal D'$ compatible with $\partial C$. 
+This completes the construction of a monotone CAD due to @bgv15. 
+
+The drawback in translating this construction into an algorithm is that we need to compute $\partial C$ for each 2-dimensional cell $C \subset V$. 
+
+::: {.lemma}
+Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$
+containing $s$ different polynomials in $\R [x_1, \ldots ,x_n]$ having maximum degree $d$.
+There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr (S)$ by a quantifier-free Boolean formula $F'$ with complexity 
+$$(sd)^{O(n^2)}.
+$$
+This is also an upper bound on the number of polynomials in $F'$ and their degrees.
+:::
+
+::: {.proof}
+Observe that $\fr(S)$ can be represented by a first-order Boolean formula
+$$
+\fr(S) = \left\{ \mathbf{x} \in (\R^n \setminus S) \mid \forall \varepsilon >0\> \exists \mathbf{y} \in S\> (\Vert \mathbf{x} - \mathbf{y} \Vert < \varepsilon ) \right\}.
+$$
+Using singly-exponential quantifier elimination algorithm [@bpr2006 Algorithm~14.21], we represent $\fr (S)$
+as a quantifier-free Boolean formula $F'$ with the bounds required in the lemma.
+:::
+
+We see that the "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier alternations. Even using an efficient QE algorithm, this still has complexity singly exponential in the number of variables. If possible, we would like to avoid calling this singly exponential subroutine on each cell. 
+
+## Lazard's method for dimension not greater than 3
+
+@lazard2010 presents an algorithm for constructing an $\mathbf{F}$-invariant cylindrical algebraic decomposition of $\R^n, n\le 3$ such that every cell is a topologically regular set and the frontier condition is satisfied. 
+
+According to [@lazard10, TODO], in dimension $\le 2$, there is nothing to do. 
+Let $\cal D$ be the CAD of $\R^3$ constructed by @lazard10 at the end of Section 5,2. The results in [@lazard10, Section 5.3] assume two properties of $\cal D$. Firstly $\fr(C)$, where $\dim(C) = k$, is the closure of the union of some cells of $\cal D$ of dimension $k-1$. Secondly, ([@lazard10, Proposition 5.13]), any bad cells in the decomposition induced by $\cal D$ on $\R^2$ are 0-dimensional isolated points.
+
+::: {.lemma} [@lazard10 Proposition 5.13]
+Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^3$, and suppose that $C$ is a topologically regular cell in $\mathcal{D}$. 
+Suppose that $D$ is a cell of $\mathcal{D}$ such that $B := D \cap \fr(C) \neq \emptyset$ and $B \neq D$. Then either
+  
+  1. $C$ is a $1$-dimensional section cell whose endpoint, $B$, projects on a bad cell, or
+  2. there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C)$ and $\emptyset \neq D \cap \fr(E) \neq D$. 
+:::
+
+(E.g., in the decomposition of the whitney umbrella, refined such that each cell is topologically regular, let $C$ be $\{ x>0, y>0, x^2 - y^2 z = 0 \}$, then case 2 applies. Let $D = \{ x = 0, y = 0 \}$ and $E = \{ x > 0, y = 0, z = 0 \}$. The first case applies if we choose $C = D$. The same case 2 construction applies if we choose $C$ to be a sector (either 3 dimensional above or below $\{ x > 0, y > 0, x^2 - y^2 z = 0 \}$ or 2-dimensional above or below $\{x > 0, y = 0, z = 0 \}$).)
+
+::: {,proof}
+By the proof of (TODO laz Th 4.4), $D$ will always be a $(0,0,1)$-cell in the cylinder above a bad cell $D'$. 
+
+Let us consider each case for $C$ by cell index.
+
+- $(1,1,1)$-cell: since $C$ is well-bordered, its boundary is the closure of some 2-dimensional cells of $\cal D$ and $B$ is contained in the union of the boundaries of the 2-cells. Thus, case 2 applies and we can choose an appropriate 2-dimensional cell in $\fr(C)$ for $E$.
+
+- $(1,0,1)$- or $(0,1,1)$-cell, we write $(i,j,1)$-cell where $i+j=1$: observe that $C$ (if bounded) is delineated by some $(i,j,0)$-cells (one-dimensional curve intervals). Take $B$ to be the one-dimensional interval delineated by the endpoints of these cells. Since $B \neq C$, at least one of these endpoints is not a $(0,0,0)$-cell of $\cal D$. Case 2 applies, taking as $E$ the delineating $(i,j,0)$-cell. 
+
+- $(1,0,0)- or $(0,1,0)$-cells: consider the previous case, letting $C = E$. 
+
+- $(1,1,0)$-cell: these are necesarily the root of a polynomial $f \in \Q[x_1,x_2,x_3]$ which vanishes identically on $D'$. 
+Let $V_r$ be a small neighbourhood (with radius $r > 0$) centered aronud $D'$ and consider $V_r'$, the cylinder above the boundary of $V$. Since $C$ is a monotone cell, the maximum and minimum values of $x_3$ in this intersection are reached on the boundary of $C$, for sufficiently small $r$. The limits, as $r$ tends to $0$, of this maximum and minimum clearly belong to the boundary of $B$, if these limits do not tend to infinity. Note that both the maximum and minimum cannot be infinite, since this would imply that either $B$ is empty, or coincides with $D$. Therefore, the non-infinite limits are the endpointns of some $1$-dimensional cell belonging to the boundary of $C$. Case 2 applies, taking $E$ to be this $1$-dimensional cell$. 
+
+- $(0,0,1)$- or $(0,0,0)$-$cells: cannot satisfy the hypothesis. 
+:::
+
+**(We can extend this to 2d cells in R^n. Let's change the hypothesis so that we only consider 2d cells. then we get the (1,0,1) and (0,1,1) case, i.e., (i_1,\ldots,i_n-1,1) where i_1+\ldots+i_{n-1}=1 by the same argument and (1,1,0) can be extended to (i_1,\ldots,i_{n-1},0) where i_1+\ldots+i_{n-1}=2 by applying the same argument, but using monotonicity and a monotone map from x_1,x_\alpha to R^{n-2} -- actually, we can consider the sub-cad of R^k above a 0-cell.)**
+
+::: {,prop}
+[@lazard10, Proposition 5.14]
+Let $f \in \Q[x_1,x_2,x_3]$ be an irreducible polynomial given by 
+$$f = g_dx^d + \ldots + g_1x + g_0$$
+with each $g_i \in \Q[x_1,x_2]$, and 
+$$p = (p_1,p_2)$$
+be a common root of $g_d,\ldots,g_1,g_0$. 
+Let $g\in \Q[x_1,x_2]$ be an irreducible polynomial having $p$ as a root. 
+The limits of the common roots of $f$ and $g$ as $(x_1, x_2) \to p, (x_1, x_2) \ne p$ may be computed as solutions of a zero-dimensional
+polynomial system.
+:::
+
+::: {.proof}
+Since $f$ is irreducible, it has at least two coefficients, $g_i,g_j \in \Q[x_1,x_2]$, whose GCD is a constant. 
+Therefore, any ideal generated by these coefficients has dimension zero. Any ideal containing these coefficients also contains another element, $h$, which is not a multiple of $g$. 
+
+The saturation by $h$ of the ideal $\langle f,g \rangle$ is defined as the ideal
+$$
+S := \langle f, g, 1 - zh \rangle \cap \Q[x_1,x_2,x_3].
+$$
+The irreducible components of the zero set of $S$ are those of the zero set of $\langle f,g \rangle$ at which $h$ is not identically zero. It follows that the vertical line $\{ x_1 = p_1, x_2 = p_2 \}$ which is part of the zero set of $f$ ,$g$ and $h$, is not contained in the zero set of $S$. Meanwhile, the zero set of $S$ contains the limit points we are interested in finding. 
+
+It follows that the ideal generated by $S$ and the coefficients $g_0,\ldots,g_d$ of $f$ is zero-dimensional and the limits of $\{ f=0,g=0 \}$ as $(x_1,x_2) \to p$ can be computed as the zeros of $S$. 
+:::
+
+### An aside on polynomial ideals and Zariski closures
+
+@lazard10 uses the trick of saturating the ideal $\langle f,g \rangle$ by some $h$, which is not a multiple of $g$. The key to this trick lies in Zariski closures. Let us take an aside to discuss this. We closely follow @cox2013 and all results are proved in a general polynomial ring $K$. We will discuss whether the results can be applied over the reals.
+
+#### Ideals, Groebner bases and Buchberger's algorithm
+
+::: {,definition}
+Let $K[x_1,\ldots,x_n]$ be a polynomial ring. A subset $I \subset K[x_1,\ldots,x_n]$ is called an {\em ideal} if
+
+- $0 \in I$,
+- if $a,b \in I$ then $a+b \in I$, and
+- if $a \in I, b \in K[x_1,\ldots,x_n]$, then $ab \in I$. 
+:::
+
+::: {.definition}
+Let $K$ be a field and $f_1,\ldots, f_k \in [x_1,\ldots,x_n]$. We set
+$$
+\left\langle f_{1},\ldots,f_{k}\right\rangle =\left\{ h_{1}f_{1}+\cdots+h_{k}f_{k}\mid h_{1},\ldots,h_{k}\in K[x_{1},\ldots,h_{n}]\right\}
+$$
+and call it the {\em ideal generated by} $f_1,\ldots,f_k$.
+:::
+
+@hilbert1890 proved nonconstructively that every polynomial ideal is finitely generated.
+
+::: {.theorem}
+Every ideal $I \subset k[x_1, \ldots, x_n]$ has a finite generating set. I.e., $I = \langle g_1, \ldots, g_t\rangle$ for some finite collection of polynomials $g_1, \ldots, g_t\in I$.
+:::
+
+A proof can be found in [@cox2013, p76].
+
+Later, @buchberger1965 published an algorithm for computing this finite set of generators. He also introduced the concept of a Groebner basis. 
+
+A Groebner basis requires an ordering on monomials to be fixed.
+
+::: {.definition}
+A monomial ordering on $K[x_1, \ldots, x_n]$ is a relation $\succ$ on $\Z^n_{\ge 0}$, or
+equivalently, a relation on the set of monomials $x^\alpha, \alpha\in \Z_{\ge 0}$, satisfying the following properties.
+
+- $\succ$ is a total order\footnote{
+Total order: a reflexive, antisymmetric, and transinive relation $R$ on a set $X$ such that either $(a,b) \in R$ or $(b,a) \in R$ for all $a,b \in X$.  
+} (or linear order) on $\Z^n_{\ge 0}$.
+- If $\alpha \succ \beta$ and $\gamma \in \Z^n_{\ge 0}$, then $\alpha + \gamma \succ \beta + \gamma$.
+- $\succ$ is a well-ordering on $\Z^n_{\ge 0}$. 
+I.e., every nonempty subset of $\Z^n_{\ge 0}$ has a minimal element under $\succ$.
+:::
+
+Some examples of monomial orderings used in constructing Groebner bases include
+
+- **lex:** Let $\alpha = (\alpha_1, \ldots, \alpha_n), \beta = (\beta_1, \ldots, \beta_n) \in \Z^n_{\ge 0}$. We say $\alpha \succ \beta$ if the leftmost nonzero element of $\alpha - \beta \in \Z^n$ is positive. This imposes a lexicographic order on variables $x_1 \succ x_2 \succ \cdots \succ x_n$.
+
+- **grlex:** (graded lex) Let $\alpha, \beta \in \Z^n_{\ge 0}$ and let $|\alpha| = \alpha_1 + \cdots + \alpha_n$ and $|\beta| = \beta_1 + \cdots + \beta_n$. We sate $\alpha \succ \beta$ if $|\alpha| > |\beta|$, or if $|\alpha| = |\beta|$ and $\alpha \succ_{\rm{lex}} \beta$. 
+
+- **grevlex:** (graded reverse lex) Let $\alpha, \beta \in \Z^n_{\ge 0}$, and d efine $|\alpha|$ and $|\beta|$ as before. We set $\alpha \succ_{\rm{grevlex}} \beta$ if $|\alpha| > |\beta|$ or if $|\alpha| = |\beta|$ and the rightmost nonzero entry of $\alpha - \beta$ is negative.	 
+
+::: {.definition}
+Let $f$ be a polynomial in $K[x_1,\ldots,x_n]$ with monomials labelled by indices in $\Z^n$, of the form $\sum_{\alpha} a_\alpha x_1^{\alpha_1} \cdots x_n^{\alpha_n}$, and fix a monomial order $\succ$. Define the following
+
+- $\multideg(f) = \max\left( \alpha \in \Z^n_{\ge 0} \mid a_{\alpha} \ne 0 \right)$,
+
+- $\lc(f) = a_{\alpha} \mid \alpha = \multideg(f)$,
+
+- $\lm(f) = x_1^{\alpha_1} \cdots x_n^{\alpha_n} \mid \alpha = \multideg(f)$.
+
+- $\lt(f) = \lc(f) \cdot \lm(f)$
+:::
+
+::: {.definition}
+Fix a monomial ordering $\succ$ on $K[x_1,\ldots,x_n]$. Let $I \subset K[x_1,\ldots,x_n]$ be an ideal. A finite set $G = \{ g_1, \ldots, g_t \} \subset I$ is called a Groebner basis if
+$$
+\langle \lt(g_1),\ldots,\lt(g_t) \rangle = \langle\lt(I)\rangle
+$$
+where $\lt(I) = \{ \lt(f) \mid f \in I \}$
+:::
+
+::: {.definition}
+We write $\overline{f}^{F}$ for the remainder of division of $f$ by the tuple $F = (g_1,\ldots,g_t)$. If $F$ is a Gr\"obner basis, $F$ can be considered as an (unordered) set by [@cox2013 p83, Proposition 1].
+:::
+
+::: {.definition}
+Let $f,g \in K[x_1,\ldots,x_n]$ such that $\multideg(f) = \alpha$ and $\multideg(g) = \beta$. Define $\gamma = \max(\alpha, \beta)$ (where $\max$ is taken component-wise). $x_1^{\gamma^1} \cdots x_n^{\gamma^n} = \lcm ( \lm(f), \lm(g) )$ is called the {\em least common multiple} of the leading monomials of $f$ and $g$. 
+:::
+
+::: {.lemma #multideg}
+Let $f,g \in K[x_1,\ldots,x_n]$ be nonzero polynomials. Then
+
+1. $\multideg(fg) = \multideg(f) + \multideg(g)$,
+
+2. If $f+g \ne 0$ then $\multideg(f+g) \le \max(\multideg(f), \multideg(g))$.
+  As a special case, if $\multideg(f) \ne \multideg(g)$ then equality occurs.
+:::
+
+::: {.proof}
+Write $f = ax^\alpha + f'$ and $f = bx^\beta + g'$ so that $\multideg(f) = \alpha$ and $\multideg(g) = \beta$. Observe that $\multideg(f') < \alpha$ and $\multideg(g) = \beta$ and $\lm(f) \cdot \lm(g) = x^\alpha \cdot x^\beta = x^{\alpha + \beta}$. Since $\multideg(f') < \alpha$ and $\multideg(g') < \beta$, we have $\multideg(f' \cdot g') < \alpha + \beta$. Hence $\multideg(f \cdot g) = \alpha + \beta$. This proves property 1.
+
+Now consider $(ax^\alpha + f') + (bx^\beta + g') = (ax^\alpha + bx^\beta) + (f' + g')$. We have $\multideg(f') < \alpha$ and $\multideg(g') < \beta$ so it suffices to consider $ax^\alpha + bx^\beta$. If $\alpha \ne \beta$ then $\multideg(f+g) = \max(\alpha, \beta)$. If $\alpha = \beta$ then if $a+b\ne 0$ we have $ax^\alpha + bx^\alpha = (a+b)^\alpha$, hence $\multideg(f+g) = \alpha$. Otherwise we have $ax^\alpha + bx^\alpha = 0x^\alpha$ so $\multideg(f + g) = \multideg(f' + g') < \alpha$. This proves property 2.
+:::
+
+::: {.lemma #lem:remainder-condition}
+Let $I \subset K[x_1,\ldots,x_n]$ be an ideal, $G = \{g_1,\ldots, g_t\}$ be a Gr\"obner basis for $I$ and $f$ be an arbitrary polynomial in $K[x_1,\ldots,x_n]$. 
+Then there exists a unique $r \in K[x_1,\ldots,x_n]$ such that
+
+1. no term of $r$ is divisible by any of $\lt(g_1), \ldots, \lt(g_t)$, and
+
+2. there exists $g\in I$ such that $f = g + r$.
+
+In particular, $r$ is the remainder of division of $f$ by all elements of $G$ (taken in any order). 
+:::
+
+::: {.proof}
+Firstly, using division, we can write $f = h_1 g_1 + \cdots + h_t g_t + r$, hence $r$ is not divisible by any polynomials in $G$ (first condition). 
+This decomposition of $f$ can be used to set $g = h_1 g_1 + \cdots + h_t g_t \in I$, so that $f = g + r$ (satisfying the second condition).
+
+Now, to prove that $r$ is unique, suppose that $f = g + r = g' + r'$ for $g,g'$ and $r,r'$ satisfying both conditions. Then $r-r' = g-g' \in I$ (by definition of an ideal). Assume $r\ne r'$, then $\lt(r-r') = \langle \lt(I)\rangle = \langle \lt(g_1),\ldots, \lt(g_t) \rangle$ since $G$ is a Gr\"obner basis for $I$. By [@cox2013 p70, Lemma 2], this implies $\lt(r-r')$ is divisible by some $\lt(g_i)$, which is a contradiction since $r$ and $r'$ cannot be divisible by any of the $\lt(g_i)$s. 
+
+The final part of the proposition follows from uniqueness of $r$. 
+:::
+
+::: {.proof cor:div-zero}
+Let $G = \{ g_1,\ldots,g_k \}$ be a Gr\"obner basis for an ideal $I \subset K[x_1,\ldots,x_n]$ and let $f \in K[x_1,\ldots,x_n]$. Then $f \in I$ if and only if the remainder on division of $f$ by $G$ is zero. 
+:::
+
+::: {.proof}
+If the remainder on division is zero, then we already proved that $f \in I$. 
+Conversely, if $f \in I$ then $f = f+0$ satisfies the two conditions of Lemma~\ref{lem:remainder-condition}. It follows that the remainder on division of $f$ by $G$ is zero.
+:::
+
+::: {.definition}
+Let $f,g \in K[x_1,\ldots,x_n]$. The S-polynomial of $f$ and $g$ is defined as
+$$
+S(f,g) = \dfrac{\lcm(\lt(f),\lt(g))f}{\lt(f)} - \dfrac{\lcm(\lt(f),\lt(g))g}{\lt(g)}.
+$$
+:::
+
+$S$-polynomials are constructed to reduce the degree of terms, as shown in the following lemma. 
+
+::: {.lemma #linear-combination}
+Suppose that $f \in K[x_1,\ldots, x_n]$ is a sum of polynomials $\sum_{i=1}^s p_i$ such that $\multideg(p_i) = \delta$ for all $1\le i \le s$. 
+If $\multideg( \sum_{i=1}^s p_i )$ is a linear combination $\sum_{(i,j) \in \{1\ldots,s\}^2} a_{ij} S(p_i,p_j)$ where all $a_{ij} \in K$.  
+Furthermore all $\multideg(S(p_i,p_j)) < \delta$. 
+:::
+
+::: {.proof}
+We can write each $p_i = c_i (x_1^{\delta_1} \cdots x_n^{\delta_n} + g_i)$ where $\delta = (\delta_1,\ldots, \delta_n)$, $c_i \in K$ and $\multideg(g_i) < \delta$. 
+In order for $\multideg(\sum_{i=1}^s p_i) < \delta$, leading monomials of $p_i$'s must cancel in the sum. I.e., $\sum_{i=1}^s c_i\lt(p_i) = 0$ implies $\sum_{i=1}^s c_i = 0$. 
+
+Since $\multideg(p_i) = \multideg(p_j)$ for all $i.j$, $\lcm(\lt(p_i),\lt(p_j)) = x_1^{\delta_i} \cdots x_n^{\delta_n} = h = \tfrac{1}{c_i}\lt(p_i) = \tfrac{1}{c_j}\lt(p_j)$. Consider
+$$
+S(p_i,p_j) = \dfrac{\lcm(p_i,p_j)p_i}{\lt(p_i)} - \dfrac{\lcm(p_i,p_j)p_j}{\lt(p_j)} = \dfrac{h p_i}{c_i h} - \dfrac{h p_j}{c_j h} = \dfrac{1}{c_i}p_i - \dfrac{1}{c_j}p_j.
+$$
+Hence
+$$
+S(p_i,p_j) = \sum_{i=1}^s c_i\dfrac{1}{c_i}(x_1^{\delta_1}\cdots x_n^{\delta_n} + g_i) - \dfrac{1}{c_j}c_j(x_1^{\delta_1}\cdots x_n^{\delta_n} + g_j) = \sum_{i=1}^s g_i - g_j.
+$$
+Since $\multideg(g_i) < \delta$ and $\multideg(g_j) < \delta$, their linear combination, $S(p_i,p_j)$ has multidegree less than $\delta$. 
+
+Now return to the sum 
+$$
+\sum_{i=1}^s p_i = \sum_{i=1}^s c_i (x_1^{\delta_1} \cdots x_n^{\delta_n} + g_i).
+$$
+Since terms of the kind $x_1^{\delta_1}\cdots x_n^{\delta_n}$ cancel,
+$$\sum_{i=1}^s p_i = \sum_{i=1}^s c_ig_i = c_1g_1 + \cdots + c_s g_s.$$
+We show that this is a linear combination of $S$-polynomials. 
+
+Consider the sum
+$$
+\sum_{i=1}^{s-1} c_i S(p_i,p_s) = \sum_{i=1}^{s-1} c_i( g_i - p_s) 
+= \sum_{i=1}^{s-1} cg_i - c_ig_s,
+$$ hence
+$$
+\sum_{i=1}^{s-1} c_i S(p_i,p_s) = c_1g_1 + \cdots + c_{s-1}g_{s-1} - \left( c_1 + \cdots + c_{s-1} \right) p_s.
+$$
+Since $c_1 + \cdots + c_{s-1} + c_s = 0$, we have $c_1 + \ldots + c_{s-1} = -c_s$, and we can write
+$$
+\sum_{i=1}^{s-1} c_i S(p_i,p_s) = g_1 + \cdots + g_{s-1} - (-c_s) \cdot p_s = \sum_{i=1}^{s} c_i g_i,
+$$
+proving that $\sum_{i=1}^s p_i$ is a linar combination of $S$-polynomials. 
+:::
+
+::: {.proof}
+$\Rightarrow:$
+If $G$ is a Gr\"obner basis for $I$, then $S(g_i,g_j) \in I$ for all $g_i,g_j \in G$ and, by Corollary~\ref{cor:div-zero}, the remainder of $\overline{S(g_i,g_j)}^F$ is zero. 
+
+$\Leftarrow:$
+Let $f \in I$ be a nonzero polynomial. We need to show that $\lt(f) \in \langle \lt(g_1), \ldots, \lt(g_k) \rangle$. We have to show that
+$$
+f = \sum^k_i=1 h_ig_i
+$$
+where $h_i \in K[x_1,\ldots,x_n], 1 \le i \le k$. By Lemma~\ref{lem:multideg}, we have 
+$$
+\multideg(f) \le \max(\multideg(h_ig_i) \mid h_ig_i \ne 0).
+$$
+We want to try to find the ``most efficient'' representation of $f$. I.e., one where
+$$
+\delta = \max(\multideg(h_ig_i) \mid h_ig_i \ne 0)
+$$
+is minimal. Such a $\delta$ exists by the well-ordering property. We have
+$$
+\multideg(f) \le \delta = \max(\multideg(h_ig_i) \mid h_ig_i \ne 0)
+$$
+
+First consider the case when $\multideg(f) = \delta$. We have $\multideg(f) = \multideg(h_ig_i)$ for some $1 \le i \le k$. Therefore $\lt(f)$ is divisible by $\lt(g_i)$. Hence $\lt(f) \in \langle g_i, \ldots, g_k \rangle$.
+
+Now suppose that $\multideg(f) < \delta$. We can write $f$ as follows
+$$
+\sum_{i=1}^{k}h_{i}g_{i}=\sum_{i=1}^{k}\lt(h_{i})g_{i}+\sum_{i=1}^{k}(h_{i}-\lt(h_{i}))g_{i}
+$$
+and use this representation to isolate terms with maximum multidegree
+$$
+\sum_{\multideg(h_{i}g_{i})=\delta}\lt(h_{i})g_{i}+\sum_{\multideg(h_{i}g_{i})=\delta}(h_{i}-\lt(h_{i}))g_{i}+\sum_{\multideg(h_{i}g_{i})<\delta}h_{i}g_{i}.
+$$
+The last two terms have $\multideg < \delta$, so we attempt to rewrite $\sum_{\multideg(h_ig_i)= \delta} \lt(h_i)g_i$ to decrease $\delta$, thereby obtaining a contradiction. Applying Lemma~\ref{lem:linear-combination} with $p_i = \lt(h_i)g_i$ with multidegree $\delta$ and $f$ with multidegree $< \delta$, we can write $\sum_{\multideg(h_ig_i) = \delta} \lt(h_i)g_i$ as a linear combination (with coefficients in $K$) of S-polynomials having multidegree $< \delta$. Hence, we know that $f$ can be rewritten as a sum of polynomials with multidegree $< \delta$, contradicting the assumption that $\delta$ is minimal.
+
+Given an expression $f = \sum^t_{i=1} h_i g_i$ with minimal $\delta$, we begin by isolating the part of the sum having multidegree $\delta$. 
+
+\begin{align}
+f=&\sum_{{\rm multideg}(h_{i}g_{i})=\delta}h_{i}g_{i}+\sum_{{\rm multideg}(h_{i}g_{i})<\delta}h_{i}g_{i}\\
+=&\sum_{{\rm multideg}(h_{i}g_{i})=\delta}(h_{i}-{\rm lt}(h_{i}))g_{i}+\sum_{{\rm multideg}(h_{i}g_{i})<\delta}h_{i}g_{i} (#eq:multideg-delta-simp)
+\end{align}
+The second and third sums in Equaton \@ref(eq:multideg-delta-simp) have multidegree $< \delta$. Since $\multidegree(f) < \delta$, the multidegree of the first sum in Equation \@ref(eq:multideg-delta-simp) must also have multidefree $< \delta$.
+
+The key to decreasing $\delta$ is to rewrite the first term in this sum in two stages:
+
+- use [@cox2013, Lemma 5] to rewrite the first term in the sum in terms of $S$-polynomials,
+- then use $S(g_i,g_j) = 0$ to rewrite the $S$-polynomials without cancellation.
+
+By [@cox2013, Lemma 5],
+$$
+\sum_{\rm(multideg)(h_i g_i) < \delta} \rm{lt}(h_i) g_i
+$$
+is a linear combination of the coeffinients in $K$ of the $S$-polynomials
+$$
+S(\rm{lt}h_i g_i, \rm{lt}h_j, g_j),
+$$
+since each $\rm{lt}f_i g_i$ has multidegree $\delta$ while the sum has multidegree $< \delta$. 
+
+We have
+\begin{equation}
+(#eq:sum-lt)
+S(\rm{lt}(h_i) g_i, \rm{lt}(h_j) g_j) = x^{\delta - \gamma_{i,j}} S(g_i,g_j)
+\end{equation}
+where $x^{\gamma_{i,j}} = \rm{lcm}(\rm(lm}(g_i), \rm(lm}g_j)$ it follows that the first sum (Equation \@ref(eq:sum-lt)) is a linear combination of $x^{\delta - \gamma_{i,j}} S(g_i,g_j)$ for appropriate pairs $(i,j)$. 
+
+Consider one of the $S(g_i,g_j)$. Since $\overline{S(g_i,g_j)}^G = 0$, we can rewrite it as
+\begin{equation}
+(#eq:s-sum-a)
+S(g_i,g_j) = \sum^t_{\ell = 1} A_\ell g_\ell,
+\end{equation}
+where $A \in K[x_1,\ldots,x_n]$ and
+\begin{equation}
+(#eq:s-lt)
+\rm{multideg}(A_\ell g_\ell) \le \rm{multideg}(S(g_i,g_j))
+\end{equation}
+where $A_\ell g_\ell \ne 0$. 
+By multiplying both sides of Equation @\ref(eq:s-sum-a) by $x^{\delta - \gamma_{i,j}}$, we get
+$$
+x^{\delta - \gamma_{i,j}}S(g_i,g_j) = \sum^t_{\ell = 1} B_\ell g_\ell,
+$$
+where $B_\ell = x^{\delta - \gamma_{i,j}} A_\ell$. Then it follows from Equation \@ref(eq:s-lt) that
+$$
+\rm{multideg}(B_\ell g_\ell) \le \rm{multideg}(S(g_i,g_j)) < \delta
+$$
+since $\rm{lt}(S(g_i,g_j)) < \rm{lcm}(\rm{lm}(g_i), \rm{lm}(g_j)) = x^{\gamma_{i,j}}$.
+
+It follows that we can rewrite the first term in the sum as
+$$
+\sum_{\rm{multideg}(h_i g_i) = \delta} \rm{lt}(h_i) g_i = \sum^t_{\ell = 1} \tilde{B_\ell} g_\ell
+$$
+with the property that when $\tilde{B_\ell}g_\ell \ne 0$, we have $\rm{multideg}(\tilde{B_\ell} g_\ell) < \delta$. 
+
+we have obtained an expression for $f$ as a polynomial combination of the $g_i$'s where every term has multidegree $< \delta$. This contradicts the assumption that $\delta$ was minimal and completes the proof.
+:::
+
+
+The basic idea of Buchberger's algorithm is that polynomials are added to the input set until a Groebner basis is obtained -- i.e., when Buchberger's criterion is met. 
+
+We first present a worked example to give an ide aof how the algorithm will work.
+
+Consider $I = \langle f_1, f_2 \rangle = \langle x^3 - 2xy, x^2 y - 2y^2 + x \rangle \subset Q[x,y]$ with grlex ordering.
+$\langle f_1, f_2 \rangle$ is not a Gr\"obner basis for $I$. 
+Indeed, 
+\begin{align*}
+S(f_1,f_2) &= \dfrac{x^{3}y}{x^{3}}\left(x^{3}-2xy\right)-\dfrac{x^{3}y}{x^{2}y}\left(x^{2}y-2y^{2}+x\right) \\
+&= \left(x^{3}y-2xy^{2}\right)-\left(x^{3}y-2xy^{2}+x^{2}\right)\\
+&= -x^2 \not \in \{\lt(f_1), \lt(f_2)\}
+\end{align*}
+Compute $$
+\overline{ S(f_1,f_2) }^F.
+$$
+We have
+$$
+S\left(f_{1},f_{2}\right)=-x^{2}=g_{1}\left(x^{3}-2xy\right)+g_{2}\left(x^{2}y-2y^{2}+x\right)+h.
+$$
+Setting $g_1 = -y,g_2 = x$ gives
+\begin{align*}
+&-y\left(x^{3}-2xy\right)+x\left(x^{2}y-2y^{2}+x\right) + h\\
+=&-x^{3}y+2xy^{2}+x^{3}y-2xy^{2}+x^{2} + h\\
+\Rightarrow& h = -x^2\\
+\end{align*}
+Add $-x^2$ to $F$. 
+Since $-x^2 \in I$, we have $\overline{S(f_1,f_2)}^F = 0$.
+
+We now need to consider $S(f_1,f_3)$ and $S(f_2,f_3)$.
+\begin{align*}
+S\left(f_{1},f_{3}\right)&=\dfrac{x^{3}}{x^{3}}\left(x^{3}-2xy\right)-\dfrac{x^{3}}{x^{2}}x^{2}=-2xy\\S(f_{2},f_{3})&=\dfrac{x^{2}y}{x^{2}y}\left(x^{2}y-2y^{2}+x\right)-\dfrac{x^{2}y}{x^{2}}x^{2}=-2y^{2}+x
+\end{align*}
+The remainder of $\overline{S(f_1,f_3)}^F$ is $-2xy \i I$, so we add $-2xy$ to $F$. Similarly, the remainder $\overline{S(f_2,f_3)}^F$ is $-2y^{2}+x$, so we add $-2y^{2}+x$ to $F$.
+
+We have $$F = \left( x^3 - 2xy, x^2 y - 2y^2 + x, -x^2, -2xy, -2y^2 + x \right),$$
+and $\overline{S(f_i,f_j)}^F=0$ for all $f_i,f_j \in F$. We conclude that $F$ is a Gr\"obner basis for $I$. 
+
+We now present the algorithm.
+
+**Input:** $F = \{ f_1,\ldots,f_k \} \subset K[x_1,\ldots,x_n]$ -- a finite set of multivariate polynomials
+
+**Output:** A Gr\"obner basis $G$ for $I = \langle f_1,\ldots,f_k \rangle$, s.t. $F \subset G$
+
+  - Let $G := F$
+
+  - do
+
+    - let $G' := G$
+
+    - for $f,g\in G$ s.t. $f \neq g$:
+      - let $r = \overline{S(f,g)}^{G'}$
+
+      - if $r \ne 0$ then $G := \{r\} \cup G$ 
+
+  - while $G \ne G'$
+
+  - return $G$
+
+See [@cox2013 p91, Theorem 2] for a proof that this algorithm does indeed produce a Groebner basis for $F$ and always terminates in a finite number of steps. Following Buchberger's algorithm, there were several improvements in efficiency, for example ... and Groebner basis remain a vital tool in computer algebra.
+
+#### Zariski closures and saturations
+
+Let $f_1,\ldots,f_k \in K[x_1,\ldots,x_n]$. We define
+$$
+V(f_1,\ldots,f_k) := \{ x \in K^n \mid f_1(x), \ldots, f_k(x) = 0 \}.
+$$
+If $I \subset K[x_1,\ldots,x_n]$ is a polynomial ideal, we write
+$$
+V(I) := \{ x \in K^n \mid f(x) = 0 \text{ for all } f \in I \}.
+$$
+
+Let $V \subset K^n$ be an affine algebraic variety. Then
+$$
+I(V) := \{ f \in K[x_1,\ldots,x_n] \mid f(a) = 0 \text{ for all } a \in V \}.
+$$
+
+To every variety belongs an ideal:
+
+::: {.lemma}
+If $V \subset K^n$ is an affine variety, then $V(I) \subset K[x_1,\ldots,k_n]$ is an ideal (called the {\em ideal of} $V$). 
+:::
+
+::: {.proof}
+We prove $I\left(V\right)$ satisfies the properties of an ideal.
+
+- $0\left(x\right)=0$ for all $x\in K^{n}$, hence $0\left(x\right)=0$ for all $x\in V$, so $0\in I\left(V\right)$.
+
+- Let $x\in V$. If $f,g\in I\left(V\right)$ then by definition we have $f\left(x\right)=0$ and $g\left(x\right)=0$. Then $f\left(x\right)+g\left(x\right)=0+0=0$, hence $f+g\in I\left(V\right)$.
+
+- Let $x\in V$. If $f\in I\left(V\right)$ and $h\in K[x_{1},\ldots,x_{n}]$. By definition we have $f\left(x\right)=0. h\left(x\right)f\left(x\right)=h\left(x\right)\cdot 0=0$, hence $hf\in I\left(V\right)$ for all $h\in K[x_{1},\ldots,x_{n}]$.
+:::
+
+...and to every ideal belongs a variety.
+
+::: {.lemma}
+$V(I)$ is an affine variety. In particular if $I = \langle f_1,\ldots,f_k\rangle$ then $V(I) = V(f_1,\ldots,f_k)$.
+:::
+
+::: {.proof}
+By the Hilbert Basis Theorem $I$ is finitely generated, therefore $I = \langle f_1,\ldots, f_k \rangle$ for some finite set of generators in $K[x_1,\ldots,x_n]$. We want to show that $V(I) = V(f_1,\ldots,f_k)$. 
+
+Since $f1 \ldots,f_k \in I$ and $f(a) = 0$ for all $f\in I$, $V(I) \subset V(f_1,\ldots,f_k)$.
+On the other hand, suppose $x \in V(f_1,\ldots,f_k)$. Since $I = \langle f_1,\ldots,f_k \rangle$, every $f \in I$ can be written
+$$
+f = h_1f_1 + \cdots + h_kf_k.
+$$
+Since $f_i(x) = 0$ for all $1 \le i \le k$, we have
+$$
+f(x) = h_1(x) \cdot 0 + \cdots + h_k(x) \cdot 0 = 0 + \cdots + 0 = 0.
+$$ 
+Therefore $V(f_1,\ldots,f_k) \subset V(I)$, hence $V(I) = V(f_1,\ldots,f_k)$. 
+:::
+
+Let $S \subset K^n$ be an arbitrary subset, not necesarily an affine algebraic variety. $I(S)$ (defined in the same way as above) is an ideal and by the ideal-variety correspondance, $V(I(S))$ if an affine algebraic variety. 
+
+::: {.lemma}
+Let $S \subset K^n$. $V(I(S))$ is the smallest affine algebraic variety containing $S$. 
+
+(I.e., for all affine algebraic varieties $W \supset S$, $V(I(S)) \subset W$.)
+:::
+
+::: {.proof}
+If $S \subset W$, then $I(W) \subset I(S)$ because the operation $I$ is inclusion reversing.
+In addition, $V(I(S)) \subset V(I(W))$ because $V$ is also inclusion reversing. 
+Since $W$ is an affine algebraic variety, $V(I(W)) = W$, so we have $V(I(S)) \subset W$.
+:::
+
+::: {.definition}
+The Zariski closure of a subset $S \subset K^n$ is the smallest affine algebraic variety containing $S$. We denote the Zariski closure of $S$ by $\overline{S}$.
+:::
+
+The following property relating Zariski closures and ideals is relevant to [@lazard10, Proposition 5.14].
+
+::: {.lem}
+[@cox2013 p203, part of Theorem 10]
+Let $I,J \subset K[x_1,\ldots,x_n]$ be ideals, then
+$\cl(V(I) \setminus V(J)) \subset V(I : J^\infty)$,
+:::
+
+::: {.proof}
+We claim that $I \subset I:J \subset I:J^\infty \subset I(V(i0) \setminus V(J))$. We have $I \subset I:J \subset I:J^2 \subset \cdots \subset I:J^\infty$ by the ascending chain condition. 
+Suppose that $f \in I:J\infty$ and $a \in V(I) \setminus V(J)$. Then $fg^N \in I$ for all $g \in J$ and a suitable (large enough) $N\ge 0$. Since $a \in V(I)$, $f(a)g^N(a) = 0$ (for all $g\in J$ and large enough $N$). Since $a \not \in V(J)$, there exists $f \in J$ and $N \ge 0$ such that $g(a) \ne 0$. Hence $f(a) = 0$ for all $a \in V(I) \setminus V(J)$. We have $f \in I(V(I) \setminus V(J))$. Transitivity of $\subset$ proves the claim. Since $V$ reverses incl0usion, we have $= \cl(V(i) \setminus V(J)) = V(I(V(i) \setminus V(J))) \subset V(I:J^\infty)$.
+:::
+
+Now we can return to [@lazard10, Proposition 5.14]. By [@lazard10, Proposition 5.13], be may assume that $\fr(C)$ is the closure of some one-dimensional cells and that blow-up points, if they exist, rae 0-dimensional cylindrical cells in the decomposition induced on $\R^2$. 
+We begin with an irreducible polynomial $f \in \Q[x_1,x_2,x_3]$, such that there exists a $(1,1,0)$-cell $C \subset \{ \mathbf{x} \in \R^3 \mid f(\mathbf{x}) = 0 \}$, a point $\mathbf{p} = (p_1,p_2) \in \R^2$ such that $\mathbf{p}$ is a blow-up point of $f$ and $g \in \Q[x_1,x_2]$ such that $g(\mathbf{p}) = 0$. 
+Consider the variety $V(\langle f \rangle + \langle g \rangle ) = V(f) \cap V(g)$, which contains some of the one-dimensional cells which form part of $\fr(C)$ and the blow-up subset $B \subset \mathbf{p} \times \R$. 
+The saturation by $h$ of $I$,
+$$
+S := \langle f, g, 1 - zh \rangle \cap \Q[x_1,x_2,x_3]
+$$
+is constructed.
+By [@cox2013, Theorem 10] (TOTO),
+$$
+\cl(V(\langle f,g \rangle) \setminus V(\langle h \rangle)) \subset S.
+$$
+Since our blow-up point $\mathbf{p}$ is $0$-dimensional, computing this Zariski closure effectively "fills in the hole" left by removing the blow-up subset from $V(\langle f,g \rangle)$. Thus, we have the limit points of the cell $C$ as it approaches the blow-up subset $B$. 
+In order to find the refinement points above $\mathbf{p}$, we compute a generating set (Groebner basis) $\{ f_1,\ldots,f_k \}$ for $S$ and solve the system of equations
+$$
+f_1 = 0, \ldots, f_k = 0, g = 0, h = 0.
+$$
+
+It is clear that the blow-up poits must have maximum dimension $0$, otherwise the Zariski closure computation will not be able to "fill in the gap". 
+
+## Generalisation of Lazard
+
+1. about the types of cell. we have to extend the lemma, but only to cells with certain indices. we know already that the frontier is going to be contained in a union of cells with smaller index. proved later. 
+
+**(Extending te R^n, I hypothesise that, if the property in Lem 5.13 holds, we can construct the saturation by $h_j$ for $1 \le j \le n-1$, of the ideal generated by $\{ f, g_1,\ldots,g_{j-1},g_{j+1},\ldots,g_{n-1} \}$, which are the polynomials defining the bad point.)**
+
+
+
+## A novel algorithm for the frontier condition in the general case
+
+

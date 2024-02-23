@@ -187,3 +187,28 @@ Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a well-oriented set of polynomial
 
 @mccallum2019 completed the proof that Lazard's projection operator is valid and also proved, without the condition on well-orientedness of input polynomials, that every cell of a sign-invariant CAD constructed using Lazard's projection operator is an analytic submanifold.
 
+## A note on cell representation
+
+In order to examine the CAD we have generated, we will need a convenient representation for its cells. Depending on the purpose for which the CAD has been constructed, a particular representation may be chosen. For example, if we only need witnesses, only the sample point for each cell will be needed. On the other hand, it might be necessary to represent the cell using a quantifier-free Boolean formula, also referred to as a Tarski formula.
+
+Suppose that $C$ is a cell in a CAD $\cal D$ which is sign-invariant with respect to $\mathbf{F} = (f_1,\ldots,f_s)$. Let $\mathbf{P} := (f_1,\ldots,f_t), t \ge s$ be the set of projecton polynomials produced in the CAD construction. 
+Then $C$ has constant sign on each of $f_1,\ldots,f_t$. I.e., $f_1 *_1 0, \ldots, f_t *_t 0$ where $*_i \in \{<,>,=\}$ for $1 \le i \le t$. One might thnk that $C$ could be represented by the formula $$
+f_1 *_1 0 \land \cdots \land f_s *_t 0,
+$$
+however this may not always be the case as the signs of polynomials might not be sufficient to represent the cell. Consider the following simple example in $\R^2$. 
+Let $f = x = y^2$ and construct an $\{f\}$-invariant CAD. The projection polynomials
+$$
+P = \{ x, x - y^2 \}.
+$$
+** TODO: draw a picture, label cells by C_1 and C_2. **
+The two distinct cells $C_1$ and $C_2$ having sign $x > 0, x - y^2 = 0$. By Thom's Lemma, it is possible to represent these cells by signs of derivatives. 
+In this example, it is clear that another polynomial, $y$, is needed to distinguish between these cells. @brown99 proposed an algorithm for constructing a solution formula where the projection polynomials are not sufficient. The basic idea is that "conflicting pairs", distinct cells having the same signature (signs of projection factors), are identified, then additional derivatives of projection factors are added such that the conflicting pairs can be delineated. 
+
+Brown's algorithm is implemented in QEPCAD for producing a solution formula. The algorithm has been slightly modified to produce a Tarski formula for each cell. This is done by modifying the definition of a confligting pair. The original definition of a conflicting pair is a pair of cells with the same signature and the same truth value. The definition has been modified to ignore the truth value so that all cells having the same signature are identified. With this simple modification, Brown's existing algorithm can be applied such that sufficient delineating polynomials will be available to represent a cell in the CAD as a disjunction (if Brown's algorithm happens to refine the cell) of conjunctions of polynomial equations and inequalities. 
+
+
+
+
+
+
+

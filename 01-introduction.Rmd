@@ -2,5 +2,3 @@
 
 Based on the work of Basu, Gabrielov and Vorobjov [@bgv15].
 
-Examlpe of another citation, [@collins1991].
-
