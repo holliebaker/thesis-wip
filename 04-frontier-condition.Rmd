@@ -1,6 +1,6 @@
 # Frontier Condition
 
-Now suppose we have a CAD $\cal D'$ monotone with respect to $V_1,\ldots,V_k$. Our final step, according to [@bgv15, Theorem 3.20] is to refine the frountier $\partial C$ of each $2$-dimensional cell $C \subset V$ so that $\partial C$ is a union of cells of $\cal D'$.
+Now suppose we have a CAD $\cal D'$ monotone with respect to $V_1,\ldots,V_k$. Our final step, according to [@bgv15, Theorem 3.20] is to refine the frontier $\partial C$ of each $2$-dimensional cell $C \subset V$ so that $\partial C$ is a union of cells of $\cal D'$.
 
 For each cell $C \subset V$, compute $\partial C$. Since $C$ is monotone, we can assume that $\partial C$ is homeomorphic to a circle. Construct a partition $\cal U$ of $\partial C$ into monotone one-dimensional curves and points, such that $\cal U$ is compatible with all one-dimensional cells of $\cal D'$. 
 Let $\mathbf{c} = (c_1,\ldots,c_n)$ be one of the one-dimensional components of $\cal U$. If $c_1$ is not a $0$-dimensional cell of the decomposition induced by $\cal D'$ on $\R^1$, then perform a refinement of the kind $x_1 < c_1, x_1 = c_1, x_1 > c_1$. Recall that these refinements, according to [@bgv15, Lemma 3,11], preserve the cylindrical structure and monotone cells. Otherwise, $c_1$ is a $0$-cell and we apply the same argument to the sub-CAD of $\cal D'$ above $c_1$.
@@ -36,7 +36,36 @@ We see that the "obvious" way of computing the frontier involves solving a quant
 
 @lazard10 presents an algorithm for constructing an $\mathbf{F}$-invariant cylindrical algebraic decomposition of $\R^n, n\le 3$ such that every cell is a topologically regular set and the frontier condition is satisfied. 
 
-According to [@lazard10, TODO], in dimension $\le 2$, there is nothing to do. 
+According to [@lazard10, TODO], in dimension $\le 2$, there is nothing to do. Furthermore, a cell $C$ satisfies the frontier condition if no cells bordering it are bad. 
+
+
+::: { .lemma #no-blow-up } 
+[@lazald10, Theorem 4.4]
+Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ and $C$ be a cell of $\mathcal{D}$ with $C' := \proj_{\R^{n-1}}(C)$. If the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and none of $C'$ and any cell adjacent to it is bad, $C$ is well-bordered, and $\fr(C)$ is a union of some cells of $\mathcal{D}$.  
+:::
+
+::: {.proof}
+This result follows from the following fact about roots of multivariate polynomials: given a polynomial $f  \in \Q[x_1,\ldots,x_{n-1}][x_n]$, i.e., considered as a univariate polynomial with polynomial coefficients, its complex roots depend continuously on the parameters in the region of the parameter space where the polynomial does not vanish identically. In fact, this is only true in the projective closure of $\mathbb{C}$ as some roots may pass through the point at infinity if the leading coefficient is zero. 
+
+First suppose that $C$ is a section cell. I.e., it is a root of some polynomial $f$ and $\partial C$ is defined as the limit of this root over the boundary of $C'$. Thus $\projop{n-1}$ is a continuous, injective map from $\partial C$ to $\partial C'$. This follows from the assumption that the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and that if the root defining the section $C$ is infinite over some cell $C'' \subset C'$, then it is also infinite over $\partial C''$.   
+
+Now suppose that $C$ is a sector cell having section cells (if they exist) $C_B$ and $C_T$ as the bottom and top of $C$ respectively. Let us describe the boundary of $C$. We will only consider the case where $C \cap \{ \mathbf{x} \times \R \}$ is an open interval bounded from below by a point in $C_B$ and above by a point in $C_T$. 
+
+Let $\dim(C) = d + 1$. $\partial C$ consists of
+
+- $C_B$ and $C_T$, both having dimension $d$,
+- the cells in $\partial C_B$ and $\partial C_T$, which have dimension $< d$ and are contained in $\partial C' \times \R$,
+- the intervals (which may be empty) bounded by the points in $\partial C_B$ and $\partial C_T$, contained in $C' \times \R$. Since $C_B$ and $C_T$ are section cells, they are roots of polynomials $f$ and $g$ and, if finite, the points in $\partial C_B$ and $\partial C_T$ are also roots of $f$ and $g$ (respectively). Therefore, these intervals are contianed in some cells of $\cal D$. More precisely, the cells with dimension $d$ contained in $\partial C' \times \R$ are exactly those lying over a cell $C'' \subset \partial C'$ with dimension $d-1$. 
+
+A cell of dimension $< d$ either belongs to $\partial C_B$ or $\partial C_T$, or is a sector over a cell $D \subest \partial C'$ having dimension less than $d-1$. 
+As $C'$ is well-bordered, $D$ belongs to the boundary of some cell $E \subset \partial C'$ having dimension $d-1$. 
+Thus, the sector above $D$ is contained in the boundary of the sector above $E$, which has dimension $d$ 
+
+This proves that, if the decomposition induced by $D$ on $\R^{n-1}$ is strong, then $C$ is well-bordered and also satisfies the frontier condition. In addition, this proves that $C$ is a topologically regular cell as $C$ and $\partial C$ are either homeomorphic to $C'$ and $\partial C'$, if $C$ is a sector cell, or to an open cylinder, either bounded or unbounded, and its boundary. It is clear that an open cylinder contained in $C' \times \R$, where $C'$ is topologically regular, is also topologically regular. 
+
+The other cases are deduced by omitting the cells defined from $C_B$ and $C_T$ as appropriate. 
+:::
+
 Let $\cal D$ be the CAD of $\R^3$ constructed by @lazard10 at the end of Section 5,2. The results in [@lazard10, Section 5.3] assume two properties of $\cal D$. Firstly $\fr{ C }$, where $\dim(C) = k$, is the closure of the union of some cells of $\cal D$ of dimension $k-1$. Secondly, according to [@lazard10, Proposition 5.13], any bad cells in the decomposition induced by $\cal D$ on $\R^2$ (those above which some polynomial vanishes over an open interval) are 0-dimensional isolated points.
 
 ::: {.lemma} 
@@ -539,10 +568,24 @@ $$
 f_1 = 0, \ldots, f_k = 0, g = 0, h = 0.
 $$
 
-
 Note that this procedure only works if the blow-up points have dimension zero, otherwise the Zariski Closure will not be sufficient to find the limit points. 
 
 ## Generalisation of Lazard
+
+We will now generalise this result to cells of dimension $\le 2$ in a CAD of arbitrary dimension. 
+In the previous section, we obtained a decomposition compatible with $V \subset \R^n$ such that each cell $C \subset V$ is monotone. By TODO, $C$ is topologically regular. In order to extend the results from @lazard10 it is also required that $C$ is well-bordered. By [@lazard10, Corollary 5.4], every cell in a sign-invariant cylindrical decomposition of $\R^3$ is well-bordered. In general, a cylindrical decomposition of $R^n, n>3$ is not well-bordered, as shown by [@lazard10, Example 2.11]. However (I hope) that every cell with dimension $\le 2$ is.
+
+::: {,lemma #lazard-5-2}
+[@lazard10, Proposition 5,2]
+Let $\cal D$ be a CAD of $\R^n$ and $\cal D'$ the decomposition induced by $\cal D$ on $\R^{n-1}$. Let $C$ be a cell of $\cal D$ and $C' := \projop{n-1} (C)$ such that $C'$ is well-bordered. 
+If $p \in \fr(C')$, then $I := (p \times \R) \cap \fr(C)$ is connected. 
+$I$ is thus a point or a closed segment, either bounded or unbounded. 
+Furthermore, if $C$ is a sector cell, then the set of points of $I$ which do not belong to the boundaries of the section cells delimiting $C$ is either empty or an open interval.
+:::
+
+
+
+By \@ref{lem:no-blow-up}, if no cell adjacent to $C$ is bad and the induced decomposition is strong, then $C$ is well-bordered, topologically regular and satisfies the forntier condition. Thus, we need to look at what happens in the region of blow-up poits. 
 
 1. about the types of cell. we have to extend the lemma, but only to cells with certain indices. we know already that the frontier is going to be contained in a union of cells with smaller index. proved later. 
 
