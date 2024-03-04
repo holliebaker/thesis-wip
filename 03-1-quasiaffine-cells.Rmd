@@ -1,4 +1,4 @@
-# Quasi-affine cells
+# Quasi-affine cells { #sec:quasi-affine }
 
 Let $$
 V := V_1 \cup \ldots \cup V_k

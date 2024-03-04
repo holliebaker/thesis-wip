@@ -98,9 +98,6 @@ Let $V_r$ be a small neighbourhood (with radius $r > 0$) centered aronud $D'$ an
 - $(0,0,1)$- or $(0,0,0)$-$cells: cannot satisfy the hypothesis, there is nothing to do.
 :::
 
-Neet a reproduction of Lazard Th4.4, and check it really works. 
-**(We can extend this to 2d cells in R^n. Let's change the hypothesis so that we only consider 2d cells. then we get the (1,0,1) and (0,1,1) case, i.e., (i_1,\ldots,i_n-1,1) where i_1+\ldots+i_{n-1}=1 by the same argument and (1,1,0) can be extended to (i_1,\ldots,i_{n-1},0) where i_1+\ldots+i_{n-1}=2 by applying the same argument, but using monotonicity and a monotone map from x_1,x_\alpha to R^{n-2} -- actually, we can consider the sub-cad of R^k above a 0-cell.)**
-
 ::: {,prop}
 [@lazard10, Proposition 5.14]
 Let $f \in \Q[x_1,x_2,x_3]$ be an irreducible polynomial given by 
@@ -243,7 +240,7 @@ Now, to prove that $r$ is unique, suppose that $f = g + r = g' + r'$ for $g,g'$ 
 The final part of the proposition follows from uniqueness of $r$. 
 :::
 
-::: {.cor #div-zero}
+::: {.corollary #div-zero}
 Let $G = \{ g_1,\ldots,g_k \}$ be a Groebner basis for an ideal $I \subset K[x_1,\ldots,x_n]$ and let $f \in K[x_1,\ldots,x_n]$. Then $f \in I$ if and only if the remainder on division of $f$ by $G$ is zero. 
 :::
 
@@ -570,12 +567,79 @@ $$
 
 Note that this procedure only works if the blow-up points have dimension zero, otherwise the Zariski Closure will not be sufficient to find the limit points. 
 
+### Algorithm for lifting with bad points in $\R^3$
+
+Let $\cal D$ be a cylindrical algebraic decomposition of $\R^n, n \le 3$. If $n < 3$, $\cal D$ already satisfies the frontier condition since there are no bad cells in the decomposition induced by $\cal D$ on $\R^1$. Othewrise $n=3$ and we apply @lazard10, Algorithm 5.15 to $\cal D$ to produce a set of refinement points. This algorithm, written using our notation, is reproduced below. 
+
+---
+[@lazard10, Algorithm 5.15]
+
+**Input:**
+$$({\cal D}, {\cal A})$$
+
+  - $\cal D$: a cylindrical algebraic decomposition of $\R^3$, compatible with $V \subset \R^n$ compatible with, and monotone with respect to, $V \subset \R^n$ such that $\dim(V) \le 2$. 
+
+  - ${\cal A} = {\cal A}_1,{\cal A}_2,{\cal A}_3$ is the family of projection polynomials defining $V$, where each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$.
+
+**Output:**
+
+$$
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^k \}
+$$
+
+A set of refinement points, as described in \@ref(sec:monotone-algorithm). 
+
+---
+
+- Let $\cal D'$ be the decomposition induced by $\cal D$ on $\R^2$.
+
+- For each $(0,0)$-cell (point) $\mathbf{p}$ of $\cal D'$, determine whether it is a bad cell. $\mathbf{p}$ is a bad cell if there exists a polynomial $f \in {\cal A}_3$ such that $f$ has constant sign on a $(0,0,1)$-cell $C$ of $\cal D$ such that $\mathbf{p} = \projop{2}(C)$. 
+
+(Note that this can easily be done by checking sings of projection factors for each $f \in {\cal A}_3$ assigned to $C$). 
+
+  - Let $g_1 \in {\cal A}_1, g_2 \in {\cal A}_2$ such that $g_1(\mathbf{p}) = 0$ and $g_2(\mathbf{p}) = 0$.
+  
+  - Let ${\cal A'} := {\cal A}_1 \cup {\cal A}_2$. 
+
+  - For each $g \in {\cal A'}$, do
+  
+    - If $g \in \Q[x_1]$, then $h := g_2$. Otherwise, $g \in \Q[x_1,x_2]$ and $h := g_1$. 
+
+    - Define the saturation
+    $$
+    I := \langle f, g, 1 - z h \rangle,
+    $$
+    where $z$ is a new variable. 
+
+    - Compute a generator system $S$, i.e., a Groebner basis, $S$ for the ideal $I$. 
+    
+    - Compute 
+    $$
+    L := \{ \rm{sub}_{\mathbf{p}}(f') \in \Q[x_3] \mid f' \in S \}
+    $$
+    and compute the roots
+    $$
+    (c_1,\ldots,c_t)
+    $$
+    of $L$. 
+    
+    - Let
+    $$
+    {\cal R}_{\mathbf{p}} := (c_1,\ldots,c_t).
+    $$
+    
+- return $\cal R$. 
+
+Compute the refinement of sections above bad cells using the same method described in Section \@ref(sec:compute-refinement).
+
 ## Generalisation of Lazard
 
-We will now generalise this result to cells of dimension $\le 2$ in a CAD of arbitrary dimension. 
-In the previous section, we obtained a decomposition compatible with $V \subset \R^n$ such that each cell $C \subset V$ is monotone. By TODO, $C$ is topologically regular. In order to extend the results from @lazard10 it is also required that $C$ is well-bordered. By [@lazard10, Corollary 5.4], every cell in a sign-invariant cylindrical decomposition of $\R^3$ is well-bordered. In general, a cylindrical decomposition of $R^n, n>3$ is not well-bordered, as shown by [@lazard10, Example 2.11]. However (I hope) that every cell with dimension $\le 2$ is.
+We can now generalise this result to cells of dimension $\le 2$ in a CAD of arbitrary dimension. 
+Our goal is to construct a CAD of $\R^n$, compatible with $V := V_1 \cup \ldots, \cup V_k$ such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, such that each cell is monotone with respect to $V$ and and each cell $C \subset V$ satisfies the frontier condition.  
+In Section \@ref(sec:quasi-affine), we constructed a decomposition such that ecah cell has constant sign on every polynomial defining $V$, with the result that each cell in the decomposition is smooth. In Section \@ref(sec:monotone-cells), we refined that decomposition so that each cell $C \subset V$ is monotone. 
+In order to extend @lazard10, Algorithm 5.14, we will require this monotonicity property. We will also require an additional property. 
 
-::: {,lemma #lazard-5-2}
+::: {.lemma #lazard-5-2}
 [@lazard10, Proposition 5,2]
 Let $\cal D$ be a CAD of $\R^n$ and $\cal D'$ the decomposition induced by $\cal D$ on $\R^{n-1}$. Let $C$ be a cell of $\cal D$ and $C' := \projop{n-1} (C)$ such that $C'$ is well-bordered. 
 If $p \in \fr(C')$, then $I := (p \times \R) \cap \fr(C)$ is connected. 
@@ -583,15 +647,67 @@ $I$ is thus a point or a closed segment, either bounded or unbounded.
 Furthermore, if $C$ is a sector cell, then the set of points of $I$ which do not belong to the boundaries of the section cells delimiting $C$ is either empty or an open interval.
 :::
 
+By @\ref{lem:no-blow-up}, if no cell adjacent to $C$ is bad and the induced decomposition is strong, then $C$ is well-bordered, topologically regular and satisfies the forntier condition. Thus, we need to look at what happens in the neighbourhood of blow-up poits only. 
 
+::: { .lemma }
+Let $\cal D$ be a sign-invariant CAD of $\R^n$ , $C$ be a cell of $\cal D$ and $C' := \projop{n-1}(C)$ satisfy the frontier condition. If no cell in $\fr(C')$ is bad, then $C$ satisfies the frontier condition. 
+:::
 
-By \@ref{lem:no-blow-up}, if no cell adjacent to $C$ is bad and the induced decomposition is strong, then $C$ is well-bordered, topologically regular and satisfies the forntier condition. Thus, we need to look at what happens in the region of blow-up poits. 
+Proof is either by Lazard or Davenport, Locatelli and Sankaran.
 
-1. about the types of cell. we have to extend the lemma, but only to cells with certain indices. we know already that the frontier is going to be contained in a union of cells with smaller index. proved later. 
+If there is a blow-up point, then the following situation will occur.
 
-**(Extending te R^n, I hypothesise that, if the property in Lem 5.13 holds, we can construct the saturation by $h_j$ for $1 \le j \le n-1$, of the ideal generated by $\{ f, g_1,\ldots,g_{j-1},g_{j+1},\ldots,g_{n-1} \}$, which are the polynomials defining the bad point.)**
+::: {.lemma} 
+Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ compatible with a semialgebraic set $V \subset \R^n$ having dimension at most $2$, and suppose that $C \subset V$ is a topologically regular cell in $\mathcal{D}$. 
+Suppose that $D$ is a cell of $\mathcal{D}$ such that $B := D \cap \fr{ C } \neq \emptyset$ and $B \neq D$. Then either
+  
+  1. $C$ is a $1$-dimensional section cell whose endpoint, $B$, projects on a bad cell, or
+  2. there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C)$ and $\emptyset \neq D \cap \fr{ E } \neq D$. 
+:::
 
+::: {,proof}
+By the proof of [@lazard10, Theorem 4.4], $D$ will always be a $(0,\ldots,0,1)$-cell in the cylinder above a bad cell $D'$. 
 
+Since $\dim(V) \le 2$, $C$ has dimension at most $2$. We consider each case by cell index.
+
+- $(i_1,\ldots,i_{n-1},1)$-cell, where $\sum_{j=1}^{n-1} i_j = 1$: observe that $C$ (if bounded) is delineated by some $(i_1,\ldots,i_{n-1},0)$-cells (one-dimensional curve intervals). Take $B$ to be the one-dimensional interval delineated by the endpoints of these curves. Since $B \neq C$, at least one of these endpoints is not a $(0,,\ldots,0,0)$-cell of $\cal D$. Case 2 applies, taking as $E$ the delineating $(i_1,\ldots,i_{n-1},0)$-cell. 
+
+- $(i_1,\ldots,i_{n-1},0)$-cells, where $\sum_{j=1}^{n-1} i_j = 1$: consider the previous case, letting $C = E$. 
+
+- $(i_1,\ldots,i_{n-1},0)$-cell, where $\sum_{j=1}^{n-1} i_j = 2$: 
+are necesarily the root of a polynomial $f \in \Q[x_1,\ldots,x_n]$ which vanishes identically on $D'$, a $(0,\ldots,0)$ cell in the decomposition induced by $\cal D$ on $\R^{n-1}$. 
+Let $V_r$ be a small neighbourhood (with radius $r > 0$) centered aronud $D'$ and consider $V_r'$, the cylinder above the boundary of $V_r$. Since $C$ is a monotone cell, the maximum and minimum values of $x_n$ in this intersection are obtained on the boundary of $C$, for sufficiently small $r$. The limits, as $r$ tends to $0$, of this maximum and minimum clearly belong to the boundary of $B$, if these limits do not tend to infinity. Note that both the maximum and minimum cannot be infinite, since this would imply that either $B$ is empty, or coincides with $D$. Therefore, the non-infinite limits are the endpointns of some $1$-dimensional cell belonging to the boundary of $C$. Case 2 applies, taking $E$ to be this $1$-dimensional cell. 
+
+- $(0,\ldots,0,1)$- or $(0,\ldots,0,0)$-cells: do not satisfy the hypothesis, there is nothing to do.
+:::
+
+The previous two results mean that we can extend @lazard10 Theorem 5.13 to 2-dimensional cells in sign-invariant decompositions of $\R^n$. 
+
+::: {,prop}
+Let $f \in \Q[x_1,\ldots,x_n]$ be an irreducible polynomial given by 
+$$f = g_dx^d + \ldots + g_1x + g_0$$
+with each $g_i \in \Q[x_1,\ldots,x_{n-1}]$, and 
+$$\mathbf{p} = (p_1,\ldots,p_{n-1})$$
+be a common root of $g_d,\ldots,g_1,g_0$. 
+Let $g_j\in \Q[x_1,\ldots,x_j], j \in \{1,\ldots,n-1\} \setminus \ell$, where $1 \le \ell \le n-1$, be irreducible polynomials having $\mathbf{p}$ as a root. 
+The limits of the common roots of $f$ and the $g_i$'s as $(x_1, x_2) \to \mathbf{p}, (x_1, x_2) \ne \mathbf{p}$ may be computed as solutions of a zero-dimensional
+polynomial system.
+:::
+
+::: {.proof}
+**This is wrong!**
+
+Since $f$ is irreducible, it has at least two coefficients, $g_i,g_j \in \Q[x_1,\ldots,x_{n-1}]$, whose GCD is a constant. 
+Therefore, any ideal generated by these coefficients has dimension zero. Any ideal containing these coefficients also contains another element, $h$, which is not a multiple of $g$. 
+
+The saturation by $h$ of the ideal $\langle f,g \rangle$ is defined as the ideal
+$$
+S := \langle f, g, 1 - zh \rangle \cap \Q[x_1,x_2,x_3].
+$$
+The irreducible components of the zero set of $S$ are those of the zero set of $\langle f,g \rangle$ at which $h$ is not identically zero. It follows that the vertical line $\{ x_1 = p_1, x_2 = p_2 \}$ which is part of the zero set of $f$ ,$g$ and $h$, is not contained in the zero set of $S$. Meanwhile, the zero set of $S$ contains the limit points we are interested in finding. 
+
+It follows that the ideal generated by $S$ and the coefficients $g_0,\ldots,g_d$ of $f$ is zero-dimensional and the limits of $\{ f=0,g=0 \}$ as $(x_1,x_2) \to \mathbf{p}$ can be computed as the zeros of $S$. 
+:::
 
 ## A novel algorithm for the frontier condition in the general case
 
