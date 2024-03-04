@@ -1,0 +1,185 @@
+# A novel algorithm for the obtaining the frontier condition on a cylindrical decomposition of $\R^n$
+
+So far, we have been concerned only with cylindrical algebraic decomposition compatible with subsets of $\R^n$ having dimension at most two. We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
+
+::: { .theorem #novel-frontier-main }
+Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$ with $s$ different polynomials of maximum degree $d$ in $\R[x_1,\ldots,x_n]$.
+There is an algorithm, taking $F$ as input, which outputs a cylindrical decomposition $\mathcal D$ of $\R^n$ compatible with $S$ and
+satisfying the frontier condition.
+The complexity of this algorithm is $(sd)^{O(1)^{n2^n}}$.
+This is also an upper bound on the number of cells in $\mathcal D$, number of polynomials defining cells and their degrees.
+:::
+
+::: { .remark }
+Algorithm in Theorem \@ref(thm:novel-frontier-main) is understood as a Blum-Shub-Smale (BSS) real numbers machine @blum1998.
+A similar statement is also true for the Turing machine model, in which case the complexity bound
+depends, in addition, polynomially on maximal bit-size of coefficients (cf. @collins1975).
+:::
+
+## Subroutines
+
+We first present some subroutines necesary to obtain a CAD with frontier condition.
+
+### The "Classical" CAD
+
+We have been working with cylindrical algebraic decomposition throughout this work. Here we present a slightly improved version of the algorithm due to @bpr2006.
+
+::: { .proposition #novel-frontier-collins }
+[@bpr2006, Algorithm 11.2]
+Let $\mathbf{F} := f_1,\ldots,f_s$ be polynomials in $\R [x_1, \ldots ,x_n]$ having maximum degree $d$.
+There is an algorithm, taking $\{f_1,\ldots,f_s\}$ as input, which produces a cylindrical decomposition $\mathcal E$ of $\R^n$ such that every cell in $\mathcal{E}$ has constant sign on every polynomial $f_1,\ldots,f_s$.
+The complexity of the algorithm is $(sd)^{O(1)^{n}}$.
+This is also an upper bound on the number of cells in $\mathcal E$, number of polynomials defining cells and their degrees.
+:::
+
+This is the so-called $\mathbf{F}$-invariant CAD. We also present two variations of the algorithm for constructing a "coarser" CAD, i.e., one containing fewer cells.
+
+::: { .proposition #novel-frontier-collins-sets}
+Let $S_1,\ldots,S_k$ be a finite collection of semialgebraic subsets of $\R^n$ defined by quantifier-free Boolean formulas $F_1,\ldots,F_k$ respectively. Together, these formulas include $s$ different polynomials in $\R[x_1,\ldots,x_n]$, having maximum degree $d$.
+There is an algorithm, taking $\{F_1,\ldots,F_k\}$ as input, which produces a cylindrical decomposition $\mathcal E$ of $\R^n$ compatible with each $S_i, 1 \le i \le k$.
+Complexity, number of cells, number of polynomials and degrees are the same as in Proposition \ref{prp:collins}.
+:::
+
+::: { .proof }
+Let $f_1,\ldots,f_s \in \R[x_1,\ldots,x_n]$ be the polynomials from formulas $F_1,\ldots,F_k$ and let $\mathcal{E}'$ be the CAD of $\R^n$ produced by Proposition \@ref{prp:novel-frontier-collins} with $f_1,\ldots,f_s$ as input. Since $F_i$ for each $1\le i\le k$ provides a set of sign conditions on polynomials $f_1,\ldots,f_s$, $\mathcal{E}'$ is a refinement of the CAD produced by this algorithm.
+
+Truth values of $F_1,\ldots,F_k$ on ecah cell can easily be computed from the CAD produced by Proposition \@ref(prp:novel-frontier-collins) by considering the signs of $f_1,\ldots,f_s$ on ecah cell, which we computed in the construction of $\mathcal{E}'$.
+Observe that this does not change the asymptotic complexity or bounds in Propoosition \ref{prop:collins}.
+:::
+
+The construction described in the above proof is very naive. This algorithm, in a more tractable form, is presented in, e.g., @collins1991, and an alternative approach is presented in @bradford2014.
+
+::: { .proposition #novel-frontier-collins-one-set }
+Let $S\subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$ containing $s$ different polynomials in $\R[x_1,\ldots,x_n]$, having maximum degree $d$.
+There is an algorithm, taking $F$ as input, which produces a cylindrical decomposition $\mathcal E$ of $\R^n$ compatible with $S$.
+Complexity, number of cells, number of polynomials and degrees are the same as in Proposition \@ref(prp:novel-frontier-collins).
+:::
+
+::: { .proof }
+Observe that this is the same as the algorithm as in Proposition \ref{prop:collins-sets} taking $\{F\}$ as input.
+:::
+
+### Computing the Frontier
+
+Now we describe an algorithm, having singly-exponential complexity, for finding the frontier, $\fr{S}=\cl (S) \setminus S$,
+of a semialgebraic set $S \subset \R^n$.
+
+::: { .lemma #novel-frontier-fr }
+Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$
+containing $s$ different polynomials in $\R [x_1, \ldots ,x_n]$ having maximum degree $d$.
+There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr (S)$ by a quantifier-free Boolean formula $F'$ with complexity $(sd)^{O(n^2)}$.
+This is also an upper bound on the number of polynomials in $F'$ and their degrees.
+:::
+
+:::
+Observe that $\fr{S}$ can be represented by a first-order Boolean formula
+$$
+\fr{S} = \left\{ \mathbf{x} \in (\R^n \setminus S) \mid \forall \varepsilon >0\> \exists \mathbf{y} \in S\> (\Vert \mathbf{x} - \mathbf{y} \Vert < \varepsilon ) \right\}.
+$$
+Using singly-exponential quantifier elimination algorithm @bpr2006, Algorithm 14.21, we represent $\fr (S)$
+as a quantifier-free Boolean formula $F'$ with the bounds required in the lemma.
+:::
+
+## Obtaining the frontier condition
+
+Recall that, according to Definition \@ref(def:cells), to each cylindrical cell in a CAD of $\R^n$ a (multi-)index
+$(i_1, \ldots ,i_n) \in \{ 0,1 \}^n$ is assigned.
+Introduce a lexicographic order $\lex$ on the set of all cell indices as follows.
+For any two indices, $M:=(i_1,\ldots,i_n)$ and $N:=(j_1,\ldots,j_n)$, we set $M \lex N$
+iff for the maximal $k,\ 0 \le k <n$, such that $i_1=j_1, \ldots, i_k=j_k$ we have $i_{k+1} < j_{k+1}$.
+If $M \lex N$ or $M = N$, we write $M \lexeq N$.
+
+::: { .lemma #novel-frontier-fr-lex-less }
+Let $\mathcal{D}$ be a CAD of $\R^n$ and let $C$ be a cell of $\mathcal{D}$ with index $M$.
+Then $\fr{C}$ is contained in a union of cells of $\mathcal{D}$ with indices lexicographically less than $M$.
+:::
+
+::: { .proof }
+Proceed by induction on $n$.
+
+When $n=1$, the cell $C$ either has index $M=(0)$ or $M=(1)$.
+If $M=(0)$ then $C$ is a single point and its frontier is empty.
+If $M=(1)$, $C$ is an open interval. By the definition of CAD, endpoints of $C$ are $(0)$-cells.
+
+Now let $n>1$ and let $C$ have index $M=(i_1,\ldots,i_n)$.
+The projection $C'=\proj_{\R^{n-1}}(C)$ is a cell in the induced decomposition $\mathcal{D'}$ of $\R^{n-1}$
+with index $(i_1,\ldots,i_{n-1})$.
+By the induction hypothesis, $\fr{C'}$ is contained in a union of cells of $\mathcal{D'}$ with indices
+$(j_1,\ldots,j_{n-1}) \lex (i_1,\ldots,i_{n-1})$.
+
+If $i_n=0$, then $C$ is a section cell.
+Its frontier $\fr (C)$ is contained in $\fr (C') \times \R$ and, therefore, in a union of
+cells of $\mathcal D$ with indices $(j_1,\ldots,j_{n-1}, j_n)$ for some $j_n \in \{ 0,1 \}$. We have shown that $(j_1,\ldots,j_{n-1}, j_n) \lex M$.
+
+If $i_n=1$, then $C$ is a sector cell.
+In this case, $\fr (C)$ is contained in $(\fr (C') \times \R) \cup C_T \cup C_B$, hence in the
+union of cells of $\mathcal D$ with indices $(j_1,\ldots,j_{n-1}, j_n)$ for some $j_n$
+and two cells, $C_T$ and $C_B$, having the same index $(i_1,\ldots,i_{n-1},0)$.
+All of these indices are lexicographically less than $M$.
+:::
+
+In further proofs we will need the following technical statement.
+
+::: { .lemma #novel-frontier-section-split}
+Let $f: X \to \R$ be a continuous polynomial function on an open set
+$X \subset \R^n$ having the graph $F \subset \R^{n+1}$.
+Let $G$ be a semialgebraic subset of $F$, which is closed in $F$, and having dimension less than $\dim (F)=n$.
+Then $\fr_{F}(F \setminus G) = G$, where $\fr_F$ denotes the frontier in $F$.
+:::
+
+::: { .proof }
+Let $Y = \proj_{\R^{n-1}}(G)$ and observe that $X = \proj_{\R^{n-1}}(F)$.
+Let us first prove that $\fr_X(X \setminus Y) = Y$.
+By the definition of frontier, we have
+$$\fr_X(X \setminus Y)=\cl_X(X \setminus Y) \setminus (X \setminus Y),$$
+where $\cl_X$ denotes the closure in $X$.
+$\cl_X(X \setminus Y)=X$. Indeed, $X\setminus Y$ is open and $n$-dimensional since $Y$ is closed in $X$ and $\dim(Y)<n$.
+Assume that $\cl_X(X \setminus Y) \ne X$. Then there is a nonempty subset $Z\subset X$ such that $Z \not \subset \cl_X(X \setminus Y)$. Since $X \setminus Y \subset \cl_X(X \setminus Y)$, $Z$ is necessarily a subset of $Y$ and $Z$ has dimension $<n$. This implies that $\cl_X(X\setminus Y)$ is not, which is a contradiction.
+It follows that $\fr_X(X \setminus Y)=X \setminus (X \setminus Y)= X \cap Y = Y$.
+
+Finally, since $f$ is a continuous function, and therefore $Y$ and $X$ are homeomorphic to $G$ and $F$
+respectively, we obtain the required formula $\fr_{F}(F \setminus G) = G$.
+:::
+
+We now prove that the decomposition induced on $\R^k, 1 \le k \le n-1$ by any CAD satisfying the frontier condition also satisfies the frontier condition.
+
+::: { .proof } [of Theorem \@ref{thm:novel-frontier-proj).]
+Let $\mathcal{D}$ be a CAD compatible with $S$ and satisfying the frontier condition.
+By the definition of CAD, $\proj_{\R^k0}(S)$ is a union of cells in the decomposition induced by $\mathcal{D}$ on $\R^k$ for all $1\le k \le n-1$.
+
+We now prove that if $\mathcal{D}$ satisfies the frontier condition then all decompositions induced by $\mathcal{D}$ on $\R^k$ for all $1 \le k \le n-1$ satisfy the frontier condition.
+Consider $\Gamma$, the union of cells of $\mathcal{D}$ contained in the $k$-dimensional cylinder $\proj_{\R^{n-1}}(C) \times \R$ where $C$ is a cell of $\mathcal{D}$.
+Observe that $\bigcup_{C \in \Gamma} C = \proj_{\R^{n-1}}(C) \times \R$.
+Consider $$
+\fr{\Gamma} := \bigcup_{C \in \Gamma} \fr{C} \setminus \bigcup_{C \in \Gamma} C . % \left( \proj_{\R^{n-1}}(C) \times \R \right).
+$$
+Observe that $\fr{\Gamma}$ is a union of cells of $\mathcal{D}$ since every cell $C$ in $\Gamma$ satisfies the frontier condition. % since $\proj_{\R^{n-1}}(C) \times \R$ is the union of cells of $\mathcal{D}$ contained in $\Gamma$ and every cell $C$ in $\Gamma$ satisfies the frontier condition.
+We claim that $\fr{\Gamma}$ is the union of some similarly defined cylinders of dimension less than $k$.
+Proceed by induction on $k$.
+
+The base case, $k=1$, is simple since $\fr{\Gamma) = \emptyset$.
+
+Now suppose that $k>1$. Each sector cell in $\Gamma$ has dimension $k$ and each section cell in $\Gamma$ has dimension $k-1$, so the dimension of the union of frontiers of all cells in $\Gamma$ is at most $k-1$.
+Hence $\dim(\fr{\Gamma})$ is at most $k-1$.
+By the cylindrical property of CAD, the projection of any two cells contained in $\fr{\Gamma}$ is either disjoint or coincides. Therefore, $\fr{\Gamma}$ is a union of cylinders $\Gamma' := \proj_{\R^{n-1}}(B) \times \R$ where $B$ is a cell of $\mathcal{D}$ contained in $\fr{\Gamma}$. Observe tthat each cylinder $\Gamma'$ has dimension less than $k$.
+By the induction hypothesis, $\fr{\Gamma'}$ is a union of cylinders with dimension less than $\dim(\Gamma')$.
+
+By the definition of CAD, each of these cylinders $\Gamma'$ projects onto a single cell in the decomposition $\mathcal{D'}$ induced by $\mathcal{D}$ on $\R^{n-1}$. Hence $\fr{C'}$, where $C' := \proj_{\R^{n-1}}(C)$ for all $C \in \Gamma$ is a union of cells $B' := \proj_{\R^{n-1}}(B)$ of $\mathcal{D'}$ for all $B \in \Gamma'$.
+It follows that $\mathcal{D'}$ satisfies the frontier condition.
+
+The proof that every decomposition induced by $\mathcal{D}$ on $\R^{k}, 1 \le k \le n-1$ satisfies the frontier condition is completed by iterating the projection operation.
+:::
+
+We are now ready to prove the main result. The worked example, presented in Section \ref{sec:worked-example} is referenced to help illustrate the procedure.
+
+
+## Semialgebraic sets defined by first-order Boolean formulas
+
+This result may also be applied to semialgebraic sets defined by first-order Boolean formulas, due to the following theorem.
+
+::: { .theorem #novel-frontier-proj }
+Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with a semialgebraic set $S\subset \R^n$ and satisfying the frontier condition.
+Then the decomposition induced by $\mathcal{D}$ on $\R^{k}$ for all $1\le k < n$ is a cylindrical decomposition of $\R^k$ compatible with $\proj_{\R^k}(S)$ and satisfying the frontier condition.
+:::
+
+

@@ -4,7 +4,7 @@
 
 First, we will present the formal definition of a cylindrical cell and cylindrical decomposition, closely following @bgv15 and then explain how a cylindrical decomposition can be constructed (following @coste2000, who presents a simple and concise description).
 
-::: {,definition}
+::: { .definition #cells }
 Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C$ is a connected definable subset of $\R^n$ with an *index*
 $$
 (i_1,\ldots,i_n) \in \{0,1\}^n.
@@ -29,12 +29,12 @@ An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C'
 ::: {,definition}
 Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the *frontier of $S$*
 $$
-\fr(S) := \cl(S) \setminus S,
+\fr{S} := \cl(S) \setminus S,
 $$
 where $\cl(S)$ is the closure of $S$ in euclidean topology.
 :::
 
-If $C \subset \R^n$ is a cylinrical cell, then it will be convenient to partition $\fr(C)$ into three subsets: the top (denoted $C_t$), bottom (denoted $C_B$) and side wall (denoted $C_W$).
+If $C \subset \R^n$ is a cylinrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top (denoted $C_t$), bottom (denoted $C_B$) and side wall (denoted $C_W$).
 
 First suppose that $C$ is a sector $(i,1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by a continuous function $f : C' \to \R$, then $C_B$ is the graph of $f$. Similarly, if $C$ is bounded from above by the graph of a continuous function $g : C' \to \R$, then $C_T$ is the graph of $g$. It is clear that the top and bottom of a cylindrical sector cell (if non-empty) are alwyas cylindrical section cells.
 

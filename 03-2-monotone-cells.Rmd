@@ -646,7 +646,7 @@ by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 - what if $f_j$ does not exist
 - what if $\alpha = k+1$
 
-## Computing the refinements
+## Computing the refinements { #sec:compute-refinement }
 
 We now describe how to refine the CAD $\cal D$ to be compatible with the refinement points in $\cal R$.
 
