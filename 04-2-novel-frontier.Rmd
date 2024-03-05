@@ -37,7 +37,7 @@ This is the so-called $\mathbf{F}$-invariant CAD. We also present two variations
 ::: { .proposition #novel-frontier-collins-sets}
 Let $S_1,\ldots,S_k$ be a finite collection of semialgebraic subsets of $\R^n$ defined by quantifier-free Boolean formulas $F_1,\ldots,F_k$ respectively. Together, these formulas include $s$ different polynomials in $\R[x_1,\ldots,x_n]$, having maximum degree $d$.
 There is an algorithm, taking $\{F_1,\ldots,F_k\}$ as input, which produces a cylindrical decomposition $\mathcal E$ of $\R^n$ compatible with each $S_i, 1 \le i \le k$.
-Complexity, number of cells, number of polynomials and degrees are the same as in Proposition \ref{prp:collins}.
+Complexity, number of cells, number of polynomials and degrees are the same as in Proposition \ref{prp:novel-frontier-collins}.
 :::
 
 ::: { .proof }
@@ -143,7 +143,12 @@ respectively, we obtain the required formula $\fr_{F}(F \setminus G) = G$.
 
 We now prove that the decomposition induced on $\R^k, 1 \le k \le n-1$ by any CAD satisfying the frontier condition also satisfies the frontier condition.
 
-::: { .proof } [of Theorem \@ref{thm:novel-frontier-proj).]
+::: { .theorem #novel-frontier-proj }
+Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with a semialgebraic set $S\subset \R^n$ and satisfying the frontier condition.
+Then the decomposition induced by $\mathcal{D}$ on $\R^{k}$ for all $1\le k < n$ is a cylindrical decomposition of $\R^k$ compatible with $\proj_{\R^k}(S)$ and satisfying the frontier condition.
+:::
+
+::: { .proof }
 Let $\mathcal{D}$ be a CAD compatible with $S$ and satisfying the frontier condition.
 By the definition of CAD, $\proj_{\R^k0}(S)$ is a union of cells in the decomposition induced by $\mathcal{D}$ on $\R^k$ for all $1\le k \le n-1$.
 
@@ -170,16 +175,273 @@ It follows that $\mathcal{D'}$ satisfies the frontier condition.
 The proof that every decomposition induced by $\mathcal{D}$ on $\R^{k}, 1 \le k \le n-1$ satisfies the frontier condition is completed by iterating the projection operation.
 :::
 
+### Proof of Theorem \@ref(thm:novel-frontier-main)
+
 We are now ready to prove the main result. The worked example, presented in Section \ref{sec:worked-example} is referenced to help illustrate the procedure.
+We begin with a mathematical description of the algorithm.
 
+#### Algorithm
 
-## Semialgebraic sets defined by first-order Boolean formulas
+**Input:** $F$, a quantifier-free Boolean formula defining a semialgebraic set $S \subset \R^n$
 
-This result may also be applied to semialgebraic sets defined by first-order Boolean formulas, due to the following theorem.
+**Output:** $\mathcal{D}$, a CAD of $\R^n$ compatible with $S$ and satisfying the frontier condition\\
 
-::: { .theorem #novel-frontier-proj }
-Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with a semialgebraic set $S\subset \R^n$ and satisfying the frontier condition.
-Then the decomposition induced by $\mathcal{D}$ on $\R^{k}$ for all $1\le k < n$ is a cylindrical decomposition of $\R^k$ compatible with $\proj_{\R^k}(S)$ and satisfying the frontier condition.
+First, apply algorithm from Proposition \@ref(prp:novel-frontier-collins-one-set) to $F$. We obtain a CAD $\mathcal E$ of $\R^n$
+compatible with $S$.
+
+The algorithm computes a sequence of pairs $({\mathcal E}_M,\ X_M)$ where $M \in \{0,1\}^{n-1}$ is an index, $\mathcal{E}_M$ is a CAD of $\R^n$, which is a refinement of $\mathcal{E}$, and $X_M \subset \R^n$ is a semialgebraic set contained in the union of all cells of ${\mathcal E}_M$ with indices $\lexeq (i_1,\ldots,i_{n-1},1)$. This family of cells will be denoted by $\mathcal{U}_M$. Note that index $M$ refers to the pair rather than its elements and $\mathcal{E}_M$ and $X_M$ are written with indices for convenience.  
+
+The sequence of pairs is computed recursively, starting with index $M=(1,1, \ldots ,1)$,
+in descending order of indices $M=(i_1, \ldots, i_{n-1})$ with respect to $\lex$.
+Let the initial pair $({\mathcal E}_{(1, \ldots, 1)},\ X_{(1, \ldots, 1)}) = ({\mathcal E},\ \emptyset)$. The algorithm will construct a sequence (from right to left):
+\begin{equation}
+({\mathcal E}_{\mathbf{0}}, X_{\mathbf{0}}) \lex \cdots \lex
+%({\mathcal E}_L, X_L) \lex 
+({\mathcal E}_N, X_N) \lex ({\mathcal E}_M, X_M)
+\lex \cdots
+\lex ({\mathcal E} , \emptyset),
+
+(#eq:sequence)
+\end{equation}
+where index $(0,0,\ldots,0)$ is abbreviated to $\mathbf{0}$ and $X_{\mathbf{0}}= \bigcup \{ C \in{\mathcal U}_{(0, \ldots ,0)} \}$.
+
+For a given index $M=(i_1,\ldots,i_{n-1})$, assume that the algorithm has computed the pair $(\mathcal{E}_M,\ X_M)$.
+Now we describe how the next pair, $({\mathcal E}_N,\ X_N)$, where $N=(j_1, \ldots ,j_{n-1})$ is the index immediately prior to $M$ with respect to $\lex$, is computed.
+Applying algorithm from Proposition \@ref(prp:novel-frontier-collins-sets) to ${\mathcal E}_M$ and $X_M$, we get a CAD
+${\mathcal E}_{N}$ of $\R^n$ compatible with $X_M$ and every cell of ${\mathcal E}_M$ (see construction of $\mathcal{E}_{(0,1)}$ in step \@ref(step:one-zero) of the worked example).
+Consider the family ${\mathcal A}_0$ of cells in ${\mathcal E}_{N}$ with indices $(i_1,\ldots,i_{n-1},0)$
+(section cells)
+and the family ${\mathcal A}_1$ of cells in ${\mathcal E}_{N}$ with indices $(i_1,\ldots,i_{n-1},1)$
+(sector cells).
+Using algorithm from Lemma \@ref(lem:novel-frontier-fr), compute the set
+\begin{equation}\
+X_{N}:= \bigcup_{C \in {\mathcal A}_0}\fr (C) \cup \bigcup_{C \in {\mathcal A}_1}(\fr (C) \setminus (C_T \cup C_B)).
+
+(#eq:front)
+\end{equation}
+Observe that for every cell $C \in {\mathcal A}_1$, $C_T$ and $C_B$ are section cells with index $(i_1,\ldots,i_{n-1},0)$ in ${\mathcal A}_0$.
+According to Lemma \@ref{lem:novel-frontier-fr-lex-less), $X_{N}$ is contained in the union of cells in ${\mathcal E}_{N}$
+with indices $\lex (i_1,\ldots,i_{n-1},0)$ (see construction of $X_{(1,0)}$ in step \@ref(step:one-one) of the worked example).
+
+When the algorithm reaches the final pair $({\mathcal E}_{\mathbf{0}}, X_{\mathbf{0}})$ in the sequence,
+it computes a CAD $\mathcal D$, using algorithm from Proposition \@ref(prp:novel-frontier-collins-sets), compatible
+with $X_{\mathbf{0}}$ and every cell of ${\mathcal E}_{\mathbf{0}}$. The algorithm terminates by returning $\mathcal D$.
+\medskip
+
+#### Correctness
+
+Let $L=(k_1, \ldots ,k_{n-1})$ be the index immediately prior
+to $N=(j_1, \ldots ,j_{n-1} )$ with respect to $\lex$.
+The algorithm computes ${\mathcal E}_L$ as the refinement of ${\mathcal E}_N$ compatible with $X_N$ (see Equation \@ref(eq:front)). Suppose that the algorithm has computed the final decomposition $\mathcal{D}$, as the refinement of $\mathcal{E}_{\mathbf{0}}$ compatible with $X_{\mathbf{0}}$ in the sequence \ref{eq:sequence}. Now construct a new sequence of decompositions (from left to right)
+\begin{equation}
+\mathcal{E}'_{\mathbf{0}} \lex \cdots \lex \mathcal{E}'_L \lex \mathcal{E}'_N \lex \mathcal{E}'_M \lex \cdots \lex \mathcal{E}'_{(1,\ldots,1)}
+
+(#eq:seq-ind-hyp)
+\end{equation}
+where the initial element $\mathcal{E}'_{\mathbf{0}}$ is the refinement of $\mathcal{E}_{\mathbf{0}}$ compatible with $\mathcal{D}$ and each $\mathcal{E}'_I$ is the refinement of $\mathcal{E}_I$ compatible with all cells in $\mathcal{E}'_J$ where $J$ is the index immediately prior to $I$ with respect to $\lex$. 
+We want to prove that every cell in $\mathcal{E}'_L$ with index $\lexeq (i_1,\ldots,i_{n-1},1)$ satisfies the frontier condition.
+
+% SECTION CASE
+If $C$ is a cell in ${\mathcal E}_N$ with index $(i_1, \ldots ,i_{n-1} ,0)$ (section cell),
+then $C$ is a union of cells of ${\mathcal E}_L$ and, hence, of $\mathcal{E}'_L$, with indices $\lexeq (i_1, \ldots ,i_{n-1} ,0)$.
+Let $C' \subset C$ be one of the cells in this refinement of $C$ with index $(i_1, \ldots ,i_{n-1} ,0)$ and $B$ be
+the union of cells contained in the refinement of $C$ with indices $\lex (i_1, \ldots ,i_{n-1} ,0)$.
+According to Lemma \@ref(lem:novel-frontier-section-split), $\fr_C (C \setminus B)=B$ where $\fr_X(Y)$ denotes the frontier of $Y$ in $X$.
+Hence, $\fr_C (C') \subset B$. 
+On the other hand, $\fr (C') \setminus \fr_C (C')$ is a subset of $\fr (C)$, which is a union of cells of $\mathcal{E}_L$ (and of the refinement $\mathcal{E}'_L$) with index $\lex (i_1,\ldots,i_{n-1},0)$.
+By the induction hypothesis, all cells of $\mathcal{E}'_L$ with index $\lex (i_1,\ldots,i_{n-1},0)$ satisfy the frontier condition. In particular, $\fr(C)$ and $\fr(B)\subset \fr(C)$ is a union of cells of $\mathcal{E}'_L$.
+It follows from the cylindrical structure of $\mathcal{E}'_L$ that $C'$ satisfies the frontier condition.
+
+% SECTOR CASE
+If $C$ is a cell in ${\mathcal E}_N$ with index $(i_1, \ldots ,i_{n-1} ,1)$ (sector cell),
+then $C$ is a union of cells of ${\mathcal E}_L$ with indices $\lexeq (i_1, \ldots ,i_{n-1} ,1)$.
+A similar argument to that used for section cells shows that each cell $C'$ in this union,
+having index $(i_1, \ldots ,i_{n-1} ,1)$, satisfies the frontier condition in $\mathcal{E}'_L$. Note that when using
+Lemma \@ref(lem:novel-frontier-section-split) we consider sector cell $C$ as a graph of a constant function over itself.
+
+% final note: plot twist, E'_M is just D.
+Finally, each decomposition $\mathcal{E}'_I$, $I \in \{0,1\}^{n-1}$, in the sequence \ref{eq:seq-ind-hyp} coincides with $\mathcal{D}$. Indeed, $\mathcal{D}$ is a refinement of $\mathcal{E}_I$ and $\mathcal{E}'_I$ is a refinement of $\mathcal{E}_I$ compatible with all cells of $\mathcal{D}$. In other words, no refinement of $\mathcal{D}$ is required to obtain $\mathcal{E}'_{(1,\ldots,1)}$. 
+It follows that every cell of $\mathcal{D}$ satisfies the frontier condition. 
+
+#### Complexity
+
+The number of different indices $(i_1, \ldots, i_n)$, where each $i_k \in \{ 0,1 \}$, is $2^n$.
+Therefore, the algorithm makes $O(2^n)$ ``steps'': computing successive pairs $({\mathcal E}_M, X_M)$ in the sequence (\ref{eq:sequence}).
+On each step, passing from a pair $(\mathcal{E}_M,\ X_M)$ to the next pair $(\mathcal{E}_N,\ X_N)$, the algorithm applies Proposition \@ref(prp:novel-frontier-collins) to $({\mathcal E}_M, X_M)$ and obtains a CAD
+${\mathcal E}_N$ which is a refinement of ${\mathcal E}_M$ compatible with $X_M$.
+Then Lemma \@ref(lem:novel-frontier-fr) is applied to each cell with index $(i_1,\ldots,i_{n-1},i_n)$ in ${\mathcal E}_N$
+to obtain $X_N$.
+
+Suppose that there are $s_M$ polynomials defining ${\mathcal E}_M$ and $X_M$, having degrees at most $d_M$.
+Then, according to Proposition \@ref(prp:novel-frontier-collins-sets), the CAD ${\mathcal E}_N$ is defined by
+$s_N:=(s_Md_M)^{O(1)^n}$ polynomials of degrees $d_N=(s_Md_M)^{O(1)^n}$.
+The number of cells in ${\mathcal E}_N$ is asymptotically the same: $(s_Md_M)^{O(1)^n}$.
+Then the algorithm applies Lemma \@ref(lem:novel-frontier-fr-lex-less) to compute $X_N$.
+The complexity of this application is $(s_Md_M)^{n^2O(1)^n}$, which is asymptotically the same as $(s_Md_M)^{O(1)^n}$.
+Thus, the overall complexity of this ``step'' is again $(s_Md_M)^{O(1)^n}$. The overall complexity is obtained by iterating this process for each index.
+Given that $s_{(1, \ldots,1)}=s$ and $d_{(1, \ldots,1)}=d$, we conclude that
+the complexity of the algorithm is
+$$
+(sd)^{O(1)^{n2^n}}.
+$$
+This is also an upper bound on the number of cells in $\mathcal D={\mathcal E}_{\mathbf{0}}$, the number of polynomials defining cells and their degrees.
+\end{proof}
+
+### An Aside on Constructing the Intermediate Decompositions
+
+Throughout this algorithm we construct ``a CAD compatible with $F$ and all cells of $\mathcal{E}$''. 
+This can be achieved by constructing a CAD, using Proposition \@ref(prp:novel-frontier-collins), such that each cell has constant sign on the polynomials defining $F$ and all cells of $\mathcal{E}$. Such a CAD is clearly compatible with $F$ and all cells of $\mathcal{E}$. However, it may include some cells, outside $\cl(S)$, which we are not interested in.
+
+An alternative is to use the algorithm described in Proposition \@ref(prp:novel-frontier-collins-sets) to construct a CAD compatible with $\{F, C_1,\ldots,C_r\}$ where $C_i,1\le i \le r$ is a cell of $\mathcal{E}$ such that $\bigcup_{1\le i \le r} C_i = \R^n$. Observe that this CAD is compatible with the required sets. 
+
+Both options have the same asymptotic complexity. Therefore, the choice of CAD subroutine does not change the complexity bound obtained in the proof of Theorem \@ref(thm:novel-frontier-main). In the proof, Proposition \@ref(prp:novel-frontier-collins-one-set), constructing a CAD compatible with a semialgebraic set $S\subset \R^n$, is used to construct the initial CAD and Proposition \@ref{prp:novel-frontier-collins-sets), constructing a CAD compatible with a family of sets, is used for constructing the refinements of intermediate decompositions.
+
+It is assumed that every cell in $\mathcal{E}$ can be represented as a quantifier-free Boolean formula. This is always possible by Thom's Lemma, but, as shown by Brown in @brown99, the polynomials produced during the construction of $\mathcal{E}$ may not be sufficient to do so. It is possible to obtain the required polynomials by using Collins' extended projection. Brown @brown99 also presents an algorithm that ensures every cell can be represented by a formula containing projection polynomials and, possibly, a small number of derivatives. This may be the preferred option since fewer extra polynomials are needed. 
+
+## Worked Example { #sec:novel-frontier-worked-example }
+
+We demonstrate the algorithm from Theorem~\ref{th:main} by applying it to the set
+$$
+S := \{ -1 < x < 1, \vert x\vert <y <1, z=\vert x/y\vert \}
+$$
+from Example~\ref{exm:top-bottom-not-cylindrical}. Construct a CAD $\mathcal{E}$ of $\R^3$ compatible with $S$ (see Table \@ref(exm:cells-of-e)). Observe that $S$ is a single 2-dimensional cylindrical $(1,1,0)$-cell of $\mathcal{E}$. 
+
+1. (#step:one-one)
+The initial pair $(\mathcal{E}_{(1,1)}, X_{(1,1)}) = (\mathcal{E}, \emptyset)$. We now describe how the next pair in the sequence (\ref{eq:sequence}) is computed.
+$\mathcal{E}_{(1,0)}$, the CAD compatible with all cells of $\mathcal{E}_{(1,1)}= \mathcal{E}$ and $X_{(1,1)} = \emptyset$, is equal to $\mathcal{E}$. $X_{(1,0)}$ is contained in the union of cells of $\mathcal{E}_{(1,0)}$ with index $\lex (1,1,0)$ and includes 
+$$
+\fr(S) = S_B \cup S_T \cup \{ (-1,1,1), (1,1,1) \}
+$$
+where
+$$
+S_T = \{ -1 < x < 1, y = 1, z = \vert x \vert \}
+$$
+and
+\begin{align*}
+S_B = &\{ -1 < x < 0, y = -x, z = 1 \} \cup \\
+& \{ x = y = 0, 0 \le z \le 1 \} \cup\\
+& \{ 0 < x < 1, y = x, z = 1 \}.
+\end{align*}
+Observe that $C_T$ could be a $(1,0,0)$-cell (although it is not a cell in $\mathcal{E}_{(1,0)}$), but $C_B$ cannot be a cell in any cylindrical decomposition since it is not the graph of a continuous function.
+
+1. (#step:one-zero)
+Given $(\mathcal{E}_{(1,0)}, X_{(1,0)})$, compute the next pair.
+$\mathcal{E}_{(0,1)}$ is compatible with every cell of $\mathcal{E}_{(1,0)} = \mathcal{E}$ and $X_{(1,0)} \supset \fr(S)$.
+The blow-up subset $\{ x = y = 0, 0 \le z \le 1 \}$ in $X_{(1,0)}$ results in a refinement of the decomposition induced by $\mathcal{E}_{(1,0)}$ on $\R^1$ such that it includes the cells $\{-1 < x < 0\}, (0), \{ 0 < x < 1 \}$. Thus $\mathcal{E}_{(0,1)}$ includes a cell $S'' = \{ x = 0, 0 < y < 1, z = 0 \}$ and $S$ is split into three cells $S', S'', S'''$ with indices $(1,1,0),(1,0,0)$ and $(1,1,0)$ respectively.
+Cells $C_1,C_2,C_3$ and $C_4$ of $\mathcal{E}_{(1,0)} = \mathcal{E}$ are also refined in this step so that they are compatible with $\fr(S)$ (see Table \@ref(exm:cells-of-e-refined)). As argued in the Correctness section, frontiers $\fr_S(S')$ and $\fr_S(S''')$ coincide with $S''$, so no further refinements of cells with index $(1,1,1)$ and $(1,1,0)$ are needed. 
+$X_{(0,1)}$ contains $\fr(C'_2), \fr(C'''_2), \fr(C'_3)$ and $\fr(C'''_3)$. 
+
+1. (#step:zero-one)
+Observe that, in this particular case, $X_{(0,1)}$ is already a union of cells of $\mathcal{E}_{(0,1)}$, so $\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}$ as no refinement is needed.
+$X_{(0,0)}$ contains $\fr(S')$.
+
+1. $X_{(0,0)}$ is already a union of cells, so no refinement of $\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}$ is needed. The algorithm terminates and returns $\mathcal{D} = \mathcal{E}_{(0,1)}$.
+
+::: { .example #cells-of-e }
+** TODO: table environment **
+
+| Label | Index     | Formula                                                        |
+|-------|-----------|----------------------------------------------------------------|
+|       | $(1,1,1)$ | $\{ x < -1 \}$                                                 |
+|$C_1$  | $(0,1,1)$ | $\{ x = -1 \}$                                                 |
+|       | $(1,1,1)$ | $\{ -1 < x < 1, y < \vert x \vert \}$                          |
+| $C_2$ | $(1,0,1)$ | $\{ -1 < x < 1, y = \vert x \vert \}$                          |
+|       | $(1,1,1)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z < \vert x/y \vert \}$ |
+| $S$   | $(1,1,0)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z = \vert x/y \vert \}$ | 
+|       | $(1,1,1)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z > \vert x/y \vert \}$ |
+| $C_3$ | $(1,0,1)$ | $\{ -1 < x < 1, y = 1 \}$                                      |
+|       | $(1,1,1)$ | $\{ -1 < x < 1, y > 1 \}$                                      |
+| $C_4$ | $(0,1,1)$ | $\{ x = 1 \}$\\                                                |
+|       | $(1,1,1)$ | $\{ x > 1 \}$\\                                                |
+
+All cells of the CAD $\mathcal{E}$, the initial CAD computed in Section \@ref(sec:novel-frontier-worked-example).
+
 :::
 
+
+::: { .example #cells-of-e-refined }
+:** TODO: table environment **
+
+| Label         | Index     | Formula                                   |
+|---------------|-----------|-------------------------------------------|
+| ${C'_1}$      | $(0,0,0)$ | $\{ x = 0, y = 1, z = 1 \}$               |
+| ${C'_2}$      | $(1,0,0)$ | $\{ -1 < x < 0, y = -x, z = 1 \}$         |
+| ${C''_{2,1}}$ | $(0,0,0)$ | $\{ x = y = 0, z = 0 \}$                  |
+| ${C''_{2,2}}$ | $(0,0,1)$ | $\{ x = y = 0, 0 < z < 1 \}$              |
+| ${C''_{2,3}}$ | $(0,0,0)$ | $\{ x = y = 0, z = 1 \}$                  |
+| ${C'''_2}$    | $(1,0,0)$ | $\{ 0 < x < 1, y = x, z = 1 \}$           |
+| $S'$          | $(1,1,0)$ | $\{ -1 < x < 0, -x < y < 1, z =  -x/y \}$ |
+| $S''$         | $(0,1,0)$ | $\{ x = 0, 0 < y < 1, z = 0 \}$           |
+| $S'''$        | $(1,1,0)$ | $\{ 0 < x < 1, x < y < 1, z = x/y \}$     |
+| $C'_3$        | $(1,0,0)$ | $\{ -1 < x < 0, y = 1, z = -x \}$         |
+| $C''_3$       | $(0,0,0)$ | $\{ x = 0, y = 1, z = 0\}$                |
+| $C'''_3$      | $(1,0,0)$ | $\{ 0 < x < 1, y = 1, z = x \}$           |
+| ${C'_4}$      | $(0,0,0)$ | $\{ x = 1, y = 1, z = 1 \}$               |
+
+Cells of the CAD $\mathcal{E}_{(0,1)}$ computed in step \ref{step:one-zero} of Section~\ref{sec:worked-example}. Note that only cells which are part of $\cl(S)$ are listed.
+:::
+
+Well-known implementations of cylindrical algebraic decomposition such as Brown's {\em QEPCAD B} \cite{brownQepcad} and Maple's {\em CylindricalAlgebraicDecompose} \cite{chen2014} are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example~\ref{exm:top-bottom-not-cylindrical}, both {\em CylindricalAlgebraicDecompose} and {\em QEPCAD B} create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr(S) \ne \emptyset$, but $B''' \not \subset \fr(S)$ so the frontier of $S$ is not a union of cells in the decomposition.
+
+## Pseudo-code
+
+We now present the algorithm from Theorem~\ref{thm:novel-frontier-main} as pseudo-code. First define the following basic subroutines.
+
+- ${\mathcal B}:= {\mathcal A}\ \&\ G$ takes a CAD $\mathcal A$ of $\R^n$ and a semialgebraic set $G \subset \R^n$,
+and returns a CAD $\mathcal B$ of $\R^n$ compatible with $G$ and all cells of $\mathcal A$.
+This subroutine follows from the algorithm in Proposition~\ref{prop:collins-sets}.
+
+- $Y := \fr(X)$ takes a set $X \subset \R^n$ and returns its frontier.
+This subroutine follows from the algorithm in Lemma~\ref{le:frontier}.
+
+- $N := \rm{decrement}(M)$ takes an index $M \in \{0,1\}^k$ and returns the index $N \in \{0,1\}^k$ immetiately prior to $M$ with respect to $\lex$.
+
+**Input:**
+
+$F$: a quantifier-free Boolean formula representing a semialgebraic set $S \subset \R^n$.
+
+**Output:**
+
+$\cal D$: a CAD of $\R^n$ compatible with $S$ and satisfying the frontier condition.
+
+---
+
+- Let ${\mathcal E}:= \R^n\ \&\ S$, where $\R^n$ is a trivial CAD of $\R^n$,
+
+- $M := (1,\ldots,1) \in \{0,1\}^{n-1}$,
+
+- $({\mathcal E}_M, F_M):=({\mathcal E}, \emptyset)$.
+
+- while $(0,\ldots,0) \lex M$, do
+
+  - Let $N := {\rm decrement(M)}$.
+
+  - Construct $X_N$ from cells of $\mathcal E_M$ using ``$\fr$'' subroutine and formula~\@ref(eq:front).
+
+  - Let ${\mathcal E}_N := {\mathcal E}_M\ \&\ X_N$,
+
+  - $M := N$.
+
+- Return ${\mathcal E}_M$
+
+
+## Generalisations and further work
+
+### First-order formulas with quantifiers
+
+Theorem \@ref(thm:novel-frontier-main) describes an algorithm which takes a quantifier-free formula as input. However, Theorem \@ref(thm:novel-frontier-proj) implies that this algorithm also works with first-order formula containing quantifiers. Indeed, by the Tarski-Seidenberg theorem, if $\Phi(x_1,\ldots,x_n)$ is a first-order formula, then $(x_1,\ldots,x_n) \in \R^n$ satisfying $\Phi(x_1,\ldots,x_n) \in \R^n$ is a semialgebraic set. In particular, let $A \subset \R^n$ and $B = \{ (y,x) \in \R^{n+k} \mid \Phi(y,x) \}$ be semialgebraic sets, then we can write
+\begin{align*}
+\{ y \in \R^k \mid \exists x \in A, \Phi(y,x) \} &= \projop{k}((\R^k \times A) \cap B)\\
+\{ y \in \R^k \mid \forall x \in A, \Phi(y,x) \} &= \R^k \setminus \projop{k}((\R^k \times A) \cap (\R^{n+k} \setminus B)).
+\end{align*}
+In other words, quantifier elimination can be defined as projections and Boolean operations on semialgebraic sets, all of which preserve the frontier condition. 
+
+### Pfaffian functions and fewnomials
+
+Theorem \@ref(thm:novel-frontier-main) can be extended to restricted sub-Pfaffian sets, as described by @gv04. 
+In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by *fewnomials* [@gv04, Section 2.6], whose structure would be destroyed by a change of coordinates, and obtain an upper bound on the number of cells in these decompositions.
+
+The idea of the proof is still valid. Only a modification to the subroutines for computing the frontier, and for constructing a classical CAD, is needed. For the former, replace the quantifier elimination algorithm in Lemma \@ref(lem:novel-frontier-fr) with the result of [@gv04, Section 5]. In the latter case, the classical CAD algorithm from Proposition \@ref(prp:novel-frontier-collins) should be replaced by the main result of @gv01 (see also [@gv04, Section 7]). The rest of the proof can be reproduced almost identically. 
+
+Note that it is not currently clear how this result can be implemented, since in the algorithm for cylindrical decomposition in @gv01 the oracle is needed to decide whether a sub-Pfaffian set is empty or not. 
 
