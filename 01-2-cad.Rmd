@@ -1,8 +1,8 @@
-# Background: CAD
+## Cylindrical algebraic decomposition
 
-@collins1975 introduced both the concept of cylindrical algebraic decomposition and an algorithm to construct one, such that each cell has constant sign on a set of input polynomials.
+@collins1975 introduced both the concept of cylindrical algebraic decomposition alogn with an algorithm to construct one such that each cell has constant sign on a set of input polynomials $\mathbf{F} \subset \Q[x_1,\ldots,x_n]$.
 
-First, we will present the formal definition of a cylindrical cell and cylindrical decomposition, closely following @bgv15 and then explain how a cylindrical decomposition can be constructed (following @coste2000, who presents a simple and concise description).
+Before describing Collins' algorithm, we will first define, closely following @bgv15, a cylindrical cell and cylindrical algebraic decomposition. 
 
 ::: { .definition #cells }
 Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C$ is a connected definable subset of $\R^n$ with an *index*
@@ -34,16 +34,27 @@ $$
 where $\cl(S)$ is the closure of $S$ in euclidean topology.
 :::
 
-If $C \subset \R^n$ is a cylinrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top (denoted $C_t$), bottom (denoted $C_B$) and side wall (denoted $C_W$).
+If $C \subset \R^n$ is a cylinrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top ($C_T$), bottom ($C_B$) and side-wall ($C_W$).
 
-First suppose that $C$ is a sector $(i,1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by a continuous function $f : C' \to \R$, then $C_B$ is the graph of $f$. Similarly, if $C$ is bounded from above by the graph of a continuous function $g : C' \to \R$, then $C_T$ is the graph of $g$. It is clear that the top and bottom of a cylindrical sector cell (if non-empty) are alwyas cylindrical section cells.
+First let $C$ is a sector $(i,1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by a continuous function $f : C' \to \R$, then $C_B$ is the graph of $f$. Similarly, if $C$ is bounded from above by the graph of a continuous function $g : C' \to \R$, then $C_T$ is the graph of $g$. It is clear that the top and bottom of every cylindrical sector cell (if non-empty) are alwyas cylindrical section cells.
 
-Now let $C$ be an $(i_1,\ldots,i_{k},0,\ldots,0)$-cell, where $i_{k}=1$, and $C' := \projop{k}(C)$. Since $C'$ is a sector cell, $C'_B$ and $C'_T$ are cylindrical section cells. The bottom $C_B$ of $C$ is the pre-image of $C'_B$ by the projection map $\projop{k}\vert_{\cl(C)}$ and the top $C_T$ of $C$ is the pre-image of $C'_T$ by the projection map $\projop{k-1}\vert_{\cl(C)}$. Instead of pre-images, it might be simpler to think of $C_B$ as the semialgebraic set $\cl(C) \cap (C'_B \times \R^{n - k + 1})$ and $C_T$ as the semialgebraic set $\cl(C) \cap (C'_T \times \R^{n - k + 1})$. Note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of continuous functions (see Example **TODO**).
+Now let $C$ be an $(i_1,\ldots,i_{k},0,\ldots,0)$-cell, where $i_{k}=1$, and $C' := \projop{k}(C)$. Since $C'$ is a sector cell, $C'_B$ and $C'_T$ are cylindrical section cells. The bottom $C_B$ of $C$ is the pre-image of $C'_B$ by the projection map $\projop{k}\vert_{\cl(C)}$ and the top $C_T$ of $C$ is the pre-image of $C'_T$ by the projection map $\projop{k}\vert_{\cl(C)}$. 
+It may be simpler to think of $C_B$ as the semialgebraic set $\cl(C) \cap (C'_B \times \R^{n - k + 1})$ and $C_T$ as the semialgebraic set $\cl(C) \cap (C'_T \times \R^{n - k + 1})$.
+It is important to note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of continuous functions (see Example \@ref(exm:top-bottom-not-cylindrical).
 
-For both section and sector cells, let the side wall, $C_W$, be $\cl(C) \setminus (C_B \cup C_T)$. Of course, there is no gaurantee at all that $C_W$ will be (a union of) cylindrical cells.
+For both section and sector cells, let the side wall, $C_W$, be $\cl(C) \setminus (C_B \cup C_T)$.
+There is no requirement that $C_W$ will be (a union of) cylindrical cells. It may not even be possible to partition $C_W$ into a union of cylindrical cells (see Examlpe \@ref(exm:side-wall).
+
+::: { .example #top-bottom-not-cylindrical }
+In $\R^3$, let $C' := \{ (x,y) \mid -1 < x < 1, \vert x \vert < y < 1 \}$ and $\phi(x,y) = \vert x / y \vert$ so that $C$ is the graph of $\phi\vert_{C'}$.
+Consider $$
+C_B := \{ (x,y,z) \mid -1 < x < 1, y = \vert x \vert, z = 1 \} \cup \{ (0,0,z) \mid 0 \le x \le 1 \}.
+$$
+$C_B$ is not the graph of a continuous function due to the blow-up point of $\phi$ at the origin. 
+:::
 
 ::: {,definition}
-A cylindrical decomposition (not necessarily algebraic) is defined by induction on $n \ge 0$.
+A cylindrical decomposition is defined by induction on $n \ge 0$.
 
 - When $n = 0$, the unique cylindrical decomposition of $\R^0$ is the unique point in $\R^0$.
 
@@ -52,26 +63,47 @@ Define $\cal D'$ to be the set of all projections $C' := \projop{n-1}(C)$ for al
 $\cal D$ is a cylindrical decomposition of $\R^n$ if $\cal D'$ is a cylindrical decomposition of $\R^{n-1}$. We call $\cal D'$ the *decomposion of $\R^{n-1}$ induced by $\cal D$.
 :::
 
-Less formally, a decomposition $\cal D$ of $\R^n$ is cylindrical if the projection of any two cells of $\cal D$ onto $\R^{n-1}$ is either disjoint or coincides.
-
-- maybe move this to just before the coste bit
-::: {.remark}
-A cylindrical decomposition is called *algebraic* if every cell is a semialgebraic set. We will only be working with cylindrical algebraic decompositions (CADs).
-:::
+Less formally, a partition $\cal D$ of $\R^n$ into definable subsets is cylindrical if the projection of any two cells of $\cal D$ onto $\R^{n-1}$ is either disjoint or coincides.
 
 ::: {.definition}
 Let $S \subset \R^n$ be a definable set. A cylindrical decomposition $\cal D$ is compatible with $S$ if every cell $C$ of $\cal D$ is either a subset of $S$ or disjoint from $S$.
 :::
 
---- {.definition}
-A cylindrical decomposition $\cal E$ is called a refinement of $\cal D$ if $\cal E$ is compatible with every cell of $\cal D$. I.e., every cell of $\cal D$ is a union of cells in the refinement $\cal E$.
-----
-
 ::: {.definition}
-Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. A CAD $\cal D$ is called sign-invariant with respect to $\mathbf{F}$  (or $\mathbf{F}$-invariant) if every cell $C$ of $\cal D$ has constant sign (either $> 0$, $< 0$ or $= 0$) on every polynomial in $\mathbf{F}$. (Here $\mathbf{F}$ is called the set of input polynomials.)
+A cylindrical decomposition $\cal E$ is called a refinement of $\cal D$ if $\cal E$ is compatible with every cell of $\cal D$. in other words, every cell of $\cal D$ is a union of cells in the refinement $\cal E$.
 :::
 
+::: { .remark }
+[@bgv15, Remark 3.8]
+Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cylindrical cell of $\cal D$ such that $c := \projop{1}(C)$ is a single point. Then it follows immediately from the definition that $\cal D$ is compatible with the hyperplane $\{ x_1 = c \}$ and the set of all cells of $\cal D$ contained in this hyperplane form a cylindrical decomposition $\cal E$ of $\R^{n-1}$. Moreover, any refinement of $\cal E$ is also a refinement of $\cal D$. 
+:::
+
+### Results about Cylindrical Decompositions
+
+We now present some results proved by @bgv15 relating to properties relating to cylindrical decompositions.
+
+::: { .proposition }
+[@bgv15, Lemma 3.3]
+Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then $C' := \projops{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n}(C)$ is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a monotone map $f : C' \to \span{x_k}$. 
+:::
+
+::: { .proposition }
+[@bgv15, Lemma 3.4]
+Let $C \subset \R^n$ be a 2-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall $W \subset \fr(C)$ has exactly two connected components, each of which is either a point or a closed curve interval. 
+:::
+
+
+
 ### Constructing a CAD {#sec:cad-construction}
+
+::: {.remark}
+A cylindrical decomposition is called *algebraic* if every cell is a semialgebraic set. We will only be working with cylindrical algebraic decompositions (CADs), allowing us to take advantage of properties of polynomials, while the results in @bgv15 do not rely on cells being semialgebraic sets. 
+:::
+
+::: {.definition}
+Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. A cylindrical algebraic decomposition $\cal D$ is called sign-invariant with respect to $\mathbf{F}$  (or simply $\mathbf{F}$-invariant) if every cell $C$ of $\cal D$ has constant sign (either $> 0$, $< 0$ or $= 0$) on each polynomial in $\mathbf{F}$. (Here $\mathbf{F}$ is called the set of input polynomials.)
+:::
+
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm due to @collins1975 for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
 

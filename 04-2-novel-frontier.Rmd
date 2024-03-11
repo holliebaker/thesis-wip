@@ -381,7 +381,7 @@ All cells of the CAD $\mathcal{E}$, the initial CAD computed in Section \@ref(se
 Cells of the CAD $\mathcal{E}_{(0,1)}$ computed in step \ref{step:one-zero} of Section~\ref{sec:worked-example}. Note that only cells which are part of $\cl(S)$ are listed.
 :::
 
-Well-known implementations of cylindrical algebraic decomposition such as Brown's {\em QEPCAD B} \cite{brownQepcad} and Maple's {\em CylindricalAlgebraicDecompose} \cite{chen2014} are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example~\ref{exm:top-bottom-not-cylindrical}, both {\em CylindricalAlgebraicDecompose} and {\em QEPCAD B} create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr(S) \ne \emptyset$, but $B''' \not \subset \fr(S)$ so the frontier of $S$ is not a union of cells in the decomposition.
+Well-known implementations of cylindrical algebraic decomposition such as *QEPCAD B* [@brownQepcad] and Maple's *CylindricalAlgebraicDecompose* [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example~\ref{exm:top-bottom-not-cylindrical}, both *CylindricalAlgebraicDecompose* and *QEPCAD B* create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr(S) \ne \emptyset$, but $B''' \not \subset \fr(S)$ so the frontier of $S$ is not a union of cells in the decomposition.
 
 ## Pseudo-code
 
@@ -444,4 +444,23 @@ In particular, it can be used to prove the existence of decompositions with fron
 The idea of the proof is still valid. Only a modification to the subroutines for computing the frontier, and for constructing a classical CAD, is needed. For the former, replace the quantifier elimination algorithm in Lemma \@ref(lem:novel-frontier-fr) with the result of [@gv04, Section 5]. In the latter case, the classical CAD algorithm from Proposition \@ref(prp:novel-frontier-collins) should be replaced by the main result of @gv01 (see also [@gv04, Section 7]). The rest of the proof can be reproduced almost identically. 
 
 Note that it is not currently clear how this result can be implemented, since in the algorithm for cylindrical decomposition in @gv01 the oracle is needed to decide whether a sub-Pfaffian set is empty or not. 
+
+### Further Work
+
+The complexity upper bound of the algorithm from Theorem~\ref{th:main} is significantly worse than the bound
+for classical CAD algorithm presented by @collins1975 and @wuthrich2005.
+This is caused by the parameter of its recursive loop: the index of a cylindrical cell, which is exponential in the ambient dimension.  
+It is difficult to see another parameter that could make the recursion significantly shorter. Thus, if any progress is to be made towards a better asymptotic complexity, the method used may need to be based on a completely different ideas.
+On the other hand, there is a lower bound on complexity of the classical CAD algorithm due to @davenportHeintz1988. However, it is not yet known whether the lower bound for CAD with frontier condition is greater than that of the classical CAD.
+Another strand of research could be to explore this question, possibly by attempting to raise this lower bound for CAD with frontier condition.
+
+Another improvement in the algorithm might come from a different subroutine for computing the frontier
+of a cylindrical cell.
+The subroutine from Lemma~\ref{le:frontier} works for any semialgebraic set and does not take advantage of its
+cylindrical structure.
+We may be able to exploit this structure by factorising the equational part of the formula
+representing a cell into irreducible components, generalising the method due to @lazard10 presented in Section \@ref(sec:lazard-3).
+
+Finally, since some initial CAD is refined repeatedly, the classical CAD algorithm from Proposition~\ref{prop:collins} could be replaced with an incremental algorithm, E.g., the algorithm presented by @kremer2020. It is not clear whether substituting the CAD algorithm will reduce the complexity bound. The set $X_N$ is still computed at each step, using a singly exponential algorithm, and the initial CAD may need to be refined at every step and this refinement may result in the incremental algorithm backtracking all the way to the decomposition induced on $\R^1$. However, this change would be very useful in practice as unnecesary CAD recomputations could be avoided, E.g., if $\mathcal{E}_N$ is already compatible with the set $X_N$, the algorithm in its current form will compute the refinement even though it is not needed.
+
 

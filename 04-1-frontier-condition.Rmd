@@ -2,20 +2,20 @@
 
 Now suppose we have a CAD $\cal D'$ monotone with respect to $V_1,\ldots,V_k$. Our final step, according to [@bgv15, Theorem 3.20] is to refine the frontier $\partial C$ of each $2$-dimensional cell $C \subset V$ so that $\partial C$ is a union of cells of $\cal D'$.
 
-For each cell $C \subset V$, compute $\partial C$. Since $C$ is monotone, we can assume that $\partial C$ is homeomorphic to a circle. Construct a partition $\cal U$ of $\partial C$ into monotone one-dimensional curves and points, such that $\cal U$ is compatible with all one-dimensional cells of $\cal D'$. 
+For each cell $C \subset V$, compute $\partial C$. Since $C$ is monotone, we can assume that $\partial C$ is homeomorphic to a circle. Construct a partition $\cal U$ of $\partial C$ into monotone one-dimensional curves and points, such that $\cal U$ is compatible with all one-dimensional cells of $\cal D'$.
 Let $\mathbf{c} = (c_1,\ldots,c_n)$ be one of the one-dimensional components of $\cal U$. If $c_1$ is not a $0$-dimensional cell of the decomposition induced by $\cal D'$ on $\R^1$, then perform a refinement of the kind $x_1 < c_1, x_1 = c_1, x_1 > c_1$. Recall that these refinements, according to [@bgv15, Lemma 3,11], preserve the cylindrical structure and monotone cells. Otherwise, $c_1$ is a $0$-cell and we apply the same argument to the sub-CAD of $\cal D'$ above $c_1$.
 
-Now let $T \in {\cal U}$ be one of the one-dimensional components. If $T$ is not an existing 1-dimensional cell of $\cal D'$, then it is a subset of a 2-dimensional cell, $Z$, of $\cal D'$. In fact, it divides $Z$ into two cells $Z \setminus T$, both of which, according to [@bgv13, Theorem 11], are 2-dimensional monotone cylindrical cells. Hence, replacing $Z$ by $T$ and the two components of $Z \setminus T$ makes $Z$ compatible with $\partial C$ and ensures that $Z$ is refined into monotone cells. 
+Now let $T \in {\cal U}$ be one of the one-dimensional components. If $T$ is not an existing 1-dimensional cell of $\cal D'$, then it is a subset of a 2-dimensional cell, $Z$, of $\cal D'$. In fact, it divides $Z$ into two cells $Z \setminus T$, both of which, according to [@bgv13, Theorem 11], are 2-dimensional monotone cylindrical cells. Hence, replacing $Z$ by $T$ and the two components of $Z \setminus T$ makes $Z$ compatible with $\partial C$ and ensures that $Z$ is refined into monotone cells.
 
-Repeating this process with each $0$- and $1$-dimensional component of $\cal U$, we obtain a refinement of $\cal D'$ compatible with $\partial C$. 
-This completes the construction of a monotone CAD due to @bgv15. 
+Repeating this process with each $0$- and $1$-dimensional component of $\cal U$, we obtain a refinement of $\cal D'$ compatible with $\partial C$.
+This completes the construction of a monotone CAD due to @bgv15.
 
-However, a difficulty arises when we try to translate this construction into an algorithm. We need to compute $\partial C$ for each $2$-dimensional cell $C \subset V$. 
+However, a difficulty arises when we try to translate this construction into an algorithm. We need to compute $\partial C$ for each $2$-dimensional cell $C \subset V$.
 
 ::: {.lemma}
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$
 containing $s$ different polynomials in $\R [x_1, \ldots ,x_n]$ having maximum degree $d$.
-There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr{ S }$ by a quantifier-free Boolean formula $F'$ with complexity 
+There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr{ S }$ by a quantifier-free Boolean formula $F'$ with complexity
 $$(sd)^{O(n^2)}.
 $$
 This is also an upper bound on the number of polynomials in $F'$ and their degrees.
@@ -30,102 +30,102 @@ Using singly-exponential quantifier elimination algorithm [@bpr2006 Algorithm 14
 as a quantifier-free Boolean formula $F'$ with the bounds required in the lemma.
 :::
 
-We see that the "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier alternations. Even using an efficient QE algorithm, this still has complexity singly exponential in the number of variables. If possible, we would like to avoid calling this singly exponential subroutine on each cell. 
+We see that the "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier alternations. Even using an efficient QE algorithm, this still has complexity singly exponential in the number of variables. If possible, we would like to avoid calling this singly exponential subroutine on each cell.
 
-## Lazard's method for dimension not greater than 3
+## Lazard's method for dimension not greater than 3 { #sec:lazard-3 }
 
-@lazard10 presents an algorithm for constructing an $\mathbf{F}$-invariant cylindrical algebraic decomposition of $\R^n, n\le 3$ such that every cell is a topologically regular set and the frontier condition is satisfied. 
+@lazard10 presents an algorithm for constructing an $\mathbf{F}$-invariant cylindrical algebraic decomposition of $\R^n, n\le 3$ such that every cell is a topologically regular set and the frontier condition is satisfied.
 
-According to [@lazard10, TODO], in dimension $\le 2$, there is nothing to do. Furthermore, a cell $C$ satisfies the frontier condition if no cells bordering it are bad. 
+According to [@lazard10, TODO], in dimension $\le 2$, there is nothing to do. Furthermore, a cell $C$ satisfies the frontier condition if no cells bordering it are bad.
 
 
-::: { .lemma #no-blow-up } 
+::: { .lemma #no-blow-up }
 [@lazald10, Theorem 4.4]
-Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ and $C$ be a cell of $\mathcal{D}$ with $C' := \proj_{\R^{n-1}}(C)$. If the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and none of $C'$ and any cell adjacent to it is bad, $C$ is well-bordered, and $\fr{C}$ is a union of some cells of $\mathcal{D}$.  
+Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ and $C$ be a cell of $\mathcal{D}$ with $C' := \proj_{\R^{n-1}}(C)$. If the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and none of $C'$ and any cell adjacent to it is bad, $C$ is well-bordered, and $\fr{C}$ is a union of some cells of $\mathcal{D}$.
 :::
 
 ::: {.proof}
-This result follows from the following fact about roots of multivariate polynomials: given a polynomial $f  \in \Q[x_1,\ldots,x_{n-1}][x_n]$, i.e., considered as a univariate polynomial with polynomial coefficients, its complex roots depend continuously on the parameters in the region of the parameter space where the polynomial does not vanish identically. In fact, this is only true in the projective closure of $\mathbb{C}$ as some roots may pass through the point at infinity if the leading coefficient is zero. 
+This result follows from the following fact about roots of multivariate polynomials: given a polynomial $f  \in \Q[x_1,\ldots,x_{n-1}][x_n]$, i.e., considered as a univariate polynomial with polynomial coefficients, its complex roots depend continuously on the parameters in the region of the parameter space where the polynomial does not vanish identically. In fact, this is only true in the projective closure of $\mathbb{C}$ as some roots may pass through the point at infinity if the leading coefficient is zero.
 
-First suppose that $C$ is a section cell. I.e., it is a root of some polynomial $f$ and $\partial C$ is defined as the limit of this root over the boundary of $C'$. Thus $\projop{n-1}$ is a continuous, injective map from $\partial C$ to $\partial C'$. This follows from the assumption that the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and that if the root defining the section $C$ is infinite over some cell $C'' \subset C'$, then it is also infinite over $\partial C''$.   
+First suppose that $C$ is a section cell. I.e., it is a root of some polynomial $f$ and $\partial C$ is defined as the limit of this root over the boundary of $C'$. Thus $\projop{n-1}$ is a continuous, injective map from $\partial C$ to $\partial C'$. This follows from the assumption that the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and that if the root defining the section $C$ is infinite over some cell $C'' \subset C'$, then it is also infinite over $\partial C''$.
 
-Now suppose that $C$ is a sector cell having section cells (if they exist) $C_B$ and $C_T$ as the bottom and top of $C$ respectively. Let us describe the boundary of $C$. We will only consider the case where $C \cap \{ \mathbf{x} \times \R \}$ is an open interval bounded from below by a point in $C_B$ and above by a point in $C_T$. 
+Now suppose that $C$ is a sector cell having section cells (if they exist) $C_B$ and $C_T$ as the bottom and top of $C$ respectively. Let us describe the boundary of $C$. We will only consider the case where $C \cap \{ \mathbf{x} \times \R \}$ is an open interval bounded from below by a point in $C_B$ and above by a point in $C_T$.
 
 Let $\dim(C) = d + 1$. $\partial C$ consists of
 
 - $C_B$ and $C_T$, both having dimension $d$,
 - the cells in $\partial C_B$ and $\partial C_T$, which have dimension $< d$ and are contained in $\partial C' \times \R$,
-- the intervals (which may be empty) bounded by the points in $\partial C_B$ and $\partial C_T$, contained in $C' \times \R$. Since $C_B$ and $C_T$ are section cells, they are roots of polynomials $f$ and $g$ and, if finite, the points in $\partial C_B$ and $\partial C_T$ are also roots of $f$ and $g$ (respectively). Therefore, these intervals are contianed in some cells of $\cal D$. More precisely, the cells with dimension $d$ contained in $\partial C' \times \R$ are exactly those lying over a cell $C'' \subset \partial C'$ with dimension $d-1$. 
+- the intervals (which may be empty) bounded by the points in $\partial C_B$ and $\partial C_T$, contained in $C' \times \R$. Since $C_B$ and $C_T$ are section cells, they are roots of polynomials $f$ and $g$ and, if finite, the points in $\partial C_B$ and $\partial C_T$ are also roots of $f$ and $g$ (respectively). Therefore, these intervals are contianed in some cells of $\cal D$. More precisely, the cells with dimension $d$ contained in $\partial C' \times \R$ are exactly those lying over a cell $C'' \subset \partial C'$ with dimension $d-1$.
 
-A cell of dimension $< d$ either belongs to $\partial C_B$ or $\partial C_T$, or is a sector over a cell $D \subest \partial C'$ having dimension less than $d-1$. 
-As $C'$ is well-bordered, $D$ belongs to the boundary of some cell $E \subset \partial C'$ having dimension $d-1$. 
-Thus, the sector above $D$ is contained in the boundary of the sector above $E$, which has dimension $d$ 
+A cell of dimension $< d$ either belongs to $\partial C_B$ or $\partial C_T$, or is a sector over a cell $D \subest \partial C'$ having dimension less than $d-1$.
+As $C'$ is well-bordered, $D$ belongs to the boundary of some cell $E \subset \partial C'$ having dimension $d-1$.
+Thus, the sector above $D$ is contained in the boundary of the sector above $E$, which has dimension $d$
 
-This proves that, if the decomposition induced by $D$ on $\R^{n-1}$ is strong, then $C$ is well-bordered and also satisfies the frontier condition. In addition, this proves that $C$ is a topologically regular cell as $C$ and $\partial C$ are either homeomorphic to $C'$ and $\partial C'$, if $C$ is a sector cell, or to an open cylinder, either bounded or unbounded, and its boundary. It is clear that an open cylinder contained in $C' \times \R$, where $C'$ is topologically regular, is also topologically regular. 
+This proves that, if the decomposition induced by $D$ on $\R^{n-1}$ is strong, then $C$ is well-bordered and also satisfies the frontier condition. In addition, this proves that $C$ is a topologically regular cell as $C$ and $\partial C$ are either homeomorphic to $C'$ and $\partial C'$, if $C$ is a sector cell, or to an open cylinder, either bounded or unbounded, and its boundary. It is clear that an open cylinder contained in $C' \times \R$, where $C'$ is topologically regular, is also topologically regular.
 
-The other cases are deduced by omitting the cells defined from $C_B$ and $C_T$ as appropriate. 
+The other cases are deduced by omitting the cells defined from $C_B$ and $C_T$ as appropriate.
 :::
 
 Let $\cal D$ be the CAD of $\R^3$ constructed by @lazard10 at the end of Section 5,2. The results in [@lazard10, Section 5.3] assume two properties of $\cal D$. Firstly $\fr{ C }$, where $\dim(C) = k$, is the closure of the union of some cells of $\cal D$ of dimension $k-1$. Secondly, according to [@lazard10, Proposition 5.13], any bad cells in the decomposition induced by $\cal D$ on $\R^2$ (those above which some polynomial vanishes over an open interval) are 0-dimensional isolated points.
 
-::: {.lemma} 
+::: {.lemma}
 [@lazard10 Proposition 5.13]
-Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^3$, and suppose that $C$ is a topologically regular cell in $\mathcal{D}$. 
+Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^3$, and suppose that $C$ is a topologically regular cell in $\mathcal{D}$.
 Suppose that $D$ is a cell of $\mathcal{D}$ such that $B := D \cap \fr{ C } \neq \emptyset$ and $B \neq D$. Then either
-  
+
   1. $C$ is a $1$-dimensional section cell whose endpoint, $B$, projects on a bad cell, or
-  2. there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C)$ and $\emptyset \neq D \cap \fr{ E } \neq D$. 
+  2. there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C)$ and $\emptyset \neq D \cap \fr{ E } \neq D$.
 :::
 
 To illustrate this, consider the example of the whitney umbrella $W := \{ x^2 - y^2 z = 0 \}$. Let $C := \{ x > 0, y > 0, x^2 - y^2 z = 0 \} \subset W$ be one of the 2-dimensional topologically regular cells in a CAD of $\R^3$ compatible with $W$.
 Then case $2$ applies, with $D = \{ x = 0, y = 0 \}$ and $E = \{ x > 0, y = 0, z = 0 \}$.
-Choosing $C = E$, (and the same $D$) we get case $1$. 
+Choosing $C = E$, (and the same $D$) we get case $1$.
 
 ::: {,proof}
-By the proof of (TODO laz Th 4.4), $D$ will always be a $(0,0,1)$-cell in the cylinder above a bad cell $D'$. 
+By the proof of (TODO laz Th 4.4), $D$ will always be a $(0,0,1)$-cell in the cylinder above a bad cell $D'$.
 
 Let us consider each case for $C$ by cell index.
 
 - $(1,1,1)$-cell: since $C$ is well-bordered, its boundary is the closure of some 2-dimensional cells of $\cal D$ and $B$ is contained in the union of the boundaries of the 2-cells. Thus, case 2 applies and we can choose an appropriate 2-dimensional cell in $\fr{C}$ for $E$.
 
-- $(1,0,1)$- or $(0,1,1)$-cell, we write $(i,j,1)$-cell where $i+j=1$: observe that $C$ (if bounded) is delineated by some $(i,j,0)$-cells (one-dimensional curve intervals). Take $B$ to be the one-dimensional interval delineated by the endpoints of these cells. Since $B \neq C$, at least one of these endpoints is not a $(0,0,0)$-cell of $\cal D$. Case 2 applies, taking as $E$ the delineating $(i,j,0)$-cell. 
+- $(1,0,1)$- or $(0,1,1)$-cell, we write $(i,j,1)$-cell where $i+j=1$: observe that $C$ (if bounded) is delineated by some $(i,j,0)$-cells (one-dimensional curve intervals). Take $B$ to be the one-dimensional interval delineated by the endpoints of these cells. Since $B \neq C$, at least one of these endpoints is not a $(0,0,0)$-cell of $\cal D$. Case 2 applies, taking as $E$ the delineating $(i,j,0)$-cell.
 
-- $(1,0,0)$- or $(0,1,0)$-cells: consider the previous case, letting $C = E$. 
+- $(1,0,0)$- or $(0,1,0)$-cells: consider the previous case, letting $C = E$.
 
-- $(1,1,0)$-cell: these are necesarily the root of a polynomial $f \in \Q[x_1,x_2,x_3]$ which vanishes identically on $D'$, a $(0,0)$ cell in the decomposition induced by $\cal D$ on $\R^2$. 
-Let $V_r$ be a small neighbourhood (with radius $r > 0$) centered aronud $D'$ and consider $V_r'$, the cylinder above the boundary of $V_r$. Since $C$ is a monotone cell, the maximum and minimum values of $x_3$ in this intersection are reached on the boundary of $C$, for sufficiently small $r$. The limits, as $r$ tends to $0$, of this maximum and minimum clearly belong to the boundary of $B$, if these limits do not tend to infinity. Note that both the maximum and minimum cannot be infinite, since this would imply that either $B$ is empty, or coincides with $D$. Therefore, the non-infinite limits are the endpointns of some $1$-dimensional cell belonging to the boundary of $C$. Case 2 applies, taking $E$ to be this $1$-dimensional cell. 
+- $(1,1,0)$-cell: these are necesarily the root of a polynomial $f \in \Q[x_1,x_2,x_3]$ which vanishes identically on $D'$, a $(0,0)$ cell in the decomposition induced by $\cal D$ on $\R^2$.
+Let $V_r$ be a small neighbourhood (with radius $r > 0$) centered aronud $D'$ and consider $V_r'$, the cylinder above the boundary of $V_r$. Since $C$ is a monotone cell, the maximum and minimum values of $x_3$ in this intersection are reached on the boundary of $C$, for sufficiently small $r$. The limits, as $r$ tends to $0$, of this maximum and minimum clearly belong to the boundary of $B$, if these limits do not tend to infinity. Note that both the maximum and minimum cannot be infinite, since this would imply that either $B$ is empty, or coincides with $D$. Therefore, the non-infinite limits are the endpointns of some $1$-dimensional cell belonging to the boundary of $C$. Case 2 applies, taking $E$ to be this $1$-dimensional cell.
 
 - $(0,0,1)$- or $(0,0,0)$-$cells: cannot satisfy the hypothesis, there is nothing to do.
 :::
 
 ::: {,prop}
 [@lazard10, Proposition 5.14]
-Let $f \in \Q[x_1,x_2,x_3]$ be an irreducible polynomial given by 
+Let $f \in \Q[x_1,x_2,x_3]$ be an irreducible polynomial given by
 $$f = g_dx^d + \ldots + g_1x + g_0$$
-with each $g_i \in \Q[x_1,x_2]$, and 
+with each $g_i \in \Q[x_1,x_2]$, and
 $$\mathbf{p} = (p_1,p_2)$$
-be a common root of $g_d,\ldots,g_1,g_0$. 
-Let $g\in \Q[x_1,x_2]$ be an irreducible polynomial having $\mathbf{p}$ as a root. 
+be a common root of $g_d,\ldots,g_1,g_0$.
+Let $g\in \Q[x_1,x_2]$ be an irreducible polynomial having $\mathbf{p}$ as a root.
 The limits of the common roots of $f$ and $g$ as $(x_1, x_2) \to \mathbf{p}, (x_1, x_2) \ne \mathbf{p}$ may be computed as solutions of a zero-dimensional
 polynomial system.
 :::
 
 ::: {.proof}
-Since $f$ is irreducible, it has at least two coefficients, $g_i,g_j \in \Q[x_1,x_2]$, whose GCD is a constant. 
-Therefore, any ideal generated by these coefficients has dimension zero. Any ideal containing these coefficients also contains another element, $h$, which is not a multiple of $g$. 
+Since $f$ is irreducible, it has at least two coefficients, $g_i,g_j \in \Q[x_1,x_2]$, whose GCD is a constant.
+Therefore, any ideal generated by these coefficients has dimension zero. Any ideal containing these coefficients also contains another element, $h$, which is not a multiple of $g$.
 
 The saturation by $h$ of the ideal $\langle f,g \rangle$ is defined as the ideal
 $$
 S := \langle f, g, 1 - zh \rangle \cap \Q[x_1,x_2,x_3].
 $$
-The irreducible components of the zero set of $S$ are those of the zero set of $\langle f,g \rangle$ at which $h$ is not identically zero. It follows that the vertical line $\{ x_1 = p_1, x_2 = p_2 \}$ which is part of the zero set of $f$ ,$g$ and $h$, is not contained in the zero set of $S$. Meanwhile, the zero set of $S$ contains the limit points we are interested in finding. 
+The irreducible components of the zero set of $S$ are those of the zero set of $\langle f,g \rangle$ at which $h$ is not identically zero. It follows that the vertical line $\{ x_1 = p_1, x_2 = p_2 \}$ which is part of the zero set of $f$ ,$g$ and $h$, is not contained in the zero set of $S$. Meanwhile, the zero set of $S$ contains the limit points we are interested in finding.
 
-It follows that the ideal generated by $S$ and the coefficients $g_0,\ldots,g_d$ of $f$ is zero-dimensional and the limits of $\{ f=0,g=0 \}$ as $(x_1,x_2) \to \mathbf{p}$ can be computed as the zeros of $S$. 
+It follows that the ideal generated by $S$ and the coefficients $g_0,\ldots,g_d$ of $f$ is zero-dimensional and the limits of $\{ f=0,g=0 \}$ as $(x_1,x_2) \to \mathbf{p}$ can be computed as the zeros of $S$.
 :::
 
 ### An aside on polynomial ideals and Zariski closures
 
-@lazard10 uses the trick of saturating the ideal $\langle f,g \rangle$ by some $h$, which is not a multiple of $g$. The key to this trick lies in Zariski closures. Let us take an aside to discuss this. We closely follow @cox2013 and all results are proved in a generic polynomial ring $K[x_1,\ldots,x_n]$ unless otherwise stated. 
+@lazard10 uses the trick of saturating the ideal $\langle f,g \rangle$ by some $h$, which is not a multiple of $g$. The key to this trick lies in Zariski closures. Let us take an aside to discuss this. We closely follow @cox2013 and all results are proved in a generic polynomial ring $K[x_1,\ldots,x_n]$ unless otherwise stated.
 
 #### Ideals, Groebner bases and Buchberger's algorithm
 
@@ -134,7 +134,7 @@ Let $K[x_1,\ldots,x_n]$ be a polynomial ring. A subset $I \subset K[x_1,\ldots,x
 
 - $0 \in I$,
 - if $a,b \in I$ then $a+b \in I$, and
-- if $a \in I, b \in K[x_1,\ldots,x_n]$, then $ab \in I$. 
+- if $a \in I, b \in K[x_1,\ldots,x_n]$, then $ab \in I$.
 :::
 
 ::: {.definition}
@@ -153,7 +153,7 @@ Every ideal $I \subset k[x_1, \ldots, x_n]$ has a finite generating set. I.e., $
 
 A proof can be found in [@cox2013, p76].
 
-Later, @buchberger1965 published an algorithm for computing this finite set of generators. He also introduced the concept of a Groebner basis. 
+Later, @buchberger1965 published an algorithm for computing this finite set of generators. He also introduced the concept of a Groebner basis.
 
 A Groebner basis requires an ordering on monomials to be fixed.
 
@@ -162,10 +162,10 @@ A monomial ordering on $K[x_1, \ldots, x_n]$ is a relation $\succ$ on $\Z^n_{\ge
 equivalently, a relation on the set of monomials $x^\alpha, \alpha\in \Z_{\ge 0}$, satisfying the following properties.
 
 - $\succ$ is a total order\footnote{
-Total order: a reflexive, antisymmetric, and transinive relation $R$ on a set $X$ such that either $(a,b) \in R$ or $(b,a) \in R$ for all $a,b \in X$.  
+Total order: a reflexive, antisymmetric, and transinive relation $R$ on a set $X$ such that either $(a,b) \in R$ or $(b,a) \in R$ for all $a,b \in X$.
 } (or linear order) on $\Z^n_{\ge 0}$.
 - If $\alpha \succ \beta$ and $\gamma \in \Z^n_{\ge 0}$, then $\alpha + \gamma \succ \beta + \gamma$.
-- $\succ$ is a well-ordering on $\Z^n_{\ge 0}$. 
+- $\succ$ is a well-ordering on $\Z^n_{\ge 0}$.
 I.e., every nonempty subset of $\Z^n_{\ge 0}$ has a minimal element under $\succ$.
 :::
 
@@ -173,9 +173,9 @@ Some examples of monomial orderings used in computing Groebner bases include
 
 - **lex:** Let $\alpha = (\alpha_1, \ldots, \alpha_n), \beta = (\beta_1, \ldots, \beta_n) \in \Z^n_{\ge 0}$. We say $\alpha \succ \beta$ if the leftmost nonzero element of $\alpha - \beta \in \Z^n$ is positive. This imposes a lexicographic order on variables $x_1 \succ x_2 \succ \cdots \succ x_n$.
 
-- **grlex:** (graded lex) Let $\alpha, \beta \in \Z^n_{\ge 0}$ and let $|\alpha| = \alpha_1 + \cdots + \alpha_n$ and $|\beta| = \beta_1 + \cdots + \beta_n$. We sate $\alpha \succ \beta$ if $|\alpha| > |\beta|$, or if $|\alpha| = |\beta|$ and $\alpha \succ_{\rm{lex}} \beta$. 
+- **grlex:** (graded lex) Let $\alpha, \beta \in \Z^n_{\ge 0}$ and let $|\alpha| = \alpha_1 + \cdots + \alpha_n$ and $|\beta| = \beta_1 + \cdots + \beta_n$. We sate $\alpha \succ \beta$ if $|\alpha| > |\beta|$, or if $|\alpha| = |\beta|$ and $\alpha \succ_{\rm{lex}} \beta$.
 
-- **grevlex:** (graded reverse lex) Let $\alpha, \beta \in \Z^n_{\ge 0}$, and d efine $|\alpha|$ and $|\beta|$ as before. We set $\alpha \succ_{\rm{grevlex}} \beta$ if $|\alpha| > |\beta|$ or if $|\alpha| = |\beta|$ and the rightmost nonzero entry of $\alpha - \beta$ is negative.	 
+- **grevlex:** (graded reverse lex) Let $\alpha, \beta \in \Z^n_{\ge 0}$, and d efine $|\alpha|$ and $|\beta|$ as before. We set $\alpha \succ_{\rm{grevlex}} \beta$ if $|\alpha| > |\beta|$ or if $|\alpha| = |\beta|$ and the rightmost nonzero entry of $\alpha - \beta$ is negative.
 
 ::: {.definition}
 Let $f$ be a polynomial in $K[x_1,\ldots,x_n]$ with monomials labelled by indices in $\Z^n$, of the form $\sum_{\alpha} a_\alpha x_1^{\alpha_1} \cdots x_n^{\alpha_n}$, and fix a monomial order $\succ$. Define the following
@@ -202,7 +202,7 @@ We write $\overline{f}^{F}$ for the remainder of division of $f$ by the tuple $F
 :::
 
 ::: {.definition}
-Let $f,g \in K[x_1,\ldots,x_n]$ such that $\multideg(f) = \alpha$ and $\multideg(g) = \beta$. Define $\gamma = \max(\alpha, \beta)$ (where $\max$ is taken component-wise). $x_1^{\gamma^1} \cdots x_n^{\gamma^n} = \lcm ( \lm(f), \lm(g) )$ is called the least common multiple of the leading monomials of $f$ and $g$. 
+Let $f,g \in K[x_1,\ldots,x_n]$ such that $\multideg(f) = \alpha$ and $\multideg(g) = \beta$. Define $\gamma = \max(\alpha, \beta)$ (where $\max$ is taken component-wise). $x_1^{\gamma^1} \cdots x_n^{\gamma^n} = \lcm ( \lm(f), \lm(g) )$ is called the least common multiple of the leading monomials of $f$ and $g$.
 :::
 
 ::: {.lemma #multideg}
@@ -221,31 +221,31 @@ Now consider $(ax^\alpha + f') + (bx^\beta + g') = (ax^\alpha + bx^\beta) + (f' 
 :::
 
 ::: {.lemma #remainder-condition}
-Let $I \subset K[x_1,\ldots,x_n]$ be an ideal, $G = \{g_1,\ldots, g_t\}$ be a Groebner basis for $I$ and $f$ be an arbitrary polynomial in $K[x_1,\ldots,x_n]$. 
+Let $I \subset K[x_1,\ldots,x_n]$ be an ideal, $G = \{g_1,\ldots, g_t\}$ be a Groebner basis for $I$ and $f$ be an arbitrary polynomial in $K[x_1,\ldots,x_n]$.
 Then there exists a unique $r \in K[x_1,\ldots,x_n]$ such that
 
 1. no term of $r$ is divisible by any of $\ldt(g_1), \ldots, \ldt(g_t)$, and
 
 2. there exists $g\in I$ such that $f = g + r$.
 
-In particular, $r$ is the remainder of division of $f$ by all elements of $G$ (taken in any order). 
+In particular, $r$ is the remainder of division of $f$ by all elements of $G$ (taken in any order).
 :::
 
 ::: {.proof}
-Firstly, using division, we can write $f = h_1 g_1 + \cdots + h_t g_t + r$, hence $r$ is not divisible by any polynomials in $G$ (first condition). 
+Firstly, using division, we can write $f = h_1 g_1 + \cdots + h_t g_t + r$, hence $r$ is not divisible by any polynomials in $G$ (first condition).
 This decomposition of $f$ can be used to set $g = h_1 g_1 + \cdots + h_t g_t \in I$, so that $f = g + r$ (satisfying the second condition).
 
-Now, to prove that $r$ is unique, suppose that $f = g + r = g' + r'$ for $g,g'$ and $r,r'$ satisfying both conditions. Then $r-r' = g-g' \in I$ (by definition of an ideal). Assume $r\ne r'$, then $\ldt(r-r') = \langle \ldt(I)\rangle = \langle \ldt(g_1),\ldots, \ldt(g_t) \rangle$ since $G$ is a Groebner basis for $I$. By [@cox2013 p70, Lemma 2], this implies $\ldt(r-r')$ is divisible by some $\ldt(g_i)$, which is a contradiction since $r$ and $r'$ cannot be divisible by any of the $\ldt(g_i)$'s. 
+Now, to prove that $r$ is unique, suppose that $f = g + r = g' + r'$ for $g,g'$ and $r,r'$ satisfying both conditions. Then $r-r' = g-g' \in I$ (by definition of an ideal). Assume $r\ne r'$, then $\ldt(r-r') = \langle \ldt(I)\rangle = \langle \ldt(g_1),\ldots, \ldt(g_t) \rangle$ since $G$ is a Groebner basis for $I$. By [@cox2013 p70, Lemma 2], this implies $\ldt(r-r')$ is divisible by some $\ldt(g_i)$, which is a contradiction since $r$ and $r'$ cannot be divisible by any of the $\ldt(g_i)$'s.
 
-The final part of the proposition follows from uniqueness of $r$. 
+The final part of the proposition follows from uniqueness of $r$.
 :::
 
 ::: {.corollary #div-zero}
-Let $G = \{ g_1,\ldots,g_k \}$ be a Groebner basis for an ideal $I \subset K[x_1,\ldots,x_n]$ and let $f \in K[x_1,\ldots,x_n]$. Then $f \in I$ if and only if the remainder on division of $f$ by $G$ is zero. 
+Let $G = \{ g_1,\ldots,g_k \}$ be a Groebner basis for an ideal $I \subset K[x_1,\ldots,x_n]$ and let $f \in K[x_1,\ldots,x_n]$. Then $f \in I$ if and only if the remainder on division of $f$ by $G$ is zero.
 :::
 
 ::: {.proof}
-If the remainder on division is zero, then we already proved that $f \in I$. 
+If the remainder on division is zero, then we already proved that $f \in I$.
 Conversely, if $f \in I$ then $f = f+0$ satisfies the two conditions of Lemma~\@ref(lem:remainder-condition). It follows that the remainder on division of $f$ by $G$ is zero.
 :::
 
@@ -256,16 +256,16 @@ S(f,g) = \dfrac{\lcm(\ldt(f),\ldt(g))f}{\ldt(f)} - \dfrac{\lcm(\ldt(f),\ldt(g))g
 $$
 :::
 
-$S$-polynomials are constructed to reduce the degree of terms, as shown in the following lemma. 
+$S$-polynomials are constructed to reduce the degree of terms, as shown in the following lemma.
 
 ::: {.lemma #linear-combination}
-Suppose that $f \in K[x_1,\ldots, x_n]$ is a sum of polynomials $\sum_{i=1}^s p_i$ such that $\multideg(p_i) = \delta$ for all $1\le i \le s$. 
-If $\multideg( \sum_{i=1}^s p_i )$ is a linear combination $\sum_{(i,j) \in \{1\ldots,s\}^2} a_{ij} S(p_i,p_j)$ where all $a_{ij} \in K$. Furthermore all $\multideg(S(p_i,p_j)) < \delta$. 
+Suppose that $f \in K[x_1,\ldots, x_n]$ is a sum of polynomials $\sum_{i=1}^s p_i$ such that $\multideg(p_i) = \delta$ for all $1\le i \le s$.
+If $\multideg( \sum_{i=1}^s p_i )$ is a linear combination $\sum_{(i,j) \in \{1\ldots,s\}^2} a_{ij} S(p_i,p_j)$ where all $a_{ij} \in K$. Furthermore all $\multideg(S(p_i,p_j)) < \delta$.
 :::
 
 ::: {.proof}
-We can write each $p_i = c_i (x_1^{\delta_1} \cdots x_n^{\delta_n} + g_i)$ where $\delta = (\delta_1,\ldots, \delta_n)$, $c_i \in K$ and $\multideg(g_i) < \delta$. 
-In order for $\multideg(\sum_{i=1}^s p_i) < \delta$, leading monomials of $p_i$'s must cancel in the sum. I.e., $\sum_{i=1}^s c_i\ldt(p_i) = 0$ implies $\sum_{i=1}^s c_i = 0$. 
+We can write each $p_i = c_i (x_1^{\delta_1} \cdots x_n^{\delta_n} + g_i)$ where $\delta = (\delta_1,\ldots, \delta_n)$, $c_i \in K$ and $\multideg(g_i) < \delta$.
+In order for $\multideg(\sum_{i=1}^s p_i) < \delta$, leading monomials of $p_i$'s must cancel in the sum. I.e., $\sum_{i=1}^s c_i\ldt(p_i) = 0$ implies $\sum_{i=1}^s c_i = 0$.
 
 Since $\multideg(p_i) = \multideg(p_j)$ for all $i.j$, $\lcm(\ldt(p_i),\ldt(p_j)) = x_1^{\delta_i} \cdots x_n^{\delta_n} = h = \tfrac{1}{c_i}\ldt(p_i) = \tfrac{1}{c_j}\ldt(p_j)$. Consider
 $$
@@ -275,19 +275,19 @@ Hence
 $$
 S(p_i,p_j) = \sum_{i=1}^s c_i\dfrac{1}{c_i}(x_1^{\delta_1}\cdots x_n^{\delta_n} + g_i) - \dfrac{1}{c_j}c_j(x_1^{\delta_1}\cdots x_n^{\delta_n} + g_j) = \sum_{i=1}^s g_i - g_j.
 $$
-Since $\multideg(g_i) < \delta$ and $\multideg(g_j) < \delta$, their linear combination, $S(p_i,p_j)$ has multidegree less than $\delta$. 
+Since $\multideg(g_i) < \delta$ and $\multideg(g_j) < \delta$, their linear combination, $S(p_i,p_j)$ has multidegree less than $\delta$.
 
-Now return to the sum 
+Now return to the sum
 $$
 \sum_{i=1}^s p_i = \sum_{i=1}^s c_i (x_1^{\delta_1} \cdots x_n^{\delta_n} + g_i).
 $$
 Since terms of the kind $x_1^{\delta_1}\cdots x_n^{\delta_n}$ cancel,
 $$\sum_{i=1}^s p_i = \sum_{i=1}^s c_ig_i = c_1g_1 + \cdots + c_s g_s.$$
-We show that this is a linear combination of $S$-polynomials. 
+We show that this is a linear combination of $S$-polynomials.
 
 Consider the sum
 $$
-\sum_{i=1}^{s-1} c_i S(p_i,p_s) = \sum_{i=1}^{s-1} c_i( g_i - p_s) 
+\sum_{i=1}^{s-1} c_i S(p_i,p_s) = \sum_{i=1}^{s-1} c_i( g_i - p_s)
 = \sum_{i=1}^{s-1} cg_i - c_ig_s,
 $$ hence
 $$
@@ -297,10 +297,10 @@ Since $c_1 + \cdots + c_{s-1} + c_s = 0$, we have $c_1 + \ldots + c_{s-1} = -c_s
 $$
 \sum_{i=1}^{s-1} c_i S(p_i,p_s) = g_1 + \cdots + g_{s-1} - (-c_s) \cdot p_s = \sum_{i=1}^{s} c_i g_i,
 $$
-proving that $\sum_{i=1}^s p_i$ is a linar combination of $S$-polynomials. 
+proving that $\sum_{i=1}^s p_i$ is a linar combination of $S$-polynomials.
 :::
 
-We are now ready to present Buchhberger's Criterion, the condition under which Buchberger's algorithm will terminate. 
+We are now ready to present Buchhberger's Criterion, the condition under which Buchberger's algorithm will terminate.
 
 ::: {.lemma #buchberger-criterion}
 Let $I$ be a polynomial ideal. Then a basis $G = \{g_1, \ldots, g_t\}$ of $I$ is a Groebner basis of $I$ if and only if, for all pairs $i \ne j$, the
@@ -309,14 +309,14 @@ remainder from division of $S(g_i, g_j)$ by $G$ (with a fixed order) is zero.
 
 ::: {.proof}
 $\Rightarrow:$
-If $G$ is a Groebner basis for $I$, then $S(g_i,g_j) \in I$ for all $g_i,g_j \in G$ and, by Corollary \@ref(cor:div-zero), the remainder of $\overline{S(g_i,g_j)}^F$ is zero. 
+If $G$ is a Groebner basis for $I$, then $S(g_i,g_j) \in I$ for all $g_i,g_j \in G$ and, by Corollary \@ref(cor:div-zero), the remainder of $\overline{S(g_i,g_j)}^F$ is zero.
 
 $\Leftarrow:$
 Let $f \in I$ be a nonzero polynomial. We need to show that $\ldt(f) \in \langle \ldt(g_1), \ldots, \ldt(g_k) \rangle$. We have to show that
 $$
 f = \sum^k_{i=1} h_ig_i
 $$
-where $h_i \in K[x_1,\ldots,x_n], 1 \le i \le k$. By Lemma \@ref(lem:multideg), we have 
+where $h_i \in K[x_1,\ldots,x_n], 1 \le i \le k$. By Lemma \@ref(lem:multideg), we have
 $$
 \multideg(f) \le \max(\multideg(h_ig_i) \mid h_ig_i \ne 0).
 $$
@@ -341,7 +341,7 @@ $$
 $$
 The last two terms have $\multideg < \delta$, so we attempt to rewrite $\sum_{\multideg(h_ig_i)= \delta} \ldt(h_i)g_i$ to decrease $\delta$, thereby obtaining a contradiction. Applying Lemma \@ref(lem:linear-combination) with $p_i = \ldt(h_i)g_i$ with multidegree $\delta$ and $f$ with multidegree $< \delta$, we can write $\sum_{\multideg(h_ig_i) = \delta} \ldt(h_i)g_i$ as a linear combination (with coefficients in $K$) of $S$-polynomials having multidegree $< \delta$. Hence, we know that $f$ can be rewritten as a sum of polynomials with multidegree $< \delta$, contradicting the assumption that $\delta$ is minimal.
 
-Given an expression $f = \sum^t_{i=1} h_i g_i$ with minimal $\delta$, we begin by isolating the part of the sum having multidegree $\delta$. 
+Given an expression $f = \sum^t_{i=1} h_i g_i$ with minimal $\delta$, we begin by isolating the part of the sum having multidegree $\delta$.
 
 \begin{align}
 f=&\sum_{{\rm multideg}(h_{i}g_{i})=\delta}h_{i}g_{i}+\sum_{{\rm multideg}(h_{i}g_{i})<\delta}h_{i}g_{i}\\
@@ -362,15 +362,15 @@ is a linear combination of the coeffinients in $K$ of the $S$-polynomials
 $$
 S(\lt(h_i) g_i, \lt(h_j), g_j),
 $$
-since each $\lt(f_i) g_i$ has multidegree $\delta$ while the sum has multidegree $< \delta$. 
+since each $\lt(f_i) g_i$ has multidegree $\delta$ while the sum has multidegree $< \delta$.
 
 We have
 \begin{equation}
 (#eq:sum-lt)
 S(\rm{lt}(h_i) g_i, \rm{lt}(h_j) g_j) = x^{\delta - \gamma_{i,j}} S(g_i,g_j)
 \end{equation}
-where 
-$x^{\gamma_{i,j}} = \lcm( \lm(g_i), \lm (g_j))$ it follows that the first sum (Equation \@ref(eq:sum-lt)) is a linear combination of $x^{\delta - \gamma_{i,j}} S(g_i,g_j)$ for appropriate pairs $(i,j)$. 
+where
+$x^{\gamma_{i,j}} = \lcm( \lm(g_i), \lm (g_j))$ it follows that the first sum (Equation \@ref(eq:sum-lt)) is a linear combination of $x^{\delta - \gamma_{i,j}} S(g_i,g_j)$ for appropriate pairs $(i,j)$.
 
 Consider one of the $S(g_i,g_j)$. Since $\overline{S(g_i,g_j)}^G = 0$, we can rewrite it as
 \begin{equation}
@@ -382,7 +382,7 @@ where $A \in K[x_1,\ldots,x_n]$ and
 (#eq:s-lt)
 \rm{multideg}(A_\ell g_\ell) \le \rm{multideg}(S(g_i,g_j))
 \end{equation}
-where $A_\ell g_\ell \ne 0$. 
+where $A_\ell g_\ell \ne 0$.
 By multiplying both sides of Equation \@ref(eq:s-sum-a) by $x^{\delta - \gamma_{i,j}}$, we get
 $$
 x^{\delta - \gamma_{i,j}}S(g_i,g_j) = \sum^t_{\ell = 1} B_\ell g_\ell,
@@ -397,19 +397,19 @@ It follows that we can rewrite the first term in the sum as
 $$
 \sum_{\rm{multideg}(h_i g_i) = \delta} \rm{lt}(h_i) g_i = \sum^t_{\ell = 1} \tilde{B_\ell} g_\ell
 $$
-with the property that when $\tilde{B_\ell}g_\ell \ne 0$, we have $\rm{multideg}(\tilde{B_\ell} g_\ell) < \delta$. 
+with the property that when $\tilde{B_\ell}g_\ell \ne 0$, we have $\rm{multideg}(\tilde{B_\ell} g_\ell) < \delta$.
 
 we have obtained an expression for $f$ as a polynomial combination of the $g_i$'s where every term has multidegree $< \delta$. This contradicts the assumption that $\delta$ was minimal and completes the proof.
 :::
 
 
-The basic idea of Buchberger's algorithm is that polynomials are added to the input set until a Groebner basis is obtained -- i.e., until Buchberger's criterion is satisfied. 
+The basic idea of Buchberger's algorithm is that polynomials are added to the input set until a Groebner basis is obtained -- i.e., until Buchberger's criterion is satisfied.
 
-There now follows a worked example to illustrate Buchberger's algorithm. 
+There now follows a worked example to illustrate Buchberger's algorithm.
 
 Consider $I = \langle f_1, f_2 \rangle = \langle x^3 - 2xy, x^2 y - 2y^2 + x \rangle \subset Q[x,y]$ with grlex ordering.
-$\langle f_1, f_2 \rangle$ is not a Groebner basis for $I$. 
-Indeed, 
+$\langle f_1, f_2 \rangle$ is not a Groebner basis for $I$.
+Indeed,
 \begin{align*}
 S(f_1,f_2) &= \dfrac{x^{3}y}{x^{3}}\left(x^{3}-2xy\right)-\dfrac{x^{3}y}{x^{2}y}\left(x^{2}y-2y^{2}+x\right) \\
 &= \left(x^{3}y-2xy^{2}\right)-\left(x^{3}y-2xy^{2}+x^{2}\right)\\
@@ -428,7 +428,7 @@ Setting $g_1 = -y,g_2 = x$ gives
 =&-x^{3}y+2xy^{2}+x^{3}y-2xy^{2}+x^{2} + h\\
 \Rightarrow& h = -x^2\\
 \end{align*}
-Add $-x^2$ to $F$. 
+Add $-x^2$ to $F$.
 Since $-x^2 \in I$, we have $\overline{S(f_1,f_2)}^F = 0$.
 
 We now need to consider $S(f_1,f_3)$ and $S(f_2,f_3)$.
@@ -438,7 +438,7 @@ S\left(f_{1},f_{3}\right)&=\dfrac{x^{3}}{x^{3}}\left(x^{3}-2xy\right)-\dfrac{x^{
 The remainder of $\overline{S(f_1,f_3)}^F$ is $-2xy \i I$, so we add $-2xy$ to $F$. Similarly, the remainder $\overline{S(f_2,f_3)}^F$ is $-2y^{2}+x$, so we add $-2y^{2}+x$ to $F$.
 
 We have $$F = \left( x^3 - 2xy, x^2 y - 2y^2 + x, -x^2, -2xy, -2y^2 + x \right),$$
-and $\overline{S(f_i,f_j)}^F=0$ for all $f_i,f_j \in F$. We conclude that $F$ is a Groebner basis for $I$. 
+and $\overline{S(f_i,f_j)}^F=0$ for all $f_i,f_j \in F$. We conclude that $F$ is a Groebner basis for $I$.
 
 We now present the algorithm.
 
@@ -455,7 +455,7 @@ We now present the algorithm.
     - for $f,g\in G$ s.t. $f \neq g$:
       - let $r = \overline{S(f,g)}^{G'}$
 
-      - if $r \ne 0$ then $G := \{r\} \cup G$ 
+      - if $r \ne 0$ then $G := \{r\} \cup G$
 
   - while $G \ne G'$
 
@@ -482,7 +482,7 @@ $$
 To every variety belongs an ideal:
 
 ::: {.lemma}
-If $V \subset K^n$ is an affine variety, then $V(I) \subset K[x_1,\ldots,k_n]$ is an ideal (called the ideal of $V$). 
+If $V \subset K^n$ is an affine variety, then $V(I) \subset K[x_1,\ldots,k_n]$ is an ideal (called the ideal of $V$).
 :::
 
 ::: {.proof}
@@ -502,7 +502,7 @@ $V(I)$ is an affine variety. In particular if $I = \langle f_1,\ldots,f_k\rangle
 :::
 
 ::: {.proof}
-By the Hilbert Basis Theorem $I$ is finitely generated, therefore $I = \langle f_1,\ldots, f_k \rangle$ for some finite set of generators in $K[x_1,\ldots,x_n]$. We want to show that $V(I) = V(f_1,\ldots,f_k)$. 
+By the Hilbert Basis Theorem $I$ is finitely generated, therefore $I = \langle f_1,\ldots, f_k \rangle$ for some finite set of generators in $K[x_1,\ldots,x_n]$. We want to show that $V(I) = V(f_1,\ldots,f_k)$.
 
 Since $f1 \ldots,f_k \in I$ and $f(a) = 0$ for all $f\in I$, $V(I) \subset V(f_1,\ldots,f_k)$.
 On the other hand, suppose $x \in V(f_1,\ldots,f_k)$. Since $I = \langle f_1,\ldots,f_k \rangle$, every $f \in I$ can be written
@@ -512,21 +512,21 @@ $$
 Since $f_i(x) = 0$ for all $1 \le i \le k$, we have
 $$
 f(x) = h_1(x) \cdot 0 + \cdots + h_k(x) \cdot 0 = 0 + \cdots + 0 = 0.
-$$ 
-Therefore $V(f_1,\ldots,f_k) \subset V(I)$, hence $V(I) = V(f_1,\ldots,f_k)$. 
+$$
+Therefore $V(f_1,\ldots,f_k) \subset V(I)$, hence $V(I) = V(f_1,\ldots,f_k)$.
 :::
 
-Let $S \subset K^n$ be an arbitrary subset, not necesarily an affine algebraic variety. $I(S)$ (defined in the same way as above) is an ideal and by the ideal-variety correspondance, $V(I(S))$ if an affine algebraic variety. 
+Let $S \subset K^n$ be an arbitrary subset, not necesarily an affine algebraic variety. $I(S)$ (defined in the same way as above) is an ideal and by the ideal-variety correspondance, $V(I(S))$ if an affine algebraic variety.
 
 ::: {.lemma}
-Let $S \subset K^n$. $V(I(S))$ is the smallest affine algebraic variety containing $S$. 
+Let $S \subset K^n$. $V(I(S))$ is the smallest affine algebraic variety containing $S$.
 
 (I.e., for all affine algebraic varieties $W \supset S$, $V(I(S)) \subset W$.)
 :::
 
 ::: {.proof}
 If $S \subset W$, then $I(W) \subset I(S)$ because the operation $I$ is inclusion reversing.
-In addition, $V(I(S)) \subset V(I(W))$ because $V$ is also inclusion reversing. 
+In addition, $V(I(S)) \subset V(I(W))$ because $V$ is also inclusion reversing.
 Since $W$ is an affine algebraic variety, $V(I(W)) = W$, so we have $V(I(S)) \subset W$.
 :::
 
@@ -543,13 +543,13 @@ $\cl{ V(I) \setminus V(J) } \subset V(I : J^\infty)$,
 :::
 
 ::: {.proof}
-We claim that $I \subset I:J \subset I:J^\infty \subset I(V(i0) \setminus V(J))$. We have $I \subset I:J \subset I:J^2 \subset \cdots \subset I:J^\infty$ by the ascending chain condition. 
+We claim that $I \subset I:J \subset I:J^\infty \subset I(V(i0) \setminus V(J))$. We have $I \subset I:J \subset I:J^2 \subset \cdots \subset I:J^\infty$ by the ascending chain condition.
 Suppose that $f \in I:J\infty$ and $a \in V(I) \setminus V(J)$. Then $fg^N \in I$ for all $g \in J$ and a suitable (large enough) $N\ge 0$. Since $a \in V(I)$, $f(a)g^N(a) = 0$ (for all $g\in J$ and large enough $N$). Since $a \not \in V(J)$, there exists $f \in J$ and $N \ge 0$ such that $g(a) \ne 0$. Hence $f(a) = 0$ for all $a \in V(I) \setminus V(J)$. We have $f \in I(V(I) \setminus V(J))$. Transitivity of $\subset$ proves the claim. Since $V$ reverses incl0usion, we have $= \cl{ V(i) \setminus V(J) } = V(I(V(i) \setminus V(J))) \subset V(I:J^\infty)$.
 :::
 
-Now we can return to [@lazard10, Proposition 5.14]. By [@lazard10, Proposition 5.13], we may assume that $\fr{ C }$ is the closure of some one-dimensional cells and that blow-up points, if they exist, are 0-dimensional cylindrical cells in the induced decomposition of $\R^2$. 
-We begin with an irreducible polynomial $f \in \Q[x_1,x_2,x_3]$, such that there exists a $(1,1,0)$-cell $C \subset \{ \mathbf{x} \in \R^3 \mid f(\mathbf{x}) = 0 \}$, a point $\mathbf{p} = (p_1,p_2) \in \R^2$ such that $\mathbf{p}$ is a blow-up point of $f$ and $g \in \Q[x_1,x_2]$ such that $g(\mathbf{p}) = 0$. 
-Consider the variety $V(\langle f \rangle + \langle g \rangle ) = V(f) \cap V(g)$, which contains some of the one-dimensional cells which form part of $\fr{C}$ and the blow-up subset $B \subset \mathbf{p} \times \R$. 
+Now we can return to [@lazard10, Proposition 5.14]. By [@lazard10, Proposition 5.13], we may assume that $\fr{ C }$ is the closure of some one-dimensional cells and that blow-up points, if they exist, are 0-dimensional cylindrical cells in the induced decomposition of $\R^2$.
+We begin with an irreducible polynomial $f \in \Q[x_1,x_2,x_3]$, such that there exists a $(1,1,0)$-cell $C \subset \{ \mathbf{x} \in \R^3 \mid f(\mathbf{x}) = 0 \}$, a point $\mathbf{p} = (p_1,p_2) \in \R^2$ such that $\mathbf{p}$ is a blow-up point of $f$ and $g \in \Q[x_1,x_2]$ such that $g(\mathbf{p}) = 0$.
+Consider the variety $V(\langle f \rangle + \langle g \rangle ) = V(f) \cap V(g)$, which contains some of the one-dimensional cells which form part of $\fr{C}$ and the blow-up subset $B \subset \mathbf{p} \times \R$.
 The saturation by $h$ of $I$,
 $$
 S := \langle f, g, 1 - zh \rangle \cap \Q[x_1,x_2,x_3]
@@ -559,17 +559,17 @@ By [@cox2013, Theorem 10] (TODO),
 $$
 \cl{ V(\langle f,g \rangle) \setminus V(\langle h \rangle) } \subset S.
 $$
-Since our blow-up point $\mathbf{p}$ is $0$-dimensional, computing this Zariski closure effectively "fills in the hole" left by removing the blow-up subset from $V(\langle f,g \rangle)$. Thus, we have the limit points of the cell $C$ as it approaches the blow-up subset $B$. 
+Since our blow-up point $\mathbf{p}$ is $0$-dimensional, computing this Zariski closure effectively "fills in the hole" left by removing the blow-up subset from $V(\langle f,g \rangle)$. Thus, we have the limit points of the cell $C$ as it approaches the blow-up subset $B$.
 In order to find the refinement points above $\mathbf{p}$, we compute a generating set (Groebner basis) $\{ f_1,\ldots,f_k \}$ for $S$ and solve the system of equations
 $$
 f_1 = 0, \ldots, f_k = 0, g = 0, h = 0.
 $$
 
-Note that this procedure only works if the blow-up points have dimension zero, otherwise the Zariski Closure will not be sufficient to find the limit points. 
+Note that this procedure only works if the blow-up points have dimension zero, otherwise the Zariski Closure will not be sufficient to find the limit points.
 
 ### Algorithm for lifting with bad points in $\R^3$
 
-Let $\cal D$ be a cylindrical algebraic decomposition of $\R^n, n \le 3$. If $n < 3$, $\cal D$ already satisfies the frontier condition since there are no bad cells in the decomposition induced by $\cal D$ on $\R^1$. Othewrise $n=3$ and we apply @lazard10, Algorithm 5.15 to $\cal D$ to produce a set of refinement points. This algorithm, written using our notation, is reproduced below. 
+Let $\cal D$ be a cylindrical algebraic decomposition of $\R^n, n \le 3$. If $n < 3$, $\cal D$ already satisfies the frontier condition since there are no bad cells in the decomposition induced by $\cal D$ on $\R^1$. Othewrise $n=3$ and we apply @lazard10, Algorithm 5.15 to $\cal D$ to produce a set of refinement points. This algorithm, written using our notation, is reproduced below.
 
 ---
 [@lazard10, Algorithm 5.15]
@@ -577,7 +577,7 @@ Let $\cal D$ be a cylindrical algebraic decomposition of $\R^n, n \le 3$. If $n 
 **Input:**
 $$({\cal D}, {\cal A})$$
 
-  - $\cal D$: a cylindrical algebraic decomposition of $\R^3$, compatible with $V \subset \R^n$ compatible with, and monotone with respect to, $V \subset \R^n$ such that $\dim(V) \le 2$. 
+  - $\cal D$: a cylindrical algebraic decomposition of $\R^3$, compatible with $V \subset \R^n$ compatible with, and monotone with respect to, $V \subset \R^n$ such that $\dim(V) \le 2$.
 
   - ${\cal A} = {\cal A}_1,{\cal A}_2,{\cal A}_3$ is the family of projection polynomials defining $V$, where each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$.
 
@@ -587,33 +587,33 @@ $$
 {\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^k \}
 $$
 
-A set of refinement points, as described in \@ref(sec:monotone-algorithm). 
+A set of refinement points, as described in \@ref(sec:monotone-algorithm).
 
 ---
 
 - Let $\cal D'$ be the decomposition induced by $\cal D$ on $\R^2$.
 
-- For each $(0,0)$-cell (point) $\mathbf{p}$ of $\cal D'$, determine whether it is a bad cell. $\mathbf{p}$ is a bad cell if there exists a polynomial $f \in {\cal A}_3$ such that $f$ has constant sign on a $(0,0,1)$-cell $C$ of $\cal D$ such that $\mathbf{p} = \projop{2}(C)$. 
+- For each $(0,0)$-cell (point) $\mathbf{p}$ of $\cal D'$, determine whether it is a bad cell. $\mathbf{p}$ is a bad cell if there exists a polynomial $f \in {\cal A}_3$ such that $f$ has constant sign on a $(0,0,1)$-cell $C$ of $\cal D$ such that $\mathbf{p} = \projop{2}(C)$.
 
-(Note that this can easily be done by checking sings of projection factors for each $f \in {\cal A}_3$ assigned to $C$). 
+(Note that this can easily be done by checking sings of projection factors for each $f \in {\cal A}_3$ assigned to $C$).
 
   - Let $g_1 \in {\cal A}_1, g_2 \in {\cal A}_2$ such that $g_1(\mathbf{p}) = 0$ and $g_2(\mathbf{p}) = 0$.
-  
-  - Let ${\cal A'} := {\cal A}_1 \cup {\cal A}_2$. 
+
+  - Let ${\cal A'} := {\cal A}_1 \cup {\cal A}_2$.
 
   - For each $g \in {\cal A'}$, do
-  
-    - If $g \in \Q[x_1]$, then $h := g_2$. Otherwise, $g \in \Q[x_1,x_2]$ and $h := g_1$. 
+
+    - If $g \in \Q[x_1]$, then $h := g_2$. Otherwise, $g \in \Q[x_1,x_2]$ and $h := g_1$.
 
     - Define the saturation
     $$
     I := \langle f, g, 1 - z h \rangle,
     $$
-    where $z$ is a new variable. 
+    where $z$ is a new variable.
 
-    - Compute a generator system $S$, i.e., a Groebner basis, $S$ for the ideal $I$. 
-    
-    - Compute 
+    - Compute a generator system $S$, i.e., a Groebner basis, $S$ for the ideal $I$.
+
+    - Compute
     $$
     L := \{ \rm{sub}_{\mathbf{p}}(f') \in \Q[x_3] \mid f' \in S \}
     $$
@@ -621,75 +621,75 @@ A set of refinement points, as described in \@ref(sec:monotone-algorithm).
     $$
     (c_1,\ldots,c_t)
     $$
-    of $L$. 
-    
+    of $L$.
+
     - Let
     $$
     {\cal R}_{\mathbf{p}} := (c_1,\ldots,c_t).
     $$
-    
-- return $\cal R$. 
+
+- return $\cal R$.
 
 Compute the refinement of sections above bad cells using the same method described in Section \@ref(sec:compute-refinement).
 
 ## Generalisation of Lazard
 
-We can now generalise this result to cells of dimension $\le 2$ in a CAD of arbitrary dimension. 
-Our goal is to construct a CAD of $\R^n$, compatible with $V := V_1 \cup \ldots, \cup V_k$ such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, such that each cell is monotone with respect to $V$ and and each cell $C \subset V$ satisfies the frontier condition.  
-In Section \@ref(sec:quasi-affine), we constructed a decomposition such that ecah cell has constant sign on every polynomial defining $V$, with the result that each cell in the decomposition is smooth. In Section \@ref(sec:monotone-cells), we refined that decomposition so that each cell $C \subset V$ is monotone. 
-In order to extend @lazard10, Algorithm 5.14, we will require this monotonicity property. We will also require an additional property. 
+We can now generalise this result to cells of dimension $\le 2$ in a CAD of arbitrary dimension.
+Our goal is to construct a CAD of $\R^n$, compatible with $V := V_1 \cup \ldots, \cup V_k$ such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, such that each cell is monotone with respect to $V$ and and each cell $C \subset V$ satisfies the frontier condition.
+In Section \@ref(sec:quasi-affine), we constructed a decomposition such that ecah cell has constant sign on every polynomial defining $V$, with the result that each cell in the decomposition is smooth. In Section \@ref(sec:monotone-cells), we refined that decomposition so that each cell $C \subset V$ is monotone.
+In order to extend @lazard10, Algorithm 5.14, we will require this monotonicity property. We will also require an additional property.
 
 ::: {.lemma #lazard-5-2}
 [@lazard10, Proposition 5,2]
-Let $\cal D$ be a CAD of $\R^n$ and $\cal D'$ the decomposition induced by $\cal D$ on $\R^{n-1}$. Let $C$ be a cell of $\cal D$ and $C' := \projop{n-1} (C)$ such that $C'$ is well-bordered. 
-If $p \in \fr{C'}$, then $I := (p \times \R) \cap \fr{C}$ is connected. 
-$I$ is thus a point or a closed segment, either bounded or unbounded. 
+Let $\cal D$ be a CAD of $\R^n$ and $\cal D'$ the decomposition induced by $\cal D$ on $\R^{n-1}$. Let $C$ be a cell of $\cal D$ and $C' := \projop{n-1} (C)$ such that $C'$ is well-bordered.
+If $p \in \fr{C'}$, then $I := (p \times \R) \cap \fr{C}$ is connected.
+$I$ is thus a point or a closed segment, either bounded or unbounded.
 Furthermore, if $C$ is a sector cell, then the set of points of $I$ which do not belong to the boundaries of the section cells delimiting $C$ is either empty or an open interval.
 :::
 
-By @\ref{lem:no-blow-up}, if no cell adjacent to $C$ is bad and the induced decomposition is strong, then $C$ is well-bordered, topologically regular and satisfies the forntier condition. Thus, we need to look at what happens in the neighbourhood of blow-up poits only. 
+By @\ref{lem:no-blow-up}, if no cell adjacent to $C$ is bad and the induced decomposition is strong, then $C$ is well-bordered, topologically regular and satisfies the forntier condition. Thus, we need to look at what happens in the neighbourhood of blow-up poits only.
 
 ::: { .lemma }
-Let $\cal D$ be a sign-invariant CAD of $\R^n$ , $C$ be a cell of $\cal D$ and $C' := \projop{n-1}(C)$ satisfy the frontier condition. If no cell in $\fr{C'}$ is bad, then $C$ satisfies the frontier condition. 
+Let $\cal D$ be a sign-invariant CAD of $\R^n$ , $C$ be a cell of $\cal D$ and $C' := \projop{n-1}(C)$ satisfy the frontier condition. If no cell in $\fr{C'}$ is bad, then $C$ satisfies the frontier condition.
 :::
 
 Proof is either by Lazard or Davenport, Locatelli and Sankaran.
 
 If there is a blow-up point, then the following situation will occur.
 
-::: {.lemma} 
-Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ compatible with a semialgebraic set $V \subset \R^n$ having dimension at most $2$, and suppose that $C \subset V$ is a topologically regular cell in $\mathcal{D}$. 
+::: {.lemma}
+Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ compatible with a semialgebraic set $V \subset \R^n$ having dimension at most $2$, and suppose that $C \subset V$ is a topologically regular cell in $\mathcal{D}$.
 Suppose that $D$ is a cell of $\mathcal{D}$ such that $B := D \cap \fr{ C } \neq \emptyset$ and $B \neq D$. Then either
-  
+
   1. $C$ is a $1$-dimensional section cell whose endpoint, $B$, projects on a bad cell, or
-  2. there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C)$ and $\emptyset \neq D \cap \fr{ E } \neq D$. 
+  2. there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C)$ and $\emptyset \neq D \cap \fr{ E } \neq D$.
 :::
 
 ::: {,proof}
-By the proof of [@lazard10, Theorem 4.4], $D$ will always be a $(0,\ldots,0,1)$-cell in the cylinder above a bad cell $D'$. 
+By the proof of [@lazard10, Theorem 4.4], $D$ will always be a $(0,\ldots,0,1)$-cell in the cylinder above a bad cell $D'$.
 
 Since $\dim(V) \le 2$, $C$ has dimension at most $2$. We consider each case by cell index.
 
-- $(i_1,\ldots,i_{n-1},1)$-cell, where $\sum_{j=1}^{n-1} i_j = 1$: observe that $C$ (if bounded) is delineated by some $(i_1,\ldots,i_{n-1},0)$-cells (one-dimensional curve intervals). Take $B$ to be the one-dimensional interval delineated by the endpoints of these curves. Since $B \neq C$, at least one of these endpoints is not a $(0,,\ldots,0,0)$-cell of $\cal D$. Case 2 applies, taking as $E$ the delineating $(i_1,\ldots,i_{n-1},0)$-cell. 
+- $(i_1,\ldots,i_{n-1},1)$-cell, where $\sum_{j=1}^{n-1} i_j = 1$: observe that $C$ (if bounded) is delineated by some $(i_1,\ldots,i_{n-1},0)$-cells (one-dimensional curve intervals). Take $B$ to be the one-dimensional interval delineated by the endpoints of these curves. Since $B \neq C$, at least one of these endpoints is not a $(0,,\ldots,0,0)$-cell of $\cal D$. Case 2 applies, taking as $E$ the delineating $(i_1,\ldots,i_{n-1},0)$-cell.
 
-- $(i_1,\ldots,i_{n-1},0)$-cells, where $\sum_{j=1}^{n-1} i_j = 1$: consider the previous case, letting $C = E$. 
+- $(i_1,\ldots,i_{n-1},0)$-cells, where $\sum_{j=1}^{n-1} i_j = 1$: consider the previous case, letting $C = E$.
 
-- $(i_1,\ldots,i_{n-1},0)$-cell, where $\sum_{j=1}^{n-1} i_j = 2$: 
-are necesarily the root of a polynomial $f \in \Q[x_1,\ldots,x_n]$ which vanishes identically on $D'$, a $(0,\ldots,0)$ cell in the decomposition induced by $\cal D$ on $\R^{n-1}$. 
-Let $V_r$ be a small neighbourhood (with radius $r > 0$) centered aronud $D'$ and consider $V_r'$, the cylinder above the boundary of $V_r$. Since $C$ is a monotone cell, the maximum and minimum values of $x_n$ in this intersection are obtained on the boundary of $C$, for sufficiently small $r$. The limits, as $r$ tends to $0$, of this maximum and minimum clearly belong to the boundary of $B$, if these limits do not tend to infinity. Note that both the maximum and minimum cannot be infinite, since this would imply that either $B$ is empty, or coincides with $D$. Therefore, the non-infinite limits are the endpointns of some $1$-dimensional cell belonging to the boundary of $C$. Case 2 applies, taking $E$ to be this $1$-dimensional cell. 
+- $(i_1,\ldots,i_{n-1},0)$-cell, where $\sum_{j=1}^{n-1} i_j = 2$:
+are necesarily the root of a polynomial $f \in \Q[x_1,\ldots,x_n]$ which vanishes identically on $D'$, a $(0,\ldots,0)$ cell in the decomposition induced by $\cal D$ on $\R^{n-1}$.
+Let $V_r$ be a small neighbourhood (with radius $r > 0$) centered aronud $D'$ and consider $V_r'$, the cylinder above the boundary of $V_r$. Since $C$ is a monotone cell, the maximum and minimum values of $x_n$ in this intersection are obtained on the boundary of $C$, for sufficiently small $r$. The limits, as $r$ tends to $0$, of this maximum and minimum clearly belong to the boundary of $B$, if these limits do not tend to infinity. Note that both the maximum and minimum cannot be infinite, since this would imply that either $B$ is empty, or coincides with $D$. Therefore, the non-infinite limits are the endpointns of some $1$-dimensional cell belonging to the boundary of $C$. Case 2 applies, taking $E$ to be this $1$-dimensional cell.
 
 - $(0,\ldots,0,1)$- or $(0,\ldots,0,0)$-cells: do not satisfy the hypothesis, there is nothing to do.
 :::
 
-The previous two results mean that we can extend @lazard10 Theorem 5.13 to 2-dimensional cells in sign-invariant decompositions of $\R^n$. 
+The previous two results mean that we can extend @lazard10 Theorem 5.13 to 2-dimensional cells in sign-invariant decompositions of $\R^n$.
 
 ::: {,prop}
-Let $f \in \Q[x_1,\ldots,x_n]$ be an irreducible polynomial given by 
+Let $f \in \Q[x_1,\ldots,x_n]$ be an irreducible polynomial given by
 $$f = g_dx^d + \ldots + g_1x + g_0$$
-with each $g_i \in \Q[x_1,\ldots,x_{n-1}]$, and 
+with each $g_i \in \Q[x_1,\ldots,x_{n-1}]$, and
 $$\mathbf{p} = (p_1,\ldots,p_{n-1})$$
-be a common root of $g_d,\ldots,g_1,g_0$. 
-Let $g_j\in \Q[x_1,\ldots,x_j], j \in \{1,\ldots,n-1\} \setminus \ell$, where $1 \le \ell \le n-1$, be irreducible polynomials having $\mathbf{p}$ as a root. 
+be a common root of $g_d,\ldots,g_1,g_0$.
+Let $g_j\in \Q[x_1,\ldots,x_j], j \in \{1,\ldots,n-1\} \setminus \ell$, where $1 \le \ell \le n-1$, be irreducible polynomials having $\mathbf{p}$ as a root.
 The limits of the common roots of $f$ and the $g_i$'s as $(x_1, x_2) \to \mathbf{p}, (x_1, x_2) \ne \mathbf{p}$ may be computed as solutions of a zero-dimensional
 polynomial system.
 :::
@@ -697,16 +697,16 @@ polynomial system.
 ::: {.proof}
 **This is wrong!**
 
-Since $f$ is irreducible, it has at least two coefficients, $g_i,g_j \in \Q[x_1,\ldots,x_{n-1}]$, whose GCD is a constant. 
-Therefore, any ideal generated by these coefficients has dimension zero. Any ideal containing these coefficients also contains another element, $h$, which is not a multiple of $g$. 
+Since $f$ is irreducible, it has at least two coefficients, $g_i,g_j \in \Q[x_1,\ldots,x_{n-1}]$, whose GCD is a constant.
+Therefore, any ideal generated by these coefficients has dimension zero. Any ideal containing these coefficients also contains another element, $h$, which is not a multiple of $g$.
 
 The saturation by $h$ of the ideal $\langle f,g \rangle$ is defined as the ideal
 $$
 S := \langle f, g, 1 - zh \rangle \cap \Q[x_1,x_2,x_3].
 $$
-The irreducible components of the zero set of $S$ are those of the zero set of $\langle f,g \rangle$ at which $h$ is not identically zero. It follows that the vertical line $\{ x_1 = p_1, x_2 = p_2 \}$ which is part of the zero set of $f$ ,$g$ and $h$, is not contained in the zero set of $S$. Meanwhile, the zero set of $S$ contains the limit points we are interested in finding. 
+The irreducible components of the zero set of $S$ are those of the zero set of $\langle f,g \rangle$ at which $h$ is not identically zero. It follows that the vertical line $\{ x_1 = p_1, x_2 = p_2 \}$ which is part of the zero set of $f$ ,$g$ and $h$, is not contained in the zero set of $S$. Meanwhile, the zero set of $S$ contains the limit points we are interested in finding.
 
-It follows that the ideal generated by $S$ and the coefficients $g_0,\ldots,g_d$ of $f$ is zero-dimensional and the limits of $\{ f=0,g=0 \}$ as $(x_1,x_2) \to \mathbf{p}$ can be computed as the zeros of $S$. 
+It follows that the ideal generated by $S$ and the coefficients $g_0,\ldots,g_d$ of $f$ is zero-dimensional and the limits of $\{ f=0,g=0 \}$ as $(x_1,x_2) \to \mathbf{p}$ can be computed as the zeros of $S$.
 :::
 
 
