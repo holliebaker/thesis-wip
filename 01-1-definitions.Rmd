@@ -12,6 +12,14 @@ The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets o
 1. If $A, B \in {SA}_n$, then $A \cup B$, $A \cap B$ and $\R^n \setminus A$ are elements of ${SA}_n$. 
 :::
 
+::: {.definition}
+Let $X \subset \R^n$ and $Y \subset \R^m$. A mapping $f : X \to Y$ is called semialgebraic if its graph
+$$
+\{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}
+$$
+is a semialgebraic set. 
+:::
+
 A semialgebraic set can be represented as either a quantifier-free or first-order Boolean formula.
 
 ::: { .definition #qff }
@@ -158,7 +166,7 @@ Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} : X \
 
 ::: { .definition #monotone-cell }
 [@bgv15, Definition 2.5]
-$Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph of a monotone map $\mathbf{f} : X \to H$ where $H \subset \opspan{x_1,\ldots,x_n}$ and $X \subset \opspan{x_1,\ldots,x_n} \setminus H$. If $X \subset \opspan{x_1,\ldots,x_n}$ (i.e., $H = \emptyset$, equivalently $Y$ coincides with $X$), tehn $Y$ is called a semi-monotone set. 
+$Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph of a monotone map $\mathbf{f} : X \to H$ where $H \subset \opspan{x_1,\ldots,x_n}$ and $X \subset \opspan{x_1,\ldots,x_n} \setminus H$.
 :::
 
 ::: { .example }
