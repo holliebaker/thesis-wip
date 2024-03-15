@@ -44,7 +44,7 @@ Let $S \subset \R^{n+1}$ and $\projop{n) : \R^{n+1} \to \R^n$ be the projection 
 
 One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formmula. One useful application of this theorem is that the closure, $\cl(S)$, of any semialgebraic set $S \subset \R^n$ is also semialgebraic. 
 
-::: { .proposition #union-of-conjuctionss }
+::: { .proposition #union-of-conjunctionss }
 Every semialgebraic subset of $\R^n$ is the (not necessarily disjoint) union of finitely many semialgebraic subsets of the kind
 $$
 \{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0 \land g_1(\mathbf{x}) > 0 \land \cdots \land g_k(\mathbf{x}) > 0 \}

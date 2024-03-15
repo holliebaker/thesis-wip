@@ -40,7 +40,7 @@ According to [@lazard10, TODO], in dimension $\le 2$, there is nothing to do. Fu
 
 
 ::: { .lemma #no-blow-up }
-[@lazald10, Theorem 4.4]
+[@lazard10, Theorem 4.4]
 Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ and $C$ be a cell of $\mathcal{D}$ with $C' := \proj_{\R^{n-1}}(C)$. If the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and none of $C'$ and any cell adjacent to it is bad, $C$ is well-bordered, and $\fr{C}$ is a union of some cells of $\mathcal{D}$.
 :::
 
