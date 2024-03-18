@@ -1,11 +1,13 @@
 # Smooth Stratification {#sec:smooth-strat}
 
-We now turn our attention to an algorithm for computing a smooth stratification of a semialgebraic set. A smooth stratification is a partition of a semialgebrac set into smooth manifolds. [@whitney1965] proved that every complex (and real) analytic variety admits a smooth stratification. Later, [@thom1969] proved that every analytic set admits a smooth stratification and [@le2010] proved that any set definable in an O-minimal structure also admits a Whitney stratification.
+Before turning out attention to cylindrical decompositions, we will present another useful algorithm for decompositng a semialgebraic set. A smooth stratification is a partition af a set into smooth manifolds. 
+@whitney1965 proved that every complex, and real, analytic variety, i.e., an analytic set defined by a system of analytic equations, admits a smooth stratification. @thom1969 then extended this result by proving that every analytic set admits a smooth stratification. Later, @le2010 proved that every set in the far more general class of sets definable in an O-minimal structure admits a Whitney stratification. 
 
-In this section, an algorithm due to [@gv1995] for computing a basic weak stratification of an elementary semi-pfaffian set, such that each of the strata is "nicely defined" will be presented.
+In this section, an algorithm due to @gv1995 (also summarised in @gv04, Section 6) for computing a basic weak stratification of an elementary semi-pfaffian set, such that each of the strata is "nicely defined" will be presented.
 
-::: {,definition}
-Let $X \subset \R^n$ be a semianalytic set. $X$ is nonsingular and has dimension $k$ at a point $x_0 \in X$ if there exist real analytic functions $$
+::: {.definition}
+[@gv04, Definition 6.1]
+Let $X \subset \R^n$ be a semianalytic set. $X$ is nonsingular and has dimension $k$ at a point $x \in X$ if there exist real analytic functions $$
 h_1,\ldots,h_{n-k}
 $$
 defined in an open set $U$ containing $x_0$ such that
@@ -21,25 +23,31 @@ $X \subset Y$ is called effectively nonsingular (of dimension $k$) if functions 
 :::
 
 ::: {.definition}
-A basic weak stratification of a semi-pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ where each $X_k$ is effectively nonsingularand has codimension $k$.
+[@gv04, Definition 6.2]
+A finite basic weak stratification of a semi-pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ where each $X_k$ is effectively nonsingularand has codimension $k$.
 :::
+
+Note that this definition does not assume any other nice properties of the manifolds $X_k$. E.g., $\fr(X_k)$ need not be a union of other strata.
 
 ### Description of the algorithm
 
-We now present the algorithm from @gv1995 as it is applied to semialgebraic sets. Since polynomials are a sub-class of Pfaffian functions, the algorithm can be applied directly to semialgebraic sets. However, in the original form, a bound on the number of partial derivatives is computed. For the semialgebraic case, we simply need to take the degree of polynomials defining the semialgebraic set.
+Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets wwith almost no modifications. Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an oracle will not be needed in this variation of the algorithm. 
+The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives needed to define all the strata is based on the format of the input set. As every polynomial has  a finite number of partial derivatives, this bound will simply be the dergee of the polynomial in the semialgebraic case.
 
-::: {,definition}
-Let $f \in \Z[x_1,\ldots,x_n]$ be a polynomial and let $(m_1,\ldots,m_n) \subset \Z_{\ge 0}^n$ be a multi-index of its partial derivative. I.e., we write
+We will need the following notation for patial derivatives and the partial differential operator. 
+
+::: {.definition}
+[@gv1995, Definition 2]
+Let $f \in \Z[x_1,\ldots,x_n]$ be a polynomial and let $(m_1,\ldots,m_n) \subset \Z_{\ge 0}^n$ be a multi-index associated to one of its partial derivatives. 
+I.e., we write
 $$
-\partial^{(m_1,\ldots,m_n)}
-$$
-to mean
-$$
+\partial^{(m_1,\ldots,m_n)} =
 \dfrac{\partial^{m_1} f}{\partial x_1} \cdots \dfrac{\partial^{m_n} f}{\partial x_n}.
 $$
 :::
 
 ::: {.definition}
+[@gv1995, Definition 2]
 We define the partial differential operator $\partial_{\mathbf{h}, \mathbf{i}, j} f$ (where the argument $f$ is a polynomial) as the determinant
 $$
 \det\begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial h_{1}}{\partial x_{i_{k}}} & \dfrac{\partial h_{1}}{\partial x_{j}}\\
@@ -51,101 +59,136 @@ $$
 We write $\partial^m_{\mathbf{h}, \mathbf{i}, j}$ to mean the $m$-th iteration of $\partial_{\mathbf{h}, \mathbf{i}, j}$.
 :::
 
+We now present the algorithm from @gv1995, Theorem 2.
+
 ---
+
+$$\rm{Stratify}(k, {\cal G}, \mathbf{h}, \mathbf{i}, \mathbf{g})$$
+
 **Input:**
-$$(k, \mathbf{G}, \mathbf{H}, \mathbf{I}, \mathbf{K})$$
 
-  - $0 \le k \le n$, an integer, representing codimension of strata
+  - $0 \le k \le n$, an integer, representing codimension of strata to be constructed
 
-  - $\mathbf{G}$ = (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ is a list of polynomials.
+  - ${\cal G} = ((i_n, \ldots, i_{k+1},j), f) \subset \Z_{\ge 0}^{n-k+1} \times \Z[x_1,\ldots,x_n]$ is a set of pairs of partial multi-indices and polynomials such that $\vert \cal{G} \vert = s$,
 
-  - $\mathbf{H} = (h_k, \ldots,h_1, h_0) \subset \Z[x_1,\ldots,x_n]$ is a set of polynomials, $h_0 = 0$.
+  - $\mathbf{h} = (h_k, \ldots,h_1, h_0) \subset \Z[x_1,\ldots,x_n]$ is a list of polynomials such that $h_0 = 0$,
 
-  - $\mathbf{I} = (i_k, \ldots, i_1,i_0) \subset \Z_{\ge 0}^k$ is a multi-index, $i_0 = 0$.
+  - $\mathbf{i} = (i_k, \ldots, i_1,i_0) \subset \Z_{\ge 0}^k$ is a multi-index, $i_0 = 0$.
 
-  - $\mathbf{K} = (g_1,\ldots,g_t) \subset \Z[x_1,\ldots,x_n]$ is a set of polynomials, those appearing in the inequalities defining the set.
-
-  (Note: $\mathbf{H}$ without $h_0$ and $\mathbf{I}$ without $i_0$ are the frst two arguments to the partial differential operator.)
+  - $\mathbf{g} = (g_1,\ldots,g_t) \subset \Z[x_1,\ldots,x_n]$ is a set of polynomials.
 
 **Output:**
 $$
-(X_0, \ldots, X_n)
+{\cal X} = (X_{k+1}, \ldots, X_0)
 $$
-  - forms a partition of $X$ such that each $X_i, 0 \le i \le n$ is a (possibly empty) effectively nonsingular stratum of codimension $i$.
+
+  - $X_i, 0 \le i \le n$ is a (possibly empty) effectively nonsingular stratum of codimension $i$.
 
 ---
 
-We proceed by induction on $i_0$.
+We proceed by induction on $i_k$.
 
-- Base case: $i_0 = n$, return immediately.
+- Base case: $i_k = n$, return $()$.
 
 - Recursive case:
 
-  - Initialise $$X' := X.$$
+  - Initialise.
+    
+    - Set $$X_0 = X,$$
+    - Let $${\cal X} := (\emptyset, \ldots, \emptyset)$$
+    be the initial set of strata of codimension greater than $\le k+1$. 
 
-  - Consider each multi-index $\mathbf{m} = (i_n,\ldots,i_{k+1},j} \subset \Z_{\ge 0)^{n-k} \times \{1,\ldots,s\}$ in ascending lexicographical order, beginning with $$
+  - Consider each multi-index $\mathbf{m} = (i_n,\ldots,i_{k+1},j) \subset \Z_{\ge 0}^{n-k} \times \{1,\ldots,s\}$ in ascending lexicographical order $\prec$, beginning with $$
   (0,\ldots,0,1,1).
   $$
-
-  Index $(i_n,\ldots,i_1,i_0)$ has the following property:
+  Index $(i_n,\ldots,i_1,j)$ has the property that
   $$
-  M_{i_0} \preceq (i_n,\ldots,i_1) \preceq (0,\ldots,1), M_{i_0} = \def(f_i).
+  (0,\ldots,1) \preceq (i_n,\ldots,i_1) \preceq M_j
   $$
+  where $M_j = (\deg_n(f_j),\ldots,\deg_1(f_j))$ is the maximal index of each polynomial $f_j$ appearing in $\cal G$.
 
-    - Let $(\mathbf{J}, h_k) \in \mathbf{G}$ such that $$
-    \mathbf{J} = (0, \ldots, 0, i_{\ell} - 1, i_{\ell - 1}, \ldots, i_{k+1}).
+    - Let $(\mathbf{j}, h) \in {\cal G}$ such that $$
+    \mathbf{j} = (0, \ldots, 0, i_{\ell} - 1, i_{\ell - 1}, \ldots, i_{k+1},j).
     $$
 
     - Compute
     $$
-    s_k := \partial_{(h_1,\ldots,h_k), (i_1,\ldots,i_k), i_\all} h_k
+    s := \partial_{(h_1,\ldots,h_k), (i_1,\ldots,i_k), i_\ell} h
     $$
 
-    - Define
+    - Define the sets
     $$
-    Y_k := \{ \mathbf{x} \in X' \mid s_k(\mathbf{x}) \ne 0 \}
+    Y := \{ \mathbf{x} \in X' \mid s(\mathbf{x}) \ne 0 \},
     $$
-    (Ntoe $h_1(\mathbf{x}) = 0$ for all $\mathbf{x} \in Y_k$.)
-
-    - Define
+    (note $h(\mathbf{x}) = 0$ for all $\mathbf{x} \in Y$) and
     $$
-    U_k := \{ \mathbf{x} \in \R^n \mid h_k(\mathbf{x}) = 0, s_k(\mathbf{x} \ne 0, g_1(\mathbf{x}) > 0 , \ldots, g_l(\mathbf{}) > 0 \},
+    U := \{ \mathbf{x} \in \R^n \mid h(\mathbf{x}) = 0, s(\mathbf{x} \ne 0, g_1(\mathbf{x}) > 0 , \ldots, g_t(\mathbf{x}) > 0 \},
     $$
-    a nonsingular subset of $\R^n$ having codimension $k-1$
+    $U$ is a nonsingular subset of $\R^n$ having codimension $k+k$.
 
-    - If $Y_k$ is an open subset of $U_k$, then $Y_k$ is nonsingular of codimension $k-1$.
+    - If $Y$ is an open subset of $U$, then $Y$ is nonsingular of codimension $k+1$.
 
-      - Update $$X_k := X_k \cup Y_k.$$
+      - Add $Y$ to the set of strata of codimension $k+1$. Set
+      $$X_{k+1} := X_{k+1} \cup Y.$$
 
-      - Add polynomial $s_k$, i.e.,
+      - and add polynomial $s$ to $\cal G$. Set
       $$
-      \mathbf{G} := \mathbf{G} \cup \{ ((i_\ell,\ldots,i_1), s_k) \}
+      {\cal G} := {\cal G} \cup \{ ((i_\ell,\ldots,i_1,j), s) \}
       $$
 
-    - Otherwise, $Y_k$ is not smooth. Call recursively
+    - Otherwise, $Y$ is not smooth, so we proceed recursively.
+    
+    - Compute $$
+    {\cal X'} := {\rm Stratify}(k+1, {\cal G}', (s,h_k,\ldots,h_1,0), (i_\ell,i_k,\ldots,i_1,0), \mathbf{g})
     $$
-    Stratify((k+1, \mathbf{G}, (i_\ell,i_k,\ldots,i_1,0), (s_k,h_k,\ldots,h_1,0), \mathbf{K})
-    $$
+    where ${\cal G}' = \{ ((0,\ldots,0,i), g) \in \Z_{\ge 0}^{n-\ell + 1} \mid g \in {\cal G} \}$ such that partial index $(0,\ldots,0,i-1)$ in $\cal G'$ immediately preceeds $(0,\ldots,0,i)$ if index $(i_n,\ldots,i_k,j)$ immediately preceeds $(i'_n,\ldots,i'_k,j')$ in $\cal G$. In other words, elemens of $\cal G'$ respect the same lexicographical order on indices as in $\cal G$. 
 
-    - Update
-    $$
-    X' := \{ \mathbf{x} \in X' \mid s_k(\mathbf{x}) = 0 \},
-    $$
-    a proper (possibly empty) subset of old $X'$.
+      - Add the new strata from $\cal X'$ to $\cal X$. Set
+      $$
+      {\cal X} = (X_{k+1}, X_k \cup X'_k, \ldots, X_0 \cup X'_0)
+      $$
+      where ${\cal X'} = (X'_k, \ldots, X'_0)$.
 
-    - If $X' = \emptyset$, return. Otherwise, continue with the next index with respect to lexicographical order.
+    - Update $X'$ by removing the points from $X$ where $s$ does not vanish. Set
+    $$
+    X = X', X' := \{ \mathbf{x} \in X \mid s(\mathbf{x}) = 0 \},
+    $$
+    which is a proper (possibly empty) subset of $X$.
+
+    - If $X' \ne \emptyset$, proceed to the next index with respect to the lexicographical order $\prec$.
+
+  - Once all indices have been exhausted, return
+  $$
+  {\cal X} = (X_{k+1},\ldots,X_0)
+  $$
+  If $k = 0$, there is a special case. If every derivatcive $s$ vanishes identically on the input set, then the entire set is smooth. Return
+  $$
+  {\cal X} := (\emptyset, \ldots, \emptyset, X_0)
+  $$
+  where $X_0 = \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}), \ldots, f_s(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0 \}$.
 
 ---
 
-Let $X \subset \R^n := \{ f_1 = 0 \land \cdots \land f_k = 0 \land g_1 > 0 \land \cdots \land g_l > 0 \}$ be a semialgebraic set. We first apply some pre-processing to the polynomials defining $X$. Let $$
-\mathbf{G} := ((0,\ldots,0,1), f_1),\ldots, ((0,\ldots,0,s),f_s)).
+The algorithm is then called as follows. 
+Let 
 $$
-Then the algorithm is called as follows
+X = \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = 0, \cdots, f_k(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \cdots, g_t(\mathbf{x}) > 0 \} \subset \R^n
 $$
-$\cal{X} = \rm{tratify(0, \mathbf{G}, (0), (0), (g_1,\ldots,g_t))$.
+be a semialgebraic set with each polynomial $f_i, g_j \in \Z[x_1,\ldots,x_n], 1\le i \le s, 1 \le j \le t$. 
+We first apply some pre-processing to the polynomial equations defining $X$ to initialise their indices. Let 
 $$
+{\cal G} := \{ (0,\ldots,0,j), f_j) \mid 1 \le j \le s \}
+$$
+and compute
+$$
+\cal{X} := {\rm Stratify}(0, {\cal G}, (0), (0), (g_1,\ldots,g_t)).
+$$
+We thus obtain the set of strata ${\cal X} = (X_n,\ldots,X_0$. If $X_0 = \emptyset$, then each $X_i$ is a smooth subset of $X$ of codimension $i$. Otherwise, $X_0$ coincides with $X$. Note, in the latter case, that $X_0$ provides no information on the dimension of $X$. 
 
-A couple of shortcuts can be taken in the implementation to make the code simpler and more efficient.
+
+### Implementation details
+
+The algorithm may be implemented as above, but a couple of shortcuts can be taken to simplify the code and make the algorithm work slightly more efficiently.
 First, suppose that we are considering index
 $$
 (0,\ldots,0,i_\ell,\ldots,i_{k+1},i_k,\ldots,i_1,i_0).$$
@@ -156,10 +199,12 @@ $$
 $$
 has already been computed, so it can be taken directly from the list $\mathbf{G}$.
 In fact, there is a convenient way to find the function with index $(0,\ldots,0,i_\ell - 1, \ldots,i_1,i_0)$. Let us first illustrate this with an example. Let $M = (1,2,2)$ and consider the lexicographically ordered list of indices
+$$
 \begin{matrix}
 L_1 :=\ &  (0,0,0),&(0,0,1),&(0,0,2),&(0,1,0),&(0,1,1),&(0,1,2),&(1,0,0),&(1,0,1)&\ldots\\
 L_2 := \ & & (0,0,0),&(0,0,1),&(0,0,0),&(0,0,1),&(0,0,2),&(0,0,0),&(0,0,1)&\ldots.\\
 \end{matrix}
+$$
 Observe that for indices $(0,0,1)$, $(0,1,0)$ and $(1,0,0)$ in $L_1$, the corresponding element in $L_2$ is $(0,0,0)$ and the corresponding elements for subsequent indices are those in the lexicographical order.
 I.e., we see that the index of $h_k$ "chases after" the index of $s_k$, resetting each time $\ell$ is incremented.
 More precisely, when $\ell = 1$ and $s_1$ has index $(0,\ldots,0,i),i>0$, $h_1 has index $(0,\ldots,0,i-1)$. I.e., our initial "chase index" is the previous element in the list. When $\ell$ is incremented, we need to return to the first element in the list, $(0,\ldots,0)$ and proceed lexicographically through the indices until $\ell$ is incremented again, at which point we return to the beginning of the list. This gives us the property that when $h_k$ has index $(0,\ldots,0,i_\ell,i_{\ell-1},\ldots,i_1)$, $h_1$ will have index $(0,\ldots,0,i_\ell - 1,i_{\ell - 1},\ldots,i_1)$ while only requiring two very basic list operations: get the next element and return to the beginning. In the example, we considered only one polynomial. To extend to multiple polynomials, since each will have a different $M$, we need to keep a separate "chase list" for each one.

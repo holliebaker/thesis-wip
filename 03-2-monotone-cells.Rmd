@@ -21,9 +21,9 @@ The construction proceeds by induction on $n$.
   - Otherwise, $C$ has index $\{1,i_2,\dots,i_n\} \in \{0,1\}^n$. Let $\alpha$ be the smallest among $\{2,\dots,n\}$ such that $i_\alpha = 1$.
     Then $C' := \proj op{\alpha}(C)$ is a 2-dimensional sector cell and $C$ is the graph of a quasi-affine map
     $$
-    \mathbb{f} = (f_1,\dots,f_{n-2}) : \opspan{x_1,x_\alpha} \to \opspan{x_2,\ldots,x_{\alpha - 1}, x_{\alpha+1},\ldots,x_n}.
+    \mathbf{f} = (f_1,\dots,f_{n-2}) : \opspan{x_1,x_\alpha} \to \opspan{x_2,\ldots,x_{\alpha - 1}, x_{\alpha+1},\ldots,x_n}.
     $$
-    Since $\mathbb{f}$ is quasi-affine, each component $f_j : \opspan{x_1,x_\alpha} \to \opspan{x_j}$ is quasi-affine, too.
+    Since $\mathbf{f}$ is quasi-affine, each component $f_j : \opspan{x_1,x_\alpha} \to \opspan{x_j}$ is quasi-affine, too.
 
     Let $X \subset \opspan{x_1,x_\alpha}$. By [@bgv15, Lemma 3.18], there exists a refinement of the CAD of $\opspan{x_1,x_\alpha}$, obtained by intersecting $X$ with straight lines and half-planes of the kind
     $$
@@ -77,30 +77,29 @@ $$
 
 Define
 \begin{align}
-\phi &:\> C'' \to \R & \psi &:\> C'' \to \R\\
-\phi(x_1) &= f(x_1,\mathbf{h}(x_1)) & \psi(x_1) &= g(x_1,\mathbf{h}(x_1))
-
+\varphi &:\> C'' \to \R & \psi &:\> C'' \to \R\\
+\varphi(x_1) &= f(x_1,\mathbf{h}(x_1)) & \psi(x_1) &= g(x_1,\mathbf{h}(x_1))
 (\#eq:phi-psi)
 \end{align}
 
-Observe that $\phi$ and $\psi$ are continuous, definable functions. By the definition of $f$ and $g$, we also have $\phi(x_1) < \psi(x_1)$ for all $x_1\in X'$.
+
+Observe that $\varphi$ and $\psi$ are continuous, definable functions. By the definition of $f$ and $g$, we also have $\phi(x_1) < \psi(x_1)$ for all $x_1\in X'$.
 
 Thus, we can write
 \begin{equation}
-X = \{ (x_1,t) \mid x \in X', \phi(x_1) < t < \psi(x_1) \}.
-
+X = \{ (x_1,t) \mid x \in X', \varphi(x_1) < t < \psi(x_1) \}.
 (\#eq:cell-x)
 \end{equation}
 It is clear that $X$ is a cylindrical sector cell.
-By the definition of sector cell, the bottom of $X$ is the graph of $\phi$ and the top of $X$ is the graph of $\psi$.
+By the definition of sector cell, the bottom of $X$ is the graph of $\varphi$ and the top of $X$ is the graph of $\psi$.
 
 Now consider the family
 $$
-{\cal I}(c) := \{ t \mid \phi(c) < t < \psi(c) \}.
+{\cal I}(c) := \{ t \mid \varphi(c) < t < \psi(c) \}.
 $$
 Using Equation \@ref(eq:cell-x), it is easy to deduce that if $c \in X'$ then ${\cal I}(c)$ contains a single open interval. On the other hand, if $c \not \in X'$, ${\cal I}(c)$ is clearly empty.
 
-It follows that $\gamma$ consists of the points of the top and bottom of $X$, which are the graphs of functions $\psi$ and $\phi$ respectively.
+It follows that $\gamma$ consists of the points of the top and bottom of $X$, which are the graphs of functions $\psi$ and $\varphi$ respectively.
 :::
 
 The refinement is achieved by finding a set of real numbers
@@ -117,21 +116,20 @@ $$
 $$
 contains only monotone curve intervals.
 
-Applying Lemma \@ref(lem:gamma-top-bottom) to $C$, we obtain continuous definable functions $\phi,\psi : X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively.
+Applying Lemma \@ref(lem:gamma-top-bottom) to $C$, we obtain continuous definable functions $\varphi,\psi : X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively.
 
 Let $$
 (c_1,\ldots,c_t)
 $$
-be the critical points of functions $\phi$ and $\psi$. Then, for all $1 \le i < t$, $\phi$ (resp $\psi$) is either strictly increasing in, strictly decreasing in, or independent of $x_1$ on the interval $(c_i, c_{i+1})$.
+be the critical points of functions $\varphi$ and $\psi$. Then, for all $1 \le i < t$, $\phi$ (resp $\psi$) is either strictly increasing in, strictly decreasing in, or independent of $x_1$ on the interval $(c_i, c_{i+1})$.
 
-### Finding the critical points of $\phi$ and $\psi$ {#sec:lagrange-refinement}
+### Finding the critical points of $\varphi$ and $\psi$ {#sec:lagrange-refinement}
 
 We now discuss how to find these critical points.
 
 Let
 \begin{equation}
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
-
 (\#eq:proj-fac-set)
 \end{equation}
 where ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$, be the projection factor set for $\cal D$. For convenience, we say that $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
@@ -159,8 +157,7 @@ In the first case, there is nothing to do, since $C_T$ can be thought of as bein
 In the second case, $C_T$ can be written as
 \begin{equation}
 \{ (x_1,\ldots,x_\alpha) \mid a < x_1 < b, g_2(x_1,\ldots,x_{\alpha - 1}) = 0, \ldots, g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1}) = 0, x_\alpha = h(x_1,\ldots,x_{\alpha - 1}) \}.
-
-(#eq:c-alpha-top)
+(\#eq:c-alpha-top)
 \end{equation}
 By **TODO** $C_T$ is $C^\infty$ smooth, therefore $h$ is a differentiable function everywhere in $C'$.
 
@@ -177,7 +174,6 @@ where $\mathbf{x} \in \R^n$ and $(\lambda_1,\ldots,\lambda_k) \in \R^k$ are new 
 Critical points can be found by solving the system of equations
 \begin{equation}
 \dfrac{\partial f}{\partial x_i} - \lambda_1 \dfrac{\partial g_1}{\partial x_i} - \cdots - \lambda_k \dfrac{\partial g_k}{\partial x_i}= 0,
-
 (\#eq:lagrange)
 \end{equation}
 where $1\le i \le n-1$,
@@ -209,7 +205,6 @@ Hence, optimal values for $(x_1,\ldots,x_{\alpha-1})$ exist and satisfy
 \vdots &  &  & \vdots\\
 \dfrac{\partial g_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{\alpha-1}} & \dfrac{\partial h}{\partial x_{\alpha-1}}
 \end{pmatrix}=0.
-
 (\#eq:jacobi-det)
 \end{equation}
 :::
@@ -221,7 +216,6 @@ C_T := \{ \mathbf{x} \in \R^\alpha \mid \projop{\alpha - 1}(\mathbf{x}) \in C', 
 $$ Thus, there exists an algebraic variety
 \begin{equation}
 V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0 g_\alpha(\mathbf{x}) = 0 \right\}
-
 (\#eq:variety-v)
 \end{equation}
 such that $C_T \subset V$, where $g_2,\ldots,g_{\alpha - 1}$ are the same polynomials appearing in Equation \@ref(eq:c-alpha-top).
@@ -230,7 +224,6 @@ Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$, while $h$ from Equation \@ref(
 We need to compute derivatives of the implicit $g_\alpha$. I.e.,
 \begin{equation}
 \dfrac{d x_\alpha}{d x_i} = \dfrac{\partial g_\alpha / \partial x_i}{\partial g_\alpha / \partial x_\alpha}
-
 (\#eq:total-deriv)
 \end{equation}
 for $1\le i \le \alpha - 1$.
@@ -250,7 +243,6 @@ where $J'_T$ is the matrix from Equation \@ref(eq:jacobi-det) with the $\partial
 \vdots &  &  & \vdots\\
 \dfrac{\partial g_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{\alpha-1}} & \dfrac{\partial g_\alpha}{\partial x_{\alpha-1}}
 \end{pmatrix}=0.
-
 (\#eq:jacobi-det-2)
 \end{equation}
 
@@ -258,20 +250,18 @@ Observe that $J_T$ is a rational function: a fraction in which the numerator and
 \{ J'_T = 0, d_T \ne 0 \}
 $$ should be found.
 Observe that this is a semialgebraic set, since
-$ \{ d_T(\mathbf{x}) \ne 0 \} \leftrightarrow \R^{\alpha - 1 } \setminus \{ d_T(\mathbf{x}) = 0 \} $.
+$\{ d_T(\mathbf{x}) \ne 0 \} \leftrightarrow \R^{\alpha - 1 } \setminus \{ d_T(\mathbf{x}) = 0 \}$.
 Note that, when $\deg(d_T) = 0$, $d_T$ is a constant and therefore has no solutions. Thus, the condition $d_T = 0$ can be dropped.
 
 Repeating this process to obtain $J'_B$ and $d_B$, if sector cell $C$ is bounded from below, we have a set of polynomial equations
 \begin{equation}
 \{ g_2,\ldots,g_{\alpha-1}, J'_B, J'_T \},
-
-(#eq:lagrange-solve)
+(\#eq:lagrange-solve)
 \end{equation}
 and inequalities
 \begin{equation}
 \{ s_1 g_{1,1} > 0, \ldots, s_\ell g_{1,\ell} > 0, d_B \ne 0, d_T \ne 0 \}
-
-(#eq:lagrange-solve-ineqs)
+(\#eq:lagrange-solve-ineqs)
 \end{equation}
 where $\{ g_{1,1},\ldots,g_{1,\ell} \} \subset \Z[x_1]$ are polynomials from ${\cal A}_1$ and $s_1,\ldots,s_\ell \in \{-1,1\}$ such that $$
 x \in X' \leftrightarrow s_1 g_{1,1}(x) > 0 \land \ldots \land s_\ell g_{1,\ell}(x) > 0.
@@ -593,7 +583,7 @@ Then:
 
   - **(*)** For $\delta \in \{B, T\}$, if $C_\delta$ is not empty, do:
 
-    - Let ${\rm sub}_{\mathbf{b}} (g_j) \in \Z[x_{k+1,\ldots,x_j}]$ be such that $g_\alpha(\mathbf{x}) = 0$ for all $\mathbf{x} \in $C'_\delta$.
+    - Let $\rm{sub}_{\mathbf{b}} (g_j) \in \Z[x_{k+1,\ldots,x_j}]$ be such that $g_\alpha(\mathbf{x}) = 0$ for all $\mathbf{x} \in C'_\delta$.
 
     - Compute
     $$

@@ -57,7 +57,7 @@ Let $\dim(C) = d + 1$. $\partial C$ consists of
 - the cells in $\partial C_B$ and $\partial C_T$, which have dimension $< d$ and are contained in $\partial C' \times \R$,
 - the intervals (which may be empty) bounded by the points in $\partial C_B$ and $\partial C_T$, contained in $C' \times \R$. Since $C_B$ and $C_T$ are section cells, they are roots of polynomials $f$ and $g$ and, if finite, the points in $\partial C_B$ and $\partial C_T$ are also roots of $f$ and $g$ (respectively). Therefore, these intervals are contianed in some cells of $\cal D$. More precisely, the cells with dimension $d$ contained in $\partial C' \times \R$ are exactly those lying over a cell $C'' \subset \partial C'$ with dimension $d-1$.
 
-A cell of dimension $< d$ either belongs to $\partial C_B$ or $\partial C_T$, or is a sector over a cell $D \subest \partial C'$ having dimension less than $d-1$.
+A cell of dimension $< d$ either belongs to $\partial C_B$ or $\partial C_T$, or is a sector over a cell $D \subset \partial C'$ having dimension less than $d-1$.
 As $C'$ is well-bordered, $D$ belongs to the boundary of some cell $E \subset \partial C'$ having dimension $d-1$.
 Thus, the sector above $D$ is contained in the boundary of the sector above $E$, which has dimension $d$
 
@@ -345,7 +345,7 @@ Given an expression $f = \sum^t_{i=1} h_i g_i$ with minimal $\delta$, we begin b
 
 \begin{align}
 f=&\sum_{{\rm multideg}(h_{i}g_{i})=\delta}h_{i}g_{i}+\sum_{{\rm multideg}(h_{i}g_{i})<\delta}h_{i}g_{i}\\
-=&\sum_{{\rm multideg}(h_{i}g_{i})=\delta}(h_{i}-{\rm lt}(h_{i}))g_{i}+\sum_{{\rm multideg}(h_{i}g_{i})<\delta}h_{i}g_{i} (#eq:multideg-delta-simp)
+=&\sum_{{\rm multideg}(h_{i}g_{i})=\delta}(h_{i}-{\rm lt}(h_{i}))g_{i}+\sum_{{\rm multideg}(h_{i}g_{i})<\delta}h_{i}g_{i} (\#eq:multideg-delta-simp)
 \end{align}
 The second and third sums in Equaton \@ref(eq:multideg-delta-simp) have multidegree $< \delta$. Since $\multideg(f) < \delta$, the multidegree of the first sum in Equation \@ref(eq:multideg-delta-simp) must also have multidefree $< \delta$.
 
@@ -360,13 +360,13 @@ $$
 $$
 is a linear combination of the coeffinients in $K$ of the $S$-polynomials
 $$
-S(\lt(h_i) g_i, \lt(h_j), g_j),
+S(\ldt(h_i) g_i, \ldt(h_j), g_j),
 $$
-since each $\lt(f_i) g_i$ has multidegree $\delta$ while the sum has multidegree $< \delta$.
+since each $\ldt(f_i) g_i$ has multidegree $\delta$ while the sum has multidegree $< \delta$.
 
 We have
 \begin{equation}
-(#eq:sum-lt)
+(\#eq:sum-lt)
 S(\rm{lt}(h_i) g_i, \rm{lt}(h_j) g_j) = x^{\delta - \gamma_{i,j}} S(g_i,g_j)
 \end{equation}
 where
@@ -374,12 +374,12 @@ $x^{\gamma_{i,j}} = \lcm( \lm(g_i), \lm (g_j))$ it follows that the first sum (E
 
 Consider one of the $S(g_i,g_j)$. Since $\overline{S(g_i,g_j)}^G = 0$, we can rewrite it as
 \begin{equation}
-(#eq:s-sum-a)
+(\#eq:s-sum-a)
 S(g_i,g_j) = \sum^t_{\ell = 1} A_\ell g_\ell,
 \end{equation}
 where $A \in K[x_1,\ldots,x_n]$ and
 \begin{equation}
-(#eq:s-lt)
+(\#eq:s-lt)
 \rm{multideg}(A_\ell g_\ell) \le \rm{multideg}(S(g_i,g_j))
 \end{equation}
 where $A_\ell g_\ell \ne 0$.

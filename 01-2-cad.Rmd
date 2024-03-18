@@ -118,7 +118,7 @@ Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then $C' := \pro
 
 ::: { .proposition }
 [@bgv15, Lemma 3.4]
-Let $C \subset \R^n$ be a 2-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall $W \subset \f{{C}$ has exactly two connected components, each of which is either a point or a closed curve interval. 
+Let $C \subset \R^n$ be a 2-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall $W \subset \fr{C}$ has exactly two connected components, each of which is either a point or a closed curve interval. 
 :::
 
 ### Constructing a CAD {#sec:cad-construction}
@@ -239,7 +239,7 @@ $$
 f(x_n) = a_d x_n^d + \cdots + a_1 x_n + a_0
 $$
 where $a_d,\ldots,a_0 \in \Z[x_1,\ldots,x_{n-1}]$.
-Let $\lc{f} = a_d$ denote the leading coefficient of $f$ and and $\red(f} = a_{d-1}x_n^{d-1} + \cdots + a_1 x_n^1 + a_0$ be the reductum of $f$. 
+Let $\lc{f} = a_d$ denote the leading coefficient of $f$ and $\red(f) = a_{d-1}x_n^{d-1} + \cdots + a_1 x_n^1 + a_0$ be the reductum of $f$. 
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. We define the projection operator, $\proj(\mathbf{F})$ as follows:
 
@@ -257,7 +257,7 @@ for all $1 \le k \le d$.
 
 - If $\deg(f_i) > 0$ and $\lc(f_i)$ is non-constant, then $\proj(f_1,\ldots,f_i,\ldots,f_s)$ contains
 $$
-\lc(f_i) \text[ and } \proj(f_1,\ldots,\red(f_i),\ldots,f_n).
+\lc(f_i) \text{ and } \proj(f_1,\ldots,\red(f_i),\ldots,f_n).
 $$
 :::
 
@@ -271,7 +271,7 @@ $$
 such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) \}$ coincides with the real roots of polynomials in $\mathbf{F}$, defining the $(i_1,\ldots,i_{n-1},0)$-cells in the cylinder $C' \times \R$ and $\{ -\infty < t < \psi_1(\mathbf{x}), \ldots, \psi_i(\mathbf{x}) < t < \psi_{i+1}(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) < t < \infty \}$ are the $(i_1,\ldots, i_{n-1},1)$-cells in the cylinder $C' \times \R$.
 :::
 
-This follows from the results previously proved. Applying Theorem @\ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtaina set of polynomials in $\Z[x_1}$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift)$, we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
+This follows from the results previously proved. Applying Theorem @\ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtaina set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift)$, we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
 
 ### Bounds and variations
 
@@ -403,7 +403,7 @@ In this example, it is clear that another polynomial, $y$, is needed to distingu
 The algorithm proposed by @brown99 is implemented as the "solution formula construction phase" in QEPCAD. A small modification has been made such that this algorithm may be used to construct formulas for individual cells as opposed to the set of points satisfying the input formula. More precisely, the definition of a conflicting pair was slightly modified. 
 
 ::: {.definition}
-Let $C_1$ and $C_2$ be distinct cells in a CAD $\cal D$ of $\R^n$. Each cell $C$ is assigned a truth value $T_C \in \{\tt{True}, \tt{False}, \tt{undet}\}$ and a list $S_C = (S_1,\ldots,S_k)$ where $S_i = (s_{i,1},\ldots,s_{i,s_i), 1\le i \le k$ is the list of signs of level-$i$ (factorised) projection polynomials $f_1,\ldots,f_{i_s} \in \Z[x_1,\ldots,x_i]$, with $s_{i,j} \in \{-1,0,1\}$. 
+Let $C_1$ and $C_2$ be distinct cells in a CAD $\cal D$ of $\R^n$. Each cell $C$ is assigned a truth value $T_C \in \{\tt{True}, \tt{False}, \tt{undet}\}$ and a list $S_C = (S_1,\ldots,S_k)$ where $S_i = (s_{i,1},\ldots,s_{i,s_i}, 1\le i \le k$ is the list of signs of level-$i$ (factorised) projection polynomials $f_1,\ldots,f_{i_s} \in \Z[x_1,\ldots,x_i]$, with $s_{i,j} \in \{-1,0,1\}$. 
 $(C_1, C_2)$ is called a conflicting pair in $\cal D$ if $T_{C_1}, T_{C_2} \in \{\tt{True}, \tt{False}\}$ and $T_{C_1} = T_{C_2}$ and $S_{C_1} = S_{C_2}$.
 :::
 

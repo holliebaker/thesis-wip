@@ -1,15 +1,17 @@
 # Background
 
+## Semialgebraic sets and monotone cells
+
 ### Sets definable over O-minimal structures
 
-We will be working mostly in the category *Semialgebraic Set* and sometimes in the more general category of sets definable over an O-minimal structures. 
+We will be working mostly in the category *Semialgebraic Set* and sometimes in the more general category of sets definable over an O-minimal structures.
 A semialgebraic subset of $\R^n$ is the set of points in $\R^n$ satisfying a Boolean combination of polynomial equations and inequalities with coefficients in $\R$.
 
 ::: { .definition #semialgebraic-set }
 The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets of $\R^n$ satisfying the following properties.
 
-1. If $f \in \R[x_1,\ldots,x_n]$, then $\{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0 \}$ and $\{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) > 0 \}$ are elements of ${SA}_n$. 
-1. If $A, B \in {SA}_n$, then $A \cup B$, $A \cap B$ and $\R^n \setminus A$ are elements of ${SA}_n$. 
+1. If $f \in \R[x_1,\ldots,x_n]$, then $\{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0 \}$ and $\{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) > 0 \}$ are elements of ${SA}_n$.
+1. If $A, B \in {SA}_n$, then $A \cup B$, $A \cap B$ and $\R^n \setminus A$ are elements of ${SA}_n$.
 :::
 
 ::: {.definition}
@@ -17,7 +19,7 @@ Let $X \subset \R^n$ and $Y \subset \R^m$. A mapping $f : X \to Y$ is called sem
 $$
 \{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}
 $$
-is a semialgebraic set. 
+is a semialgebraic set.
 :::
 
 A semialgebraic set can be represented as either a quantifier-free or first-order Boolean formula.
@@ -26,23 +28,23 @@ A semialgebraic set can be represented as either a quantifier-free or first-orde
 A quantifier-free Boolean formula is obtained by the following rules:
 
 1. If $f \in \R[x_1\ldots,x_n]$ then $f=0$ and $f>0$ are quantifier-free Boolean formulas,
-2. if $F$ and $G$ are quantifier-free Boolean formulas then $F \land G$, $F \lor G$ and $\neg F$ are quantifier-free Boolean formulas. 
+2. if $F$ and $G$ are quantifier-free Boolean formulas then $F \land G$, $F \lor G$ and $\neg F$ are quantifier-free Boolean formulas.
 :::
 
 ::: { .definition }
 A first-order Boolean formula is obtained by rules 1 and 2 from Definition @\ref(def:qff) and
 
-3. If $F$ is a first-order Boolean formula and $y$ is a variable ranging over $\R$, then $\exists y\ F$ and $\forall y\ F$ are first-order Boolean formulas. 
+3. If $F$ is a first-order Boolean formula and $y$ is a variable ranging over $\R$, then $\exists y\ F$ and $\forall y\ F$ are first-order Boolean formulas.
 :::
 
 A fundamental result in semialgebraic geometry is the Tarski-Seidenberg Theorem.
 
 ::: { .theorem #tarski-seinedberg }
 [@vdd1998
-Let $S \subset \R^{n+1}$ and $\projop{n) : \R^{n+1} \to \R^n$ be the projection map onto the first $n$ co-ordinates. Then $\projop{n}(S) \subset \R^n$ is a semialgebraic set.  
+Let $S \subset \R^{n+1}$ and $\projop{n} : \R^{n+1} \to \R^n$ be the projection map onto the first $n$ co-ordinates. Then $\projop{n}(S) \subset \R^n$ is a semialgebraic set.
 :::
 
-One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formmula. One useful application of this theorem is that the closure, $\cl(S)$, of any semialgebraic set $S \subset \R^n$ is also semialgebraic. 
+One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formmula. One useful application of this theorem is that the closure, $\cl(S)$, of any semialgebraic set $S \subset \R^n$ is also semialgebraic.
 
 ::: { .proposition #union-of-conjunctionss }
 Every semialgebraic subset of $\R^n$ is the (not necessarily disjoint) union of finitely many semialgebraic subsets of the kind
@@ -50,17 +52,17 @@ $$
 \{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0 \land g_1(\mathbf{x}) > 0 \land \cdots \land g_k(\mathbf{x}) > 0 \}
 $$
 where $k \in \N$ and $f,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
-::: 
+:::
 
 This follows from the fact that the class of finite unions of this kind satisfy properties listed in Definition \@ref(def:semialgebraic-set).
 
-We now define the O-minimal structures over the reals. 
+We now define the O-minimal structures over the reals.
 
 ::: {.definition #definable-set}
 A structure expanding the real closed field $R$ is a collection $$
 S := (S^n)_{n \in \N}
 $$
-where each $S^n$ is a set of subsets of the affine space $R^n$ satisfying the following conditions. 
+where each $S^n$ is a set of subsets of the affine space $R^n$ satisfying the following conditions.
 
 1. All algebraic subsets of $R^n$ are in $S^n$.
 1. $S^n$ is a Boolean subalgebra of the powerset of $R^n$.
@@ -79,40 +81,40 @@ A map $f : A \to R^m$, where $A \subset R^n$, is called *definable* if its graph
 :::
 
 ::: {.remark}
-Since definable sets are closed under projection, it can be easily deduced that $A$ is a definable set. 
+Since definable sets are closed under projection, it can be easily deduced that $A$ is a definable set.
 :::
 
 ::: {.remark}
-For convenience, we will call a definable map $f : R^n \to R$ a definable *function*. 
+For convenience, we will call a definable map $f : R^n \to R$ a definable function.
 :::
 
-It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structures over the reals. Another example is the sub-pfaffian sets. 
+It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structures over the reals. Another example is the sub-pfaffian sets.
 
 ::: {.definition}
 [@gv04, Definition 2.1]
-A Pfaffian chain of order $r \ge 0$ and degree $\alpha \ge 1$ in an open domain $G \subset \R^n$ is a sequence of analytic functions 
+A Pfaffian chain of order $r \ge 0$ and degree $\alpha \ge 1$ in an open domain $G \subset \R^n$ is a sequence of analytic functions
 $$
 f_1, \ldots , f_r
-$$ 
+$$
 in $G$ satisfying the differential equations
 $$
 {df}_j(\mathbf{x}) = \sum^n_{i=1} g_{ij}(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_j(\mathbf{x})) dx_i
 $$
-for $1 \le j \le r$, where $g_{ij}(x_1,\ldots,x_n),y_1,\ldots,y_j)$ are polynomials of degree not greater than $\alpha$. 
+for $1 \le j \le r$, where $g_{ij}(x_1,\ldots,x_n),y_1,\ldots,y_j)$ are polynomials of degree not greater than $\alpha$.
 
-A function $f(\mathbf{x}) = P(\mathbf{x},f_1(\mathbf{x}),\ldots,f_r(\mathbf{x}))$, where $P(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_r(\mathbf{x}))$ is a polynomial of degree not greater than $\beta \ge 1$ is called a Pfaffian function of order $r$ and degree $(\alpha, \beta)$. Note that $f$ is only defined in the domain $G$, where all functions $f_1,\ldots,f_r$ are analytic, even if $f$ itself can be extended as an analytic function in a larger domain. 
-::: 
+A function $f(\mathbf{x}) = P(\mathbf{x},f_1(\mathbf{x}),\ldots,f_r(\mathbf{x}))$, where $P(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_r(\mathbf{x}))$ is a polynomial of degree not greater than $\beta \ge 1$ is called a Pfaffian function of order $r$ and degree $(\alpha, \beta)$. Note that $f$ is only defined in the domain $G$, where all functions $f_1,\ldots,f_r$ are analytic, even if $f$ itself can be extended as an analytic function in a larger domain.
+:::
 
 Examples of Pfaffian functions include the exponential, logarithmic, reciprocal and trigonometric functions, as well as the polynomials.
 
 ::: {.definition}
 [@gv04, Definition 2.7]
 A set $X \subset \R^n$ is called semi-Pfaffian in an open domain
-$G \subset \R^n$ if it consists of points in $G$ satisfying a Boolean combination $F$ of some atomic equations and inequalities $f = 0$, $g > 0$, where $f, g$ are Pfaffian functions having a common Pfaffian chain defined in $G$. 
+$G \subset \R^n$ if it consists of points in $G$ satisfying a Boolean combination $F$ of some atomic equations and inequalities $f = 0$, $g > 0$, where $f, g$ are Pfaffian functions having a common Pfaffian chain defined in $G$.
 
 $X$ is called restricted in $G$ if $\cl(X)$ is contained in $G$.
 
-$X$ is called basic if the Boolean combination $F$ is a conjuction. 
+$X$ is called basic if the Boolean combination $F$ is a conjuction.
 :::
 
 ::: {.definition}
@@ -121,42 +123,42 @@ A set $X \subset \R^n$ is called sub-Pfaffian in an open domain $G \subset \R^n$
 $$
 X := \projop{n}(Y),
 $$
-where $Y \subset \R^m is a semi-Pfaffian set and $\R^n$ is a subspace of $\R^m$. 
+where $Y \subset \R^m$ is a semi-Pfaffian set and $\R^n$ is a subspace of $\R^m$.
 :::
 
 ::: {.definition}
 [@gv04, 2.9]
-Let ${\cal I}^k := [-1,1]^k$ be the closed cube in an open domain $G \subset \R^k$. 
-$X \subset {\cal I}^n$ is called restricted sub-Pfaffian if $X := \projop{n}(Y)$, where $Y \subset {\cal I}^{n+m}$ is a restricted semi-Pfaffian set. 
+Let ${\cal I}^k := [-1,1]^k$ be the closed cube in an open domain $G \subset \R^k$.
+$X \subset {\cal I}^n$ is called restricted sub-Pfaffian if $X := \projop{n}(Y)$, where $Y \subset {\cal I}^{n+m}$ is a restricted semi-Pfaffian set.
 :::
 
-The restricted sub-pfaffian sets form a Boolean subalgebra. Restricted sub-pfaffian sets are clearly closed under taking finite unions and intersections. The property that the compliment of restricted sub-pfaffian set is restricted sub-pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results may not be applied to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of restricted sub-Pfaffian sets. 
+The restricted sub-pfaffian sets form a Boolean subalgebra. Restricted sub-pfaffian sets are clearly closed under taking finite unions and intersections. The property that the compliment of restricted sub-pfaffian set is restricted sub-pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results may not be applied to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of restricted sub-Pfaffian sets.
 
 
 ### Monotone cells
 
-It is clear from the definition that a set definable in an O-minimal structure is also a definable set and a semialgebraic set is definable in an O-minimal structure. In this section, we will introduce, closely following @bgv15, some properties of definable sets which are also applicable to semialgebraic sets. 
+It is clear from the definition that a set definable in an O-minimal structure is also a definable set and a semialgebraic set is definable in an O-minimal structure. In this section, we will introduce, closely following @bgv15, some properties of definable sets which are also applicable to semialgebraic sets.
 
 ::: { .definition #affine-coordinate-subspace }
 [@bgv15, Definition 2.1]
-Let $L_{j,c} := \{ (x_1,\ldots,x_n) \mid x_j = c \}$ for some $1 \le j \le n$ and $c \in \R$. 
+Let $L_{j,c} := \{ (x_1,\ldots,x_n) \mid x_j = c \}$ for some $1 \le j \le n$ and $c \in \R$.
 Each intersection of the kind
 $$
-S := L_{j_1,c_1) \cap \ldots \cap L_{j_m,c_m}
+S := L_{j_1,c_1} \cap \ldots \cap L_{j_m,c_m}
 $$
-where $0 \le j \le m$, $1 \le j_1 < \cdots < j_m \le n$ and $c_1,\ldots,c_m \in \R$ is called an affine coordinate subspace of $\R^n$. 
+where $0 \le j \le m$, $1 \le j_1 < \cdots < j_m \le n$ and $c_1,\ldots,c_m \in \R$ is called an affine coordinate subspace of $\R^n$.
 :::
 
 ::: { .definition }
 [@bgv15, Definition 2.2]
 Let $\mathbf{f} = (f_1,\ldots,f_k) : X \to \R^k$ be a bounded continuous map defined on an open, bounded, non-empty subset $X \subset \R^n$ having the graph $Y \subset \R^{n+k}$.
 
-$\mathbf{f}$ is called quasi-affine if, for any coordinate subspace $L \subset \R^{n+k}$, the restriction $\proj_{L}\vert_Y$ is injective if and only if $\proj_{L}(Y)$ is $n$-dimensional. 
+$\mathbf{f}$ is called quasi-affine if, for any coordinate subspace $L \subset \R^{n+k}$, the restriction $\proj_{L}\vert_Y$ is injective if and only if $\proj_{L}(Y)$ is $n$-dimensional.
 :::
 
 ::: { .definition #monotone-map }
 [@bgv15, Definition 2.3]
-Let $\mathbf{f} : X \to \R^k$ be a bounded, continuous, quasi-affne map defined on an open, bounded, non-empty subset $X\subset \R^n$ having the graph $Y \subset \R^{n+k}$. $\mathbf{f}$ is called monotone if, for each affine coordinate subspace $S \subset \R^{n+k}$, the intersection $Y \cap S$ is connected.  
+Let $\mathbf{f} : X \to \R^k$ be a bounded, continuous, quasi-affne map defined on an open, bounded, non-empty subset $X\subset \R^n$ having the graph $Y \subset \R^{n+k}$. $\mathbf{f}$ is called monotone if, for each affine coordinate subspace $S \subset \R^{n+k}$, the intersection $Y \cap S$ is connected.
 :::
 
 ::: { .definition #monotone-map-on }
@@ -170,18 +172,18 @@ $Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph
 :::
 
 ::: { .example }
-1. Observe that any quasi-affine map defined on a connected subset and having the graph in $\R^2$ is also monotone. This quasi-affine map will fail to be monotone if the set it is defined on is not connected. 
+1. Observe that any quasi-affine map defined on a connected subset and having the graph in $\R^2$ is also monotone. This quasi-affine map will fail to be monotone if the set it is defined on is not connected.
 
-2. Let $\Delta := \{ 0 < x < 1, y > 0, x + y < 1 \} \subset \R^2$ and $\phi(x,y) = x^2 + y^2$. Let $Y \subset \R^3$ be the graph of function $\phi$ on $\Delta$. Observe that $\phi\vert_Delta$ is a quasi-affine map. However, $y \cap \{ z = 3/4 \}$ is not connected, hence $\phi\vert_\Delta$ is not a monotone function. 
+2. Let $\Delta := \{ 0 < x < 1, y > 0, x + y < 1 \} \subset \R^2$ and $\varphi(x,y) = x^2 + y^2$. Let $Y \subset \R^3$ be the graph of function $\phi$ on $\Delta$. Observe that $\phi\vert_Delta$ is a quasi-affine map. However, $y \cap \{ z = 3/4 \}$ is not connected, hence $\phi\vert_\Delta$ is not a monotone function.
 :::
 
-** TODO: Notation 2.4 about $\opsopan{x_1,\ldots,x_n}$ seems quite complicated. Why is the complicated explanation needed. **
+** TODO: Notation 2.4 about $\opspan{x_1,\ldots,x_n}$ seems quite complicated. Why is the complicated explanation needed. **
 
 ** TODO 2 figure 1 shows examples of monotone (and not monotone) cells **
 
 ::: { .proposition #monotone-topologically-regular }
 [@bgv13, Theorem 1]
-Every monotone cell is a topologically regular cell. 
+Every monotone cell is a topologically regular cell.
 :::
 
 The following properties of monotone cells are used in the proof of @bgv15, Theorem 3.20.
@@ -191,12 +193,12 @@ The following properties of monotone cells are used in the proof of @bgv15, Theo
 Let $X \subset \R^n$ be a monotone cell, then
 
 1. $X \cap \{ x_i < c \}$, $X \cap \{ x_i = c \}$ and $X \cap \{ x_i > c \}$, for every $1 \le i \le n$ and $c \in \R$, are either empty or monotone cells.
-1. Let $Y \subset X$ be a monotone cell such that $\dim(Y) = \dim(X) - 1$ and $\fr(Y) \subset \fr(X)$. Then $X \setminus Y$ is a disjoint union of two monotone cells. 
+1. Let $Y \subset X$ be a monotone cell such that $\dim(Y) = \dim(X) - 1$ and $\fr(Y) \subset \fr(X)$. Then $X \setminus Y$ is a disjoint union of two monotone cells.
 :::
 
 ::: { .proposition }
 [@bgv13, Theorem 10]
-Let $X \subset \R^n$ be a monotone cell. Then $\proj_{L}(X)$, for any affine coordinate subspace $L \subset \R^n$ is also a monotone cell. 
+Let $X \subset \R^n$ be a monotone cell. Then $\proj_{L}(X)$, for any affine coordinate subspace $L \subset \R^n$ is also a monotone cell.
 :::
 
 ::: { .remark #monotone-proj-basis }
@@ -209,7 +211,7 @@ Then $Y$ is the graph of a monotone map defined on $\proj_L(Y)$, by [@bgv13, The
 
 > A section cell $C$ is the graph, in $\R^n$, of a continuous definable function $h : C' \to \R$, where $C'$ is a cylindrical cell in $\R^{n-1}$.
 
-In reality, we are given a set of *level-$n$ projection factors* and $C$ is a real root of a polynomial $f \in \Z[x_1,\ldots,x_n]$, viewed as a polynomial in $\Z[x_1,\ldots,x_{n-1}][x_n]$. By the construction of CAD, $f$ has $k$ real roots at every point $\mathbf{c} \in C'$. 
+In reality, we are given a set of *level-$n$ projection factors* and $C$ is a real root of a polynomial $f \in \Z[x_1,\ldots,x_n]$, viewed as a polynomial in $\Z[x_1,\ldots,x_{n-1}][x_n]$. By the construction of CAD, $f$ has $k$ real roots at every point $\mathbf{c} \in C'$.
 
 In some situations, the former representation (with functions) is more convenient (than the latter, with roots).
 
@@ -219,7 +221,7 @@ where $C' \subset \R^{n-1}$ is an $(i_1,\ldots,i_{n-1})$-cell in $\R^{n-1}$. For
 $$
 f := h(\mathbf{c}) - x_n \in Z[x_1,\ldots,x_n]
 $$
-The specific root of $f$ such that $x_n = h(\mathbf{c})$ can be isolated, by Thom's lemma, by adding some sign conditions on partial derivatives of $g$. 
+The specific root of $f$ such that $x_n = h(\mathbf{c})$ can be isolated, by Thom's lemma, by adding some sign conditions on partial derivatives of $g$.
 
 Now let $f \in \Z[x_1,\ldots,x_{n-1}][x_n]$ be a polynomial in $x_n$ and $C' \subset \R^{n-1}$ be a $(i_1,\ldots,i_{n-1})$-cell of $\R^{n-1}$. Then the cylinder $C' \times \R$ ("above" $C'$) contains a family of section cells
 $$
@@ -230,10 +232,10 @@ Suppose we want to represent one of these section cells $C \in {\cal C}$ as the 
 $$
 C = \{ (\mathbf{c},x_n) \mid \mathbf{c} \in C', f(\mathbf{c},x_n) = 0, g_1(\mathbf{c},x_n) > 0, \ldots, g_k(\mathbf{c},x_n) \}
 $$
-where $g_1,\ldots,g_k$ are partial derivatives of $f$. 
+where $g_1,\ldots,g_k$ are partial derivatives of $f$.
 
-$C$ is a semialgebraic set, therefore $h$ is certainly a definable function. 
-But, is $h$ a polynomial? The answer is no. This can be seen using a simple example. 
+$C$ is a semialgebraic set, therefore $h$ is certainly a definable function.
+But, is $h$ a polynomial? The answer is no. This can be seen using a simple example.
 
 ::: {.example}
 Let $D \subset \R^2$ be the unit disc, a semialgebraic set defined by a quantifier-free Boolean formula
@@ -244,7 +246,7 @@ Construct a CAD of $\R^2$ compatible with $D$ in which $D$ is a single sector ce
 $$
 D_T = \{ -1 < x < 1, y > 0, x^2 + y^2 = 0 \}
 $$
-and 
+and
 $$
 D' := \projop{1}(D) = \{ -1 < x < 1 \}.
 $$
@@ -269,6 +271,6 @@ C' := \projop{1}(C) = \{ -1 \le x \le 1 \}.
 $$
 Both $C$ and $C'$ are clearly definable, but there is no map from $C' \to \R$ having $C$ as its graph. Indeed, at $x=0$, this map should have images $-1$ and $1$, which contradicts the definition of a map. However, in the case of a cylindrical section cell, the map $h$ always exists by definition.
 
-Therefore, when working with cylindrical section cells, the map $h : C' \to \R$ may be used, but algorithms will work solely with polynomials $f \in \Z{x_1,\ldots,x_{n-1}}[x_n]$ from the level-$n$ projection factor set. 
+Therefore, when working with cylindrical section cells, the map $h : C' \to \R$ may be used, but algorithms will work solely with polynomials $f \in \Z{x_1,\ldots,x_{n-1}}[x_n]$ from the level-$n$ projection factor set.
 
 

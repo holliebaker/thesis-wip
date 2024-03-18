@@ -124,21 +124,21 @@ In further proofs we will need the following technical statement.
 Let $f: X \to \R$ be a continuous polynomial function on an open set
 $X \subset \R^n$ having the graph $F \subset \R^{n+1}$.
 Let $G$ be a semialgebraic subset of $F$, which is closed in $F$, and having dimension less than $\dim (F)=n$.
-Then $\fr_{F}(F \setminus G) = G$, where $\fr_F$ denotes the frontier in $F$.
+Then $\frt{F}{F \setminus G} = G$, where $\operatorname{fr}_{F}$ denotes the frontier in $F$.
 :::
 
 ::: { .proof }
 Let $Y = \proj_{\R^{n-1}}(G)$ and observe that $X = \proj_{\R^{n-1}}(F)$.
-Let us first prove that $\fr_X(X \setminus Y) = Y$.
+Let us first prove that $\frt{X}{X \setminus Y} = Y$.
 By the definition of frontier, we have
-$$\fr_X(X \setminus Y)=\cl_X(X \setminus Y) \setminus (X \setminus Y),$$
-where $\cl_X$ denotes the closure in $X$.
-$\cl_X(X \setminus Y)=X$. Indeed, $X\setminus Y$ is open and $n$-dimensional since $Y$ is closed in $X$ and $\dim(Y)<n$.
-Assume that $\cl_X(X \setminus Y) \ne X$. Then there is a nonempty subset $Z\subset X$ such that $Z \not \subset \cl_X(X \setminus Y)$. Since $X \setminus Y \subset \cl_X(X \setminus Y)$, $Z$ is necessarily a subset of $Y$ and $Z$ has dimension $<n$. This implies that $\cl_X(X\setminus Y)$ is not, which is a contradiction.
-It follows that $\fr_X(X \setminus Y)=X \setminus (X \setminus Y)= X \cap Y = Y$.
+$$\frt{X}{X \setminus Y}=\cls{X}{X \setminus Y} \setminus (X \setminus Y),$$
+where $\operatorname{cl}_X$ denotes the closure in $X$.
+$\cls{X}{X \setminus Y}=X$. Indeed, $X\setminus Y$ is open and $n$-dimensional since $Y$ is closed in $X$ and $\dim(Y)<n$.
+Assume that $\cls{X}{X \setminus Y} \ne X$. Then there is a nonempty subset $Z\subset X$ such that $Z \not \subset \cls{X}{X \setminus Y}$. Since $X \setminus Y \subset \cls{X}{X \setminus Y}$, $Z$ is necessarily a subset of $Y$ and $Z$ has dimension $<n$. This implies that $\cl{X}{X\setminus Y}$ is not, which is a contradiction.
+It follows that $\frt{X}{X \setminus Y}=X \setminus (X \setminus Y)= X \cap Y = Y$.
 
 Finally, since $f$ is a continuous function, and therefore $Y$ and $X$ are homeomorphic to $G$ and $F$
-respectively, we obtain the required formula $\fr_{F}(F \setminus G) = G$.
+respectively, we obtain the required formula $\frt{F}{F \setminus G} = G$.
 :::
 
 We now prove that the decomposition induced on $\R^k, 1 \le k \le n-1$ by any CAD satisfying the frontier condition also satisfies the frontier condition.
@@ -162,7 +162,7 @@ Observe that $\fr{\Gamma}$ is a union of cells of $\mathcal{D}$ since every cell
 We claim that $\fr{\Gamma}$ is the union of some similarly defined cylinders of dimension less than $k$.
 Proceed by induction on $k$.
 
-The base case, $k=1$, is simple since $\fr{\Gamma) = \emptyset$.
+The base case, $k=1$, is simple since $\fr{\Gamma} = \emptyset$.
 
 Now suppose that $k>1$. Each sector cell in $\Gamma$ has dimension $k$ and each section cell in $\Gamma$ has dimension $k-1$, so the dimension of the union of frontiers of all cells in $\Gamma$ is at most $k-1$.
 Hence $\dim(\fr{\Gamma})$ is at most $k-1$.
@@ -200,8 +200,7 @@ Let the initial pair $({\mathcal E}_{(1, \ldots, 1)},\ X_{(1, \ldots, 1)}) = ({\
 ({\mathcal E}_N, X_N) \lex ({\mathcal E}_M, X_M)
 \lex \cdots
 \lex ({\mathcal E} , \emptyset),
-
-(#eq:sequence)
+(\#eq:sequence)
 \end{equation}
 where index $(0,0,\ldots,0)$ is abbreviated to $\mathbf{0}$ and $X_{\mathbf{0}}= \bigcup \{ C \in{\mathcal U}_{(0, \ldots ,0)} \}$.
 
@@ -216,8 +215,7 @@ and the family ${\mathcal A}_1$ of cells in ${\mathcal E}_{N}$ with indices $(i_
 Using algorithm from Lemma \@ref(lem:novel-frontier-fr), compute the set
 \begin{equation}\
 X_{N}:= \bigcup_{C \in {\mathcal A}_0}\fr (C) \cup \bigcup_{C \in {\mathcal A}_1}(\fr (C) \setminus (C_T \cup C_B)).
-
-(#eq:front)
+(\#eq:front)
 \end{equation}
 Observe that for every cell $C \in {\mathcal A}_1$, $C_T$ and $C_B$ are section cells with index $(i_1,\ldots,i_{n-1},0)$ in ${\mathcal A}_0$.
 According to Lemma \@ref{lem:novel-frontier-fr-lex-less), $X_{N}$ is contained in the union of cells in ${\mathcal E}_{N}$
@@ -246,9 +244,9 @@ If $C$ is a cell in ${\mathcal E}_N$ with index $(i_1, \ldots ,i_{n-1} ,0)$ (sec
 then $C$ is a union of cells of ${\mathcal E}_L$ and, hence, of $\mathcal{E}'_L$, with indices $\lexeq (i_1, \ldots ,i_{n-1} ,0)$.
 Let $C' \subset C$ be one of the cells in this refinement of $C$ with index $(i_1, \ldots ,i_{n-1} ,0)$ and $B$ be
 the union of cells contained in the refinement of $C$ with indices $\lex (i_1, \ldots ,i_{n-1} ,0)$.
-According to Lemma \@ref(lem:novel-frontier-section-split), $\fr_C (C \setminus B)=B$ where $\fr_X(Y)$ denotes the frontier of $Y$ in $X$.
-Hence, $\fr_C (C') \subset B$. 
-On the other hand, $\fr (C') \setminus \fr_C (C')$ is a subset of $\fr (C)$, which is a union of cells of $\mathcal{E}_L$ (and of the refinement $\mathcal{E}'_L$) with index $\lex (i_1,\ldots,i_{n-1},0)$.
+According to Lemma \@ref(lem:novel-frontier-section-split), $\frt{C}{C \setminus B}=B$ where $\frt{X}{Y}$ denotes the frontier of $Y$ in $X$.
+Hence, $\frt{C}{C'} \subset B$. 
+On the other hand, $\fr (C') \setminus \fr{C}{C'}$ is a subset of $\fr (C)$, which is a union of cells of $\mathcal{E}_L$ (and of the refinement $\mathcal{E}'_L$) with index $\lex (i_1,\ldots,i_{n-1},0)$.
 By the induction hypothesis, all cells of $\mathcal{E}'_L$ with index $\lex (i_1,\ldots,i_{n-1},0)$ satisfy the frontier condition. In particular, $\fr(C)$ and $\fr(B)\subset \fr(C)$ is a union of cells of $\mathcal{E}'_L$.
 It follows from the cylindrical structure of $\mathcal{E}'_L$ that $C'$ satisfies the frontier condition.
 
@@ -328,7 +326,7 @@ Observe that $C_T$ could be a $(1,0,0)$-cell (although it is not a cell in $\mat
 Given $(\mathcal{E}_{(1,0)}, X_{(1,0)})$, compute the next pair.
 $\mathcal{E}_{(0,1)}$ is compatible with every cell of $\mathcal{E}_{(1,0)} = \mathcal{E}$ and $X_{(1,0)} \supset \fr(S)$.
 The blow-up subset $\{ x = y = 0, 0 \le z \le 1 \}$ in $X_{(1,0)}$ results in a refinement of the decomposition induced by $\mathcal{E}_{(1,0)}$ on $\R^1$ such that it includes the cells $\{-1 < x < 0\}, (0), \{ 0 < x < 1 \}$. Thus $\mathcal{E}_{(0,1)}$ includes a cell $S'' = \{ x = 0, 0 < y < 1, z = 0 \}$ and $S$ is split into three cells $S', S'', S'''$ with indices $(1,1,0),(1,0,0)$ and $(1,1,0)$ respectively.
-Cells $C_1,C_2,C_3$ and $C_4$ of $\mathcal{E}_{(1,0)} = \mathcal{E}$ are also refined in this step so that they are compatible with $\fr(S)$ (see Table \@ref(exm:cells-of-e-refined)). As argued in the Correctness section, frontiers $\fr_S(S')$ and $\fr_S(S''')$ coincide with $S''$, so no further refinements of cells with index $(1,1,1)$ and $(1,1,0)$ are needed. 
+Cells $C_1,C_2,C_3$ and $C_4$ of $\mathcal{E}_{(1,0)} = \mathcal{E}$ are also refined in this step so that they are compatible with $\fr(S)$ (see Table \@ref(exm:cells-of-e-refined)). As argued in the Correctness section, frontiers $\fr{S}{S'}$ and $\frt{S}{S'''}$ coincide with $S''$, so no further refinements of cells with index $(1,1,1)$ and $(1,1,0)$ are needed. 
 $X_{(0,1)}$ contains $\fr(C'_2), \fr(C'''_2), \fr(C'_3)$ and $\fr(C'''_3)$. 
 
 1. (#step:zero-one)

@@ -22,7 +22,7 @@ Looking towards extend the construction to sets of higher dimension, @mccallum20
 
 In order to obtain quasi-affine cells, [@bgv15, Lemma 3.19] states that we need to consider the critical points, $W_{i}$ and $W_{i,j}, of projections of $W$ onto one and two-dimensional coordnate subspaces (indexed by $i$ and $j$) respectively. The classical CAD compatible with $V, W$ and all $W_i$ and $W_{i,j}$, $1 \le i \le j \le n$ will contain quasi-affine cells.
 
-Let $f$ be one of the polynomials in $f_1,\ldots,f_s$. Then the critical points of the projection map onto $\oplpan{x_i}$ can be found by computing the partial derivative and solving
+Let $f$ be one of the polynomials in $f_1,\ldots,f_s$. Then the critical points of the projection map onto $\opspan{x_i}$ can be found by computing the partial derivative and solving
 $$
 \dfrac{\partial f}{\partial x_i} = 0.
 $$
@@ -30,7 +30,7 @@ The solutions of $\{ f = 0, \partial f / \partial x_i = 0 \}$ are the local maxi
 $$
 \{ f = 0, \partial f / \partial x_i = 0, \partial f / \partial x_j \}.
 $$
-Thus, $W_i$, the set of critical points of the projection map $\projops{x_i}$, are given by $\lor_{1 \le k \le s} \{ f_k = 0, \partial f_k / \partial x_i # 0 \}$ and $W_{i,j}$, the set of critical points of $\projops{x_i,x_j}$, is given by $\lor_{1 \le k \le s} \{ f_k = 0, \partial f_k / \partial x_i = 0, \partial f_k / \partial x_j = 0 \}$.
+Thus, $W_i$, the set of critical points of the projection map $\projops{x_i}$, are given by $\lor_{1 \le k \le s} \{ f_k = 0, \partial f_k / \partial x_i = 0 \}$ and $W_{i,j}$, the set of critical points of $\projops{x_i,x_j}$, is given by $\lor_{1 \le k \le s} \{ f_k = 0, \partial f_k / \partial x_i = 0, \partial f_k / \partial x_j = 0 \}$.
 Alternatively, we can compute a CAD which is sign-invariant with respect to the input polynomials $f_1,\ldots,f_s$ and all first partial derivatives (with respect to all variables $x_1,\ldots,x_n$) of the input polynomials.
 Note that these first partial derivatives will have already been added if we applied the smooth stratification algorithm, which computes them for $k=1$, to find $W$.
 

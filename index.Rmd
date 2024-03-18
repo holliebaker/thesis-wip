@@ -18,6 +18,7 @@ description: "Hollie Baker's thesis"
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\A}{\mathbb{A}}
 
+\newcommand{\sign}{\operatorname{sign}}
 \newcommand{\proj}{\operatorname{proj}}
 \newcommand{\lcm}{\operatorname{lcm}}
 \newcommand{\lc}{\operatorname{lc}}
@@ -35,7 +36,9 @@ description: "Hollie Baker's thesis"
 \newcommand{\projops}[1]{{\proj_{\opspan{#1}}}}
 \newcommand{\opspan}[1]{{\operatorname{span} \{#1\}}}
 \newcommand{\cl}[1]{{\operatorname{cl} \left( #1 \right)}}
+\newcommand{\cls}[2]{{\operatorname{cl}_{#1} \left( #2 \right)}}
 \newcommand{\fr}[1]{{\operatorname{fr} \left( #1 \right)}}
+\newcommand{\frt}[2]{{\operatorname{fr}_{#1} \left( #2 \right)}}
 
 
 # Cylindrical algebraic decompositions with monotone cells
