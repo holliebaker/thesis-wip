@@ -1,4 +1,4 @@
-# Frontier Condition
+# Frontier Condition {#sec:frontier}
 
 Now suppose we have a CAD $\cal D'$ monotone with respect to $V_1,\ldots,V_k$. Our final step, according to [@bgv15, Theorem 3.20] is to refine the frontier $\partial C$ of each $2$-dimensional cell $C \subset V$ so that $\partial C$ is a union of cells of $\cal D'$.
 
@@ -572,6 +572,7 @@ Note that this procedure only works if the blow-up points have dimension zero, o
 Let $\cal D$ be a cylindrical algebraic decomposition of $\R^n, n \le 3$. If $n < 3$, $\cal D$ already satisfies the frontier condition since there are no bad cells in the decomposition induced by $\cal D$ on $\R^1$. Othewrise $n=3$ and we apply @lazard10, Algorithm 5.15 to $\cal D$ to produce a set of refinement points. This algorithm, written using our notation, is reproduced below.
 
 ---
+
 [@lazard10, Algorithm 5.15]
 
 **Input:**

@@ -67,7 +67,7 @@ where each $S^n$ is a set of subsets of the affine space $R^n$ satisfying the fo
 1. All algebraic subsets of $R^n$ are in $S^n$.
 1. $S^n$ is a Boolean subalgebra of the powerset of $R^n$.
 1. If $A \in S^n$ and $B \in S^m$, then $A \times B \in S^{n+m}$.
-1. Let $\proj : R^{n+1} \to R$ be the projection onto the first $n$ coordinates. If $X\in R^{n+1}$, then $\proj(X) \in R^n$.
+1. Let $\proj : R^{n+1} \to R^n$ be the projection onto the first $n$ coordinates. If $X\in R^{n+1}$, then $\proj(X) \in R^n$.
 :::
 
 ::: {.definition #o-minimal-structure}
@@ -88,7 +88,7 @@ Since definable sets are closed under projection, it can be easily deduced that 
 For convenience, we will call a definable map $f : R^n \to R$ a definable function.
 :::
 
-It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structures over the reals. Another example is the sub-pfaffian sets.
+It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structure over the reals. Another example is the sub-pfaffian sets.
 
 ::: {.definition}
 [@gv04, Definition 2.1]

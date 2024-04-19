@@ -1,13 +1,15 @@
 # Smooth Stratification {#sec:smooth-strat}
 
-Before turning out attention to cylindrical decompositions, we will present another useful algorithm for decompositng a semialgebraic set. A smooth stratification is a partition af a set into smooth manifolds. 
-@whitney1965 proved that every complex, and real, analytic variety, i.e., an analytic set defined by a system of analytic equations, admits a smooth stratification. @thom1969 then extended this result by proving that every analytic set admits a smooth stratification. Later, @le2010 proved that every set in the far more general class of sets definable in an O-minimal structure admits a Whitney stratification. 
+Before turning our attention to cylindrical decompositions, we will present another useful algorithm for decomposing a semialgebraic set. A smooth stratification is a partition of a set into smooth manifolds. 
 
-In this section, an algorithm due to @gv1995 (also summarised in @gv04, Section 6) for computing a basic weak stratification of an elementary semi-pfaffian set, such that each of the strata is "nicely defined" will be presented.
+In 1957, @whitney1992 proved that every algebraic variety can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set. 
+Lojasiewicz extended this result by proving that every real semianalytic set admits a smooth stratification [@lojasiewicz1964, @lojasiewicz1964]. However, the proof was nonconstructive and did not provide any information on the class of functions defining the strata. 
+As part of his Complement Theorem, @gabrielov1996 proved that the strata of a semianalytic set can be defined by functions belonging to the smallest extensions of a family of functions defining the set which is closed under addition, multiplication and taking partial derivatives. One such class of functions is the Pfaffian functions. 
+@gv1995 present an algorithm for computing a smooth stratification of a semi-pfaffian et, along with an estimate of its complexity and bounds on the formats of the strata it produces. This algorithm (also summarised in @gv04, Section 6) will be presented.
 
 ::: {.definition}
 [@gv04, Definition 6.1]
-Let $X \subset \R^n$ be a semianalytic set. $X$ is nonsingular and has dimension $k$ at a point $x \in X$ if there exist real analytic functions $$
+Let $X \subset \R^n$ be a semianalytic set. $X$ is nonsingular and has codimension $k$ at a point $x \in X$ if there exist real analytic functions $$
 h_1,\ldots,h_{n-k}
 $$
 defined in an open set $U$ containing $x_0$ such that
@@ -27,14 +29,14 @@ $X \subset Y$ is called effectively nonsingular (of dimension $k$) if functions 
 A finite basic weak stratification of a semi-pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ where each $X_k$ is effectively nonsingularand has codimension $k$.
 :::
 
-Note that this definition does not assume any other nice properties of the manifolds $X_k$. E.g., $\fr(X_k)$ need not be a union of other strata.
+Note that this definition does not assume any other desirable properties of the manifolds $X_k$. E.g., the closure of a stratum may not be a union of strata. In addition, the Whitney conditions may not be satisfied. 
 
 ### Description of the algorithm
 
-Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets wwith almost no modifications. Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an oracle will not be needed in this variation of the algorithm. 
+Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets with almost no modifications. Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too.  Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an oracle will not be needed in this variation of the algorithm. 
 The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives needed to define all the strata is based on the format of the input set. As every polynomial has  a finite number of partial derivatives, this bound will simply be the dergee of the polynomial in the semialgebraic case.
 
-We will need the following notation for patial derivatives and the partial differential operator. 
+We will need the following notation for partial derivatives and the partial differential operator defined by @gv1995. 
 
 ::: {.definition}
 [@gv1995, Definition 2]
@@ -59,172 +61,186 @@ $$
 We write $\partial^m_{\mathbf{h}, \mathbf{i}, j}$ to mean the $m$-th iteration of $\partial_{\mathbf{h}, \mathbf{i}, j}$.
 :::
 
-We now present the algorithm from @gv1995, Theorem 2.
+We can now present the algorithm from @gv1995, Theorem 2.
+
+Let $$
+X = \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = 0,\ldots,f_s(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0 \}.
+$$
 
 ---
 
-$$\rm{Stratify}(k, {\cal G}, \mathbf{h}, \mathbf{i}, \mathbf{g})$$
+$${\cal X} := \rm{Stratify}(k, F, \mathbf{h}, \mathbf{i}, G)$$
 
 **Input:**
 
-  - $0 \le k \le n$, an integer, representing codimension of strata to be constructed
-
-  - ${\cal G} = ((i_n, \ldots, i_{k+1},j), f) \subset \Z_{\ge 0}^{n-k+1} \times \Z[x_1,\ldots,x_n]$ is a set of pairs of partial multi-indices and polynomials such that $\vert \cal{G} \vert = s$,
-
-  - $\mathbf{h} = (h_k, \ldots,h_1, h_0) \subset \Z[x_1,\ldots,x_n]$ is a list of polynomials such that $h_0 = 0$,
-
-  - $\mathbf{i} = (i_k, \ldots, i_1,i_0) \subset \Z_{\ge 0}^k$ is a multi-index, $i_0 = 0$.
-
-  - $\mathbf{g} = (g_1,\ldots,g_t) \subset \Z[x_1,\ldots,x_n]$ is a set of polynomials.
+  - $0 \le k \le n$,
+  - $F = (f_1,\ldots,f_s) \in \Z[x_1,\ldots,z_n]$ is a list of polynomials,
+  - $\mathbf{h} = (h_k, \ldots,h_1, h_0) \in \Z[x_1,\ldots,x_n]$ such that $h_0 = 0$,
+  - $\mathbf{i} = (i_k, \ldots, i_1,i_0) \in \Z_{\ge 0}$ such that $i_0 = 0$,
+  - $G = \{g_1,\ldots,g_t\} \subset \Z[x_1,\ldots,x_n]$.
 
 **Output:**
 $$
-{\cal X} = (X_{k+1}, \ldots, X_0)
+{\cal X} = (X_{k+1}, \ldots, X_n)
 $$
-
-  - $X_i, 0 \le i \le n$ is a (possibly empty) effectively nonsingular stratum of codimension $i$.
+$X_i, k+1 \le i \le n$ is a possibly empty, effectively nonsingular stratum of codimension $i$. 
+Note that ${\cal X}_{n+1} = ()$.
 
 ---
 
-We proceed by induction on $i_k$.
+Proceed by induction on $i_k$.
 
-- Base case: $i_k = n$, return $()$.
+- Base case: $i_k = n$. 
+  
+  - Return ${\cal X}_{x+1} = (\emptyset, \ldots, \emptyset)$.
 
-- Recursive case:
+- Otherwise
 
-  - Initialise.
-    
-    - Set $$X_0 = X,$$
-    - Let $${\cal X} := (\emptyset, \ldots, \emptyset)$$
-    be the initial set of strata of codimension greater than $\le k+1$. 
+  - Initialise
 
-  - Consider each multi-index $\mathbf{m} = (i_n,\ldots,i_{k+1},j) \subset \Z_{\ge 0}^{n-k} \times \{1,\ldots,s\}$ in ascending lexicographical order $\prec$, beginning with $$
-  (0,\ldots,0,1,1).
+    - $X' := X = \{ f_1 = 0,\ldots,f_s = 0, g_1 > 0, \ldots, g_t > 0 \}$,
+
+    - ${\cal F} := \{ ((0,\ldots,0,1), f_1), \ldots, ((0,\ldots,0,s), f_s) \}$
+      (the set of input polynomials equipped with initial indices),
+
+    - $X_{k+1} = \emptyset$ be the initial set of strata of codimension $k+1$. 
+
+  - For indices $\mathbf{i},\mathbf{j} \in \Z_{\ge 0}^n$, 
+    - let $\mathbf{i} \prec \mathbf{j}$ mean that $\mathbf{i}$ is lexicographically less than $\mathbf{j}$
+    - and $\mathbf{i} \preceq \mathbf{j}$ denote $\mathbf{i}\prec \mathbf{j}$ or $\mathbf{i} = \mathbf{j}$.
+
+  - We will iterate over each index $\mathbf{m} = (i_n,\ldots,i_{k+1},j) \in \Z_{\ge 0}^{n-k+1}$ in ascending lexicographical order, beginning with $(0,\ldots,0,1)$. 
+
+  - Partial derivatives $\partial^{(0,\ldots,0,i_{k+1},\ldots,i_n)}$ of functions $f$ in ${\cal F}$ will be computed.
+
+  - For each $f\in {\cal F}$, maximal index $$M := (\deg_n(f), \ldots, \deg_{k+1}(f)).$$
+
+  - Each index $(i_n,\ldots,i_{k+1},j)$ has the property that
   $$
-  Index $(i_n,\ldots,i_1,j)$ has the property that
+  (0,\ldots,1) \preceq (i_n,\ldots,i_{k+1}) \preceq M_j.
   $$
-  (0,\ldots,1) \preceq (i_n,\ldots,i_1) \preceq M_j
-  $$
-  where $M_j = (\deg_n(f_j),\ldots,\deg_1(f_j))$ is the maximal index of each polynomial $f_j$ appearing in $\cal G$.
 
-    - Let $(\mathbf{j}, h) \in {\cal G}$ such that $$
+    - Let $\mathbf{m} = (0,\ldots,0,i_\ell,\ldots,i_{k+1},j)$ be one of these indices and define
+    $$
     \mathbf{j} = (0, \ldots, 0, i_{\ell} - 1, i_{\ell - 1}, \ldots, i_{k+1},j).
     $$
 
-    - Compute
+    - Let
     $$
-    s := \partial_{(h_1,\ldots,h_k), (i_1,\ldots,i_k), i_\ell} h
+    s_{k+1} := \partial_{(h_{1,},\ldots,,h_{k}),(i_{1},\ldots,i_{k}),\ell}^{i_{\ell}}\ldots\partial_{(h_{1,},\ldots,,h_{k}),(i_{1},\ldots,i_{k}),i_{k}+1}^{i_{i}+1}f_{j}
+    $$
+    where $f_j$ is the polynomial in $\cal F$ with index $(0,\ldots,0,j)$, i.e., the $j$-th input polynomial. 
+
+    - In practice, let $h_{k+1}$ be the polynomial in $\cal F$ with index $\mathbf{i}$ and compute
+    $$
+    s_{k+1} := \partial_{(h_1,\ldots,h_k), (i_1,\ldots,i_k), i_\ell} h_{k+1}.
     $$
 
     - Define the sets
-    $$
-    Y := \{ \mathbf{x} \in X' \mid s(\mathbf{x}) \ne 0 \},
-    $$
-    (note $h(\mathbf{x}) = 0$ for all $\mathbf{x} \in Y$) and
-    $$
-    U := \{ \mathbf{x} \in \R^n \mid h(\mathbf{x}) = 0, s(\mathbf{x} \ne 0, g_1(\mathbf{x}) > 0 , \ldots, g_t(\mathbf{x}) > 0 \},
-    $$
-    $U$ is a nonsingular subset of $\R^n$ having codimension $k+k$.
 
-    - If $Y$ is an open subset of $U$, then $Y$ is nonsingular of codimension $k+1$.
+      - $Y_{k+1} := \{ \mathbf{x} \in X' \mid s_{k+1}(\mathbf{x}) \ne 0 \}$ and
 
-      - Add $Y$ to the set of strata of codimension $k+1$. Set
-      $$X_{k+1} := X_{k+1} \cup Y.$$
+      - $U_{k+1} := \{ \mathbf{x} \in \R^n \mid h_{k+1}(\mathbf{x}) = 0, s_{k+1}(\mathbf{x}) \ne 0, g_1(\mathbf{x}) > 0 , \ldots, g_t(\mathbf{x}) > 0 \}$.
 
-      - and add polynomial $s$ to $\cal G$. Set
-      $$
-      {\cal G} := {\cal G} \cup \{ ((i_\ell,\ldots,i_1,j), s) \}
-      $$
+      - Note 
+  
+        - Clearly $Y_{k+1} \subset X' and $Y_{k+1} \subset U_{k+1}$
+        - $h_{k+1}(\mathbf{x}) = 0$ for all $\mathbf{x} \in Y_{k+1}$.
+        - $U_{k+1}$ is a nonsingular subset of $\R^n$ having codimension $k+1$.
 
-    - Otherwise, $Y$ is not smooth, so we proceed recursively.
-    
-    - Compute $$
-    {\cal X'} := {\rm Stratify}(k+1, {\cal G}', (s,h_k,\ldots,h_1,0), (i_\ell,i_k,\ldots,i_1,0), \mathbf{g})
-    $$
-    where ${\cal G}' = \{ ((0,\ldots,0,i), g) \in \Z_{\ge 0}^{n-\ell + 1} \mid g \in {\cal G} \}$ such that partial index $(0,\ldots,0,i-1)$ in $\cal G'$ immediately preceeds $(0,\ldots,0,i)$ if index $(i_n,\ldots,i_k,j)$ immediately preceeds $(i'_n,\ldots,i'_k,j')$ in $\cal G$. In other words, elemens of $\cal G'$ respect the same lexicographical order on indices as in $\cal G$. 
+      - If $Y_{k+1}$ is an open subset of $U_{k+1}$, then $Y_{k+1}$ is smooth and has codimension $k+1$.
 
-      - Add the new strata from $\cal X'$ to $\cal X$. Set
-      $$
-      {\cal X} = (X_{k+1}, X_k \cup X'_k, \ldots, X_0 \cup X'_0)
-      $$
-      where ${\cal X'} = (X'_k, \ldots, X'_0)$.
+        - Let $X_{k+1} := X_{k+1} \cup Y$,
 
-    - Update $X'$ by removing the points from $X$ where $s$ does not vanish. Set
-    $$
-    X = X', X' := \{ \mathbf{x} \in X \mid s(\mathbf{x}) = 0 \},
-    $$
-    which is a proper (possibly empty) subset of $X$.
+      - Otherwise, proceed by induction.
 
-    - If $X' \ne \emptyset$, proceed to the next index with respect to the lexicographical order $\prec$.
+          - Compute
+          $$(X^{\mathbf{m}}_{k+2},\ldots,X^{\mathbf{m}}_n) := {\rm Stratify}(k+1, F, (s,:\mathbf{h}), (i_\ell:\mathbf{i}), G)$$
+          where $x:L$ denotes the `cons` operator. I.g., add $x$ to the beginning of list $L$.
 
-  - Once all indices have been exhausted, return
-  $$
-  {\cal X} = (X_{k+1},\ldots,X_0)
-  $$
-  If $k = 0$, there is a special case. If every derivatcive $s$ vanishes identically on the input set, then the entire set is smooth. Return
-  $$
-  {\cal X} := (\emptyset, \ldots, \emptyset, X_0)
-  $$
-  where $X_0 = \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}), \ldots, f_s(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0 \}$.
+      - Let $\rm{Empty}(X,s)$ be a subroutine returning *true* if $s \in \Z[x_1,\ldots,x_n]$ is identically zero on the set $X \subset \R^n$.
+
+      - If $\rm{Empty}(X,s)$, we are finished. 
+
+        - Return 
+        $${\cal X}_{k+1} = (X_{k+1}, X_{k+1}, \ldots, X_n).$$
+        where $X_i, k+2\le i \le n$ is the union of all strata $X^{\mathbf{m}}_i$ computed in the recursive calls.
+
+      - Otherwise,
+
+        - Let
+
+          - $X' := \{ \mathbf{x} \in \R^n \mid s(\mathbf{x}) = 0 \}$,
+
+          - ${\cal F} := {\cal F} \cup \{ ((0,\ldots,0,i_\ell,\ldots,i_{k+1},j), s) \}$,
+
+        - $F := F:s$ (i.e., append $s$ to the end of list $F$).
+
+      - Then proceed to the index immediately after $\mathbf{m}$ with respect to $\prec$.
+  
+      - The algorithm terminates when maximal index $M_j$ for every polynomial $f_j \in F$ has been considered.
 
 ---
 
-The algorithm is then called as follows. 
-Let 
+To call this algorithm on a semialgebraic set $X \subset \R^n$ defined by equations $F \subset \Z[x_1,\ldots,x_n]$ and $G \subset \Z[x_1,\ldots,z_n]$, compute 
 $$
-X = \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = 0, \cdots, f_k(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \cdots, g_t(\mathbf{x}) > 0 \} \subset \R^n
+{\cal X}' = {\rm Stratify}(0, F, (0), (0), G).
 $$
-be a semialgebraic set with each polynomial $f_i, g_j \in \Z[x_1,\ldots,x_n], 1\le i \le s, 1 \le j \le t$. 
-We first apply some pre-processing to the polynomial equations defining $X$ to initialise their indices. Let 
-$$
-{\cal G} := \{ (0,\ldots,0,j), f_j) \mid 1 \le j \le s \}
-$$
-and compute
-$$
-\cal{X} := {\rm Stratify}(0, {\cal G}, (0), (0), (g_1,\ldots,g_t)).
-$$
-We thus obtain the set of strata ${\cal X} = (X_n,\ldots,X_0$. If $X_0 = \emptyset$, then each $X_i$ is a smooth subset of $X$ of codimension $i$. Otherwise, $X_0$ coincides with $X$. Note, in the latter case, that $X_0$ provides no information on the dimension of $X$. 
-
+to obtain a set of strata ${\cal X'} = (X_1, \ldots, X_n)$. 
+If all $X_i = \emptyset, 1 \le i \le k$, then we can conclude that every partial derivative vanishes identically on $X$. Hence, $X$ is a smooth subset of $\R^n$ and we let $X_0 = X$. 
+Otherwise, let $X_0 = \emptyset$ so that ${\cal X} = (\emptyset, X_1,\ldots,x_n)$ where each $X_i,1\le i \le n$ is a smooth subset of $X$ of codimension $i$, such that each $X_i,X_j,i\ne j$ is pairwise disjoint and $X_1\cup \ldots \cup X_n = X$.
+Note, in the case that $X_0 = X$, the smooth stratification algorithm provides no information about the dimension of $X$. 
 
 ### Implementation details
 
-The algorithm may be implemented as above, but a couple of shortcuts can be taken to simplify the code and make the algorithm work slightly more efficiently.
-First, suppose that we are considering index
+The algorithm may be implemented as above, but with some small tweaks to simplify the code and make the algorithm work slightly more efficiently.  
+First, observe that not all derivatives are needed to define the candidate strata $Y_k$. One obvious situation is when a derivative $s_k$ turns out to be a nonzero constant $c \in \A$. 
+In the formula for $Y_k$, the inequation $c \ne 0$ will appear, which is obviously true. Since $X' \supset Y_k$ was assumed to be non-empty, we can immediately conclude that $Y_k$ is non-empty and equal to $X'$. No further derivatives at step $k$ need to be considered, since $X' \setminus Y_1 = \emptyset$. 
+A similar situation may arise, even with nonconstant functions $s_k$. For example, for the input set 
+$$X := \{ \mathbf{x} \in \R^2 \mid x^2 y^2 = 0 \},$$
+the derivative for index $(0,1)$ is $\partial (x^2 y^2) / \partial x_1 = 2x y^2$, which is equal to zero at every point of $X$. 
+By discarding these redundant functions, we minimise the number of polynomials defining sets in the emptiness check. Note that we have to keep track of every derivative computed, even the redundant ones, so that we can find the function $h_k$ such that $s_k = \partial_{\mathbf{h}, \mathbf{i}, j} h_1$.
+
+Now consider the operation of finding the derivative with index $(0,\ldots,i_\ell - 1,i_{\ell - 1}, \ldots, i_{k+1},j)$. The following observation allows us to quickly find this polynomial, avoiding a search in $\cal G$ or unneccesary recomputation of derivatives. 
+Suppose we are considering index
 $$
-(0,\ldots,0,i_\ell,\ldots,i_{k+1},i_k,\ldots,i_1,i_0).$$
-Partial differentials with index lexicographically less than $(i_{k+1},0,\ldots,0)$ have been computed on a previous round of induction and were passed in the argument $\mathbf{G}$.
-Furthermore, the function $h_k$, having index
+\mathbf{m} = (0,\ldots,0,i_\ell,i_{\ell - 1},\ldots,i_{k+1},j)$$
+and want to find the derivative with index 
 $$
-(0,\ldots,0,i_{\ell -1},\ldots,i_0)
-$$
-has already been computed, so it can be taken directly from the list $\mathbf{G}$.
-In fact, there is a convenient way to find the function with index $(0,\ldots,0,i_\ell - 1, \ldots,i_1,i_0)$. Let us first illustrate this with an example. Let $M = (1,2,2)$ and consider the lexicographically ordered list of indices
+\mathbf{j} = (0,\ldots,0,i_\ell - 1,i_{\ell - 1},\ldots,i_{k+1},j).$$
+The set $\cal G$ includes polynomials computed in previous rounds of induction and those with index $\mathbf{i} \prec \mathbf{m}$, since we proceed in ascending lexicographical order. Hence $\cal G$ contains the derivative with index $\mathbf{j}$. 
+There is a convenient way to find this derivative. 
+Let us first illustrate the process with an example. Let $f_j \in \Z[x_1,\ldots,x_3]$ with $M_j = (1,2,2)$ and consider the lexicographically ordered list of indices
 $$
 \begin{matrix}
 L_1 :=\ &  (0,0,0),&(0,0,1),&(0,0,2),&(0,1,0),&(0,1,1),&(0,1,2),&(1,0,0),&(1,0,1)&\ldots\\
 L_2 := \ & & (0,0,0),&(0,0,1),&(0,0,0),&(0,0,1),&(0,0,2),&(0,0,0),&(0,0,1)&\ldots.\\
 \end{matrix}
 $$
-Observe that for indices $(0,0,1)$, $(0,1,0)$ and $(1,0,0)$ in $L_1$, the corresponding element in $L_2$ is $(0,0,0)$ and the corresponding elements for subsequent indices are those in the lexicographical order.
-I.e., we see that the index of $h_k$ "chases after" the index of $s_k$, resetting each time $\ell$ is incremented.
-More precisely, when $\ell = 1$ and $s_1$ has index $(0,\ldots,0,i),i>0$, $h_1 has index $(0,\ldots,0,i-1)$. I.e., our initial "chase index" is the previous element in the list. When $\ell$ is incremented, we need to return to the first element in the list, $(0,\ldots,0)$ and proceed lexicographically through the indices until $\ell$ is incremented again, at which point we return to the beginning of the list. This gives us the property that when $h_k$ has index $(0,\ldots,0,i_\ell,i_{\ell-1},\ldots,i_1)$, $h_1$ will have index $(0,\ldots,0,i_\ell - 1,i_{\ell - 1},\ldots,i_1)$ while only requiring two very basic list operations: get the next element and return to the beginning. In the example, we considered only one polynomial. To extend to multiple polynomials, since each will have a different $M$, we need to keep a separate "chase list" for each one.
+Observe that for indices of the kind $(0,\ldots,0,1,0,\ldots,0)$ in $L_1$, the corresponding element of $L_2$ is $(0,\ldots,0)$. For an arbitrary index $(0,\ldots,0,i_\ell,\ldots,i_1)$ in $L_1$ which appears $k$ elements after $(0,\ldots,0,i_\ell = 1,0,\ldots,0)$, the corresponding element in $L_2$ appears $k$ elements after $(0,\ldots,0)$.
+From this, we can introduce an "index chasing" method as follows. Let ${\cal G}_j$ be the (ordered) list of derivatives of polynomial $f_j$. For each $\mathbf{m}$, we keep a pointer, ${\cal G}'_j$, to the element in ${\cal G}_j$ with index $\mathbf{j}$. 
 
-Since the program has been implemented in QEPCAD, which utilises linked lists, it was important to ensure that appending to the end of the list is as efficient as possible. To avoid $O(n)$ insertion complexity, we keep a pointer to the last-but-one element in the list, i.e., suppose $L = (a_1,(\ldots,(a_{r-1},(a_r,(\rm{NIL})))\ldots)$ then $L_{\rm{append}} = (a_{r-1},(a_r,(\rm{NIL})))$. Then, if we wish to append $b$ to the end of $L$, we simply need to set the reductum of $L_{\rm{append}}$ to $(a_r,(b,(NIL)))$.
+- Initialise ${\cal G}_j = ((0,\ldots,0),f_j)$. For $\mathbf{m} = (0,\ldots,0,1)$, set ${\cal G}'_j = {\cal G}_j$.
+- Now suppose that ${\cal G}_j$ contains all polynomials with index $\prec \mathbf{m}$.
+  - If $\mathbf{m} = (0,\ldots,0,1,0,\ldots,0)$, then $\mathbf{j} = (0,\ldots,0)$ and we set ${\cal G}'_j$ to the head of ${\cal G}_j$. 
+  - Otherwise, let ${\cal G}'_j$ be the tail of ${\cal G}'_j$.
 
-Secondly, observe that only the last row and last column in the $(k\times k$-matrix for the partial differential operater
+The "index chasing" method works efficiently in SACLIB, which uses linked lists. However, we do need to append new derivatives to the end of ${\cal G}_j$, which takes $O(n)$ steps. 
+To avoid this, we keep a pointer to the last-but-one element in the list, i.e., suppose $G_j = (a_1,(\ldots,(a_{r-1},(a_r,(\rm{NIL})))\ldots)$ then $G_{j,\rm{append}} = (a_{r-1},(a_r,(\rm{NIL})))$. Then, if we wish to append $b$ to the end of $G_j$, we simply need to set the tail of $G_{j,\rm{append}}$ to $(a_r,(b,(NIL)))$.
+
+We can also optimise the construction of the matrix associated to the partial differential operator $\partial_{\mathbf{h},\mathbf{i},j} f$. In this matrix,
 $$
-\partial_{\mathbf{h},\mathbf{i},j} f = \det\begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial h_{1}}{\partial x_{i_{k}}} & \dfrac{\partial h_{1}}{\partial x_{j}}\\
+\begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial h_{1}}{\partial x_{i_{k}}} & \dfrac{\partial h_{1}}{\partial x_{j}}\\
  & \vdots\\
 \dfrac{\partial h_{k}}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial h_{k}}{\partial x_{i_{k}}} & \dfrac{\partial h_{k}}{\partial x_{j}}\\
 \dfrac{\partial f}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial f}{\partial x_{i_{k}}} & \dfrac{\partial f}{\partial x_{j}}
-\end{pmatrix}.
+\end{pmatrix},
 $$
-depend on $f$ and $i$. As a result, we can re-use the $(k-1\times k-1)$-matrix consisting of the first $k-1$ rows and columns of $\partial_{\mathbf{h}, \mathbf{i}, j} f$.
-In the implementation, we can receive as an argument, from the previous round of induction, this $(k-1\times k-1)$-matrix which will be used throughout that round. We still, however, need to compute the determinant for every new $s_k$.
+only the last row depends on $f$ and only the last column depends on $j$. Thus, we can save the $(k\times k)$-submatrix consisting of the first $k$ rows and columns and only append the new row and column. This matrix can be passed as an argument to ${\rm Stratify}(k,\ldots)$, with the matrix for $k=0$ being empty (i.e., $\mathbf{h} = \mathbf{i} = ()$ in the partial differential operator).
 
-We will now present, from [@gv1995, Theorem 1], the proof that this algorithm does indeed produce smooth strata and also that it terminates.
+### Complexity
 
-This algorithm is doubly exponential in the number of variables. For the polynomial case, the complexity is
+In the polynomial case, the complexity is
 $$
 s^n (d+1)^{2^{O(n)}}
 $$
@@ -236,7 +252,8 @@ We illustrate the smooth stratification algorithm with a worked example. Conside
 $$
 \{ z = 0, x^2-y^2=0 \} \subset \R^3.
 $$
-Note that the algorithm imposes an order on polynomials. In this case, $h_1 = z$ will be considered first. The algorithm proceeds as follows
+Note that the algorithm imposes an order on polynomials. Here we take $f_1 := z$ and $f_2 = x^2 - y^2$, wiht $f_1$ and $f_2$ being assigned indices $(0,0,0,1)$ and $(0,0,0,2)$ respectively. 
+The algorithm proceeds as follows
 
 $k=1,G_{1}=\left(z,x^{2}-y^{2}\right),J=\begin{pmatrix}\partial h_{1}/\partial y_{1}\end{pmatrix}$
 \begin{equation}
@@ -283,5 +300,77 @@ $$
 X':=\left\{ z=0,x^{2}+y^{2}=0,2x=0,2y=0\right\}=(0,0,0),
 $$ a single point. $X_{0}$ is set to $X'$ and the algorithm terminates.
 
-Note that this weak stratification does not impose any conditions on the boundaries of strata. In particular, the boundary of a stratum need not be a union of strata. 
+### Determining the codimension and basic formula for each stratum
+
+@gv1995, Theorem 2 assert that each stratum of codimension $k$ can be represented by a conjunction containing $k$ equations. I.e., each stratum is basic. A naive implementation of the procedure leads to a non-basic representation as shown in the following example
+
+::: {.example}
+Consider the semialgebraic set 
+$$
+S := \{ (x_1,x_2) \in \R^2 \mid x_1 x_2 = 0 \}
+$$
+Apply the algorithm.
+\begin{align*}
+k=0,X':=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid f_{1}:=x_{1}x_{2}=0\right\} \\\left(0,1,1\right)h_{1}=&f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{1}=&x_{2}\\Y_{1}:=&\left\{ \mathbf{x}\in X'\mid y\ne0\right\} \\U_{1}:=&\left\{ \mathbf{x}\in \mathbb{R}^2\mid x_{1}x_{2}=0,x_{2}\ne0\right\} \\&\text{Proceed by induction}\\k=1,h_{1}=f_{1},i_{1}=1,X'':=&Y_{1},F_{1}=\left\{ f_{1}\right\} \\\left(1,1\right),h_{2}=&f_{1}\\s_{2}=&\begin{pmatrix}\partial f_{1}/\partial x_{1} & \partial f_{1}/\partial x_{2}\\
+\partial f_{2}/\partial x_{1} & \partial f_{1}/\partial x_{2}
+\end{pmatrix}=0\\&\text{since both columns are equal.}\\\text{Return. }Y_{1}&\text{ is smooth.}\\
+\end{align*}
+
+Observe that the formula for $Y_1$ contains one equation, $h_1 = f_1$. Hence $Y_1$ is a smooth stratum in basic representation and we can conclude that it has codimension $1$. 
+
+For the next nonzero derivative, with index $(1,0,1)$, we get
+\begin{align*}
+k=0,X':=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,y=0\right\} \\\left(1,0,1\right)\ h_{1}=&f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{2}=&x_{1}\\Y_{1}:=&\left\{ \mathbf{x}\in X'\mid x_{1}\ne0\right\} \\U_{1}:=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,x_{1}\ne0\right\} \\&\text{Proceed by indection.}\\k=1,h_{1}=f_{1},i_{1}=2,X'':=&Y_{1}\ldots\\&\text{No partial derivatives can be computed.}\\\text{Return. }Y_{1}&\text{ is smooth.}
+\end{align*}
+
+Notice that the inductive step returns immediately. This is because $i_1=2$, so it is not passible to take further partial derivatives with respect to $j > i_1$. In the formula for
+$$
+Y_1 := \{ \mathbf{x} \in \R^2 \mid f_1 := x_1 x_2 = 0, h_1 := x_2 = 0, x_1 \ne 0 \},
+$$
+two different equations, $f_1$ and $h_1$ appear. However, $Y_1$ is not in basic representation. Indeed, the equation $f_1=0$ is redundent, since $f_1$ is equal to zero for all points at which $h_1$ is equal to zero. Thus $f_1$ can be discarded, and we see that only one equation, $h_1$, is required to represent $Y_1$ in basic form. We can conclude that $Y_1$ is smooth and has codimension $1$. 
+
+Finally, consider the derivative with index $(1,1,1)$.
+\begin{align*}
+k=0,X':=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,x_{2}=0,x_{1}=0\right\} \\\left(1,1,1\right)\ h_{1}=&s_{1}^{\left(0,1,1\right)}=x_{2}\\s_{1}=\partial f_{1}/\partial x_{2}=&1\\Y_{1}:=&\left\{ \mathbf{x}\in X'\mid1\ne0\right\} \\U_{1}:=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{2}=0,1\ne0\right\}
+\end{align*}
+Again, the inductive step returns immediately because $i_1=2$, but this time we can see that $Y_1$ is not an open subset of $U_1$. As mentioned above, the algorithm is unable to determine this without solving a quantifier elimination problem. Instead, we may be able to determine the codimension by looking at the basic representation of $$
+Y_1 := \{ (x_1,x_2) \in \mathbb{R}^2 \mid x_1 x_2 = 0, x_1 = 0, x_2 = 0 \}.
+$$
+(Note that the constraint $1 \ne 0$ is dropped since it is trivial and adds no information.)
+We see that three equations appear in the definition of $Y_1$, but the first one, $f_1 := x_1 y_2$ is redundant again. Thus, the two equations $x_2 = 0, x_1 = 0$ define $Y_1$ and we can conclude that $Y_1$ is smooth and has codimension $2$. 
+:::
+
+It is clear from this example that $k$, the step of induction gives a lower bound on the codimension of strata. Therefore, strata may be misclassified. If a stratum $X$ is in basic form, we can determine its codimension by counting the number of equations which appear in its basic representation. This number coincides with the codimension of $X$. Thus, we need a procedure to discard redundant equations in the definition of $X$. 
+
+#### Discarding redundant equations
+
+Let $F \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials, indexed by $(m_{i_1},\ldots,m_1,j)$ and, for $\mathbf{m} = (0,\ldots,0,m_\ell,\ldots,m_1,j),\ell > i_1$ let
+$$
+s^{m_n,\ldots,i_1,j}_k = \partial_{\mathbf{h}, \mathbf{i}, n}^m_n \partial_{\mathbf{h}, \mathbf{i}, i_1 + 1}^m_{i_1 + 1} f 
+$$
+be the partial derivative computed at index $\mathbf{m}$, where $f \in F$ has index $(m_1,\ldots,m_1,j)$ be one of the partial derivatives computed during the algorithm. 
+Denote by $G$ the set of derivatives with index lexicographically less than $\mathbf{m}$. $Y_k \subset Y_{k-1}$ is defined such that every function in $G$ is equal to zero while the function $h^{\mathbf{m}}_k$ is not. 
+Define the smooth manifold
+$$
+U_k := \{ \mathbf{x} \in \R^n \mid h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0, h_k(\mathbf{x}) = 0, s^{\mathbf{m}}_k(\mathbf{x}) \ne 0 \}.
+$$
+of codimension $k$, where the function $h_k := s^{(0,\ldots,0,m_\ell - 1,m_{\ell - 1},\ldots,m_1,j)}_k$. According to @gv1995, Theorem 2, $Y_k$ is smooth and has codimension $k$ if it is an open subset of $U_k$. In this case, only $k$ of the polynomials will be needed to define $Y_k$. Note that inequations $s_1,\ldots,s_{k-1}$ which appear in the definition of $Y_{k-1} \supset Y_k$ should also be taken into account. 
+Begin with a set
+$$
+Y' := \{ \mathbf{x} \in \R^n \mid h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_(\mathbf{x}) \ne 0, s_k(\mathbf{x}) \ne 0 \} \subset Y_k.
+$$
+Consider each function $g \in G$ in reverse lexicographical order. If $g(\mathbf{x}) = 0$ at every point $\mathbf{x} \in Y'$ then it is redundant and should be discarded. Otherwise, $g$ should be included in the defining equations for $Y_k$. Since $Y_k$ has codimension $k$, and $Y'$ is already an open, basic set of codimension $k-1$, only one more polynomial should be needed. 
+If $Y_k$ is not an open subset of $U_k$, then more polynomials will be required to define it, and the number of polynomials gives the codimension.
+
+
+A polynomial $g \in \Z[x_1,\ldots,x_n]$ is redundant in the definition of the semialgeabric set $S \subset \R^n$ if the following formula is true
+$$
+\exists x_1,\ldots,x_n,a \in \R^{n+1} \mid (x_1,\ldots,x_n) \in S, a \ne 0, g(x_1,\ldots,x_n) = a.
+$$
+This problem can also be formulated using the emptiness check. $g$ is redundant in the definition of $S$ if the semialgebraic set
+$$
+\{ \mathbf{x} \in S \mid g(\mathbf{x}) \ne 0 \}
+$$
+is non-empty. 
+
 

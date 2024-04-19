@@ -4,25 +4,34 @@ Let $$
 V := V_1 \cup \ldots \cup V_k
 $$
 be a family of semialgebraic sets such that $\dim(V_i) \le 2$ for $1\le i \le k$.
-According to [@bgv15 Theorem 3.20], the first step in constructing a CAD with monotone cells is to construct a CAD $\cal D$ compatible with $V$ such that each cell of $\cal D$ is the graph of a quasi-affine map. We do this following [@bgv15, Lemma 3.19].
+According to [@bgv15 Theorem 3.20], there is an algorithm for computing a cylindrical decomposition compatible with $V$, monotone with respect to sets $V_1,\ldots,V_k$ and satisfying the frontier condition. 
+The first step is to construct a CAD $\cal D$ compatible with $V$ and such that each cell of $\cal D$ is the graph of a quasi-affine map. 
+[@bgv15, Lemma 3.19] provides a procedure to do this.
 
 ## Computing the smooth twe-dimensional locus of $V$
 
-We begin by computing the smooth 2-dimensional locus, $W$, of $V$. This can be done by computing a smooth stratification of $V$ (as described in Section \ref(sec:smooth-strat)). Let
+We begin by considering $W$, the smooth $2$-dimensional locus of $V$. 
+This can be done by computing a smooth stratification of $V$, e.g., using the algorithm described in Section \@ref(sec:smooth-strat). We can then compute a CAD compatible with $V$ and all strata of dimension $2$, $1$ and $0$.
+Recall that the smooth stratification algorithm requires a procedure to determine whether a given semialgebraic set is empty. Algorithms for doing this, e.g., CAD or even Groebner basis can have high complexity. Therefore, we propose an alternative method. 
+Let
 $$
-f_1,\ldots,f_s
+F = \{f_1,\ldots,f_s\}
 $$
-be the polynomials defining $V$. We use a slightly modified version of the smooth stratification algorithm which will avoid the expensive emptiness check.  Instead of checking whether each set $Y_k$ is empty, we just compute all possible partial differentials $f_M$ for each $M = (i_n,\ldots,i_1,j)$. A CAD which is sign-invariant with respect to $f_1,\ldots,f_s$ and all $f_M$ will be compatible with $V$ and the smooth two-dimensional locus $W$.
+be the polynomials defining $V$. 
+Instead of checking whether each stratum $Y_k$ is empty, we instead compute all possible partial differentials $G \subset \Z[x_1,\ldots,x_n]$. 
+We can then construct a CAD $\cal D$ of $\R^n$ which has constant sign on all polynomials in $F$ and $G$. It is clear that $W$ will be a union of cells of $\cal D$. 
 
-Alternatively, recall, from Section \@ref(sec:cad-construction)), thet smooth cells can be guaranteed by choosing a certain projection operator.
-More specifically, according to [@mccallum1988 Theorems 2.2.3 and 2.2.4], if there is a finite number of blow-up poits, which will be the case since input sets have dimension at most 2, then smooth cells will be obtained if McCallus's projection operator is used.
-Looking towards extend the construction to sets of higher dimension, @mccallum2019 proved that we could use Lazard's projection operator, which does not have the restriction on the dimension of blow-up points.
+However, it may be possible to avoid the stratification step altogether. 
+Recall from Section \@ref(sec:cad-construction)) thet smooth cells can be guaranteed by choosing a certain projection operator.
+More recisely, according to [@mccallum1988 Theorems 2.2.3 and 2.2.4], if there is a finite number of blow-up poits then the McCallum projection operaton will result in a CAD with mooth cells. 
+Since $\dim(V_i) \le 2$ for all $1 \le i \le k$, we may assume that blow-up points will have dimension at most $0$.
+If one wishes to extend the result of @bgv15 Theorem 3.20 to sets of higher dimension, this assumption will no longer hold. In this case, we may use the Lazard projection operator [@mccallum2019].
 
 ## Ensuring that every cell is the graph of a quasi-affine map
 
-In order to obtain quasi-affine cells, [@bgv15, Lemma 3.19] states that we need to consider the critical points, $W_{i}$ and $W_{i,j}, of projections of $W$ onto one and two-dimensional coordnate subspaces (indexed by $i$ and $j$) respectively. The classical CAD compatible with $V, W$ and all $W_i$ and $W_{i,j}$, $1 \le i \le j \le n$ will contain quasi-affine cells.
+In order to obtain quasi-affine cells, @bgv15, Lemma 3.19 states that the CAD $\cal D$ also needs to be compatible with the critical points, $W_{i}$ and $W_{i,j}$, of projections of $W$ onto one and two-dimensional coordnate subspaces (indexed by $i$ and $j$). 
 
-Let $f$ be one of the polynomials in $f_1,\ldots,f_s$. Then the critical points of the projection map onto $\opspan{x_i}$ can be found by computing the partial derivative and solving
+Let $F = \{ f_1,\ldots,f_s \} \subset \Z[x_1,\ldots,x_n]$ be the set of polynomials defining $V$ and consider a polynomials $f \in F$. The critical points of the projection map onto $\opspan{x_i}$ can be found by computing the partial derivative and solving
 $$
 \dfrac{\partial f}{\partial x_i} = 0.
 $$
@@ -30,14 +39,18 @@ The solutions of $\{ f = 0, \partial f / \partial x_i = 0 \}$ are the local maxi
 $$
 \{ f = 0, \partial f / \partial x_i = 0, \partial f / \partial x_j \}.
 $$
-Thus, $W_i$, the set of critical points of the projection map $\projops{x_i}$, are given by $\lor_{1 \le k \le s} \{ f_k = 0, \partial f_k / \partial x_i = 0 \}$ and $W_{i,j}$, the set of critical points of $\projops{x_i,x_j}$, is given by $\lor_{1 \le k \le s} \{ f_k = 0, \partial f_k / \partial x_i = 0, \partial f_k / \partial x_j = 0 \}$.
-Alternatively, we can compute a CAD which is sign-invariant with respect to the input polynomials $f_1,\ldots,f_s$ and all first partial derivatives (with respect to all variables $x_1,\ldots,x_n$) of the input polynomials.
-Note that these first partial derivatives will have already been added if we applied the smooth stratification algorithm, which computes them for $k=1$, to find $W$.
+Thus, the CAD should have constant sign on the partial derivatives $\partial f / \partial x_i$ for all $1 \le i \le n$ and all $f \in F$.
+Note that these first partial derivatives will have already been added if the modified smooth stratification algorithm was used to find $W$.
 
-Since the smooth stratification algorithm has compleity doubly exponential in the number of variables, and this is also a bound on the number of strata (and therefore number of new polynomials to be added), it makes sense to avoid this computation if possible. Therefore, the choice was made to use McCallum's projection operator and compute a CAD sign-invariant with respect to $$f_1,\ldots,f_s$$ (the polynomials appearing in the formula defining $V$) and the first partial derivatives
+### Computing the quasi-affine CAD
+
+It is clear that we want to minimise the number of input polynomials to the CAD. Therefore, the choice was made to avoid the smooth stratification algorithm and instead use the McCallum projection operator and compute a CAD sign-invariant with respect to $F = \{ f_1,\ldots,f_s \}$ their first partial derivatives
 $$
 \partial f_j / \partial x_i
 $$
-for $1 \le j \le s$ and $1 \le i \le n$.
+for $1 \le j \le s$ and $1 \le i \le n$. 
 Denote this CAD by $\cal D$.
+
+The reason for computing a sign-invariant CAD as opposed to one compatible with $V$ will be explained in Section \@ref(sec:frontier).
+
 
