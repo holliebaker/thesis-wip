@@ -10,7 +10,7 @@ Now let $T \in {\cal U}$ be one of the one-dimensional components. If $T$ is not
 Repeating this process with each $0$- and $1$-dimensional component of $\cal U$, we obtain a refinement of $\cal D'$ compatible with $\partial C$.
 This completes the construction of a monotone CAD due to @bgv15.
 
-However, a difficulty arises when we try to translate this construction into an algorithm. We need to compute $\partial C$ for each $2$-dimensional cell $C \subset V$.
+The most computationally difficult part of implementing this construction is finding $\partial C$ for each $2$-dimensional cell $C \subset V$.
 
 ::: {.lemma}
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$
@@ -30,7 +30,22 @@ Using singly-exponential quantifier elimination algorithm [@bpr2006 Algorithm 14
 as a quantifier-free Boolean formula $F'$ with the bounds required in the lemma.
 :::
 
-We see that the "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier alternations. Even using an efficient QE algorithm, this still has complexity singly exponential in the number of variables. If possible, we would like to avoid calling this singly exponential subroutine on each cell.
+We see that the "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier alternations. Using an efficient QE algorithm, e.g., [@bpr2006, Algorithm 14.21], this procedure has complexity singly exponential in the number of variables. $\parcial C$ is represented by a quentifier-free Boolean formula $F$.
+
+First, we construct the family $\cal U$ of one-dimensional curve intervals $T$ and the points between them $\mathbf{c}$. By Lemma \@ref(lem:one-dim-qa-is-monotone), one-dimensional quasi-affine cells are always monotone. Thus, we may apply the method described in Section \@ref(sec:quasi-affine) to obtain jacobi matrices whose determinants are zero at the critical points of projections onto one and two-dimensional coordinate subspaces. 
+If CAD with the McCallum projection operator is used to solve the QE problem, then each smooth 1-dimensional cell $D$ in $\partial C$ will be defined by $n-1$ polynomials. We refine $\partial C$ to be compatible with the critical points of $\projops{x_i}(D), 1\le i \le n$ defined by $\det(J_{\{1,\ldots,n\}\setminus \{i\}}) = 0$.
+
+A further refinement of each one-dimensional component $T$ of $\cal U$ to be compatible with existing cells of $\cal D'$ may also be required. 
+For each one-dimensional component $T \in {\cal U}$ and each one-dimensional cell $D$ of $\cal D'$, consider $E := T \cap D$ such that $E \ne \emptyset$.
+If $E \subset D$, then $T$ should be split into one-dimensional components $E$ and $\int(T \setminus E)$ and the zero-dimensional endpoints of $E$. This makes $\cal U$ compatible with all cells of the CAD $\cal D'$. 
+
+Consider each $T \in {\cal U}$ which is a subset of a 2-dimensional cell $Z$. The refinement can be performed exactly as described by @bgv15, Theorem 3.20. I.e., partition $Z$ into $Z_1 \cup T \cup Z_2$ where $Z_{1,B}=Z_B$ and $Z_{1,T} = T$ and $Z_{1,B}=Z_T$ and $Z_{1,T} = Z_T$. 
+
+Now consider the zero-dimensional components $\mathbf{c} = (c_1,\ldots,c_n)$ of $\cal U$. Refinements of $\cal D$ to be compatible with $\mathbf{c}$ again proceed as described by @bgv15. I.e., Consider $C' := \projop{k}(C)$ such that $C'$ is zero-dimensional and equal to $(c_1,\ldots,c_k)$, but $\projop{k+1}(C)$ is one-dimensional. Perform a refinement of the sub-cad above $(c_1,\ldots,c_k)$ by intersecting it with $\{ x_k < c_k \}, \{ x_k = c_k \}, \{ x_k > c_k \}$ -- the refinements defined in @bgv15, Lemma 3.11. Repeat until $(c_1,\ldots,c_n)$ is a cell in the refinement.
+
+Let $\cal D$ be the refinement of $\cal D'$, compatible with $\partial C$ for all 2-dimensional cells $C$ of $\cal D'$. This CAD is compatible with, and monotone with respect to all $V_1,\ldots,V_k$, and the frontier of each cell $C \subset V_1\cup \ldots V_k$ of $\cal D$ is a union of some other cells of $\cal D$ of smaller dimension. This completes the construction.  
+
+This method is relatively straightforward as it uses techniques we have used before (obtaining quasi-affine subsets and performing refinements). However, we may want to avoid the quantifier-elimination problems required to find $\partial C$. In the following sections, we will explore alternative ways to obtain the frontier condition. 
 
 ## Lazard's method for dimension not greater than 3 { #sec:lazard-3 }
 

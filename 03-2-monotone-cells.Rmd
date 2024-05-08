@@ -46,12 +46,12 @@ The construction proceeds by induction on $n$.
 The proof of Theorem \@ref(thm:bgv-monotone) proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is refined such that each $Y \subset X$ is a monotone 2-dimensional sector cell.
 Consider the intersection $X \cap \{x_1 = c\}$ for all $c\in \R$. This intersection is a finite union of pairwise disjoint intervals. Let ${\cal I} (c)$ be the family of these intervals associated with the point $c$. Define
 $$
-\gamma := \{ (x_1,x_2) \in \R^2 \mid x_2 \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
+\gamma := \{ (x_1,x_\alpha) \in \opspan{x_1,x_\alpha} \mid x_2 \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
 $$
-Although the cell $X$ under consideration is a $2$-dimensional cylindrical cell in $\opspan{x_1,x_\alpha}$, we actually need to refine the $2$-dimensional cylindrical sector cell $C' := \projop{\alpha}(C)$ in the cylindrical decomposition induced by $\cal D$ on $\R^{\alpha}$. Thus, we need a way to pass from $C'$ and $X$. 
+Although the cell $X$ under consideration is a $2$-dimensional cylindrical cell in $\opspan{x_1,x_\alpha}$, we actually need to refine the $2$-dimensional cylindrical sector cell $C' := \projop{\alpha}(C)$ in the cylindrical decomposition induced by $\cal D$ on $\R^{\alpha}$. Thus, we need a way to translate between $C'$ and $X$. 
 
 :::{.lemma #gamma-top-bottom}
-Let $C$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \plojop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and set of one-dimensional curves associated with $C$. Then
+Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and set of one-dimensional curves associated with $C$. Then
 
 1. The projection map $\projops{x_1,x_\alpha}\vert_C$ is injective. 
 
@@ -78,7 +78,7 @@ C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\
 $$
 where $f,g : \R^{\alpha - 1} \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$. 
 Again, if not bounded from above (resp. below), $f$ (resp. $g$) are taken to be $-\infty$ (resp. $\infty$) at every point. 
-Observe that the graph of $f$ (if finite) is the bottom of $C$ and the graph of $g$ (if finite) is the graph of $g$.
+Observe that the graph of $f$ (if finite) is the bottom of $C$ and the graph of $g$ (if finite) is the top of $C$.
 
 Writing $C$ in terms of $x_1 \in X'$, $f$, $g$ and $\mathbf{h}$, we obtain the functions
 \begin{align}
@@ -94,7 +94,7 @@ $$
 $$
 such that, for each $1 \le i < t$,
 $$
-X \cap \{c_i < x_1 < c_i+1\}
+X \cap \{c_i < x_1 < c_{i+1}\}
 $$
 is a monotone cell. By [@bgv13, Theorem 1.7], this can be achieved by ensuring that
 $$
@@ -116,7 +116,7 @@ Let
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
 (\#eq:proj-fac-set)
 \end{equation}
-where ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$, be the projection factor set for $\cal D$. For convenience, we say that $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
+where ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$, be the projection polynomials defining $\cal D$. For convenience, we say that $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
 Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ and consider the $(1,0,\ldots,0)$-cell
 $$
 C' := \projop{\alpha - 1}(C)
@@ -199,7 +199,7 @@ Since $C_T$ is a section cell, there exists a polynomial $g_\alpha \in {\cal A}_
 C_T := \{ \mathbf{x} \in \R^\alpha \mid \projop{\alpha - 1}(\mathbf{x}) \in C', g_\alpha(\mathbf{x}) = 0 \}.
 $$ Thus, there exists an algebraic variety
 \begin{equation}
-V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0 g_\alpha(\mathbf{x}) = 0 \right\}
+V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0, g_\alpha(\mathbf{x}) = 0 \right\}
 (\#eq:variety-v)
 \end{equation}
 such that $C_T \subset V$, where $g_2,\ldots,g_{\alpha - 1}$ are the same polynomials appearing in Equation \@ref(eq:c-alpha-top).
@@ -235,7 +235,7 @@ Observe that $J_T$ is a rational function: a fraction in which the numerator and
 $$ should be found.
 Observe that this is a semialgebraic set, since
 $\{ d_T(\mathbf{x}) \ne 0 \} \leftrightarrow \R^{\alpha - 1 } \setminus \{ d_T(\mathbf{x}) = 0 \}$.
-Note that, when $\deg(d_T) = 0$, $d_T$ is a constant and therefore has no solutions. Thus, the condition $d_T = 0$ can be dropped.
+Note that, when $\deg(d_T) = 0$, $d_T$ is a constant and therefore has no solutions. Thus, the condition $d_T = 0$ can be dropped in this case.
 
 Repeating this process to obtain $J'_B$ and $d_B$, if sector cell $C$ is bounded from below, we have a set of polynomial equations
 \begin{equation}
@@ -280,12 +280,7 @@ Let ${\cal E} \subset \Z[x_1]$ be the set of polynomials obtained by computing t
 $${\cal G} := \{ s_1 g_{1,1}, \ldots, s_\ell g_{1,\ell} \}
 $$
 from Equation \@ref(eq:lagrange-solve-qe-ineqs).
-$(c_1,\ldots,c_t$ can be found by computing the real roots of $\cal F$ subject to the inequalities $\cal G$, then discarding those such that a polynomial in $\cal E$ is zero.
-
-> In the implementation `IPFSFB` is used, to compute a "finest square-free basis" of polynomials in $\cal F$.
->
-> - this was just copying from Brown's `CONSTRUCT` function. it returns a list of real roots in the form $[(M,J),...]$ where $M$ is the minimal polynomial and $J$ the isolating interval. It also computes multiplicities, which we don't need.
-> - in fact, why do we even need a squarefree basis at all. should find out which is the most efficient algorithm from saclib, of squarefree basis or the real root finding algorithms. maybe do some discussion on this.
+$(c_1,\ldots,c_t)$ can be found by computing the real roots of $\cal F$ subject to the inequalities $\cal G$, then discarding those such that a polynomial in $\cal E$ is zero.
 
 It is clear that $(c_1,\ldots,c_t)$ lie in an open interval $X = (a,b) \subset \R \cup \{ -\infty, \infty \}$. Thus, rather than using strict inequalities from Equation \@ref(eq:lagrange-solve-qe-ineqs), we could find the roots of $\cal F$ in the interval $(a,b)$.
 
@@ -327,8 +322,8 @@ Each coefficient in $g$ will be an integer number since $M$ is divisible by all 
 Let $K$ be a field and $L$ a finite (algebraic) extension of $K$.
 The field $L$ can be thought of as a finite dimensional vector space over $K$.
 
-Consider $f$ and $m$ as polynomials in $\Q[x_1,\ldots,x_n,x_\alpha]$. compute the resultant of $f$ and $m$ to obtain a polynomial in $\Q[x_1,\ldots,x_n]$. somehow this gives us the norm of an algebraic polynomial.
-
+Consider $f$ and $m$ be polynomials in $L[x_1,\ldots,x_n]$, viewed as polynomials in $K[x_1,\ldots,x_n,x_\alpha]$. 
+The norm, in $L[x_1,\ldots,x_n]$ of $f$ can be found by computing the resultant of $f$ and $m$. 
 :::
 
 ::: {.remark}
@@ -336,15 +331,16 @@ Let $f \in \A[x_1,\ldots,x_n]$ be a polynomial such that
 $$
 f(x_1,\ldots,x_n) = a_1 m_1 + \cdots + a_k m_k
 $$
-where $m_i = x_1^{d_{i,1}} \cdots x_n^{d_{i,n}}$ is a monomial in $x_1,\ldots,x_n$ and $a_i$ is an element of $\Q(\alpha)$ for $1 \le i \le k$.
+where $m_i = x_1^{d_{i,1}} \cdots x_n^{d_{i,n}}$ is a monomial in variables $x_1,\ldots,x_n$ and $a_i$ is an element of tho algebraic extension of the rational numbers $\Q(\alpha)$ for $1 \le i \le k$.
 
-Let $m \in \Z[\alpha]$ be the minimal polynomial for $\Q(\alpha)$. $f$ can be written as a polynomial in $\Q[x_1,\ldots,x_n,\alpha]$ and $m$ can be viewed as a polynomial in $\Z[x_1,\ldots,x_n,\alpha]$ which is independent of all $x_1,\ldots,x_n$. Compute
+Let $m \in \Z[\alpha]$ be the minimal polynomial for $\Q(\alpha)$. $f$ can be written as a polynomial in $\Q[x_1,\ldots,x_n,x_\alpha]$ and $m$ can be viewed as a polynomial in $\Q[x_1,\ldots,x_n,x_\alpha]$ which is independent of all $x_1,\ldots,x_n$. Compute
 $$
 g := \res_\alpha (f,m)
 $$
-to obtain a polynomial in $\Q[x_1,\ldots,x_n]$. The property that $f(\mathbf{x}) = 0$ if and only if $g(\mathbf{x}) = 0$ follows from the following property of resultants:
+to obtain a polynomial in $\Q[x_1,\ldots,x_n]$. The property that $f(\mathbf{x}) = 0$ if and only if $g(\mathbf{x}) = 0$ follows from a property of resultants:
 
-> Let $I = \langle f, m \rangle$ be the ideal generated by polynomials $f, m \in K[x_1,\ldots,x_n][\alpha]$, where $K$ is an algebraically closed field. If at least one of $f$ and $m$ is monic, then
+> Let $I = \langle f, m \rangle$ be the ideal generated by polynomials $f, m \in K[x_1,\ldots,x_n][\alpha]$, where $K$ is an algebraically closed field. 
+If at least one of $f$ and $m$ is monic, then
 >$$
 \res_\alpha (f,m) \in I \cap R.
 $$
@@ -356,7 +352,7 @@ It follows that $\mathbf{x} \in K^n$ is a common zero of the elements of $I \cap
 
 ## Two-dimensional monotone sections
 
-Recall $X := \projops{x_1,x_\alpha}(C)$ and let $(c_1,\ldots,c_r)$ be the refinement points computed in the previous section such that
+Let $X := \projops{x_1,x_\alpha}(C)$ and $(c_1,\ldots,c_r)$ be the refinement points computed in the previous section such that
 $$
 Y := \{ c_i < x_1 < c_{x+1}\} \cap X,
 $$
@@ -459,7 +455,7 @@ $$
 \exists x_2,\ldots,x_{j-1} \exists_\infty x_j ((x_1,\ldots,x_{j-1}) \in C'_T, g_j(x_1,\ldots,g_j) = 0)
 $$
 where $\exists_\infty x$ is a special quantifier defined in `QEPCAD` meaning "there exist infinitely many values of $x$".
-Using $\exists_\infty$, som of the costly computations with algebraic numbers can be avoided, thereby improving efficiency in practice. **TODO refer to qepcad user documentation.**
+Using $\exists_\infty$, some of the costly computations with algebraic numbers can be avoided, thereby improving efficiency in practice. **TODO refer to qepcad user documentation.**
 Theoretically speaking, [@bpr2006, Algorithm 14.21] provides a singly exponential upper bound for quantifier elimination. **TODO what is the bound?**
 
 Eliminating the $j-1$ quantifiers, we obtain the desired points $(b_{i,1},\ldots,b_{i,k_i})$, where each $b_{i,j}$ is the $x_1$-coordinate of a blow-up point of $g_j$.
@@ -471,24 +467,24 @@ $$
 $$
 such that each of $C^j_T$ and $C^j_B$ is either empty or the graph of a continuous, monotone function.
 
-The process is completed by induction in $j$. Suppose that the refinement has been performed for $\alpha + 1 \le j$. If $j = n$ we are done, and $C$ is now monotone. Otherwise, let $j := j+1$. By the induction hypothesis, we know that $C^{j-1}_T \cap \{b_{j-1,i} < x_1 < b_{j-1,i+1}\}, 1 \le i < r_{j-1}$ is either empty or the graph of a continuous function.
-If $C^{j-1}_T = \emptyset$, there is nothing to do and the process will terminate, since $C^j_T$ is empty.
-Otherwise, take $g_{j-1} \in {\cal A}_{j-1}$ used in the induction hypothesis and find $g_j \in {\cal A}_j$ such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} in C^j_T$.
-Perform the same computation described abov, to refine $C^j_T$ such that one-dimensional components are graphs of continuous, monotone functions and repeat with $C^j_B$.
+The process is completed by induction on $j$. Suppose that the refinement has been performed for $\alpha + 1 \le j$. If $j = n$ we are done, and $C$ is now monotone. Otherwise, we proceed to $j+1$. By the induction hypothesis, we know that $C^{j}_T \cap \{b_{j-1,i} < x_1 < b_{j-1,i+1}\}, 1 \le i < r_{j}$ is either empty or the graph of a continuous (monotone) function.
+If $C^{j}_T = \emptyset$, there is nothing to do as $C^{j+1}_T$ is empty, too, and the process will terminate.
+Otherwise, the new constraint $g_{j} \in {\cal A}_{j}$ is the polynomial defining $C^{j}_T$ and $g_j \in {\cal A}_j$ can be found such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} in C^{j+1}_T$.
+Perform the same computation described abov, to refine $C^{j+1}_T$ such that one-dimensional components are graphs of continuous, monotone functions. Repeat with $C^{j+1}_B$.
 As before, a set of refinement poits
 $$
-b_{j,1}, \ldots, b_{j,r_j}
+b_{j+1,1}, \ldots, b_{j+1,r_{j+1}}
 $$
-is obtained
+is obtained. 
 
-When the process terminates, the union of sets of refinement points $$
+The union of sets of refinement points $$
 \{b_{\alpha + 1,1}, \ldots, b_{\alpha + 1,r_{\alpha + 1}}\}, \ldots, \{b_{n,1}, \ldots, b_{n,r_n}\}
 $$
-forms the refinement of $C$ into two- and one-dimensional monotone cells.
+forms the refinement of $C$ into two-dimensional monotone cells.
 
 ## Implementation Details
 
-We now discuss implementation details of this step of the algorithm. First psuedocode is presented.
+We now present psuedocode for the monotone part of the algorithm. 
 
 ### Algorithm { #sec:monotone-algorithm }
 
@@ -602,10 +598,6 @@ by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 - Return the family ${\cal R}$ of refinement points.
 
 ---
-
-**TODO**
-- what if $f_j$ does not exist
-- what if $\alpha = k+1$
 
 ## Computing the refinements { #sec:compute-refinement }
 

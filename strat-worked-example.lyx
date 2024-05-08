@@ -78,16 +78,16 @@
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-k=0,X' & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid z=0,x^{2}-y^{2}=0\right\} \\
-\left(0,0,1,1\right)\ h_{1} & =f_{1}=z\\
+k=0,X' & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0\right\} \\
+\left(0,0,1,1\right)\ h_{1} & =f_{1}=x_{3}\\
 s_{1}=\partial f_{1}/\partial x_{1} & =0\\
 Y_{1} & :=\left\{ \mathbf{x}\in X'\mid0\ne0\right\} =\emptyset\\
-(0,0,1,2)\ h_{1} & =f_{2}=x^{2}-y^{2}\\
-s_{1}=\partial f_{2}/\partial x_{1} & =2x\\
-Y_{1} & :=\left\{ \mathbf{x}\in X'\mid2x\ne0\right\} \\
-U_{1} & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x^{2}-y^{2}=0,2x\ne0\right\} \\
+(0,0,1,2)\ h_{1} & =f_{2}=x_{1}^{2}-x_{2}^{2}\\
+s_{1}=\partial f_{2}/\partial x_{1} & =2x_{1}\\
+x_{1} & :=\left\{ \mathbf{x}\in X'\mid2x\ne0\right\} \\
+U_{1} & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,2x_{1}\ne0\right\} \\
  & \text{Not open, proceed by induction}\\
-k=1,h_{1}=f_{2},i_{1}=1,X'' & :=Y_{1},F=\left\{ f_{1}=z,f_{2}=x^{2}-y^{2}\right\} \\
+k=1,h_{1}=f_{2},i_{1}=1,X'' & :=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2}\right\} \\
 \left(0,1,1\right)\ h_{2} & =f_{1}\\
 s_{2} & =0\text{ since }f_{1}\text{ doesn't depend on }x_{1},x_{2}\\
 \left(0,1,2\right)\ h_{2} & =f_{2}\\
@@ -95,45 +95,45 @@ s_{2} & =0\text{ snce }h_{1}=h_{2}\\
 \left(1,0,1\right)\ h_{2} & =f_{1}\\
 s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{3}\\
 \partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{3}
-\end{pmatrix} & =\det\begin{pmatrix}2x & 0\\
+\end{pmatrix} & =\det\begin{pmatrix}2x_{1} & 0\\
 0 & 1
-\end{pmatrix}=2x\\
-Y_{2} & :=\left\{ \mathbf{x}\in X''\mid2x\ne0\right\} \\
-U_{2} & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x^{2}-y^{2}=0,z=0,2x\ne0\right\} \\
+\end{pmatrix}=2x_{1}\\
+Y_{2} & :=\left\{ \mathbf{x}\in X''\mid2x_{1}\ne0\right\} \\
+U_{2} & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\
 \text{Note } & Y_{1}=Y_{2}=U_{2}\\
 Y_{2} & \text{ is smooth and has codimension }2\\
-\text{since }X'' & :=\left\{ \mathbf{x}\in X''\mid2x=0\right\} =\emptyset\text{, we return to }k=0\\
-k=0,X' & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid z=0,x^{2}-y^{2}=0,2x=0\right\} \\
+\text{since }X'' & :=\left\{ \mathbf{x}\in X''\mid2x_{1}=0\right\} =\emptyset\text{, we return to }k=0\\
+k=0,X' & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0,2x_{1}=0\right\} \\
 \text{Obsrve }X' & =(0,0,0)\\
 \left(0,0,2,1\right)\ h_{1} & =0,s_{1}=0\\
-\left(0,0,2,2\right)\ h_{1} & =2x\\
+\left(0,0,2,2\right)\ h_{1} & =2x_{1}\\
 s_{1} & =2\\
 Y_{1} & :=\left\{ \mathbf{x}\in X'\mid2\ne0\right\} =X'\\
-U_{1} & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x=0,2\ne0\right\} \\
+U_{1} & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,2\ne0\right\} \\
  & \text{Not open, proceed by induction}\\
-k=1,h_{1}=2x,i_{1}=1,X'' & :=Y_{1},F=\left\{ f_{1}=z,f_{2}=x^{2}-y^{2},f_{3}=2x\right\} \\
-\left(0,1,1\right)\ h_{2} & =f_{1}=z\\
+k=1,h_{1}=2x,i_{1}=1,X'' & :=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2},f_{3}=2x_{1}\right\} \\
+\left(0,1,1\right)\ h_{2} & =f_{1}=x_{3}\\
 s_{2} & =0\\
-\left(0,1,2\right)\ h_{2} & =f_{2}=x^{2}-y^{2}\\
+\left(0,1,2\right)\ h_{2} & =f_{2}=x_{1}^{2}-x_{2}^{2}\\
 s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{2}\\
 \partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{2}
 \end{pmatrix} & =\det\begin{pmatrix}2 & 0\\
-2x & 2y
-\end{pmatrix}=4y\\
-Y_{2} & :=\left\{ \mathbf{x}\in X''\mid4x\ne0\right\} =\emptyset\\
-\left(0,1,3\right)\ h_{2} & =f_{3}=2x\\
+2x_{1} & 2x_{2}
+\end{pmatrix}=4x_{2}\\
+Y_{2} & :=\left\{ \mathbf{x}\in X''\mid4x_{2}\ne0\right\} =\emptyset\\
+\left(0,1,3\right)\ h_{2} & =f_{3}=2x_{1}\\
 s_{2} & =0\\
-\left(1,0,1\right)\ h_{2} & =f_{1}=z\\
+\left(1,0,1\right)\ h_{2} & =f_{1}=x_{3}\\
 s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{3}\\
 \partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{3}
 \end{pmatrix} & =\det\begin{pmatrix}2 & 0\\
 0 & 1
 \end{pmatrix}=2\\
 Y_{2} & :=\left\{ \mathbf{x}\in X''\mid2\ne0\right\} =X''\\
-U_{2} & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x=0,z=0\right\} \\
+U_{2} & :=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,x_{3}=0\right\} \\
  & \text{Since }i_{2}=3\text{ it is impossible to compute further derivatives.}\\
  & \text{We conclude that}\\
-Y_{2} & \text{ is smooth and has codimension }3
+Y_{2} & \text{ is smooth and has codimension }3.
 \end{align*}
 
 \end_inset

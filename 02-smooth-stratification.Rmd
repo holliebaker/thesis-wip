@@ -193,6 +193,25 @@ Note, in the case that $X_0 = X$, the smooth stratification algorithm provides n
 
 ### Implementation details
 
+The algorithm employs two subroutines, which were presented in the description as "black-box functions".
+The first of these is a subroutine which determines whether $Y_K$ is an open subset of $U_k$.
+We can formulate this question as a quantifier elimination problem. $Y_k$ is an open subset of $U_k$ if
+$$
+\forall \mathbf{x} \in Y_k \forall \varepsilon > 0 \> \exists \mathbf{y} \in Y_k \mid \mathbf{y} \in U_k, \Vert \mathbf{x} - \mathbf{y} \Vert < \varepsilon
+$$
+is true. Here we use the definition of open set using open balls. We must intersect the open ball with $U_k$ because $Y_k$ may be open in $U_k$ but not in $\R^n$. 
+An alternative method, as described in @gv1995, Theorem 1, is to check whether every derivative computed at step $k+1$ vanishes on the set
+$$
+U_k \cap \{ x_i = \tt{const} \mid i < i_1 \}.
+$$
+This reduces to the emptiness check again.
+
+The second of these is $\rm{Empty}(S)$, where $S \subset \R^n$ is a semialgebraic set represented by a quantifier-free Boolean formula which is a conjunction of polynomial equations, inequations and inequalities. Note that an inequation $\{ f(\mathbf{x}) \ne 0 \}$ can b e rewritten as $\{ f(\mathbf{x}) < 0 \lor f(\mathbf{x}) > 0 \}$, so it is possible to represent $S$ by two systems of polynomial equations and inequalities, or a Boolean formula containing the conjunction above. This permits various methods for checking emptiness. We may write $\rm{Empty}(S)$ as a quantifier elimination problem
+$$
+\exists \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = \ldots = f_s(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0.
+$$
+This problem can be decided using the singly-exponential quantifier elimination algorithm from @bpr2006, Algorithm 14.21. However, this algorithm is theoretical and, in practice, we can use quantifier elimination by CAD to decide whether this set is empty. 
+
 The algorithm may be implemented as above, but with some small tweaks to simplify the code and make the algorithm work slightly more efficiently.  
 First, observe that not all derivatives are needed to define the candidate strata $Y_k$. One obvious situation is when a derivative $s_k$ turns out to be a nonzero constant $c \in \A$. 
 In the formula for $Y_k$, the inequation $c \ne 0$ will appear, which is obviously true. Since $X' \supset Y_k$ was assumed to be non-empty, we can immediately conclude that $Y_k$ is non-empty and equal to $X'$. No further derivatives at step $k$ need to be considered, since $X' \setminus Y_1 = \emptyset$. 
@@ -248,57 +267,28 @@ where $s$ is the number of polynomials $f_1,\ldots,f_s$, $d$ is their degree and
 
 ### Worked example
 
-We illustrate the smooth stratification algorithm with a worked example. Consider
+We illustrate the smooth stratification algorithm with a worked example in $\R^3$. Consider
 $$
-\{ z = 0, x^2-y^2=0 \} \subset \R^3.
+\{ x_3 = 0, x_1^2-x_2^2=0 \} \subset \R^3.
 $$
 Note that the algorithm imposes an order on polynomials. Here we take $f_1 := z$ and $f_2 = x^2 - y^2$, wiht $f_1$ and $f_2$ being assigned indices $(0,0,0,1)$ and $(0,0,0,2)$ respectively. 
 The algorithm proceeds as follows
 
-$k=1,G_{1}=\left(z,x^{2}-y^{2}\right),J=\begin{pmatrix}\partial h_{1}/\partial y_{1}\end{pmatrix}$
-\begin{equation}
-\begin{matrix}
-i = 1 & M=(0,0,1,1), & h_{1}=z, & s_{1}=0, & \text{skip}\\
-i = 1 & M=(0,0,1,2), & h_{1}=x^{2}-y^{2} & s_{1}=2x, & Y_{1}:=\left\{ z=0,x^{2}-y^{2}=0,2x\ne0\right\} =X\setminus\left\{ x=0\right\} \\
-&  &  &  & U_{1}:=\left\{ x^{2}-y^{2}=0,2x\ne0\right\} 
-\end{matrix}
-\end{equation}
-$Y_{1}$ is not an open subset of $U_{1}$, recurse.
-
-$k=2,G_{2}=\left(z,x^{2}-y^{2},2x\right),J=\begin{pmatrix}2x & \partial s_{1}/\partial y_{2}\\
-\partial h_{2}/\partial x & \partial h_{2}/\partial y_{2}
-\end{pmatrix}$
-\begin{equation}
-\begin{matrix}
-i = 2 & M=(0,1,1), & h_{2}=z, & s_{2}=\det\begin{pmatrix}2x & 2y\\
-0 & 0
-\end{pmatrix}=0, & \text{skip}\\
-i = 2 & M=(0,1,2), & h_{2}=x^{2}-y^{2} & s_{2}=\det\begin{pmatrix}2x & 2y\\
-2x & 2y
-\end{pmatrix}=0 & \text{skip}\\
-i = 2 & M=(0,1,3) & h_{2}=2x & \det\begin{pmatrix}2x & 2y\\
-0 & 0
-\end{pmatrix}=0 & \text{skip}\\
-i = 3 & M=(1,0,1) & h_{1}=z & \det\begin{pmatrix}2x & 0\\
+\begin{align*}
+k=0,X'&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0\right\} \\\left(0,0,1,1\right)\ h_{1}&=f_{1}=x_{3}\\s_{1}=\partial f_{1}/\partial x_{1}&=0\\Y_{1}&:=\left\{ \mathbf{x}\in X'\mid0\ne0\right\} =\emptyset\\(0,0,1,2)\ h_{1}&=f_{2}=x_{1}^{2}-x_{2}^{2}\\s_{1}=\partial f_{2}/\partial x_{1}&=2x_{1}\\x_{1}&:=\left\{ \mathbf{x}\in X'\mid2x\ne0\right\} \\U_{1}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,2x_{1}\ne0\right\} \\&\text{Not open, proceed by induction}\\k=1,h_{1}=f_{2},i_{1}=1,X''&:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2}\right\} \\\left(0,1,1\right)\ h_{2}&=f_{1}\\s_{2}&=0\text{ since }f_{1}\text{ doesn't depend on }x_{1},x_{2}\\\left(0,1,2\right)\ h_{2}&=f_{2}\\s_{2}&=0\text{ snce }h_{1}=h_{2}\\\left(1,0,1\right)\ h_{2}&=f_{1}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{3}\\
+\partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{3}
+\end{pmatrix}&=\det\begin{pmatrix}2x_{1} & 0\\
 0 & 1
-\end{pmatrix}=2x & Y_{2}:=Y_{1}\cap\left\{ 2x\ne0\right\} =Y_{2}\\
-&  &  &  & U_{2}:=\left\{ z=0,2x\ne0\right\} 
-\end{matrix}
-\end{equation}
-$Y_{2}$ is an open subset of $U_{2}$, hence $Y_{2}=Y_{1}$ is a smooth subset of codimension $2$. Set $X_{2} = Y_{2} = Y_{1}. Return to round $k=1$, Recall that the last index considered in step $k=1$ was $(0,0,1,2)$.
-\begin{equation}
-\begin{matrix}
-i = 1 & M=(0,0,1,2), & h_{1}=x^{2}-y^{2} & s_{1}=2x, & Y_{1}:=\left\{ z=0,x^{2}-y^{2}=0,2x\ne0\right\} =X\setminus\left\{ x=0\right\} \\
-\vdots &  &  & \text{skip until next nenzero partial derivative}\\
-i = 2 & M=(0,1,0,2) & h_{1}=x^{2}-y^{2} & h_{1}=2y & Y_{1}:=\left\{ z=0,x^{2}-y^{2}=0,2x=0,2y\ne0\right\} =\emptyset\\
-\vdots &  &  & \text{the rest of the partial derivatives do not exist}
-\end{matrix}
-\end{equation}
-
-At the end of round $k=1$, $X_{1}=\emptyset$ and we are left with 
-$$
-X':=\left\{ z=0,x^{2}+y^{2}=0,2x=0,2y=0\right\}=(0,0,0),
-$$ a single point. $X_{0}$ is set to $X'$ and the algorithm terminates.
+\end{pmatrix}=2x_{1}\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid2x_{1}\ne0\right\} \\U_{2}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\text{Note }&Y_{1}=Y_{2}=U_{2}\\Y_{2}&\text{ is smooth and has codimension }2\\\text{since }X''&:=\left\{ \mathbf{x}\in X''\mid2x_{1}=0\right\} =\emptyset\text{, we return to }k=0\\k=0,X'&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0,2x_{1}=0\right\} \\\text{Obsrve }X'&=(0,0,0)\\\left(0,0,2,1\right)\ h_{1}&=0,s_{1}=0\\\left(0,0,2,2\right)\ h_{1}&=2x_{1}\\s_{1}&=2\\Y_{1}&:=\left\{ \mathbf{x}\in X'\mid2\ne0\right\} =X'\\U_{1}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,2\ne0\right\} \\&\text{Not open, proceed by induction}\\k=1,h_{1}=2x,i_{1}=1,X''&:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2},f_{3}=2x_{1}\right\} \\\left(0,1,1\right)\ h_{2}&=f_{1}=x_{3}\\s_{2}&=0\\\left(0,1,2\right)\ h_{2}&=f_{2}=x_{1}^{2}-x_{2}^{2}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{2}\\
+\partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{2}
+\end{pmatrix}&=\det\begin{pmatrix}2 & 0\\
+2x_{1} & 2x_{2}
+\end{pmatrix}=4x_{2}\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid4x_{2}\ne0\right\} =\emptyset\\\left(0,1,3\right)\ h_{2}&=f_{3}=2x_{1}\\s_{2}&=0\\\left(1,0,1\right)\ h_{2}&=f_{1}=x_{3}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{3}\\
+\partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{3}
+\end{pmatrix}&=\det\begin{pmatrix}2 & 0\\
+0 & 1
+\end{pmatrix}=2\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid2\ne0\right\} =X''\\U_{2}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,x_{3}=0\right\} \\&\text{Since }i_{2}=3\text{ it is impossible to compute further derivatives.}\\&\text{We conclude that}\\Y_{2}&\text{ is smooth and has codimension }3.
+\end{align*}
 
 ### Determining the codimension and basic formula for each stratum
 
@@ -340,7 +330,16 @@ $$
 We see that three equations appear in the definition of $Y_1$, but the first one, $f_1 := x_1 y_2$ is redundant again. Thus, the two equations $x_2 = 0, x_1 = 0$ define $Y_1$ and we can conclude that $Y_1$ is smooth and has codimension $2$. 
 :::
 
-It is clear from this example that $k$, the step of induction gives a lower bound on the codimension of strata. Therefore, strata may be misclassified. If a stratum $X$ is in basic form, we can determine its codimension by counting the number of equations which appear in its basic representation. This number coincides with the codimension of $X$. Thus, we need a procedure to discard redundant equations in the definition of $X$. 
+This example shows two things. Firstly, not all functions are required to represent the smooth stratum and secondly $k$, the current step of induction, gives a lower bound on the codimension of strata. 
+@gv1995, Theorem 1 states that
+$$
+\det\begin{pmatrix}\partial h_{1}/\partial x_{i_{1}} & \ldots & \partial h_{1}/\partial x_{i_{k}}\\
+\vdots &  & \vdots\\
+\partial h_{k}/\partial x_{i_{1}} & \ldots & \partial h_{k}/\partial x_{i_{k}}
+\end{pmatrix}\ne0
+$$
+at every point of a stratum $X_k$ of codimension $k$ which includes the functions $h_1,\ldots,h_k$ in its definition.
+As we saw in the example, other functions vanish at every point of $X_k$. We need to find the "basic" set of $k$ functions needed to define $X_k$. 
 
 #### Discarding redundant equations
 
@@ -362,7 +361,6 @@ $$
 Consider each function $g \in G$ in reverse lexicographical order. If $g(\mathbf{x}) = 0$ at every point $\mathbf{x} \in Y'$ then it is redundant and should be discarded. Otherwise, $g$ should be included in the defining equations for $Y_k$. Since $Y_k$ has codimension $k$, and $Y'$ is already an open, basic set of codimension $k-1$, only one more polynomial should be needed. 
 If $Y_k$ is not an open subset of $U_k$, then more polynomials will be required to define it, and the number of polynomials gives the codimension.
 
-
 A polynomial $g \in \Z[x_1,\ldots,x_n]$ is redundant in the definition of the semialgeabric set $S \subset \R^n$ if the following formula is true
 $$
 \exists x_1,\ldots,x_n,a \in \R^{n+1} \mid (x_1,\ldots,x_n) \in S, a \ne 0, g(x_1,\ldots,x_n) = a.
@@ -372,5 +370,21 @@ $$
 \{ \mathbf{x} \in S \mid g(\mathbf{x}) \ne 0 \}
 $$
 is non-empty. 
+
+- TODO do we also need to check that the determinant of the matrix (minors?) is nonzero.
+
+### From Elementary Algebraic sets to generic Semialgebraic sets {#sec:strat-semialgebraic}
+
+@gv1995, Corollary 1 asserts that the algorithm can be applied to arbitrary semi-pfaffian sets and, therefore, without modification, to arbitrary semialgebraic sets.
+Let $S \subset \R^n$ be a semialgebrac set represented by a quantifier-free Boolean formula containing polynomials
+$$
+f_1,\ldots,f_s.
+$$
+Consider each "sign set"
+$$
+S_{( \ast_1,\ldots,\ast_s )} := \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) \ast_1 0, \ldots, f_s(\mathbf{x}) \ast_s 0 \}
+$$
+where $\ast_i, 1 \le i \le s \in \{<, >, =\}$. $S$ can be partitioned into a finite union of some of the $s^3$ sign sets. 
+If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_s)} \subset S$, and take the union of strata, we will obtain a smooth stratification of the set $S$. Indeed, since no two sign sets have non-empty intersection, it is clear that no two strata intersect, and since a finite number of the sign-sets form a partition of $S$, the smooth strata of these sign-sets also forms a partition of $S$. 
 
 
