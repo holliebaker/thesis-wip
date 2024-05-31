@@ -13,7 +13,7 @@ The first step is to construct a CAD $\cal D$ compatible with $V$, such that eac
 We begin by considering $W$, the smooth $2$-dimensional locus of $V = V_1 \cup \ldots \cup V_k$.
 Since $V$ is a semialgebraic set, it can be represented by a quantifier-free Boolean formula $F$. 
 $W$ can be computed using the smooth stratification algorithm described in @\ref(sec:smooth-strat).
-In order to apply the algorithm, consider the consistent sign assignmunts of polynomials $f_1,\ldots,f_s$ appearing in the formula $F$. As described in Section @\ref(sec:strat-semialgebraic), we obtain a collection of sign-sets $S_{(\ast_1,\ldots,\ast_s)} \subset \R^n$. Observe that a finite number of these sign-sets $S_1,\ldots,S_m$ form a partition of $V$. 
+In order to apply the algorithm, consider the consistent sign assignments of polynomials $f_1,\ldots,f_s$ appearing in the formula $F$. As described in Section @\ref(sec:strat-semialgebraic), we obtain a collection of sign-sets $S_{(\ast_1,\ldots,\ast_s)} \subset \R^n$. Observe that a finite number of these sign-sets $S_1,\ldots,S_m$ form a partition of $V$. 
 For each of these sign-sets $S_i \subset V$, apply the smooth stratification algorithm to obtain a family $(X_{i,1}, \ldots X_{i,n})$ of strata, where each $X_{i,j}$ is a smooth subset of $S_i$ of codimension $j$. 
 We have $\dim(S_i) \le 2$, since each of the sets in the union $V$ has dimension at most 2. Hence, every stratum $X_{i,j}$ of codimension $j < n-2$ will be empty. 
 We obtain the smooth two-dimensional locus of $V$ by taking the union of strata of codimension $n-2$. For each of these strata, it is important to keep the set of $n-2$ polynomials defining it, as these will be needed in the next step. We will need the strata of codimension $n-1$, as each one-dimensional cell must also be the graph of a quasi-affine map. 
@@ -28,13 +28,13 @@ Let $F \subset \R^n$ be the set of polynomials appearing in the quantifier-free 
 Thus, we can take as $W$ the (separate) sets of $2$- and $1$-dimensional cells of $\cal E$ which are contained in $V$. 
 Let $C$ be one of these cells, and suppose it has index $(i_1,\ldots,i_n) \in \{0,1\}^n$. Since $\dim(C) = 2$, $\sum_{1\le i \le n} = 2$. Let $i_{j_1}, = i_{j_2} = 1$ for $j_1 \ne j_2$ and all other elements of the index be equal to zero. Then $\projop{k}(C)$, for $k\ne j_1,k\ne j_2$, is the root of a projection polynomial $f_k \in \Z[x_1,\ldots,x_k]$. Hence, we have, $n-2$ projection polynomials at which every $\mathbf{x} \in C$ is equal to zero. 
 The polynomials can be determined by using the set of signs of projection factors and used to define an algebraic variety $V \supset C$. Note that we need some additional inequalities to define $C$ properly, but these are not needed to compute the critical points of projections in the next section. 
-Similarly for $1$-dimensional cells, only one element of the index will be equal to $1$, while all other elemens are equal to $0$. It follows that we can find $n-1$ polynomials, in a similar way, which are equal to zero on each one-dimensional cell. 
+Similarly for $1$-dimensional cells, only one element of the index will be equal to $1$, while all other elements are equal to $0$. It follows that we can find $n-1$ polynomials, in a similar way, which are equal to zero on each one-dimensional cell. 
 
 It is possible to compute $W$ using either technique. Theoretically speaking, using the smooth stratification algorithm seems cleaner, as it is the correct tool for decomposing a set into smooth manifolds.
 However, things are often more nuanced in practice. We are required to compute the smooth stratification of each non-empty sign subset of $V$. Thus, we may be required to repeat a doubly exponential operation up to $3^s$ times, where $s$ is the number of different polynomials appearing in the formula for $V$. In addition, the subroutine for eliminating redundant defining polynomials requires repeated emptiness checking. Although, theoretically speaking this can be done in singly exponential time, in practice we it is implemented using CAD. 
 
 Bearing this in mind, one more call to the CAD algorithm, required for the second option, seems a lot more appealing. 
-In addition, @kremer2020 propose an algorithm, along with its implementation, for refining a CAD to be compatible with new polynomials. This gives us hope that we may be able to avoid a full recomputation. In conclusion, the second option, where we compute an initial CAD consisting of smooth cells, is more tractable in practice. 
+In addition, @kremer2020 propose an algorithm, along with its implementation, for refining a CAD to be compatible with new polynomials. This gives us hope that we may be able to avoid a full re-computation. In conclusion, the second option, where we compute an initial CAD consisting of smooth cells, is more tractable in practice. 
 
 ## Ensuring that every cell is the graph of a quasi-affine map
 
@@ -59,13 +59,13 @@ J_{\{1,\ldots,n\} \setminus \{i,j\}} \text{ for all } i \ne j,
 $$
 for all two-dimensional smooth strata (or cells) of $V$, whose definition includes $n-2$ polynomial equations. 
 
-Consider the critical points $Z$ of $\projops{x_i,x_j}(W'_1)$, where $W'_1$ is a smooth one-dimensional stratum. If $\dim(Z) = 1$, then every point of $\projops{x_i,x_j}(W'_1)$ is critical as $W'_1$ is smooth. Note that thre may be zero-dimensional critical points of $\projops{x_i}$ and $\projops{x_j}$. 
+Consider the critical points $Z$ of $\projops{x_i,x_j}(W'_1)$, where $W'_1$ is a smooth one-dimensional stratum. If $\dim(Z) = 1$, then every point of $\projops{x_i,x_j}(W'_1)$ is critical as $W'_1$ is smooth. Note that there may be zero-dimensional critical points of $\projops{x_i}$ and $\projops{x_j}$. 
 Otherwise, $\dim(Z) = 0$, so $Z$ is a collection of isolated points $(c_i,c_j)$. $c_i$ is also a critical point of $\projops{x_i}(W'_1)$ and $c_j$ is also a critical point of $\projops{x_j}(W'_1)$. Therefore, it is sufficient to consider only critical points of projections onto one-dimensional coordinate subspaces. Hence, we only -consider Jacobi matrices
 $J_{\{1,\ldots,n\} \setminus \{i\}}$ for all $1\le i \le n$, for the $n-1$ polynomials defining $W'_1$. Critical points exist when their determinants are equal to zero. 
 
 ## Computing the quasi-affine CAD { #sec:quasiaffine-algorithm }
 
-We now present psuedo-code for the quasi-affine part of the algorithm. 
+We now present pseudo-code for the quasi-affine part of the algorithm. 
 
 ---
 
@@ -82,7 +82,7 @@ $$F$$
 $$
 {\cal D}
 $$
-  - $\cal D$: a CAD of $\R^n$ compatible weth $V$ such that each cell $C \subset V$ is the graph of a quasi-affine map. 
+  - $\cal D$: a CAD of $\R^n$ compatible with $V$ such that each cell $C \subset V$ is the graph of a quasi-affine map. 
 
 ---
 

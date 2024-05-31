@@ -34,7 +34,7 @@ $$
 where $\cl{S}$ is the closure of $S$ in the Euclidean topology.
 :::
 
-If $C \subset \R^n$ is a cylinrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top ($C_T$), bottom ($C_B$) and side-wall ($C_W$).
+If $C \subset \R^n$ is a cylindrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top ($C_T$), bottom ($C_B$) and side-wall ($C_W$).
 
 First let $C$ be a sector $(i_1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by a continuous function $f : C' \to \R$, then $C_B$ is the graph of $f$. Similarly, if $C$ is bounded from above by the graph of a continuous function $g : C' \to \R$, then $C_T$ is the graph of $g$. It is clear that the top and bottom of every cylindrical sector cell (if non-empty) are always cylindrical section cells.
 
@@ -62,7 +62,7 @@ A cylindrical decomposition is defined by induction on $n \ge 0$.
 
 - When $n > 0$: Let $\cal D$ be a partition of $\R^n$ into cylindrical cells.
 Define $\cal D'$ to be the set of all projections $C' := \projop{n-1}(C)$ for all $C$ in $\cal D$.
-$\cal D$ is a cylindrical decomposition of $\R^n$ if $\cal D'$ is a cylindrical decomposition of $\R^{n-1}$. We call $\cal D'$ the *decomposion of $\R^{n-1}$ induced by $\cal D$.
+$\cal D$ is a cylindrical decomposition of $\R^n$ if $\cal D'$ is a cylindrical decomposition of $\R^{n-1}$. We call $\cal D'$ the *decomposition of $\R^{n-1}$ induced by $\cal D$.
 :::
 
 Less formally, a partition $\cal D$ of $\R^n$ into definable subsets is cylindrical if the projection of any two cells of $\cal D$ onto $\R^{n-1}$ is either disjoint or coincides.
@@ -91,8 +91,8 @@ Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cell of $\cal
 If every cell in $\cal D$ satisfies the frontier condition, then the cylindrical decomposition $\cal D$ satisfies the frontier condition.
 :::
 
-We saw in Example \ref(exm:top-bottom-not-cylindrcilac) that the top and bottom of a 2-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
-However, it is clear from the cylindrcicity property that, if $C$ is a 2-dimensional section cell satisfying the frontier condition in a decomposition $\cal D$, then the top and bottom of $C$ are single cylindrical cells.
+We saw in Example \ref(exm:top-bottom-not-cylindrical) that the top and bottom of a 2-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
+However, it is clear from the cylindrical property that, if $C$ is a 2-dimensional section cell satisfying the frontier condition in a decomposition $\cal D$, then the top and bottom of $C$ are single cylindrical cells.
 If $C$ is a 2-dimensional section cell, then it is said to satisfy the strong frontier condition if the one-dimensional components of its side-wall are 1-dimensional section cells. This condition may be impossible, even in $\R^3$, as Example @\ref(exm:side-wall) demonstrates.
 
 ::: {.example #side-wall}
@@ -107,8 +107,8 @@ $$
 I_1 = \{ (0,0,z) \mid 0 \le z \le 1/2 \}, I_2 = \{ (0,0,z) \mid 1/2 \le z \le 1 \}
 $$
 and the point $$v = (0,0,1/2).$$
-Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only one-dimensional component of te side-wall of $V$ and $I_1$ is the only one-dimensional component of te side-wall of $W$. In order to obtain the strang frontier condition, we need to partition $V$ into (at least) three cylindrical cells $V',V'',V'''$, one of which, say $V''$, will be one-dimensional. $V''$ should have endpoint $v$ (i.e., $\cl(V'') \cap I = v$).
-The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of the projection map $W' := \projop{2}^-1\vert_{\cl{W}}(c)$ would satisfy the condition $\cl{W'} \cap I = v'$, where $v' = (0,0,1/4)$. However, $v'$ must be a zero-dimensional cell of the decomposition, which means we need to perform another refinement of $I$. An infinite sequence of refiniments, introducing a new 0-dimensional cell $(0,0,1/2^k), k \in \N_{> 0}$, will take place. Thus, a decomposition in in which the side-wals of $V$ and $W$ are single 1-dimensional cells cannot exist.
+Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only one-dimensional component of the side-wall of $V$ and $I_1$ is the only one-dimensional component of the side-wall of $W$. In order to obtain the strong frontier condition, we need to partition $V$ into (at least) three cylindrical cells $V',V'',V'''$, one of which, say $V''$, will be one-dimensional. $V''$ should have endpoint $v$ (i.e., $\cl(V'') \cap I = v$).
+The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of the projection map $W' := \projop{2}^-1\vert_{\cl{W}}(c)$ would satisfy the condition $\cl{W'} \cap I = v'$, where $v' = (0,0,1/4)$. However, $v'$ must be a zero-dimensional cell of the decomposition, which means we need to perform another refinement of $I$. An infinite sequence of refinements, introducing a new 0-dimensional cell $(0,0,1/2^k), k \in \N_{> 0}$, will take place. Thus, a decomposition in in which the side-walls of $V$ and $W$ are single 1-dimensional cells cannot exist.
 :::
 
 ::: { .proposition }
@@ -124,7 +124,7 @@ Let $C \subset \R^n$ be a 2-dimensional cylindrical cell which is the graph of a
 ### Constructing a CAD {#sec:cad-construction}
 
 ::: {.remark}
-A cylindrical algebraic decomposition (CAD) is a cylindrical decomposition in which every cell is a semialgebraic set. While the results of @bgv15 are proved for the wider class of cylindrical deecompositions compatible with definable sets, we will restrict ourselves to CADs, allowing us to take advantage of properties of polynomials.
+A cylindrical algebraic decomposition (CAD) is a cylindrical decomposition in which every cell is a semialgebraic set. While the results of @bgv15 are proved for the wider class of cylindrical decompositions compatible with definable sets, we will restrict ourselves to CADs, allowing us to take advantage of properties of polynomials.
 :::
 
 ::: {.definition}
@@ -227,8 +227,8 @@ for $1 \le k \le \deg(f)$, is either zero or nonzero everywhere in $X$.
 $$
 \psrc_k(f, g),
 $$
-for $1 \le k \le \min(\deg(f),\deg(g))$, is either zero or nonzero and $\deg(f) = \deg(g)$ everywher in $X$.
-- If, for the leading term of $f$ (or $g$) vanishes at some poitns in $\Z[x_1,\ldots,x_{n-1}]$, we need to take the principal subresultant coefficients of the reductum of $f$ (or $g$).
+for $1 \le k \le \min(\deg(f),\deg(g))$, is either zero or nonzero and $\deg(f) = \deg(g)$ everywhere in $X$.
+- If, for the leading term of $f$ (or $g$) vanishes at some points in $\Z[x_1,\ldots,x_{n-1}]$, we need to take the principal subresultant coefficients of the reductum of $f$ (or $g$).
 [@coste2000, pp36]
 
 From these properties of the principal subresultant coefficient, we can define a projection operator.
@@ -271,7 +271,7 @@ $$
 such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) \}$ coincides with the real roots of polynomials in $\mathbf{F}$, defining the $(i_1,\ldots,i_{n-1},0)$-cells in the cylinder $C' \times \R$ and $\{ -\infty < t < \psi_1(\mathbf{x}), \ldots, \psi_i(\mathbf{x}) < t < \psi_{i+1}(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) < t < \infty \}$ are the $(i_1,\ldots, i_{n-1},1)$-cells in the cylinder $C' \times \R$.
 :::
 
-This follows from the results previously proved. Applying Theorem @\ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtaina set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift)$, we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
+This follows from the results previously proved. Applying Theorem @\ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtain a set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift)$, we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
 
 ### Bounds and variations
 

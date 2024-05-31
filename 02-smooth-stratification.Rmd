@@ -3,7 +3,7 @@
 Before turning our attention to cylindrical decompositions, we will present another useful algorithm for decomposing a semialgebraic set. A smooth stratification is a partition of a set into smooth manifolds. 
 
 In 1957, @whitney1992 proved that every algebraic variety can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set. 
-Lojasiewicz extended this result by proving that every real semianalytic set admits a smooth stratification [@lojasiewicz1964, @lojasiewicz1964]. However, the proof was nonconstructive and did not provide any information on the class of functions defining the strata. 
+Lojasiewicz extended this result by proving that every real semianalytic set admits a smooth stratification [@lojasiewicz1964, @lojasiewicz1964]. However, the proof was non-constructive and did not provide any information on the class of functions defining the strata. 
 As part of his Complement Theorem, @gabrielov1996 proved that the strata of a semianalytic set can be defined by functions belonging to the smallest extensions of a family of functions defining the set which is closed under addition, multiplication and taking partial derivatives. One such class of functions is the Pfaffian functions. 
 @gv1995 present an algorithm for computing a smooth stratification of a semi-pfaffian et, along with an estimate of its complexity and bounds on the formats of the strata it produces. This algorithm (also summarised in @gv04, Section 6) will be presented.
 
@@ -26,7 +26,7 @@ $X \subset Y$ is called effectively nonsingular (of dimension $k$) if functions 
 
 ::: {.definition}
 [@gv04, Definition 6.2]
-A finite basic weak stratification of a semi-pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ where each $X_k$ is effectively nonsingularand has codimension $k$.
+A finite basic weak stratification of a semi-pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ where each $X_k$ is effectively nonsingular and has codimension $k$.
 :::
 
 Note that this definition does not assume any other desirable properties of the manifolds $X_k$. E.g., the closure of a stratum may not be a union of strata. In addition, the Whitney conditions may not be satisfied. 
@@ -34,7 +34,7 @@ Note that this definition does not assume any other desirable properties of the 
 ### Description of the algorithm
 
 Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets with almost no modifications. Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too.  Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an oracle will not be needed in this variation of the algorithm. 
-The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives needed to define all the strata is based on the format of the input set. As every polynomial has  a finite number of partial derivatives, this bound will simply be the dergee of the polynomial in the semialgebraic case.
+The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives needed to define all the strata is based on the format of the input set. As every polynomial has  a finite number of partial derivatives, this bound will simply be the degree of the polynomial in the semialgebraic case.
 
 We will need the following notation for partial derivatives and the partial differential operator defined by @gv1995. 
 
@@ -317,7 +317,7 @@ Notice that the inductive step returns immediately. This is because $i_1=2$, so 
 $$
 Y_1 := \{ \mathbf{x} \in \R^2 \mid f_1 := x_1 x_2 = 0, h_1 := x_2 = 0, x_1 \ne 0 \},
 $$
-two different equations, $f_1$ and $h_1$ appear. However, $Y_1$ is not in basic representation. Indeed, the equation $f_1=0$ is redundent, since $f_1$ is equal to zero for all points at which $h_1$ is equal to zero. Thus $f_1$ can be discarded, and we see that only one equation, $h_1$, is required to represent $Y_1$ in basic form. We can conclude that $Y_1$ is smooth and has codimension $1$. 
+two different equations, $f_1$ and $h_1$ appear. However, $Y_1$ is not in basic representation. Indeed, the equation $f_1=0$ is redundant, since $f_1$ is equal to zero for all points at which $h_1$ is equal to zero. Thus $f_1$ can be discarded, and we see that only one equation, $h_1$, is required to represent $Y_1$ in basic form. We can conclude that $Y_1$ is smooth and has codimension $1$. 
 
 Finally, consider the derivative with index $(1,1,1)$.
 \begin{align*}
@@ -361,7 +361,7 @@ $$
 Consider each function $g \in G$ in reverse lexicographical order. If $g(\mathbf{x}) = 0$ at every point $\mathbf{x} \in Y'$ then it is redundant and should be discarded. Otherwise, $g$ should be included in the defining equations for $Y_k$. Since $Y_k$ has codimension $k$, and $Y'$ is already an open, basic set of codimension $k-1$, only one more polynomial should be needed. 
 If $Y_k$ is not an open subset of $U_k$, then more polynomials will be required to define it, and the number of polynomials gives the codimension.
 
-A polynomial $g \in \Z[x_1,\ldots,x_n]$ is redundant in the definition of the semialgeabric set $S \subset \R^n$ if the following formula is true
+A polynomial $g \in \Z[x_1,\ldots,x_n]$ is redundant in the definition of the semialgebraic set $S \subset \R^n$ if the following formula is true
 $$
 \exists x_1,\ldots,x_n,a \in \R^{n+1} \mid (x_1,\ldots,x_n) \in S, a \ne 0, g(x_1,\ldots,x_n) = a.
 $$
@@ -376,7 +376,7 @@ is non-empty.
 ### From Elementary Algebraic sets to generic Semialgebraic sets {#sec:strat-semialgebraic}
 
 @gv1995, Corollary 1 asserts that the algorithm can be applied to arbitrary semi-pfaffian sets and, therefore, without modification, to arbitrary semialgebraic sets.
-Let $S \subset \R^n$ be a semialgebrac set represented by a quantifier-free Boolean formula containing polynomials
+Let $S \subset \R^n$ be a semialgebraic set represented by a quantifier-free Boolean formula containing polynomials
 $$
 f_1,\ldots,f_s.
 $$

@@ -40,51 +40,5 @@ description: "Hollie Baker's thesis"
 \newcommand{\fr}[1]{{\operatorname{fr} \left( #1 \right)}}
 \newcommand{\frt}[2]{{\operatorname{fr}_{#1} \left( #2 \right)}}
 
-
-# Cylindrical algebraic decompositions with monotone cells
-
-A Cylindrical Algebraic Decomposition (CAD) is a finite partition of n-dimensional space into so-called Cylindrical Cells. The
-key idea of cylindricity is that cells are arranged in *stacks*. I.e., the projection of any two cells onto dimension
-n-1 is either disjoint or identical.
-
-CAD provides a constructive and computationally tractable proof of the famous Tarski-Seidenberg theorem, which states that semialgebraic sets are
-closed under projection, or, equivalently, that quantifier elimination is possible over the reals. Indeed, QE is
-possibly the most famous application of CAD. CAD also has applications in computing topological properties of
-semialgebraic sets and solving motion-planninng problems. However, for these applications, a basic CAD will not suffice.
-Instead, we may have to introduce some additional constraints to the construction. One such constraint, which is useful
-in topology, is that every cell in the CAD is a *topologically regular cell*. Put briefly, its boundary should be
-homeomorphic to a circle. Another useful property is the *frontier condition*. I.e., the boundary of every cell in the
-decomposition must be a union of some other cells in the decomposition of smaller dimension. This property is necessary
-to solve motion planning problems.
-
-The goal of this thesis is to develop an algorithm to construct such a CAD. In fact, a CAD satisfying a slightly stronger condition -- such that every cell contained in some input set in **monotone**. It has been proved that a **monotone cell** is a **topologically regular cell**. The constructive proof that such a CAD exists is due to [@bgv15], and this thesis will aim to extract an algorithm from the formal description.
-[@bgv15] work over the category of sub-pfaffian sets, using an algorithm due to **TODO** to construct the base
-cylindrical decomposition. However, the algorithm presented here will work with semialgebraic sets, using the more
-familiar CAD due to [@collins1975]. This will allow the tools of computer algobra to be used. In addition, an implementation would not be possible over sub-pfaffian sets, as an oracle is needed to determine whether a set is empty.
-
-## Things to explain
-
-- some background on CAD
-  - algorithms (including pfaffian one), implementations and upper bounds
-- monotone cells are obtained by refinements, i.e., more cells
-  - why might one want to introduce more cells?
-
-- motivation
-  - what can we do with monotone cad that we cannot do with ordinary
-  - frontier condition: Schwartz and Sharir and Gabrielov and Vorobjov
-  - definitions and motivating examples
-    - start with my favourite example in R^2. x^2 + y^2 < 1. observe that the curves forming the top and the bottom of the cell are not monotone - they are not even quasi-affine. we can see, by considering the curves as a function of x, that they are not strictly increasing in, strictly decreasing in, or independent of x. from our intuition, it's clear that we can split these curves where they "change direction" -- in other words, at their local maxima and minima. this is the basic idea ofBGV's algorithm.
-    - note that the example of a subset of R^2 which is QA but not M is a bit trivial and not instructive (two disjoint increasing / decreasing curves). being not connected, it cannot be a CAD cell. I.e., any CAD cell in R^2 which is quasi-affine is also monotone. furthermore (see the theorem in QA section) any CAD cell of dimension <= 1 which is quasi-affine will be monotone.
-    - let's consider a more interesting example in R^3. the smashed fragment of bowl. we see that, in the triangle, the function z = x^2 + y^2 is strictly increasing in both y and z. however, if we look at the projection onto the x-z plane, it is clear that this cell is not monotone. in particular, if we intersect with the plane z = 3/4, it intersects our cell in two curve intervals. being strictly increasing/decreasing/independent of each variable, it suffices to consider the one-dimensional "top" and "bottom" of each cell (see BGV lemma 3.18) and ensure that these curves are monotone. this amounts, again, to finding the points at which they "change direction". we will see later that this can be reduced to the problem of finding the local maxima and minima of a surface, subject to constraints defining a curve, which is a well-studied problem.
-    - finally, let's see some examples of the frontier condition. things are pretty simple in R^2. indeed, Lazard proves that a sign-invariant CAD of R^2 will always satisfy the frontier condition. (my favourite example, compatible and sign-invariant). However, things become more interesting in R^3, where blow-up points may occur. Let's consider another rather famoun construction -- the Whitney umbrella. Construct a CAD sign-invariant with respect to x^2 - y^2 z = 0. we get three cells with sign 0 on x^2 - y^2 z = 0 -- two 2-dimensional sections and one one-dimensional sector above the origin. consider the frontier of one of these sections -- x=y=0,z>0. (for both) observe that the frontier of both sections coincides and has non-empty intersection with the one-cell, however it's not a union of cells and , with the polynomials we have, it's not possible to refine our one-cell such that the frontier will be a union. i.e., we need to add more polynomials. also observe that, in R^3 and, in fact, for a set of dimension 2 in any ambient space, blow-up points (cells above which blow-ups occur) will have dimension at most 0.
-    - finally, let's consider a definable example (from BGV) of a subset which cannot satisfy the frontier condition in a simple way. observe that S i a semialgebraic set. note, however, that some projection operators, e.g., brown mc and laz (see section TODO) guarantee smooth cells, so such a construction would not occur in this case. However, the construction is cylindrical, so this is a valid CAD. considering the frontier of S, we see that it is not a topologically regular cell. in particular,the blow-up point at the origin. this means that introducing the top and bottom of S as new cells would not be possible, since the bottom of S is not a valid cylindrical cell. First, we would need to refine the bottom of S such that it is a union of valid cells. .e., wewould need to divide it into the two horizontal curve intervals, and the blow-up interval above the origin. Adding these cells directly to the CAD would destroy the cylindrical structure, so a refinement of some of the induced decompositions below it (starting with the decomposition induced by D on R^1) will be needed. i.e., we would need to refine D' such that it is compatible with x < 0, x = 0 and x > 0. this is the basis of a novel algorithm (see section ...) for satisfying the frontier condition in the general case.
-  - existing work: Schwartz, Lazard and Locatelli
-
-- discussing the frontier condition
-  - let's proceed with the construction due to BGV. first they observe that the boundary of every 2-dimensional cell is homeomorphic to a circle. thus, a refinement of this boundary into monotone curve intervals and points can be computed. if the boundary intersects a cell, that cell will be 2-dimensional and we can divide it into two monotone 2-dimensional cells and the one-dimensional component of the frontier. This procedure is simple, but it has the drawback that we need to find the frontier of a 2-dimensional monotone cell. the usual way of doing this is by solving a QE problem with ??? quantifier alternations. Using the singly exp algorithm from BPR, each frontier computation will hvae complexity ???. This would be unacceptable in practice.
-  - instead, we try to turn our attention to Lazard, who presents as construction in R^3. since his cells are already assumed to be topologically regular and blow-up points are assumed to be 0-dimensional, it is sufficient to find "bad cells" (cells above which some polynomial vanishes identically) and try to introduce new polynomials which refine the one-dimensional curve above the bad cell and complete the frontier condition. He does this in a much different way to BGV, who are working in the definable (semi-pfaffian) case, by using properties of polynomial ideals. I don't completely understand what he is doing, but it has something to do with considering the zariski closure of the one-dimensional cells (at the extrema of the monotone cells) with the bad point removed. the zariski closure as we approach this point is part of the frontier of the set, and is the new point we need to add to satisfy the frontier condition.
-  - i then conjecture, since we have only 2d sets with 0d blow-ups, that we could extend this to higher dimension. in particular, we can assume that only one polynomial will blow-up at any one time (otherwise the blow-up poits would have higher dimension) and work our way up the stack of polynomials above a 0-cell until we find one with a blow-up. we now have a version of Lazard's ideal, but our 0d point lies in a higher dimension. so we can do the same again -- consider the zariski closure of the 1d cell approaching the bad point and get the required refinement. the problem here would be proving this correct. i.e., will it find all of the blow-up poits? will it even work at all, or is there somethnig he assumed that is only true in the 3d case?
-  - finally we should present the novel frontier algorithm and make it very clear how we stop infinite returns to higher dimension. the bit abotu constructing the cchain of cad and then reconstructing it the other way up is important, as the refinements we do on the way back up result in the final one (the refinement of the inital cad)  satisfying the frontier condition. we finish off by observing that these weren't refinements at all, since the refined cads actually coincide with the cad's in the chain that we had in the first place.
-
-- in the algorithm, change semi-monotone to monotone sector
+# Cylindrical Algebraic Decompositions with Monotone Cells
 

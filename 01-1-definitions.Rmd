@@ -40,7 +40,7 @@ A first-order Boolean formula is obtained by rules 1 and 2 from Definition @\ref
 A fundamental result in semialgebraic geometry is the Tarski-Seidenberg Theorem.
 
 ::: { .theorem #tarski-seinedberg }
-[@vdd1998
+[@vdd1988tarski]
 Let $S \subset \R^{n+1}$ and $\projop{n} : \R^{n+1} \to \R^n$ be the projection map onto the first $n$ co-ordinates. Then $\projop{n}(S) \subset \R^n$ is a semialgebraic set.
 :::
 
