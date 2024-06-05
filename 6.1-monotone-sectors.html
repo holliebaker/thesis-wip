@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.1 Two-dimensional monotone sector cells | Thesis</title>
+  <meta name="description" content="Hollie Baker’s thesis" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.1 Two-dimensional monotone sector cells | Thesis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Hollie Baker’s thesis" />
+  <meta name="github-repo" content="holliebaker/thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.1 Two-dimensional monotone sector cells | Thesis" />
+  
+  <meta name="twitter:description" content="Hollie Baker’s thesis" />
+  
+
+<meta name="author" content="Hollie" />
+
+
+<meta name="date" content="2024-06-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="6-sec:monotone-cells.html"/>
+<link rel="next" href="6.2-two-dimensional-monotone-sections.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Thesis: CAD with monotone cells</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Cylindrical Algebraic Decompositions with Monotone Cells</a></li>
+<li class="chapter" data-level="2" data-path="2-intro.html"><a href="2-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="3-background.html"><a href="3-background.html"><i class="fa fa-check"></i><b>3</b> Background</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-semialgebraic-sets-and-monotone-cells.html"><a href="3.1-semialgebraic-sets-and-monotone-cells.html"><i class="fa fa-check"></i><b>3.1</b> Semialgebraic sets and monotone cells</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-semialgebraic-sets-and-monotone-cells.html"><a href="3.1-semialgebraic-sets-and-monotone-cells.html#sets-definable-over-o-minimal-structures"><i class="fa fa-check"></i><b>3.1.1</b> Sets definable over O-minimal structures</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3.1-semialgebraic-sets-and-monotone-cells.html"><a href="3.1-semialgebraic-sets-and-monotone-cells.html#monotone-cells"><i class="fa fa-check"></i><b>3.1.2</b> Monotone cells</a></li>
+<li class="chapter" data-level="3.1.3" data-path="3.1-semialgebraic-sets-and-monotone-cells.html"><a href="3.1-semialgebraic-sets-and-monotone-cells.html#cylindrical-algebraic-decompositions"><i class="fa fa-check"></i><b>3.1.3</b> Cylindrical Algebraic Decompositions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-cylindrical-algebraic-decomposition.html"><a href="3.2-cylindrical-algebraic-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Cylindrical algebraic decomposition</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3.2-cylindrical-algebraic-decomposition.html"><a href="3.2-cylindrical-algebraic-decomposition.html#sec:cad-construction"><i class="fa fa-check"></i><b>3.2.1</b> Constructing a CAD</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3.2-cylindrical-algebraic-decomposition.html"><a href="3.2-cylindrical-algebraic-decomposition.html#bounds-and-variations"><i class="fa fa-check"></i><b>3.2.2</b> Bounds and variations</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3.2-cylindrical-algebraic-decomposition.html"><a href="3.2-cylindrical-algebraic-decomposition.html#the-projection-operator"><i class="fa fa-check"></i><b>3.2.3</b> The projection operator</a></li>
+<li class="chapter" data-level="3.2.4" data-path="3.2-cylindrical-algebraic-decomposition.html"><a href="3.2-cylindrical-algebraic-decomposition.html#projection-polynomials-vs-semialgebraic-functions"><i class="fa fa-check"></i><b>3.2.4</b> Projection polynomials vs semialgebraic functions</a></li>
+<li class="chapter" data-level="3.2.5" data-path="3.2-cylindrical-algebraic-decomposition.html"><a href="3.2-cylindrical-algebraic-decomposition.html#cad-cells-and-their-defining-formulas"><i class="fa fa-check"></i><b>3.2.5</b> CAD cells and their defining formulas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sec:smooth-strat.html"><a href="4-sec:smooth-strat.html"><i class="fa fa-check"></i><b>4</b> Smooth Stratification</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="4-sec:smooth-strat.html"><a href="4-sec:smooth-strat.html#description-of-the-algorithm"><i class="fa fa-check"></i><b>4.0.1</b> Description of the algorithm</a></li>
+<li class="chapter" data-level="4.0.2" data-path="4-sec:smooth-strat.html"><a href="4-sec:smooth-strat.html#implementation-details"><i class="fa fa-check"></i><b>4.0.2</b> Implementation details</a></li>
+<li class="chapter" data-level="4.0.3" data-path="4-sec:smooth-strat.html"><a href="4-sec:smooth-strat.html#complexity"><i class="fa fa-check"></i><b>4.0.3</b> Complexity</a></li>
+<li class="chapter" data-level="4.0.4" data-path="4-sec:smooth-strat.html"><a href="4-sec:smooth-strat.html#worked-example"><i class="fa fa-check"></i><b>4.0.4</b> Worked example</a></li>
+<li class="chapter" data-level="4.0.5" data-path="4-sec:smooth-strat.html"><a href="4-sec:smooth-strat.html#determining-the-codimension-and-basic-formula-for-each-stratum"><i class="fa fa-check"></i><b>4.0.5</b> Determining the codimension and basic formula for each stratum</a></li>
+<li class="chapter" data-level="4.0.6" data-path="4-sec:smooth-strat.html"><a href="4-sec:smooth-strat.html#sec:strat-semialgebraic"><i class="fa fa-check"></i><b>4.0.6</b> From Elementary Algebraic sets to generic Semialgebraic sets</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sec:quasi-affine.html"><a href="5-sec:quasi-affine.html"><i class="fa fa-check"></i><b>5</b> Quasi-affine cells</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="5.1-computing-the-smooth-two-dimensional-locus-of-v.html"><i class="fa fa-check"></i><b>5.1</b> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="5.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus"><i class="fa fa-check"></i><b>5.1.1</b> An alternative method for computing the smooth two-dimensional locus</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="5.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><i class="fa fa-check"></i><b>5.2</b> Ensuring that every cell is the graph of a quasi-affine map</a></li>
+<li class="chapter" data-level="5.3" data-path="5.3-sec:quasiaffine-algorithm.html"><a href="5.3-sec:quasiaffine-algorithm.html"><i class="fa fa-check"></i><b>5.3</b> Computing the quasi-affine CAD</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-sec:monotone-cells.html"><a href="6-sec:monotone-cells.html"><i class="fa fa-check"></i><b>6</b> Monotone Cells</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-monotone-sectors.html"><a href="6.1-monotone-sectors.html"><i class="fa fa-check"></i><b>6.1</b> Two-dimensional monotone sector cells</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="6.1-monotone-sectors.html"><a href="6.1-monotone-sectors.html#sec:lagrange-refinement"><i class="fa fa-check"></i><b>6.1.1</b> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span></a></li>
+<li class="chapter" data-level="6.1.2" data-path="6.1-monotone-sectors.html"><a href="6.1-monotone-sectors.html#sec:sub-cad"><i class="fa fa-check"></i><b>6.1.2</b> Working with sub-decompositions above a 0-cell</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-two-dimensional-monotone-sections.html"><a href="6.2-two-dimensional-monotone-sections.html"><i class="fa fa-check"></i><b>6.2</b> Two-dimensional monotone sections</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-two-dimensional-monotone-sections.html"><a href="6.2-two-dimensional-monotone-sections.html#case-1-2-le-j-le-alpha---1"><i class="fa fa-check"></i><b>6.2.1</b> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span></a></li>
+<li class="chapter" data-level="6.2.2" data-path="6.2-two-dimensional-monotone-sections.html"><a href="6.2-two-dimensional-monotone-sections.html#case-2-alpha-1-le-j-le-n"><i class="fa fa-check"></i><b>6.2.2</b> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span></a></li>
+<li class="chapter" data-level="6.2.3" data-path="6.2-two-dimensional-monotone-sections.html"><a href="6.2-two-dimensional-monotone-sections.html#critical-points-of-the-top-and-bottom-of-c"><i class="fa fa-check"></i><b>6.2.3</b> Critical points of the top and bottom of <span class="math inline">\(C\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-implementation-details-1.html"><a href="6.3-implementation-details-1.html"><i class="fa fa-check"></i><b>6.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-implementation-details-1.html"><a href="6.3-implementation-details-1.html#sec:monotone-algorithm"><i class="fa fa-check"></i><b>6.3.1</b> Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6.4-sec:compute-refinement.html"><a href="6.4-sec:compute-refinement.html"><i class="fa fa-check"></i><b>6.4</b> Computing the refinements</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Thesis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="monotone-sectors" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Two-dimensional monotone sector cells<a href="6.1-monotone-sectors.html#monotone-sectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The proof of Theorem <a href="6-sec:monotone-cells.html#thm:bgv-monotone">6.1</a> proceeds in two stages: first, <span class="math inline">\(X \subset {\operatorname{span} \{x_1,x_\alpha\}}\)</span> is refined such that each <span class="math inline">\(Y \subset X\)</span> is a monotone 2-dimensional sector cell.
+Consider the intersection <span class="math inline">\(X \cap \{x_1 = c\}\)</span> for all <span class="math inline">\(c\in \mathbb{R}\)</span>. This intersection is a finite union of pairwise disjoint intervals. Let <span class="math inline">\({\cal I} (c)\)</span> be the family of these intervals associated with the point <span class="math inline">\(c\)</span>. Define
+<span class="math display">\[
+\gamma := \{ (x_1,x_\alpha) \in {\operatorname{span} \{x_1,x_\alpha\}} \mid x_2 \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
+\]</span>
+Although the cell <span class="math inline">\(X\)</span> under consideration is a <span class="math inline">\(2\)</span>-dimensional cylindrical cell in <span class="math inline">\({\operatorname{span} \{x_1,x_\alpha\}}\)</span>, we actually need to refine the <span class="math inline">\(2\)</span>-dimensional cylindrical sector cell <span class="math inline">\(C&#39; := {\operatorname{proj}_{\mathbb{R}^{\alpha}}}(C)\)</span> in the cylindrical decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^{\alpha}\)</span>. Thus, we need a way to translate between <span class="math inline">\(C&#39;\)</span> and <span class="math inline">\(X\)</span>.</p>
+<div class="lemma">
+<p><span id="lem:gamma-top-bottom" class="lemma"><strong>Lemma 6.1  </strong></span>Let <span class="math inline">\(C\subset \mathbb{R}^\alpha\)</span> be a <span class="math inline">\((1,0,\ldots,0,1)\)</span>-cell, <span class="math inline">\(X := {\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}} (C)\)</span> and <span class="math inline">\(X&#39; := {\operatorname{proj}_{\mathbb{R}^{1}}}(C)\)</span>. Suppose we have the family <span class="math inline">\({\cal I}(c), c \in X&#39;\)</span> and set of one-dimensional curves associated with <span class="math inline">\(C\)</span>. Then</p>
+<ol style="list-style-type: decimal">
+<li><p>The projection map <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}}\vert_C\)</span> is injective.</p></li>
+<li><p><span class="math inline">\(X\)</span> is a <span class="math inline">\(2\)</span>-dimensional cylindrical sector cell.</p></li>
+<li><p>For each <span class="math inline">\(c \in X&#39;\)</span>, the family <span class="math inline">\({\cal I}(c)\)</span> contains a single open innterval.</p></li>
+<li><p><span class="math inline">\(\gamma\)</span> consists of zero, one or two disjoint curve intervals which coincide with the top and bottom of <span class="math inline">\(X\)</span>. Furthermore, connected components of <span class="math inline">\(\gamma\)</span> can be defined as the graph of continuous definable functions from <span class="math inline">\(X&#39;\)</span> to <span class="math inline">\(\mathbb{R}\)</span>, using the functions defining the cell <span class="math inline">\(C\)</span>.</p></li>
+</ol>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-39" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(C\)</span> is the graph of a quasi-affine map from <span class="math inline">\(X \to {\operatorname{span} \{x_2,\ldots,x_{\alpha - 1}\}}\)</span>, it follows that the projection map <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}}\vert_C\)</span> is injective. This proves the first claim. The second claim follows by iteratively applying the projection defined in <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.3 to obtain the <span class="math inline">\(2\)</span>-dimensional cylindrical sector cell <span class="math inline">\(X\)</span>.
+By definition, <span class="math display">\[
+X := \{ (x_1,t) \in \mathbb{R}^2 \mid x_1 \in X&#39;, \varphi(x_1) &lt; t &lt; \psi(x_1) \}
+\]</span>
+where <span class="math inline">\(\varphi,\psi : X&#39; \to \mathbb{R}\)</span> are continuous definable functions such that <span class="math inline">\(\varphi(x_1) &lt; \psi(x_1)\)</span> for all <span class="math inline">\(x_1 \in X&#39;\)</span>.
+Note that <span class="math inline">\(X\)</span> may not be bounded from below (resp. above). In this case, we take <span class="math inline">\(\varphi(x_1) = -\infty\)</span> (resp. <span class="math inline">\(\psi(x_1) = \infty\)</span>) for all <span class="math inline">\(\mathbf{x} \in X&#39;\)</span>. Functions <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span> are either infinite or finite at every point in <span class="math inline">\(X&#39;\)</span>, otherwise, new one-dimensional section cells would exist whose projections onto <span class="math inline">\(\mathbb{R}^1\)</span> form a proper subset of <span class="math inline">\(X&#39;\)</span>. This would contradict the cylindrical property.
+It is clear from this definition that <span class="math inline">\({\cal I}(c)\)</span> contains a single open interval <span class="math inline">\((\varphi(c), \psi(c))\)</span>, proving the third claim. It follows that <span class="math inline">\(\gamma\)</span>, which consists of the endpoints of intervals in <span class="math inline">\({\cal I}(c)\)</span>, consists of one-dimensional curve intervals which are the graphs of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span> (if finite).</p>
+<p>The proof of the final claim is completed by defining the functions <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span>.</p>
+<p>Since <span class="math inline">\(C&#39; := {\operatorname{proj}_{\mathbb{R}^{\alpha - 1}}}(C)\)</span> is a <span class="math inline">\((1,\ldots,0,0)\)</span>-cell, it is the graph of a continuous definable map <span class="math inline">\(\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : X&#39; \to \mathbb{R}^{\alpha - 2}\)</span> and <span class="math display">\[
+C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C&#39;, f(\mathbf{x}) &lt; t &lt; g(\mathbf{x})\}
+\]</span>
+where <span class="math inline">\(f,g : \mathbb{R}^{\alpha - 1} \to \mathbb{R}\)</span> are continuous definable functions such that <span class="math inline">\(f(\mathbf{x}) &lt; g(\mathbf{x})\)</span> for all <span class="math inline">\(\mathbf{x} \in C&#39;\)</span>.
+Again, if not bounded from above (resp. below), <span class="math inline">\(f\)</span> (resp. <span class="math inline">\(g\)</span>) are taken to be <span class="math inline">\(-\infty\)</span> (resp. <span class="math inline">\(\infty\)</span>) at every point.
+Observe that the graph of <span class="math inline">\(f\)</span> (if finite) is the bottom of <span class="math inline">\(C\)</span> and the graph of <span class="math inline">\(g\)</span> (if finite) is the top of <span class="math inline">\(C\)</span>.</p>
+<p>Writing <span class="math inline">\(C\)</span> in terms of <span class="math inline">\(x_1 \in X&#39;\)</span>, <span class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span> and <span class="math inline">\(\mathbf{h}\)</span>, we obtain the functions
+<span class="math display" id="eq:phi-psi">\[\begin{align}
+\varphi &amp;:\&gt; C&#39;&#39; \to \mathbb{R}&amp; \psi &amp;:\&gt; C&#39;&#39; \to \mathbb{R}\\
+\varphi(x_1) &amp;= f(x_1,\mathbf{h}(x_1)) &amp; \psi(x_1) &amp;= g(x_1,\mathbf{h}(x_1))
+\tag{6.1}
+\end{align}\]</span></p>
+</div>
+<p>The refinement is achieved by finding a set of real numbers
+<span class="math display">\[
+(c_1,\ldots,c_t)
+\]</span>
+such that, for each <span class="math inline">\(1 \le i &lt; t\)</span>,
+<span class="math display">\[
+X \cap \{c_i &lt; x_1 &lt; c_{i+1}\}
+\]</span>
+is a monotone cell. By <span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv13" role="doc-biblioref">2013</a>, Theorem 1.7)</span>, this can be achieved by ensuring that
+<span class="math display">\[
+\gamma \cap \{ c_i &lt; x_1 &lt; c_{i+1}\}
+\]</span>
+contains only monotone curve intervals.</p>
+<p>Applying Lemma <a href="6.1-monotone-sectors.html#lem:gamma-top-bottom">6.1</a> to <span class="math inline">\(C\)</span>, we obtain continuous definable functions <span class="math inline">\(\varphi,\psi : X&#39; \to \mathbb{R}\)</span> defining the bottom, <span class="math inline">\(X_B\)</span>, and top, <span class="math inline">\(X_T\)</span>, of <span class="math inline">\(X\)</span> respectively.
+Let <span class="math display">\[
+(c_1,\ldots,c_t)
+\]</span>
+be the critical points of functions <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span>. Then, for all <span class="math inline">\(1 \le i &lt; t\)</span>, <span class="math inline">\(\phi\)</span> (resp <span class="math inline">\(\psi\)</span>) is either strictly increasing in, strictly decreasing in, or independent of <span class="math inline">\(x_1\)</span> on the interval <span class="math inline">\((c_i, c_{i+1})\)</span>. Note that if <span class="math inline">\(X\)</span> is not bounded from below, then <span class="math inline">\(\varphi\)</span> will be a constant function (equal to <span class="math inline">\(-\infty\)</span>). Likewise, if <span class="math inline">\(X\)</span> is not bounded from above, <span class="math inline">\(\psi\)</span> will be a constant function (equal to <span class="math inline">\(\infty\)</span>). If this happens, the non-finite function can be ignored, since it does not havea graph.</p>
+<div id="sec:lagrange-refinement" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span><a href="6.1-monotone-sectors.html#sec:lagrange-refinement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We now discuss how to find these critical points starting with the polynomials defining cells in <span class="math inline">\(\cal D\)</span>.
+Let
+<span class="math display" id="eq:proj-fac-set">\[\begin{equation}
+{\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
+\tag{6.2}
+\end{equation}\]</span>
+where <span class="math inline">\({\cal A}_i \subset \mathbb{Z}[x_1,\ldots,x_i]\)</span>, be the projection polynomials defining <span class="math inline">\(\cal D\)</span>. For convenience, we say that <span class="math inline">\(g(\mathbf{x}) = 0\)</span> for some <span class="math inline">\(g \in A_k\)</span> and <span class="math inline">\(\mathbf{x} \in \mathbb{R}^n\)</span>, such that <span class="math inline">\(k &lt; n\)</span>, if <span class="math inline">\(g({\operatorname{proj}_{\mathbb{R}^{k}}}(\mathbf{x})) = 0\)</span>.
+Let <span class="math inline">\(C\)</span> be a <span class="math inline">\((1,0,\ldots,0,1)\)</span>-cell of the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^{\alpha}\)</span> and consider the <span class="math inline">\((1,0,\ldots,0)\)</span>-cell
+<span class="math display">\[
+C&#39; := {\operatorname{proj}_{\mathbb{R}^{\alpha - 1}}}(C)
+\]</span>
+of the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^{\alpha - 1}\)</span>. Observe that
+<span class="math display">\[
+{\operatorname{proj}_{\mathbb{R}^{1}}}(C) = (a,b) \subset \mathbb{R}\cup \{-\infty, \infty\}
+\]</span>
+and, since <span class="math inline">\(C&#39;\)</span> is a section cell, there exist polynomials
+<span class="math display">\[
+g_2 \in {\cal A_2},\ldots,g_{\alpha - 1} \in {\cal A_{\alpha - 1}}
+\]</span> such that <span class="math inline">\(g_i(\mathbf{x}) = 0\)</span> for all <span class="math inline">\(1\le i \le \alpha - 1\)</span> and <span class="math inline">\(\mathbf{x} \in (C&#39;)\)</span>.
+Therefore, there exists a one-dimensional algebraic variety
+<span class="math display">\[
+V&#39; := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha - 1}(\mathbf{x}) = 0 \right\}
+\]</span>
+such that <span class="math inline">\(C&#39; \subset V&#39;\)</span>.</p>
+<p>Now consider the top of <span class="math inline">\(C\)</span>, denoted by <span class="math inline">\(C_T\)</span>.
+By definition, if <span class="math inline">\(C\)</span> is not bounded from above, then <span class="math inline">\(C_T\)</span> does not exist. Otherwise, <span class="math inline">\(C_T\)</span> is the graph of a continuous definable function <span class="math inline">\(h : C&#39; \to \mathbb{R}\)</span>.
+In the first case, there is nothing to do, since <span class="math inline">\(C_T\)</span> can be thought of as being independent of <span class="math inline">\(x_\alpha\)</span>.
+In the second case, <span class="math inline">\(C_T\)</span> can be written as
+<span class="math display" id="eq:c-alpha-top">\[\begin{equation}
+\{ (x_1,\ldots,x_\alpha) \mid a &lt; x_1 &lt; b, g_2(x_1,\ldots,x_{\alpha - 1}) = 0, \ldots, g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1}) = 0, x_\alpha = h(x_1,\ldots,x_{\alpha - 1}) \}.
+\tag{6.3}
+\end{equation}\]</span>
+By the construction of <span class="math inline">\(\cal D\)</span> (e.g., using Proposition <a href="3.2-cylindrical-algebraic-decomposition.html#prp:mc-smooth">3.10</a>) <span class="math inline">\(C_T\)</span> is <span class="math inline">\(C^\infty\)</span> smooth, therefore <span class="math inline">\(h\)</span> is a differentiable function everywhere in <span class="math inline">\(C&#39;\)</span>.</p>
+<p>This representation lends itself naturally to the problem of Lagrange multipliers.</p>
+<div class="proposition">
+<p><span id="prp:lagrange-multipliers" class="proposition"><strong>Proposition 6.1  </strong></span>Let <span class="math inline">\(f : \mathbb{R}^n \to \mathbb{R}\)</span> and <span class="math inline">\(g_1,\ldots,g_k : \mathbb{R}^n \to \mathbb{R}\)</span> be continuous functions with continuous first partial derivatives.
+Local maxima and minima of <span class="math inline">\(f\)</span>, subject to the constraints <span class="math inline">\(g_1=0,\ldots,g_k=0\)</span> can be found by computing the critical points of the function
+<span class="math display">\[
+\mathcal{L}(\mathbf{x}, \lambda_1,\ldots,\lambda_k) = f(\mathbf{x}) - \lambda_1 g_1(\mathbf{x}) - \cdots - \lambda_k g_k(\mathbf{x}),
+\]</span>
+where <span class="math inline">\(\mathbf{x} \in \mathbb{R}^n\)</span> and <span class="math inline">\((\lambda_1,\ldots,\lambda_k) \in \mathbb{R}^k\)</span> are new variables.</p>
+<p>Critical points can be found by solving the system of equations
+<span class="math display" id="eq:lagrange">\[\begin{equation}
+\dfrac{\partial f}{\partial x_i} - \lambda_1 \dfrac{\partial g_1}{\partial x_i} - \cdots - \lambda_k \dfrac{\partial g_k}{\partial x_i}= 0,
+\tag{6.4}
+\end{equation}\]</span>
+where <span class="math inline">\(1\le i \le n-1\)</span>,</p>
+<p>for <span class="math inline">\(\lambda_1,\ldots,\lambda_k\)</span>.</p>
+</div>
+<div class="remark">
+<p><span id="lagrange-solve" class="remark"><em>Remark</em>. </span>Using variables <span class="math inline">\((x_1,\ldots,x_{\alpha-1})\)</span>, constraints <span class="math inline">\(g_2,\ldots,g_{\alpha - 1}\)</span> and function <span class="math inline">\(h\)</span> from Equation <a href="6.1-monotone-sectors.html#eq:c-alpha-top">(6.3)</a>, the system from Equation <a href="6.1-monotone-sectors.html#eq:lagrange">(6.4)</a> can be written in matrix form as follows.
+<span class="math display">\[
+\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} &amp; \cdots &amp; \dfrac{\partial g_{\alpha-1}}{\partial x_{1}}\\
+\vdots &amp;  &amp; \vdots\\
+\dfrac{\partial g_{2}}{\partial x_{\alpha-1}} &amp; \cdots &amp; \dfrac{\partial g_{\alpha-1}}{\partial x_{\alpha-1}}
+\end{pmatrix}\begin{pmatrix}\lambda_{1}\\
+\vdots\\
+\lambda_{\alpha-2}
+\end{pmatrix}=\begin{pmatrix}\dfrac{\partial h}{\partial x_{1}}\\
+\vdots\\
+\dfrac{\partial h}{\partial x_{\alpha-1}}
+\end{pmatrix}
+\]</span></p>
+<p>It is clear that, if a solution exists, then the last column
+<span class="math inline">\(\left(\tfrac{\partial h}{\partial x_{1}},\ldots, \tfrac{\partial h}{\partial x_{\alpha-1}}\right)^T\)</span>
+will be a linear combination of the first <span class="math inline">\(\alpha - 1\)</span> columns (in <span class="math inline">\(g_2,\ldots,g_{\alpha - 1}\)</span>).
+Hence, optimal values for <span class="math inline">\((x_1,\ldots,x_{\alpha-1})\)</span> exist and satisfy
+<span class="math display" id="eq:jacobi-det">\[\begin{equation}
+\det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} &amp; \cdots &amp; \dfrac{\partial g_{\alpha-1}}{\partial x_{1}} &amp; \dfrac{\partial h}{\partial x_{1}}\\
+\vdots &amp;  &amp;  &amp; \vdots\\
+\dfrac{\partial g_{2}}{\partial x_{\alpha-1}} &amp; \cdots &amp; \dfrac{\partial g_{\alpha-1}}{\partial x_{\alpha-1}} &amp; \dfrac{\partial h}{\partial x_{\alpha-1}}
+\end{pmatrix}=0.
+\tag{6.5}
+\end{equation}\]</span></p>
+</div>
+<p>Equation <a href="6.1-monotone-sectors.html#eq:jacobi-det">(6.5)</a> gives a direct formula to solve Equation <a href="6.1-monotone-sectors.html#eq:lagrange">(6.4)</a> for <span class="math inline">\(x_1,\ldots,x_{\alpha - 1}\)</span>. Refinement points <span class="math inline">\((c_1,\ldots,c_t)\)</span> are the <span class="math inline">\(x_1\)</span>-coordinates of these solutions.</p>
+<p>Since <span class="math inline">\(C_T\)</span> is a section cell, there exists a polynomial <span class="math inline">\(g_\alpha \in {\cal A}_\alpha\)</span> such that <span class="math display">\[
+C_T := \{ \mathbf{x} \in \mathbb{R}^\alpha \mid {\operatorname{proj}_{\mathbb{R}^{\alpha - 1}}}(\mathbf{x}) \in C&#39;, g_\alpha(\mathbf{x}) = 0 \}.
+\]</span> Thus, there exists an algebraic variety
+<span class="math display" id="eq:variety-v">\[\begin{equation}
+V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0, g_\alpha(\mathbf{x}) = 0 \right\}
+\tag{6.6}
+\end{equation}\]</span>
+such that <span class="math inline">\(C_T \subset V\)</span>, where <span class="math inline">\(g_2,\ldots,g_{\alpha - 1}\)</span> are the same polynomials appearing in Equation <a href="6.1-monotone-sectors.html#eq:c-alpha-top">(6.3)</a>.</p>
+<p>Note that <span class="math inline">\(g_\alpha \in \mathbb{Z}[x_1,\ldots,x_\alpha]\)</span>, while <span class="math inline">\(h\)</span> from Equation <a href="6.1-monotone-sectors.html#eq:jacobi-det">(6.5)</a> is expected to be a continuous differentiable function from <span class="math inline">\(\mathbb{R}^{\alpha - 1} \to \mathbb{R}\)</span>.
+We need to compute derivatives of the implicit <span class="math inline">\(g_\alpha\)</span>. I.e.,
+<span class="math display" id="eq:total-deriv">\[\begin{equation}
+\dfrac{d x_\alpha}{d x_i} = \dfrac{\partial g_\alpha / \partial x_i}{\partial g_\alpha / \partial x_\alpha}
+\tag{6.7}
+\end{equation}\]</span>
+for <span class="math inline">\(1\le i \le \alpha - 1\)</span>.
+Let <span class="math inline">\(J_T\)</span> be the determinant of the matrix of partial derivatives from Equation <a href="6.1-monotone-sectors.html#eq:jacobi-det">(6.5)</a> with each <span class="math inline">\(\partial h / \partial x_i, 1 \le i \le \alpha - 1\)</span> replaced with <span class="math inline">\(d x_\alpha / d x_i\)</span> from Equation <a href="6.1-monotone-sectors.html#eq:total-deriv">(6.7)</a>. Observe that the denominator of <span class="math inline">\(\partial h / \partial x_i\)</span>, for all <span class="math inline">\(1 \le i \le \alpha - 1\)</span>, is equal to
+<span class="math display">\[d_T := \partial g_\alpha / \partial x_\alpha,\]</span>
+so the last column of the matrix can be written as
+<span class="math display">\[
+\dfrac{1}{d_T} \left( \partial g_{\alpha} / x_1 , \ldots , \partial g_{\alpha} / x_{\alpha - 1}\right)^T.
+\]</span>
+Thus, the determinant
+<span class="math display">\[
+J_T = \frac{1}{d_T} J&#39;_T,
+\]</span>
+where <span class="math inline">\(J&#39;_T\)</span> is the matrix from Equation <a href="6.1-monotone-sectors.html#eq:jacobi-det">(6.5)</a> with the <span class="math inline">\(\partial h / \partial x_i\)</span> replaced with <span class="math inline">\(\partial g_\alpha / \partial x_i\)</span> for <span class="math inline">\(1\le i \le \alpha - 1\)</span>. I.e.,
+<span class="math display" id="eq:jacobi-det-2">\[\begin{equation}
+\det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} &amp; \cdots &amp; \dfrac{\partial g_{\alpha-1}}{\partial x_{1}} &amp; \dfrac{\partial g_\alpha}{\partial x_{1}}\\
+\vdots &amp;  &amp;  &amp; \vdots\\
+\dfrac{\partial g_{2}}{\partial x_{\alpha-1}} &amp; \cdots &amp; \dfrac{\partial g_{\alpha-1}}{\partial x_{\alpha-1}} &amp; \dfrac{\partial g_\alpha}{\partial x_{\alpha-1}}
+\end{pmatrix}=0.
+\tag{6.8}
+\end{equation}\]</span></p>
+<p>Observe that <span class="math inline">\(J_T\)</span> is a rational function: a fraction in which the numerator and denominator are both polynomials. <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{\alpha - 1}\)</span> is a solution of this rational function if and anly if <span class="math inline">\(J&#39;_T(\mathbf{x}) = 0\)</span> and <span class="math inline">\(d_T(\mathbf{x}) \ne 0\)</span>. Thus, solutions of the system <span class="math display">\[
+\{ J&#39;_T = 0, d_T \ne 0 \}
+\]</span> should be found.
+Observe that this is a semialgebraic set, since
+<span class="math inline">\(\{ d_T(\mathbf{x}) \ne 0 \} \leftrightarrow \mathbb{R}^{\alpha - 1 } \setminus \{ d_T(\mathbf{x}) = 0 \}\)</span>.
+Note that, when <span class="math inline">\(\deg(d_T) = 0\)</span>, <span class="math inline">\(d_T\)</span> is a constant and therefore has no solutions. Thus, the condition <span class="math inline">\(d_T = 0\)</span> can be dropped in this case.</p>
+<p>Repeating this process to obtain <span class="math inline">\(J&#39;_B\)</span> and <span class="math inline">\(d_B\)</span>, if sector cell <span class="math inline">\(C\)</span> is bounded from below, we have a set of polynomial equations
+<span class="math display" id="eq:lagrange-solve">\[\begin{equation}
+\{ g_2,\ldots,g_{\alpha-1}, J&#39;_B, J&#39;_T \},
+\tag{6.9}
+\end{equation}\]</span>
+and inequalities
+<span class="math display" id="eq:lagrange-solve-ineqs">\[\begin{equation}
+\{ s_1 g_{1,1} &gt; 0, \ldots, s_\ell g_{1,\ell} &gt; 0, d_B \ne 0, d_T \ne 0 \}
+\tag{6.10}
+\end{equation}\]</span>
+where <span class="math inline">\(\{ g_{1,1},\ldots,g_{1,\ell} \} \subset \mathbb{Z}[x_1]\)</span> are polynomials from <span class="math inline">\({\cal A}_1\)</span> and <span class="math inline">\(s_1,\ldots,s_\ell \in \{-1,1\}\)</span> such that <span class="math display">\[
+x \in X&#39; \leftrightarrow s_1 g_{1,1}(x) &gt; 0 \land \ldots \land s_\ell g_{1,\ell}(x) &gt; 0.
+\]</span>
+We can easily find pairs <span class="math inline">\((s_j, g_{1,j}) \in \{-1,1\} \times {\cal A}_1\)</span> by considering the sign of the sample point <span class="math inline">\(c\)</span> of <span class="math inline">\(X&#39;\)</span> on each polynomial <span class="math inline">\(g_{1,j} \in {\cal A}_1\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(g_{1,j} &gt; 0\)</span>, then <span class="math inline">\(s_j = 1\)</span>.</li>
+<li>If <span class="math inline">\(g_{1.j}(c) &lt; 0\)</span>, then <span class="math inline">\(s_j = -1\)</span>.</li>
+<li>The final case, <span class="math inline">\(g_{1,j}(c) = 0\)</span>, is impossible since an irreducible univariate polynomial cannot be zero over an interval.
+We want to find <span class="math inline">\(x_1\)</span>-coordinates of the roots of polynomials from Equation <a href="6.1-monotone-sectors.html#eq:lagrange-solve">(6.9)</a> subject to the constraints from Equation <a href="6.1-monotone-sectors.html#eq:lagrange-solve-ineqs">(6.10)</a>.</li>
+</ul>
+<p>CAD can, of course, be used to do this, since we are really solving the quantifier elimination problem
+<span class="math display">\[
+\exists x_2,\ldots,x_{\alpha - 1},x_\alpha P(x_1,\ldots,x_\alpha)
+\]</span> where
+<span class="math display" id="eq:lagrange-solve-qe-jacobis" id="eq:lagrange-solve-qe-denominators" id="eq:lagrange-solve-qe-constraints" id="eq:lagrange-solve-qe-ineqs">\[\begin{align}
+P(x_1,\ldots,x_\alpha) = &amp; s_1 g_{1,1}(x_1) &gt; 0 \land \ldots \land s_\ell g_{1,\ell}(x_1) &gt; 0
+\tag{6.11} \\
+\land &amp; g_2(x_1,x_2) = 0 \land \ldots \land g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1} = 0
+\tag{6.12} \\
+\land &amp; d_B(x_1,\ldots,x_\alpha) \ne 0 land d_T(x_1,\ldots,x_\alpha) \ne 0
+\tag{6.13} \\
+\land &amp; ( J&#39;_B(x_1,\ldots,x_{\alpha - 1} = 0 \lor J&#39;_T(x_1,\ldots,x_{\alpha - 1}) = 0 ).
+\tag{6.14} \\
+\end{align}\]</span>
+Computing the projection onto <span class="math inline">\(\mathbb{R}^1\)</span> of polynomials <span class="math inline">\(\{g_2,\ldots,g_{\alpha - 1} J&#39;_B, J&#39;_T \}\)</span> from Equations <a href="6.1-monotone-sectors.html#eq:lagrange-solve-qe-constraints">(6.12)</a> and <a href="6.1-monotone-sectors.html#eq:lagrange-solve-qe-jacobis">(6.14)</a>, a system
+<span class="math display">\[
+\cal{F} := \{ f_1=0 ,\ldots,f_r=0 \} \subset \mathbb{Z}[x_1]
+\]</span>
+is obtained, whose real roots include the refinement points <span class="math inline">\((c_1,\ldots,c_t)\)</span>.
+Let <span class="math inline">\({\cal E} \subset \mathbb{Z}[x_1]\)</span> be the set of polynomials obtained by computing the projection onto <span class="math inline">\(\mathbb{R}^1\)</span> of <span class="math inline">\(\{ d_B, d_T \}\)</span> (from Equation <a href="6.1-monotone-sectors.html#eq:lagrange-solve-qe-denominators">(6.13)</a>) and
+<span class="math display">\[{\cal G} := \{ s_1 g_{1,1}, \ldots, s_\ell g_{1,\ell} \}
+\]</span>
+from Equation <a href="6.1-monotone-sectors.html#eq:lagrange-solve-qe-ineqs">(6.11)</a>.
+<span class="math inline">\((c_1,\ldots,c_t)\)</span> can be found by computing the real roots of <span class="math inline">\(\cal F\)</span> subject to the inequalities <span class="math inline">\(\cal G\)</span>, then discarding those such that a polynomial in <span class="math inline">\(\cal E\)</span> is zero.</p>
+<p>It is clear that <span class="math inline">\((c_1,\ldots,c_t)\)</span> lie in an open interval <span class="math inline">\(X = (a,b) \subset \mathbb{R}\cup \{ -\infty, \infty \}\)</span>. Thus, rather than using strict inequalities from Equation <a href="6.1-monotone-sectors.html#eq:lagrange-solve-qe-ineqs">(6.11)</a>, we could find the roots of <span class="math inline">\(\cal F\)</span> in the interval <span class="math inline">\((a,b)\)</span>.</p>
+<p>Each real root will be represented by a pair
+<span class="math display">\[
+c_i := (m_1,J_1)
+\]</span>
+where <span class="math inline">\(c_i\)</span> is the unique root of the polynomial <span class="math inline">\(m_i \in \mathbb{Z}[x_1]\)</span> in the (left-open right-closed) isolating interval <span class="math inline">\(J_i\)</span>.
+Note that <span class="math inline">\(\cal B\)</span> contains only algebraic numbers and roots will appear in ascending order.</p>
+</div>
+<div id="sec:sub-cad" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Working with sub-decompositions above a 0-cell<a href="6.1-monotone-sectors.html#sec:sub-cad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Note that we are working in a sub-decomposition <span class="math inline">\(\cal D\)</span> (of <span class="math inline">\(\mathbb{R}^{k+n}\)</span>) above a <span class="math inline">\(0\)</span>-cell <span class="math inline">\(\mathbf{c}\)</span> of <span class="math inline">\(\mathbb{R}^k\)</span> (<span class="math inline">\(k \ge 0\)</span>). Therefore the polynomials appearing in Equation <a href="6.1-monotone-sectors.html#eq:variety-v">(6.6)</a> are actually in <span class="math inline">\(\mathbb{Z}[y_1,\ldots,y_k][x_1,\ldots,x_n]\)</span>.
+From a polynomial <span class="math inline">\(f \in \mathbb{Z}[y_1,\ldots,y_k][x_1,\ldots,x_n]\)</span>, a polynomial <span class="math inline">\(g := f(\mathbf{c}) \in \mathbb{A}[x_1,\ldots,x_n]\)</span> can be obtained by evaluating <span class="math inline">\(f\)</span> at <span class="math inline">\(\mathbf{c}\)</span>. Evaluated polynomials <span class="math inline">\(g\)</span> define the sub-cad of <span class="math inline">\(\mathbb{R}^n\)</span> above <span class="math inline">\(\mathbf{c}\)</span> because <span class="math inline">\(\mathbf{c}\)</span> is a <span class="math inline">\(0\)</span>-cell.</p>
+<p>Note that, since <span class="math inline">\(\mathbf{c}\)</span> is an algebraic number, <span class="math inline">\(g\)</span> has algebraic coefficients. Since roots of <span class="math inline">\(g\)</span> are algebraic numbers, there exists a polynomial <span class="math inline">\(h \in \mathbb{Z}[x_1,\ldots,x_n]\)</span> such that, <span class="math inline">\(g(\mathbf{x}) = 0\)</span> if and only if <span class="math inline">\(h(\mathbf{x}) = 0\)</span> for all <span class="math inline">\(\mathbf{x} \in \mathbb{R}^n\)</span>. A method for obtaining the polynomial <span class="math inline">\(h\)</span> with integer coefficients is now described.</p>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(f\)</span> is independent of all <span class="math inline">\(y_1,\ldots,y_k\)</span>, there is nothing to do, just set <span class="math inline">\(h := f\)</span>. Otherwise, <span class="math inline">\(f\)</span> depends on at least one of <span class="math inline">\(y_1,\ldots,y_k\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\mathbf{c}\)</span> is rational, then <span class="math inline">\(g = f(\mathbf{c})\)</span> has coefficients in <span class="math inline">\(\mathbb{Q}\)</span>. There exists a non-zero <span class="math inline">\(a \in \mathbb{Z}\)</span> such that <span class="math inline">\(h := a g\)</span> has integer coefficients and the same roots as <span class="math inline">\(g\)</span>.</p></li>
+<li><p>Otherwise, <span class="math inline">\(\mathbf{c}\)</span> is not rational. Then <span class="math inline">\(f(\mathbf{c})\)</span> has coefficients in <span class="math inline">\(\mathbb{A}\)</span>. There exists an algorithm, which takes <span class="math inline">\(g\)</span> as input and returns a polynomial <span class="math inline">\(h \in \mathbb{Z}[x_1,\ldots,x_n]\)</span> such that <span class="math inline">\(g(\mathbf{x}) = 0\)</span> if and only if <span class="math inline">\(h(\mathbf{x}) = 0\)</span> for all <span class="math inline">\(\mathbf{x} \in \mathbb{R}^n\)</span>.</p></li>
+</ol>
+<div class="remark">
+<p><span id="unlabeled-div-40" class="remark"><em>Remark</em>. </span>Let <span class="math inline">\(f \in \mathbb{Q}[x_1,\ldots,x_n]\)</span> be a polynomial such that
+<span class="math display">\[
+f(x_1,\ldots,x_n) = \dfrac{a_1}{b_1} m_1 + \cdots + \dfrac{a_k}{b_k} m_k
+\]</span>
+where <span class="math inline">\(m_i = x_1^{d_{i,1}} \cdots x_n^{d_{i,n}}\)</span> for <span class="math inline">\(1 \le i \le k\)</span> is a monomial in <span class="math inline">\(x_1,\ldots,x_n\)</span>.</p>
+<p>Let <span class="math inline">\(M := \operatorname{lcm}(b_1, \ldots, b_k)\)</span> be the least common multiple of denominators and construct
+<span class="math display">\[
+g(x_1,\ldots,x_n) = M f(x_1,\ldots,x_n) = \dfrac{M a_1}{b_1} m_1 + \cdots + \dfrac{M a_k}{b_k} m_k.
+\]</span>
+Each coefficient in <span class="math inline">\(g\)</span> will be an integer number since <span class="math inline">\(M\)</span> is divisible by all <span class="math inline">\(b_1,\ldots,b_k\)</span> and polynomials <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> have the same roots.</p>
+</div>
+<div class="definition">
+<p><span id="def:norm" class="definition"><strong>Definition 6.2  </strong></span>Let <span class="math inline">\(K\)</span> be a field and <span class="math inline">\(L\)</span> a finite (algebraic) extension of <span class="math inline">\(K\)</span>.
+The field <span class="math inline">\(L\)</span> can be thought of as a finite dimensional vector space over <span class="math inline">\(K\)</span>.</p>
+<p>Consider <span class="math inline">\(f\)</span> and <span class="math inline">\(m\)</span> be polynomials in <span class="math inline">\(L[x_1,\ldots,x_n]\)</span>, viewed as polynomials in <span class="math inline">\(K[x_1,\ldots,x_n,x_\alpha]\)</span>.
+The norm, in <span class="math inline">\(L[x_1,\ldots,x_n]\)</span> of <span class="math inline">\(f\)</span> can be found by computing the resultant of <span class="math inline">\(f\)</span> and <span class="math inline">\(m\)</span>.</p>
+</div>
+<div class="remark">
+<p><span id="unlabeled-div-41" class="remark"><em>Remark</em>. </span>Let <span class="math inline">\(f \in \mathbb{A}[x_1,\ldots,x_n]\)</span> be a polynomial such that
+<span class="math display">\[
+f(x_1,\ldots,x_n) = a_1 m_1 + \cdots + a_k m_k
+\]</span>
+where <span class="math inline">\(m_i = x_1^{d_{i,1}} \cdots x_n^{d_{i,n}}\)</span> is a monomial in variables <span class="math inline">\(x_1,\ldots,x_n\)</span> and <span class="math inline">\(a_i\)</span> is an element of tho algebraic extension of the rational numbers <span class="math inline">\(\mathbb{Q}(\alpha)\)</span> for <span class="math inline">\(1 \le i \le k\)</span>.</p>
+<p>Let <span class="math inline">\(m \in \mathbb{Z}[\alpha]\)</span> be the minimal polynomial for <span class="math inline">\(\mathbb{Q}(\alpha)\)</span>. <span class="math inline">\(f\)</span> can be written as a polynomial in <span class="math inline">\(\mathbb{Q}[x_1,\ldots,x_n,x_\alpha]\)</span> and <span class="math inline">\(m\)</span> can be viewed as a polynomial in <span class="math inline">\(\mathbb{Q}[x_1,\ldots,x_n,x_\alpha]\)</span> which is independent of all <span class="math inline">\(x_1,\ldots,x_n\)</span>. Compute
+<span class="math display">\[
+g := \operatorname{Res}_\alpha (f,m)
+\]</span>
+to obtain a polynomial in <span class="math inline">\(\mathbb{Q}[x_1,\ldots,x_n]\)</span>. The property that <span class="math inline">\(f(\mathbf{x}) = 0\)</span> if and only if <span class="math inline">\(g(\mathbf{x}) = 0\)</span> follows from a property of resultants:</p>
+<blockquote>
+<p>Let <span class="math inline">\(I = \langle f, m \rangle\)</span> be the ideal generated by polynomials <span class="math inline">\(f, m \in K[x_1,\ldots,x_n][\alpha]\)</span>, where <span class="math inline">\(K\)</span> is an algebraically closed field.
+If at least one of <span class="math inline">\(f\)</span> and <span class="math inline">\(m\)</span> is monic, then
+<span class="math display">\[
+\operatorname{Res}_\alpha (f,m) \in I \cap R.
+\]</span></p>
+</blockquote>
+<p>It follows that <span class="math inline">\(\mathbf{x} \in K^n\)</span> is a common zero of the elements of <span class="math inline">\(I \cap R\)</span> if and only if it is a zero of <span class="math inline">\(\operatorname{Res}_\alpha(f,m)\)</span>.</p>
+<p><strong>TODO</strong> this property came from the wiki page on resultants. does it need proving?</p>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-bgv13">
+<p>Basu, Saugata, Andrei Gabrielov, and Nicolai Vorobjov. 2013. “Monotone Functions and Maps.” <em>Revista de La Real Academia de Ciencias Exactas, Fisicas Y Naturales. Serie A. Matematicas</em> 107 (1): 5–33.</p>
+</div>
+<div id="ref-bgv15">
+<p>Basu, Saugata, Andrei Gabrielov, and Nicolai Vorobjov. 2015. “Triangulations of Monotone Families I: Two-Dimensional Families.” <em>Proceedings of the London Mathematical Society</em> 111 (5): 1013–51.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="6-sec:monotone-cells.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6.2-two-dimensional-monotone-sections.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/03-2-monotone-cells.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["thesis.pdf", "thesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
