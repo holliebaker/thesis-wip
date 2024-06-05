@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <title>4.1 Computing the smooth two-dimensional locus of \(V\) | Cylindrical Algebraic Decompositions With Monotone Cells</title>
   <meta name="description" content="Hollie Baker’s thesis" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:title" content="4.1 Computing the smooth two-dimensional locus of \(V\) | Cylindrical Algebraic Decompositions With Monotone Cells" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Hollie Baker’s thesis" />
   <meta name="github-repo" content="holliebaker/thesis" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta name="twitter:title" content="4.1 Computing the smooth two-dimensional locus of \(V\) | Cylindrical Algebraic Decompositions With Monotone Cells" />
   
   <meta name="twitter:description" content="Hollie Baker’s thesis" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="4-sec:quasi-affine.html"/>
+<link rel="next" href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -152,19 +152,47 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="computing-the-smooth-two-dimensional-locus-of-v" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#computing-the-smooth-two-dimensional-locus-of-v" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We begin by considering <span class="math inline">\(W\)</span>, the smooth <span class="math inline">\(2\)</span>-dimensional locus of <span class="math inline">\(V = V_1 \cup \ldots \cup V_k\)</span>.
+Since <span class="math inline">\(V\)</span> is a semialgebraic set, it can be represented by a quantifier-free Boolean formula <span class="math inline">\(F\)</span>.
+<span class="math inline">\(W\)</span> can be computed using the smooth stratification algorithm described in @(sec:smooth-strat).
+In order to apply the algorithm, consider the consistent sign assignments of polynomials <span class="math inline">\(f_1,\ldots,f_s\)</span> appearing in the formula <span class="math inline">\(F\)</span>. As described in Section @(sec:strat-semialgebraic), we obtain a collection of sign-sets <span class="math inline">\(S_{(\ast_1,\ldots,\ast_s)} \subset \mathbb{R}^n\)</span>. Observe that a finite number of these sign-sets <span class="math inline">\(S_1,\ldots,S_m\)</span> form a partition of <span class="math inline">\(V\)</span>.
+For each of these sign-sets <span class="math inline">\(S_i \subset V\)</span>, apply the smooth stratification algorithm to obtain a family <span class="math inline">\((X_{i,1}, \ldots X_{i,n})\)</span> of strata, where each <span class="math inline">\(X_{i,j}\)</span> is a smooth subset of <span class="math inline">\(S_i\)</span> of codimension <span class="math inline">\(j\)</span>.
+We have <span class="math inline">\(\dim(S_i) \le 2\)</span>, since each of the sets in the union <span class="math inline">\(V\)</span> has dimension at most 2. Hence, every stratum <span class="math inline">\(X_{i,j}\)</span> of codimension <span class="math inline">\(j &lt; n-2\)</span> will be empty.
+We obtain the smooth two-dimensional locus of <span class="math inline">\(V\)</span> by taking the union of strata of codimension <span class="math inline">\(n-2\)</span>. For each of these strata, it is important to keep the set of <span class="math inline">\(n-2\)</span> polynomials defining it, as these will be needed in the next step. We will need the strata of codimension <span class="math inline">\(n-1\)</span>, as each one-dimensional cell must also be the graph of a quasi-affine map.</p>
+<div id="an-alternative-method-for-computing-the-smooth-two-dimensional-locus" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> An alternative method for computing the smooth two-dimensional locus<a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall from Section <a href="2.2-cylindrical-algebraic-decomposition.html#sec:cad-construction">2.2.1</a>) that smooth cells can be guaranteed by choosing a certain projection operator.
+More precisely, according to <span class="citation">McCallum (<a href="#ref-mccallum1988" role="doc-biblioref">1988</a>)</span>, Theorems 2.2.3 and 2.2.4, if there is a finite number of blow-up points, then the McCallum projection operator will result in a CAD where all cells are analytic submanifolds.
+Since <span class="math inline">\(\dim(V_i) \le 2\)</span> for all <span class="math inline">\(1 \le i \le k\)</span>, we may assume that blow-up points will have dimension at most <span class="math inline">\(0\)</span>. Hence, the McCallum projection operator will result in smooth cells being produced.</p>
+<p>Let <span class="math inline">\(F \subset \mathbb{R}^n\)</span> be the set of polynomials appearing in the quantifier-free Boolean formulas defining <span class="math inline">\(V\)</span> and use the McCallum projection operator to construct an <span class="math inline">\(F\)</span>-invariant CAD, <span class="math inline">\(\cal E\)</span>, of <span class="math inline">\(\mathbb{R}^n\)</span>. Since cells of a CAD are disjoint by construction and smooth by the use of the McCallum projection operator, <span class="math inline">\(\cal E\)</span> forms a smooth stratification of <span class="math inline">\(V\)</span>.
+Thus, we can take as <span class="math inline">\(W\)</span> the (separate) sets of <span class="math inline">\(2\)</span>- and <span class="math inline">\(1\)</span>-dimensional cells of <span class="math inline">\(\cal E\)</span> which are contained in <span class="math inline">\(V\)</span>.
+Let <span class="math inline">\(C\)</span> be one of these cells, and suppose it has index <span class="math inline">\((i_1,\ldots,i_n) \in \{0,1\}^n\)</span>. Since <span class="math inline">\(\dim(C) = 2\)</span>, <span class="math inline">\(\sum_{1\le i \le n} = 2\)</span>. Let <span class="math inline">\(i_{j_1}, = i_{j_2} = 1\)</span> for <span class="math inline">\(j_1 \ne j_2\)</span> and all other elements of the index be equal to zero. Then <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}(C)\)</span>, for <span class="math inline">\(k\ne j_1,k\ne j_2\)</span>, is the root of a projection polynomial <span class="math inline">\(f_k \in \mathbb{Z}[x_1,\ldots,x_k]\)</span>. Hence, we have, <span class="math inline">\(n-2\)</span> projection polynomials at which every <span class="math inline">\(\mathbf{x} \in C\)</span> is equal to zero.
+The polynomials can be determined by using the set of signs of projection factors and used to define an algebraic variety <span class="math inline">\(V \supset C\)</span>. Note that we need some additional inequalities to define <span class="math inline">\(C\)</span> properly, but these are not needed to compute the critical points of projections in the next section.
+Similarly for <span class="math inline">\(1\)</span>-dimensional cells, only one element of the index will be equal to <span class="math inline">\(1\)</span>, while all other elements are equal to <span class="math inline">\(0\)</span>. It follows that we can find <span class="math inline">\(n-1\)</span> polynomials, in a similar way, which are equal to zero on each one-dimensional cell.</p>
+<p>It is possible to compute <span class="math inline">\(W\)</span> using either technique. Theoretically speaking, using the smooth stratification algorithm seems cleaner, as it is the correct tool for decomposing a set into smooth manifolds.
+However, things are often more nuanced in practice. We are required to compute the smooth stratification of each non-empty sign subset of <span class="math inline">\(V\)</span>. Thus, we may be required to repeat a doubly exponential operation up to <span class="math inline">\(3^s\)</span> times, where <span class="math inline">\(s\)</span> is the number of different polynomials appearing in the formula for <span class="math inline">\(V\)</span>. In addition, the subroutine for eliminating redundant defining polynomials requires repeated emptiness checking. Although, theoretically speaking this can be done in singly exponential time, in practice we it is implemented using CAD.</p>
+<p>Bearing this in mind, one more call to the CAD algorithm, required for the second option, seems a lot more appealing.
+In addition, <span class="citation">Kremer and Ábrahám (<a href="#ref-kremer2020" role="doc-biblioref">2020</a>)</span> propose an algorithm, along with its implementation, for refining a CAD to be compatible with new polynomials. This gives us hope that we may be able to avoid a full re-computation. In conclusion, the second option, where we compute an initial CAD consisting of smooth cells, is more tractable in practice.</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-kremer2020">
+<p>Kremer, Gereon, and Erika Ábrahám. 2020. “Fully Incremental Cylindrical Algebraic Decomposition.” <em>Journal of Symbolic Computation</em> 100: 11–37. <a href="https://doi.org/https://doi.org/10.1016/j.jsc.2019.07.018">https://doi.org/https://doi.org/10.1016/j.jsc.2019.07.018</a>.</p>
+</div>
+<div id="ref-mccallum1988">
+<p>McCallum, Scott. 1988. “An Improved Projection Operation for Cylindrical Algebraic Decomposition of Three-Dimensional Space.” <em>Journal of Symbolic Computation</em> 5 (1): 141–61. <a href="https://doi.org/https://doi.org/10.1016/S0747-7171(88)80010-5">https://doi.org/https://doi.org/10.1016/S0747-7171(88)80010-5</a>.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="4-sec:quasi-affine.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -185,7 +213,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/%s",
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/03-1-quasiaffine-cells.Rmd",
 "text": "Edit"
 },
 "history": {

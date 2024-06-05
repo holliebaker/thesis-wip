@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <title>Chapter 5 Monotone Cells | Cylindrical Algebraic Decompositions With Monotone Cells</title>
   <meta name="description" content="Hollie Baker’s thesis" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:title" content="Chapter 5 Monotone Cells | Cylindrical Algebraic Decompositions With Monotone Cells" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Hollie Baker’s thesis" />
   <meta name="github-repo" content="holliebaker/thesis" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta name="twitter:title" content="Chapter 5 Monotone Cells | Cylindrical Algebraic Decompositions With Monotone Cells" />
   
   <meta name="twitter:description" content="Hollie Baker’s thesis" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="4.3-sec:quasiaffine-algorithm.html"/>
+<link rel="next" href="5.1-monotone-sectors.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -152,19 +152,57 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="sec:monotone-cells" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Monotone Cells<a href="5-sec:monotone-cells.html#sec:monotone-cells" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Now we have a CAD <span class="math inline">\(\cal D\)</span> such that each 2-dimensional cell is the graph of a quasi-affine map, let us return to <span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv15" role="doc-biblioref">2015</a> Theorem 3.20)</span> and discuss how to obtain monotone cells.</p>
+<div class="definition">
+<p><span id="def:sub-cad" class="definition"><strong>Definition 5.1  </strong></span>Let <span class="math inline">\(\cal D\)</span> be a CAD of <span class="math inline">\(\mathbb{R}^n\)</span> and suppose that <span class="math inline">\(\mathbf{c} = (c_1,\ldots,c_k)\)</span> is a <span class="math inline">\(0\)</span>-dimensional section cell in the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^k\)</span>.
+By <span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv15" role="doc-biblioref">2015</a> Remark 3.8)</span>, the set of all cells of <span class="math inline">\(\cal D\)</span> contained in the affine coordinate subspace
+<span class="math display">\[
+\{ x_1=c_1,\dots,x_k=c_k \}
+\]</span>
+forms a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^{n-k}\)</span>. This decomposition will be called the <em>sub-decomposition</em> of <span class="math inline">\(\cal D\)</span> above <span class="math inline">\(c\)</span>, and <span class="math inline">\(\mathbf{c}\)</span> the <em>base cell</em> of the sub-decomposition.</p>
+</div>
+<p>The construction of monotone cells is based on the following theorem.</p>
+<div class="theorem">
+<p><span id="thm:bgv-monotone" class="theorem"><strong>Theorem 5.1  </strong></span><span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv15" role="doc-biblioref">2015</a>, Lemma 3.18)</span></p>
+<p>Let <span class="math inline">\(X \subset \mathbb{R}^2\)</span> be an open, bounded set and <span class="math inline">\(f : X \to \mathbb{R}\)</span> be a quasi-affine function.
+Then there is a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^2\)</span> compatible with <span class="math inline">\(X\)</span>, obtained by intersecting <span class="math inline">\(X\)</span> with straight lines <span class="math display">\[\{x_1 = c\}\]</span> and half-planes <span class="math display">\[\{x_1 &lt; c\},\{x_1 &gt; c\}\]</span> such that the restriction <span class="math inline">\(f\vert_B\)</span> for every cell <span class="math inline">\(B \subset X\)</span> is a monotone function.</p>
+</div>
+<p>The construction proceeds by induction on <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li><p>The base case, <span class="math inline">\(n=1\)</span> is straightforward, since <span class="math inline">\((0)\)</span> and <span class="math inline">\((1)\)</span>-cells are already monotone.</p></li>
+<li><p>When <span class="math inline">\(n&gt;1\)</span>, consider each two-dimensional cell <span class="math inline">\(C\)</span> of <span class="math inline">\(\cal D\)</span> and let <span class="math inline">\(C&#39;&#39; := {\operatorname{proj}_{\mathbb{R}^{1}}}(C)\)</span></p>
+<ul>
+<li><p>If <span class="math inline">\(\dim(C&#39;&#39;) = 0\)</span>, apply the inductive hypothesis to the sub-decomposition of <span class="math inline">\(\cal D\)</span> above <span class="math inline">\(C&#39;&#39;\)</span>.</p></li>
+<li><p>Otherwise, <span class="math inline">\(C\)</span> has index <span class="math inline">\(\{1,i_2,\dots,i_n\} \in \{0,1\}^n\)</span>. Let <span class="math inline">\(\alpha\)</span> be the smallest among <span class="math inline">\(\{2,\dots,n\}\)</span> such that <span class="math inline">\(i_\alpha = 1\)</span>. Since <span class="math inline">\(\dim(C) = 2\)</span>, only <span class="math inline">\(i_1\)</span> and <span class="math inline">\(i_\alpha\)</span> are equal to <span class="math inline">\(1\)</span>, while all other elements of the index are equal to <span class="math inline">\(0\)</span>. By <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.3, <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_1,\ldots,x_{i-1},x_{i+1},\ldots,x_n\}}}}(C)\)</span>, for all <span class="math inline">\(i \in \{2,\ldots,\alpha-1,\alpha+1,\ldots,n\}\)</span>, is a cylindrical cell and <span class="math inline">\(C\)</span> is the graph of a continuous function from this cell to <span class="math inline">\({\operatorname{span} \{x_i\}}\)</span>.</p>
+<p><span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.19, which provides the construction of <span class="math inline">\(\cal D\)</span> in the previous section, gives us a more useful representation of <span class="math inline">\(C\)</span>. Let <span class="math inline">\(X := {\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}}(C)\)</span> be a <span class="math inline">\(2\)</span>-dimensional sector cell. <span class="math inline">\(C\)</span> can be viewed as the graph of a quasi-affine map
+<span class="math display">\[
+\mathbf{f} = (f_1,\dots,f_{n-2}) : X \to {\operatorname{span} \{x_2,\ldots,x_{\alpha - 1}, x_{\alpha+1},\ldots,x_n\}}.
+\]</span>
+By <span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv15" role="doc-biblioref">2015</a>, Lemma 3.18)</span>, there exists a refinement of the CAD of <span class="math inline">\({\operatorname{span} \{x_1,x_\alpha\}}\)</span>, obtained by intersecting <span class="math inline">\(X\)</span> with straight lines and half-planes of the kind
+<span class="math display">\[
+\{x_1 &lt; c\}, \{x_1 = c\}, \{x_1 &gt; c\}
+\]</span>
+where <span class="math inline">\(c \in \mathbb{R}\)</span>, such that <span class="math inline">\(X\)</span> is a union of monotone sector cells <span class="math inline">\(B\)</span> and <span class="math inline">\(f_j\vert_B\)</span> is a monotone function.
+By <span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv15" role="doc-biblioref">2015</a> Lemma 3.11)</span>, refinements of this kind preserve the cylindrical structure of <span class="math inline">\(\cal D\)</span> and do not destroy existing monotone cells.
+In the semialgebraic case, we will see that the refinement points <span class="math inline">\(c\)</span> will always be algebraic numbers, which makes implementation using computer algebra systems possible.</p></li>
+</ul></li>
+</ul>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-bgv15">
+<p>Basu, Saugata, Andrei Gabrielov, and Nicolai Vorobjov. 2015. “Triangulations of Monotone Families I: Two-Dimensional Families.” <em>Proceedings of the London Mathematical Society</em> 111 (5): 1013–51.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="4.3-sec:quasiaffine-algorithm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5.1-monotone-sectors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -185,7 +223,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/%s",
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/03-2-monotone-cells.Rmd",
 "text": "Edit"
 },
 "history": {

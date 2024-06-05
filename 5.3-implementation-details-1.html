@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <title>5.3 Implementation Details | Cylindrical Algebraic Decompositions With Monotone Cells</title>
   <meta name="description" content="Hollie Baker’s thesis" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:title" content="5.3 Implementation Details | Cylindrical Algebraic Decompositions With Monotone Cells" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Hollie Baker’s thesis" />
   <meta name="github-repo" content="holliebaker/thesis" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta name="twitter:title" content="5.3 Implementation Details | Cylindrical Algebraic Decompositions With Monotone Cells" />
   
   <meta name="twitter:description" content="Hollie Baker’s thesis" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="5.2-two-dimensional-monotone-sections.html"/>
+<link rel="next" href="5.4-sec:compute-refinement.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -152,19 +152,114 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="implementation-details-1" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Implementation Details<a href="5.3-implementation-details-1.html#implementation-details-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We now present psuedocode for the monotone part of the algorithm.</p>
+<div id="sec:monotone-algorithm" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Algorithm<a href="5.3-implementation-details-1.html#sec:monotone-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<hr />
+<p><strong>Input:</strong>
+<span class="math display">\[({\cal E}, {\cal A})\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\cal E\)</span>: a cylindrical algebraic decomposition of <span class="math inline">\(\mathbb{R}^{k+n}\)</span>, such that each cell is the graph of a quasi-affine map. Each cell <span class="math inline">\(C\)</span> of <span class="math inline">\(\cal E\)</span> has a truth-value (<em>true</em> or <em>false</em> attached.</p></li>
+<li><p><span class="math inline">\({\cal A} = {\cal A}_1,\ldots,{\cal A}_{k+n}\)</span> is the family of projection polynomials where each <span class="math inline">\({\cal A}_i \subset \mathbb{Z}[x_1,\ldots,x_i]\)</span>.</p></li>
+</ul>
+<p><strong>Output:</strong>
+<span class="math display">\[
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \mathbb{R}^k \}
+\]</span>
+such that, for each <span class="math inline">\({\cal R}_\mathbf{b}\)</span>, intersecting the sub-cad <span class="math inline">\(\cal D\)</span> above <span class="math inline">\(\mathbf{b}\)</span> with straight lines and half-planes of the kind <span class="math inline">\(\{x_1 &lt; c_i \}, \{x_1 = c_i \}, \{x_1 &gt; c_i\}, 1 \le i \le t\)</span> results in a refinement of <span class="math inline">\(\cal D\)</span> such that each true cell of <span class="math inline">\(\cal D\)</span> with dimension at most <span class="math inline">\(2\)</span> is monotone.</p>
+<hr />
+<p>First, define a subroutine
+<span class="math display">\[{\rm sub}_{\mathbf{y}} (g) \mid g \in \mathbb{Z}[y_1,\ldots,y_m,x_1,\ldots,x_n], \mathbf{y} \in \mathbb{A}^m, n &gt; 0,\]</span>
+which computes <span class="math inline">\(h := g(\mathbf{y}) \in \mathbb{A}[x_{1},\ldots,x_m]\)</span> and returns the normalised polynomial of <span class="math inline">\(h\)</span>, in <span class="math inline">\(\mathbb{Z}[x_{m+1},\ldots,x_n]\)</span> (see Section <a href="5.1-monotone-sectors.html#sec:sub-cad">5.1.2</a>).</p>
+<p>It will be convenient to overload this operator and write <span class="math inline">\({\rm sub}_{\mathbf{y}} (L)\)</span>, where <span class="math inline">\(L\)</span> is a set (or list) of polynomials to mean <span class="math inline">\(\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}\)</span>.</p>
+<p>Now define a structure to store refinement polynomials
+<span class="math display">\[
+{\cal F} := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \mathbb{R}^{k-1}, k &gt; 0 \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \mathbb{R}^{k-1} \}
+\]</span>
+and a similar structure to store refinement points
+<span class="math display">\[
+{\cal R} := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \mathbb{R}^{k-1}, k &gt; 0 \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \mathbb{R}^{k-1} \}
+\]</span>
+<em>(Note: for each <span class="math inline">\((0,\ldots,0)\)</span>-cell <span class="math inline">\(\mathbf{b}\)</span>, <span class="math inline">\({\cal F}_\mathbf{b}\)</span> is a set of univariate polynomials, <span class="math inline">\({\cal R}_{\mathbf{b}}\)</span> is the set of roots of polynomials <span class="math inline">\({\cal F}_\mathbf{b}\)</span>. When <span class="math inline">\(k=1\)</span>, then the CAD of <span class="math inline">\(\mathbb{R}^0\)</span> consisting of the unique point of <span class="math inline">\(\mathbb{R}^0\)</span> is used – practically speaking, we work directly with the CAD <span class="math inline">\(\cal E\)</span>.)</em></p>
+<p>Let <span class="math inline">\(\mathbf{b}\)</span> be a <span class="math inline">\((0,\ldots,0)\)</span>-cell of the decomposition induced by <span class="math inline">\(\cal E\)</span> on <span class="math inline">\(\mathbb{R}^{k-1}, k &gt; 0\)</span>. Let <span class="math inline">\(\cal D\)</span> be the sub-decomposition of <span class="math inline">\(\mathbb{R}^n\)</span> of <span class="math inline">\(\cal E\)</span> above <span class="math inline">\(\mathbf{b}\)</span>.</p>
+<p>Consider each cell <span class="math inline">\(C\)</span> of <span class="math inline">\(\cal D\)</span> with truth value <em>true</em>. Let <span class="math inline">\(C\)</span> have index
+<span class="math display">\[
+(0,\ldots,0,1,i_{k+1},\ldots,i_{k+n})
+\]</span>
+in <span class="math inline">\(\cal E\)</span>. If <span class="math inline">\(i_{k+1} + \cdots + i_n &gt; 2\)</span>, then <span class="math inline">\(\dim(C) &gt; 2\)</span> and the algorithm will fail. Otherwise, let <span class="math inline">\(\alpha\)</span> be the smallest among <span class="math inline">\(x+1,\ldots,k+n\)</span> such that <span class="math inline">\(i_{k+1} = \ldots = i_{\alpha - 1} = 0\)</span> and <span class="math inline">\(i_\alpha = 1\)</span>.
+Then:</p>
+<ul>
+<li><p>Let</p>
+<ul>
+<li><p><span class="math inline">\(\mathbf{b} := {\operatorname{proj}_{\mathbb{R}^{k-1}}}(C)\)</span>,</p>
+<p><em>(Note: observe that <span class="math inline">\(\mathbf{b} \in A^{k-1}\)</span>. If <span class="math inline">\(k = 1\)</span>, then <span class="math inline">\(\mathbf{b}\)</span> is the unique cell, <span class="math inline">\(\mathbf{0}\)</span>, in the CAD of <span class="math inline">\(\mathbb{R}^0\)</span>. In this case, it is clear that <span class="math inline">\({\rm sub}_\mathbf{0} (g) \equiv g\)</span>.)</em></p></li>
+<li><p><span class="math inline">\(C&#39;&#39; (C&#39;&#39;_B, C&#39;&#39;_T) \subset \mathbb{A}:= {\operatorname{proj}_{\mathbb{R}^{k}}}(C)\)</span>,</p></li>
+<li><p><span class="math inline">\({\cal G} := {\rm sub}_{\mathbf{b}} \{ g_i \mid k+1 \le i \le \alpha - 1, g_i \in {\cal A}_i, g_i(\mathbf{x}) = 0 \ \forall \mathbf{x} \in {\operatorname{proj}_{\mathbb{R}^{\alpha-1}}}(C) \}\)</span>,</p></li>
+<li><p><span class="math inline">\(C&#39; := {\operatorname{proj}_{\mathbb{R}^{\alpha}}}(C)\)</span>.</p></li>
+</ul></li>
+<li><p><span class="math inline">\(C&#39;_T\)</span> and <span class="math inline">\(C&#39;_B\)</span> be the top and bottom, respectively, <span class="math inline">\(C&#39;\)</span>.</p></li>
+</ul>
+<p>(<em>Note: If <span class="math inline">\(C&#39;\)</span> is not bounded from above (resp. below) by a continuous definable function, i.e., there is no section above (resp. below) <span class="math inline">\(C&#39;\)</span>, then let <span class="math inline">\(C&#39;_T := \emptyset\)</span> (resp <span class="math inline">\(C&#39;_B\)</span>) and skip any computations involving <span class="math inline">\(C&#39;_T\)</span> (resp <span class="math inline">\(C&#39;_B\)</span>).)</em></p>
+<ul>
+<li><p>Let <span class="math inline">\(j = \alpha\)</span> and do:</p>
+<ul>
+<li><p>**(*)** For <span class="math inline">\(\delta \in \{B, T\}\)</span>, if <span class="math inline">\(C_\delta\)</span> is not empty, do:</p>
+<ul>
+<li><p>Let <span class="math inline">\(\rm{sub}_{\mathbf{b}} (g_j) \in \mathbb{Z}[x_{k+1,\ldots,x_j}]\)</span> be such that <span class="math inline">\(g_\alpha(\mathbf{x}) = 0\)</span> for all <span class="math inline">\(\mathbf{x} \in C&#39;_\delta\)</span>.</p></li>
+<li><p>Compute
+<span class="math display">\[
+f_\delta := \det\begin{pmatrix}\dfrac{\partial g_{k+1}}{\partial x_{k}} &amp; \cdots &amp; \dfrac{\partial g_{j-1}}{\partial x_{k}} &amp; \dfrac{\partial g_{j}}{\partial x_{k}}\\
+\vdots &amp;  &amp;  &amp; \vdots\\
+\dfrac{\partial g_{k+1}}{\partial x_{j-1}} &amp; \cdots &amp; \dfrac{\partial g_{j-1}}{\partial x_{j-1}} &amp; \dfrac{\partial g_{j}}{\partial x_{j-1}}
+\end{pmatrix},
+\]</span>
+from Equation <a href="5.1-monotone-sectors.html#eq:jacobi-det">(5.5)</a>, using constraints <span class="math inline">\(g_{k+1},\ldots,g_{\alpha+1}\)</span>, and discarding denominators <span class="math inline">\(\partial g_\alpha / \partial x_\alpha\)</span> of the total derivatives in the last column.</p></li>
+</ul></li>
+<li><p>Let <span class="math display">\[{\cal H} := \{ g_{k+1},\ldots,g_{j-1}, f_B, f_T \}\]</span>
+be a set of polynomials and compute
+<span class="math display">\[
+{\cal F}_{\mathbf{b}} := {\cal F}_{\mathbf{b}} \cup {\operatorname{proj}_{\mathbb{R}^{1}}}({\cal H}) \subset \mathbb{Z}[x_k].
+\]</span></p></li>
+<li><p>If <span class="math inline">\(j &lt; n\)</span>, then</p>
+<ul>
+<li><p>Add <span class="math inline">\(g_j\)</span> to <span class="math inline">\(\cal G\)</span>, i.e., let
+<span class="math display">\[
+{\cal G} := {\cal G} \cup \{ g_j \}.
+\]</span></p></li>
+<li><p>Let <span class="math inline">\(j := j+1\)</span>.</p></li>
+<li><p>Let
+<span class="math display">\[
+C&#39; := {\operatorname{proj}_{\mathbb{R}^{j}}}(C)
+\]</span>
+<span class="math inline">\(C&#39;\)</span> is a section cell, and its top and bottom may not be graphs of continuous functions. Use QE to compute
+<span class="math display">\[
+...
+\]</span></p></li>
+</ul></li>
+</ul></li>
+<li><p>For each <span class="math inline">\((0,\ldots,0)\)</span>-cell <span class="math inline">\(\mathbf{b} \in \mathbb{A}^k\)</span>, consider
+<span class="math display">\[
+{\cal F}_{\mathbf{b}} \in {\cal F} \in \mathbb{Z}[k],
+\]</span>
+compute
+<span class="math display">\[
+{\cal R}_{\mathbf{b}} := (c_1,\ldots,c_t)
+\]</span>
+by isolating the real roots of polynomials in <span class="math inline">\({\cal F}_{\mathbf{b}}\)</span>.</p></li>
+<li><p>Return the family <span class="math inline">\({\cal R}\)</span> of refinement points.</p></li>
+</ul>
+<hr />
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="5.2-two-dimensional-monotone-sections.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5.4-sec:compute-refinement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -185,7 +280,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/%s",
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/03-2-monotone-cells.Rmd",
 "text": "Edit"
 },
 "history": {

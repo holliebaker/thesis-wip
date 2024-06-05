@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Smooth Stratification | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <meta name="description" content="Hollie Baker’s thesis" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Smooth Stratification | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Hollie Baker’s thesis" />
+  <meta name="github-repo" content="holliebaker/thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Smooth Stratification | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  
+  <meta name="twitter:description" content="Hollie Baker’s thesis" />
+  
+
+<meta name="author" content="Hollie" />
+
+
+<meta name="date" content="2024-06-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2.2-cylindrical-algebraic-decomposition.html"/>
+<link rel="next" href="4-sec:quasi-affine.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Thesis: CAD with monotone cells</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-background.html"><a href="2-background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html"><i class="fa fa-check"></i><b>2.1</b> Semialgebraic sets and monotone cells</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#sets-definable-over-o-minimal-structures"><i class="fa fa-check"></i><b>2.1.1</b> Sets definable over O-minimal structures</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#monotone-cells"><i class="fa fa-check"></i><b>2.1.2</b> Monotone cells</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#cylindrical-algebraic-decompositions"><i class="fa fa-check"></i><b>2.1.3</b> Cylindrical Algebraic Decompositions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html"><i class="fa fa-check"></i><b>2.2</b> Cylindrical algebraic decomposition</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cad-construction"><i class="fa fa-check"></i><b>2.2.1</b> Constructing a CAD</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#bounds-and-variations"><i class="fa fa-check"></i><b>2.2.2</b> Bounds and variations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#the-projection-operator"><i class="fa fa-check"></i><b>2.2.3</b> The projection operator</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#projection-polynomials-vs-semialgebraic-functions"><i class="fa fa-check"></i><b>2.2.4</b> Projection polynomials vs semialgebraic functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#cad-cells-and-their-defining-formulas"><i class="fa fa-check"></i><b>2.2.5</b> CAD cells and their defining formulas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html"><i class="fa fa-check"></i><b>3</b> Smooth Stratification</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html#description-of-the-algorithm"><i class="fa fa-check"></i><b>3.0.1</b> Description of the algorithm</a></li>
+<li class="chapter" data-level="3.0.2" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html#implementation-details"><i class="fa fa-check"></i><b>3.0.2</b> Implementation details</a></li>
+<li class="chapter" data-level="3.0.3" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html#complexity"><i class="fa fa-check"></i><b>3.0.3</b> Complexity</a></li>
+<li class="chapter" data-level="3.0.4" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html#worked-example"><i class="fa fa-check"></i><b>3.0.4</b> Worked example</a></li>
+<li class="chapter" data-level="3.0.5" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html#determining-the-codimension-and-basic-formula-for-each-stratum"><i class="fa fa-check"></i><b>3.0.5</b> Determining the codimension and basic formula for each stratum</a></li>
+<li class="chapter" data-level="3.0.6" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html#sec:strat-semialgebraic"><i class="fa fa-check"></i><b>3.0.6</b> From Elementary Algebraic sets to generic Semialgebraic sets</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sec:quasi-affine.html"><a href="4-sec:quasi-affine.html"><i class="fa fa-check"></i><b>4</b> Quasi-affine cells</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><i class="fa fa-check"></i><b>4.1</b> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus"><i class="fa fa-check"></i><b>4.1.1</b> An alternative method for computing the smooth two-dimensional locus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><i class="fa fa-check"></i><b>4.2</b> Ensuring that every cell is the graph of a quasi-affine map</a></li>
+<li class="chapter" data-level="4.3" data-path="4.3-sec:quasiaffine-algorithm.html"><a href="4.3-sec:quasiaffine-algorithm.html"><i class="fa fa-check"></i><b>4.3</b> Computing the quasi-affine CAD</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sec:monotone-cells.html"><a href="5-sec:monotone-cells.html"><i class="fa fa-check"></i><b>5</b> Monotone Cells</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-monotone-sectors.html"><a href="5.1-monotone-sectors.html"><i class="fa fa-check"></i><b>5.1</b> Two-dimensional monotone sector cells</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-monotone-sectors.html"><a href="5.1-monotone-sectors.html#sec:lagrange-refinement"><i class="fa fa-check"></i><b>5.1.1</b> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-monotone-sectors.html"><a href="5.1-monotone-sectors.html#sec:sub-cad"><i class="fa fa-check"></i><b>5.1.2</b> Working with sub-decompositions above a 0-cell</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-two-dimensional-monotone-sections.html"><a href="5.2-two-dimensional-monotone-sections.html"><i class="fa fa-check"></i><b>5.2</b> Two-dimensional monotone sections</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="5.2-two-dimensional-monotone-sections.html"><a href="5.2-two-dimensional-monotone-sections.html#case-1-2-le-j-le-alpha---1"><i class="fa fa-check"></i><b>5.2.1</b> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-two-dimensional-monotone-sections.html"><a href="5.2-two-dimensional-monotone-sections.html#case-2-alpha-1-le-j-le-n"><i class="fa fa-check"></i><b>5.2.2</b> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="5.2-two-dimensional-monotone-sections.html"><a href="5.2-two-dimensional-monotone-sections.html#critical-points-of-the-top-and-bottom-of-c"><i class="fa fa-check"></i><b>5.2.3</b> Critical points of the top and bottom of <span class="math inline">\(C\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html"><i class="fa fa-check"></i><b>5.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html#sec:monotone-algorithm"><i class="fa fa-check"></i><b>5.3.1</b> Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5.4-sec:compute-refinement.html"><a href="5.4-sec:compute-refinement.html"><i class="fa fa-check"></i><b>5.4</b> Computing the refinements</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cylindrical Algebraic Decompositions With Monotone Cells</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:smooth-strat" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Smooth Stratification<a href="3-sec:smooth-strat.html#sec:smooth-strat" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Before turning our attention to cylindrical decompositions, we will present another useful algorithm for decomposing a semialgebraic set. A smooth stratification is a partition of a set into smooth manifolds.</p>
+<p>In 1957, <span class="citation">Whitney (<a href="#ref-whitney1992" role="doc-biblioref">1992</a>)</span> proved that every algebraic variety can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set.
+Lojasiewicz extended this result by proving that every real semianalytic set admits a smooth stratification <span class="citation">(Lojasiewicz <a href="#ref-lojasiewicz1964" role="doc-biblioref">1964</a>, @lojasiewicz1964)</span>. However, the proof was non-constructive and did not provide any information on the class of functions defining the strata.
+As part of his Complement Theorem, <span class="citation">Gabrielov (<a href="#ref-gabrielov1996" role="doc-biblioref">1996</a>)</span> proved that the strata of a semianalytic set can be defined by functions belonging to the smallest extensions of a family of functions defining the set which is closed under addition, multiplication and taking partial derivatives. One such class of functions is the Pfaffian functions.
+<span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span> present an algorithm for computing a smooth stratification of a semi-pfaffian et, along with an estimate of its complexity and bounds on the formats of the strata it produces. This algorithm (also summarised in <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv04" role="doc-biblioref">2004</a>)</span>, Section 6) will be presented.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-34" class="definition"><strong>Definition 3.1  </strong></span><span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv04" role="doc-biblioref">2004</a>, Definition 6.1)</span>
+Let <span class="math inline">\(X \subset \mathbb{R}^n\)</span> be a semianalytic set. <span class="math inline">\(X\)</span> is nonsingular and has codimension <span class="math inline">\(k\)</span> at a point <span class="math inline">\(x \in X\)</span> if there exist real analytic functions <span class="math display">\[
+h_1,\ldots,h_{n-k}
+\]</span>
+defined in an open set <span class="math inline">\(U\)</span> containing <span class="math inline">\(x_0\)</span> such that
+<span class="math display">\[
+dh_1(x_0) \ne 0 \land \cdots \land  dh_{n-k}(x_0) \ne 0
+\]</span>
+and
+<span class="math display">\[
+X \cap U = \{ x \in U \mid h_1(x) = 0 \land \cdots \land h_{n-k}(x) = 0 \}
+\]</span>
+Let <span class="math inline">\(Y \subset \mathbb{R}^n\)</span> be a semi-pfaffian set.
+<span class="math inline">\(X \subset Y\)</span> is called effectively nonsingular (of dimension <span class="math inline">\(k\)</span>) if functions <span class="math inline">\(h_1,\ldots,h_{n-k}\)</span> belong to the same pfaffian chain as the functions defining <span class="math inline">\(Y\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-35" class="definition"><strong>Definition 3.2  </strong></span><span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv04" role="doc-biblioref">2004</a>, Definition 6.2)</span>
+A finite basic weak stratification of a semi-pfaffian set <span class="math inline">\(X \subset \mathbb{R}^n\)</span> is a partition of <span class="math inline">\(X\)</span> into a finite number of non-singular manifolds <span class="math inline">\(X_k, 0 \le k \le n\)</span> where each <span class="math inline">\(X_k\)</span> is effectively nonsingular and has codimension <span class="math inline">\(k\)</span>.</p>
+</div>
+<p>Note that this definition does not assume any other desirable properties of the manifolds <span class="math inline">\(X_k\)</span>. E.g., the closure of a stratum may not be a union of strata. In addition, the Whitney conditions may not be satisfied.</p>
+<div id="description-of-the-algorithm" class="section level3 hasAnchor" number="3.0.1">
+<h3><span class="header-section-number">3.0.1</span> Description of the algorithm<a href="3-sec:smooth-strat.html#description-of-the-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets with almost no modifications. Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too. Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an oracle will not be needed in this variation of the algorithm.
+The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives needed to define all the strata is based on the format of the input set. As every polynomial has a finite number of partial derivatives, this bound will simply be the degree of the polynomial in the semialgebraic case.</p>
+<p>We will need the following notation for partial derivatives and the partial differential operator defined by <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-36" class="definition"><strong>Definition 3.3  </strong></span><span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv1995" role="doc-biblioref">1995</a>, Definition 2)</span>
+Let <span class="math inline">\(f \in \mathbb{Z}[x_1,\ldots,x_n]\)</span> be a polynomial and let <span class="math inline">\((m_1,\ldots,m_n) \subset \mathbb{Z}_{\ge 0}^n\)</span> be a multi-index associated to one of its partial derivatives.
+I.e., we write
+<span class="math display">\[
+\partial^{(m_1,\ldots,m_n)} =
+\dfrac{\partial^{m_1} f}{\partial x_1} \cdots \dfrac{\partial^{m_n} f}{\partial x_n}.
+\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-37" class="definition"><strong>Definition 3.4  </strong></span><span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv1995" role="doc-biblioref">1995</a>, Definition 2)</span>
+We define the partial differential operator <span class="math inline">\(\partial_{\mathbf{h}, \mathbf{i}, j} f\)</span> (where the argument <span class="math inline">\(f\)</span> is a polynomial) as the determinant
+<span class="math display">\[
+\det\begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} &amp; \cdots &amp; \dfrac{\partial h_{1}}{\partial x_{i_{k}}} &amp; \dfrac{\partial h_{1}}{\partial x_{j}}\\
+ &amp; \vdots\\
+\dfrac{\partial h_{k}}{\partial x_{i_{1}}} &amp; \cdots &amp; \dfrac{\partial h_{k}}{\partial x_{i_{k}}} &amp; \dfrac{\partial h_{k}}{\partial x_{j}}\\
+\dfrac{\partial f}{\partial x_{i_{1}}} &amp; \cdots &amp; \dfrac{\partial f}{\partial x_{i_{k}}} &amp; \dfrac{\partial f}{\partial x_{j}}
+\end{pmatrix}.
+\]</span>
+We write <span class="math inline">\(\partial^m_{\mathbf{h}, \mathbf{i}, j}\)</span> to mean the <span class="math inline">\(m\)</span>-th iteration of <span class="math inline">\(\partial_{\mathbf{h}, \mathbf{i}, j}\)</span>.</p>
+</div>
+<p>We can now present the algorithm from <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 2.</p>
+<p>Let <span class="math display">\[
+X = \{ \mathbf{x} \in \mathbb{R}^n \mid f_1(\mathbf{x}) = 0,\ldots,f_s(\mathbf{x}) = 0, g_1(\mathbf{x}) &gt; 0, \ldots, g_t(\mathbf{x}) &gt; 0 \}.
+\]</span></p>
+<hr />
+<p><span class="math display">\[{\cal X} := \rm{Stratify}(k, F, \mathbf{h}, \mathbf{i}, G)\]</span></p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><span class="math inline">\(0 \le k \le n\)</span>,</li>
+<li><span class="math inline">\(F = (f_1,\ldots,f_s) \in \mathbb{Z}[x_1,\ldots,z_n]\)</span> is a list of polynomials,</li>
+<li><span class="math inline">\(\mathbf{h} = (h_k, \ldots,h_1, h_0) \in \mathbb{Z}[x_1,\ldots,x_n]\)</span> such that <span class="math inline">\(h_0 = 0\)</span>,</li>
+<li><span class="math inline">\(\mathbf{i} = (i_k, \ldots, i_1,i_0) \in \mathbb{Z}_{\ge 0}\)</span> such that <span class="math inline">\(i_0 = 0\)</span>,</li>
+<li><span class="math inline">\(G = \{g_1,\ldots,g_t\} \subset \mathbb{Z}[x_1,\ldots,x_n]\)</span>.</li>
+</ul>
+<p><strong>Output:</strong>
+<span class="math display">\[
+{\cal X} = (X_{k+1}, \ldots, X_n)
+\]</span>
+<span class="math inline">\(X_i, k+1 \le i \le n\)</span> is a possibly empty, effectively nonsingular stratum of codimension <span class="math inline">\(i\)</span>.
+Note that <span class="math inline">\({\cal X}_{n+1} = ()\)</span>.</p>
+<hr />
+<p>Proceed by induction on <span class="math inline">\(i_k\)</span>.</p>
+<ul>
+<li><p>Base case: <span class="math inline">\(i_k = n\)</span>.</p>
+<ul>
+<li>Return <span class="math inline">\({\cal X}_{x+1} = (\emptyset, \ldots, \emptyset)\)</span>.</li>
+</ul></li>
+<li><p>Otherwise</p>
+<ul>
+<li><p>Initialise</p>
+<ul>
+<li><p><span class="math inline">\(X&#39; := X = \{ f_1 = 0,\ldots,f_s = 0, g_1 &gt; 0, \ldots, g_t &gt; 0 \}\)</span>,</p></li>
+<li><p><span class="math inline">\({\cal F} := \{ ((0,\ldots,0,1), f_1), \ldots, ((0,\ldots,0,s), f_s) \}\)</span>
+(the set of input polynomials equipped with initial indices),</p></li>
+<li><p><span class="math inline">\(X_{k+1} = \emptyset\)</span> be the initial set of strata of codimension <span class="math inline">\(k+1\)</span>.</p></li>
+</ul></li>
+<li><p>For indices <span class="math inline">\(\mathbf{i},\mathbf{j} \in \mathbb{Z}_{\ge 0}^n\)</span>,</p>
+<ul>
+<li>let <span class="math inline">\(\mathbf{i} \prec \mathbf{j}\)</span> mean that <span class="math inline">\(\mathbf{i}\)</span> is lexicographically less than <span class="math inline">\(\mathbf{j}\)</span></li>
+<li>and <span class="math inline">\(\mathbf{i} \preceq \mathbf{j}\)</span> denote <span class="math inline">\(\mathbf{i}\prec \mathbf{j}\)</span> or <span class="math inline">\(\mathbf{i} = \mathbf{j}\)</span>.</li>
+</ul></li>
+<li><p>We will iterate over each index <span class="math inline">\(\mathbf{m} = (i_n,\ldots,i_{k+1},j) \in \mathbb{Z}_{\ge 0}^{n-k+1}\)</span> in ascending lexicographical order, beginning with <span class="math inline">\((0,\ldots,0,1)\)</span>.</p></li>
+<li><p>Partial derivatives <span class="math inline">\(\partial^{(0,\ldots,0,i_{k+1},\ldots,i_n)}\)</span> of functions <span class="math inline">\(f\)</span> in <span class="math inline">\({\cal F}\)</span> will be computed.</p></li>
+<li><p>For each <span class="math inline">\(f\in {\cal F}\)</span>, maximal index <span class="math display">\[M := (\deg_n(f), \ldots, \deg_{k+1}(f)).\]</span></p></li>
+<li><p>Each index <span class="math inline">\((i_n,\ldots,i_{k+1},j)\)</span> has the property that
+<span class="math display">\[
+(0,\ldots,1) \preceq (i_n,\ldots,i_{k+1}) \preceq M_j.
+\]</span></p>
+<ul>
+<li><p>Let <span class="math inline">\(\mathbf{m} = (0,\ldots,0,i_\ell,\ldots,i_{k+1},j)\)</span> be one of these indices and define
+<span class="math display">\[
+\mathbf{j} = (0, \ldots, 0, i_{\ell} - 1, i_{\ell - 1}, \ldots, i_{k+1},j).
+\]</span></p></li>
+<li><p>Let
+<span class="math display">\[
+s_{k+1} := \partial_{(h_{1,},\ldots,,h_{k}),(i_{1},\ldots,i_{k}),\ell}^{i_{\ell}}\ldots\partial_{(h_{1,},\ldots,,h_{k}),(i_{1},\ldots,i_{k}),i_{k}+1}^{i_{i}+1}f_{j}
+\]</span>
+where <span class="math inline">\(f_j\)</span> is the polynomial in <span class="math inline">\(\cal F\)</span> with index <span class="math inline">\((0,\ldots,0,j)\)</span>, i.e., the <span class="math inline">\(j\)</span>-th input polynomial.</p></li>
+<li><p>In practice, let <span class="math inline">\(h_{k+1}\)</span> be the polynomial in <span class="math inline">\(\cal F\)</span> with index <span class="math inline">\(\mathbf{i}\)</span> and compute
+<span class="math display">\[
+s_{k+1} := \partial_{(h_1,\ldots,h_k), (i_1,\ldots,i_k), i_\ell} h_{k+1}.
+\]</span></p></li>
+<li><p>Define the sets</p>
+<ul>
+<li><p><span class="math inline">\(Y_{k+1} := \{ \mathbf{x} \in X&#39; \mid s_{k+1}(\mathbf{x}) \ne 0 \}\)</span> and</p></li>
+<li><p><span class="math inline">\(U_{k+1} := \{ \mathbf{x} \in \mathbb{R}^n \mid h_{k+1}(\mathbf{x}) = 0, s_{k+1}(\mathbf{x}) \ne 0, g_1(\mathbf{x}) &gt; 0 , \ldots, g_t(\mathbf{x}) &gt; 0 \}\)</span>.</p></li>
+<li><p>Note</p>
+<ul>
+<li>Clearly $Y_{k+1} X’ and <span class="math inline">\(Y_{k+1} \subset U_{k+1}\)</span></li>
+<li><span class="math inline">\(h_{k+1}(\mathbf{x}) = 0\)</span> for all <span class="math inline">\(\mathbf{x} \in Y_{k+1}\)</span>.</li>
+<li><span class="math inline">\(U_{k+1}\)</span> is a nonsingular subset of <span class="math inline">\(\mathbb{R}^n\)</span> having codimension <span class="math inline">\(k+1\)</span>.</li>
+</ul></li>
+<li><p>If <span class="math inline">\(Y_{k+1}\)</span> is an open subset of <span class="math inline">\(U_{k+1}\)</span>, then <span class="math inline">\(Y_{k+1}\)</span> is smooth and has codimension <span class="math inline">\(k+1\)</span>.</p>
+<ul>
+<li>Let <span class="math inline">\(X_{k+1} := X_{k+1} \cup Y\)</span>,</li>
+</ul></li>
+<li><p>Otherwise, proceed by induction.</p>
+<ul>
+<li>Compute
+<span class="math display">\[(X^{\mathbf{m}}_{k+2},\ldots,X^{\mathbf{m}}_n) := {\rm Stratify}(k+1, F, (s,:\mathbf{h}), (i_\ell:\mathbf{i}), G)\]</span>
+where <span class="math inline">\(x:L\)</span> denotes the <code>cons</code> operator. I.g., add <span class="math inline">\(x\)</span> to the beginning of list <span class="math inline">\(L\)</span>.</li>
+</ul></li>
+<li><p>Let <span class="math inline">\(\rm{Empty}(X,s)\)</span> be a subroutine returning <em>true</em> if <span class="math inline">\(s \in \mathbb{Z}[x_1,\ldots,x_n]\)</span> is identically zero on the set <span class="math inline">\(X \subset \mathbb{R}^n\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\rm{Empty}(X,s)\)</span>, we are finished.</p>
+<ul>
+<li>Return
+<span class="math display">\[{\cal X}_{k+1} = (X_{k+1}, X_{k+1}, \ldots, X_n).\]</span>
+where <span class="math inline">\(X_i, k+2\le i \le n\)</span> is the union of all strata <span class="math inline">\(X^{\mathbf{m}}_i\)</span> computed in the recursive calls.</li>
+</ul></li>
+<li><p>Otherwise,</p>
+<ul>
+<li><p>Let</p>
+<ul>
+<li><p><span class="math inline">\(X&#39; := \{ \mathbf{x} \in \mathbb{R}^n \mid s(\mathbf{x}) = 0 \}\)</span>,</p></li>
+<li><p><span class="math inline">\({\cal F} := {\cal F} \cup \{ ((0,\ldots,0,i_\ell,\ldots,i_{k+1},j), s) \}\)</span>,</p></li>
+</ul></li>
+<li><p><span class="math inline">\(F := F:s\)</span> (i.e., append <span class="math inline">\(s\)</span> to the end of list <span class="math inline">\(F\)</span>).</p></li>
+</ul></li>
+<li><p>Then proceed to the index immediately after <span class="math inline">\(\mathbf{m}\)</span> with respect to <span class="math inline">\(\prec\)</span>.</p></li>
+<li><p>The algorithm terminates when maximal index <span class="math inline">\(M_j\)</span> for every polynomial <span class="math inline">\(f_j \in F\)</span> has been considered.</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<p>To call this algorithm on a semialgebraic set <span class="math inline">\(X \subset \mathbb{R}^n\)</span> defined by equations <span class="math inline">\(F \subset \mathbb{Z}[x_1,\ldots,x_n]\)</span> and <span class="math inline">\(G \subset \mathbb{Z}[x_1,\ldots,z_n]\)</span>, compute
+<span class="math display">\[
+{\cal X}&#39; = {\rm Stratify}(0, F, (0), (0), G).
+\]</span>
+to obtain a set of strata <span class="math inline">\({\cal X&#39;} = (X_1, \ldots, X_n)\)</span>.
+If all <span class="math inline">\(X_i = \emptyset, 1 \le i \le k\)</span>, then we can conclude that every partial derivative vanishes identically on <span class="math inline">\(X\)</span>. Hence, <span class="math inline">\(X\)</span> is a smooth subset of <span class="math inline">\(\mathbb{R}^n\)</span> and we let <span class="math inline">\(X_0 = X\)</span>.
+Otherwise, let <span class="math inline">\(X_0 = \emptyset\)</span> so that <span class="math inline">\({\cal X} = (\emptyset, X_1,\ldots,x_n)\)</span> where each <span class="math inline">\(X_i,1\le i \le n\)</span> is a smooth subset of <span class="math inline">\(X\)</span> of codimension <span class="math inline">\(i\)</span>, such that each <span class="math inline">\(X_i,X_j,i\ne j\)</span> is pairwise disjoint and <span class="math inline">\(X_1\cup \ldots \cup X_n = X\)</span>.
+Note, in the case that <span class="math inline">\(X_0 = X\)</span>, the smooth stratification algorithm provides no information about the dimension of <span class="math inline">\(X\)</span>.</p>
+</div>
+<div id="implementation-details" class="section level3 hasAnchor" number="3.0.2">
+<h3><span class="header-section-number">3.0.2</span> Implementation details<a href="3-sec:smooth-strat.html#implementation-details" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The algorithm employs two subroutines, which were presented in the description as “black-box functions”.
+The first of these is a subroutine which determines whether <span class="math inline">\(Y_K\)</span> is an open subset of <span class="math inline">\(U_k\)</span>.
+We can formulate this question as a quantifier elimination problem. <span class="math inline">\(Y_k\)</span> is an open subset of <span class="math inline">\(U_k\)</span> if
+<span class="math display">\[
+\forall \mathbf{x} \in Y_k \forall \varepsilon &gt; 0 \&gt; \exists \mathbf{y} \in Y_k \mid \mathbf{y} \in U_k, \Vert \mathbf{x} - \mathbf{y} \Vert &lt; \varepsilon
+\]</span>
+is true. Here we use the definition of open set using open balls. We must intersect the open ball with <span class="math inline">\(U_k\)</span> because <span class="math inline">\(Y_k\)</span> may be open in <span class="math inline">\(U_k\)</span> but not in <span class="math inline">\(\mathbb{R}^n\)</span>.
+An alternative method, as described in <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 1, is to check whether every derivative computed at step <span class="math inline">\(k+1\)</span> vanishes on the set
+<span class="math display">\[
+U_k \cap \{ x_i = \tt{const} \mid i &lt; i_1 \}.
+\]</span>
+This reduces to the emptiness check again.</p>
+<p>The second of these is <span class="math inline">\(\rm{Empty}(S)\)</span>, where <span class="math inline">\(S \subset \mathbb{R}^n\)</span> is a semialgebraic set represented by a quantifier-free Boolean formula which is a conjunction of polynomial equations, inequations and inequalities. Note that an inequation <span class="math inline">\(\{ f(\mathbf{x}) \ne 0 \}\)</span> can b e rewritten as <span class="math inline">\(\{ f(\mathbf{x}) &lt; 0 \lor f(\mathbf{x}) &gt; 0 \}\)</span>, so it is possible to represent <span class="math inline">\(S\)</span> by two systems of polynomial equations and inequalities, or a Boolean formula containing the conjunction above. This permits various methods for checking emptiness. We may write <span class="math inline">\(\rm{Empty}(S)\)</span> as a quantifier elimination problem
+<span class="math display">\[
+\exists \mathbf{x} \in \mathbb{R}^n \mid f_1(\mathbf{x}) = \ldots = f_s(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0, g_1(\mathbf{x}) &gt; 0, \ldots, g_t(\mathbf{x}) &gt; 0.
+\]</span>
+This problem can be decided using the singly-exponential quantifier elimination algorithm from <span class="citation">Basu, Pollack, and Roy (<a href="#ref-bpr2006" role="doc-biblioref">2006</a>)</span>, Algorithm 14.21. However, this algorithm is theoretical and, in practice, we can use quantifier elimination by CAD to decide whether this set is empty.</p>
+<p>The algorithm may be implemented as above, but with some small tweaks to simplify the code and make the algorithm work slightly more efficiently.<br />
+First, observe that not all derivatives are needed to define the candidate strata <span class="math inline">\(Y_k\)</span>. One obvious situation is when a derivative <span class="math inline">\(s_k\)</span> turns out to be a nonzero constant <span class="math inline">\(c \in \mathbb{A}\)</span>.
+In the formula for <span class="math inline">\(Y_k\)</span>, the inequation <span class="math inline">\(c \ne 0\)</span> will appear, which is obviously true. Since <span class="math inline">\(X&#39; \supset Y_k\)</span> was assumed to be non-empty, we can immediately conclude that <span class="math inline">\(Y_k\)</span> is non-empty and equal to <span class="math inline">\(X&#39;\)</span>. No further derivatives at step <span class="math inline">\(k\)</span> need to be considered, since <span class="math inline">\(X&#39; \setminus Y_1 = \emptyset\)</span>.
+A similar situation may arise, even with nonconstant functions <span class="math inline">\(s_k\)</span>. For example, for the input set
+<span class="math display">\[X := \{ \mathbf{x} \in \mathbb{R}^2 \mid x^2 y^2 = 0 \},\]</span>
+the derivative for index <span class="math inline">\((0,1)\)</span> is <span class="math inline">\(\partial (x^2 y^2) / \partial x_1 = 2x y^2\)</span>, which is equal to zero at every point of <span class="math inline">\(X\)</span>.
+By discarding these redundant functions, we minimise the number of polynomials defining sets in the emptiness check. Note that we have to keep track of every derivative computed, even the redundant ones, so that we can find the function <span class="math inline">\(h_k\)</span> such that <span class="math inline">\(s_k = \partial_{\mathbf{h}, \mathbf{i}, j} h_1\)</span>.</p>
+<p>Now consider the operation of finding the derivative with index <span class="math inline">\((0,\ldots,i_\ell - 1,i_{\ell - 1}, \ldots, i_{k+1},j)\)</span>. The following observation allows us to quickly find this polynomial, avoiding a search in <span class="math inline">\(\cal G\)</span> or unneccesary recomputation of derivatives.
+Suppose we are considering index
+<span class="math display">\[
+\mathbf{m} = (0,\ldots,0,i_\ell,i_{\ell - 1},\ldots,i_{k+1},j)\]</span>
+and want to find the derivative with index
+<span class="math display">\[
+\mathbf{j} = (0,\ldots,0,i_\ell - 1,i_{\ell - 1},\ldots,i_{k+1},j).\]</span>
+The set <span class="math inline">\(\cal G\)</span> includes polynomials computed in previous rounds of induction and those with index <span class="math inline">\(\mathbf{i} \prec \mathbf{m}\)</span>, since we proceed in ascending lexicographical order. Hence <span class="math inline">\(\cal G\)</span> contains the derivative with index <span class="math inline">\(\mathbf{j}\)</span>.
+There is a convenient way to find this derivative.
+Let us first illustrate the process with an example. Let <span class="math inline">\(f_j \in \mathbb{Z}[x_1,\ldots,x_3]\)</span> with <span class="math inline">\(M_j = (1,2,2)\)</span> and consider the lexicographically ordered list of indices
+<span class="math display">\[
+\begin{matrix}
+L_1 :=\ &amp;  (0,0,0),&amp;(0,0,1),&amp;(0,0,2),&amp;(0,1,0),&amp;(0,1,1),&amp;(0,1,2),&amp;(1,0,0),&amp;(1,0,1)&amp;\ldots\\
+L_2 := \ &amp; &amp; (0,0,0),&amp;(0,0,1),&amp;(0,0,0),&amp;(0,0,1),&amp;(0,0,2),&amp;(0,0,0),&amp;(0,0,1)&amp;\ldots.\\
+\end{matrix}
+\]</span>
+Observe that for indices of the kind <span class="math inline">\((0,\ldots,0,1,0,\ldots,0)\)</span> in <span class="math inline">\(L_1\)</span>, the corresponding element of <span class="math inline">\(L_2\)</span> is <span class="math inline">\((0,\ldots,0)\)</span>. For an arbitrary index <span class="math inline">\((0,\ldots,0,i_\ell,\ldots,i_1)\)</span> in <span class="math inline">\(L_1\)</span> which appears <span class="math inline">\(k\)</span> elements after <span class="math inline">\((0,\ldots,0,i_\ell = 1,0,\ldots,0)\)</span>, the corresponding element in <span class="math inline">\(L_2\)</span> appears <span class="math inline">\(k\)</span> elements after <span class="math inline">\((0,\ldots,0)\)</span>.
+From this, we can introduce an “index chasing” method as follows. Let <span class="math inline">\({\cal G}_j\)</span> be the (ordered) list of derivatives of polynomial <span class="math inline">\(f_j\)</span>. For each <span class="math inline">\(\mathbf{m}\)</span>, we keep a pointer, <span class="math inline">\({\cal G}&#39;_j\)</span>, to the element in <span class="math inline">\({\cal G}_j\)</span> with index <span class="math inline">\(\mathbf{j}\)</span>.</p>
+<ul>
+<li>Initialise <span class="math inline">\({\cal G}_j = ((0,\ldots,0),f_j)\)</span>. For <span class="math inline">\(\mathbf{m} = (0,\ldots,0,1)\)</span>, set <span class="math inline">\({\cal G}&#39;_j = {\cal G}_j\)</span>.</li>
+<li>Now suppose that <span class="math inline">\({\cal G}_j\)</span> contains all polynomials with index <span class="math inline">\(\prec \mathbf{m}\)</span>.
+<ul>
+<li>If <span class="math inline">\(\mathbf{m} = (0,\ldots,0,1,0,\ldots,0)\)</span>, then <span class="math inline">\(\mathbf{j} = (0,\ldots,0)\)</span> and we set <span class="math inline">\({\cal G}&#39;_j\)</span> to the head of <span class="math inline">\({\cal G}_j\)</span>.</li>
+<li>Otherwise, let <span class="math inline">\({\cal G}&#39;_j\)</span> be the tail of <span class="math inline">\({\cal G}&#39;_j\)</span>.</li>
+</ul></li>
+</ul>
+<p>The “index chasing” method works efficiently in SACLIB, which uses linked lists. However, we do need to append new derivatives to the end of <span class="math inline">\({\cal G}_j\)</span>, which takes <span class="math inline">\(O(n)\)</span> steps.
+To avoid this, we keep a pointer to the last-but-one element in the list, i.e., suppose <span class="math inline">\(G_j = (a_1,(\ldots,(a_{r-1},(a_r,(\rm{NIL})))\ldots)\)</span> then <span class="math inline">\(G_{j,\rm{append}} = (a_{r-1},(a_r,(\rm{NIL})))\)</span>. Then, if we wish to append <span class="math inline">\(b\)</span> to the end of <span class="math inline">\(G_j\)</span>, we simply need to set the tail of <span class="math inline">\(G_{j,\rm{append}}\)</span> to <span class="math inline">\((a_r,(b,(NIL)))\)</span>.</p>
+<p>We can also optimise the construction of the matrix associated to the partial differential operator <span class="math inline">\(\partial_{\mathbf{h},\mathbf{i},j} f\)</span>. In this matrix,
+<span class="math display">\[
+\begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} &amp; \cdots &amp; \dfrac{\partial h_{1}}{\partial x_{i_{k}}} &amp; \dfrac{\partial h_{1}}{\partial x_{j}}\\
+ &amp; \vdots\\
+\dfrac{\partial h_{k}}{\partial x_{i_{1}}} &amp; \cdots &amp; \dfrac{\partial h_{k}}{\partial x_{i_{k}}} &amp; \dfrac{\partial h_{k}}{\partial x_{j}}\\
+\dfrac{\partial f}{\partial x_{i_{1}}} &amp; \cdots &amp; \dfrac{\partial f}{\partial x_{i_{k}}} &amp; \dfrac{\partial f}{\partial x_{j}}
+\end{pmatrix},
+\]</span>
+only the last row depends on <span class="math inline">\(f\)</span> and only the last column depends on <span class="math inline">\(j\)</span>. Thus, we can save the <span class="math inline">\((k\times k)\)</span>-submatrix consisting of the first <span class="math inline">\(k\)</span> rows and columns and only append the new row and column. This matrix can be passed as an argument to <span class="math inline">\({\rm Stratify}(k,\ldots)\)</span>, with the matrix for <span class="math inline">\(k=0\)</span> being empty (i.e., <span class="math inline">\(\mathbf{h} = \mathbf{i} = ()\)</span> in the partial differential operator).</p>
+</div>
+<div id="complexity" class="section level3 hasAnchor" number="3.0.3">
+<h3><span class="header-section-number">3.0.3</span> Complexity<a href="3-sec:smooth-strat.html#complexity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the polynomial case, the complexity is
+<span class="math display">\[
+s^n (d+1)^{2^{O(n)}}
+\]</span>
+where <span class="math inline">\(s\)</span> is the number of polynomials <span class="math inline">\(f_1,\ldots,f_s\)</span>, <span class="math inline">\(d\)</span> is their degree and <span class="math inline">\(n\)</span> is the number of variables. <span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv1995" role="doc-biblioref">1995</a>, Section 4)</span></p>
+</div>
+<div id="worked-example" class="section level3 hasAnchor" number="3.0.4">
+<h3><span class="header-section-number">3.0.4</span> Worked example<a href="3-sec:smooth-strat.html#worked-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We illustrate the smooth stratification algorithm with a worked example in <span class="math inline">\(\mathbb{R}^3\)</span>. Consider
+<span class="math display">\[
+\{ x_3 = 0, x_1^2-x_2^2=0 \} \subset \mathbb{R}^3.
+\]</span>
+Note that the algorithm imposes an order on polynomials. Here we take <span class="math inline">\(f_1 := z\)</span> and <span class="math inline">\(f_2 = x^2 - y^2\)</span>, wiht <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> being assigned indices <span class="math inline">\((0,0,0,1)\)</span> and <span class="math inline">\((0,0,0,2)\)</span> respectively.
+The algorithm proceeds as follows</p>
+<p><span class="math display">\[\begin{align*}
+k=0,X&#39;&amp;:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0\right\} \\\left(0,0,1,1\right)\ h_{1}&amp;=f_{1}=x_{3}\\s_{1}=\partial f_{1}/\partial x_{1}&amp;=0\\Y_{1}&amp;:=\left\{ \mathbf{x}\in X&#39;\mid0\ne0\right\} =\emptyset\\(0,0,1,2)\ h_{1}&amp;=f_{2}=x_{1}^{2}-x_{2}^{2}\\s_{1}=\partial f_{2}/\partial x_{1}&amp;=2x_{1}\\x_{1}&amp;:=\left\{ \mathbf{x}\in X&#39;\mid2x\ne0\right\} \\U_{1}&amp;:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,2x_{1}\ne0\right\} \\&amp;\text{Not open, proceed by induction}\\k=1,h_{1}=f_{2},i_{1}=1,X&#39;&#39;&amp;:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2}\right\} \\\left(0,1,1\right)\ h_{2}&amp;=f_{1}\\s_{2}&amp;=0\text{ since }f_{1}\text{ doesn&#39;t depend on }x_{1},x_{2}\\\left(0,1,2\right)\ h_{2}&amp;=f_{2}\\s_{2}&amp;=0\text{ snce }h_{1}=h_{2}\\\left(1,0,1\right)\ h_{2}&amp;=f_{1}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} &amp; \partial h_{1}/\partial x_{3}\\
+\partial h_{2}/\partial x_{1} &amp; \partial h_{2}/\partial x_{3}
+\end{pmatrix}&amp;=\det\begin{pmatrix}2x_{1} &amp; 0\\
+0 &amp; 1
+\end{pmatrix}=2x_{1}\\Y_{2}&amp;:=\left\{ \mathbf{x}\in X&#39;&#39;\mid2x_{1}\ne0\right\} \\U_{2}&amp;:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\text{Note }&amp;Y_{1}=Y_{2}=U_{2}\\Y_{2}&amp;\text{ is smooth and has codimension }2\\\text{since }X&#39;&#39;&amp;:=\left\{ \mathbf{x}\in X&#39;&#39;\mid2x_{1}=0\right\} =\emptyset\text{, we return to }k=0\\k=0,X&#39;&amp;:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0,2x_{1}=0\right\} \\\text{Obsrve }X&#39;&amp;=(0,0,0)\\\left(0,0,2,1\right)\ h_{1}&amp;=0,s_{1}=0\\\left(0,0,2,2\right)\ h_{1}&amp;=2x_{1}\\s_{1}&amp;=2\\Y_{1}&amp;:=\left\{ \mathbf{x}\in X&#39;\mid2\ne0\right\} =X&#39;\\U_{1}&amp;:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,2\ne0\right\} \\&amp;\text{Not open, proceed by induction}\\k=1,h_{1}=2x,i_{1}=1,X&#39;&#39;&amp;:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2},f_{3}=2x_{1}\right\} \\\left(0,1,1\right)\ h_{2}&amp;=f_{1}=x_{3}\\s_{2}&amp;=0\\\left(0,1,2\right)\ h_{2}&amp;=f_{2}=x_{1}^{2}-x_{2}^{2}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} &amp; \partial h_{1}/\partial x_{2}\\
+\partial h_{2}/\partial x_{1} &amp; \partial h_{2}/\partial x_{2}
+\end{pmatrix}&amp;=\det\begin{pmatrix}2 &amp; 0\\
+2x_{1} &amp; 2x_{2}
+\end{pmatrix}=4x_{2}\\Y_{2}&amp;:=\left\{ \mathbf{x}\in X&#39;&#39;\mid4x_{2}\ne0\right\} =\emptyset\\\left(0,1,3\right)\ h_{2}&amp;=f_{3}=2x_{1}\\s_{2}&amp;=0\\\left(1,0,1\right)\ h_{2}&amp;=f_{1}=x_{3}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} &amp; \partial h_{1}/\partial x_{3}\\
+\partial h_{2}/\partial x_{1} &amp; \partial h_{2}/\partial x_{3}
+\end{pmatrix}&amp;=\det\begin{pmatrix}2 &amp; 0\\
+0 &amp; 1
+\end{pmatrix}=2\\Y_{2}&amp;:=\left\{ \mathbf{x}\in X&#39;&#39;\mid2\ne0\right\} =X&#39;&#39;\\U_{2}&amp;:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,x_{3}=0\right\} \\&amp;\text{Since }i_{2}=3\text{ it is impossible to compute further derivatives.}\\&amp;\text{We conclude that}\\Y_{2}&amp;\text{ is smooth and has codimension }3.
+\end{align*}\]</span></p>
+</div>
+<div id="determining-the-codimension-and-basic-formula-for-each-stratum" class="section level3 hasAnchor" number="3.0.5">
+<h3><span class="header-section-number">3.0.5</span> Determining the codimension and basic formula for each stratum<a href="3-sec:smooth-strat.html#determining-the-codimension-and-basic-formula-for-each-stratum" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 2 assert that each stratum of codimension <span class="math inline">\(k\)</span> can be represented by a conjunction containing <span class="math inline">\(k\)</span> equations. I.e., each stratum is basic. A naive implementation of the procedure leads to a non-basic representation as shown in the following example</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-38" class="example"><strong>Example 3.1  </strong></span>Consider the semialgebraic set
+<span class="math display">\[
+S := \{ (x_1,x_2) \in \mathbb{R}^2 \mid x_1 x_2 = 0 \}
+\]</span>
+Apply the algorithm.
+<span class="math display">\[\begin{align*}
+k=0,X&#39;:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid f_{1}:=x_{1}x_{2}=0\right\} \\\left(0,1,1\right)h_{1}=&amp;f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{1}=&amp;x_{2}\\Y_{1}:=&amp;\left\{ \mathbf{x}\in X&#39;\mid y\ne0\right\} \\U_{1}:=&amp;\left\{ \mathbf{x}\in \mathbb{R}^2\mid x_{1}x_{2}=0,x_{2}\ne0\right\} \\&amp;\text{Proceed by induction}\\k=1,h_{1}=f_{1},i_{1}=1,X&#39;&#39;:=&amp;Y_{1},F_{1}=\left\{ f_{1}\right\} \\\left(1,1\right),h_{2}=&amp;f_{1}\\s_{2}=&amp;\begin{pmatrix}\partial f_{1}/\partial x_{1} &amp; \partial f_{1}/\partial x_{2}\\
+\partial f_{2}/\partial x_{1} &amp; \partial f_{1}/\partial x_{2}
+\end{pmatrix}=0\\&amp;\text{since both columns are equal.}\\\text{Return. }Y_{1}&amp;\text{ is smooth.}\\
+\end{align*}\]</span></p>
+<p>Observe that the formula for <span class="math inline">\(Y_1\)</span> contains one equation, <span class="math inline">\(h_1 = f_1\)</span>. Hence <span class="math inline">\(Y_1\)</span> is a smooth stratum in basic representation and we can conclude that it has codimension <span class="math inline">\(1\)</span>.</p>
+<p>For the next nonzero derivative, with index <span class="math inline">\((1,0,1)\)</span>, we get
+<span class="math display">\[\begin{align*}
+k=0,X&#39;:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,y=0\right\} \\\left(1,0,1\right)\ h_{1}=&amp;f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{2}=&amp;x_{1}\\Y_{1}:=&amp;\left\{ \mathbf{x}\in X&#39;\mid x_{1}\ne0\right\} \\U_{1}:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,x_{1}\ne0\right\} \\&amp;\text{Proceed by indection.}\\k=1,h_{1}=f_{1},i_{1}=2,X&#39;&#39;:=&amp;Y_{1}\ldots\\&amp;\text{No partial derivatives can be computed.}\\\text{Return. }Y_{1}&amp;\text{ is smooth.}
+\end{align*}\]</span></p>
+<p>Notice that the inductive step returns immediately. This is because <span class="math inline">\(i_1=2\)</span>, so it is not passible to take further partial derivatives with respect to <span class="math inline">\(j &gt; i_1\)</span>. In the formula for
+<span class="math display">\[
+Y_1 := \{ \mathbf{x} \in \mathbb{R}^2 \mid f_1 := x_1 x_2 = 0, h_1 := x_2 = 0, x_1 \ne 0 \},
+\]</span>
+two different equations, <span class="math inline">\(f_1\)</span> and <span class="math inline">\(h_1\)</span> appear. However, <span class="math inline">\(Y_1\)</span> is not in basic representation. Indeed, the equation <span class="math inline">\(f_1=0\)</span> is redundant, since <span class="math inline">\(f_1\)</span> is equal to zero for all points at which <span class="math inline">\(h_1\)</span> is equal to zero. Thus <span class="math inline">\(f_1\)</span> can be discarded, and we see that only one equation, <span class="math inline">\(h_1\)</span>, is required to represent <span class="math inline">\(Y_1\)</span> in basic form. We can conclude that <span class="math inline">\(Y_1\)</span> is smooth and has codimension <span class="math inline">\(1\)</span>.</p>
+<p>Finally, consider the derivative with index <span class="math inline">\((1,1,1)\)</span>.
+<span class="math display">\[\begin{align*}
+k=0,X&#39;:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,x_{2}=0,x_{1}=0\right\} \\\left(1,1,1\right)\ h_{1}=&amp;s_{1}^{\left(0,1,1\right)}=x_{2}\\s_{1}=\partial f_{1}/\partial x_{2}=&amp;1\\Y_{1}:=&amp;\left\{ \mathbf{x}\in X&#39;\mid1\ne0\right\} \\U_{1}:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{2}=0,1\ne0\right\}
+\end{align*}\]</span>
+Again, the inductive step returns immediately because <span class="math inline">\(i_1=2\)</span>, but this time we can see that <span class="math inline">\(Y_1\)</span> is not an open subset of <span class="math inline">\(U_1\)</span>. As mentioned above, the algorithm is unable to determine this without solving a quantifier elimination problem. Instead, we may be able to determine the codimension by looking at the basic representation of <span class="math display">\[
+Y_1 := \{ (x_1,x_2) \in \mathbb{R}^2 \mid x_1 x_2 = 0, x_1 = 0, x_2 = 0 \}.
+\]</span>
+(Note that the constraint <span class="math inline">\(1 \ne 0\)</span> is dropped since it is trivial and adds no information.)
+We see that three equations appear in the definition of <span class="math inline">\(Y_1\)</span>, but the first one, <span class="math inline">\(f_1 := x_1 y_2\)</span> is redundant again. Thus, the two equations <span class="math inline">\(x_2 = 0, x_1 = 0\)</span> define <span class="math inline">\(Y_1\)</span> and we can conclude that <span class="math inline">\(Y_1\)</span> is smooth and has codimension <span class="math inline">\(2\)</span>.</p>
+</div>
+<p>This example shows two things. Firstly, not all functions are required to represent the smooth stratum and secondly <span class="math inline">\(k\)</span>, the current step of induction, gives a lower bound on the codimension of strata.
+<span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 1 states that
+<span class="math display">\[
+\det\begin{pmatrix}\partial h_{1}/\partial x_{i_{1}} &amp; \ldots &amp; \partial h_{1}/\partial x_{i_{k}}\\
+\vdots &amp;  &amp; \vdots\\
+\partial h_{k}/\partial x_{i_{1}} &amp; \ldots &amp; \partial h_{k}/\partial x_{i_{k}}
+\end{pmatrix}\ne0
+\]</span>
+at every point of a stratum <span class="math inline">\(X_k\)</span> of codimension <span class="math inline">\(k\)</span> which includes the functions <span class="math inline">\(h_1,\ldots,h_k\)</span> in its definition.
+As we saw in the example, other functions vanish at every point of <span class="math inline">\(X_k\)</span>. We need to find the “basic” set of <span class="math inline">\(k\)</span> functions needed to define <span class="math inline">\(X_k\)</span>.</p>
+<div id="discarding-redundant-equations" class="section level4 hasAnchor" number="3.0.5.1">
+<h4><span class="header-section-number">3.0.5.1</span> Discarding redundant equations<a href="3-sec:smooth-strat.html#discarding-redundant-equations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let <span class="math inline">\(F \subset \mathbb{Z}[x_1,\ldots,x_n]\)</span> be a set of polynomials, indexed by <span class="math inline">\((m_{i_1},\ldots,m_1,j)\)</span> and, for <span class="math inline">\(\mathbf{m} = (0,\ldots,0,m_\ell,\ldots,m_1,j),\ell &gt; i_1\)</span> let
+<span class="math display">\[
+s^{m_n,\ldots,i_1,j}_k = \partial_{\mathbf{h}, \mathbf{i}, n}^m_n \partial_{\mathbf{h}, \mathbf{i}, i_1 + 1}^m_{i_1 + 1} f 
+\]</span>
+be the partial derivative computed at index <span class="math inline">\(\mathbf{m}\)</span>, where <span class="math inline">\(f \in F\)</span> has index <span class="math inline">\((m_1,\ldots,m_1,j)\)</span> be one of the partial derivatives computed during the algorithm.
+Denote by <span class="math inline">\(G\)</span> the set of derivatives with index lexicographically less than <span class="math inline">\(\mathbf{m}\)</span>. <span class="math inline">\(Y_k \subset Y_{k-1}\)</span> is defined such that every function in <span class="math inline">\(G\)</span> is equal to zero while the function <span class="math inline">\(h^{\mathbf{m}}_k\)</span> is not.
+Define the smooth manifold
+<span class="math display">\[
+U_k := \{ \mathbf{x} \in \mathbb{R}^n \mid h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0, h_k(\mathbf{x}) = 0, s^{\mathbf{m}}_k(\mathbf{x}) \ne 0 \}.
+\]</span>
+of codimension <span class="math inline">\(k\)</span>, where the function <span class="math inline">\(h_k := s^{(0,\ldots,0,m_\ell - 1,m_{\ell - 1},\ldots,m_1,j)}_k\)</span>. According to <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 2, <span class="math inline">\(Y_k\)</span> is smooth and has codimension <span class="math inline">\(k\)</span> if it is an open subset of <span class="math inline">\(U_k\)</span>. In this case, only <span class="math inline">\(k\)</span> of the polynomials will be needed to define <span class="math inline">\(Y_k\)</span>. Note that inequations <span class="math inline">\(s_1,\ldots,s_{k-1}\)</span> which appear in the definition of <span class="math inline">\(Y_{k-1} \supset Y_k\)</span> should also be taken into account.
+Begin with a set
+<span class="math display">\[
+Y&#39; := \{ \mathbf{x} \in \mathbb{R}^n \mid h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_(\mathbf{x}) \ne 0, s_k(\mathbf{x}) \ne 0 \} \subset Y_k.
+\]</span>
+Consider each function <span class="math inline">\(g \in G\)</span> in reverse lexicographical order. If <span class="math inline">\(g(\mathbf{x}) = 0\)</span> at every point <span class="math inline">\(\mathbf{x} \in Y&#39;\)</span> then it is redundant and should be discarded. Otherwise, <span class="math inline">\(g\)</span> should be included in the defining equations for <span class="math inline">\(Y_k\)</span>. Since <span class="math inline">\(Y_k\)</span> has codimension <span class="math inline">\(k\)</span>, and <span class="math inline">\(Y&#39;\)</span> is already an open, basic set of codimension <span class="math inline">\(k-1\)</span>, only one more polynomial should be needed.
+If <span class="math inline">\(Y_k\)</span> is not an open subset of <span class="math inline">\(U_k\)</span>, then more polynomials will be required to define it, and the number of polynomials gives the codimension.</p>
+<p>A polynomial <span class="math inline">\(g \in \mathbb{Z}[x_1,\ldots,x_n]\)</span> is redundant in the definition of the semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span> if the following formula is true
+<span class="math display">\[
+\exists x_1,\ldots,x_n,a \in \mathbb{R}^{n+1} \mid (x_1,\ldots,x_n) \in S, a \ne 0, g(x_1,\ldots,x_n) = a.
+\]</span>
+This problem can also be formulated using the emptiness check. <span class="math inline">\(g\)</span> is redundant in the definition of <span class="math inline">\(S\)</span> if the semialgebraic set
+<span class="math display">\[
+\{ \mathbf{x} \in S \mid g(\mathbf{x}) \ne 0 \}
+\]</span>
+is non-empty.</p>
+<!-- TODO do we also need to check that the determinant of the matrix (minors?) is nonzero. -->
+</div>
+</div>
+<div id="sec:strat-semialgebraic" class="section level3 hasAnchor" number="3.0.6">
+<h3><span class="header-section-number">3.0.6</span> From Elementary Algebraic sets to generic Semialgebraic sets<a href="3-sec:smooth-strat.html#sec:strat-semialgebraic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Corollary 1 asserts that the algorithm can be applied to arbitrary semi-pfaffian sets and, therefore, without modification, to arbitrary semialgebraic sets.
+Let <span class="math inline">\(S \subset \mathbb{R}^n\)</span> be a semialgebraic set represented by a quantifier-free Boolean formula containing polynomials
+<span class="math display">\[
+f_1,\ldots,f_s.
+\]</span>
+Consider each “sign set”
+<span class="math display">\[
+S_{( \ast_1,\ldots,\ast_s )} := \{ \mathbf{x} \in \mathbb{R}^n \mid f_1(\mathbf{x}) \ast_1 0, \ldots, f_s(\mathbf{x}) \ast_s 0 \}
+\]</span>
+where <span class="math inline">\(\ast_i, 1 \le i \le s \in \{&lt;, &gt;, =\}\)</span>. <span class="math inline">\(S\)</span> can be partitioned into a finite union of some of the <span class="math inline">\(s^3\)</span> sign sets.
+If we apply the smooth stratification algorithm to each <span class="math inline">\(S_{(\ast_1,\ldots,\ast_s)} \subset S\)</span>, and take the union of strata, we will obtain a smooth stratification of the set <span class="math inline">\(S\)</span>. Indeed, since no two sign sets have non-empty intersection, it is clear that no two strata intersect, and since a finite number of the sign-sets form a partition of <span class="math inline">\(S\)</span>, the smooth strata of these sign-sets also forms a partition of <span class="math inline">\(S\)</span>.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-bpr2006">
+<p>Basu, Saugata, Richard Pollack, and Marie-Françoise Roy. 2006. <em>Algorithms in Real Algebraic Geometry</em>. 2nd ed. 2006. Algorithms and Computation in Mathematics, 10. Berlin, Heidelberg: Springer Berlin Heidelberg : Imprint: Springer.</p>
+</div>
+<div id="ref-gabrielov1996">
+<p>Gabrielov, Andrei. 1996. “Complements of Subanalytic Sets and Existential Formulas for Analytic Functions.” <em>Inventiones Mathematicae</em> 125 (1): 1–12.</p>
+</div>
+<div id="ref-gv1995">
+<p>Gabrielov, Andrei, and Nicolai Vorobjov. 1995. “Complexity of Stratification of Semi-Pfaffian Sets.” <em>Discrete &amp; Computational Geometry</em> 14 (1): 71–91.</p>
+</div>
+<div id="ref-gv04">
+<p>Gabrielov, Andrei, and Nicolai Vorobjov. 2004. “Complexity of Computations with Pfaffian and Noetherian Functions.” <em>Normal Forms, Bifurcations and Finiteness Problems in Differential Equations</em> 137: 211–50.</p>
+</div>
+<div id="ref-lojasiewicz1964">
+<p>Lojasiewicz, S. 1964. “Triangulation of Semi-Analytic Sets.” <em>Annali Della Scuola Normale Superiore Di Pisa - Scienze Fisiche E Matematiche</em> Ser. 3, 18 (4): 449–74. <a href="http://www.numdam.org/item/ASNSP_1964_3_18_4_449_0/">http://www.numdam.org/item/ASNSP_1964_3_18_4_449_0/</a>.</p>
+</div>
+<div id="ref-whitney1992">
+<p>Whitney, Hassler. 1992. “Elementary Structure of Real Algebraic Varieties.” <em>Hassler Whitney Collected Papers</em>, 456–67.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2.2-cylindrical-algebraic-decomposition.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-sec:quasi-affine.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/02-smooth-stratification.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["thesis.pdf", "thesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

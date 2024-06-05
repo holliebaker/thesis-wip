@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <title>4.3 Computing the quasi-affine CAD | Cylindrical Algebraic Decompositions With Monotone Cells</title>
   <meta name="description" content="Hollie Baker’s thesis" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:title" content="4.3 Computing the quasi-affine CAD | Cylindrical Algebraic Decompositions With Monotone Cells" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Hollie Baker’s thesis" />
   <meta name="github-repo" content="holliebaker/thesis" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta name="twitter:title" content="4.3 Computing the quasi-affine CAD | Cylindrical Algebraic Decompositions With Monotone Cells" />
   
   <meta name="twitter:description" content="Hollie Baker’s thesis" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"/>
+<link rel="next" href="5-sec:monotone-cells.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -152,19 +152,94 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="sec:quasiaffine-algorithm" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Computing the quasi-affine CAD<a href="4.3-sec:quasiaffine-algorithm.html#sec:quasiaffine-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We now present pseudo-code for the quasi-affine part of the algorithm.</p>
+<hr />
+<p><strong>Input:</strong>
+<span class="math display">\[F\]</span></p>
+<ul>
+<li><span class="math inline">\(F\)</span>: a quantifier-free Boolean formula defining
+<span class="math display">\[
+  V = V_1 \cup \ldots \cup V_k
+  \]</span>
+where <span class="math inline">\(V \subset \mathbb{R}^n\)</span> and <span class="math inline">\(\dim(V_i) \le 2, 1 \le i \le k\)</span>.</li>
+</ul>
+<p><strong>Output:</strong>
+<span class="math display">\[
+{\cal D}
+\]</span>
+- <span class="math inline">\(\cal D\)</span>: a CAD of <span class="math inline">\(\mathbb{R}^n\)</span> compatible with <span class="math inline">\(V\)</span> such that each cell <span class="math inline">\(C \subset V\)</span> is the graph of a quasi-affine map.</p>
+<hr />
+<ul>
+<li><p>Let <span class="math display">\[
+\mathbf{F} \subset \mathbb{Z}[x_1,\ldots,x_n]
+\]</span>
+be the set of polynomials appearing in the formula <span class="math inline">\(F\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\cal E\)</span>, a CAD of <span class="math inline">\(\mathbb{R}^n\)</span> compatible with <span class="math inline">\(V\)</span>, using the McCallum projection operator.</p>
+<p>By <span class="citation">McCallum (<a href="#ref-mccallum1988" role="doc-biblioref">1988</a>)</span>, Theorems 2.2.3 and 2.2.4, each cell <span class="math inline">\(C \subset V\)</span> of <span class="math inline">\(\cal E\)</span> will be an analytic submanifold.</p></li>
+<li><p>Let <span class="math inline">\({\cal A} = ({\cal A}_1,\ldots,{\cal A}_{n})\)</span> be the family of projection polynomials for <span class="math inline">\(\cal E\)</span>, where each <span class="math inline">\({\cal A}_i \subset \mathbb{Z}[x_1,\ldots,x_i]\)</span>.</p></li>
+<li><p>For each cell <span class="math inline">\(C_k \subset V\)</span> with index <span class="math inline">\((i_1,\ldots,i_n) \in \{0,1\}^n\)</span>, such that <span class="math inline">\(i_{j_1} = \ldots = i_{j_k} = 1\)</span> while all other elements of the index are equal to <span class="math inline">\(0\)</span> (observe <span class="math inline">\(\dim(C_k) = k\)</span>):</p>
+<ul>
+<li><p>Let <span class="math inline">\(f_1,\ldots,f_{n-k}\)</span> be a set of projection polynomials which are equal to <span class="math inline">\(0\)</span> on the cell <span class="math inline">\(C_k\)</span>.</p></li>
+<li><p>For each <span class="math inline">\(i \in \{1,\ldots,n\} \setminus \{j_1,\ldots,j_k\}\)</span>, find a polynomial in <span class="math inline">\({\cal A}_i\)</span> which is <span class="math inline">\(0\)</span> at every point <span class="math inline">\(\mathbf{x} \in C_k\)</span>. This can be done by checking the set of signs of projection factors.</p></li>
+</ul></li>
+<li><p>For each <span class="math inline">\(2\)</span>-dimensional cell <span class="math inline">\(C_2 \subset V\)</span> and pair <span class="math inline">\(1 \le i_1 &lt; i_2 \le n\)</span>:</p>
+<ul>
+<li><p>Find the set of polynomials <span class="math inline">\(f_1,\ldots,f_{n-2}\)</span> defining <span class="math inline">\(C_2\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{m} = \{j_1,\ldots,j_\ell\} = \{1\ldots,n\} \setminus \{i_1,i_2\}\)</span>.</p></li>
+<li><p>Define
+<span class="math display">\[
+J_{C_2,\mathbf{m}} := 
+\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} &amp; \ldots &amp; \partial f_{1}/\partial x_{i_{\ell}}\\
+\vdots &amp;  &amp; \vdots\\
+\partial f_{n-2}/\partial x_{i_{1}} &amp; \ldots &amp; \partial f_{n-2}/\partial x_{i_{\ell}}
+\end{pmatrix}
+\]</span>
+be an <span class="math inline">\(((n-2)\times (n-2))\)</span> Jacobi matrix.</p>
+<p><span class="math inline">\(\det(J_{C_2,\mathbf{m}}) = 0\)</span> at the critical points of <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{i_1,i_2\}}}}\)</span>.</p></li>
+</ul></li>
+<li><p>For each <span class="math inline">\(1\)</span>-dimensional cell <span class="math inline">\(C_1 \subset V\)</span> pair <span class="math inline">\(1 \le i_1 &lt; i_2 \le n\)</span>:</p>
+<ul>
+<li><p>Find the set of polynomials <span class="math inline">\(f_1,\ldots,f_{n-1}\)</span> defining <span class="math inline">\(C_1\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{m} = \{j_1,\ldots,j_\ell\} = \{1\ldots,n\} \setminus \{i_1\}\)</span>.</p></li>
+<li><p>Define
+<span class="math display">\[
+J_{C_1,\mathbf{m}} := 
+\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} &amp; \ldots &amp; \partial f_{1}/\partial x_{i_{\ell}}\\
+\vdots &amp;  &amp; \vdots\\
+\partial f_{n-2}/\partial x_{i_{1}} &amp; \ldots &amp; \partial f_{n-1}/\partial x_{i_{\ell}}
+\end{pmatrix}
+\]</span>
+be an <span class="math inline">\(((n-1)\times (n-1))\)</span> Jacobi matrix.</p></li>
+</ul>
+<p><span class="math inline">\(\det(J_{C_1,\mathbf{m}}) = 0\)</span> at the critical points of <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{i_1\}}}}\)</span>.</p>
+<ul>
+<li>Return the CAD <span class="math inline">\(\cal D\)</span>, which is sign invariant on
+<span class="math display">\[
+\mathbf{F} \cup 
+\bigcup_{C_2 \subset V,\mathbf{m} = \{1,\ldots,n\} \setminus \{i_1,i_2\}} \det\left(J_{C_2,\mathbf{m}}\right),
+\bigcup_{C_1 \subset V,\mathbf{n} = \{1,\ldots,n\} \setminus \{i_1\}} \det\left(J_{C_1,\mathbf{n}}\right)
+\]</span>
+for each two and one-dimensional cell <span class="math inline">\(C_1,C_2 \subset V\)</span> of <span class="math inline">\(\cal E\)</span> and each pair <span class="math inline">\(0\le i_1 &lt; i_2 \le n\)</span>.</li>
+</ul></li>
+</ul>
+
+</div>
+<!-- </div> -->
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-mccallum1988">
+<p>McCallum, Scott. 1988. “An Improved Projection Operation for Cylindrical Algebraic Decomposition of Three-Dimensional Space.” <em>Journal of Symbolic Computation</em> 5 (1): 141–61. <a href="https://doi.org/https://doi.org/10.1016/S0747-7171(88)80010-5">https://doi.org/https://doi.org/10.1016/S0747-7171(88)80010-5</a>.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-sec:monotone-cells.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -185,7 +260,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/%s",
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/03-1-quasiaffine-cells.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -71,7 +71,6 @@ eq:lagrange-solve-qe-denominators
 eq:lagrange-solve-qe-jacobis
 def:norm
 lem:one-dim-qa-is-monotone
-cylindrical-algebraic-decompositions-with-monotone-cells
 intro
 background
 semialgebraic-sets-and-monotone-cells
