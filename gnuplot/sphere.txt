@@ -1,0 +1,57 @@
+#!/usr/bin/gnuplot
+#
+# Plotting a sphere with Gnuplots parametric mode
+#
+# AUTHOR: Hagen Wierstorf
+# VERSION: gnuplot 4.6 patchlevel 0
+
+set terminal pngcairo size 800,800
+set output 'sphere.png'
+
+#set terminal svg size 800,800
+#set output 'sphere.svg'
+
+
+set lmargin at screen 0.05
+set rmargin at screen 0.95
+set bmargin at screen 0.05
+set tmargin at screen 0.95
+unset title
+unset key
+unset border
+unset xtics
+unset ytics
+set view 60,345
+
+set parametric
+set isosamples 80,80
+
+set xrange [-1.2:1.2]
+set yrange [-1.2:1.2]
+set zrange [-1.5:1.5]
+set urange [-pi:pi]
+set vrange [-pi:pi]
+
+#set palette rgb 33,13,10
+set cbrange [-1:1]
+set style fill transparent solid 0.8
+set linetype 1 lc rgb "black" lw 0.1
+set linetype 2 lc rgb "black" lw 0.5
+set style line 1 lc rgb 'black' lt 1 lw 2 pt 5
+
+set pm3d depthorder hidden3d 1
+set pm3d lighting
+set hidden3d front
+splot \
+    sin(u)*cos(v), sin(u)*sin(v), -1.1 with lines lt 2, \
+    sin(u)*cos(v), sin(u)*sin(v), cos(u) with pm3d, \
+    cos(u), sin(u), 0 with lines lt 1, \
+    0, cos(u), sin(u) with lines lt 1 , \
+    sin(u), 0, cos(u) with lines lt 1, \
+    -1, v, -1.1 with lines lt 1, \
+    1, v, -1.1 with lines lt 1, \
+    0, v, -1.1 with lines lt 1, \
+    u, 0, u > -1 && u < 1 ? -1.1 : 1/0 with lines lt 1
+
+
+set output

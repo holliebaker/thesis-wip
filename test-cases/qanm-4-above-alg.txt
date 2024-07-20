@@ -1,0 +1,13 @@
+[]
+(w,x,y,z)
+4
+[ w > 0 /\ w^2 = 2 /\ 0 < x /\ x < 1 /\ y > 0 /\ x + y < 1 /\ z = 3x^2 + 2y^2 ].
+mct y.
+g
+g
+g
+d-true-cells-t
+g
+d-proj-fac
+d-ref
+d-true-cells-t

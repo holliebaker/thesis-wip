@@ -1,0 +1,278 @@
+``` {test-qanm-4-alg}
+Before Refinement For Monotone Cells >
+d-true-cells-t
+---------- Information about the cell (6,3,3,2) (Dimension (0,1,1,0) (2))
+
+Signs of projection factors ------------------------
+
+Level 1
+  w > 0
+  w^2 - 3 = 0
+Level 2
+  x > 0
+  x - 1 < 0
+Level 3
+  y > 0
+  y - x^2 + 2 x - 1 < 0
+Level 4
+  z - y^2 - x^2 = 0
+
+*** Initialising the RCAD. ***
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (6,3,3,2)
+Level 1
+  w > 0
+  w^2 - 3 = 0
+Level 2
+  x > 0
+  x - 1 < 0
+Level 3
+  y > 0
+  y - x^2 + 2 x - 1 < 0
+Level 4
+  z - y^2 - x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 3 between 1773/1024 and 887/512
+      = 1.7320508076-
+
+Coordinate 1 = alpha
+             = 1.7320508076-
+Coordinate 2 = 1/2
+             = 0.5000000000
+Coordinate 3 = 1/8
+             = 0.1250000000
+Coordinate 4 = the unique root of x - 17/64 between 0 and 1
+             = the unique root of 64 x - 17 between 0 and 1
+             = 0.2656250000
+
+
+----------------------------------------------------
+
+Before Refinement For Monotone Cells >
+g
+
+Before Solution >
+d-proj-fac
+A_1,1  = input
+       = w
+
+A_1,2  = input
+       = w^2 - 3
+
+
+A_2,1  = input
+       = x
+
+A_2,2  = fac2(J_2,1) = fac2(res(A_3,1|A_3,2))
+       = x - 1
+
+M_2,3  = fac(K_2,3) = fac(input)
+       = 2 x^3 - 6 x^2 + 7 x - 2
+
+M_2,4  = fac(K_2,6) = fac(input)
+       = 8 x - 9
+
+
+A_3,1  = input
+       = y
+
+A_3,2  = input
+       = y - x^2 + 2 x - 1
+
+
+A_4,1  = input
+       = z - y^2 - x^2
+
+
+
+Before Solution >
+d-ref
+
+M_2,1  = input  *** Refinement of cell (6,3) ***
+       = The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 3 between 1773/1024 and 887/512
+      = 1.7321-
+
+Coordinate 1 = alpha
+             = 1.7321-
+Coordinate 2 = the unique root of 2 x^3 - 6 x^2 + 7 x - 2 between 1/4 and 1/2
+             = the unique root of 2 x^3 - 6 x^2 + 7 x - 2 between 1/4 and 1/2
+             = 0.4102+
+
+
+
+
+
+Before Solution >
+d-true-cells-t
+---------- Information about the cell (6,5,3,2) (Dimension (0,1,1,0) (2))
+
+Signs of projection factors ------------------------
+
+Level 1
+  w > 0
+  w^2 - 3 = 0
+Level 2
+  x > 0
+  x - 1 < 0
+  2 x^3 - 6 x^2 + 7 x - 2 > 0
+  8 x - 9 < 0
+Level 3
+  y > 0
+  y - x^2 + 2 x - 1 < 0
+Level 4
+  z - y^2 - x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (6,5,3,2)
+Level 1
+  w > 0
+  w^2 - 3 = 0
+Level 2
+  x > 0
+  x - 1 < 0
+  2 x^3 - 6 x^2 + 7 x - 2 > 0
+  8 x - 9 < 0
+Level 3
+  y > 0
+  y - x^2 + 2 x - 1 < 0
+Level 4
+  z - y^2 - x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 3 between 1773/1024 and 887/512
+      = 1.7320508076-
+
+Coordinate 1 = alpha
+             = 1.7320508076-
+Coordinate 2 = 1/2
+             = 0.5000000000
+Coordinate 3 = 1/8
+             = 0.1250000000
+Coordinate 4 = the unique root of x - 17/64 between 0 and 1
+             = the unique root of 64 x - 17 between 0 and 1
+             = 0.2656250000
+
+
+----------------------------------------------------
+---------- Information about the cell (6,4,3,2) (Dimension (0,0,1,0) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  w > 0
+  w^2 - 3 = 0
+Level 2
+  x > 0
+  x - 1 < 0
+  2 x^3 - 6 x^2 + 7 x - 2 = 0
+  8 x - 9 < 0
+Level 3
+  y > 0
+  y - x^2 + 2 x - 1 < 0
+Level 4
+  z - y^2 - x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (6,4,3,2)
+Level 1
+  w > 0
+  w^2 - 3 = 0
+Level 2
+  x > 0
+  x - 1 < 0
+  2 x^3 - 6 x^2 + 7 x - 2 = 0
+  8 x - 9 < 0
+Level 3
+  y > 0
+  y - x^2 + 2 x - 1 < 0
+Level 4
+  z - y^2 - x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in an EXTENDED representation.
+
+alpha = the unique root of 4 x^6 - 24 x^5 + 28 x^4 + 52 x^3 - 35 x^2 - 64 x - 107 between 17/8 and 69/32
+      = 2.1422962953-
+
+Coordinate 1 = 300/8777 alpha^5 - 1518/8777 alpha^4 + 322/8777 alpha^3 + 5607/8777 alpha^2 + 6683/8777 alpha - 9577/8777
+             = 1.7320508076-
+Coordinate 2 = -300/8777 alpha^5 + 1518/8777 alpha^4 - 322/8777 alpha^3 - 5607/8777 alpha^2 + 2094/8777 alpha + 9577/8777
+             = 0.4102454877-
+Coordinate 3 = 1/8
+             = 0.1250000000
+Coordinate 4 = the unique root of 262144 x^3 - 536576 x^2 + 1654976 x - 287873 between 0 and 4
+             = the unique root of 262144 x^3 - 536576 x^2 + 1654976 x - 287873 between 0 and 4
+             = 0.1839263602-
+
+
+----------------------------------------------------
+---------- Information about the cell (6,3,3,2) (Dimension (0,1,1,0) (2))
+
+Signs of projection factors ------------------------
+
+Level 1
+  w > 0
+  w^2 - 3 = 0
+Level 2
+  x > 0
+  x - 1 < 0
+  2 x^3 - 6 x^2 + 7 x - 2 < 0
+  8 x - 9 < 0
+Level 3
+  y > 0
+  y - x^2 + 2 x - 1 < 0
+Level 4
+  z - y^2 - x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (6,3,3,2)
+Level 1
+  w > 0
+  w^2 - 3 = 0
+Level 2
+  x > 0
+  x - 1 < 0
+  2 x^3 - 6 x^2 + 7 x - 2 < 0
+  8 x - 9 < 0
+Level 3
+  y > 0
+  y - x^2 + 2 x - 1 < 0
+Level 4
+  z - y^2 - x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 3 between 1773/1024 and 887/512
+      = 1.7320508076-
+
+Coordinate 1 = alpha
+             = 1.7320508076-
+Coordinate 2 = 3/16
+             = 0.1875000000
+Coordinate 3 = 1/4
+             = 0.2500000000
+Coordinate 4 = 25/256
+             = 0.0976562500
+
+
+----------------------------------------------------
+
+Before Solution >
+```

@@ -1,6 +1,27 @@
 # Monotone Cells { #sec:monotone-cells }
 
-Now we have a CAD $\cal D$ such that each 2-dimensional cell is the graph of a quasi-affine map, let us return to [@bgv15 Theorem 3.20] and discuss how to obtain monotone cells.
+So far, we have constructed an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$, compatible with a family of bounded semialgebraic sets $V_1,\ldots,V_k$ of dimension at most two, in which every cell $C\subset V_1\cup \ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
+We now return to [@bgv15 Theorem 3.20] and discuss how to obtain monotone cells.
+
+We first present a motivating example, of a 2-dimensional cylindrical cell which is quasi-affine but not monotone.
+
+::: {.example #monotone-cells}
+[@bgv15, Example 3.2]
+
+Let
+$$
+\Delta := \{ (x,y) \in \R^2 \mid 0 < x < 1, y > 0, x + y < 1 \} \subset \R^2
+$$ and
+$$
+\varphi(x,y) = x^2 + y^2.
+$$
+Let $Y \subset \R^3$ be the graph of function $\phi$ on $\Delta$. Observe that $Y$ is a cylindrical cell and $\varphi\vert_\Delta$ is a quasi-affine map, since it is strictly increasing in both $x$ and $y$.
+However, $y \cap \{ z = 3/4 \}$ is not connected, hence $\phi\vert_\Delta$ is not a monotone function and $Y$ is not a monotone cell.
+:::
+
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the 2-dimensional quasi-affine cylindrical cell $Y$ defined in Example \\@ref(exm:monotone-cells),"}
+knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
+```
 
 ::: {.definition #sub-cad}
 Let $\cal D$ be a CAD of $\R^n$ and suppose that $\mathbf{c} = (c_1,\ldots,c_k)$ is a $0$-dimensional section cell in the decomposition induced by $\cal D$ on $\R^k$.
@@ -11,23 +32,24 @@ $$
 forms a cylindrical decomposition of $\R^{n-k}$. This decomposition will be called the *sub-decomposition* of $\cal D$ above $c$, and $\mathbf{c}$ the *base cell* of the sub-decomposition.
 :::
 
-The construction of monotone cells is based on the following theorem. 
+The construction of monotone cells is based on the following result due to @bgv15.
 
-::: {.theorem #bgv-monotone}
+::: {.proposition #bgv-monotone}
 [@bgv15, Lemma 3.18]
 
 Let $X \subset \R^2$ be an open, bounded set and $f : X \to \R$ be a quasi-affine function.
 Then there is a cylindrical decomposition of $\R^2$ compatible with $X$, obtained by intersecting $X$ with straight lines $$\{x_1 = c\}$$ and half-planes $$\{x_1 < c\},\{x_1 > c\}$$ such that the restriction $f\vert_B$ for every cell $B \subset X$ is a monotone function.
 :::
 
-The construction proceeds by induction on $n$.
+We now summarise the construction presented by @bgv15 in the proof of Theorem 3.20.
+Their proof proceeds by induction on $n$.
 
 - The base case, $n=1$ is straightforward, since $(0)$ and $(1)$-cells are already monotone.
 
 - When $n>1$, consider each two-dimensional cell $C$ of $\cal D$ and let $C'' := \projop{1}(C)$
 
   - If $\dim(C'') = 0$, apply the inductive hypothesis to the sub-decomposition of $\cal D$ above $C''$.
-  - Otherwise, $C$ has index $\{1,i_2,\dots,i_n\} \in \{0,1\}^n$. Let $\alpha$ be the smallest among $\{2,\dots,n\}$ such that $i_\alpha = 1$. Since $\dim(C) = 2$, only $i_1$ and $i_\alpha$ are equal to $1$, while all other elements of the index are equal to $0$. By @bgv15, Lemma 3.3, $\projops{x_1,\ldots,x_{i-1},x_{i+1},\ldots,x_n}(C)$, for all $i \in \{2,\ldots,\alpha-1,\alpha+1,\ldots,n\}$, is a cylindrical cell and $C$ is the graph of a continuous function from this cell to $\opspan{x_i}$. 
+  - Otherwise, $C$ has index $\{1,i_2,\dots,i_n\} \in \{0,1\}^n$. Let $\alpha$ be the smallest among $\{2,\dots,n\}$ such that $i_\alpha = 1$. Since $\dim(C) = 2$, only $i_1$ and $i_\alpha$ are equal to $1$, while all other elements of the index are equal to $0$. By @bgv15, Lemma 3.3, $\projops{x_1,\ldots,x_{i-1},x_{i+1},\ldots,x_n}(C)$, for all $i \in \{2,\ldots,\alpha-1,\alpha+1,\ldots,n\}$, is a cylindrical cell and $C$ is the graph of a continuous function from this cell to $\opspan{x_i}$.
 
     @bgv15, Lemma 3.19, which provides the construction of $\cal D$ in the previous section, gives us a more useful representation of $C$. Let $X := \projops{x_1,x_\alpha}(C)$ be a $2$-dimensional sector cell. $C$ can be viewed as the graph of a quasi-affine map
     $$
@@ -38,46 +60,66 @@ The construction proceeds by induction on $n$.
     \{x_1 < c\}, \{x_1 = c\}, \{x_1 > c\}
     $$
     where $c \in \R$, such that $X$ is a union of monotone sector cells $B$ and $f_j\vert_B$ is a monotone function.
-    By [@bgv15 Lemma 3.11], refinements of this kind preserve the cylindrical structure of $\cal D$ and do not destroy existing monotone cells. 
-    In the semialgebraic case, we will see that the refinement points $c$ will always be algebraic numbers, which makes implementation using computer algebra systems possible. 
+    By [@bgv15 Lemma 3.11], refinements of this kind preserve the cylindrical structure of $\cal D$ and do not destroy existing monotone cells.
+    In the semialgebraic case, we will see that the refinement points $c$ will always be algebraic numbers, which makes implementation using computer algebra systems possible.
 
-## Two-dimensional monotone sector cells {#monotone-sectors}
+In the following sections, we will apply the construction given in the proof of @bgv15, Theorems 3.20 and 3.18 to develop an algorithm for finding the set of refinement points in the semialgebraic case, starting with the cad $\mathcal{D}$ and its set of input polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. The following will be proved.
 
-The proof of Theorem \@ref(thm:bgv-monotone) proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is refined such that each $Y \subset X$ is a monotone 2-dimensional sector cell.
+::: { .theorem #bgv-monotone-algorithm }
+Let
+$$
+F_1,\ldots,F_k
+$$
+be quantifier-free Boolean formulas such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
+Let $\mathbf{F} = \{f_1,\ldots,f_s\}$ be a set of polynomials in $\Z[x_1,\ldots,x_n]$ of maximum degree $d$ and $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots,V_k$ and such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
+
+Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ monotone with respect to each $V_1, \ldots, V_k$.
+This algorithm has complexity
+<!-- TODO determine the complexity -->
+:::
+
+## Two-dimensional monotone sector cells {#sec:monotone-sectors}
+
+Let $C$ be an $(i_1,\ldots,i_n)$-cell such that $i_1 = i_\alpha = 1$ and all other elements of the index are equal to $0$.
+The proof of Proposition \@ref(prp:bgv-monotone) proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is refined such that each $Y \subset X$ is a monotone 2-dimensional sector cell.
 Consider the intersection $X \cap \{x_1 = c\}$ for all $c\in \R$. This intersection is a finite union of pairwise disjoint intervals. Let ${\cal I} (c)$ be the family of these intervals associated with the point $c$. Define
 $$
-\gamma := \{ (x_1,x_\alpha) \in \opspan{x_1,x_\alpha} \mid x_2 \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
+\gamma := \{ (x_1,x_\alpha) \in \opspan{x_1,x_\alpha} \mid x_\alpha \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
 $$
-Although the cell $X$ under consideration is a $2$-dimensional cylindrical cell in $\opspan{x_1,x_\alpha}$, we actually need to refine the $2$-dimensional cylindrical sector cell $C' := \projop{\alpha}(C)$ in the cylindrical decomposition induced by $\cal D$ on $\R^{\alpha}$. Thus, we need a way to translate between $C'$ and $X$. 
+Although the cell $X$ under consideration is a $2$-dimensional cylindrical cell in $\opspan{x_1,x_\alpha}$, we actually need to refine the $2$-dimensional cylindrical sector cell $C' := \projop{\alpha}(C)$ in the cylindrical decomposition induced by $\cal D$ on $\R^{\alpha}$. Thus, we need a way to translate between $C'$ and $X$.
 
-:::{.lemma #gamma-top-bottom}
-Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and set of one-dimensional curves associated with $C$. Then
+:::{.corollary #gamma-top-bottom}
+(to Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3))
 
-1. The projection map $\projops{x_1,x_\alpha}\vert_C$ is injective. 
+Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and set of one-dimensional curves associated with $C$ by $\gamma$. Then
+
+1. The projection map $\projops{x_1,x_\alpha}\vert_C$ is injective.
 
 1. $X$ is a $2$-dimensional cylindrical sector cell.
 
-1. For each $c \in X'$, the family ${\cal I}(c)$ contains a single open innterval.
+1. For each $c \in X'$, the family ${\cal I}(c)$ contains a single open interval.
 
-1. $\gamma$ consists of zero, one or two disjoint curve intervals which coincide with the top and bottom of $X$. Furthermore, connected components of $\gamma$ can be defined as the graph of continuous definable functions from $X'$ to $\R$, using the functions defining the cell $C$. 
+1. $\gamma$ consists of zero, one or two disjoint curve intervals which coincide with the top and bottom of $X$. Furthermore, connected components of $\gamma$ can be defined as the graph of continuous definable functions from $X'$ to $\R$, using the functions defining the cell $C$.
 :::
 
+The above follows from @bgv15, Lemma 3.3 and the property that $C$ is the graph of a quasi-affine map. An alternative proof is given here.
+
 ::: {.proof}
-Since $C$ is the graph of a quasi-affine map from $X \to \opspan{x_2,\ldots,x_{\alpha - 1}}$, it follows that the projection map $\projops{x_1,x_\alpha}\vert_C$ is injective. This proves the first claim. The second claim follows by iteratively applying the projection defined in @bgv15, Lemma 3.3 to obtain the $2$-dimensional cylindrical sector cell $X$. 
+Since $C$ is the graph of a quasi-affine map from $X \to \opspan{x_2,\ldots,x_{\alpha - 1}}$, it follows that the projection map $\projops{x_1,x_\alpha}\vert_C$ is injective. This proves the first claim. The second claim follows by iteratively applying the projection defined in @bgv15, Lemma 3.3 to obtain the $2$-dimensional cylindrical sector cell $X$.
 By definition, $$
 X := \{ (x_1,t) \in \R^2 \mid x_1 \in X', \varphi(x_1) < t < \psi(x_1) \}
 $$
 where $\varphi,\psi : X' \to \R$ are continuous definable functions such that $\varphi(x_1) < \psi(x_1)$ for all $x_1 \in X'$.
-Note that $X$ may not be bounded from below (resp. above). In this case, we take $\varphi(x_1) = -\infty$ (resp. $\psi(x_1) = \infty$) for all $\mathbf{x} \in X'$. Functions $\varphi$ and $\psi$ are either infinite or finite at every point in $X'$, otherwise, new one-dimensional section cells would exist whose projections onto $\R^1$ form a proper subset of $X'$. This would contradict the cylindrical property. 
-It is clear from this definition that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving the third claim. It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of one-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if finite). 
+Note that $X$ may not be bounded from below (resp. above). In this case, we take $\varphi(x_1) = -\infty$ (resp. $\psi(x_1) = \infty$) for all $\mathbf{x} \in X'$. Functions $\varphi$ and $\psi$ are either infinite or finite at every point in $X'$, otherwise, new one-dimensional section cells would exist whose projections onto $\R^1$ form a proper subset of $X'$. This would contradict the cylindrical property.
+It is clear from this definition that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving the third claim. It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of one-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if finite).
 
-The proof of the final claim is completed by defining the functions $\varphi$ and $\psi$. 
+The proof of the final claim is completed by defining the functions $\varphi$ and $\psi$.
 
 Since $C' := \projop{\alpha - 1}(C)$ is a $(1,\ldots,0,0)$-cell, it is the graph of a continuous definable map $\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : X' \to \R^{\alpha - 2}$ and $$
 C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\}
 $$
-where $f,g : \R^{\alpha - 1} \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$. 
-Again, if not bounded from above (resp. below), $f$ (resp. $g$) are taken to be $-\infty$ (resp. $\infty$) at every point. 
+where $f,g : \R^{\alpha - 1} \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+Again, if not bounded from above (resp. below), $f$ (resp. $g$) are taken to be $-\infty$ (resp. $\infty$) at every point.
 Observe that the graph of $f$ (if finite) is the bottom of $C$ and the graph of $g$ (if finite) is the top of $C$.
 
 Writing $C$ in terms of $x_1 \in X'$, $f$, $g$ and $\mathbf{h}$, we obtain the functions
@@ -100,28 +142,40 @@ is a monotone cell. By [@bgv13, Theorem 1.7], this can be achieved by ensuring t
 $$
 \gamma \cap \{ c_i < x_1 < c_{i+1}\}
 $$
-contains only monotone curve intervals.
+contains only monotone curve intervals. [@bgv15 [Theorem 3.18].
 
-Applying Lemma \@ref(lem:gamma-top-bottom) to $C$, we obtain continuous definable functions $\varphi,\psi : X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively. 
+Applying Corollary \@ref(cor:gamma-top-bottom) to $C$, we obtain continuous definable functions $\varphi,\psi : X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively.
 Let $$
 (c_1,\ldots,c_t)
 $$
-be the critical points of functions $\varphi$ and $\psi$. Then, for all $1 \le i < t$, $\phi$ (resp $\psi$) is either strictly increasing in, strictly decreasing in, or independent of $x_1$ on the interval $(c_i, c_{i+1})$. Note that if $X$ is not bounded from below, then $\varphi$ will be a constant function (equal to $-\infty$). Likewise, if $X$ is not bounded from above, $\psi$ will be a constant function (equal to $\infty$). If this happens, the non-finite function can be ignored, since it does not havea graph. 
+such that the graphs of $\varphi_{\{ c_i < x_1 < c_{i+1} \}}$ and $\varpsi_{\{ c_i < x_1 < c_{i+1} \}}$ for all $1 \le i \le t-1$ are monotone curve intervals. By @bgv15, Theorem 1.7, $X \cap \{ c_i < x_1 < c_{i+1} \}$ for all $1\le i \le t-1$ is a semi-monotone set [@bgv15, proof of Lemma 3.18].
+For the graphs of $\varphi$ and $\varpsi$ to be monotone curve intervals, we require that $\varphi$ and $\varpsi$ are either strictly increasing in, strictly decreasing in or independent of $x_1$. Thus, $(c_1,\ldots,c_t)$ are the critical points of $\varphi$ and $\psi$.
+Note that if $X$ is not bounded from below, then $\varphi$ does not exist and does not have a graph.
+In this case, it is clear that no refinement of $X_B$ is required.
 
 ### Finding the critical points of $\varphi$ and $\psi$ {#sec:lagrange-refinement}
 
 We now discuss how to find these critical points starting with the polynomials defining cells in $\cal D$.
-Let
+
+Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ such that each $2$-dimensional cell is the graph of a quasi-affine map. Let
 \begin{equation}
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
 (\#eq:proj-fac-set)
 \end{equation}
-where ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$, be the projection polynomials defining $\cal D$. For convenience, we say that $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
-Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ and consider the $(1,0,\ldots,0)$-cell
+where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
+I.e., polynomials in $\mathcal{A}_k$ have constant sign on every cell in the decomposition induced by $\mathcal{D}$ on $\R^k$.
+
+Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projop{\alpha}^{-1}(C)$ is a $2$-dimensional cell of $\mathcal{D}$.
+We now describe how to find algebraic numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone.
+
+For convenience, we write $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
+Consider the $(1,0,\ldots,0)$-cell
 $$
 C' := \projop{\alpha - 1}(C)
 $$
-of the decomposition induced by $\cal D$ on $\R^{\alpha - 1}$. Observe that
+of the decomposition induced by $\cal D$ on $\R^{\alpha - 1}$.
+
+Observe that
 $$
 \projop{1}(C) = (a,b) \subset \R \cup \{-\infty, \infty\}
 $$
@@ -285,11 +339,25 @@ $(c_1,\ldots,c_t)$ can be found by computing the real roots of $\cal F$ subject 
 It is clear that $(c_1,\ldots,c_t)$ lie in an open interval $X = (a,b) \subset \R \cup \{ -\infty, \infty \}$. Thus, rather than using strict inequalities from Equation \@ref(eq:lagrange-solve-qe-ineqs), we could find the roots of $\cal F$ in the interval $(a,b)$.
 
 Each real root will be represented by a pair
-$$
-c_i := (m_1,J_1)
-$$
+\begin{equation}
+c_i := (m_i,J_i)
+(\#eq:algebraic-number)
+\end{equation}
 where $c_i$ is the unique root of the polynomial $m_i \in \Z[x_1]$ in the (left-open right-closed) isolating interval $J_i$.
 Note that $\cal B$ contains only algebraic numbers and roots will appear in ascending order.
+
+Since this procedure follows the construction described in @bgv15, Theorem 3.18, the following has been proved.
+
+::: {.proposition #monotone-sector-algorithm }
+Let $\mathcal{D}$ be a sign-invariant CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ with $\dim(V_i) \le 2$ and such that each cell $C \subset V_i$ is the graph of a quasi-affine map, for $1\le i \le k$. Let
+$$
+{\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
+$$
+where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
+Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projop{\alpha}^{-1}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$.
+
+Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1 \}$ is monotone. Each $c_i, 1 \le i \le t$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
+:::
 
 ### Working with sub-decompositions above a 0-cell { #sec:sub-cad }
 
@@ -322,8 +390,8 @@ Each coefficient in $g$ will be an integer number since $M$ is divisible by all 
 Let $K$ be a field and $L$ a finite (algebraic) extension of $K$.
 The field $L$ can be thought of as a finite dimensional vector space over $K$.
 
-Consider $f$ and $m$ be polynomials in $L[x_1,\ldots,x_n]$, viewed as polynomials in $K[x_1,\ldots,x_n,x_\alpha]$. 
-The norm, in $L[x_1,\ldots,x_n]$ of $f$ can be found by computing the resultant of $f$ and $m$. 
+Consider $f$ and $m$ be polynomials in $L[x_1,\ldots,x_n]$, viewed as polynomials in $K[x_1,\ldots,x_n,x_\alpha]$.
+The norm, in $L[x_1,\ldots,x_n]$ of $f$ can be found by computing the resultant of $f$ and $m$.
 :::
 
 ::: {.remark}
@@ -339,7 +407,7 @@ g := \res_\alpha (f,m)
 $$
 to obtain a polynomial in $\Q[x_1,\ldots,x_n]$. The property that $f(\mathbf{x}) = 0$ if and only if $g(\mathbf{x}) = 0$ follows from a property of resultants:
 
-> Let $I = \langle f, m \rangle$ be the ideal generated by polynomials $f, m \in K[x_1,\ldots,x_n][\alpha]$, where $K$ is an algebraically closed field. 
+> Let $I = \langle f, m \rangle$ be the ideal generated by polynomials $f, m \in K[x_1,\ldots,x_n][\alpha]$, where $K$ is an algebraically closed field.
 If at least one of $f$ and $m$ is monic, then
 >$$
 \res_\alpha (f,m) \in I \cap R.
@@ -347,10 +415,10 @@ $$
 
 It follows that $\mathbf{x} \in K^n$ is a common zero of the elements of $I \cap R$ if and only if it is a zero of $\res_\alpha(f,m)$.
 
-**TODO** this property came from the wiki page on resultants. does it need proving?
+<!-- TODO this property came from the wiki page on resultants. does it need proving? -->
 :::
 
-## Two-dimensional monotone sections
+## Two-dimensional monotone sections { #sec:monotone-sections }
 
 Let $X := \projops{x_1,x_\alpha}(C)$ and $(c_1,\ldots,c_r)$ be the refinement points computed in the previous section such that
 $$
@@ -359,6 +427,7 @@ $$
 for some $1 \le i \le r$, is a two-dimensional monotone sector cell.
 Let us return to [@bgv15, Theorem 3.18] to further refine $Y$ such that every two-dimensional section cell is a monotone cell.
 
+The procedure for computing the refinement of $Y$ such that $f_j$ is a monotone function, described in the proof of @bgv15, Theorem 3.18, proceeds as follows.
 Let $f_j : Y \to \opspan{x_j}$ be a component of the quasi-affine map $\mathbf{f} : X \to \R$. Since $\mathbf{f}$ is quasi-affine, each component of $\mathbf{f}$ is quasi-affine and the restriction of component $f_j$ to $Y$ is quasi-affine since $Y \subset X$.
 Hence, $f_j$ is either strictly increasing in, strictly decreasing in, or independent of each variable $x_1, x_\alpha$.
 In addition, the restriction $f\vert_{Y \cap \{x_\alpha = c\}}$ for any $c \in \R$ is either strictly increasing in, strictly decreasing in, or independent of $x_\alpha$.
@@ -435,7 +504,7 @@ Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$) so that, $C_T$ and 
 
 ### Critical points of the top and bottom of $C$
 
-We now discuss how to perform this refinement on the CAD structure. Let us assume that $C_T\ne \emptyset$. We must construct subsets $W \subset Y$ such that $f_j\vert_{W_T}$ is a smooth, continuous functions.
+We now discuss how to perform this refinement on the CAD structure. Let us assume that $C_T\ne \emptyset$. We must construct subsets $W \subset Y$ such that $f_j\vert_{W_T}$ is a smooth, continuous function.
 Let
 $$
 {\cal A} = ({\cal A}_1, \ldots, {\cal A}_n)
@@ -455,8 +524,8 @@ $$
 \exists x_2,\ldots,x_{j-1} \exists_\infty x_j ((x_1,\ldots,x_{j-1}) \in C'_T, g_j(x_1,\ldots,g_j) = 0)
 $$
 where $\exists_\infty x$ is a special quantifier defined in `QEPCAD` meaning "there exist infinitely many values of $x$".
-Using $\exists_\infty$, some of the costly computations with algebraic numbers can be avoided, thereby improving efficiency in practice. **TODO refer to qepcad user documentation.**
-Theoretically speaking, [@bpr2006, Algorithm 14.21] provides a singly exponential upper bound for quantifier elimination. **TODO what is the bound?**
+Using $\exists_\infty$, some of the costly computations with algebraic numbers can be avoided, thereby improving efficiency in practice [@qepcadDocs].
+Theoretically speaking, [@bpr2006, Algorithm 14.21] provides a singly exponential upper bound for quantifier elimination.
 
 Eliminating the $j-1$ quantifiers, we obtain the desired points $(b_{i,1},\ldots,b_{i,k_i})$, where each $b_{i,j}$ is the $x_1$-coordinate of a blow-up point of $g_j$.
 Now we can assume that $C^j_T\cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ is the graph of a continuous function. More precisely, the implicit function $g_j$ can be considered as a function from $C'_T \cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ to $\R$. We have a very similar construction as in Section \@ref(sec:lagrange-refinement).
@@ -475,16 +544,33 @@ As before, a set of refinement poits
 $$
 b_{j+1,1}, \ldots, b_{j+1,r_{j+1}}
 $$
-is obtained. 
+is obtained.
 
 The union of sets of refinement points $$
 \{b_{\alpha + 1,1}, \ldots, b_{\alpha + 1,r_{\alpha + 1}}\}, \ldots, \{b_{n,1}, \ldots, b_{n,r_n}\}
 $$
 forms the refinement of $C$ into two-dimensional monotone cells.
 
+Altogether, we have proved the following.
+
+::: {.proposition #monotone-section-algorithm}
+Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ with $\dim(V_i) \le 2$ and such that each cell $C \subset V_i$ is the graph of a quasi-affine map, for $1\le i \le k$. Let
+$$
+{\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
+$$
+where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
+Let $C$ be a $2$-dimensional section cell of the decomposition induced by $\cal D$ on $\R^{j}$ such that $\projop{j}^{-1}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$ and $\projop{j-1}(C)$ is monotone.
+
+Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_r)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i \le r$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
+:::
+
+::: {.Remark #monotone-sub-cad }
+propositions \@ref(prp:monotone-sector-algorithm) and \@ref(prp:monotone-section-algorithm) can also be applied to two-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-cad of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
+:::
+
 ## Implementation Details
 
-We now present psuedocode for the monotone part of the algorithm. 
+We now present psuedocode for the monotone part of the algorithm.
 
 ### Algorithm { #sec:monotone-algorithm }
 
@@ -536,7 +622,7 @@ Then:
 
     *(Note: observe that $\mathbf{b} \in A^{k-1}$. If $k = 1$, then $\mathbf{b}$ is the unique cell, $\mathbf{0}$, in the CAD of $\R^0$. In this case, it is clear that ${\rm sub}_\mathbf{0} (g) \equiv g$.)*
 
-  - $C'' (C''_B, C''_T) \subset \A := \projop{k}(C)$,
+  - $C'' \subset \A := \projop{k}(C)$ ($(1)$-cell), and let $(C''_B, C''_T)$ be $(0)$-cells which are the endpoints of $C''$,
 
   - ${\cal G} := {\rm sub}_{\mathbf{b}} \{ g_i \mid k+1 \le i \le \alpha - 1, g_i \in {\cal A}_i, g_i(\mathbf{x}) = 0 \ \forall \mathbf{x} \in \projop{\alpha-1}(C) \}$,
 
@@ -598,6 +684,22 @@ by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 - Return the family ${\cal R}$ of refinement points.
 
 ---
+
+## Correctness and Complexity
+
+The correctness of the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) follows from @bgv15, Theorem 3.20 and Lemma 3.19.
+The algorithm described in Section \@ref(sec:monotone-algorithm) considers each $2$-dimensional cell in a sub-cad $\mathcal{E}$ of $\R^n$ above a $0$-dimensional cell $\mathbf{b} \in \R^{k-1}$. This is exactly the inductive step of @bgv15, Theorem 3.20, where an $(i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)$-cell, where $i_1 = i_\alpha = 1$, is considered.
+By Corollary \@ref(cor:gamma-top-bottom) to $C$, the two-dimensional subset $X \subset \opspan{x_1,x_\alpha}$ is obtained. The first part of @bgv15, Lemma 3.18 describes how $X$ should be refined into two-dimensional semi-monotone sets. The construction described in Section \@ref(sec:quasi-affine) explains how to obtain the set of refinement points $(c_1,\ldots,c_t) \subset \A$.
+$C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})$ where each component $f_j : X \to \opspan{x_j}$ for $j \in \{1,\ldots,n\} \setminus \{1,\alpha\}$ is a quasi-affine function. The second part of @bgv15, Lemma 3.18 describes how to refine $X$ such that each function $f_j$ is monotone. By @bgv15, Lemma 3.16, if every component $f_i$ is monotone on a subset in the refinement of $X$, then the map $\mathbf{f}$ itself is monotone on that subset of $X$.
+The construction described in Section \@ref(sec:monotone-sections) describes how to find the refinement points to ensure that $\mathbf{f}$ is a monotone map.
+Thus, the construction in this section satisfies the properties required in the proof of @bgv15, Lemma 3.18 for $C$ to be monotone.
+
+<!--
+Complexity
+- refinements are easy. but how many poits do we get?
+- how many 2d cells. we know how many cells in total, but how many of dimension 2?
+- what is the complexity of computing the jacobi determinant. we do CAD projection to get back to R^2. so the dgree oft his polynomial is important. In practice, it was better to factorise. is there some theorem about factorising polynomials where s'd' <= d?
+-->
 
 ## Computing the refinements { #sec:compute-refinement }
 

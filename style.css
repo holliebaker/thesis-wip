@@ -12,4 +12,7 @@ pre {
 pre code {
   white-space: inherit;
 }
+pre.numberSource code > span > a:first-child::before {
+  left: -0.2em;
+}
 

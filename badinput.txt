@@ -1,0 +1,13 @@
+[ Unit circle ]
+(x,y)
+2
+[ x^2 - y^2 = 1 ].
+g
+g
+g
+d-nqf-formula # normalised quantifier-free Boolean formula
+d-input # input polynomials
+d-proj-pol # set of projection polynomials
+d-proj-fac # set of projection factors
+d-cell(2,2) # the only true cell in this CAD, which coincides with the unit circle
+finish # print solution formula and exit the program

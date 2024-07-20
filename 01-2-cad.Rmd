@@ -1,6 +1,7 @@
 ## Cylindrical algebraic decomposition
 
-@collins1975 introduced both the concept of cylindrical algebraic decomposition along with an algorithm to construct one such that each cell has constant sign on a set of input polynomials $\mathbf{F} \subset \R[x_1,\ldots,x_n]$.
+We now give some background on Cylindrical Algebraic Decomposition (CAD). 
+@collins1975 introduced both the concept of Cylindrical Algebraic Decomposition along with an algorithm to construct a CAD, which is a finite partition of $\R^n$ into so-called Cylindrical Cells, such that each polynomial in $\mathbf{F} \subset \R[x_1,\ldots,x_n]$ has a constant sign on every cylindrical cell in the decomposition. 
 
 Before describing Collins' algorithm, we will first define, closely following @bgv15, a cylindrical cell and cylindrical decomposition. Note that @bgv15 work in the broader class of definable sets.
 
@@ -9,6 +10,8 @@ Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C
 $$
 (i_1,\ldots,i_n) \in \{0,1\}^n.
 $$
+
+- When $n = 0$, there is a unique cylindrical cell $\mathbf{0} \in \R^0$.
 
 - When $n = 1$, a $(0)$-cell (section cell) is a point $c \in \R$ and a $(1)$-cell (sector cell) is an open interval: $(a,b)$, $(-\infty,b)$, $(a,\infty)$, $(-\infty,\infty)$ where $a,b\in \R$.
 
@@ -26,7 +29,7 @@ An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C'
   where $f,g : C' \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
 :::
 
-::: {,definition}
+::: {.definition}
 Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the *frontier of $S$*
 $$
 \fr{S} := \cl{S} \setminus S,
@@ -40,15 +43,27 @@ First let $C$ be a sector $(i_1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n
 
 Now let $C$ be an $(i_1,\ldots,i_{k},0,\ldots,0)$-cell, where $i_{k}=1$, and $C' := \projop{k}(C)$. Since $C'$ is a sector cell, $C'_B$ and $C'_T$ are cylindrical section cells. The bottom $C_B$ of $C$ is the pre-image of $C'_B$ by the projection map $\projop{k}\vert_{\cl{C}}$ and the top $C_T$ of $C$ is the pre-image of $C'_T$ by the projection map $\projop{k}\vert_{\cl{C}}$.
 It may be simpler to think of $C_B$ as the definable set $\cl{C} \cap (C'_B \times \R^{n - k + 1})$ and $C_T$ as the definable set $\cl{C} \cap (C'_T \times \R^{n - k + 1})$.
-It is important to note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of continuous functions (see Example \@ref(exm:top-bottom-not-cylindrical).
+It is important to note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of continuous functions (see Definition \@ref(def:blow-up-point) and Example \@ref(exm:top-bottom-not-cylindrical).
 
 For both section and sector cells, let the side wall, $C_W$, be $\fr{C} \setminus (C_B \cup C_T)$.
 There is no requirement that $C_W$ will be (a union of) cylindrical cells.
 
+::: {.definition #blow-up-point }
+[@bgv15, Definition 9.2]
+
+Let $\varphi : W \to \R$ be a continuous function on a semialgebraic set $W \subset \R^n$, and let $\Phi \subset \R^{n+1}$ be its graph. 
+
+A point $\mathbf{x} \in \overline{W} \setminus W$ is called a blow-up point of $\Phi$ if $$\proj^{-1}_{\R^n} (\mathbf{x}) \cap \overline{\Phi}$$ contains an open interval.
+:::
+
+::: {.remark #blow-up-codimension }
+The closure of the graph of a continuous defanible function is the graph of a continuous definable function everywhere except, possibly, over a subset of codimension at lesat $2$ (see the proof of @bgv15, Lemma 3.14). 
+:::
+
 ::: { .example #top-bottom-not-cylindrical }
-In $\R^3$, let $C' := \{ (x,y) \mid -1 < x < 1, \vert x \vert < y < 1 \}$ and $\phi(x,y) = \vert x / y \vert$ so that $C$ is the graph of $\phi\vert_{C'}$.
+In $\R^3$, let $C' := \{ -1 < x < 1, \vert x \vert < y < 1 \}$ and $\phi(x,y) = \vert x / y \vert$ so that $C$ is the graph of $\phi\vert_{C'}$.
 Consider $$
-C_B := \{ (x,y,z) \mid -1 < x < 1, y = \vert x \vert, z = 1 \} \cup \{ (0,0,z) \mid 0 \le x \le 1 \}.
+C_B := \{ -1 < x < 1, y = \vert x \vert, z = 1 \} \cup \{ (0,0,z) \mid 0 \le x \le 1 \}.
 $$
 $C_B$ is not the graph of a continuous function due to the blow-up point of $\phi$ at the origin.
 :::
@@ -83,11 +98,11 @@ Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cylindrical c
 We now present some useful results proved by @bgv15 relating to desirable properties of cylindrical decompositions.
 
 ::: {.definition}
-Let $S \subset \R^n$ be a definable set. A cylindrical decomposition, compatible with $S$, $\cal D$ is called monotone with respect to $S$ if every cell $C \subset S$ of $\cal D$ is monotone.
+Let $S \subset \R^n$ be a definable set. A cylindrical decomposition $\mathcal{D}$ of $\R^n$, compatible with $S$, is called monotone with respect to $S$ if every cell $C \subset S$ of $\cal D$ is monotone.
 :::
 
 ::: {.definition #frontier-condition}
-Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cell of $\cal D$. $C$ satisfies the frontier condition in $\cal D$ is $\fr(C)$ is a union of cells of $\cal D$ of smaller dimension. If it is unambiguous that $C$ is a cell of $\cal D$, then we just say that $C$ satisfies the frontier condition.
+Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cell of $\cal D$. $C$ satisfies the frontier condition in $\cal D$ is $\fr{C}$ is a union of cells of $\cal D$ of smaller dimension. If it is unambiguous that $C$ is a cell of $\cal D$, then we just say that $C$ satisfies the frontier condition.
 If every cell in $\cal D$ satisfies the frontier condition, then the cylindrical decomposition $\cal D$ satisfies the frontier condition.
 :::
 
@@ -98,20 +113,20 @@ If $C$ is a 2-dimensional section cell, then it is said to satisfy the strong fr
 ::: {.example #side-wall}
 Consider the two cylindrical cells
 $$
-V := \{ (x,y,z) \mid x > y > 0, z > 0, y = xz \}
+V := \{ x > y > 0, z > 0, y = xz \}
 $$ and $$
-W := \{ (x,y,z) \mid x > y > 0, z > 0, y = 2xz \}
+W := \{ x > y > 0, z > 0, y = 2xz \}
 $$ in $\R^3$.
 Any cylindrical decomposition compatible with $V$ and $W$ is also compatible with the two intervals
 $$
 I_1 = \{ (0,0,z) \mid 0 \le z \le 1/2 \}, I_2 = \{ (0,0,z) \mid 1/2 \le z \le 1 \}
 $$
 and the point $$v = (0,0,1/2).$$
-Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only one-dimensional component of the side-wall of $V$ and $I_1$ is the only one-dimensional component of the side-wall of $W$. In order to obtain the strong frontier condition, we need to partition $V$ into (at least) three cylindrical cells $V',V'',V'''$, one of which, say $V''$, will be one-dimensional. $V''$ should have endpoint $v$ (i.e., $\cl(V'') \cap I = v$).
+Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only one-dimensional component of the side-wall of $V$ and $I_1$ is the only one-dimensional component of the side-wall of $W$. In order to obtain the strong frontier condition, we need to partition $V$ into (at least) three cylindrical cells $V',V'',V'''$, one of which, say $V''$, will be one-dimensional. $V''$ should have endpoint $v$ (i.e., $\cl{V''} \cap I = v$).
 The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of the projection map $W' := \projop{2}^-1\vert_{\cl{W}}(c)$ would satisfy the condition $\cl{W'} \cap I = v'$, where $v' = (0,0,1/4)$. However, $v'$ must be a zero-dimensional cell of the decomposition, which means we need to perform another refinement of $I$. An infinite sequence of refinements, introducing a new 0-dimensional cell $(0,0,1/2^k), k \in \N_{> 0}$, will take place. Thus, a decomposition in in which the side-walls of $V$ and $W$ are single 1-dimensional cells cannot exist.
 :::
 
-::: { .proposition }
+::: { .proposition #delete-zero-index }
 [@bgv15, Lemma 3.3]
 Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then $C' := \projops{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n}(C)$ is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a monotone map $f : C' \to \opspan{x_k}$.
 :::
@@ -128,11 +143,11 @@ A cylindrical algebraic decomposition (CAD) is a cylindrical decomposition in wh
 :::
 
 ::: {.definition}
-Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. A cylindrical algebraic decomposition $\cal D$ is called sign-invariant with respect to $\mathbf{F}$  (or simply $\mathbf{F}$-invariant) if every cell $C$ of $\cal D$ has constant sign (either $> 0$, $< 0$ or $= 0$) on each polynomial in $\mathbf{F}$. Here, $\mathbf{F}$ is called the set of input polynomials.
+Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. A cylindrical algebraic decomposition $\cal D$ is called sign-invariant with respect to $\mathbf{F}$  (or simply $\mathbf{F}$-invariant) if each polynomial $f \in \mathbf{F}$ has a constant sign (either $< 0$, $= 0$ or $> 0$) on every cylindrical cell $C$ of $\mathcal{D}$. 
 :::
 
 ::: {.remark}
-The fundamental theorem of algebra implies that for the coefficients of $\mathbf{F}$, we may choose any ring $K \subset \A$. $\Z$ has been chosen for convenience, but some authors (e.g., @pianomovers1983) choose $\Q$ instead.
+The fundamental theorem of algebra implies that for the coefficients of $\mathbf{F}$, we may choose any ring $K \subset \R$. $\Z$ has been chosen for convenience, but some authors (e.g., @pianomovers1983) choose $\Q$ instead. It is also common to take polynomials with coefficients over $\R$. However, the choice has been made to avoid this so as to work over the algebraic numbers $\mathcal{A}$, whose elements are easily represented in, and manipulated by, computers. 
 :::
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm proposed by @collins1975, closely following @coste2000, for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
@@ -271,11 +286,12 @@ $$
 such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) \}$ coincides with the real roots of polynomials in $\mathbf{F}$, defining the $(i_1,\ldots,i_{n-1},0)$-cells in the cylinder $C' \times \R$ and $\{ -\infty < t < \psi_1(\mathbf{x}), \ldots, \psi_i(\mathbf{x}) < t < \psi_{i+1}(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) < t < \infty \}$ are the $(i_1,\ldots, i_{n-1},1)$-cells in the cylinder $C' \times \R$.
 :::
 
-This follows from the results previously proved. Applying Theorem @\ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtain a set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift)$, we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
+This follows from the results previously proved. Applying Theorem \@ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtain a set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift)$, we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
 
 ### Bounds and variations
 
-We have described how to construct a CAD of $\R^n$ which is sign-invariant with respect to a set of polynomials. We now present the bounds, along with some variations, based @bpr2006.
+We have described how to construct a CAD of $\R^n$ which is sign-invariant with respect to a set of polynomials. We now
+present the bounds, along with some variations, from @bpr2006.
 
 ::: { .proposition #collins }
 [@bpr2006, Algorithm 11.2]
@@ -292,13 +308,13 @@ Observe that these bounds are doubly exponential in the number of variables. Ind
 ::: { .proposition #collins-sets}
 Let $S_1,\ldots,S_k$ be a finite collection of semialgebraic subsets of $\R^n$ defined by quantifier-free Boolean formulas $F_1,\ldots,F_k$ respectively. Together, these formulas include $s$ different polynomials in $\Z[x_1,\ldots,x_n]$ with maximum degree $d$.
 There is an algorithm, taking $\{F_1,\ldots,F_k\}$ as input, which produces a cylindrical decomposition $\mathcal E$ of $\R^n$ compatible with each set $S_i, 1 \le i \le k$.
-Complexity, number of cells, number of polynomials and degrees are the same as in Proposition \ref(prp:collins) but, in practice.
+Complexity, number of cells, number of polynomials and degrees are the same as in Proposition @\ref(prp:collins) but, in practice, more efficient algorithms exist (see e.g., @collins1991 and @bradford2014).
 :::
 
 ::: { .proof }
-Let $f_1,\ldots,f_s \in \R[x_1,\ldots,x_n]$ be the polynomials from formulas $F_1,\ldots,F_k$ and let $\mathcal{E}'$ be the CAD of $\R^n$ produced by Proposition \@ref{prp:novel-frontier-collins} with $f_1,\ldots,f_s$ as input. Since $F_i$ for each $1\le i\le k$ provides a set of sign conditions on polynomials $f_1,\ldots,f_s$, $\mathcal{E}'$ is a refinement of the CAD produced by this algorithm.
+Let $f_1,\ldots,f_s \in \R[x_1,\ldots,x_n]$ be the polynomials from formulas $F_1,\ldots,F_k$ and let $\mathcal{E}'$ be the CAD of $\R^n$ produced by Proposition \@ref{prp:collins} with $f_1,\ldots,f_s$ as input. Since $F_i$ for each $1\le i\le k$ provides a set of sign conditions on polynomials $f_1,\ldots,f_s$, $\mathcal{E}'$ is a refinement of the CAD produced by this algorithm.
 
-Truth values of $F_1,\ldots,F_k$ on ecah cell can easily be computed from the CAD produced by Proposition \@ref(prp:novel-frontier-collins) by considering the signs of $f_1,\ldots,f_s$ on ecah cell, which we computed in the construction of $\mathcal{E}'$.
+Truth values of $F_1,\ldots,F_k$ on ecah cell can easily be computed from the CAD produced by Proposition \@ref(prp:collins) by considering the signs of $f_1,\ldots,f_s$ on ecah cell, which we computed in the construction of $\mathcal{E}'$.
 Observe that this does not change the asymptotic complexity or bounds in Propoosition \ref{prop:collins}.
 :::
 
@@ -327,7 +343,7 @@ coefficients, resultants and discriminants of pairs of polynomials in $\proj(\ma
 similar construction is possible in dimension $3$.
 @mccallum1998 later improved upon his previous work by extending this result to dimension $n > 3$, as long as the set of input polynomials is well oriented.
 
-:: {.definition}
+::: {.definition}
 [@mccallum1998, 6.1]
 Let $\mathbf{F} \subset \Z[x_1, \ldots, x_n]$ be a set of polynomials and denote by $\prim(\mathbf{F})$ the set of all primitive parts of $\mathbf{F}$
 $\mathbf{F}$ is called well-oriented if, when $n > 1$,
@@ -380,7 +396,7 @@ C = \{ (\mathbf{x},x_n) \in \R^n \mid \mathbf{x} \in C', f(\mathbf{x},x_n) = 0, 
 $$
 where $g_1,\ldots,g_k$ are derivatives of the polynomial $f$.
 
-### CAD cells and their defining formulas
+### CAD cells and their defining formulas { #sec:cell-formula }
 
 Although it is possible to construct a "full" (sign-invariant) CAD, QEPCAD-B provides an implementation of the "truth-invariant" CAD described in Proposition \@ref(prp:collins-sets). Indeed, QEPCAD-B, being designed primarily to perform quantifier elimination, frequently constructs a "partial" CAD of $\R^n$ [@brownQepcad].
 We will force the construction of the sign-invariant CAD and use McCallum's projection operator so as to obtain smooth cells (see Proosition \@ref(prp:mc-smooth)).

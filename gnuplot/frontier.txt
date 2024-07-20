@@ -1,0 +1,78 @@
+#!/usr/bin/gnuplot
+#
+# Plotting a sphere with Gnuplots parametric mode
+#
+# AUTHOR: Hagen Wierstorf
+# VERSION: gnuplot 4.6 patchlevel 0
+
+reset
+
+# wxt
+set terminal wxt size 700,524 enhanced font 'Verdana,10' persist
+# svg
+set terminal png size 700,700
+set output 'frontier.svg'
+# pdf
+#set terminal pdf size 700,700
+#set output 'example2.pdf'
+# png
+#set terminal pngcairo size 700,700 enhanced font 'Verdana,10'
+#set output 'example2.png'
+
+# Style definitions
+set border lw 1.5
+
+# unset key; unset tics; unset border
+unset xzeroaxis
+unset yzeroaxis
+set border 0          # remove frame
+set xtics axis        # place tics on axis rather than on border
+set ytics axis
+set ticscale 0        # [optional] labels only, no tics
+set xtics add ("" 0)  # suppress origin label that lies on top of axis
+set ytics add ("" 0)  # suppress origin label that lies on top of axis
+set arrow 1 from -2,0,0 to 2,0,0
+set arrow 2 from 0,-2,0 to 0,2,0
+set arrow 3 from 0,0,-1 to 0,0,2
+
+set lmargin screen 1
+set rmargin screen 0
+set tmargin screen 0
+set bmargin screen 1
+set size ratio -1
+set view 30,30
+
+set parametric
+set isosamples 80,80
+set hidden3d
+
+set xrange [-1.2:1.2]
+set yrange [-0.2:1.2]
+set zrange [-0.2:1.2]
+set urange [-1:1]
+set vrange [0:1]
+
+# lines
+set linetype 10 fc "#11ced8"
+set linetype 11 fc "#fcfa8d"
+
+set cbrange [-1:1]
+set style fill transparent solid 0.8
+set style fill transparent solid 0.8
+set linetype 1 lc rgb "black" lw 0.1
+set linetype 2 lc rgb "black" lw 0.5
+set style line 1 lc rgb 'black' lt 1 lw 2 pt 5
+
+#set pm3d depthorder hidden3d 1
+#set pm3d lighting
+#set hidden3d front
+
+set pm3d depthorder base
+set pm3d lighting
+set hidden3d front
+
+splot \
+    'frontier.data' with pm3d fillcolor linestyle 10,\
+    "fr.dat" with lines lt 1
+
+set output

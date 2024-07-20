@@ -1,0 +1,6 @@
+[quasi-affine not monotone, top of cell with algebraic numbers]
+(w,x,y,z)
+4
+[ 3 w^2 = 2 /\ x > 0 /\ x < 1 /\ y > 0 /\ x + y < 1 /\ z = w x^2 + y^2 ].
+mct y.
+g

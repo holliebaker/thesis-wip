@@ -1,0 +1,488 @@
+``` {test-qanm-4-rat}
+Before Solution >
+d-proj-fac
+A_1,1  = input
+       = 4 w - 7
+
+A_1,2  = input
+       = w - 6
+
+A_1,3  = input
+       = w + 6
+
+Q_1,4  = fac(Q_2,2) = fac(input)
+       = w
+
+
+A_2,1  = input
+       = x
+
+A_2,2  = fac(J_2,1) = fac(res(A_3,1|A_3,2))
+       = x - 1
+
+M_2,3  = fac(K_2,4) = fac(input)
+       = 5 x + 1
+
+M_2,4  = fac(K_2,6) = fac(input)
+       = 8 x - 1
+
+M_2,5  = fac(K_2,7) = fac(input)
+       = 7 x - 1
+
+
+A_3,1  = input
+       = y
+
+A_3,2  = input
+       = y + x - 1
+
+
+A_4,1  = input
+       = z - y^2 - w x^2
+
+
+
+Before Solution >
+d-ref
+
+M_2,2  = input  *** Refinement of cell (8,3) ***
+       = The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000
+
+Coordinate 1 = 6
+             = 6.0000
+Coordinate 2 = 1/7
+             = 0.1429-
+
+
+M_2,1  = input  *** Refinement of cell (6,3) ***
+       = The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000
+
+Coordinate 1 = 7/4
+             = 1.7500
+Coordinate 2 = 1/8
+             = 0.1250
+
+
+
+
+
+Before Solution >
+d-true-cells-t
+---------- Information about the cell (8,5,3,2) (Dimension (0,1,1,0) (2))
+
+Signs of projection factors ------------------------
+
+Level 1
+  4 w - 7 > 0
+  w - 6 = 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 > 0
+  7 x - 1 > 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+*** Initialising the RCAD. ***
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (8,5,3,2)
+Level 1
+  4 w - 7 > 0
+  w - 6 = 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 > 0
+  7 x - 1 > 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 6
+             = 6.0000000000
+Coordinate 2 = 1/4
+             = 0.2500000000
+Coordinate 3 = 1/4
+             = 0.2500000000
+Coordinate 4 = 7/16
+             = 0.4375000000
+
+
+----------------------------------------------------
+---------- Information about the cell (8,4,3,2) (Dimension (0,0,1,0) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  4 w - 7 > 0
+  w - 6 = 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 > 0
+  7 x - 1 = 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (8,4,3,2)
+Level 1
+  4 w - 7 > 0
+  w - 6 = 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 > 0
+  7 x - 1 = 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 6
+             = 6.0000000000
+Coordinate 2 = 1/7
+             = 0.1428571429-
+Coordinate 3 = 1/4
+             = 0.2500000000
+Coordinate 4 = 145/784
+             = 0.1849489796-
+
+
+----------------------------------------------------
+---------- Information about the cell (8,3,3,2) (Dimension (0,1,1,0) (2))
+
+Signs of projection factors ------------------------
+
+Level 1
+  4 w - 7 > 0
+  w - 6 = 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 < 0
+  7 x - 1 < 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (8,3,3,2)
+Level 1
+  4 w - 7 > 0
+  w - 6 = 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 < 0
+  7 x - 1 < 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 6
+             = 6.0000000000
+Coordinate 2 = 1/14
+             = 0.0714285714+
+Coordinate 3 = 1/4
+             = 0.2500000000
+Coordinate 4 = 73/784
+             = 0.0931122449-
+
+
+----------------------------------------------------
+---------- Information about the cell (6,5,3,2) (Dimension (0,1,1,0) (2))
+
+Signs of projection factors ------------------------
+
+Level 1
+  4 w - 7 = 0
+  w - 6 < 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 > 0
+  7 x - 1 > 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (6,5,3,2)
+Level 1
+  4 w - 7 = 0
+  w - 6 < 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 > 0
+  7 x - 1 > 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 7/4
+             = 1.7500000000
+Coordinate 2 = 1/4
+             = 0.2500000000
+Coordinate 3 = 1/4
+             = 0.2500000000
+Coordinate 4 = 11/64
+             = 0.1718750000
+
+
+----------------------------------------------------
+---------- Information about the cell (6,4,3,2) (Dimension (0,0,1,0) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  4 w - 7 = 0
+  w - 6 < 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 = 0
+  7 x - 1 < 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (6,4,3,2)
+Level 1
+  4 w - 7 = 0
+  w - 6 < 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 = 0
+  7 x - 1 < 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 7/4
+             = 1.7500000000
+Coordinate 2 = 1/8
+             = 0.1250000000
+Coordinate 3 = 1/4
+             = 0.2500000000
+Coordinate 4 = 23/256
+             = 0.0898437500
+
+
+----------------------------------------------------
+---------- Information about the cell (6,3,3,2) (Dimension (0,1,1,0) (2))
+
+Signs of projection factors ------------------------
+
+Level 1
+  4 w - 7 = 0
+  w - 6 < 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 < 0
+  7 x - 1 < 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (6,3,3,2)
+Level 1
+  4 w - 7 = 0
+  w - 6 < 0
+  w + 6 > 0
+  w > 0
+Level 2
+  x > 0
+  x - 1 < 0
+  5 x + 1 > 0
+  8 x - 1 < 0
+  7 x - 1 < 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 7/4
+             = 1.7500000000
+Coordinate 2 = 1/16
+             = 0.0625000000
+Coordinate 3 = 1/4
+             = 0.2500000000
+Coordinate 4 = 71/1024
+             = 0.0693359375
+
+
+----------------------------------------------------
+---------- Information about the cell (2,3,3,2) (Dimension (0,1,1,0) (2))
+
+Signs of projection factors ------------------------
+
+Level 1
+  4 w - 7 < 0
+  w - 6 < 0
+  w + 6 = 0
+  w < 0
+Level 2
+  x > 0
+  x - 1 < 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,3,3,2)
+Level 1
+  4 w - 7 < 0
+  w - 6 < 0
+  w + 6 = 0
+  w < 0
+Level 2
+  x > 0
+  x - 1 < 0
+Level 3
+  y > 0
+  y + x - 1 < 0
+Level 4
+  z - y^2 - w x^2 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = -6
+             = -6.0000000000
+Coordinate 2 = 1/4
+             = 0.2500000000
+Coordinate 3 = 1/4
+             = 0.2500000000
+Coordinate 4 = -5/16
+             = -0.3125000000
+
+
+----------------------------------------------------
+
+Before Solution >
+```

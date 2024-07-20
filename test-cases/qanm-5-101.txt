@@ -1,0 +1,15 @@
+[]
+(w,x,y,z,t)
+5
+[
+  w > 0 /\ w < 1 /\ x = 1 - w /\ y > 0 /\ w + y < 1 /\ z = w^2 + x y^2 /\ t = 3 w^2 + x^2 y^2
+].
+mct y.
+g
+g
+g
+d-true-cells-t
+g
+d-proj-fac
+d-ref
+d-true-cells-t

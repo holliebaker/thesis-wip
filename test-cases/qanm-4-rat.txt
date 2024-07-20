@@ -1,0 +1,12 @@
+[quasi-affine not monotone, top of cell with algebraic numbers]
+(w,x,y,z)
+4
+[ [ 4 w = 7 \/ w^2 = 36 ] /\ x > 0 /\ x < 1 /\ y > 0 /\ x + y < 1 /\ z = w x^2 + y^2 ].
+mct y.
+g
+g
+g
+g
+d-proj-fac
+d-ref
+d-true-cells-t

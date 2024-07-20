@@ -1,0 +1,12 @@
+[]
+(x,y,z)
+3
+[ x^2 + y^2 + z^2 - 1 = 0 ].
+mct y.
+g
+g
+g
+g
+d-proj-fac
+d-true-cells-t
+finish

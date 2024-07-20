@@ -1,0 +1,70 @@
+Enter an informal description  between '[' and ']':
+[ Unit circle ]Enter a variable list:
+(x,y)Enter the number of free variables:
+2
+Enter a prenex formula:
+[ x^2 - y^2 = 1 ].
+
+=======================================================
+
+...
+
+Before Solution >
+d-nqf-formula y^2 - x^2 + 1 = 0
+
+Before Solution >
+d-input # input polynomials
+A_2,1  = input
+       = y^2 - x^2 + 1
+
+
+
+Before Solution >
+d-proj-pol # projection polynomials
+J_1,1= dis(A_2,1)
+       = 4 x^2 - 4
+
+
+
+Before Solution >
+d-proj-fac # projection factors
+P_1,1= fac(J_1,1) = fac(dis(A_2,1))
+       = x + 1
+
+P_1,2  = fac(J_1,1) = fac(dis(A_2,1))
+       = x - 1
+
+
+A_2,1  = input
+       = y^2 - x^2 + 1
+
+
+
+Before Solution >
+d-cell(2,2) # the cell which coincides with the unit circle
+---------- Information about the cell (2,2) ----------
+
+Level                       : 2
+Dimension                   : 0
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,2))
+Signs of Projection Factors
+Level 1  : (0,-)
+Level 2  : (0)
+----------   Sample point  ---------- 
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = -1
+             = -1.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+...
+

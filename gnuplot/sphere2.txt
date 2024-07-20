@@ -1,0 +1,48 @@
+#!/usr/bin/gnuplot
+#
+# Plotting a sphere with Gnuplots parametric mode
+#
+# AUTHOR: Hagen Wierstorf
+# VERSION: gnuplot 4.6 patchlevel 0
+
+reset
+
+# wxt
+set terminal wxt size 700,524 enhanced font 'Verdana,10' persist
+# pdf
+#set terminal pdf size 700,700
+#set output 'sphere.pdf'
+# png
+set terminal pngcairo size 700,700 enhanced font 'Verdana,10'
+set output 'sphere.png'
+
+# color definitions
+set style line 1 lc rgb '#157545' lt 1 lw 1 # --- green
+
+set tmargin at screen 0.99
+set bmargin at screen 0.01
+set lmargin at screen 0
+set rmargin at screen 0.9
+set pm3d depthorder hidden3d 1
+set hidden3d
+set palette rgb 9,9,3
+unset colorbox
+unset key
+unset border
+unset tics
+set ticslevel 0
+set view 60,210,1.5,1
+set isosamples 19,44
+set xrange[-8:10]
+set yrange[-8:8]
+set urange[0:2*pi]
+set vrange[0:4*pi]
+
+set parametric
+splot \
+    cos(u), sin(u), 0 with lines lw 5 lc rgb "black" ,\
+    0, cos(u), sin(u) with lines lw 5 lc rgb "black" ,\
+    sin(u), 0, cos(u) with lines lw 5 lc rgb "black" ,\
+    sin(u)*cos(v), sin(u)*sin(v), cos(u) with pm3d
+
+set output

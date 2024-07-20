@@ -1,0 +1,16 @@
+[]
+(w,x,y,z)
+4
+[
+#  [ w < 0 /\ w^2 = 2 /\ x > 0 /\ x < 1 /\ y > 0 /\ x + y < 1 /\ z = 3 x^2 + 4 y^2 ] \/
+  [ w > 0 /\ w < 1 /\ x > 0 /\ w + x < 1 /\ y = w^2 + x^2 /\ z = 2 w^2 + x^2 ]
+].
+mct y.
+g
+g
+g
+d-true-cells-t
+g
+d-proj-fac
+d-ref
+d-true-cells-t
