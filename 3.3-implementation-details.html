@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.3 Implementation Details | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <meta name="description" content="Hollie Baker’s thesis" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.3 Implementation Details | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Hollie Baker’s thesis" />
+  <meta name="github-repo" content="holliebaker/thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.3 Implementation Details | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  
+  <meta name="twitter:description" content="Hollie Baker’s thesis" />
+  
+
+<meta name="author" content="Hollie Baker" />
+
+
+<meta name="date" content="2024-08-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3.2-sec:strat-worked-example.html"/>
+<link rel="next" href="3.4-sec:strat-complexity.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Thesis: CAD with monotone cells</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-structure-of-this-thesis.html"><a href="1.1-structure-of-this-thesis.html"><i class="fa fa-check"></i><b>1.1</b> Structure of this thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-sec:background.html"><a href="2-sec:background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html"><i class="fa fa-check"></i><b>2.1</b> Semialgebraic sets and monotone cells</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#sets-definable-over-o-minimal-structures"><i class="fa fa-check"></i><b>2.1.1</b> Sets definable over O-minimal structures</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#monotone-cells"><i class="fa fa-check"></i><b>2.1.2</b> Monotone cells</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html"><i class="fa fa-check"></i><b>2.2</b> Cylindrical algebraic decomposition</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cad-construction"><i class="fa fa-check"></i><b>2.2.1</b> Constructing a CAD</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#bounds-and-variations"><i class="fa fa-check"></i><b>2.2.2</b> Bounds and variations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#the-projection-operator"><i class="fa fa-check"></i><b>2.2.3</b> The projection operator</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#projection-polynomials-vs-semialgebraic-functions"><i class="fa fa-check"></i><b>2.2.4</b> Projection polynomials vs semialgebraic functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cell-formula"><i class="fa fa-check"></i><b>2.2.5</b> CAD cells and their defining formulas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html"><i class="fa fa-check"></i><b>3</b> Smooth Stratification</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html"><i class="fa fa-check"></i><b>3.1</b> Description of the algorithm</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html#sec:strat-algorithm-details"><i class="fa fa-check"></i><b>3.1.1</b> Subroutines and Algorithm Details</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:strat-worked-example.html"><a href="3.2-sec:strat-worked-example.html"><i class="fa fa-check"></i><b>3.2</b> Worked example</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html"><i class="fa fa-check"></i><b>3.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#determining-the-codimension-and-basic-formula-for-each-stratum"><i class="fa fa-check"></i><b>3.3.1</b> Determining the codimension and basic formula for each stratum</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#discarding-redundant-equations"><i class="fa fa-check"></i><b>3.3.2</b> Discarding redundant equations</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#sec:strat-semialgebraic"><i class="fa fa-check"></i><b>3.3.3</b> From Basic Algebraic sets to Arbitrary Semialgebraic sets</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#implementation-in-c"><i class="fa fa-check"></i><b>3.3.4</b> Implementation in C</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:strat-complexity.html"><a href="3.4-sec:strat-complexity.html"><i class="fa fa-check"></i><b>3.4</b> Complexity Analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-test-cases.html"><a href="3.5-test-cases.html"><i class="fa fa-check"></i><b>3.5</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sec:quasi-affine.html"><a href="4-sec:quasi-affine.html"><i class="fa fa-check"></i><b>4</b> Quasi-affine cells</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><i class="fa fa-check"></i><b>4.1</b> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus"><i class="fa fa-check"></i><b>4.1.1</b> An alternative method for computing the smooth two-dimensional locus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><i class="fa fa-check"></i><b>4.2</b> Ensuring that every cell is the graph of a quasi-affine map</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm"><i class="fa fa-check"></i><b>4.2.1</b> Computing the quasi-affine CAD</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html"><i class="fa fa-check"></i><b>4.3</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html#sec:quasi-complexity"><i class="fa fa-check"></i><b>4.3.1</b> Complexity Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sec:monotone-cells.html"><a href="5-sec:monotone-cells.html"><i class="fa fa-check"></i><b>5</b> Monotone Cells</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html"><i class="fa fa-check"></i><b>5.1</b> Two-dimensional monotone sector cells</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement"><i class="fa fa-check"></i><b>5.1.1</b> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:sub-cad"><i class="fa fa-check"></i><b>5.1.2</b> Working with sub-decompositions above a 0-cell</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html"><i class="fa fa-check"></i><b>5.2</b> Two-dimensional monotone sections</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-1-2-le-j-le-alpha---1"><i class="fa fa-check"></i><b>5.2.1</b> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-2-alpha-1-le-j-le-n"><i class="fa fa-check"></i><b>5.2.2</b> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#critical-points-of-the-top-and-bottom-of-c"><i class="fa fa-check"></i><b>5.2.3</b> Critical points of the top and bottom of <span class="math inline">\(C\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html"><i class="fa fa-check"></i><b>5.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html#sec:monotone-algorithm"><i class="fa fa-check"></i><b>5.3.1</b> Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html"><i class="fa fa-check"></i><b>5.4</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity"><i class="fa fa-check"></i><b>5.4.1</b> Complexity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-sec:compute-refinement.html"><a href="5.5-sec:compute-refinement.html"><i class="fa fa-check"></i><b>5.5</b> Computing the refinements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-sec:frontier.html"><a href="6-sec:frontier.html"><i class="fa fa-check"></i><b>6</b> Frontier Condition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-sec:frontier-bgv.html"><a href="6.1-sec:frontier-bgv.html"><i class="fa fa-check"></i><b>6.1</b> Construction of a CAD with frontier condition, due to <span class="citation">Basu, Gabrielov, and Vorobjov (<span>2015</span>)</span>, Theorem 3.20</a></li>
+<li class="chapter" data-level="6.2" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html"><i class="fa fa-check"></i><b>6.2</b> Lazard’s method for dimension not greater than 3</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html#lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3"><i class="fa fa-check"></i><b>6.2.1</b> Lazard’s Algorithm for lifting with bad points in <span class="math inline">\(\mathbb{R}^3\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html"><i class="fa fa-check"></i><b>6.3</b> Generalisation of Lazard</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#sec:ext-lazard-algorithm"><i class="fa fa-check"></i><b>6.3.1</b> Algorithm for lifting above bad points, for CAD compatible with sets of dimension <span class="math inline">\(\le 2\)</span></a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#correctness-and-complexity-2"><i class="fa fa-check"></i><b>6.3.2</b> Correctness and Complexity</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#complexity-analysis"><i class="fa fa-check"></i><b>6.3.3</b> Complexity analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-sec:implementation-and-testing.html"><a href="7-sec:implementation-and-testing.html"><i class="fa fa-check"></i><b>7</b> Implementation And Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html"><i class="fa fa-check"></i><b>7.1</b> Implementation on top of QEPCAD</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#description-of-qepcad-b"><i class="fa fa-check"></i><b>7.1.1</b> Description of QEPCAD B</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#qepcad-cells-and-sample-points"><i class="fa fa-check"></i><b>7.1.2</b> QEPCAD Cells and Sample Points</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#modifications-to-qepcad"><i class="fa fa-check"></i><b>7.1.3</b> Modifications to QEPCAD</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#quasi-affine"><i class="fa fa-check"></i><b>7.1.4</b> Quasi-affine</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#monotone"><i class="fa fa-check"></i><b>7.1.5</b> Monotone</a></li>
+<li class="chapter" data-level="7.1.6" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#frontier-condition"><i class="fa fa-check"></i><b>7.1.6</b> Frontier Condition</a></li>
+<li class="chapter" data-level="7.1.7" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#sec:implementation-refinement"><i class="fa fa-check"></i><b>7.1.7</b> Refinement</a></li>
+<li class="chapter" data-level="7.1.8" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#obtaining-defining-formulas-for-every-cell"><i class="fa fa-check"></i><b>7.1.8</b> Obtaining defining formulas for every cell</a></li>
+<li class="chapter" data-level="7.1.9" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#the-overall-algorithm"><i class="fa fa-check"></i><b>7.1.9</b> The overall algorithm</a></li>
+<li class="chapter" data-level="7.1.10" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#additional-modifications-and-utility-functions"><i class="fa fa-check"></i><b>7.1.10</b> Additional modifications and Utility Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-test-cases-1.html"><a href="7.2-test-cases-1.html"><i class="fa fa-check"></i><b>7.2</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-sec:novel-frontier.html"><a href="8-sec:novel-frontier.html"><i class="fa fa-check"></i><b>8</b> A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^n\)</span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-statement-of-the-problem.html"><a href="8.1-statement-of-the-problem.html"><i class="fa fa-check"></i><b>8.1</b> Statement of the Problem</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-theory.html"><a href="8.2-theory.html"><i class="fa fa-check"></i><b>8.2</b> Theory</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-theory.html"><a href="8.2-theory.html#computing-the-frontier-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>8.2.1</b> Computing the frontier of a semialgebraic set</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-theory.html"><a href="8.2-theory.html#intermediate-results"><i class="fa fa-check"></i><b>8.2.2</b> Intermediate Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html"><i class="fa fa-check"></i><b>8.3</b> Main Result</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-main-result.html"><a href="8.3-main-result.html#algorithm-psuedo-code"><i class="fa fa-check"></i><b>8.3.1</b> Algorithm Psuedo-Code</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8.3-main-result.html"><a href="8.3-main-result.html#sec:worked-example"><i class="fa fa-check"></i><b>8.3.2</b> Worked Example</a></li>
+<li class="chapter" data-level="8.3.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html#mathematical-description"><i class="fa fa-check"></i><b>8.3.3</b> Mathematical Description</a></li>
+<li class="chapter" data-level="8.3.4" data-path="8.3-main-result.html"><a href="8.3-main-result.html#proof-of-correctness"><i class="fa fa-check"></i><b>8.3.4</b> Proof of correctness</a></li>
+<li class="chapter" data-level="8.3.5" data-path="8.3-main-result.html"><a href="8.3-main-result.html#complexity"><i class="fa fa-check"></i><b>8.3.5</b> Complexity</a></li>
+<li class="chapter" data-level="8.3.6" data-path="8.3-main-result.html"><a href="8.3-main-result.html#a-note-on-constructing-the-intermediate-decompositions"><i class="fa fa-check"></i><b>8.3.6</b> A Note on Constructing the Intermediate Decompositions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html"><i class="fa fa-check"></i><b>8.4</b> Generalisations and further work</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:pfaffian"><i class="fa fa-check"></i><b>8.4.1</b> Pfaffian Functions</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:novel-frontier-fw"><i class="fa fa-check"></i><b>8.4.2</b> Further Wrok</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-sec:conclusions.html"><a href="9-sec:conclusions.html"><i class="fa fa-check"></i><b>9</b> Conclusions and Further Work</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html"><i class="fa fa-check"></i><b>9.1</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#smooth-stratification-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>9.1.1</b> Smooth stratification of a semialgebraic set</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#an-algorithm-to-construct-monotone-cad-compatible-with-a-family-of-semialgebraic-sets-of-dimension-at-most-2"><i class="fa fa-check"></i><b>9.1.2</b> An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most <span class="math inline">\(2\)</span></a></li>
+<li class="chapter" data-level="9.1.3" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#a-novel-algorithm-for-computing-a-cad-with-frontier-condition-compatible-with-a-semialgebraic-set-of-arbitrary-dimension"><i class="fa fa-check"></i><b>9.1.3</b> A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-further-work.html"><a href="9.2-further-work.html"><i class="fa fa-check"></i><b>9.2</b> Further Work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-test-cases.html"><a href="appendix-a-test-cases.html"><i class="fa fa-check"></i>Appendix A: Test Cases</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cylindrical Algebraic Decompositions With Monotone Cells</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="implementation-details" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Implementation Details<a href="3.3-implementation-details.html#implementation-details" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="determining-the-codimension-and-basic-formula-for-each-stratum" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Determining the codimension and basic formula for each stratum<a href="3.3-implementation-details.html#determining-the-codimension-and-basic-formula-for-each-stratum" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 2 assert that each stratum of codimension <span class="math inline">\(k\)</span> can be represented by a conjunction containing <span class="math inline">\(k\)</span> equations. I.e., each stratum is basic. A naive implementation of the procedure leads to a non-basic representation as shown in the following example</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-34" class="example"><strong>Example 3.1  </strong></span>Consider the semialgebraic set
+<span class="math display">\[
+S := \{ (x_1,x_2) \in \mathbb{R}^2 \mid x_1 x_2 = 0 \}
+\]</span>
+Apply the algorithm.
+<span class="math display">\[\begin{align*}
+k=0,X&#39;:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid f_{1}:=x_{1}x_{2}=0\right\} \\\left(0,1,1\right)h_{1}=&amp;f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{1}=&amp;x_{2}\\Y_{1}:=&amp;\left\{ \mathbf{x}\in X&#39;\mid y\ne0\right\} \\U_{1}:=&amp;\left\{ \mathbf{x}\in \mathbb{R}^2\mid x_{1}x_{2}=0,x_{2}\ne0\right\} \\&amp;\text{Proceed by induction}\\k=1,h_{1}=f_{1},i_{1}=1,X&#39;&#39;:=&amp;Y_{1},F_{1}=\left\{ f_{1}\right\} \\\left(1,1\right),h_{2}=&amp;f_{1}\\s_{2}=&amp;\begin{pmatrix}\partial f_{1}/\partial x_{1} &amp; \partial f_{1}/\partial x_{2}\\
+\partial f_{2}/\partial x_{1} &amp; \partial f_{1}/\partial x_{2}
+\end{pmatrix}=0\\&amp;\text{since both columns are equal.}\\\text{Return. }Y_{1}&amp;\text{ is smooth.}\\
+\end{align*}\]</span></p>
+<p>Observe that the formula for <span class="math inline">\(Y_1\)</span> contains one equation, <span class="math inline">\(h_1 = f_1\)</span>. Hence <span class="math inline">\(Y_1\)</span> is a smooth stratum in basic representation and we can conclude that it has codimension <span class="math inline">\(1\)</span>.</p>
+<p>For the next nonzero derivative, with index <span class="math inline">\((1,0,1)\)</span>, we get
+<span class="math display">\[\begin{align*}
+k=0,X&#39;:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,y=0\right\} \\\left(1,0,1\right)\ h_{1}=&amp;f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{2}=&amp;x_{1}\\Y_{1}:=&amp;\left\{ \mathbf{x}\in X&#39;\mid x_{1}\ne0\right\} \\U_{1}:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,x_{1}\ne0\right\} \\&amp;\text{Proceed by indection.}\\k=1,h_{1}=f_{1},i_{1}=2,X&#39;&#39;:=&amp;Y_{1}\ldots\\&amp;\text{No partial derivatives can be computed.}\\\text{Return. }Y_{1}&amp;\text{ is smooth.}
+\end{align*}\]</span></p>
+<p>Notice that the inductive step returns immediately. This is because <span class="math inline">\(i_1=2\)</span>, so it is not passible to take further partial derivatives with respect to <span class="math inline">\(j &gt; i_1\)</span>. In the formula for
+<span class="math display">\[
+Y_1 := \{ \mathbf{x} \in \mathbb{R}^2 \mid f_1 := x_1 x_2 = 0, h_1 := x_2 = 0, x_1 \ne 0 \},
+\]</span>
+two different equations, <span class="math inline">\(f_1\)</span> and <span class="math inline">\(h_1\)</span> appear. However, <span class="math inline">\(Y_1\)</span> is not in basic representation. Indeed, the equation <span class="math inline">\(f_1=0\)</span> is redundant, since <span class="math inline">\(f_1\)</span> is equal to zero for all points at which <span class="math inline">\(h_1\)</span> is equal to zero. Thus <span class="math inline">\(f_1\)</span> can be discarded, and we see that only one equation, <span class="math inline">\(h_1\)</span>, is required to represent <span class="math inline">\(Y_1\)</span> in basic form. We can conclude that <span class="math inline">\(Y_1\)</span> is smooth and has codimension <span class="math inline">\(1\)</span>.</p>
+<p>Finally, consider the derivative with index <span class="math inline">\((1,1,1)\)</span>.
+<span class="math display">\[\begin{align*}
+k=0,X&#39;:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,x_{2}=0,x_{1}=0\right\} \\\left(1,1,1\right)\ h_{1}=&amp;s_{1}^{\left(0,1,1\right)}=x_{2}\\s_{1}=\partial f_{1}/\partial x_{2}=&amp;1\\Y_{1}:=&amp;\left\{ \mathbf{x}\in X&#39;\mid1\ne0\right\} \\U_{1}:=&amp;\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{2}=0,1\ne0\right\}
+\end{align*}\]</span>
+Again, the inductive step returns immediately because <span class="math inline">\(i_1=2\)</span>, but this time we can see that <span class="math inline">\(Y_1\)</span> is not an open subset of <span class="math inline">\(U_1\)</span>. As mentioned above, the algorithm is unable to determine this without solving a quantifier elimination problem. Instead, we may be able to determine the codimension by looking at the basic representation of <span class="math display">\[
+Y_1 := \{ (x_1,x_2) \in \mathbb{R}^2 \mid x_1 x_2 = 0, x_1 = 0, x_2 = 0 \}.
+\]</span>
+(Note that the constraint <span class="math inline">\(1 \ne 0\)</span> is dropped since it is trivial and adds no information.)
+We see that three equations appear in the definition of <span class="math inline">\(Y_1\)</span>, but the first one, <span class="math inline">\(f_1 := x_1 y_2\)</span> is redundant again. Thus, the two equations <span class="math inline">\(x_2 = 0, x_1 = 0\)</span> define <span class="math inline">\(Y_1\)</span> and we can conclude that <span class="math inline">\(Y_1\)</span> is smooth and has codimension <span class="math inline">\(2\)</span>.</p>
+</div>
+<p>This example shows two things. Firstly, not all functions are required to represent the smooth stratum and secondly <span class="math inline">\(k\)</span>, the current step of induction, gives a lower bound on the codimension of strata.
+<span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 1 states that
+<span class="math display">\[
+\det\begin{pmatrix}\partial h_{1}/\partial x_{i_{1}} &amp; \ldots &amp; \partial h_{1}/\partial x_{i_{k}}\\
+\vdots &amp;  &amp; \vdots\\
+\partial h_{k}/\partial x_{i_{1}} &amp; \ldots &amp; \partial h_{k}/\partial x_{i_{k}}
+\end{pmatrix}\ne0
+\]</span>
+at every point of a stratum <span class="math inline">\(X_k\)</span> of codimension <span class="math inline">\(k\)</span> which includes the functions <span class="math inline">\(h_1,\ldots,h_k\)</span> in its definition.
+As we saw in the example, other functions vanish at every point of <span class="math inline">\(X_k\)</span>. We need to find the “basic” set of <span class="math inline">\(k\)</span> functions needed to define <span class="math inline">\(X_k\)</span>.</p>
+</div>
+<div id="discarding-redundant-equations" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Discarding redundant equations<a href="3.3-implementation-details.html#discarding-redundant-equations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let <span class="math inline">\(F \subset \mathbb{Z}[x_1,\ldots,x_n]\)</span> be a set of polynomials, indexed by <span class="math inline">\((m_{i_1},\ldots,m_1,j)\)</span> and, for <span class="math inline">\(\mathbf{m} = (0,\ldots,0,m_\ell,\ldots,m_1,j),\ell &gt; i_1\)</span> let
+<span class="math display">\[
+s^{m_n,\ldots,m_1,j}_k = \partial_{\mathbf{h}, \mathbf{i}, n}^{m_n} \partial_{\mathbf{h}, \mathbf{i}, i_1 + 1}^{m_{i_1 + 1}} f
+\]</span>
+be the partial derivative computed at index <span class="math inline">\(\mathbf{m}\)</span>, where <span class="math inline">\(f \in F\)</span> has index <span class="math inline">\((m_1,\ldots,m_1,j)\)</span> be one of the partial derivatives computed during the algorithm.
+Denote by <span class="math inline">\(G\)</span> the set of derivatives with index lexicographically less than <span class="math inline">\(\mathbf{m}\)</span>. <span class="math inline">\(Y_k \subset Y_{k-1}\)</span> is defined such that every function in <span class="math inline">\(G\)</span> is equal to zero while the function <span class="math inline">\(h^{\mathbf{m}}_k\)</span> is not.
+Define the smooth manifold
+<span class="math display">\[
+U_k := \{ \mathbf{x} \in \mathbb{R}^n \mid h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0, h_k(\mathbf{x}) = 0, s^{\mathbf{m}}_k(\mathbf{x}) \ne 0 \}.
+\]</span>
+of codimension <span class="math inline">\(k\)</span>, where the function <span class="math inline">\(h_k := s^{(0,\ldots,0,m_\ell - 1,m_{\ell - 1},\ldots,m_1,j)}_k\)</span>. According to <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 2, <span class="math inline">\(Y_k\)</span> is smooth and has codimension <span class="math inline">\(k\)</span> if it is an open subset of <span class="math inline">\(U_k\)</span>. In this case, only <span class="math inline">\(k\)</span> of the polynomials will be needed to define <span class="math inline">\(Y_k\)</span>. Note that inequations <span class="math inline">\(s_1,\ldots,s_{k-1}\)</span> which appear in the definition of <span class="math inline">\(Y_{k-1} \supset Y_k\)</span> should also be taken into account.
+Begin with a set
+<span class="math display">\[
+Y&#39; := \{ \mathbf{x} \in \mathbb{R}^n \mid h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_(\mathbf{x}) \ne 0, s_k(\mathbf{x}) \ne 0 \} \subset Y_k.
+\]</span>
+Consider each function <span class="math inline">\(g \in G\)</span> in reverse lexicographical order. If <span class="math inline">\(g(\mathbf{x}) = 0\)</span> at every point <span class="math inline">\(\mathbf{x} \in Y&#39;\)</span> then it is redundant and should be discarded. Otherwise, <span class="math inline">\(g\)</span> should be included in the defining equations for <span class="math inline">\(Y_k\)</span>. Since <span class="math inline">\(Y_k\)</span> has codimension <span class="math inline">\(k\)</span>, and <span class="math inline">\(Y&#39;\)</span> is already an open, basic set of codimension <span class="math inline">\(k-1\)</span>, only one more polynomial should be needed.
+If <span class="math inline">\(Y_k\)</span> is not an open subset of <span class="math inline">\(U_k\)</span>, then more polynomials will be required to define it, and the number of polynomials gives the codimension.</p>
+<p>A polynomial <span class="math inline">\(g \in \mathbb{Z}[x_1,\ldots,x_n]\)</span> is redundant in the definition of the semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span> if the following formula is true
+<span class="math display">\[
+\exists x_1,\ldots,x_n,a \in \mathbb{R}^{n+1} \mid (x_1,\ldots,x_n) \in S, a \ne 0, g(x_1,\ldots,x_n) = a.
+\]</span>
+This problem can also be formulated using the emptiness check. <span class="math inline">\(g\)</span> is redundant in the definition of <span class="math inline">\(S\)</span> if the semialgebraic set
+<span class="math display">\[
+\{ \mathbf{x} \in S \mid g(\mathbf{x}) \ne 0 \}
+\]</span>
+is non-empty.</p>
+<!-- TODO do we also need to check that the determinant of the matrix (minors?) is nonzero. -->
+</div>
+<div id="sec:strat-semialgebraic" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> From Basic Algebraic sets to Arbitrary Semialgebraic sets<a href="3.3-implementation-details.html#sec:strat-semialgebraic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Corollary 1 asserts that the algorithm can be applied to arbitrary semi-pfaffian sets and, therefore, without modification, to arbitrary semialgebraic sets.
+Let <span class="math inline">\(S \subset \mathbb{R}^n\)</span> be a semialgebraic set represented by a quantifier-free Boolean formula containing polynomials
+<span class="math display">\[
+f_1,\ldots,f_s.
+\]</span>
+Consider each “sign set”
+<span class="math display">\[
+S_{( \ast_1,\ldots,\ast_s )} := \{ \mathbf{x} \in \mathbb{R}^n \mid f_1(\mathbf{x}) \ast_1 0, \ldots, f_s(\mathbf{x}) \ast_s 0 \}
+\]</span>
+where <span class="math inline">\(\ast_i, 1 \le i \le s \in \{&lt;, &gt;, =\}\)</span>. <span class="math inline">\(S\)</span> can be partitioned into a finite union of some of the <span class="math inline">\(s^3\)</span> sign sets.
+If we apply the smooth stratification algorithm to each <span class="math inline">\(S_{(\ast_1,\ldots,\ast_s)} \subset S\)</span>, and take the union of strata, we will obtain a smooth stratification of the set <span class="math inline">\(S\)</span>. Indeed, since no two sign sets have non-empty intersection, it is clear that no two strata intersect, and since a finite number of the sign-sets form a partition of <span class="math inline">\(S\)</span>, the smooth strata of these sign-sets also forms a partition of <span class="math inline">\(S\)</span>.</p>
+</div>
+<div id="implementation-in-c" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Implementation in C<a href="3.3-implementation-details.html#implementation-in-c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This algorithm has been implemented in <code>C</code>, using the computer algebra library <code>SACLIB</code>. <code>QEPCAD</code> is used to perform emptyness checks. Below is an example of the program’s output, given the basic semialgebraic set
+<span class="math display">\[
+\{ z = 0, x^2 - y^2 = 0 \} \subset \mathbb{R}^3,
+\]</span>
+discussed in Section <a href="3.2-sec:strat-worked-example.html#sec:strat-worked-example">3.2</a>.</p>
+<pre><code>Enter a variable list.
+(x,y,z)
+Please enter a QEPCAD formula defining a basic semialgebraic set(i.e., conjunction of equations and inequalities).
+[ z = 0 /\ x^2 - y^2 = 0 ].
+
+Stratification computed. Please select an option.
+  1. print all polynomials
+  2. print all strata
+  0. exit
+
+1
+All polynomials generated by the smooth stratification algorithm:
+2 x
+-y^2 + x^2
+z
+1
+2 x
+z
+-y^2 + x^2
+
+Stratification computed. Please select an option.
+  1. print all polynomials
+  2. print all strata
+  0. exit
+2
+List of all strata.
+Strata of codimension 1
+
+Strata of codimension 2
+X_(2,1):
+  { z == 0
+  , -y^2 + x^2 == 0
+  , 2 x /= 0
+  , 2 x /= 0
+  }
+
+Strata of codimension 3
+X_(3,1):
+  { -y^2 + x^2 == 0
+  , z == 0
+  , 2 x == 0
+  }
+</code></pre>
+<p>The program works in a similar way to QEPCAD, taking as input the variable list (which specifies the order) and a conjunction of polynomial equations, inequations and inequalities (written as a QEPCAD formula). The stratification is then computed and there is a basic repl which allows the user to see information about the polynomials and strata produced.</p>
+<p>Exerpts of the code are now presented and discussed. The entrypoint for the algorithm is <code>stratify</code>.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word r</code> <span class="math inline">\(\in \mathbb{Z}\)</span> (ambient dimension),</li>
+<li><code>Word L</code> <span class="math inline">\(= (f_1,\ldots,f_k) \subset \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><code>Word Ineqs</code> <span class="math inline">\(= (g_1,\ldots,g_\ell) \subset \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><code>Word V</code> <span class="math inline">\(= (v_1,\ldots,v_r)\)</span> is a variable list,</li>
+</ul>
+<p>such that <span class="math inline">\(X = \{ f_1 = 0, \ldots, f_k = 0, g_1 &gt; 0, \ldots, g_\ell = 0 \}\)</span> is the basic semialgebraic set to be stratified.</p>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>Word S</code>: set of smooth strata <span class="math inline">\((\mathcal{x}_1,\ldots,\mathcal{X}_r)\)</span>, such that <span class="math inline">\(\mathcal{X}_i\)</span> contains strata of comidemnios <span class="math inline">\(i\)</span> for <span class="math inline">\(1 \le i \le r\)</span>, or <code>NIL</code> if <span class="math inline">\(X\)</span> is a smooth subset.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb2-1"><a href="3.3-implementation-details.html#cb2-1"></a>Word stratify(Word r, Word L, Word Ineqs, Word V, Word *S_)</span>
+<span id="cb2-2"><a href="3.3-implementation-details.html#cb2-2"></a>{</span>
+<span id="cb2-3"><a href="3.3-implementation-details.html#cb2-3"></a>    <span class="co">// initialise strata S</span></span>
+<span id="cb2-4"><a href="3.3-implementation-details.html#cb2-4"></a>    *S_ = NIL;</span>
+<span id="cb2-5"><a href="3.3-implementation-details.html#cb2-5"></a>    <span class="dt">int</span> i = <span class="dv">0</span>;</span>
+<span id="cb2-6"><a href="3.3-implementation-details.html#cb2-6"></a>    <span class="cf">while</span> (i &lt; r) {</span>
+<span id="cb2-7"><a href="3.3-implementation-details.html#cb2-7"></a>        *S_ = COMP(NIL, *S_);</span>
+<span id="cb2-8"><a href="3.3-implementation-details.html#cb2-8"></a>        ++i;</span>
+<span id="cb2-9"><a href="3.3-implementation-details.html#cb2-9"></a>    }</span>
+<span id="cb2-10"><a href="3.3-implementation-details.html#cb2-10"></a></span>
+<span id="cb2-11"><a href="3.3-implementation-details.html#cb2-11"></a>    <span class="co">// initialise the inequalities as a QEPCAD formula</span></span>
+<span id="cb2-12"><a href="3.3-implementation-details.html#cb2-12"></a>    Word D, P;</span>
+<span id="cb2-13"><a href="3.3-implementation-details.html#cb2-13"></a>    Word F = NIL;</span>
+<span id="cb2-14"><a href="3.3-implementation-details.html#cb2-14"></a>    <span class="cf">while</span> (Ineqs != NIL) {</span>
+<span id="cb2-15"><a href="3.3-implementation-details.html#cb2-15"></a>        ADV(Ineqs, &amp;P, &amp;Ineqs);</span>
+<span id="cb2-16"><a href="3.3-implementation-details.html#cb2-16"></a></span>
+<span id="cb2-17"><a href="3.3-implementation-details.html#cb2-17"></a>        F = COMP(LIST4(GTOP, P, r, NIL), F);</span>
+<span id="cb2-18"><a href="3.3-implementation-details.html#cb2-18"></a>    }</span>
+<span id="cb2-19"><a href="3.3-implementation-details.html#cb2-19"></a></span>
+<span id="cb2-20"><a href="3.3-implementation-details.html#cb2-20"></a>    <span class="co">// initialise the input set of polynomials with their degrees</span></span>
+<span id="cb2-21"><a href="3.3-implementation-details.html#cb2-21"></a>    Word Fs = NIL, s = <span class="dv">0</span>;</span>
+<span id="cb2-22"><a href="3.3-implementation-details.html#cb2-22"></a>    <span class="cf">while</span> (L != NIL) {</span>
+<span id="cb2-23"><a href="3.3-implementation-details.html#cb2-23"></a>        ADV(L, &amp;P, &amp;L);</span>
+<span id="cb2-24"><a href="3.3-implementation-details.html#cb2-24"></a>        ++s;</span>
+<span id="cb2-25"><a href="3.3-implementation-details.html#cb2-25"></a></span>
+<span id="cb2-26"><a href="3.3-implementation-details.html#cb2-26"></a>        D = DEG(r, P);</span>
+<span id="cb2-27"><a href="3.3-implementation-details.html#cb2-27"></a>        Fs = COMP(LIST2(P, D), Fs);</span>
+<span id="cb2-28"><a href="3.3-implementation-details.html#cb2-28"></a>    }</span>
+<span id="cb2-29"><a href="3.3-implementation-details.html#cb2-29"></a></span>
+<span id="cb2-30"><a href="3.3-implementation-details.html#cb2-30"></a>    <span class="co">// initial i0 = FIRST(I1) = 0. h0 = FIRST(Hs) = 0, Minor is the empty matrix</span></span>
+<span id="cb2-31"><a href="3.3-implementation-details.html#cb2-31"></a>    <span class="dt">int</span> strata_appended;</span>
+<span id="cb2-32"><a href="3.3-implementation-details.html#cb2-32"></a>    Word Gs = strat_helper(r, V, F, <span class="dv">1</span>, s, Fs, LIST1(<span class="dv">0</span>), LIST1(<span class="dv">0</span>), NIL, NIL, &amp;strata_appended, S_);</span>
+<span id="cb2-33"><a href="3.3-implementation-details.html#cb2-33"></a></span>
+<span id="cb2-34"><a href="3.3-implementation-details.html#cb2-34"></a>    <span class="cf">if</span> (strata_appended == <span class="dv">0</span>) {</span>
+<span id="cb2-35"><a href="3.3-implementation-details.html#cb2-35"></a>        <span class="co">// X is smooth</span></span>
+<span id="cb2-36"><a href="3.3-implementation-details.html#cb2-36"></a>        *S_ = NIL;</span>
+<span id="cb2-37"><a href="3.3-implementation-details.html#cb2-37"></a>    }</span>
+<span id="cb2-38"><a href="3.3-implementation-details.html#cb2-38"></a></span>
+<span id="cb2-39"><a href="3.3-implementation-details.html#cb2-39"></a>    <span class="cf">return</span> Gs;</span>
+<span id="cb2-40"><a href="3.3-implementation-details.html#cb2-40"></a>}</span></code></pre></div>
+<p>This function sets up the data structures required by <code>stratify_helper</code>, the recursive function which performs stratification of some input set <span class="math inline">\(X \subset \mathbb{R}^n\)</span>.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word r</code> <span class="math inline">\(\in \mathbb{N}\)</span>, <code>Word V</code>: variable list, Word Ineqs`: qepcad formula of inequalities <span class="math inline">\(\{ g_1 &gt; 0, \ldots, g_\ell &gt;0 \}\)</span>,</li>
+<li><code>Word k</code> <span class="math inline">\(1\le k \le r\)</span> is the codimension currently beind worked with,</li>
+<li><code>Word np</code>: number of polynomials,</li>
+<li><code>Word Fs</code> <span class="math inline">\(((f_1,\deg(f_1)), \ldots, (f_{\rm{np}}, \deg(f_{\rm{np}})))\)</span> is the list of imput polynomials,</li>
+<li><code>Word Is</code> is a partial index <span class="math inline">\((0,,i_1,\ldots,i_{k-1})\)</span>,</li>
+<li><code>Word Hs</code> is the set of polynomials <span class="math inline">\((h_{i_1},\ldots,h_{i_{k-1}})\)</span>,</li>
+<li><code>Word Qs</code> is a list of polynomials <span class="math inline">\(\subset \mathbb{Z}[x_1,\ldots,x_n]\)</span>,</li>
+<li><code>Word Minor</code> is a <span class="math inline">\(((k-1)\times (k-1))\)</span>-matrix <span class="math inline">\(A = \vert a_{ij} \vert = \partial h_{i} / partial x_{j}\)</span> for <span class="math inline">\(h_i \in \rm{Hs}, j \in \rm{Is}\)</span>.</li>
+</ul>
+<p>such that the input set <span class="math inline">\(X\)</span> is defined by equations <code>Fs</code> and <code>Hs</code>, inequalities <code>Ineqs</code> and inequations <code>Qs</code>.</p>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>Word Gs</code> <span class="math inline">\(\subset \mathbb{Z}[x_1,\ldots,x_r]\)</span> is the set of all partial differentials (for steps <span class="math inline">\(k \le j \le r\)</span>),</li>
+<li><code>int strat_count_</code> is the number of strata appended (for steps <span class="math inline">\(k \le j \le r\)</span>),</li>
+<li><code>Word S</code> is the set of strata (for steps <span class="math inline">\(k \le j \le r\)</span>).</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb3-1"><a href="3.3-implementation-details.html#cb3-1"></a>Word strat_helper(Word r, Word V, Word Ineqs, Word k, Word np, Word Fs, Word Is, Word Hs, Word Qs, Word Minor, <span class="dt">int</span> *strat_count_, Word *S_)</span>
+<span id="cb3-2"><a href="3.3-implementation-details.html#cb3-2"></a>{</span>
+<span id="cb3-3"><a href="3.3-implementation-details.html#cb3-3"></a>    <span class="co">// add constraints x_1 = 0, ..., x_{i1 - 1}  0</span></span>
+<span id="cb3-4"><a href="3.3-implementation-details.html#cb3-4"></a>    Word i0 = FIRST(Is); <span class="co">// number of variables considered so far</span></span>
+<span id="cb3-5"><a href="3.3-implementation-details.html#cb3-5"></a></span>
+<span id="cb3-6"><a href="3.3-implementation-details.html#cb3-6"></a>    <span class="co">// base case for no polynomials?</span></span>
+<span id="cb3-7"><a href="3.3-implementation-details.html#cb3-7"></a>    <span class="cf">if</span> (np == <span class="dv">0</span> || i0 &gt;= r) {</span>
+<span id="cb3-8"><a href="3.3-implementation-details.html#cb3-8"></a>        *strat_count_ = <span class="dv">0</span>;</span>
+<span id="cb3-9"><a href="3.3-implementation-details.html#cb3-9"></a>        <span class="cf">return</span> NIL;</span>
+<span id="cb3-10"><a href="3.3-implementation-details.html#cb3-10"></a>    }</span>
+<span id="cb3-11"><a href="3.3-implementation-details.html#cb3-11"></a></span>
+<span id="cb3-12"><a href="3.3-implementation-details.html#cb3-12"></a>    <span class="co">// list of H polynomials (rev order) without the last (zero) one.</span></span>
+<span id="cb3-13"><a href="3.3-implementation-details.html#cb3-13"></a>    Word Hs1 = RED(CINV(Hs));</span>
+<span id="cb3-14"><a href="3.3-implementation-details.html#cb3-14"></a></span>
+<span id="cb3-15"><a href="3.3-implementation-details.html#cb3-15"></a>    <span class="co">// set up return value</span></span>
+<span id="cb3-16"><a href="3.3-implementation-details.html#cb3-16"></a>    Word Gs1 = NIL; <span class="co">// list of all differentials computed in this round, to return</span></span>
+<span id="cb3-17"><a href="3.3-implementation-details.html#cb3-17"></a>    Word Gs2 = NIL; <span class="co">// list of differentials produced during induction</span></span>
+<span id="cb3-18"><a href="3.3-implementation-details.html#cb3-18"></a>    Word Gs3 = NIL; <span class="co">// store Gs on current round</span></span>
+<span id="cb3-19"><a href="3.3-implementation-details.html#cb3-19"></a></span>
+<span id="cb3-20"><a href="3.3-implementation-details.html#cb3-20"></a>    <span class="co">// set up working array</span></span>
+<span id="cb3-21"><a href="3.3-implementation-details.html#cb3-21"></a>    Word g_count = np; <span class="co">// how many differentials computed so far, index in Gs</span></span>
+<span id="cb3-22"><a href="3.3-implementation-details.html#cb3-22"></a>    Word Gs = NIL; <span class="co">// list of all differentials computed in this round, working set</span></span>
+<span id="cb3-23"><a href="3.3-implementation-details.html#cb3-23"></a></span>
+<span id="cb3-24"><a href="3.3-implementation-details.html#cb3-24"></a>    <span class="co">// metadata</span></span>
+<span id="cb3-25"><a href="3.3-implementation-details.html#cb3-25"></a>    Word Ms[np]; <span class="co">// number of steps before maximum differentiation variable (i1) should be incremented</span></span>
+<span id="cb3-26"><a href="3.3-implementation-details.html#cb3-26"></a>    Word Dvs[np]; <span class="co">// list of current differentiation variable (i1)</span></span>
+<span id="cb3-27"><a href="3.3-implementation-details.html#cb3-27"></a>    Word Backup[np]; <span class="co">// first polynomial in the list</span></span>
+<span id="cb3-28"><a href="3.3-implementation-details.html#cb3-28"></a>    Word Chase[np]; <span class="co">// first element is h1</span></span>
+<span id="cb3-29"><a href="3.3-implementation-details.html#cb3-29"></a>    Word ChaseIndex[np]; <span class="co">// chase array index of polynomial h1</span></span>
+<span id="cb3-30"><a href="3.3-implementation-details.html#cb3-30"></a>    Word Append[np]; <span class="co">// pointer to last but one element in list, for quick appending.</span></span>
+<span id="cb3-31"><a href="3.3-implementation-details.html#cb3-31"></a></span>
+<span id="cb3-32"><a href="3.3-implementation-details.html#cb3-32"></a>    Word p_index = <span class="dv">0</span>; <span class="co">// initial polynomial index, ranges over 0 &lt;= p_index &lt; np</span></span>
+<span id="cb3-33"><a href="3.3-implementation-details.html#cb3-33"></a></span>
+<span id="cb3-34"><a href="3.3-implementation-details.html#cb3-34"></a>    <span class="co">// initialise metadata for each input polynomial</span></span>
+<span id="cb3-35"><a href="3.3-implementation-details.html#cb3-35"></a>    <span class="cf">while</span> (p_index &lt; np) {</span>
+<span id="cb3-36"><a href="3.3-implementation-details.html#cb3-36"></a>        Word F1;</span>
+<span id="cb3-37"><a href="3.3-implementation-details.html#cb3-37"></a>        ADV(Fs, &amp;F1, &amp;Fs);</span>
+<span id="cb3-38"><a href="3.3-implementation-details.html#cb3-38"></a></span>
+<span id="cb3-39"><a href="3.3-implementation-details.html#cb3-39"></a>        Word D = REDI(SECOND(F1), i0);</span>
+<span id="cb3-40"><a href="3.3-implementation-details.html#cb3-40"></a>        Ms[p_index] = COMP(<span class="dv">1</span>, LCOPY(D)); <span class="co">// neet do copy as we modify later</span></span>
+<span id="cb3-41"><a href="3.3-implementation-details.html#cb3-41"></a>        Dvs[p_index] = i0;</span>
+<span id="cb3-42"><a href="3.3-implementation-details.html#cb3-42"></a>        Backup[p_index] = F1;</span>
+<span id="cb3-43"><a href="3.3-implementation-details.html#cb3-43"></a>        Chase[p_index] = F1;</span>
+<span id="cb3-44"><a href="3.3-implementation-details.html#cb3-44"></a>        ChaseIndex[p_index] = <span class="dv">0</span>;</span>
+<span id="cb3-45"><a href="3.3-implementation-details.html#cb3-45"></a>        Append[p_index] = RED(F1);</span>
+<span id="cb3-46"><a href="3.3-implementation-details.html#cb3-46"></a>        Gs = COMP(LCOPY(F1), Gs);</span>
+<span id="cb3-47"><a href="3.3-implementation-details.html#cb3-47"></a>        Gs3 = COMP(FIRST(F1), Gs3);</span>
+<span id="cb3-48"><a href="3.3-implementation-details.html#cb3-48"></a></span>
+<span id="cb3-49"><a href="3.3-implementation-details.html#cb3-49"></a>        <span class="co">// increment index</span></span>
+<span id="cb3-50"><a href="3.3-implementation-details.html#cb3-50"></a>        ++p_index;</span>
+<span id="cb3-51"><a href="3.3-implementation-details.html#cb3-51"></a>    }</span>
+<span id="cb3-52"><a href="3.3-implementation-details.html#cb3-52"></a></span>
+<span id="cb3-53"><a href="3.3-implementation-details.html#cb3-53"></a>    <span class="co">// main loop, consider each index (j, m_{i0 + 1}, ..., m_r) in lex order</span></span>
+<span id="cb3-54"><a href="3.3-implementation-details.html#cb3-54"></a>    Word n_finished = <span class="dv">0</span>; <span class="co">// each polynomial has a different max index, keep track of how many indices are maxed out</span></span>
+<span id="cb3-55"><a href="3.3-implementation-details.html#cb3-55"></a>    Word count = <span class="dv">0</span>; <span class="co">// number of derivatives computed so far, scalar value of (m_{i0 + 1}, ..., m_r)</span></span>
+<span id="cb3-56"><a href="3.3-implementation-details.html#cb3-56"></a></span>
+<span id="cb3-57"><a href="3.3-implementation-details.html#cb3-57"></a>    <span class="dt">int</span> strat_count = <span class="dv">0</span>;</span>
+<span id="cb3-58"><a href="3.3-implementation-details.html#cb3-58"></a>    <span class="cf">while</span> (n_finished &lt; np) { <span class="co">// stop once differential index for every polynomial is maxed</span></span>
+<span id="cb3-59"><a href="3.3-implementation-details.html#cb3-59"></a>        <span class="co">// reached the end of polynomial list, cycle back to beginning and consider next differential index I</span></span>
+<span id="cb3-60"><a href="3.3-implementation-details.html#cb3-60"></a>        <span class="cf">if</span> (p_index == np) {</span>
+<span id="cb3-61"><a href="3.3-implementation-details.html#cb3-61"></a>            p_index = <span class="dv">0</span>;</span>
+<span id="cb3-62"><a href="3.3-implementation-details.html#cb3-62"></a>            n_finished = <span class="dv">0</span>;</span>
+<span id="cb3-63"><a href="3.3-implementation-details.html#cb3-63"></a></span>
+<span id="cb3-64"><a href="3.3-implementation-details.html#cb3-64"></a>            ++count;</span>
+<span id="cb3-65"><a href="3.3-implementation-details.html#cb3-65"></a>        }</span>
+<span id="cb3-66"><a href="3.3-implementation-details.html#cb3-66"></a></span>
+<span id="cb3-67"><a href="3.3-implementation-details.html#cb3-67"></a>        Word v = Dvs[p_index]; <span class="co">// differentiation variable</span></span>
+<span id="cb3-68"><a href="3.3-implementation-details.html#cb3-68"></a>        Word m = FIRST(Ms[p_index]);</span>
+<span id="cb3-69"><a href="3.3-implementation-details.html#cb3-69"></a></span>
+<span id="cb3-70"><a href="3.3-implementation-details.html#cb3-70"></a>        <span class="co">// update variable v and chaser list</span></span>
+<span id="cb3-71"><a href="3.3-implementation-details.html#cb3-71"></a>        <span class="cf">if</span> (count &gt;= m &amp;&amp; v == r) { <span class="co">// rollover, but we&#39;re finished</span></span>
+<span id="cb3-72"><a href="3.3-implementation-details.html#cb3-72"></a>            ++n_finished; <span class="co">// this polynomial is done.</span></span>
+<span id="cb3-73"><a href="3.3-implementation-details.html#cb3-73"></a>            ++p_index; <span class="co">// next polynomial</span></span>
+<span id="cb3-74"><a href="3.3-implementation-details.html#cb3-74"></a></span>
+<span id="cb3-75"><a href="3.3-implementation-details.html#cb3-75"></a>            <span class="cf">continue</span>; <span class="co">// skip it</span></span>
+<span id="cb3-76"><a href="3.3-implementation-details.html#cb3-76"></a>        } <span class="cf">else</span> <span class="cf">if</span> (count &gt;= m) { <span class="co">// rollover - increment differentiation variable</span></span>
+<span id="cb3-77"><a href="3.3-implementation-details.html#cb3-77"></a>            ++v; <span class="co">// next variable ...</span></span>
+<span id="cb3-78"><a href="3.3-implementation-details.html#cb3-78"></a>            Dvs[p_index] = v; <span class="co">// ... and store</span></span>
+<span id="cb3-79"><a href="3.3-implementation-details.html#cb3-79"></a>            Chase[p_index] = Backup[p_index];</span>
+<span id="cb3-80"><a href="3.3-implementation-details.html#cb3-80"></a>            ChaseIndex[p_index] = <span class="dv">0</span>;</span>
+<span id="cb3-81"><a href="3.3-implementation-details.html#cb3-81"></a></span>
+<span id="cb3-82"><a href="3.3-implementation-details.html#cb3-82"></a>            <span class="co">// calculate next m</span></span>
+<span id="cb3-83"><a href="3.3-implementation-details.html#cb3-83"></a>            Word M1 = RED(Ms[p_index]);</span>
+<span id="cb3-84"><a href="3.3-implementation-details.html#cb3-84"></a>            Word d = FIRST(M1);</span>
+<span id="cb3-85"><a href="3.3-implementation-details.html#cb3-85"></a>            SFIRST(M1, d * m);</span>
+<span id="cb3-86"><a href="3.3-implementation-details.html#cb3-86"></a>            Ms[p_index] = M1;</span>
+<span id="cb3-87"><a href="3.3-implementation-details.html#cb3-87"></a></span>
+<span id="cb3-88"><a href="3.3-implementation-details.html#cb3-88"></a>            <span class="co">// degree zero - no derivatives taken for this variable. next iteration will increment the variable.</span></span>
+<span id="cb3-89"><a href="3.3-implementation-details.html#cb3-89"></a>            <span class="cf">if</span> (d == <span class="dv">1</span>) <span class="cf">continue</span>;</span>
+<span id="cb3-90"><a href="3.3-implementation-details.html#cb3-90"></a>        }</span>
+<span id="cb3-91"><a href="3.3-implementation-details.html#cb3-91"></a></span>
+<span id="cb3-92"><a href="3.3-implementation-details.html#cb3-92"></a>        <span class="co">// next polynomial</span></span>
+<span id="cb3-93"><a href="3.3-implementation-details.html#cb3-93"></a>        Word F1 = Append[p_index];</span>
+<span id="cb3-94"><a href="3.3-implementation-details.html#cb3-94"></a></span>
+<span id="cb3-95"><a href="3.3-implementation-details.html#cb3-95"></a>        <span class="co">// compute s_k = partial_{(h_1,...,h_{k-1}),(i_1,...,i_{k-1}),v} h_k</span></span>
+<span id="cb3-96"><a href="3.3-implementation-details.html#cb3-96"></a>        <span class="co">// get h_k and its degree</span></span>
+<span id="cb3-97"><a href="3.3-implementation-details.html#cb3-97"></a>        Word P;</span>
+<span id="cb3-98"><a href="3.3-implementation-details.html#cb3-98"></a>        ADV(Chase[p_index], &amp;P, &amp;Chase[p_index]);</span>
+<span id="cb3-99"><a href="3.3-implementation-details.html#cb3-99"></a></span>
+<span id="cb3-100"><a href="3.3-implementation-details.html#cb3-100"></a>        <span class="co">// construct jacobi matrix using h1 = P and i1 = v</span></span>
+<span id="cb3-101"><a href="3.3-implementation-details.html#cb3-101"></a>        Word Jacobi = JacobiFromMinor(r, P, v, Hs, Is, Minor);</span>
+<span id="cb3-102"><a href="3.3-implementation-details.html#cb3-102"></a></span>
+<span id="cb3-103"><a href="3.3-implementation-details.html#cb3-103"></a>        <span class="co">// compute partial differential, determinant of jacobi matrix</span></span>
+<span id="cb3-104"><a href="3.3-implementation-details.html#cb3-104"></a>        <span class="co">// note that Q may be a constant, we need to preserve it</span></span>
+<span id="cb3-105"><a href="3.3-implementation-details.html#cb3-105"></a>        Word Q = MAIPDE(r, Jacobi); <span class="co">// next derivative is the jacobi determinant</span></span>
+<span id="cb3-106"><a href="3.3-implementation-details.html#cb3-106"></a>        Word Qdeg = DEG(r,Q);</span>
+<span id="cb3-107"><a href="3.3-implementation-details.html#cb3-107"></a>        <span class="dt">bool</span> q_const = IPCONST(r, Q);</span>
+<span id="cb3-108"><a href="3.3-implementation-details.html#cb3-108"></a>        Word Q1 = LIST2(Q, Qdeg);</span>
+<span id="cb3-109"><a href="3.3-implementation-details.html#cb3-109"></a>        Word Qs1 = Qs;</span>
+<span id="cb3-110"><a href="3.3-implementation-details.html#cb3-110"></a>        <span class="cf">if</span> (!q_const) Qs1 = COMP(Q, Qs1); <span class="co">// because c /= 0 is trivially true</span></span>
+<span id="cb3-111"><a href="3.3-implementation-details.html#cb3-111"></a></span>
+<span id="cb3-112"><a href="3.3-implementation-details.html#cb3-112"></a>        <span class="co">// candidate stratum Y1 on which Q /= 0</span></span>
+<span id="cb3-113"><a href="3.3-implementation-details.html#cb3-113"></a>        <span class="co">//   - 0 /= 0 is trivially false, so we immediately conclude that it&#39;s empty</span></span>
+<span id="cb3-114"><a href="3.3-implementation-details.html#cb3-114"></a>        <span class="co">//   - const /= 0 is trivially true, so assuming the algebraic set Gs3 is non-empty, Y1 is trivially non-empty</span></span>
+<span id="cb3-115"><a href="3.3-implementation-details.html#cb3-115"></a>        <span class="co">//   - if Q is constant, Y1 must be the last candidate, since the next one includes a trivially false equation</span></span>
+<span id="cb3-116"><a href="3.3-implementation-details.html#cb3-116"></a>        <span class="cf">if</span> (Q != <span class="dv">0</span> &amp;&amp; (q_const || !ISEMPTY(r, V, Gs3, Qs1, Ineqs))) {</span>
+<span id="cb3-117"><a href="3.3-implementation-details.html#cb3-117"></a>            <span class="co">// Gs2 contains derivatives computed during recursion</span></span>
+<span id="cb3-118"><a href="3.3-implementation-details.html#cb3-118"></a>            <span class="dt">int</span> strata_appended;</span>
+<span id="cb3-119"><a href="3.3-implementation-details.html#cb3-119"></a>            Gs2 = strat_helper(r, V, Ineqs, k + <span class="dv">1</span>, g_count, Gs, COMP(v, Is), COMP(P, Hs), Qs1, Jacobi, &amp;strata_appended, S_);</span>
+<span id="cb3-120"><a href="3.3-implementation-details.html#cb3-120"></a>            Gs1 = CONC(Gs1, Gs2);</span>
+<span id="cb3-121"><a href="3.3-implementation-details.html#cb3-121"></a></span>
+<span id="cb3-122"><a href="3.3-implementation-details.html#cb3-122"></a>            <span class="co">// determine if all derivatives at step k+1 vanish on the set Y1</span></span>
+<span id="cb3-123"><a href="3.3-implementation-details.html#cb3-123"></a>            strat_count += strata_appended;</span>
+<span id="cb3-124"><a href="3.3-implementation-details.html#cb3-124"></a></span>
+<span id="cb3-125"><a href="3.3-implementation-details.html#cb3-125"></a>            <span class="co">// append stratum if none were appended during induction</span></span>
+<span id="cb3-126"><a href="3.3-implementation-details.html#cb3-126"></a>            <span class="cf">if</span> (strata_appended == <span class="dv">0</span>) {</span>
+<span id="cb3-127"><a href="3.3-implementation-details.html#cb3-127"></a>                Word Y, k1;</span>
+<span id="cb3-128"><a href="3.3-implementation-details.html#cb3-128"></a>                construct_stratum_basic(k, r, V, Hs1, Q, Qs, Gs3, Ineqs, &amp;k1, &amp;Y);</span>
+<span id="cb3-129"><a href="3.3-implementation-details.html#cb3-129"></a>                append_stratum(S_, k1, Y);</span>
+<span id="cb3-130"><a href="3.3-implementation-details.html#cb3-130"></a>                ++strat_count;</span>
+<span id="cb3-131"><a href="3.3-implementation-details.html#cb3-131"></a>            }</span>
+<span id="cb3-132"><a href="3.3-implementation-details.html#cb3-132"></a></span>
+<span id="cb3-133"><a href="3.3-implementation-details.html#cb3-133"></a>            Gs3 = COMP(Q, Gs3);</span>
+<span id="cb3-134"><a href="3.3-implementation-details.html#cb3-134"></a>            Gs = COMP(Q1, Gs);</span>
+<span id="cb3-135"><a href="3.3-implementation-details.html#cb3-135"></a>            ++g_count;</span>
+<span id="cb3-136"><a href="3.3-implementation-details.html#cb3-136"></a></span>
+<span id="cb3-137"><a href="3.3-implementation-details.html#cb3-137"></a>            <span class="cf">if</span> (q_const) {</span>
+<span id="cb3-138"><a href="3.3-implementation-details.html#cb3-138"></a>                <span class="co">// the next candidate will include the trivially false eequation const = 0. stop.</span></span>
+<span id="cb3-139"><a href="3.3-implementation-details.html#cb3-139"></a>                <span class="cf">break</span>;</span>
+<span id="cb3-140"><a href="3.3-implementation-details.html#cb3-140"></a>            }</span>
+<span id="cb3-141"><a href="3.3-implementation-details.html#cb3-141"></a>        }</span>
+<span id="cb3-142"><a href="3.3-implementation-details.html#cb3-142"></a></span>
+<span id="cb3-143"><a href="3.3-implementation-details.html#cb3-143"></a>        <span class="co">// append derivative to Fs, preserving zeroes</span></span>
+<span id="cb3-144"><a href="3.3-implementation-details.html#cb3-144"></a>        SRED(F1, Q1);</span>
+<span id="cb3-145"><a href="3.3-implementation-details.html#cb3-145"></a>        Append[p_index] = RED2(F1);</span>
+<span id="cb3-146"><a href="3.3-implementation-details.html#cb3-146"></a></span>
+<span id="cb3-147"><a href="3.3-implementation-details.html#cb3-147"></a>        <span class="co">// next polynomial please.</span></span>
+<span id="cb3-148"><a href="3.3-implementation-details.html#cb3-148"></a>        Chase[p_index] = RED(Chase[p_index]);</span>
+<span id="cb3-149"><a href="3.3-implementation-details.html#cb3-149"></a>        ChaseIndex[p_index] = ChaseIndex[p_index] + <span class="dv">1</span>;</span>
+<span id="cb3-150"><a href="3.3-implementation-details.html#cb3-150"></a>        ++p_index;</span>
+<span id="cb3-151"><a href="3.3-implementation-details.html#cb3-151"></a>    }</span>
+<span id="cb3-152"><a href="3.3-implementation-details.html#cb3-152"></a></span>
+<span id="cb3-153"><a href="3.3-implementation-details.html#cb3-153"></a>    Gs1 = CONC(Gs1, Gs3);</span>
+<span id="cb3-154"><a href="3.3-implementation-details.html#cb3-154"></a>    *strat_count_ = strat_count;</span>
+<span id="cb3-155"><a href="3.3-implementation-details.html#cb3-155"></a>    <span class="cf">return</span> Gs1;</span>
+<span id="cb3-156"><a href="3.3-implementation-details.html#cb3-156"></a>}</span></code></pre></div>
+<ul>
+<li>For the base case, where there are no polynomials, or index <span class="math inline">\(i_k \ge r\)</span>, (Line 7), there is nothing to do. No strata are appended and no polynomials computed.</li>
+<li>Prior to Line 57, initialisation is done. Metadata for each polynomial in <code>Fs</code> is stored.</li>
+<li>The main loop, beginning on Line 57, computes partial derivatives in ascending lexicographical order of index <span class="math inline">\((i_r,\ldots,i_{k+1},j)\)</span>, <span class="math inline">\(1 \le j \le \rm{np}\)</span>.</li>
+<li>Lines 57-100 keeps track of the current polynomial <code>P</code> and “differentiation variable” <code>v</code> <span class="math inline">\(\in x_{i_k+1},\ldots,i_r\)</span>.</li>
+<li>Line 101 calls the function <code>JacobiFromMinor</code>, which takes a <span class="math inline">\(((k-1)\times (k-1))\)</span>-matrix <span class="math inline">\(A = \vert a_{ij} \vert = \partial h_i / \partial x_j\)</span>, a polynomial <span class="math inline">\(f\)</span> and index <span class="math inline">\(\ell\)</span>, and returns the <span class="math inline">\((k \times k)\)</span>-matrix obtained from <span class="math inline">\(A\)</span> by appending column <span class="math inline">\((\partial h_1 / \partial x_\ell, \ldots, \partial h_{k-1} / \partial x_\ell)^T\)</span> and row <span class="math inline">\((\partial f / \partial x_{i_1}, \ldots, \partial f / \partial x_{i_{k-1}}, \partial f / \partial \ell)\)</span>. I.e., it constructs the martix from the partial differential operator (Definition <a href="3.1-sec:strat-alg-description.html#def:pdo">3.2</a>) and saves recomputing the whole matrix of partial derivatives. Note that, when <span class="math inline">\(k=1\)</span>, <code>JacobiFromMinor</code> returns the one-element matrix <span class="math inline">\(\partial f / \partial \ell\)</span>.</li>
+<li>On line 105, the determinant of the matrix computed on Line 101 is computed, for the partial differential oporator.</li>
+<li>Line 116 determines if the candidate stratum is empty (see comment on Lines 112-115).</li>
+<li>If non-empty, we proceed by induction, calling <code>strat_helper</code> recursively (for <span class="math inline">\(k+1\)</span>, appending index <code>v</code> and polynomial <code>P</code>, and passing the <span class="math inline">\((k \times k\)</span>-matrix as the <code>Minor</code>). The number of strata of codimension <span class="math inline">\(&gt; k\)</span> which were added to <code>S</code> is returned. If no strata were appended, all the partial derivatives vanish identically on the candidate, and we can conclude that it is smooth and has codimension <span class="math inline">\(k\)</span>.</li>
+<li>Line 128 represents the candidate stratum as a basic semialgebraic set containing <span class="math inline">\(k\)</span> equations. The function <code>construct_stratum_basic</code> is discussed shortly.</li>
+<li>The rest of the function is responsible for updating the metadata and keeping track of the list of polynomials <code>Gs1</code> to be returned.</li>
+</ul>
+<p>The function <code>construct_stratum_basic</code> is responsible for representing a candidate stratum as a basic semialgebraic set defined using <span class="math inline">\(k\)</span> polynomial equations. It discards redundant polynomias as described in Section <a href="3.1-sec:strat-alg-description.html#sec:strat-algorithm-details">3.1.1</a>.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word r</code> <span class="math inline">\(\in \mathbb{N}\)</span>: ambient dimension,</li>
+<li><code>Word k</code> <span class="math inline">\(0 \le k \le r\)</span>: codimension of candidate stratum,</li>
+<li><code>Word V</code>: variable list,</li>
+<li><code>Word Hs</code> <span class="math inline">\(= (h_{i_1},\ldots,h_{i_{k-1}}) \subset \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><code>Word Q</code> <span class="math inline">\(\in \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><code>Word Qs</code> <span class="math inline">\(\subset \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><code>Word Gs</code> <span class="math inline">\(\subset \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><code>Word Ineqs</code>: a QEPCAD formula of inequalities,</li>
+</ul>
+<p>such that <code>Hs</code>, <code>Qs</code>, <code>Q</code>, <code>Gs</code> and <code>Ineqs</code> define a candidate stratum <span class="math inline">\(Y_k\)</span>. All of <code>Hs</code> and <code>Gs</code> are equal to zero on <span class="math inline">\(Y\)</span>, all of <code>Q</code> and <code>Qs</code> are not equal to zero on <span class="math inline">\(Y\)</span> and the formula <code>Ineqs</code> defines a semialgebraic set containing <span class="math inline">\(Y\)</span>.</p>
+<p><strong>Output</strong>=</p>
+<ul>
+<li><code>Word k1</code> <span class="math inline">\(\ge\)</span> <code>k</code> is the actual codimension of <span class="math inline">\(Y\)</span>,</li>
+<li><code>Word F</code> is the stratum <span class="math inline">\(Y\)</span> defined by <code>k1</code> equations and the inequations and inequalities from <code>Qs</code>, <code>Q</code> and <code>Ineqs</code></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb4-1"><a href="3.3-implementation-details.html#cb4-1"></a><span class="dt">void</span> construct_stratum_basic(Word k, Word r, Word V, Word Hs, Word Q, Word Qs, Word Gs, Word Ineqs, Word *k1_, Word *Y_)</span>
+<span id="cb4-2"><a href="3.3-implementation-details.html#cb4-2"></a>{</span>
+<span id="cb4-3"><a href="3.3-implementation-details.html#cb4-3"></a>    Word L, P, i;</span>
+<span id="cb4-4"><a href="3.3-implementation-details.html#cb4-4"></a>    Word Eqs = NIL, Ineqats = NIL;</span>
+<span id="cb4-5"><a href="3.3-implementation-details.html#cb4-5"></a></span>
+<span id="cb4-6"><a href="3.3-implementation-details.html#cb4-6"></a>    <span class="co">// we may have Q = const, if so don&#39;t include it.</span></span>
+<span id="cb4-7"><a href="3.3-implementation-details.html#cb4-7"></a>    <span class="cf">if</span> (!IPCONST(r, Q)) {</span>
+<span id="cb4-8"><a href="3.3-implementation-details.html#cb4-8"></a>        Qs = COMP(Q, Qs);</span>
+<span id="cb4-9"><a href="3.3-implementation-details.html#cb4-9"></a>    }</span>
+<span id="cb4-10"><a href="3.3-implementation-details.html#cb4-10"></a></span>
+<span id="cb4-11"><a href="3.3-implementation-details.html#cb4-11"></a>    <span class="co">// add Qs and Hs to the definition of stratum</span></span>
+<span id="cb4-12"><a href="3.3-implementation-details.html#cb4-12"></a>    L = Hs, i = k - <span class="dv">1</span>;</span>
+<span id="cb4-13"><a href="3.3-implementation-details.html#cb4-13"></a>    <span class="cf">while</span> (L != NIL) {</span>
+<span id="cb4-14"><a href="3.3-implementation-details.html#cb4-14"></a>        <span class="co">// equation h = 0</span></span>
+<span id="cb4-15"><a href="3.3-implementation-details.html#cb4-15"></a>        ADV(L, &amp;P, &amp;L);</span>
+<span id="cb4-16"><a href="3.3-implementation-details.html#cb4-16"></a>        Eqs = COMP(P, Eqs);</span>
+<span id="cb4-17"><a href="3.3-implementation-details.html#cb4-17"></a></span>
+<span id="cb4-18"><a href="3.3-implementation-details.html#cb4-18"></a>       --i;</span>
+<span id="cb4-19"><a href="3.3-implementation-details.html#cb4-19"></a>    }</span>
+<span id="cb4-20"><a href="3.3-implementation-details.html#cb4-20"></a></span>
+<span id="cb4-21"><a href="3.3-implementation-details.html#cb4-21"></a>    L = Qs;</span>
+<span id="cb4-22"><a href="3.3-implementation-details.html#cb4-22"></a>    <span class="cf">while</span> (L != NIL) {</span>
+<span id="cb4-23"><a href="3.3-implementation-details.html#cb4-23"></a>        <span class="co">// inequation s /= 0</span></span>
+<span id="cb4-24"><a href="3.3-implementation-details.html#cb4-24"></a>        ADV(L, &amp;P, &amp;L);</span>
+<span id="cb4-25"><a href="3.3-implementation-details.html#cb4-25"></a>        Ineqats = COMP(P, Ineqats);</span>
+<span id="cb4-26"><a href="3.3-implementation-details.html#cb4-26"></a>    }</span>
+<span id="cb4-27"><a href="3.3-implementation-details.html#cb4-27"></a></span>
+<span id="cb4-28"><a href="3.3-implementation-details.html#cb4-28"></a>    <span class="co">// we start with functions (h_1,...,h_{k-1}) and then determine which ones from Gs are required.</span></span>
+<span id="cb4-29"><a href="3.3-implementation-details.html#cb4-29"></a>    Word k1 = k - <span class="dv">1</span>; <span class="co">// store the codimension.</span></span>
+<span id="cb4-30"><a href="3.3-implementation-details.html#cb4-30"></a></span>
+<span id="cb4-31"><a href="3.3-implementation-details.html#cb4-31"></a>    <span class="co">// attempt to add mroe polynomials from the list Gs of candidate functions.</span></span>
+<span id="cb4-32"><a href="3.3-implementation-details.html#cb4-32"></a>    <span class="cf">while</span> (Gs != NIL) {</span>
+<span id="cb4-33"><a href="3.3-implementation-details.html#cb4-33"></a>        ADV(Gs, &amp;P, &amp;Gs);</span>
+<span id="cb4-34"><a href="3.3-implementation-details.html#cb4-34"></a></span>
+<span id="cb4-35"><a href="3.3-implementation-details.html#cb4-35"></a>        <span class="cf">if</span> (!ISEMPTY(r, V, Hs, COMP(P, Qs), Ineqs)) {</span>
+<span id="cb4-36"><a href="3.3-implementation-details.html#cb4-36"></a>            <span class="co">// if this set is non-empty, then there is a point at which P /= 0, thus P = 0 is necessary</span></span>
+<span id="cb4-37"><a href="3.3-implementation-details.html#cb4-37"></a>            Hs = COMP(P, Hs);</span>
+<span id="cb4-38"><a href="3.3-implementation-details.html#cb4-38"></a>            Eqs = COMP(P, Eqs);</span>
+<span id="cb4-39"><a href="3.3-implementation-details.html#cb4-39"></a></span>
+<span id="cb4-40"><a href="3.3-implementation-details.html#cb4-40"></a>            ++k1; <span class="co">// addition of a new polynomial increases the codimension</span></span>
+<span id="cb4-41"><a href="3.3-implementation-details.html#cb4-41"></a>        }</span>
+<span id="cb4-42"><a href="3.3-implementation-details.html#cb4-42"></a>    }</span>
+<span id="cb4-43"><a href="3.3-implementation-details.html#cb4-43"></a></span>
+<span id="cb4-44"><a href="3.3-implementation-details.html#cb4-44"></a>    <span class="co">// assign to return</span></span>
+<span id="cb4-45"><a href="3.3-implementation-details.html#cb4-45"></a>    *k1_ = k1;</span>
+<span id="cb4-46"><a href="3.3-implementation-details.html#cb4-46"></a>    *Y_ = LIST2(Eqs, Ineqats);</span>
+<span id="cb4-47"><a href="3.3-implementation-details.html#cb4-47"></a>}</span></code></pre></div>
+<p>The idea is to use emptiness checking to find the minimal number, <code>k1</code> of equations needed to define the stratum <span class="math inline">\(Y\)</span> as a basic semialgebraic set. <code>k1</code> is the codimension of <span class="math inline">\(Y\)</span>.</p>
+<p>The function <code>ISEMPTY</code> performs emptiness checking.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word r</code> <span class="math inline">\(\in \mathbb{N}\)</span>,</li>
+<li><code>Word V</code>: variable list <span class="math inline">\((x_1,\ldots,x_r)\)</span>,</li>
+<li><code>Word Fs</code> <span class="math inline">\(= (f_1,\ldots,f_s) \subset \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><code>Word Gs</code> <span class="math inline">\(= (h_1,\ldots,h_t) \subset \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><code>Word Ineqs</code>: list of atomic QEPCAD formulas <span class="math inline">\(\{ g_1 &gt; 0 \},\ldots,\{ g_\ell &gt; 0 \}\)</span></li>
+</ul>
+<p>such that the input set <span class="math inline">\(S \subset \mathbb{R}^r\)</span> can be defined by the QFF
+<span class="math display">\[
+F = \{ f_1 = 0,\ldots,f_s = 0, h_1 \ne 0,\ldots,h_t \ne 0, g_1 &gt; 0,\ldots,g_\ell &gt; 0 \}
+\]</span></p>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>true</code> if <span class="math inline">\(S\)</span> is empty, <code>false</code> otherwise.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb5-1"><a href="3.3-implementation-details.html#cb5-1"></a>Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)</span>
+<span id="cb5-2"><a href="3.3-implementation-details.html#cb5-2"></a>{</span>
+<span id="cb5-3"><a href="3.3-implementation-details.html#cb5-3"></a>    Word P, Ct, Cf;</span>
+<span id="cb5-4"><a href="3.3-implementation-details.html#cb5-4"></a></span>
+<span id="cb5-5"><a href="3.3-implementation-details.html#cb5-5"></a>    <span class="co">// start with the list of inequalities</span></span>
+<span id="cb5-6"><a href="3.3-implementation-details.html#cb5-6"></a>    Word F = Ineqs;</span>
+<span id="cb5-7"><a href="3.3-implementation-details.html#cb5-7"></a></span>
+<span id="cb5-8"><a href="3.3-implementation-details.html#cb5-8"></a>    <span class="co">// add equations</span></span>
+<span id="cb5-9"><a href="3.3-implementation-details.html#cb5-9"></a>    <span class="cf">while</span> (Fs != NIL) {</span>
+<span id="cb5-10"><a href="3.3-implementation-details.html#cb5-10"></a>        ADV(Fs, &amp;P, &amp;Fs);</span>
+<span id="cb5-11"><a href="3.3-implementation-details.html#cb5-11"></a></span>
+<span id="cb5-12"><a href="3.3-implementation-details.html#cb5-12"></a>        F = COMP(LIST4(EQOP, P, r, NIL), F);</span>
+<span id="cb5-13"><a href="3.3-implementation-details.html#cb5-13"></a>    }</span>
+<span id="cb5-14"><a href="3.3-implementation-details.html#cb5-14"></a></span>
+<span id="cb5-15"><a href="3.3-implementation-details.html#cb5-15"></a>    <span class="co">// and inequations</span></span>
+<span id="cb5-16"><a href="3.3-implementation-details.html#cb5-16"></a>    <span class="cf">while</span> (Gs != NIL) {</span>
+<span id="cb5-17"><a href="3.3-implementation-details.html#cb5-17"></a>        ADV(Gs, &amp;P, &amp;Gs);</span>
+<span id="cb5-18"><a href="3.3-implementation-details.html#cb5-18"></a></span>
+<span id="cb5-19"><a href="3.3-implementation-details.html#cb5-19"></a>        F = COMP(LIST4(NEOP, P, r, NIL), F);</span>
+<span id="cb5-20"><a href="3.3-implementation-details.html#cb5-20"></a>    }</span>
+<span id="cb5-21"><a href="3.3-implementation-details.html#cb5-21"></a></span>
+<span id="cb5-22"><a href="3.3-implementation-details.html#cb5-22"></a>    <span class="co">// complete formula by adding the inequation and conujnction</span></span>
+<span id="cb5-23"><a href="3.3-implementation-details.html#cb5-23"></a>    F = COMP(ANDOP, F);</span>
+<span id="cb5-24"><a href="3.3-implementation-details.html#cb5-24"></a></span>
+<span id="cb5-25"><a href="3.3-implementation-details.html#cb5-25"></a>    <span class="co">// re-initialise qepcad before each run</span></span>
+<span id="cb5-26"><a href="3.3-implementation-details.html#cb5-26"></a>    QepcadCls Q;</span>
+<span id="cb5-27"><a href="3.3-implementation-details.html#cb5-27"></a>    INITSYS();</span>
+<span id="cb5-28"><a href="3.3-implementation-details.html#cb5-28"></a></span>
+<span id="cb5-29"><a href="3.3-implementation-details.html#cb5-29"></a>    <span class="co">// set input formula</span></span>
+<span id="cb5-30"><a href="3.3-implementation-details.html#cb5-30"></a>    Q.SETINPUTFORMULA(V,LIST4(r, r, NIL, F));</span>
+<span id="cb5-31"><a href="3.3-implementation-details.html#cb5-31"></a>    Q.PRDQFF();</span>
+<span id="cb5-32"><a href="3.3-implementation-details.html#cb5-32"></a>    Q.CADautoConst();</span>
+<span id="cb5-33"><a href="3.3-implementation-details.html#cb5-33"></a></span>
+<span id="cb5-34"><a href="3.3-implementation-details.html#cb5-34"></a>    <span class="co">// special case: trivially false</span></span>
+<span id="cb5-35"><a href="3.3-implementation-details.html#cb5-35"></a>    <span class="cf">if</span> (Q.GVPC == <span class="dv">0</span>) {</span>
+<span id="cb5-36"><a href="3.3-implementation-details.html#cb5-36"></a>        <span class="cf">return</span> true;</span>
+<span id="cb5-37"><a href="3.3-implementation-details.html#cb5-37"></a>    }</span>
+<span id="cb5-38"><a href="3.3-implementation-details.html#cb5-38"></a></span>
+<span id="cb5-39"><a href="3.3-implementation-details.html#cb5-39"></a>    LISTOFCWTV(Q.GVPC, &amp;Ct, &amp;Cf);</span>
+<span id="cb5-40"><a href="3.3-implementation-details.html#cb5-40"></a></span>
+<span id="cb5-41"><a href="3.3-implementation-details.html#cb5-41"></a>    <span class="co">/* compute cad */</span></span>
+<span id="cb5-42"><a href="3.3-implementation-details.html#cb5-42"></a>    <span class="cf">return</span> Ct == NIL;</span>
+<span id="cb5-43"><a href="3.3-implementation-details.html#cb5-43"></a>}</span></code></pre></div>
+<p>The function constructs <span class="math inline">\(F\)</span>, the defining formula for <span class="math inline">\(S\)</span> and uses QEPCAD to construct a CAD of <span class="math inline">\(\mathbb{R}^r\)</span> compatible with <span class="math inline">\(S\)</span>. Is <span class="math inline">\(S\)</span> is empty, then this CAD will contain no true cells, so the function checks this condition.</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-gv1995">
+<p>Gabrielov, Andrei, and Nicolai Vorobjov. 1995. “Complexity of Stratification of Semi-Pfaffian Sets.” <em>Discrete &amp; Computational Geometry</em> 14 (1): 71–91.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3.2-sec:strat-worked-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3.4-sec:strat-complexity.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/02-smooth-stratification.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["thesis.pdf", "thesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

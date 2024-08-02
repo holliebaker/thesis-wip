@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <meta name="description" content="Hollie Baker’s thesis" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Hollie Baker’s thesis" />
+  <meta name="github-repo" content="holliebaker/thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cylindrical Algebraic Decompositions With Monotone Cells" />
+  
+  <meta name="twitter:description" content="Hollie Baker’s thesis" />
+  
+
+<meta name="author" content="Hollie Baker" />
+
+
+<meta name="date" content="2024-08-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="1.1-structure-of-this-thesis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Thesis: CAD with monotone cells</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-structure-of-this-thesis.html"><a href="1.1-structure-of-this-thesis.html"><i class="fa fa-check"></i><b>1.1</b> Structure of this thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-sec:background.html"><a href="2-sec:background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html"><i class="fa fa-check"></i><b>2.1</b> Semialgebraic sets and monotone cells</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#sets-definable-over-o-minimal-structures"><i class="fa fa-check"></i><b>2.1.1</b> Sets definable over O-minimal structures</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#monotone-cells"><i class="fa fa-check"></i><b>2.1.2</b> Monotone cells</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html"><i class="fa fa-check"></i><b>2.2</b> Cylindrical algebraic decomposition</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cad-construction"><i class="fa fa-check"></i><b>2.2.1</b> Constructing a CAD</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#bounds-and-variations"><i class="fa fa-check"></i><b>2.2.2</b> Bounds and variations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#the-projection-operator"><i class="fa fa-check"></i><b>2.2.3</b> The projection operator</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#projection-polynomials-vs-semialgebraic-functions"><i class="fa fa-check"></i><b>2.2.4</b> Projection polynomials vs semialgebraic functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cell-formula"><i class="fa fa-check"></i><b>2.2.5</b> CAD cells and their defining formulas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html"><i class="fa fa-check"></i><b>3</b> Smooth Stratification</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html"><i class="fa fa-check"></i><b>3.1</b> Description of the algorithm</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html#sec:strat-algorithm-details"><i class="fa fa-check"></i><b>3.1.1</b> Subroutines and Algorithm Details</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:strat-worked-example.html"><a href="3.2-sec:strat-worked-example.html"><i class="fa fa-check"></i><b>3.2</b> Worked example</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html"><i class="fa fa-check"></i><b>3.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#determining-the-codimension-and-basic-formula-for-each-stratum"><i class="fa fa-check"></i><b>3.3.1</b> Determining the codimension and basic formula for each stratum</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#discarding-redundant-equations"><i class="fa fa-check"></i><b>3.3.2</b> Discarding redundant equations</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#sec:strat-semialgebraic"><i class="fa fa-check"></i><b>3.3.3</b> From Basic Algebraic sets to Arbitrary Semialgebraic sets</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#implementation-in-c"><i class="fa fa-check"></i><b>3.3.4</b> Implementation in C</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:strat-complexity.html"><a href="3.4-sec:strat-complexity.html"><i class="fa fa-check"></i><b>3.4</b> Complexity Analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-test-cases.html"><a href="3.5-test-cases.html"><i class="fa fa-check"></i><b>3.5</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sec:quasi-affine.html"><a href="4-sec:quasi-affine.html"><i class="fa fa-check"></i><b>4</b> Quasi-affine cells</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><i class="fa fa-check"></i><b>4.1</b> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus"><i class="fa fa-check"></i><b>4.1.1</b> An alternative method for computing the smooth two-dimensional locus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><i class="fa fa-check"></i><b>4.2</b> Ensuring that every cell is the graph of a quasi-affine map</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm"><i class="fa fa-check"></i><b>4.2.1</b> Computing the quasi-affine CAD</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html"><i class="fa fa-check"></i><b>4.3</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html#sec:quasi-complexity"><i class="fa fa-check"></i><b>4.3.1</b> Complexity Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sec:monotone-cells.html"><a href="5-sec:monotone-cells.html"><i class="fa fa-check"></i><b>5</b> Monotone Cells</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html"><i class="fa fa-check"></i><b>5.1</b> Two-dimensional monotone sector cells</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement"><i class="fa fa-check"></i><b>5.1.1</b> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:sub-cad"><i class="fa fa-check"></i><b>5.1.2</b> Working with sub-decompositions above a 0-cell</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html"><i class="fa fa-check"></i><b>5.2</b> Two-dimensional monotone sections</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-1-2-le-j-le-alpha---1"><i class="fa fa-check"></i><b>5.2.1</b> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-2-alpha-1-le-j-le-n"><i class="fa fa-check"></i><b>5.2.2</b> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#critical-points-of-the-top-and-bottom-of-c"><i class="fa fa-check"></i><b>5.2.3</b> Critical points of the top and bottom of <span class="math inline">\(C\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html"><i class="fa fa-check"></i><b>5.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html#sec:monotone-algorithm"><i class="fa fa-check"></i><b>5.3.1</b> Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html"><i class="fa fa-check"></i><b>5.4</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity"><i class="fa fa-check"></i><b>5.4.1</b> Complexity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-sec:compute-refinement.html"><a href="5.5-sec:compute-refinement.html"><i class="fa fa-check"></i><b>5.5</b> Computing the refinements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-sec:frontier.html"><a href="6-sec:frontier.html"><i class="fa fa-check"></i><b>6</b> Frontier Condition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-sec:frontier-bgv.html"><a href="6.1-sec:frontier-bgv.html"><i class="fa fa-check"></i><b>6.1</b> Construction of a CAD with frontier condition, due to <span class="citation">Basu, Gabrielov, and Vorobjov (<span>2015</span>)</span>, Theorem 3.20</a></li>
+<li class="chapter" data-level="6.2" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html"><i class="fa fa-check"></i><b>6.2</b> Lazard’s method for dimension not greater than 3</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html#lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3"><i class="fa fa-check"></i><b>6.2.1</b> Lazard’s Algorithm for lifting with bad points in <span class="math inline">\(\mathbb{R}^3\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html"><i class="fa fa-check"></i><b>6.3</b> Generalisation of Lazard</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#sec:ext-lazard-algorithm"><i class="fa fa-check"></i><b>6.3.1</b> Algorithm for lifting above bad points, for CAD compatible with sets of dimension <span class="math inline">\(\le 2\)</span></a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#correctness-and-complexity-2"><i class="fa fa-check"></i><b>6.3.2</b> Correctness and Complexity</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#complexity-analysis"><i class="fa fa-check"></i><b>6.3.3</b> Complexity analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-sec:implementation-and-testing.html"><a href="7-sec:implementation-and-testing.html"><i class="fa fa-check"></i><b>7</b> Implementation And Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html"><i class="fa fa-check"></i><b>7.1</b> Implementation on top of QEPCAD</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#description-of-qepcad-b"><i class="fa fa-check"></i><b>7.1.1</b> Description of QEPCAD B</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#qepcad-cells-and-sample-points"><i class="fa fa-check"></i><b>7.1.2</b> QEPCAD Cells and Sample Points</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#modifications-to-qepcad"><i class="fa fa-check"></i><b>7.1.3</b> Modifications to QEPCAD</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#quasi-affine"><i class="fa fa-check"></i><b>7.1.4</b> Quasi-affine</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#monotone"><i class="fa fa-check"></i><b>7.1.5</b> Monotone</a></li>
+<li class="chapter" data-level="7.1.6" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#frontier-condition"><i class="fa fa-check"></i><b>7.1.6</b> Frontier Condition</a></li>
+<li class="chapter" data-level="7.1.7" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#sec:implementation-refinement"><i class="fa fa-check"></i><b>7.1.7</b> Refinement</a></li>
+<li class="chapter" data-level="7.1.8" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#obtaining-defining-formulas-for-every-cell"><i class="fa fa-check"></i><b>7.1.8</b> Obtaining defining formulas for every cell</a></li>
+<li class="chapter" data-level="7.1.9" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#the-overall-algorithm"><i class="fa fa-check"></i><b>7.1.9</b> The overall algorithm</a></li>
+<li class="chapter" data-level="7.1.10" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#additional-modifications-and-utility-functions"><i class="fa fa-check"></i><b>7.1.10</b> Additional modifications and Utility Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-test-cases-1.html"><a href="7.2-test-cases-1.html"><i class="fa fa-check"></i><b>7.2</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-sec:novel-frontier.html"><a href="8-sec:novel-frontier.html"><i class="fa fa-check"></i><b>8</b> A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^n\)</span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-statement-of-the-problem.html"><a href="8.1-statement-of-the-problem.html"><i class="fa fa-check"></i><b>8.1</b> Statement of the Problem</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-theory.html"><a href="8.2-theory.html"><i class="fa fa-check"></i><b>8.2</b> Theory</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-theory.html"><a href="8.2-theory.html#computing-the-frontier-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>8.2.1</b> Computing the frontier of a semialgebraic set</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-theory.html"><a href="8.2-theory.html#intermediate-results"><i class="fa fa-check"></i><b>8.2.2</b> Intermediate Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html"><i class="fa fa-check"></i><b>8.3</b> Main Result</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-main-result.html"><a href="8.3-main-result.html#algorithm-psuedo-code"><i class="fa fa-check"></i><b>8.3.1</b> Algorithm Psuedo-Code</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8.3-main-result.html"><a href="8.3-main-result.html#sec:worked-example"><i class="fa fa-check"></i><b>8.3.2</b> Worked Example</a></li>
+<li class="chapter" data-level="8.3.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html#mathematical-description"><i class="fa fa-check"></i><b>8.3.3</b> Mathematical Description</a></li>
+<li class="chapter" data-level="8.3.4" data-path="8.3-main-result.html"><a href="8.3-main-result.html#proof-of-correctness"><i class="fa fa-check"></i><b>8.3.4</b> Proof of correctness</a></li>
+<li class="chapter" data-level="8.3.5" data-path="8.3-main-result.html"><a href="8.3-main-result.html#complexity"><i class="fa fa-check"></i><b>8.3.5</b> Complexity</a></li>
+<li class="chapter" data-level="8.3.6" data-path="8.3-main-result.html"><a href="8.3-main-result.html#a-note-on-constructing-the-intermediate-decompositions"><i class="fa fa-check"></i><b>8.3.6</b> A Note on Constructing the Intermediate Decompositions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html"><i class="fa fa-check"></i><b>8.4</b> Generalisations and further work</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:pfaffian"><i class="fa fa-check"></i><b>8.4.1</b> Pfaffian Functions</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:novel-frontier-fw"><i class="fa fa-check"></i><b>8.4.2</b> Further Wrok</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-sec:conclusions.html"><a href="9-sec:conclusions.html"><i class="fa fa-check"></i><b>9</b> Conclusions and Further Work</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html"><i class="fa fa-check"></i><b>9.1</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#smooth-stratification-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>9.1.1</b> Smooth stratification of a semialgebraic set</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#an-algorithm-to-construct-monotone-cad-compatible-with-a-family-of-semialgebraic-sets-of-dimension-at-most-2"><i class="fa fa-check"></i><b>9.1.2</b> An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most <span class="math inline">\(2\)</span></a></li>
+<li class="chapter" data-level="9.1.3" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#a-novel-algorithm-for-computing-a-cad-with-frontier-condition-compatible-with-a-semialgebraic-set-of-arbitrary-dimension"><i class="fa fa-check"></i><b>9.1.3</b> A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-further-work.html"><a href="9.2-further-work.html"><i class="fa fa-check"></i><b>9.2</b> Further Work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-test-cases.html"><a href="appendix-a-test-cases.html"><i class="fa fa-check"></i>Appendix A: Test Cases</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cylindrical Algebraic Decompositions With Monotone Cells</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Cylindrical Algebraic Decompositions With Monotone Cells</h1>
+<p class="author"><em>Hollie Baker</em></p>
+<p class="date"><em>2024-08-02</em></p>
+</div>
+<div id="intro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Algebraic geometry is a fundamental and active area of research in mathematics and, loosely speaking, is concerned with
+studying sets which can be defined by polynomials. A fundamental object in algebraic geometry is the algebraic variety,
+a set defined by the simultaneous solutions to a system of polynomial equations. Sometimes, a wider class of sets,
+semialgebraic sets, which are defined by a Boolean combination of polynomial equations and inequalities, are studied. Complex algebraic geometry involves working over an algebraically closed field, where the fundamental theorem of algebra holds, while in real algebraic geometry we are restricted to the real numbers. The focus of this research is on algorithms for computing with semialgebraic sets defined over the real numbers.
+Computational algebraic geometry spans both mathematics and computer science and involves developing algorithms for working with the fundamental objects of algebraic geometry, e.g., algebraic varieties, polynomial ideals and semialgebraic sets.
+Some fundamental results in this area were presented at the International Symposium on Symbolic and Algebraic Manipulation which was held in Marseille in 1979 (now part of ISSAC).
+<span class="citation">Buchberger (<a href="#ref-buchberger1979" role="doc-biblioref">1979</a>)</span> presented his criterion and an algorithm for computing a Groebner basis for a polynomial ideal defined over a real closed field, which is still one of the most efficient methods for finding the complex solutions of a systems of multivariate polynomial equations.
+<span class="citation">Lazard (<a href="#ref-lazard1979" role="doc-biblioref">1979</a>)</span> also presented an algorithm, based on Macalay’s multivariate resultants, for solving systems of homogeneous polynomial equations over any field (algebraically closed or otherwise), which has complexity singly exponential in the number of unknowns.
+<span class="citation">Arnon (<a href="#ref-arnon1979" role="doc-biblioref">1979</a>)</span> described an extension to Collins’ algorithm for computing cylindrical decompositions of real space, which allows one to determine the dimension of a semialgebraic set and deduce some of its topological properties.
+Since then, there have been many advances in these areas, both in extending the applications of these algorithms and making them more efficient.</p>
+<p>A fundamental result in real algebraic geometry is Tarski’s Theorem <span class="citation">(“Alfred Tarski’s Elimination Theory for Real Closed Fields” <a href="#ref-vdd1988tarski" role="doc-biblioref">1988</a>)</span>, which states that semialgebraic sets are closed under projection.
+This result is not true for algebraic sets, neither real nor complex. Indeed, consider the projection of the solutions of the polynomial <span class="math inline">\(xy = 1\)</span> onto the <span class="math inline">\(x\)</span>-axis. We get <span class="math inline">\(\mathbb{R}\setminus \{ 0 \}\)</span>, which is not an algebraic set, but could be represented if we are allowed to use inequalities. Thus, we will be working over the category of semialgebraic sets: sets of points defined by Boolean combinations of polynomial equations and inequalities.
+Alfred Tarski first alluded, without proof, to his famous theorem in the abstract of <span class="citation">Sierpiński and Tarski (<a href="#ref-sierpinski1930" role="doc-biblioref">1930</a>)</span>. He then proved the
+theorem in <span class="citation">(Tarski <a href="#ref-tarski1998" role="doc-biblioref">1998</a>)</span> whose planned publication in 1939 was delayed due to the war. <span class="citation">Seidenberg (<a href="#ref-seidenberg1954" role="doc-biblioref">1954</a>)</span> published “A New Decision Method for Elementary Algebra”, which applies Tarski’s theorem to quantifier elimination problems over real closed fields, leading to the well-known Tarski-Seidenberg Theorem.
+<span class="citation">Lojasiewicz (<a href="#ref-lojasiewicz1964" role="doc-biblioref">1964</a>)</span> gives a constructive proof of the Tarski-Seidenberg theorem using successive projections onto <span class="math inline">\(n-1\)</span>-dimensional space. This is the idea behind the cylindrical algebraic decomposition (CAD) algorithm.
+The notion and algorithm for computing a CAD was presented by <span class="citation">Collins (<a href="#ref-collins1975" role="doc-biblioref">1975</a>)</span>.
+The algorithm partitions <span class="math inline">\(\mathbb{R}^n\)</span> into cylindrical cells – semialgebraic sets such that the projection of any two of them is either disjoint or coincides.
+Collins’ algorithm is the first computationally tractable proof of the Tarski-Seidenberg theorem, the algorithm having complexity doubly exponential in the number of variables.
+CAD has wide ranging applications in real algebraic geometry.
+Perhaps the most famous application is the one Collins was thinking of – quantifier elimination: given a Boolean formula where literals are polynomial equations and inequalities and some variables are bound by <span class="math inline">\(\forall\)</span> and <span class="math inline">\(\exists\)</span> quantifiers, return a Boolean formula without quantifiers representing the same set.
+A similar problem uses CAD to decide whether a formula in which all variables are quantified is true or false – the decision problem.
+More recently, alternative methods for performing quantifier elimination have been proposed, e.g., the critical point method (see <span class="citation">Safey El Din (<a href="#ref-safeldin2013" role="doc-biblioref">2013</a>)</span>).
+Other notable uses include determining whether a semialgebraic set is empty, computing the real roots of a system of multivariate polynomials and determining the dimension of a semialgebraic set. <span class="citation">Basu, Pollack, and Roy (<a href="#ref-bpr98" role="doc-biblioref">1998</a>)</span> employs the critical point method to the emptiness problem, obtaining a bound singly exponential in the number of variables and <span class="citation">Koiran (<a href="#ref-koiran1999" role="doc-biblioref">1999</a>)</span> proved that determining the dimension of a semialgebraic set is <span class="math inline">\({\mathrm{NP}}_{\mathbb{R}}\)</span>-complete, obtaining a singly exponential bound.
+CAD can also be used to deduce topological properties of semialgebraic sets, for example by computing homologies.</p>
+<blockquote>
+<p>TO DO: maybe ask James about further applications of CAD.</p>
+</blockquote>
+<p>The CAD algorithm is still an active and interesting area of study, with two main strands of research. Since the complexity of computing a CAD is doubly exponential in the number of variables, the algorithm can be intractable for even moderately-sized problems. It is impossible to lower this theoretical bound. Indeed <span class="citation">Davenport and Heintz (<a href="#ref-davenportHeintz1988" role="doc-biblioref">1988</a>)</span> prove that quantifier elimination by CAD is doubly exponential in the number of variables.
+They present an example of a first-order Boolean formula with quantifiers which requires a linear number of symbols while the formula obtained after quantifier elimination requires a doubly exponential number of symbols.
+<span class="citation">Brown and Davenport (<a href="#ref-brown07" role="doc-biblioref">2007</a>)</span> later presented a simple and constructive proof of the same thing, giving an example of a formula with only one free variable and containing only linear polynomials whose quantifier-free counterpart is doubly exponential in length.</p>
+<p>CAD depends on a fixed coordinate ordering and this can greatly influence the number of cells produced. In the same paper, <span class="citation">Brown and Davenport (<a href="#ref-brown07" role="doc-biblioref">2007</a>)</span> show that the same input may produce a linear number of cells for one ordering, but a doubly exponential number of cells for another. They also present an example for which every coordinate ordering yields a doubly exponential number of cells <span class="citation">(Brown and Davenport <a href="#ref-brown07" role="doc-biblioref">2007</a>)</span>.
+In some applications, we may be able to change the coordinate ordering. As such, one way to “speed up” CAD construction would be to find a coordinate ordering which yields the smallest number of cells. <span class="citation">Hong (<a href="#ref-hong1993" role="doc-biblioref">1993</a>)</span> was one of the first to do this, using best first search, a heuristic search technique in AI, to find an optimal ordering. More recent developments include <span class="citation">Río and England (<a href="#ref-delrio2022" role="doc-biblioref">2022</a>)</span>, who used complexity analysis to improve upon the current state-of-the-art heuristics, obtaining benchmark results 17 times slower than the theoretical best, while the state-of-the-art performs 25 times slower than the theoretical best.
+In addition, modern AI and machine learning techniques are being investigated as a means of finding the best coordinate ordering. For example, <span class="citation">Huang et al. (<a href="#ref-huang2014" role="doc-biblioref">2014</a>)</span> employed support vector machines and <span class="citation">Chen, Zhu, and Chi (<a href="#ref-chen2020" role="doc-biblioref">2020</a>)</span> used artificial neural networks to identify an optimal ordering.
+Both of these techniques outperformed classical heuristics, making this a promising application of AI and ML.</p>
+<p>However, in many cases we cannot change the coordinate ordering and, even if we could, <span class="citation">Brown and Davenport (<a href="#ref-brown07" role="doc-biblioref">2007</a>)</span> showed that for some inputs all coordinate orderings yield a doubly exponential number of cells. As such, making optimisations in the CAD algorithm itself has been an active area of study since Collins published his original algorithm in the 70s. Collins’ algorithm works on the principal of projection and lifting. First, successive projections of input polynomials are performed, until we obtain a set of polynomials in one variable. The roots of these polynomials are isolated and then “stacks” of cells above each root and each interval in between the roots are constructed. The CAD of <span class="math inline">\(n\)</span>-dimensional space is obtained by iterating this process, called the “lifting phase”.
+Minimising the number of polynomials produced by the projection operation means fewer computations are needed during the lifting phase. <span class="citation">McCallum (<a href="#ref-mccallum1998" role="doc-biblioref">1998</a>)</span> proposed an improved projection operator, observing that some polynomials included in Collins’ original projection operator can be removed. Many other projection operators, e.g., Hong’s (see <span class="citation">Hong (<a href="#ref-hong1990" role="doc-biblioref">1990</a>)</span>) Lazard’s projection (see <span class="citation">McCallum, Parusiński, and Paunescu (<a href="#ref-mccallum2019" role="doc-biblioref">2019</a>)</span>) have been proposed, each offering different properties. Another optimisation is to construct a “partial CAD”, proposed by <span class="citation">Collins and Hong (<a href="#ref-collins1991" role="doc-biblioref">1991</a>)</span>. The idea is to use truth evaluation while constructing cells, taking quantifiers into account, so that only the cells we care about will be computed. As we do not have to ensure constant sign no every polynomial, this approach leads to savings during the lifting phase. The CAD algorithm has also been modified, often by weakening its properties, to solve specific problems. E.g., <span class="citation">McCallum (<a href="#ref-mccallum1993" role="doc-biblioref">1993</a>)</span> presents an algorithm, based on CAD, for deciding the consistency of a system of strict polynomial inequalities. These modifications often have much better complexity than the classical CAD, while producing sufficient decompositions to solve the problem at hand.</p>
+<p>A different strand of research, which is the main focus of this thesis, is to compute cylindrical decompositions in which the cells have certain desirable properties. This contrasts with the optimisations previously discussed, as these CADs often contain more cells than those constructed using the classical algorithm. However, this trade-off is worthwhile because the additional conditions make the CADs more powerful.
+Indeed, <span class="citation">Schwartz and Sharir (<a href="#ref-pianomovers1983" role="doc-biblioref">1983</a>)</span> apply cylindrical algebraic decomposition to a motion planning problem in which one wants to find a path, or prove that none exists, for a rigid (possibly hinged) body to move through a space defined by a configuration of walls. This has obvious applications in robotics. In order to solve this problem, cells are required to be arranged in a particular way: the closure of every cell must be a union of cells in the decomposition. Using classical CAD, this condition cannot always be satisfied, but <span class="citation">Schwartz and Sharir (<a href="#ref-pianomovers1983" role="doc-biblioref">1983</a>)</span> prove the classical algorithm is sufficient if a linear change of coordinates is made.
+These CADs are also useful if we wish to compute topological properties of semialgebraic sets. For example, <span class="citation">Reif (<a href="#ref-reif1979" role="doc-biblioref">1979</a>)</span> gives an algorithm for computing the homology groups of an arbitrary real algebraic variety. As we alluded to earlier, over the reals, a formula cannot tell us much about the set it defines, so this is useful for deducing properties of semialgebraic sets, e.g., how many “holes” it has, or whether it is connected.
+Along similar lines, <span class="citation">Arnon, Collins, and McCallum (<a href="#ref-arnon1984" role="doc-biblioref">1984</a>)</span> present an algorithm to compute a CAD of the plane along with information about which cells “touch each other”. They extend this result to 3-dimensional space in <span class="citation">(Arnon, Collins, and McCallum <a href="#ref-arnon1987" role="doc-biblioref">1987</a>)</span>. In order to compute these cell adjacencies, we again need the property that the closure of every cell is a union of cells in the decomposition. <span class="citation">Arnon, Collins, and McCallum (<a href="#ref-arnon1987" role="doc-biblioref">1987</a>)</span> achieve this without making a change of coordinates.</p>
+<p>Another desirable property is that every cell in a cylindrical decomposition is a topologically regular cell. Loosely speaking, this means that each <span class="math inline">\(k\)</span>-dimensional cell and its closure is homeomorphic to a <span class="math inline">\(k\)</span>-dimensional sphere and its closure.
+This property can fail in the region of points where polynomials are not “well behaved”.
+E.g., points where a polynomial vanishes over an open interval (for the precise definition, see Definition
+<a href="2.2-cylindrical-algebraic-decomposition.html#def:blow-up-point">2.21</a>).
+For example, consider the Whitney umbrella, the set of points in <span class="math inline">\(\mathbb{R}^3\)</span> which satisfy the equation <span class="math inline">\(f = 0\)</span> where
+<span class="math display">\[
+f := x^2 - y^2 z.
+\]</span>
+At almost every point <span class="math inline">\((x,y) \in \mathbb{R}^2\)</span>, <span class="math inline">\(f\)</span> is well-behaved. having only one value of <span class="math inline">\(z\)</span> at which it is equal to zero. However, <span class="math inline">\(f\)</span> “blow- up” above the origin, vanishing at every point. This causes interesting behaviour as <span class="math inline">\((x,y)\)</span> approaches the origin, because the <span class="math inline">\(z\)</span>-coordinate tends to infinity. Thus, the set
+<span class="math display" id="eq:basic-semialgebraic">\[\begin{equation}
+\{ 0 &lt; x &lt; 1, -1 &lt; y &lt; 1, x^2 - y^2 z = 0 \},
+\tag{1.1}
+\end{equation}\]</span>
+which is a cylindrical cell in <span class="math inline">\(\mathbb{R}^3\)</span>, is not topologically regular and its closure contains the half-line <span class="math inline">\(\{ x = 0, y = 0, z \ge 0 \}\)</span>.
+We will study CAD containing blow-up points and cells which are not topologically regular throughout this tesis.
+<span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span> presents an algorithm which produces such a decomposition, in the potential presence of these blow-up points, for dimension <span class="math inline">\(\le 3\)</span>. This so-called “strong” cylindrical algebraic decomposition consists of only topologically regular cells and the closure of every cell is a union of some cells in the decomposition. <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span> takes an algebraic approach, employing techniques such as computing the saturation of a polynomial ideal, to make computations efficient and explains how the algorithm can be implemented in Maple.
+Many inputs to the CAD algorithm do not contain blow-up points. <span class="citation">Davenport, Locatelli, and Sankaran (<a href="#ref-jhd20" role="doc-biblioref">2020</a>)</span> prove that the classical CAD algorithm will produce a strong decomposition for the given coordinate ordering and regardless of the method used to compute it. This is a very useful result as it allows us to take advantage of the nice properties of strong decompositions without doing any extra work to obtain them.
+However, sometimes blow-up points are unavoidable. For example, <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> propose an algorithm for computing a triangulation of a definable monotone family which relies on a strong cylindrical decomposition of that family. Since these families depend on a fixed coordinate ordering and frequently contain blow-up points, we must be able to compute these strong decompositions in arbitrary dimension, in the potential presence of blow-ups and without having to make a change of coordinates.</p>
+<p>Note that, in Equation <a href="index.html#eq:basic-semialgebraic">(1.1)</a>, we write a basic semialgebraic set of the form
+<span class="math display">\[
+\{ \mathbf{x} \in \mathbb{R}^n \mid f_1(\mathbf{x}) = 0 \land \ldots \land f_k(\mathbf{x}) = 0 \land g_1(\mathbf{x}) &gt; 0 \land \ldots \land g_\ell(\mathbf{x}) &gt; 0 \}
+\]</span>
+as
+<span class="math display">\[
+\{ f_1(\mathbf{x}) = 0, \ldots, f_k(\mathbf{x}) = 0, g_1(\mathbf{x}) &gt; 0, \ldots, g_\ell(\mathbf{x}) &gt; 0 \}.
+\]</span>
+I.e., commas represent conjunction. When not ambiguous, this convention will be used throughout.</p>
+<p><span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> present a constructive proof that, given a family <span class="math inline">\(V := (V_1,\ldots,V_k)\)</span> of bounded definable sets in <span class="math inline">\(\mathbb{R}^n\)</span> such that <span class="math inline">\(\dim(V_i) \le 2\)</span> for all <span class="math inline">\(1 \le i \le k\)</span>, there exists a cylindrical decomposition in which each <span class="math inline">\(V_i, 1 \le i \le k\)</span> is a union of cells, such that every cell contained in <span class="math inline">\(V_i\)</span> is monotone and its closure is the union of cells in the decomposition. A monotone cell is a stronger property than topological regularity and, by <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv13" role="doc-biblioref">2013</a>)</span> Theorem 1, all monotone cells are topologically regular. Their proof explains how such a decomposition can be constructed and depends on classical CAD and simple tools such as refinements by linear equations and splitting two-dimensional cells by using a given curve interval.
+The main goal of this thesis will be to design and implement an algorithm, based on this result, for constructing such a decomposition in the semialgebraic case.
+The constructive proof works for more general definable sets and, in contrast to e.g. <span class="citation">Collins (<a href="#ref-collins1975" role="doc-biblioref">1975</a>)</span> or <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, is geometric in nature. As such, the properties we need to satisfy in order to complete the construction are described in detail but not the methods used to obtain them. For example, we are asked to consider critical points of the smooth 2-dimensional locus of a union of definable sets, or consider the boundary of a 2-dimensional cylindrical cell.
+We will use a combination of fundamental tools in differential geometry, e.g., partial derivatives and Jacobi determinants, well-known algorithms in algebraic geometry such as smooth stratification and quantifier elimination, and ideas from optimisation, such as Lagrange multipliers.</p>
+<p>A similar idea to that presented by <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> is discussed by <span class="citation">Van den Dries and others (<a href="#ref-vdd98" role="doc-biblioref">1998</a>)</span> (Section 2.19), who introduces the concept of a Van-den-Dries regular cell.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-1" class="definition"><strong>Definition 1.1  </strong></span><span class="citation">(Van den Dries and others <a href="#ref-vdd98" role="doc-biblioref">1998</a>, Section 2.19)</span>
+We say that a cylindrical cell <span class="math inline">\(C \subset \mathbb{R}^n\)</span> is Van-den-Dries regular if, for all <span class="math inline">\(i \in \{1,\ldots,n\}\)</span>, if two distinct points <span class="math inline">\(\mathbf{x},\mathbf{y} \in C\)</span> are such that <span class="math inline">\(x_1 = y_1, \ldots, x_{i-1} = y_{i-1}, x_{i+1}, \ldots, x_n = y_n\)</span>, but <span class="math inline">\(x_i &lt; y_i\)</span>, then for all <span class="math inline">\(z_i\)</span> such that <span class="math inline">\(x_i &lt; z_i &lt; y_i\)</span>, <span class="math inline">\((x_1,\ldots,x_{n-1},z_i,x_{i+1},\ldots,x_n) \in C\)</span>.</p>
+</div>
+<p>All two-dimensional Van-den-Dries regular cells are topologically regular, so if <span class="math inline">\(\dim(V_1,\ldots,V_k)\)</span>, the decomposition described by <span class="citation">Van den Dries and others (<a href="#ref-vdd98" role="doc-biblioref">1998</a>)</span> will consist of topologically regular cells. The result of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> is stronger in that the monotone decomposition is obtained for a family of sets which individually have dimension at most two.</p>
+<p>Part of the result from <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> will be generalised to sets of arbitrary dimension. In particular, a novel algorithm for constructing a cylindrical decomposition, compatible with a semialgebraic set and suc that the boundary of every cell is the union of cells in the decomposition, will be presented. (This work was presented, in extended abstract form, at ISSAC 2023 and has also been submitted to the Journal of Symbolic computation.)
+It will be proved that such a decomposition can be constructed in any dimension and without a preliminary change of coordinates even in the presence of blow-ups. A CAD is compatible with a set <span class="math inline">\(S\)</span> if <span class="math inline">\(S\)</span> is the union of some cells of the CAD. Frontier condition means that the closure of every cell is a union of some cells in the decomposition.
+To our knowledge, this is the first proof that such a CAD exists without the change of coordinates.
+We present the proof in the form of an algorithm which constructs a CAD compatible with a semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span> and satisfying the frontier condition.
+An upper bound on complexity is obtained. This is also an upper bound on the number of cells, number of polynomials and degree of polynomials in the CAD. The algorithm has {} complexity (in the sense of L. Kalmar, see e.g.,
+<span class="citation">(Kleene <a href="#ref-kleene1952" role="doc-biblioref">2012</a>, \S 57)</span>).% TODO define elementary</p>
+<p>The frontier condition is useful in computing topological properties of semialgebraic sets defined by first-order Boolean formulas. For example, these decompositions can be viewed as closure-finite weak cell complexes (CW-complexes) and their homologies can be computed. In addition, cell adjacencies can easily be computed and motion-planning problems, for instance the well-known “piano-mover’s problem” presented by Schwartz and Sharir can be solved, leading to applications in robotics.</p>
+<p>It was shown by <span class="citation">Schwartz and Sharir (<a href="#ref-pianomovers1983" role="doc-biblioref">1983</a>)</span> that it is relatively easy to satisfy the frontier condition after a generic linear rotation of coordinates in <span class="math inline">\(\mathbb{R}^n\)</span>. The rotation removes the need to lift over blow-up points. However, such a rotation of coordinates may be undesirable, or even impossible, in some applications.</p>
+<p>An important application relates to the work of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, who present an algorithm for computing the triangulation of a definable monotone family. This algorithm requires a CAD of the family such that every cell is topologically regular and satisfies the frontier condition. Since the definable monotone family depends on the initial coordinate ordering, a rotation of coordinates is not allowed. <span class="citation">Davenport, Locatelli, and Sankaran (<a href="#ref-jhd20" role="doc-biblioref">2020</a>)</span> prove that if a CAD is {} then it satisfies these properties.
+A CAD is well-based if it contains no {}: cells above which one of the polynomials defining the CAD vanishes identically. These occur frequently in definable monotone families. Therefore, an algorithm for computing CAD with frontier condition, compatible with sets containing blow-ups and without a change of coordinates, is needed. Such a CAD algorithm is presented by the authors for sets of dimension not greater than two. <span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> The algorithm presented in this paper provides a step towards extending their result to decompositions compatible with sets (and potentially triangulations of definable monotone families) of arbitrary dimension.</p>
+<p>In addition, the result can be applied to other categories, e.g., semialgebraic sets defined by {} (see Section~), whose structure is destroyed by a change of coordinates.</p>
+<p>The result can also be easily extended to semialgebraic sets defined by first-order Boolean formulas with quantifiers.
+Indeed, by Theorem~, the projection of a CAD with frontier condition to any dimension also satisfies the frontier condition, and quantifier elimination requires considering projections of the CAD.</p>
+<p><span class="citation">Arnon, Collins, and McCallum (<a href="#ref-arnon1984" role="doc-biblioref">1984</a>)</span> also made important developments in constructing cylindrical algebraic decompositions with frontier condition. They propose an algorithm for constructing a ``proper’’ CAD of <span class="math inline">\(\mathbb{R}^2\)</span>, a similar notion to the {} CAD. Their algorithm also computes the cell adjacencies for this CAD.
+The same authors extend this result to proper CADs of <span class="math inline">\(\mathbb{R}^3\)</span>, along with computing cell adjacencies.<span class="citation">(Arnon, Collins, and McCallum <a href="#ref-arnon1987" role="doc-biblioref">1987</a>)</span>
+<span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span> also presents an algorithm for obtaining a CAD in <span class="math inline">\(\mathbb{R}^n\)</span> for <span class="math inline">\(n \le 3\)</span> satisfying the frontier condition without a change of coordinates. Lazard takes an algebraic approach and the complexity of the algorithm presented is the same as that of classical CAD, while our construction uses a recursion on the lexicographical order of cell indices. A novel approach was needed because it is not clear how the above results could be extended to dimension greater than <span class="math inline">\(3\)</span>.</p>
+<p>Finally, we will also describe an algorithm for computing a smooth stratification of a semialgebraic set. A smooth stratification is a finite partition of a set into smooth manifolds called “strata”. We present an algorithm, based on the work of <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span> for computing a smooth stratification of a semialgebraic set such that each stratum is nicely defined, meaning that each stratum of codimension <span class="math inline">\(k\)</span> is defined by <span class="math inline">\(k\)</span> different polynomials.
+The algorithm is designed to handle input sets which are not nicely defined. E.g., sets defined by polynomials whose first partial derivatives vanish at every point in the set.
+For example, the algebraic set
+<span class="math display">\[
+S := \{ x y = 0 \}
+\]</span>
+has codimension one, and thus can be defined by a single polynomial. However, it is not smooth, since <span class="math inline">\(S&#39; = (0,0)\)</span> is a singular point of <span class="math inline">\(S\)</span>. <span class="math inline">\(S&#39;\)</span> has codimension <span class="math inline">\(2\)</span> and it is clear that it can be written using two polynomials
+<span class="math display">\[
+S&#39; = \{ x = 0, y = 0 \}.
+\]</span>
+Observe that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are the first derivatives of the defining function <span class="math inline">\(xy\)</span>. However,
+<span class="math display">\[
+\{ x^m y^n = 0, m \ge 1, n \ge 1 \}
+\]</span>
+defines the set <span class="math inline">\(S\)</span> and, if <span class="math inline">\(m &gt; 1\)</span>,
+<span class="math display">\[
+\dfrac{\partial x^m y^n}{\partial x} = m x^{m-1} y^n
+\]</span>
+is equal to zero at the same points as <span class="math inline">\(x^my^n\)</span>. Thus, it may not be sufficient to find the points at which only the first derivatives vanish. This is the basic idea of the smooth stratification algorithm we will present.
+The algorithm also ensures that only the <span class="math inline">\(k\)</span> functions required to define a stratum of codimension <span class="math inline">\(k\)</span> are included, “pruning” functions which do not add any additional information.</p>
+<blockquote>
+<p>TO DO: applications of the smooth stratification?</p>
+</blockquote>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-vdd1988tarski">
+<p>“Alfred Tarski’s Elimination Theory for Real Closed Fields.” 1988. <em>The Journal of Symbolic Logic.</em> 53 (1): 7–19.</p>
+</div>
+<div id="ref-arnon1979">
+<p>Arnon, Dennis. 1979. “A Cellular Decomposition Algorithm for Semialgebraic Sets.” In <em>Symbolic and Algebraic Computation</em>, edited by Edward W. Ng, 301–15. Berlin, Heidelberg: Springer Berlin Heidelberg.</p>
+</div>
+<div id="ref-arnon1984">
+<p>Arnon, Dennis S., George E. Collins, and Scott McCallum. 1984. “Cylindrical Algebraic Decomposition Ii: An Adjacency Algorithm for the Plane.” In <em>Quantifier Elimination and Cylindrical Algebraic Decomposition</em>, edited by Bob F. Caviness and Jeremy R. Johnson, 152–65. Vienna: Springer Vienna.</p>
+</div>
+<div id="ref-arnon1987">
+<p>Arnon, Dennis S., George E. Collins, and Scott McCallum. 1984. “Cylindrical Algebraic Decomposition Ii: An Adjacency Algorithm for the Plane.” In <em>Quantifier Elimination and Cylindrical Algebraic Decomposition</em>, edited by Bob F. Caviness and Jeremy R. Johnson, 152–65. Vienna: Springer Vienna.</p> 1987. “An Adjacency Algorithm for Cylindrical Algebraic Decompositions of Three-Dimensional Space.” In <em>EUROCAL ’85</em>, edited by Bob F. Caviness, 246–61. Berlin, Heidelberg: Springer Berlin Heidelberg.</p>
+</div>
+<div id="ref-bgv13">
+<p>Basu, Saugata, Andrei Gabrielov, and Nicolai Vorobjov. 2013. “Monotone Functions and Maps.” <em>Revista de La Real Academia de Ciencias Exactas, Fisicas Y Naturales. Serie A. Matematicas</em> 107 (1): 5–33.</p>
+</div>
+<div id="ref-bgv15">
+<p>Basu, Saugata, Andrei Gabrielov, and Nicolai Vorobjov. 2015. “Triangulations of Monotone Families I: Two-Dimensional Families.” <em>Proceedings of the London Mathematical Society</em> 111 (5): 1013–51.</p>
+</div>
+<div id="ref-bpr98">
+<p>Basu, Saugata, Richard Pollack, and Marie-Françoise Roy. 1998. “A New Algorithm to Find a Point in Every Cell Defined by a Family of Polynomials.” In <em>Quantifier Elimination and Cylindrical Algebraic Decomposition</em>, edited by Bob F. Caviness and Jeremy R. Johnson, 341–50. Vienna: Springer Vienna.</p>
+</div>
+<div id="ref-brown07">
+<p>Brown, Christopher W, and James H Davenport. 2007. “The Complexity of Quantifier Elimination and Cylindrical Algebraic Decomposition.” In <em>Proceedings of the 2007 International Symposium on Symbolic and Algebraic Computation</em>, 54–60.</p>
+</div>
+<div id="ref-buchberger1979">
+<p>Buchberger, Bruno. 1979. “A Criterion for Detecting Unnecessary Reductions in the Construction of Gröbner-Bases.” In <em>International Symposium on Symbolic and Algebraic Manipulation</em>, 3–21. Springer.</p>
+</div>
+<div id="ref-chen2020">
+<p>Chen, Changbo, Zhangpeng Zhu, and Haoyu Chi. 2020. “Variable Ordering Selection for Cylindrical Algebraic Decomposition with Artificial Neural Networks.” In <em>Mathematical Software – Icms 2020</em>, edited by Anna Maria Bigatti, Jacques Carette, James H. Davenport, Michael Joswig, and Timo de Wolff, 281–91. Cham: Springer International Publishing.</p>
+</div>
+<div id="ref-collins1975">
+<p>Collins, George E. 1975. “Quantifier Elimination for Real Closed Fields by Cylindrical Algebraic Decompostion.” In <em>Automata Theory and Formal Languages</em>, 134–83. Springer.</p>
+</div>
+<div id="ref-collins1991">
+<p>Collins, George E., and Hoon Hong. 1991. “Partial Cylindrical Algebraic Decomposition for Quantifier Elimination.” <em>Journal of Symbolic Computation</em> 12 (3): 299–328. <a href="https://doi.org/https://doi.org/10.1016/S0747-7171(08)80152-6">https://doi.org/https://doi.org/10.1016/S0747-7171(08)80152-6</a>.</p>
+</div>
+<div id="ref-davenportHeintz1988">
+<p>Davenport, James H., and Joos Heintz. 1988. “Real Quantifier Elimination Is Doubly Exponential.” <em>Journal of Symbolic Computation</em> 5 (1): 29–35.</p>
+</div>
+<div id="ref-jhd20">
+<p>Davenport, James H, AF Locatelli, and GK Sankaran. 2020. “Regular Cylindrical Algebraic Decomposition.” <em>Journal of the London Mathematical Society</em> 101 (1): 43–59.</p>
+</div>
+<div id="ref-gv1995">
+<p>Gabrielov, Andrei, and Nicolai Vorobjov. 1995. “Complexity of Stratification of Semi-Pfaffian Sets.” <em>Discrete &amp; Computational Geometry</em> 14 (1): 71–91.</p>
+</div>
+<div id="ref-hong1990">
+<p>Hong, Hoon. 1990. “An Improvement of the Projection Operator in Cylindrical Algebraic Decomposition.” In <em>Proceedings of the International Symposium on Symbolic and Algebraic Computation</em>, 261–64.</p>
+</div>
+<div id="ref-hong1993">
+<p>Hong, Hoon. 1993. “Heuristic Search Strategies for Cylindrical Algebraic Decomposition.” In <em>Artificial Intelligence and Symbolic Mathematical Computing</em>, edited by Jacques Calmet and John A. Campbell. Berlin, Heidelberg: Springer Berlin Heidelberg.</p>
+</div>
+<div id="ref-huang2014">
+<p>Huang, Zongyan, Matthew England, David Wilson, James H. Davenport, Lawrence C. Paulson, and James Bridge. 2014. “Applying Machine Learning to the Problem of Choosing a Heuristic to Select the Variable Ordering for Cylindrical Algebraic Decomposition.” In <em>Intelligent Computer Mathematics</em>, edited by Stephen M. Watt, James H. Davenport, Alan P. Sexton, Petr Sojka, and Josef Urban, 92–107. Cham: Springer International Publishing.</p>
+</div>
+<div id="ref-kleene1952">
+<p>Kleene, Stephen Cole. 2012. “Introduction to Metamathematics.”</p>
+</div>
+<div id="ref-koiran1999">
+<p>Koiran, Pascal. 1999. “The Real Dimension Problem Is Npr-Complete.” <em>Journal of Complexity</em> 15 (2): 227–38. <a href="https://doi.org/https://doi.org/10.1006/jcom.1999.0502">https://doi.org/https://doi.org/10.1006/jcom.1999.0502</a>.</p>
+</div>
+<div id="ref-lazard1979">
+<p>Lazard, Daniel. 1979. “Systems of Algebraic Equations.” In <em>Symbolic and Algebraic Computation: EUROSM’79, an International Symposium on Symbolic and Algebraic Manipulation, Marseille, France, June 1979 2</em>, 88–94. Springer.</p>
+</div>
+<div id="ref-lazard10">
+<p>Lazard, Daniel. 2010. “CAD and Topology of Semi-Algebraic Sets.” <em>Mathematics in Computer Science</em> 4 (1): 93–112.</p>
+</div>
+<div id="ref-lojasiewicz1964">
+<p>Lojasiewicz, S. 1964. “Triangulation of Semi-Analytic Sets.” <em>Annali Della Scuola Normale Superiore Di Pisa - Scienze Fisiche E Matematiche</em> Ser. 3, 18 (4): 449–74. <a href="http://www.numdam.org/item/ASNSP_1964_3_18_4_449_0/">http://www.numdam.org/item/ASNSP_1964_3_18_4_449_0/</a>.</p>
+</div>
+<div id="ref-mccallum1998">
+<p>McCallum, S. 1998. “An Improved Projection Operation for Cylindrical Algebraic Decomposition.” In, 242–68. <a href="https://link.springer.com/chapter/10.1007/978-3-7091-9459-1_12">https://link.springer.com/chapter/10.1007/978-3-7091-9459-1_12</a>.</p>
+</div>
+<div id="ref-mccallum1993">
+<p>McCallum, S. 1993. “Solving Polynomial Strict Inequalities Using Cylindrical Algebraic Decomposition.” <em>The Computer Journal</em> 36 (5): 432–38. <a href="https://doi.org/10.1093/comjnl/36.5.432">https://doi.org/10.1093/comjnl/36.5.432</a>.</p>
+</div>
+<div id="ref-mccallum2019">
+<p>McCallum, Scott, Adam Parusiński, and Laurentiu Paunescu. 2019. “Validity Proof of Lazard’s Method for Cad Construction.” <em>Journal of Symbolic Computation</em> 92: 52–69.</p>
+</div>
+<div id="ref-reif1979">
+<p>Reif, John H. 1979. “Complexity of the Mover’s Problem and Generalizations.” In <em>20th Annual Symposium on Foundations of Computer Science (Sfcs 1979)</em>, 421–27. IEEE Computer Society.</p>
+</div>
+<div id="ref-delrio2022">
+<p>Río, Tereso del, and Matthew England. 2022. “New Heuristic to Choose a Cylindrical Algebraic Decomposition Variable Ordering Motivated by Complexity Analysis.” In <em>Computer Algebra in Scientific Computing</em>, edited by François Boulier, Matthew England, Timur M. Sadykov, and Evgenii V. Vorozhtsov, 300–317. Cham: Springer International Publishing.</p>
+</div>
+<div id="ref-safeldin2013">
+<p>Safey El Din, Mohab. 2013. “Critical Point Methods and Effective Real Algebraic Geometry: New Results and Trends.” In <em>Proceedings of the 38th International Symposium on Symbolic and Algebraic Computation</em>, 5–6.</p>
+</div>
+<div id="ref-pianomovers1983">
+<p>Schwartz, Jacob T, and Micha Sharir. 1983. “On the ‘Piano Movers’ Problem. II. General Techniques for Computing Topological Properties of Real Algebraic Manifolds.” <em>Advances in Applied Mathematics</em> 4 (3): 298–350.</p>
+</div>
+<div id="ref-seidenberg1954">
+<p>Seidenberg, Abraham. 1954. “A New Decision Method for Elementary Algebra.” <em>Annals of Mathematics</em>, 365–74.</p>
+</div>
+<div id="ref-sierpinski1930">
+<p>Sierpiński, Wacław, and Alfred Tarski. 1930. “Sur Une Propriété Caractéristique Des Nombres Inaccessibles.” <em>Fundamenta Mathematicae</em> 1 (15): 292–300.</p>
+</div>
+<div id="ref-tarski1998">
+<p>Tarski, Alfred. 1998. “A Decision Method for Elementary Algebra and Geometry.” In <em>Quantifier Elimination and Cylindrical Algebraic Decomposition</em>, 24–84. Springer.</p>
+</div>
+<div id="ref-vdd98">
+<p>Van den Dries, Lou, and others. 1998. <em>Tame Topology and O-Minimal Structures</em>. Vol. 248. Cambridge university press.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="1.1-structure-of-this-thesis.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["thesis.pdf", "thesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

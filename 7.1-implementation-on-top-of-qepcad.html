@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.1 Implementation on top of QEPCAD | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <meta name="description" content="Hollie Baker’s thesis" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.1 Implementation on top of QEPCAD | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Hollie Baker’s thesis" />
+  <meta name="github-repo" content="holliebaker/thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.1 Implementation on top of QEPCAD | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  
+  <meta name="twitter:description" content="Hollie Baker’s thesis" />
+  
+
+<meta name="author" content="Hollie Baker" />
+
+
+<meta name="date" content="2024-08-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="7-sec:implementation-and-testing.html"/>
+<link rel="next" href="7.2-test-cases-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Thesis: CAD with monotone cells</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-structure-of-this-thesis.html"><a href="1.1-structure-of-this-thesis.html"><i class="fa fa-check"></i><b>1.1</b> Structure of this thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-sec:background.html"><a href="2-sec:background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html"><i class="fa fa-check"></i><b>2.1</b> Semialgebraic sets and monotone cells</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#sets-definable-over-o-minimal-structures"><i class="fa fa-check"></i><b>2.1.1</b> Sets definable over O-minimal structures</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#monotone-cells"><i class="fa fa-check"></i><b>2.1.2</b> Monotone cells</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html"><i class="fa fa-check"></i><b>2.2</b> Cylindrical algebraic decomposition</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cad-construction"><i class="fa fa-check"></i><b>2.2.1</b> Constructing a CAD</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#bounds-and-variations"><i class="fa fa-check"></i><b>2.2.2</b> Bounds and variations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#the-projection-operator"><i class="fa fa-check"></i><b>2.2.3</b> The projection operator</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#projection-polynomials-vs-semialgebraic-functions"><i class="fa fa-check"></i><b>2.2.4</b> Projection polynomials vs semialgebraic functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cell-formula"><i class="fa fa-check"></i><b>2.2.5</b> CAD cells and their defining formulas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html"><i class="fa fa-check"></i><b>3</b> Smooth Stratification</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html"><i class="fa fa-check"></i><b>3.1</b> Description of the algorithm</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html#sec:strat-algorithm-details"><i class="fa fa-check"></i><b>3.1.1</b> Subroutines and Algorithm Details</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:strat-worked-example.html"><a href="3.2-sec:strat-worked-example.html"><i class="fa fa-check"></i><b>3.2</b> Worked example</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html"><i class="fa fa-check"></i><b>3.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#determining-the-codimension-and-basic-formula-for-each-stratum"><i class="fa fa-check"></i><b>3.3.1</b> Determining the codimension and basic formula for each stratum</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#discarding-redundant-equations"><i class="fa fa-check"></i><b>3.3.2</b> Discarding redundant equations</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#sec:strat-semialgebraic"><i class="fa fa-check"></i><b>3.3.3</b> From Basic Algebraic sets to Arbitrary Semialgebraic sets</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#implementation-in-c"><i class="fa fa-check"></i><b>3.3.4</b> Implementation in C</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:strat-complexity.html"><a href="3.4-sec:strat-complexity.html"><i class="fa fa-check"></i><b>3.4</b> Complexity Analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-test-cases.html"><a href="3.5-test-cases.html"><i class="fa fa-check"></i><b>3.5</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sec:quasi-affine.html"><a href="4-sec:quasi-affine.html"><i class="fa fa-check"></i><b>4</b> Quasi-affine cells</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><i class="fa fa-check"></i><b>4.1</b> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus"><i class="fa fa-check"></i><b>4.1.1</b> An alternative method for computing the smooth two-dimensional locus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><i class="fa fa-check"></i><b>4.2</b> Ensuring that every cell is the graph of a quasi-affine map</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm"><i class="fa fa-check"></i><b>4.2.1</b> Computing the quasi-affine CAD</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html"><i class="fa fa-check"></i><b>4.3</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html#sec:quasi-complexity"><i class="fa fa-check"></i><b>4.3.1</b> Complexity Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sec:monotone-cells.html"><a href="5-sec:monotone-cells.html"><i class="fa fa-check"></i><b>5</b> Monotone Cells</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html"><i class="fa fa-check"></i><b>5.1</b> Two-dimensional monotone sector cells</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement"><i class="fa fa-check"></i><b>5.1.1</b> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:sub-cad"><i class="fa fa-check"></i><b>5.1.2</b> Working with sub-decompositions above a 0-cell</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html"><i class="fa fa-check"></i><b>5.2</b> Two-dimensional monotone sections</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-1-2-le-j-le-alpha---1"><i class="fa fa-check"></i><b>5.2.1</b> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-2-alpha-1-le-j-le-n"><i class="fa fa-check"></i><b>5.2.2</b> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#critical-points-of-the-top-and-bottom-of-c"><i class="fa fa-check"></i><b>5.2.3</b> Critical points of the top and bottom of <span class="math inline">\(C\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html"><i class="fa fa-check"></i><b>5.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html#sec:monotone-algorithm"><i class="fa fa-check"></i><b>5.3.1</b> Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html"><i class="fa fa-check"></i><b>5.4</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity"><i class="fa fa-check"></i><b>5.4.1</b> Complexity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-sec:compute-refinement.html"><a href="5.5-sec:compute-refinement.html"><i class="fa fa-check"></i><b>5.5</b> Computing the refinements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-sec:frontier.html"><a href="6-sec:frontier.html"><i class="fa fa-check"></i><b>6</b> Frontier Condition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-sec:frontier-bgv.html"><a href="6.1-sec:frontier-bgv.html"><i class="fa fa-check"></i><b>6.1</b> Construction of a CAD with frontier condition, due to <span class="citation">Basu, Gabrielov, and Vorobjov (<span>2015</span>)</span>, Theorem 3.20</a></li>
+<li class="chapter" data-level="6.2" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html"><i class="fa fa-check"></i><b>6.2</b> Lazard’s method for dimension not greater than 3</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html#lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3"><i class="fa fa-check"></i><b>6.2.1</b> Lazard’s Algorithm for lifting with bad points in <span class="math inline">\(\mathbb{R}^3\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html"><i class="fa fa-check"></i><b>6.3</b> Generalisation of Lazard</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#sec:ext-lazard-algorithm"><i class="fa fa-check"></i><b>6.3.1</b> Algorithm for lifting above bad points, for CAD compatible with sets of dimension <span class="math inline">\(\le 2\)</span></a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#correctness-and-complexity-2"><i class="fa fa-check"></i><b>6.3.2</b> Correctness and Complexity</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#complexity-analysis"><i class="fa fa-check"></i><b>6.3.3</b> Complexity analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-sec:implementation-and-testing.html"><a href="7-sec:implementation-and-testing.html"><i class="fa fa-check"></i><b>7</b> Implementation And Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html"><i class="fa fa-check"></i><b>7.1</b> Implementation on top of QEPCAD</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#description-of-qepcad-b"><i class="fa fa-check"></i><b>7.1.1</b> Description of QEPCAD B</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#qepcad-cells-and-sample-points"><i class="fa fa-check"></i><b>7.1.2</b> QEPCAD Cells and Sample Points</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#modifications-to-qepcad"><i class="fa fa-check"></i><b>7.1.3</b> Modifications to QEPCAD</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#quasi-affine"><i class="fa fa-check"></i><b>7.1.4</b> Quasi-affine</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#monotone"><i class="fa fa-check"></i><b>7.1.5</b> Monotone</a></li>
+<li class="chapter" data-level="7.1.6" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#frontier-condition"><i class="fa fa-check"></i><b>7.1.6</b> Frontier Condition</a></li>
+<li class="chapter" data-level="7.1.7" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#sec:implementation-refinement"><i class="fa fa-check"></i><b>7.1.7</b> Refinement</a></li>
+<li class="chapter" data-level="7.1.8" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#obtaining-defining-formulas-for-every-cell"><i class="fa fa-check"></i><b>7.1.8</b> Obtaining defining formulas for every cell</a></li>
+<li class="chapter" data-level="7.1.9" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#the-overall-algorithm"><i class="fa fa-check"></i><b>7.1.9</b> The overall algorithm</a></li>
+<li class="chapter" data-level="7.1.10" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#additional-modifications-and-utility-functions"><i class="fa fa-check"></i><b>7.1.10</b> Additional modifications and Utility Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-test-cases-1.html"><a href="7.2-test-cases-1.html"><i class="fa fa-check"></i><b>7.2</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-sec:novel-frontier.html"><a href="8-sec:novel-frontier.html"><i class="fa fa-check"></i><b>8</b> A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^n\)</span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-statement-of-the-problem.html"><a href="8.1-statement-of-the-problem.html"><i class="fa fa-check"></i><b>8.1</b> Statement of the Problem</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-theory.html"><a href="8.2-theory.html"><i class="fa fa-check"></i><b>8.2</b> Theory</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-theory.html"><a href="8.2-theory.html#computing-the-frontier-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>8.2.1</b> Computing the frontier of a semialgebraic set</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-theory.html"><a href="8.2-theory.html#intermediate-results"><i class="fa fa-check"></i><b>8.2.2</b> Intermediate Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html"><i class="fa fa-check"></i><b>8.3</b> Main Result</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-main-result.html"><a href="8.3-main-result.html#algorithm-psuedo-code"><i class="fa fa-check"></i><b>8.3.1</b> Algorithm Psuedo-Code</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8.3-main-result.html"><a href="8.3-main-result.html#sec:worked-example"><i class="fa fa-check"></i><b>8.3.2</b> Worked Example</a></li>
+<li class="chapter" data-level="8.3.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html#mathematical-description"><i class="fa fa-check"></i><b>8.3.3</b> Mathematical Description</a></li>
+<li class="chapter" data-level="8.3.4" data-path="8.3-main-result.html"><a href="8.3-main-result.html#proof-of-correctness"><i class="fa fa-check"></i><b>8.3.4</b> Proof of correctness</a></li>
+<li class="chapter" data-level="8.3.5" data-path="8.3-main-result.html"><a href="8.3-main-result.html#complexity"><i class="fa fa-check"></i><b>8.3.5</b> Complexity</a></li>
+<li class="chapter" data-level="8.3.6" data-path="8.3-main-result.html"><a href="8.3-main-result.html#a-note-on-constructing-the-intermediate-decompositions"><i class="fa fa-check"></i><b>8.3.6</b> A Note on Constructing the Intermediate Decompositions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html"><i class="fa fa-check"></i><b>8.4</b> Generalisations and further work</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:pfaffian"><i class="fa fa-check"></i><b>8.4.1</b> Pfaffian Functions</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:novel-frontier-fw"><i class="fa fa-check"></i><b>8.4.2</b> Further Wrok</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-sec:conclusions.html"><a href="9-sec:conclusions.html"><i class="fa fa-check"></i><b>9</b> Conclusions and Further Work</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html"><i class="fa fa-check"></i><b>9.1</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#smooth-stratification-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>9.1.1</b> Smooth stratification of a semialgebraic set</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#an-algorithm-to-construct-monotone-cad-compatible-with-a-family-of-semialgebraic-sets-of-dimension-at-most-2"><i class="fa fa-check"></i><b>9.1.2</b> An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most <span class="math inline">\(2\)</span></a></li>
+<li class="chapter" data-level="9.1.3" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#a-novel-algorithm-for-computing-a-cad-with-frontier-condition-compatible-with-a-semialgebraic-set-of-arbitrary-dimension"><i class="fa fa-check"></i><b>9.1.3</b> A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-further-work.html"><a href="9.2-further-work.html"><i class="fa fa-check"></i><b>9.2</b> Further Work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-test-cases.html"><a href="appendix-a-test-cases.html"><i class="fa fa-check"></i>Appendix A: Test Cases</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cylindrical Algebraic Decompositions With Monotone Cells</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="implementation-on-top-of-qepcad" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Implementation on top of QEPCAD<a href="7.1-implementation-on-top-of-qepcad.html#implementation-on-top-of-qepcad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are several well-known implementations of CAD. For example, Maple’s <code>CylindricalAlgebraicDecompose</code>, which uses regular chains instead of the classical projection and lifting algorithm, is reported to work very efficiently <span class="citation">(Chen and Moreno Maza <a href="#ref-chen2014" role="doc-biblioref">2014</a>)</span>. Another efficient implementation of CAD is available in Mathematica. However, I opted to use <code>QEPCAD-B</code>, a quantifier elimination and cylindrical algebraic decomposition program written in C++ and built on top of the polynomial library SACLIB.</p>
+<p><code>QEPCAD</code> stand for Quantifier Elimination by Partial Cylindrical Algebraic Decomposition. It takes as input a first-order Boolean formula <span class="math inline">\(F\)</span>, containing <span class="math inline">\(k\)</span> free variables and <span class="math inline">\(n-k\)</span> variables bound by quantifiers, along with a variable ordering <span class="math inline">\(x_1 &lt; \cdots &lt; x_n\)</span>. It then constructs a CAD compatible with the set <span class="math inline">\(S \subset \mathbb{R}^k\)</span> defined by <span class="math inline">\(F\)</span> and returns a quantifier-free Boolean formula defining <span class="math inline">\(S\)</span>. As well as the output formula, the user is able to examine the polynomials generated in the projection phase and view information about the cells of the CAD, including their dimension, signs of projection factors and their multiplicities and the sample point associated with the cell. <code>QEPCAD B</code> is an extended version of <code>QEPCAD</code> developed by <span class="citation">Brown (<a href="#ref-brownQepcad" role="doc-biblioref">2003</a>)</span>.
+As well as <span class="math inline">\(\forall\)</span> and <span class="math inline">\(\exists\)</span>, <code>QEPCAD B</code> introduces some special quantifiers which allow the user to specify “exists exactly <span class="math inline">\(k\)</span>”, “exists infinitely many” and “for all but finitely many”, allowing the problem to be solved in a more efficient way. <code>QEPCAD B</code> is also able to plot and determine cell adjacencies for decompositions of <span class="math inline">\(\mathbb{R}^2\)</span>. An extended language for output formulas, which uses “<span class="math inline">\(i\)</span>-th root of polynomial <span class="math inline">\(f\)</span>”, somewhat similar to the output given by Maple’s <code>CylindricalAlgebraicDecompose</code>, is also included.</p>
+<p><code>QEPCAD B</code> and <code>SACLIB</code> are open-source, meaning it is easy to extend their functionality. The computer algebra library
+<code>Singular</code> is also integrated, which gives the developer access to more efficient polynomial factorising algorithm as
+well as the possibility of using tools such as Groebner bases. <code>QEPCAD B</code> by default provides the output as a
+quantifier-free (Tarski) formula, which is the most convenient representation for our purposes. As shown by <span class="citation">Collins (<a href="#ref-collins1975" role="doc-biblioref">1975</a>)</span>, it is not always possible to obtain such formulas using only the polynomials produced in the projection phase.
+For this reason, Maple’s <code>CylindricalAlgebraicDecompose</code> is only able to produce formulas in the extended language. <code>QEPCAD B</code> implements an algorithm to add additional defining polynomials (see <span class="citation">Brown (<a href="#ref-brown99" role="doc-biblioref">1999</a>)</span>).
+For these reasons, <code>QEPCAD B</code> seemed a good choice as a base program.</p>
+<div id="description-of-qepcad-b" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Description of QEPCAD B<a href="7.1-implementation-on-top-of-qepcad.html#description-of-qepcad-b" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>QEPCAD B</code> algorithm proceeds in five stages:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Input</strong></p>
+<p>The user is prompted to enter the following information:</p>
+<ul>
+<li><em>Informal problem description</em>, for the user’s benefit</li>
+<li><em>Variable list</em> <span class="math inline">\((v_1,\ldots,v_n)\)</span> where <span class="math inline">\(v_i, 1 \le i \le n\)</span> are variable names. Note that this list specifies the variable ordering <span class="math inline">\(v_1 &lt; \cdots &lt; v_n\)</span>.</li>
+<li><em>Number of free variables</em> <span class="math inline">\(0 \le k \le n\)</span> appearing in the first-order formula</li>
+<li><em>Prenex formula</em> a first order Boolean formula <span class="math inline">\((Q_1 v_1), \ldots, (Q_k v_k) F\)</span>, where <span class="math inline">\(F\)</span> is a quantifier-free Boolean formula defined by induction such that
+<ul>
+<li>atoms are polynomial equations, inequations, strict or non-strict inequalities, with polynomials in <span class="math inline">\(\mathbb{Z}[v_1,\ldots,v_n]\)</span>,</li>
+<li>Suppose that quantifier-free Boolean formulas <span class="math inline">\(F_1, F_2,\ldots,F_k\)</span> are defined, then
+<span class="math display">\[
+\neg F_1,\&gt; F_1 \Rightarrow F_2,\&gt; F_1 \Leftarrow F_2,\&gt; F_1 \Leftrightarrow F_2,\&gt; F_1 \land \ldots \land F_k,\&gt; F_1 \lor \ldots \lor F_k
+\]</span>$
+are quantifier-free Boolean formulas.</li>
+<li><span class="math inline">\((Q_i,v_i), 1 \le i \le k\)</span> where
+<span class="math display">\[
+Q_i \in \{ \exists, \exists_k, \exists_\infty, \forall, \forall_\neg \}
+\]</span>
+quantify the first <span class="math inline">\(k\)</span> variables in the list <span class="math inline">\((v_1,\ldots,v_n)\)</span>. Quantifiers <span class="math inline">\(\forall, \exists\)</span> are defined as expected. New quantifiers are defined as follows</li>
+<li><span class="math inline">\(\exists_k v_i\)</span>: there are exactly <span class="math inline">\(k \in \mathbb{N}\)</span> values of <span class="math inline">\(v_i\)</span> satisfying <span class="math inline">\(F\)</span>.</li>
+<li><span class="math inline">\(\exists_\infty v_i\)</span>: there are infinitely many values of <span class="math inline">\(v_i\)</span> satisfying <span class="math inline">\(F\)</span>,</li>
+<li><span class="math inline">\(\forall_\neg\)</span>: all but a finite number of values of <span class="math inline">\(v_i\)</span> satisfy <span class="math inline">\(F\)</span>.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Normalisation</strong></p>
+<p>Let <span class="math inline">\((Q_1,v_1),\ldots,(Q_k,v_k) F\)</span> be the input formula. The normalisation phase uses logical equivalences and polynomial factorisation to transform <span class="math inline">\(F\)</span> into a “normalised” formula <span class="math inline">\(G\)</span>, defined by induction as follows:</p>
+<ul>
+<li>atoms are of the form <span class="math inline">\(f \ast 0\)</span> where <span class="math inline">\(f \in \mathbb{Z}[v_1,\ldots,v_n]\)</span> is a primitive, irreducible polynomial and <span class="math inline">\(\ast \in \{=, \ne, &lt;, \le, &gt;, \ge \}\)</span>.</li>
+<li>Suppose that normalised formulas <span class="math inline">\(G_1,\ldots,G_k\)</span> are already defined, then
+<span class="math display">\[
+ G_1 \land \cdots \land G_k \text{ and } G_1 \lor \cdots \lor G_k
+ \]</span>
+are normalised formulas.</li>
+<li>The family
+<span class="math display">\[
+ \mathcal{A} = (\mathcal{A}_1, \ldots,\mathcal{A}_n)
+ \]</span> of input polynomials is constructed, where each <span class="math inline">\(\mathcal{A}_k \subset \mathbb{Z}[v_1,\ldots,v_k]\)</span> contains the polynomials appearing in <span class="math inline">\(G\)</span> with nonzero degree in <span class="math inline">\(v_k\)</span> but zero degree in all variables <span class="math inline">\(v_{k+1},\ldots,v_n\)</span>.
+<span class="math inline">\(\mathcal{A}_k\)</span> is called the set of level-<span class="math inline">\(k\)</span> input polynomials.</li>
+</ul></li>
+<li><p><strong>Projection</strong></p>
+<p>The projection phase of CAD is then performed. The user is able to specify the projection operator to be used at each level. Implemented operators are</p>
+<ul>
+<li>Collins’ projection,</li>
+<li>McCallum’s projection,</li>
+<li>Hong’s projection,</li>
+<li>Lazard’s projection,</li>
+<li>“Partial” reduced McCallum projection
+(only adds the leading coefficient it it can be proved that lifting is never performed over a cell on which the polynomial vanishes identically),</li>
+<li>McCallum’s projection excluding leading coefficients.</li>
+</ul>
+<p>By default, the <em>partial reduced McCallum</em> projection operator is used. It is noted in the documentation that McCallum’s projection operator is preferred, as it produces fewer projection polynomials, but can sometimes fail during the lifting phase. In this case, an error is printed and the user is advised to use Hong’s projection operator, which is guaranteed to succeed, but produces more polynomials.</p>
+<p>Families <span class="math inline">\(\mathcal{P} := (\mathcal{P}_1,\ldots,\mathcal{P}_n)\)</span> and <span class="math inline">\(\mathcal{F} := (\mathcal{F}_1,\ldots,\mathcal{F}_n)\)</span> are constructed, where <span class="math inline">\(\mathcal{P}_k\)</span> is the set of level-<span class="math inline">\(k\)</span> projection polynomials, and <span class="math inline">\(\mathcal{F}_k\)</span>, containing factorised elements of <span class="math inline">\(\mathcal{A}_k \cup \mathcal{P}_k\)</span> is the set of level-<span class="math inline">\(k\)</span> “projection factors”. Elements of <span class="math inline">\(\mathcal{F}\)</span> are used to construct the CAD in the next step.</p></li>
+<li><p><strong>Lifting</strong> (stack construction)</p>
+<p>By default, <code>QEPCAD B</code> constructs a CAD which is compatible with the set defined by the input formula,
+Before the lifting phase is started, the user may specify <code>full-cad</code>, which constructs a CAD with constant sign on all projection factors.</p>
+<p>A CAD <span class="math inline">\(\mathcal{D}\)</span> of <span class="math inline">\(\mathbb{R}^{n-k}\)</span> (free variable space) is constructed such that the union of true cells is the set defined by the input formula.
+Truth values are either explicitly assigned to cells using the input formula or propagated down to free variable space using the quantifiers appearing in the input formula.</p></li>
+<li><p><strong>Solution formula construction</strong></p>
+<p>Given the CAD <span class="math inline">\(\mathcal{D}\)</span>, whose union of true cells coincides with the set defined by the input formula, a quantifier-free Boolean formula defining this set is produced. <code>QEPCAD B</code> attempts to use the projection factors in this formula, but sometimes additional polynomials (derivatives of projection factors) must be added in order to define the required set.</p></li>
+</ol>
+</div>
+<div id="qepcad-cells-and-sample-points" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> QEPCAD Cells and Sample Points<a href="7.1-implementation-on-top-of-qepcad.html#qepcad-cells-and-sample-points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this work, we deal mostly with QEPCAD cells rather than the QFF given as output.</p>
+<p>Consider a simple example of a CAD compatible with the unit circle in <span class="math inline">\(\mathbb{R}^2\)</span>, defined by the quantifier-free Boolean formula
+<span class="math display">\[
+F = \{ x^2 + y^2 - 1 = 0 \}.
+\]</span></p>
+<p>Below is an excerpt from QEPCAD’s output.</p>
+<pre class="{qepcad-output}"><code>Enter an informal description  between &#39;[&#39; and &#39;]&#39;:
+[ Unit circle ]Enter a variable list:
+(x,y)Enter the number of free variables:
+2
+Enter a Prenex formula:
+[ x^2 - y^2 = 1 ].
+
+=======================================================
+
+...
+
+Before Solution &gt;
+d-nqf-formula y^2 - x^2 + 1 = 0
+
+Before Solution &gt;
+d-input # input polynomials
+A_2,1  = input
+       = y^2 - x^2 + 1
+
+
+
+Before Solution &gt;
+d-proj-pol # projection polynomials
+J_1,1= dis(A_2,1)
+       = 4 x^2 - 4
+
+
+
+Before Solution &gt;
+d-proj-fac # projection factors
+P_1,1= fac(J_1,1) = fac(dis(A_2,1))
+       = x + 1
+
+P_1,2  = fac(J_1,1) = fac(dis(A_2,1))
+       = x - 1
+
+
+A_2,1  = input
+       = y^2 - x^2 + 1
+
+
+
+Before Solution &gt;
+d-cell(2,2) # the cell which coincides with the unit circle
+---------- Information about the cell (2,2) ----------
+
+Level                       : 2
+Dimension                   : 0
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,2))
+Signs of Projection Factors
+Level 1  : (0,-)
+Level 2  : (0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = -1
+             = -1.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+...
+</code></pre>
+<p>A QEPCAD cell <span class="math inline">\(C\)</span> includes the following information</p>
+<ul>
+<li><strong>Positional index</strong> <span class="math inline">\((j_1,\ldots,j_{n-k}), j_i \in \mathbb{N}, 1 \le i \le n-k\)</span>, indicates the position of this cell in the CAD;</li>
+<li><strong>Level</strong> <span class="math inline">\(k \in \mathbb{N}\)</span>, the level of the cell;</li>
+<li><strong>Dimension</strong> <span class="math inline">\(d \in \mathbb{Z}_{\ge 0}\)</span>, the dimension of the cell;</li>
+<li><strong>Number of children</strong>, where a child is a CAD cell <span class="math inline">\(D\)</span> of level <span class="math inline">\(k+1\)</span> such that <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}(D) = C\)</span>;</li>
+<li><strong>Truth value</strong> (and how it was determined), <span class="math inline">\(t \in \{ \rm{TRUE, FALSE, UNDET} \}\)</span>, truth values may be determined by trial evaluation, propagation or equational constraints;</li>
+<li><strong>Degrees after substitution</strong>, <span class="math inline">\((d_1,\ldots,d_m) \in \mathbb{Z}_{\ge 0}^m\)</span> such that <span class="math inline">\(d_i\)</span> is the degree of the <span class="math inline">\(i\)</span>-th level <span class="math inline">\(k\)</span> projection factor after substitution;</li>
+<li><strong>Multiplicities</strong>, <span class="math inline">\(((i_1,m_1),\ldots,(i_{\ell},m_{\ell})) \in (\mathbb{N}\times \mathbb{N})^\ell\)</span>, where <span class="math inline">\(m_j\)</span> is the multiplicity of the root of the <span class="math inline">\(i_j\)</span>-th substituted level-<span class="math inline">\(k\)</span> projection factor;</li>
+<li><strong>Signs of Projection Factors</strong> (for each level) <span class="math inline">\((S_1,\ldots,S_k)\)</span>, where each <span class="math inline">\(S_i = (s_1,\ldots,s_{m_k}) \in \{ 1,-1,0 \}^m\)</span> indicates the signs of level-<span class="math inline">\((k-i+1)\)</span> projection factors</li>
+<li><strong>Sample Point</strong> <span class="math inline">\(\mathbf{x} \in \mathbb{A}^k\)</span>.</li>
+</ul>
+<p>A sample point of a cell <span class="math inline">\(C\)</span> is an algebraic number <span class="math inline">\(\mathbf{x} = (x_1,\ldots,x_k) \in C\)</span>. This may be represented in one of two forms in QEPCAD.
+A primitive sample point <span class="math inline">\(\mathbf{x}\)</span> is an element of the algebraic extension field <span class="math inline">\(\mathbb{Q}(\alpha)\)</span> and is represented by the triple
+<span class="math display">\[
+(M, I, \mathbf{c})
+\]</span>
+where</p>
+<ul>
+<li><span class="math inline">\(M \in \mathbb{Z}[x]\)</span> is a primitive, irreducible polynomial having <span class="math inline">\(\alpha \in \mathbb{A}\)</span> as a root,</li>
+<li><span class="math inline">\(I \subset \mathbb{Q}\)</span> is an isolating interval for <span class="math inline">\(\alpha\)</span> as a root of <span class="math inline">\(M\)</span>,</li>
+<li><span class="math inline">\(\mathbf{c} = (x_1,\ldots,x_n) \in \mathbb{Q}(\alpha)^n\)</span>.</li>
+</ul>
+<p>The <code>SACLIB</code> representation for rational and algebraic numbers is used. A rational number <span class="math inline">\(x = a/b\)</span> is stored as a two-element list <span class="math inline">\((a,b)\)</span>. An element <span class="math inline">\(x \in \mathbb{Q}(\alpha)\)</span> is stored as a two-element list <span class="math inline">\((q, g) \in \mathbb{Q}\times \mathbb{Z}[\alpha]\)</span>, where <span class="math inline">\(x = q \cdot g(\alpha)\)</span>. If <span class="math inline">\(x \in \mathbb{Q}(\alpha)\)</span> is rational, then it is stored as <span class="math inline">\(x = x \cdot \alpha^0 = x \cdot 1\)</span>. Likewise, if a sample point <span class="math inline">\(\mathbf{x} \in \mathbb{A}^k\)</span> consists of only rational coordinates, the minimal polynomial <span class="math inline">\(M := x\)</span> and isolating interval <span class="math inline">\(I = (0,0)\)</span>.</p>
+<p>For a sample point <span class="math inline">\(\mathbf{x} = (x_1,\ldots,x_{k-1},x_k) \in \mathbb{A}^k\)</span> with coordinates <span class="math inline">\((x_1,\ldots,x_{k-1}) \in \mathbb{Q}(\alpha)\)</span> (where at least one of <span class="math inline">\(x_1,\ldots,x_{k-1}\)</span> is irrational) and irrational <span class="math inline">\(x_k \not \in \mathbb{Q}(\alpha)\)</span>, the sample point is stored in extended (non-primitive) form.
+This representation splits <span class="math inline">\(\mathbf{x}\)</span> into <span class="math inline">\(\mathbf{y} = (x_1,\ldots,x_{k-1}) \in \mathbb{Q}(\alpha)\)</span> and <span class="math inline">\(x_k \beta\)</span> and consists of five elements
+<span class="math display">\[
+(M_\alpha, I_\alpha, \mathbf{c}, M_\beta, J_\beta),
+\]</span>
+where</p>
+<ul>
+<li><span class="math inline">\(M_\alpha, I_\alpha, \mathbf{c}\)</span> represents <span class="math inline">\(\mathbf{y} \in \mathbb{Q}(\alpha)\)</span> as described in the primitive representation</li>
+<li><span class="math inline">\(M_\beta \in \mathbb{Q}(\alpha)[y]\)</span> is a primitive, irreducible polynomial having <span class="math inline">\(\beta \in \mathbb{A}\)</span> as a root,</li>
+<li><span class="math inline">\(I_\beta \subset \mathbb{Q}\)</span> is an isolating interval for <span class="math inline">\(\beta\)</span> as a root of <span class="math inline">\(M_\beta\)</span>,</li>
+</ul>
+<p>Since any finite collection of algebraic numbers belongs to an algebraic extension field <span class="math inline">\(\mathbb{Q}(\alpha)\)</span>, it is always possible to convert a sample point in extended form to primitive form. The QEPCAD function <code>CONVERT(\mathbf{c}, k)</code> converts a non-primitive sample point <span class="math inline">\(\mathbf{c} \in \mathbb{A}^k\)</span> into primitive representation by computing an appropriate <span class="math inline">\((M_\gamma, I_\gamma)\)</span> so that <span class="math inline">\(\mathbf{c} \in \mathbb{Q}(\gamma)\)</span>.</p>
+</div>
+<div id="modifications-to-qepcad" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Modifications to QEPCAD<a href="7.1-implementation-on-top-of-qepcad.html#modifications-to-qepcad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The QEPCAD algorithm has been modified to include construction of quasi-affine cells, refinement of the CAD to produce monotone cells, and refinement of “bad cells” to satisfy the frontier condition. A new option, <code>mct &lt;y / n&gt;</code> has been added, to enable or disable (respectively) the construction of a monotone CAD. The algorithm now proceeds as follows.</p>
+<ol style="list-style-type: decimal">
+<li><p>Input</p>
+<p>Let <span class="math inline">\(F\)</span> be a Prenex formula defining a semialgebraic set <span class="math inline">\(V = V_1 \cup \ldots V_k\)</span> where each <span class="math inline">\(V_i, 1 \le i \le k\)</span> has dimension <span class="math inline">\(\le 2\)</span>.</p></li>
+<li><p>Normalisation</p>
+<p>Normalise the formula <span class="math inline">\(F\)</span> and construct the set of input polynomials <span class="math display">\[
+\mathcal{A} = (\mathcal{A}_1, \ldots,\mathcal{A}_n)
+ \]</span>
+as described above.</p>
+<p>If the user enters <code>mct y</code>, monotone cells will be constructed. This also enables <code>full-cad</code>, so that the CAD will be sign-invariant on <span class="math inline">\(\mathcal{A}\)</span>.</p></li>
+<li><p><strong>Projection and Quasi-affine cells</strong></p>
+<p>Proceed as described in Section \<span class="citation">(<span class="citeproc-not-found" data-reference-id="ref"><strong>???</strong></span>)</span>(sec:quasi-affine). Every one- and two- dimensional cell will be smooth and polynomials which are zero at the critical points of projections to two- and one-dimensional coordinate subspaces will be added to <span class="math inline">\(\mathcal{A}\)</span>. As thee projections of polynomials in <span class="math inline">\(\mathcal{A}\)</span> are computed as part of the algorithm in Section <a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm">4.2.1</a>, this stage also constructs the projection polynomials <span class="math inline">\(\mathcal{P}\)</span> and projection factor set <span class="math inline">\(\mathcal{F}\)</span>. In order to ensure smooth and quasi-affine cells, new polynomials and their projections are included in the projection factor set <span class="math inline">\(\mathcal{F}\)</span>.</p>
+<p><del>Projection</del> (has already been completed)</p></li>
+<li><p>Lifting</p>
+<p>Constructs an <span class="math inline">\(\mathcal{A}\)</span>-invariant CAD <span class="math inline">\(\mathcal{D}\)</span>. Each <span class="math inline">\(1\)</span>- and <span class="math inline">\(2\)</span>-dimensional cell of <span class="math inline">\(\mathcal{D}\)</span> is smooth and the graph of a quasi-affine amp (see Section <a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm">4.2.1</a>).</p></li>
+<li><p><strong>Refinement Phase</strong></p>
+<ul>
+<li><p><em>Monotone Cells</em></p>
+<p>Following the algorithm described in Section <a href="5.3-implementation-details-1.html#sec:monotone-algorithm">5.3.1</a>, construct the family of refinement points <span class="math display">\[
+{\cal R} := \{ {\cal R}_{\mathbf{b}} =  (c_1,\ldots,c_t ) \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \mathbb{R}^k \}
+\]</span> and add new polynomials (to <span class="math inline">\(\mathcal{A}\)</span>, factorised to <span class="math inline">\(\mathcal{F}\)</span>) which are equal to zero at these refinement points.</p>
+<p>For each refinement point <span class="math inline">\(c \in \mathbb{A}\)</span> in each family <span class="math inline">\(\mathcal{R}_\mathbf{b}\)</span>, refine the sub-CAD of <span class="math inline">\(\mathbb{R}^{n-k}\)</span> <span class="math inline">\(\mathcal{D}\)</span> above the <span class="math inline">\(0\)</span>-cell <span class="math inline">\(\mathbf{b}\)</span> by intersecting it with straight lines and half-planes
+<span class="math display">\[
+\{ x_{k+1} &lt; c \}, \{ x_{k+1} = c \}, \{ x_{k+1} &gt; c \}.
+\]</span>
+Positional indices and sample points of refined cells are updated.</p></li>
+<li><p><em>Frontier Condition</em></p>
+<p>Applies the method, similar to that described in <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, to <span class="math inline">\(0\)</span>-dimensional “bad cells” (see Section <a href="6.3-sec:lazard-n.html#sec:ext-lazard-algorithm">6.3.1</a>). Groebner bases are constructed using <code>Singular</code>, which is already used for faster polynomial factorisation in <code>QEPCAD B</code>.</p></li>
+</ul></li>
+<li><p>Solution formula construction</p>
+<p>Proceeds unchanged – prints the solution formula and exits the program.</p>
+<p>The user may pause here to examine the cells in the refined CAD.</p></li>
+</ol>
+<p>In the forthcoming sections, the new code added to <code>QEPCAD B</code> is presented and discussed.</p>
+</div>
+<div id="quasi-affine" class="section level3 hasAnchor" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Quasi-affine<a href="7.1-implementation-on-top-of-qepcad.html#quasi-affine" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function responsible for constructing a CAD containing quasi-affine cells is <code>QUASIAFFINE</code></p>
+<ul>
+<li><strong>input</strong>
+<ul>
+<li><code>Word r</code>: number of variables</li>
+<li><code>Word V</code>: variable list</li>
+<li><code>Word F</code>: normalised input formula</li>
+</ul></li>
+<li><strong>Output:</strong>
+<ul>
+<li><code>Word* A_</code>: set of input polynomials</li>
+<li><code>Word* P_</code>: set of projection polynomials</li>
+<li><code>Word* J_</code>: set of projection factors</li>
+</ul></li>
+</ul>
+<p>Given the normalised input formula, this function implements a modified version of the projection phase. It r returns the polynomials sufficient to construct a CAD such that each one- and two-dimensional cell contained in the set defined by the formula <span class="math inline">\(F\)</span> is smooth and the graph of a quasi-affine map.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb13-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-1"></a><span class="dt">void</span> QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_)</span>
+<span id="cb13-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-2"></a>{</span>
+<span id="cb13-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-3"></a>    Word C, Ps, C1s, C2s, Js = NIL, PIs, PFs, PPs;</span>
+<span id="cb13-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-4"></a>    SmoothOneTwoDim(r, V, F, &amp;C1s, &amp;C2s, &amp;PIs, &amp;PPs, &amp;PFs);</span>
+<span id="cb13-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-5"></a>    Word PF1 = CINV(PFs); <span class="co">// reverse order of proj factors to match cells</span></span>
+<span id="cb13-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-6"></a></span>
+<span id="cb13-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-7"></a>    <span class="co">// one-dimensional cells</span></span>
+<span id="cb13-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-8"></a>    <span class="co">// i represents the projection onto one-dimensional coordinate subspace proj(i)</span></span>
+<span id="cb13-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-9"></a>    <span class="co">// i.j represents proj(i,j), but we consider all minors with n-2 polynomials</span></span>
+<span id="cb13-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-10"></a>    <span class="cf">while</span> (C1s != NIL) {</span>
+<span id="cb13-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-11"></a>        ADV(C1s, &amp;C, &amp;C1s);</span>
+<span id="cb13-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-12"></a>        Word Ps = ZeroPols(PF1, r, C);</span>
+<span id="cb13-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-13"></a></span>
+<span id="cb13-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-14"></a>        <span class="co">// proj(i)</span></span>
+<span id="cb13-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-15"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= r; ++i) {</span>
+<span id="cb13-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-16"></a>            Word Is = GenerateIndex(r, i,<span class="dv">0</span>);</span>
+<span id="cb13-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-17"></a>            Word J = JACOBI(r, NIL, <span class="dv">0</span>, Ps, Is);</span>
+<span id="cb13-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-18"></a></span>
+<span id="cb13-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-19"></a>            <span class="cf">if</span> (!IPCONST(r, J)) {</span>
+<span id="cb13-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-20"></a>                Js = COMP(J, Js);</span>
+<span id="cb13-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-21"></a>            }</span>
+<span id="cb13-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-22"></a>        }</span>
+<span id="cb13-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-23"></a>    }</span>
+<span id="cb13-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-24"></a></span>
+<span id="cb13-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-25"></a>    <span class="co">// two-dimensional cells</span></span>
+<span id="cb13-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-26"></a>    <span class="co">// i.j represent 2-dimensional coordinate subspace proj(i,j), and all minors for proj(i)</span></span>
+<span id="cb13-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-27"></a>    <span class="cf">while</span> (C2s != NIL) {</span>
+<span id="cb13-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-28"></a>        ADV(C2s, &amp;C, &amp;C2s);</span>
+<span id="cb13-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-29"></a>        Word Ps = ZeroPols(PF1, r, C);</span>
+<span id="cb13-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-30"></a></span>
+<span id="cb13-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-31"></a>        <span class="co">// proj(i,j)</span></span>
+<span id="cb13-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-32"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; r; ++i) {</span>
+<span id="cb13-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-33"></a>            <span class="cf">for</span> (<span class="dt">int</span> j = i + <span class="dv">1</span>; j &lt;= r; j++) {</span>
+<span id="cb13-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-34"></a>                Word Is = GenerateIndex(r, i,j);</span>
+<span id="cb13-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-35"></a>                Word J = JACOBI(r, NIL, <span class="dv">0</span>, Ps, Is);</span>
+<span id="cb13-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-36"></a>                <span class="cf">if</span> (!IPCONST(r, J)) {</span>
+<span id="cb13-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-37"></a>                    Js = COMP(J, Js);</span>
+<span id="cb13-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-38"></a>                }</span>
+<span id="cb13-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-39"></a></span>
+<span id="cb13-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-40"></a>            }</span>
+<span id="cb13-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-41"></a>        }</span>
+<span id="cb13-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-42"></a>    }</span>
+<span id="cb13-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-43"></a></span>
+<span id="cb13-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-44"></a>    <span class="co">// CAD should be sign-invariant on Js. this means it should be compatible with their projections, too.</span></span>
+<span id="cb13-45"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-45"></a>    <span class="co">// we add projections here to save recomputing the projection for entire CAD.</span></span>
+<span id="cb13-46"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-46"></a></span>
+<span id="cb13-47"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-47"></a>    <span class="co">// assign the pointers.</span></span>
+<span id="cb13-48"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-48"></a>    *A_ = PIs; <span class="co">// input polynomials</span></span>
+<span id="cb13-49"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-49"></a>    *P_ = PFs; <span class="co">// projection factors</span></span>
+<span id="cb13-50"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-50"></a>    *J_ = PPs; <span class="co">// projection polynomials</span></span>
+<span id="cb13-51"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-51"></a></span>
+<span id="cb13-52"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-52"></a>    <span class="co">// add Js...</span></span>
+<span id="cb13-53"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-53"></a>    <span class="co">// Ps1 contains QEPCAD polynomials, Fs1 contains its factors.</span></span>
+<span id="cb13-54"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-54"></a>    Word Ps1, PsQ, Js1, Fs1;</span>
+<span id="cb13-55"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-55"></a>    ProcessPolynomials(r, Js, &amp;Ps1, &amp;PsQ, &amp;Js1, &amp;Fs1);</span>
+<span id="cb13-56"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-56"></a>    ADDPOLS(Ps1, r, LFS(<span class="st">&quot;Q&quot;</span>), J_);</span>
+<span id="cb13-57"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-57"></a>    ADDPOLS(Fs1, r, LFS(<span class="st">&quot;Q&quot;</span>), P_);</span>
+<span id="cb13-58"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-58"></a></span>
+<span id="cb13-59"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-59"></a>    <span class="co">// and its projections</span></span>
+<span id="cb13-60"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-60"></a>    <span class="cf">while</span> (r &gt; <span class="dv">1</span>) {</span>
+<span id="cb13-61"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-61"></a>        Js = ProjMcxUtil(r, PsQ);</span>
+<span id="cb13-62"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-62"></a>        Js = CONC(Js, Js1); <span class="co">// polynomials with 0 degree in x_r</span></span>
+<span id="cb13-63"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-63"></a>        --r;</span>
+<span id="cb13-64"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-64"></a></span>
+<span id="cb13-65"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-65"></a>        ProcessPolynomials(r, Js, &amp;Ps1, &amp;PsQ, &amp;Js1, &amp;Fs1);</span>
+<span id="cb13-66"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-66"></a>        ADDPOLS(Ps1, r, LFS(<span class="st">&quot;Q&quot;</span>), J_);</span>
+<span id="cb13-67"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-67"></a>        ADDPOLS(Fs1, r, LFS(<span class="st">&quot;Q&quot;</span>), P_);</span>
+<span id="cb13-68"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-68"></a>    }</span>
+<span id="cb13-69"><a href="7.1-implementation-on-top-of-qepcad.html#cb13-69"></a>}</span></code></pre></div>
+<ul>
+<li><p>On line 4, the function <code>SmoothOneTwoDim</code> is called. It constructs a CAD <span class="math inline">\(\mathcal{E}\)</span> of <span class="math inline">\(\mathbb{R}^r\)</span>, compatible with the set <span class="math inline">\(V = V_1\cup\ldots\cup V_K \subset \mathbb{R}^r\)</span> defined by the input formula <span class="math inline">\(F\)</span> using the McCallum projection operator so that every one- and two-dimensional cell of <span class="math inline">\(\mathcal{E}\)</span> contained in <span class="math inline">\(V\)</span> is a smooth manifold. In fact, <span class="math inline">\(\mathcal{E}\)</span> is sign-invariant on the polynomials in <span class="math inline">\(F\)</span>, so <span class="math inline">\(\mathcal{E}\)</span> is compatible with each <span class="math inline">\(V_1,\ldots,V_k\)</span>. It returns</p>
+<ul>
+<li><code>C1s</code>: set of one-dimensional cells of <span class="math inline">\(\mathcal{E}\)</span> contained in <span class="math inline">\(V\)</span>,</li>
+<li><code>C2s</code>: set of two-dimensional cells of <span class="math inline">\(\mathcal{E}\)</span> contained in <span class="math inline">\(V\)</span>,</li>
+<li><code>PIs</code>: set of input polynomials defining <span class="math inline">\(\mathcal{E}\)</span> (the polynomials in <span class="math inline">\(F\)</span>),</li>
+<li><code>Pps</code>: set of projection polynomials defining <span class="math inline">\(\mathcal{E}\)</span>,</li>
+<li><code>Pfs</code>: set of projection factors (factorised projection polynomials) defining <span class="math inline">\(\mathcal{E}\)</span>.</li>
+</ul></li>
+<li><p>Lines 10-23 compute the critical points of projections of <span class="math inline">\(1\)</span>-dimensional cells in <code>C1s</code> onto one-dimensional coordinate subspaces <span class="math inline">\({\operatorname{span} \{x_i\}}, 1 \le i \le r\)</span>.</p></li>
+<li><p>Lines 37-42 compute the critical points of projections of <span class="math inline">\(2\)</span>-dimensional cells an <code>C2s</code> onto two-dimensional coordinate subspaces <span class="math inline">\({\operatorname{span} \{x_i,x_j\}}, 1 \le i &lt; j \le n\)</span>.</p></li>
+<li><p>The <code>JACOBI(r, f, j, Hs, Is)</code> function computes a Jacobi determinant <span class="math display">\[
+\det \begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} &amp; \ldots &amp; \dfrac{\partial h_{1}}{\partial x_{i_{k}}} &amp; \dfrac{\partial h_{1}}{\partial x_{j}}\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+\dfrac{\partial h_{k}}{\partial x_{i_{1}}} &amp; \ldots &amp; \dfrac{\partial h_{k}}{\partial x_{i_{k}}} &amp; \dfrac{\partial h_{k}}{\partial x_{j}}\\
+\dfrac{\partial f}{\partial x_{i_{1}}} &amp; \ldots &amp; \dfrac{\partial f}{\partial x_{i_{k}}} &amp; \dfrac{\partial f}{\partial x_{j}}
+\end{pmatrix}
+\]</span> with parameters</p>
+<ul>
+<li><span class="math inline">\(r \in N\)</span>,</li>
+<li><span class="math inline">\(f \in \mathbb{Z}[x_1,\ldots,x_r]\)</span>,</li>
+<li><span class="math inline">\(j \in \mathbb{Z}_{\ge 0}\)</span></li>
+<li><span class="math inline">\(\rm{Hs} = (h_1,\ldots,h_k), h_i \in \mathbb{Z}[x_1,\ldots,x_r], 1 \le i \le k\)</span></li>
+<li><span class="math inline">\(\rm{Is} = (i_1,\ldots,i_k) \in \mathbb{Z}^k\)</span>.</li>
+</ul>
+<p>This is similar to the partial differential operator from Definition <a href="3.1-sec:strat-alg-description.html#def:pdo">3.2</a>, except that if <span class="math inline">\(j = 0\)</span>, the last row and column is omitted from the matrix.</p></li>
+<li><p>The rest of the function sets up the input polynomials, projection polynomials and projection factors necessary to define a sign-invariant CAD compatible with <span class="math inline">\(V\)</span> and critical points of projections of one- and two-dimensional cells onto one- and two-dimensional coordinate subspaces. Projections of the new polynomials computed in the previous two steps are computed and added to the projection polynomial and projection factor sets.
+The lifting phase proceeds, using these polynomials, us usual.</p></li>
+</ul>
+</div>
+<div id="monotone" class="section level3 hasAnchor" number="7.1.5">
+<h3><span class="header-section-number">7.1.5</span> Monotone<a href="7.1-implementation-on-top-of-qepcad.html#monotone" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function <code>MONOTONE</code> is responsible for computing the set of refinement points necessary to construct a CAD monotone with respect to <span class="math inline">\(V_1,\ldots,V_k\)</span>.</p>
+<ul>
+<li><strong>Input:</strong>
+<ul>
+<li><code>Word r</code>: <span class="math inline">\(r\in N\)</span>,</li>
+<li><code>Word D</code>: sign-invariant CAD of <span class="math inline">\(\mathbb{R}^r\)</span>,</li>
+<li><code>Word A</code>: set of projection polynomials for <code>D</code>,</li>
+<li><code>Word J</code>: projection factor set for <code>D</code>.</li>
+</ul></li>
+<li><strong>Output:</strong>
+<ul>
+<li><code>Word R</code>: set of refinement points,</li>
+<li>Refinement polynomials are also added to <code>A</code> and <code>J</code>.</li>
+</ul></li>
+</ul>
+<p>An excerpt of the code is presented below.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb14-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-1"></a>Word QepcadCls::MONOTONE(Word* A_, Word* J_, Word D, Word r)</span>
+<span id="cb14-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-2"></a>{</span>
+<span id="cb14-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-3"></a>    <span class="co">// to store unfactorised refinement polynomials, in the form (Index, Sample, Ps)</span></span>
+<span id="cb14-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-4"></a>    Word Rs = NIL;</span>
+<span id="cb14-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-5"></a></span>
+<span id="cb14-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-6"></a>    <span class="co">// consider each true cell in D</span></span>
+<span id="cb14-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-7"></a>    <span class="co">// note: in practice, it is slower and takes more memory to do a walk of the CAD, saving polynomials along the way.</span></span>
+<span id="cb14-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-8"></a>    Word TrueCells, junk;</span>
+<span id="cb14-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-9"></a>    LISTOFCWTV(D, &amp;TrueCells, &amp;junk);</span>
+<span id="cb14-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-10"></a>    Word Ds = LELTI(D, CHILD); <span class="co">// cells of D, for searching cells</span></span>
+<span id="cb14-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-11"></a>    Word AA = INV(LCOPY(*A_)); <span class="co">// in reverse order, to match SIGNPF. for later.</span></span>
+<span id="cb14-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-12"></a></span>
+<span id="cb14-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-13"></a>    <span class="cf">while</span> (TrueCells != NIL) {</span>
+<span id="cb14-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-14"></a>        Word C;</span>
+<span id="cb14-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-15"></a>        ADV(TrueCells, &amp;C, &amp;TrueCells);</span>
+<span id="cb14-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-16"></a></span>
+<span id="cb14-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-17"></a>        <span class="co">// C has dimension two, then IJ &lt; Ik are the positions in I where the component is equal to 1. otherwise skip</span></span>
+<span id="cb14-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-18"></a>        Word I = LELTI(C, INDX);</span>
+<span id="cb14-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-19"></a>        Word Ij, Ik;</span>
+<span id="cb14-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-20"></a>        Word d = TwoDimIndex(I, &amp;Ij, &amp;Ik);</span>
+<span id="cb14-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-21"></a>        <span class="cf">if</span> (d &gt; <span class="dv">2</span>) {</span>
+<span id="cb14-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-22"></a>            <span class="co">// fail: only implemented for dimension at most 2</span></span>
+<span id="cb14-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-23"></a>            FAIL(<span class="st">&quot;source/ticad/MONOTONE&quot;</span>, <span class="st">&quot;cell dimension greater than 2 not supported.&quot;</span>);</span>
+<span id="cb14-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-24"></a>        } <span class="cf">else</span> <span class="cf">if</span> (d &lt; <span class="dv">2</span>) {</span>
+<span id="cb14-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-25"></a>            <span class="co">// cells with dimension 0 and 1 are already monotone.</span></span>
+<span id="cb14-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-26"></a>            <span class="cf">continue</span>;</span>
+<span id="cb14-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-27"></a>        }</span>
+<span id="cb14-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-28"></a></span>
+<span id="cb14-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-29"></a>        Word Ij1 = Ij - <span class="dv">1</span>;</span>
+<span id="cb14-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-30"></a>        Word nv = r - Ij1;</span>
+<span id="cb14-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-31"></a></span>
+<span id="cb14-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-32"></a>        <span class="co">// C0 := proj_{j-1}(C) is a 0-dimensional cell (c_1,...,c_{j-1})</span></span>
+<span id="cb14-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-33"></a>        Word C0, S0, I0;</span>
+<span id="cb14-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-34"></a>        Word ij = LELTI(I, Ij);</span>
+<span id="cb14-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-35"></a>        <span class="cf">if</span> (Ij == <span class="dv">1</span>) { <span class="co">// base CAD is D</span></span>
+<span id="cb14-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-36"></a>            C0 = D;</span>
+<span id="cb14-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-37"></a>            S0 = LIST3(PMON(<span class="dv">1</span>,<span class="dv">1</span>), LIST2(<span class="dv">0</span>,<span class="dv">0</span>), NIL);</span>
+<span id="cb14-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-38"></a>            I0 = NIL;</span>
+<span id="cb14-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-39"></a>        } <span class="cf">else</span> { <span class="co">// sub-CAD on top of some 0-cell</span></span>
+<span id="cb14-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-40"></a>            C0 = FindByIndex(Ds, I, Ij1, <span class="dv">1</span>);</span>
+<span id="cb14-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-41"></a>            S0 = LELTI(C0, SAMPLE);</span>
+<span id="cb14-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-42"></a>            I0 = LELTI(C0, INDX);</span>
+<span id="cb14-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-43"></a>        }</span>
+<span id="cb14-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-44"></a></span>
+<span id="cb14-45"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-45"></a>        <span class="co">// top and bottom of proj_k(C) are one-dimensional sections by definition.</span></span>
+<span id="cb14-46"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-46"></a>        Word I1 = LCOPY(I);</span>
+<span id="cb14-47"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-47"></a></span>
+<span id="cb14-48"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-48"></a>        <span class="co">// top: (i_1,...,i_k + 1)</span></span>
+<span id="cb14-49"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-49"></a>        SLELTI(I1, Ik, LELTI(I, Ik) + <span class="dv">1</span>);</span>
+<span id="cb14-50"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-50"></a>        Word CT = FindByIndex(Ds, I1, Ik, <span class="dv">1</span>);</span>
+<span id="cb14-51"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-51"></a></span>
+<span id="cb14-52"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-52"></a>        <span class="co">// bottom: (i_1,...,i_k - 1)</span></span>
+<span id="cb14-53"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-53"></a>        SLELTI(I1, Ik, LELTI(I, Ik) - <span class="dv">1</span>);</span>
+<span id="cb14-54"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-54"></a>        Word CB = FindByIndex(Ds, I1, Ik, <span class="dv">1</span>);</span>
+<span id="cb14-55"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-55"></a></span>
+<span id="cb14-56"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-56"></a>        <span class="co">// Top and bottom of 1-sector, level J</span></span>
+<span id="cb14-57"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-57"></a>        Word C0C = LELTI(C0, CHILD);</span>
+<span id="cb14-58"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-58"></a>        Word I01 = CCONC(I0, LIST1(ij));</span>
+<span id="cb14-59"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-59"></a>        Word S0B = NIL, S0T = NIL, Endpoints;</span>
+<span id="cb14-60"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-60"></a>        <span class="cf">if</span> (ij &gt; <span class="dv">1</span>) {</span>
+<span id="cb14-61"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-61"></a>            GETSAMPLEK(</span>
+<span id="cb14-62"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-62"></a>                Ij,</span>
+<span id="cb14-63"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-63"></a>                LELTI(LELTI(C0C, ij - <span class="dv">1</span>), SAMPLE),</span>
+<span id="cb14-64"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-64"></a>                &amp;junk,</span>
+<span id="cb14-65"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-65"></a>                &amp;S0B</span>
+<span id="cb14-66"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-66"></a>            );</span>
+<span id="cb14-67"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-67"></a></span>
+<span id="cb14-68"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-68"></a>            S0B = SECOND(S0B);</span>
+<span id="cb14-69"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-69"></a>        }</span>
+<span id="cb14-70"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-70"></a></span>
+<span id="cb14-71"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-71"></a>        <span class="cf">if</span> (ij &lt; LENGTH(C0C)) {</span>
+<span id="cb14-72"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-72"></a>            GETSAMPLEK(</span>
+<span id="cb14-73"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-73"></a>                Ij,</span>
+<span id="cb14-74"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-74"></a>                LELTI(LELTI(C0C, ij + <span class="dv">1</span>), SAMPLE),</span>
+<span id="cb14-75"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-75"></a>                &amp;junk,</span>
+<span id="cb14-76"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-76"></a>                &amp;S0T</span>
+<span id="cb14-77"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-77"></a>            );</span>
+<span id="cb14-78"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-78"></a></span>
+<span id="cb14-79"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-79"></a>            S0T = SECOND(S0T);</span>
+<span id="cb14-80"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-80"></a>        }</span>
+<span id="cb14-81"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-81"></a></span>
+<span id="cb14-82"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-82"></a>        Endpoints = LIST2(S0B, S0T);</span>
+<span id="cb14-83"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-83"></a></span>
+<span id="cb14-84"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-84"></a>        <span class="co">// find polynomials in sub-CAD</span></span>
+<span id="cb14-85"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-85"></a>        <span class="co">// (note they will be in Z[x_i,...,x_l] after substitution):</span></span>
+<span id="cb14-86"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-86"></a>        <span class="co">// Gs = g_2,...,g_{k-1} define proj_{k-1}(C).</span></span>
+<span id="cb14-87"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-87"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co"> can we save the polynomials, maybe using cell position, to save duplicating work?</span></span>
+<span id="cb14-88"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-88"></a>        Word Gs = ZeroPolsSub(AA, r, C, Ij + <span class="dv">1</span>, Ik - <span class="dv">1</span>, S0, Ij1, nv);</span>
+<span id="cb14-89"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-89"></a></span>
+<span id="cb14-90"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-90"></a>        <span class="co">// Fk (f_{k,T}, f_{k,B}) are 0 on CT and CB respectively.</span></span>
+<span id="cb14-91"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-91"></a>        Word FT, FB;</span>
+<span id="cb14-92"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-92"></a>        <span class="cf">if</span> (CT != NIL) FT = FIRST(ZeroPolsSub(AA, r, CT, Ik, Ik, S0, Ij1, nv));</span>
+<span id="cb14-93"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-93"></a>        <span class="cf">if</span> (CB != NIL) FB = FIRST(ZeroPolsSub(AA, r, CB, Ik, Ik, S0, Ij1, nv));</span>
+<span id="cb14-94"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-94"></a></span>
+<span id="cb14-95"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-95"></a>        <span class="co">// Fs = (f_{K+1},...,f_n) is a map from proj_{k}(C) to R^{n-k}, of which C is the graph.</span></span>
+<span id="cb14-96"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-96"></a>        Word Fs = ZeroPolsSub(AA, r, C, Ik + <span class="dv">1</span>, r, S0, Ij1, nv);</span>
+<span id="cb14-97"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-97"></a></span>
+<span id="cb14-98"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-98"></a>        <span class="co">// perform refinement</span></span>
+<span id="cb14-99"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-99"></a>        <span class="cf">if</span> (CT != NIL) {</span>
+<span id="cb14-100"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-100"></a>            STOREPOLYNOMIALS(Refinement(nv, Gs, FT, Fs), I01, S0, Endpoints, &amp;Rs);</span>
+<span id="cb14-101"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-101"></a>        }</span>
+<span id="cb14-102"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-102"></a></span>
+<span id="cb14-103"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-103"></a>        <span class="cf">if</span> (CB != NIL) {</span>
+<span id="cb14-104"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-104"></a>            STOREPOLYNOMIALS(Refinement(nv, Gs, FB, Fs), I01, S0, Endpoints, &amp;Rs);</span>
+<span id="cb14-105"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-105"></a>        }</span>
+<span id="cb14-106"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-106"></a>    }</span>
+<span id="cb14-107"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-107"></a></span>
+<span id="cb14-108"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-108"></a>    <span class="cf">return</span> REFINEMENTPOINTS(r, Rs, A_, J_);</span>
+<span id="cb14-109"><a href="7.1-implementation-on-top-of-qepcad.html#cb14-109"></a>}</span></code></pre></div>
+<p>The function considers each <span class="math inline">\(2\)</span>-dimensional cell <span class="math inline">\(C\)</span> of <span class="math inline">\(\mathcal{E}\)</span> such that <span class="math inline">\(C\subset V\)</span>. <span class="math inline">\(C\)</span> is an <span class="math inline">\((i_1,\ldots,i_r)\)</span>-cell such that <span class="math inline">\(i_j = i_k = 1\)</span> and all other elements of the index are equal to zero.
+- On line 32, <span class="math inline">\(\mathbf{c}_0 = {\operatorname{proj}_{\mathbb{R}^{i_j - 1}}}(C)\)</span>, the zero-cell above which <span class="math inline">\(C\)</span> is a <span class="math inline">\((1,i_{j+1},\ldots,i_r)\)</span>-cell.
+- <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}(C)\)</span> is a section cell, on lines 50 and 54, <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_T\)</span> and 5(C)_B4, the section cells defining the top and bottom of this sector, respectively, are retrieved from the decomposition induced by <span class="math inline">\(\mathcal{E}\)</span> on <span class="math inline">\(\mathbb{R}^k\)</span> by their positional index.
+- Line <span class="math inline">\(82\)</span> retrieves the endpoints of the <span class="math inline">\(1\)</span>-dimensional sector <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{j}}}(C) = (a,b)\)</span>.
+- Line 88 retrieves and substitutes the polynomials
+<span class="math display">\[
+  \rm{Gs} := \{ g_\ell \in \mathbb{Q}[x_j,\ldots,x_\ell] \mid g_\ell(\mathbf{x}) = 0 \forall \mathbf{x} \in C, j &lt; \ell &lt; k \}.
+  \]</span>
+- Lines 92 and 93 find and substitute polynomials <span class="math inline">\(f_T\)</span> and <span class="math inline">\(f_B\)</span> in <span class="math inline">\(\mathbb{Q}[x_j, \ldots, f_k\)</span> respectively such that <span class="math inline">\(f_T(\mathbf{x}) = 0 \forall \mathbf{x} \in {\operatorname{proj}_{\mathbb{R}^{k}}}(C)_T\)</span> and <span class="math inline">\(f_T(\mathbf{x}) = 0 \forall \mathbf{x} \in {\operatorname{proj}_{\mathbb{R}^{k}}}(C)_T\)</span>
+- Line 96 finds and substitutes polynomials
+<span class="math display">\[
+  \rm{Fs} := \{ f_\ell \in \mathbb{Q}[x_j,\ldots,x_\ell] \mid f_\ell(\mathbf{x}) = 0 \forall \mathbf{x} \in C, k &lt; \ell &lt; r \}.
+  \]</span>
+- The remainder of the function computes the refinements of <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{k\}}}}(C)_T\)</span> and <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{k\}}}}(C)_T\)</span>, if they exist, such that <span class="math inline">\(C\)</span> is monotone.
+- <code>STOREPOLYNOMIALS</code> adds refinement polynomials to the projection polynomial and factor sets and <code>REFONIMENTPOINTS</code> uses the factorised refinement polynomials to compute the set of refinement points.</p>
+<p>The function <code>Refinement</code> is responsible for computing the refinement polynomials using an iterative application of the method of Lagrange multipliers.</p>
+<ul>
+<li><strong>Input:</strong>
+<ul>
+<li><code>Gs</code>, <code>P</code>, <code>Fs</code> as defined above, for <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_T\)</span> or <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_B\)</span>.</li>
+</ul></li>
+<li><strong>Output:</strong>
+<ul>
+<li>a set of univariate polynomials in <span class="math inline">\(\mathbb{Q}[x_j]\)</span> such that <span class="math inline">\(C\)</span> is monotone.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb15-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-1"></a>Word Refinement(Word r, Word Gs, Word P, Word Fs)</span>
+<span id="cb15-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-2"></a>{</span>
+<span id="cb15-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-3"></a>    Word Rs, Q, i, k, Is;</span>
+<span id="cb15-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-4"></a></span>
+<span id="cb15-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-5"></a>    <span class="co">// generate sequence Is = (1,...,k-1)</span></span>
+<span id="cb15-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-6"></a>    i = <span class="dv">1</span>;</span>
+<span id="cb15-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-7"></a>    k = LENGTH(Gs) + i;</span>
+<span id="cb15-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-8"></a>    Is = NIL;</span>
+<span id="cb15-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-9"></a>    <span class="cf">while</span> (i &lt; k) {</span>
+<span id="cb15-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-10"></a>        Is = COMP(i, Is);</span>
+<span id="cb15-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-11"></a>        ++i;</span>
+<span id="cb15-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-12"></a>    }</span>
+<span id="cb15-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-13"></a></span>
+<span id="cb15-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-14"></a>    Rs = NIL; <span class="co">// refinement polynomials</span></span>
+<span id="cb15-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-15"></a></span>
+<span id="cb15-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-16"></a>    <span class="co">// semi-monotone: critical points of P subject to Gs</span></span>
+<span id="cb15-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-17"></a>    <span class="cf">if</span> (Gs != NIL) {</span>
+<span id="cb15-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-18"></a>        Rs = CONC(LagrangeRefinement(r, P, k, Gs, Is), Rs);</span>
+<span id="cb15-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-19"></a>    }</span>
+<span id="cb15-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-20"></a></span>
+<span id="cb15-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-21"></a>    <span class="co">// monotone: each F_i subject to Gs, F_1,...F_{i-1} for each i</span></span>
+<span id="cb15-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-22"></a>    <span class="cf">while</span> (Fs != NIL) {</span>
+<span id="cb15-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-23"></a>        ADV(Fs, &amp;Q, &amp;Fs);</span>
+<span id="cb15-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-24"></a>        Gs = COMP(P, Gs);</span>
+<span id="cb15-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-25"></a>        Is = COMP(k, Is);</span>
+<span id="cb15-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-26"></a>        P = Q;</span>
+<span id="cb15-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-27"></a>        ++k;</span>
+<span id="cb15-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-28"></a></span>
+<span id="cb15-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-29"></a>        <span class="co">// monotone, index k: critical points of Q subject to Gs</span></span>
+<span id="cb15-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-30"></a>        Rs = CONC(LagrangeRefinement(r, Q, k, Gs, Is), Rs);</span>
+<span id="cb15-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-31"></a>    }</span>
+<span id="cb15-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-32"></a></span>
+<span id="cb15-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-33"></a>    <span class="co">// solve for x_1</span></span>
+<span id="cb15-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-34"></a>    <span class="cf">return</span> Rs;</span>
+<span id="cb15-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-35"></a>}</span>
+<span id="cb15-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-36"></a></span>
+<span id="cb15-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-37"></a>Word LagrangeRefinement(Word r, Word f, Word i, Word Gs, Word Is)</span>
+<span id="cb15-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-38"></a>{</span>
+<span id="cb15-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-39"></a>    Word Q = JACOBI(r, f, i, Gs, Is);</span>
+<span id="cb15-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-40"></a></span>
+<span id="cb15-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-41"></a>    <span class="co">// check for zero polynomial. no solutions</span></span>
+<span id="cb15-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-42"></a>    <span class="cf">if</span> (Q == <span class="dv">0</span>) <span class="cf">return</span> NIL;</span>
+<span id="cb15-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-43"></a></span>
+<span id="cb15-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-44"></a>    <span class="co">// factorise</span></span>
+<span id="cb15-45"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-45"></a>    Word junk, Qs, Q1;</span>
+<span id="cb15-46"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-46"></a>    IPFACDB(r ,Q, &amp;junk, &amp;junk, &amp;Qs);</span>
+<span id="cb15-47"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-47"></a>    <span class="cf">while</span> (Qs != NIL) {</span>
+<span id="cb15-48"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-48"></a>        ADV(Qs, &amp;Q1, &amp;Qs);</span>
+<span id="cb15-49"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-49"></a></span>
+<span id="cb15-50"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-50"></a>        Gs = COMP(SECOND(Q1), Gs);</span>
+<span id="cb15-51"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-51"></a>    }</span>
+<span id="cb15-52"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-52"></a></span>
+<span id="cb15-53"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-53"></a>    <span class="co">// simplify Gs by constructing a Groebner basis is supported</span></span>
+<span id="cb15-54"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-54"></a>    <span class="co">// this step makes solving the jacobi determinant for x_1 a lot quicker in practice.</span></span>
+<span id="cb15-55"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-55"></a>    <span class="cf">if</span> (GVCAP-&gt;supports(<span class="st">&quot;GROEBNER&quot;</span>)) {</span>
+<span id="cb15-56"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-56"></a>        Gs = GVCAP-&gt;GROEBNER(Gs, NIL, r);</span>
+<span id="cb15-57"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-57"></a>    }</span>
+<span id="cb15-58"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-58"></a></span>
+<span id="cb15-59"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-59"></a>    <span class="co">// find solution in x_1 by projection</span></span>
+<span id="cb15-60"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-60"></a>    <span class="co">// Gs now includes factors of the jacobi determinant</span></span>
+<span id="cb15-61"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-61"></a>    <span class="cf">return</span> ProjSolve(r, Gs);</span>
+<span id="cb15-62"><a href="7.1-implementation-on-top-of-qepcad.html#cb15-62"></a>}</span></code></pre></div>
+<p><code>LagrangeRefinement</code> is applied to <code>P</code> and then to each polynomial in <code>Fs</code>. On each step, the Jacobi determinant <span class="math inline">\(Q\)</span>, defined in Equation (eq:jacobi-det), is computed. Using CAD projection, a set of univariate polynomials defining the <span class="math inline">\(x_1\)</span>-coordinates of the solutions to <span class="math inline">\(Q = 0\)</span> is then returned. Since the degree of <span class="math inline">\(Q\)</span> may be high, it was noticed that computing a Groebner basis, using Singular, for <span class="math inline">\(Q\)</span> and <code>Gs</code> significantly sped up the computation of the univariate polynomials (from several seconds to less than a second).</p>
+<p>Once the set of refinement points has been computed, the CAD is refined using the method described in Section <a href="7.1-implementation-on-top-of-qepcad.html#sec:implementation-refinement">7.1.7</a>.</p>
+</div>
+<div id="frontier-condition" class="section level3 hasAnchor" number="7.1.6">
+<h3><span class="header-section-number">7.1.6</span> Frontier Condition<a href="7.1-implementation-on-top-of-qepcad.html#frontier-condition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The frontier condition is obtained by using the generalisation of Lazard’s method for lifting with bad points, as described in section <a href="6.3-sec:lazard-n.html#sec:lazard-n">6.3</a>, the entry point for computing a CAD with frontier condition is <code>FRONTIER</code>. This function identifies bad zero-dimensional cells and adds refinements points, in the same format as that used in the construction of monotone cells.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word r</code> <span class="math inline">\(\in \mathbb{N}\)</span>,</li>
+<li><code>Word k</code> <span class="math inline">\(\in \mathbb{N}, k \le r\)</span> the level of the cell <code>D</code> <span class="math inline">\(+ 1\)</span>,</li>
+<li><code>Word D</code>: $0<span class="math inline">\(0-dimensional level-\)</span>(k-1)$ QEPCAD cell,</li>
+<li><code>Word As</code> <span class="math inline">\(= (\mathcal{A}_k,\ldots,\mathcal{A}_r)\)</span>: the projection factor set,</li>
+</ul>
+<p><strong>Output:</strong>
+- <code>Word A</code>, <code>Word J</code>, <code>Word RPs</code>: refinement points for bad cells contained in the sub-CAD above <code>D</code> are added.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb16-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-1"></a>Word QepcadCls::FRONTIER(Word r, Word k, Word D, Word As, Word* A_, Word* J_, Word* RPs_)</span>
+<span id="cb16-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-2"></a>{</span>
+<span id="cb16-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-3"></a>    Word Ch, TrueCells, junk, C1, C1_B, C1_T, C;</span>
+<span id="cb16-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-4"></a>    Ch = LELTI(D, CHILD);</span>
+<span id="cb16-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-5"></a></span>
+<span id="cb16-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-6"></a>    <span class="co">// if r &lt; 3, frontier condition is obtained automatically, if no children then nothing to do.</span></span>
+<span id="cb16-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-7"></a>    <span class="cf">if</span> (r &lt; <span class="dv">3</span> || Ch == NIL) <span class="cf">return</span> D;</span>
+<span id="cb16-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-8"></a></span>
+<span id="cb16-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-9"></a>    ADV(Ch, &amp;C1, &amp;Ch);</span>
+<span id="cb16-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-10"></a></span>
+<span id="cb16-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-11"></a>    <span class="co">// only one sector, bad cells are not possible.</span></span>
+<span id="cb16-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-12"></a>    <span class="cf">if</span> (Ch != NIL);</span>
+<span id="cb16-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-13"></a></span>
+<span id="cb16-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-14"></a>    Word RefinedCells = NIL;</span>
+<span id="cb16-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-15"></a>    C1_B = NIL, C1_T = NIL;</span>
+<span id="cb16-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-16"></a>    <span class="cf">while</span> (Ch != NIL) {</span>
+<span id="cb16-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-17"></a>        <span class="co">// Ch = (top, next sector, ...)</span></span>
+<span id="cb16-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-18"></a>        <span class="co">// cells will be taken in pairs.</span></span>
+<span id="cb16-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-19"></a>        ADV(Ch, &amp;C1_T, &amp;Ch);</span>
+<span id="cb16-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-20"></a>        FRONTIER(r, k+<span class="dv">1</span>, C1_T, As, A_, J_, RPs_);</span>
+<span id="cb16-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-21"></a></span>
+<span id="cb16-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-22"></a>        <span class="co">// get true (1,...)-cells</span></span>
+<span id="cb16-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-23"></a>        LISTOFCWTV(C1, &amp;TrueCells, &amp;junk);</span>
+<span id="cb16-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-24"></a>        <span class="cf">while</span> (TrueCells != NIL) {</span>
+<span id="cb16-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-25"></a>            Word d, j, SI;</span>
+<span id="cb16-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-26"></a>            ADV(TrueCells, &amp;C, &amp;TrueCells);</span>
+<span id="cb16-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-27"></a></span>
+<span id="cb16-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-28"></a>            d = TwoDimIndex(LELTI(C, INDX), &amp;junk, &amp;j);</span>
+<span id="cb16-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-29"></a>            <span class="cf">if</span> (d != <span class="dv">2</span> || j == r) <span class="cf">continue</span>;</span>
+<span id="cb16-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-30"></a></span>
+<span id="cb16-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-31"></a>            <span class="co">// find indices of polynomials which are zero on C.</span></span>
+<span id="cb16-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-32"></a>            SI = REDI(SignatureIndex(LELTI(C, SIGNPF)), k);</span>
+<span id="cb16-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-33"></a></span>
+<span id="cb16-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-34"></a>            ProcessBadCells(r, C1_B, As, k, j, SI, &amp;RefinedCells, A_, J_, RPs_);</span>
+<span id="cb16-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-35"></a>            ProcessBadCells(r, C1_T, As, k, j, SI, &amp;RefinedCells, A_, J_, RPs_);</span>
+<span id="cb16-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-36"></a>        }</span>
+<span id="cb16-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-37"></a></span>
+<span id="cb16-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-38"></a>        <span class="co">// next sector.</span></span>
+<span id="cb16-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-39"></a>        ADV(Ch, &amp;C1, &amp;Ch);</span>
+<span id="cb16-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-40"></a>        C1_B = C1_T; <span class="co">// one sector&#39;s top is the next sector&#39;s bottom.</span></span>
+<span id="cb16-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-41"></a>    }</span>
+<span id="cb16-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-42"></a></span>
+<span id="cb16-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-43"></a>    <span class="cf">return</span> D;</span>
+<span id="cb16-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb16-44"></a>}</span></code></pre></div>
+<ul>
+<li>Lines 6-12 determine if bad cells are possible. I.e., if the dimension of the sub-CAD above <code>D</code> in greater than <span class="math inline">\(3\)</span> and if there is more than one child cell, since bad cells can only occur above <span class="math inline">\(0\)</span>-cells.</li>
+<li>A note is kept of cells which were already refined (Line 14). This information is stored in the form <span class="math inline">\((j,i_1,\ldots,i_{k+1})\)</span>, where <span class="math inline">\((i_1,\ldots,i_{k+1})\)</span> is the positional index of the cell <span class="math inline">\(C\)</span> to be refined and <span class="math inline">\(j\)</span> the index of the level-<span class="math inline">\((k+1)\)</span> polynomial which vanishes identically over <span class="math inline">\(C\)</span>. This prevents the program computing the same refinement points multiple times, as the same bad cell may lie in the projection of the boundary of multiple <span class="math inline">\(2\)</span>-dimensional cells.</li>
+<li>The loop (Lines 24-36) considers each <span class="math inline">\(2\)</span>-dimensional section cell <span class="math inline">\(C\)</span> in this sub-CAD, with index <span class="math inline">\((0,\ldots,0,m_k,0,\ldots,0,m_\ell,0,\ldots,0)\)</span> in the CAD of <span class="math inline">\(\mathbb{R}^r\)</span> (ambient space) where <span class="math inline">\(m_k=m_\ell = 1\)</span>.</li>
+<li><code>SI</code> (Line 31) is a list <span class="math inline">\((i_{k+1},\ldots,i_r)\)</span> where each <span class="math inline">\(i_j \in \mathbb{Z}\)</span> is equal to the index of the first polynomial in <span class="math inline">\(\mathcal{A}_j\)</span> which is equal to zero on <span class="math inline">\(C\)</span>, or <span class="math inline">\(-1\)</span> if no such polynomial exists. In particular, <span class="math inline">\(i_k = i_\ell = 1\)</span>.</li>
+<li>Bad cells, in <span class="math inline">\({\operatorname{fr} \left( ( \right)}{\operatorname{proj}_{\mathbb{R}^{\ell}}}(C))\)</span>, may lie in the sub-CADs above the <span class="math inline">\((0,\ldots,0)\)</span>-cells <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_B\)</span> and <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_T\)</span>. The function <code>ProcessBadClls</code> (called on Lines 34 and 35) identifies bad cells and adds refinement points.</li>
+</ul>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word r</code> <span class="math inline">\(\in \mathbb{N}\)</span>,</li>
+<li><code>Word C</code>: <span class="math inline">\(0\)</span>-dimensional level-<span class="math inline">\(k\)</span> QEPCAD cell,</li>
+<li><code>Word As</code> <span class="math inline">\(= (\mathcal{A}_1,\ldots,\mathcal{A}_r)\)</span> is the (entire) projection factor set.</li>
+<li><code>Word i</code>, <code>Word j</code> <span class="math inline">\(\in \mathbb{N}\)</span>: elements of <span class="math inline">\((i_1,\ldots,i_r)\)</span>, the index of a two-dimensional section cell <span class="math inline">\(C\)</span>, which are equal to <span class="math inline">\(1\)</span>.</li>
+<li><code>Word S</code> <span class="math inline">\(= (j_1,\ldots,j_r)\)</span>, indices of projection factors which are equal to zero an <span class="math inline">\(C\)</span>.</li>
+</ul>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>RefinedCells</code>: a note of all cells which require refinement,</li>
+<li><code>Word A</code>, <code>Word J</code>, <code>Word RPs</code>: refinement points for bad cells contained in the sub-CAD above <code>D</code> are added.</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb17-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-1"></a><span class="dt">void</span> ProcessBadCells(Word r, Word C, Word As, Word i, Word j, Word S, Word *RefinedCells_, Word *A_, Word *J_, Word* RPs_)</span>
+<span id="cb17-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-2"></a>{</span>
+<span id="cb17-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-3"></a>    <span class="cf">if</span> (C == NIL) <span class="cf">return</span>; <span class="co">// base case, nothing to do</span></span>
+<span id="cb17-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-4"></a></span>
+<span id="cb17-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-5"></a>    Word s;</span>
+<span id="cb17-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-6"></a>    ADV(S, &amp;s, &amp;S);</span>
+<span id="cb17-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-7"></a></span>
+<span id="cb17-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-8"></a>    Word Ch = LELTI(C, CHILD);</span>
+<span id="cb17-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-9"></a>    <span class="cf">if</span> (Ch == NIL) <span class="cf">return</span>;</span>
+<span id="cb17-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-10"></a></span>
+<span id="cb17-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-11"></a>    Word C1 = NIL, C2 = NIL, JT = NIL, JB = NIL;</span>
+<span id="cb17-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-12"></a>    Word level = LELTI(C, LEVEL) + <span class="dv">1</span>; <span class="co">// level of children</span></span>
+<span id="cb17-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-13"></a>    Word sample = LELTI(C, SAMPLE);</span>
+<span id="cb17-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-14"></a>    <span class="dt">bool</span> section = false;</span>
+<span id="cb17-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-15"></a>    <span class="cf">while</span> (true) {</span>
+<span id="cb17-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-16"></a>        Word s1, SC1;</span>
+<span id="cb17-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-17"></a>        C1 = C2;</span>
+<span id="cb17-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-18"></a>        JB = JT;</span>
+<span id="cb17-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-19"></a>        section = !section;</span>
+<span id="cb17-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-20"></a></span>
+<span id="cb17-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-21"></a>        <span class="co">// loop exit check. reached end of list.</span></span>
+<span id="cb17-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-22"></a>        <span class="cf">if</span> (Ch == NIL &amp;&amp; C1 == NIL) <span class="cf">break</span>;</span>
+<span id="cb17-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-23"></a></span>
+<span id="cb17-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-24"></a>        <span class="cf">if</span> (Ch != NIL) {</span>
+<span id="cb17-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-25"></a>            ADV(Ch, &amp;C2, &amp;Ch);</span>
+<span id="cb17-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-26"></a>        } <span class="cf">else</span> {</span>
+<span id="cb17-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-27"></a>            C2 = NIL;</span>
+<span id="cb17-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-28"></a>        }</span>
+<span id="cb17-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-29"></a></span>
+<span id="cb17-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-30"></a>        <span class="cf">if</span> (!section &amp;&amp; C2 != NIL) {</span>
+<span id="cb17-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-31"></a>            Word SM, SJ;</span>
+<span id="cb17-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-32"></a>            GETSAMPLEK(level, LELTI(C2, SAMPLE), &amp;SM, &amp;SJ);</span>
+<span id="cb17-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-33"></a>            JT = RNQ(RNSUM(FIRST(SJ), SECOND(SJ)), RNINT(<span class="dv">2</span>));</span>
+<span id="cb17-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-34"></a>        } <span class="cf">else</span> <span class="cf">if</span> (!section) {</span>
+<span id="cb17-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-35"></a>            JT = NIL;</span>
+<span id="cb17-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-36"></a>        }</span>
+<span id="cb17-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-37"></a></span>
+<span id="cb17-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-38"></a>        <span class="cf">if</span> (C1 == NIL) <span class="cf">continue</span>;</span>
+<span id="cb17-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-39"></a></span>
+<span id="cb17-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-40"></a>        SC1 = LELTI(C1, SIGNPF);</span>
+<span id="cb17-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-41"></a>        s1 = IndexOfFirstZero(FIRST(SC1));</span>
+<span id="cb17-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-42"></a></span>
+<span id="cb17-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-43"></a>        Word Idx = LELTI(C1, INDX);</span>
+<span id="cb17-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-44"></a>        Word I1x = COMP(s1, Idx); <span class="co">// bit like a hash, polynomial plus cell index to indicate that a cell has been refined</span></span>
+<span id="cb17-45"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-45"></a></span>
+<span id="cb17-46"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-46"></a>        <span class="co">// a bad cell is a (0,...,0,1)-cell of level greater than J, with matching sign which has not yet been refined</span></span>
+<span id="cb17-47"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-47"></a>        <span class="cf">if</span> (!section &amp;&amp; level &gt; j &amp;&amp; s == s1 &amp;&amp; LSRCH(I1x, *RefinedCells_) == <span class="dv">0</span>) {</span>
+<span id="cb17-48"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-48"></a>            Word RP = LazardLifting(</span>
+<span id="cb17-49"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-49"></a>                level,</span>
+<span id="cb17-50"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-50"></a>                sample,</span>
+<span id="cb17-51"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-51"></a>                As,</span>
+<span id="cb17-52"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-52"></a>                COMP(s1, SignatureIndex(RED(SC1))),</span>
+<span id="cb17-53"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-53"></a>                i,</span>
+<span id="cb17-54"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-54"></a>                j</span>
+<span id="cb17-55"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-55"></a>            );</span>
+<span id="cb17-56"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-56"></a></span>
+<span id="cb17-57"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-57"></a>            ADDREFINEMENTPOINTS(Idx, sample, RP, LIST2(JB, JT), A_, J_, RPs_);</span>
+<span id="cb17-58"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-58"></a>            *RefinedCells_ = COMP(I1x, *RefinedCells_);</span>
+<span id="cb17-59"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-59"></a>        }</span>
+<span id="cb17-60"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-60"></a></span>
+<span id="cb17-61"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-61"></a>        <span class="cf">if</span> (section &amp;&amp; (level == j || s == s1)) {</span>
+<span id="cb17-62"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-62"></a>            ProcessBadCells(r, C1, As, i, j, S, RefinedCells_, A_, J_, RPs_);</span>
+<span id="cb17-63"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-63"></a>        }</span>
+<span id="cb17-64"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-64"></a>    }</span>
+<span id="cb17-65"><a href="7.1-implementation-on-top-of-qepcad.html#cb17-65"></a>}</span></code></pre></div>
+<p>This function looks proceeds by induction, recursing on zero-dimensional cells of above <code>C</code> whose signature (indices of projection factors which are equal to zero) matches <code>S</code>. Note that coordinates <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> of <code>S</code> are equal to <span class="math inline">\(-1\)</span>, so any zero-dimensional cells at those levels are candidates for being bad cells. Lines 45-59 process possible bad cells. A bad cell is a <span class="math inline">\((0,...,0,1)\)</span>-cell of level greater than <span class="math inline">\(j\)</span>, which has not yet been refined, and such that a polynomial vanishes identically on it.
+The function <code>LazardLifting</code> uses <code>Singular</code> to compute the Groebner basis for the two saturation of ideals
+<span class="math display">\[
+I_1 := \langle f, g_{j_1}, \ldots, g_{j_{k-3}}, g_{\ell_2}, 1 - z g_{\ell_1} \rangle \cap \mathbb{Z}[x_1,\ldots,x_k]
+\]</span>
+and
+<span class="math display">\[
+I_2 := \langle f, g_{j_1}, \ldots, g_{j_{k-3}}, g_{\ell_1}, 1 - z g_{\ell_2} \rangle \cap \mathbb{Z}[x_1,\ldots,x_k],
+\]</span>
+as described in Section <a href="6.3-sec:lazard-n.html#sec:lazard-n">6.3</a>. To obtain a refinement polynomial in <span class="math inline">\(\mathbb{Z}[x_r]\)</span>, the sample point of the bad <span class="math inline">\((0,\ldots,0)\)</span>-cell is substituted.
+<code>ADDREFINEMENTPOINTS</code> is then called, taking these polynomials as input, the add the refinement points above this bad cell.</p>
+</div>
+<div id="sec:implementation-refinement" class="section level3 hasAnchor" number="7.1.7">
+<h3><span class="header-section-number">7.1.7</span> Refinement<a href="7.1-implementation-on-top-of-qepcad.html#sec:implementation-refinement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Given the CAD <span class="math inline">\(\mathcal{D}\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> constructed in the lifting phase, both <code>MONOTONE()</code> and <code>FRONTIER()</code> produces a set of refinement points
+<span class="math display">\[
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal D} \text{ on } \mathbb{R}^k \}.
+\]</span>
+The function <code>REFINE()</code> computes refinements of <span class="math inline">\(\mathcal{D}\)</span> to be compatible with these points. Each refinement point <span class="math inline">\((b_1,\ldots,b_{k-1},c) \in \mathbb{A}^k\)</span>, such that <span class="math inline">\((b_1,\ldots,b_k)\)</span> is a <span class="math inline">\(0\)</span>-dimensional cell, <span class="math inline">\(\mathbf{b}\)</span>, in the CAD induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^{k-1}\)</span> is stored separately, is stored separately as a pair
+<span class="math display">\[
+(b_1,\ldots,b_{k-1},c), (m_1,\ldots,m_{k-1},m_k)
+\]</span>
+where <span class="math inline">\((b_1,\ldots,b_{k-1})\)</span> is the sample point, and <span class="math inline">\((m_1,\ldots,m_{k-1})\)</span> is the positional index of the <span class="math inline">\(0\)</span>-cell <span class="math inline">\(\mathbf{b}\)</span> and <span class="math inline">\(c\)</span> refines the <span class="math inline">\((1)\)</span>-cell in the sub-CAD of <span class="math inline">\(\mathcal{D}\)</span> above <span class="math inline">\(\mathcal{b}\)</span> with positional index <span class="math inline">\((m_k)\)</span>.
+<span class="math inline">\((b_1,\ldots,b_{k-1},c)\)</span> is stored as a QEPCAD sample point.
+If all of <span class="math inline">\((b_1,\ldots,b_{k-1})\)</span> are rational, or are elements of the same algebraic extension, <span class="math inline">\(\mathbb{Q}(\alpha)\)</span>, associated with the sample point of the cell <span class="math inline">\(\mathbf{b}\)</span>, as <span class="math inline">\(c\)</span>, then <span class="math inline">\((b_1,\ldots,b_{k-1},c)\)</span> is a primitive QEPCAD sample point. If <span class="math inline">\((b_1,\ldots,b_{k-}) \in \mathbb{Q}(\alpha)\)</span> and <span class="math inline">\(c \not \in \mathbb{Q}(\alpha)\)</span> then <span class="math inline">\((c_1,\ldots,b_{k-1},c)\)</span> is a QEPCAD sample point stored in extended representation.
+The refinement point <span class="math inline">\(c\)</span> is a root of a polynomial <span class="math inline">\(f \in \mathbb{Q}[x_k]\)</span>, computed by <code>MONOTONE()</code> or <code>FRONTIER()</code>. This polynomial is stored in the projection polynomial set, and its factors in the projection factor set.</p>
+<p>The function <code>REFINE</code> computes the refinements.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word k</code> <span class="math inline">\(\in \mathbb{N}\)</span>,</li>
+<li><code>Word D</code> a cad of <span class="math inline">\(\mathbb{R}^{k-1}\)</span>,</li>
+<li><code>Word A</code> <span class="math inline">\(= (\mathcal{A}_k, \ldots, \mathcal{A}_n)\)</span>: set of refinement points,</li>
+<li><code>Word PF</code> <span class="math inline">\(= (\mathcal{F}_k, \ldots, \mathcal{F}_n)\)</span>: set of projection factors.</li>
+</ul>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>Word D'</code>, a refinement of <span class="math inline">\(\rm{D}\)</span> compatible with the refinement points in <span class="math inline">\(\mathcal{A}_k\)</span>.</li>
+</ul>
+<p>QEPCAD represents a CAD <span class="math inline">\(\mathcal{D}\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> as a tree of cells. The root is the unique cell <span class="math inline">\(\mathbf{0}\)</span> in the CAD of <span class="math inline">\(\mathbb{R}^0\)</span> and its children are the cells of the CAD induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^1\)</span>. As one might expect, given a QEPCAD cell <span class="math inline">\(C\)</span> in the decomposition induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^k\)</span>, its children are the cells of the decomposition induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^{k+1}\)</span> which project on <span class="math inline">\(C\)</span>. QEPCAD constructs a “partial CAD”. This means that there may be cells of level <span class="math inline">\(k &lt; n\)</span> with no children. This means that, if <span class="math inline">\(C\)</span> is an <span class="math inline">\((i_1,\ldots,i_k)\)</span>-cell, then <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{k}}}^{-1}(C)\)</span> is an <span class="math inline">\((i_1,\ldots,i_k,1,\ldots,1)\)</span>-cell of <span class="math inline">\(\mathcal{D}\)</span>.</p>
+<p>Refine proceeds by induction on CAD cells by “walking” the CAD (similar to a depth-first-search), identifying cells which need refinement by checking the level-<span class="math inline">\(k\)</span> refinement points, computing this refinement and returning the refined CAD.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb18-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-1"></a>Word QepcadCls::REFINE(Word k, Word D, Word A, Word PF)</span>
+<span id="cb18-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-2"></a>{</span>
+<span id="cb18-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-3"></a>    <span class="co">// no children to refine.</span></span>
+<span id="cb18-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-4"></a>    Word Ch = LELTI(D, CHILD);</span>
+<span id="cb18-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-5"></a>    <span class="cf">if</span> (Ch == NIL) {</span>
+<span id="cb18-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-6"></a>        <span class="cf">return</span> D;</span>
+<span id="cb18-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-7"></a>    }</span>
+<span id="cb18-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-8"></a></span>
+<span id="cb18-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-9"></a>    Word k1 = k-<span class="dv">1</span>;</span>
+<span id="cb18-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-10"></a>    Word A1;</span>
+<span id="cb18-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-11"></a>    ADV(A, &amp;A1, &amp;A); <span class="co">// deconstruct A. A1 is the set of level k+1 polys</span></span>
+<span id="cb18-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-12"></a></span>
+<span id="cb18-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-13"></a>    <span class="co">// find the new PO_REFINE polynomials.</span></span>
+<span id="cb18-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-14"></a>    Word Ps = NIL, I = LELTI(D, INDX);</span>
+<span id="cb18-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-15"></a>    <span class="cf">while</span> (A1 != NIL) {</span>
+<span id="cb18-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-16"></a>        Word P;</span>
+<span id="cb18-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-17"></a>        ADV(A1, &amp;P, &amp;A1);</span>
+<span id="cb18-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-18"></a></span>
+<span id="cb18-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-19"></a>        Word J = LELTI(P, PO_REFINEMENT);</span>
+<span id="cb18-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-20"></a>        <span class="cf">if</span> (FIRST(J) != -<span class="dv">1</span> &amp;&amp; EQUALK(k1, J, I)) { <span class="co">// list equality check not needed, since same cell index pointer is used</span></span>
+<span id="cb18-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-21"></a>            Ps = COMP(COMP(LELTI(J, k1 + <span class="dv">1</span>), LELTI(P, PO_POLY)), Ps);</span>
+<span id="cb18-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-22"></a></span>
+<span id="cb18-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-23"></a>            <span class="co">// mark the refinement point as &quot;used&quot;</span></span>
+<span id="cb18-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-24"></a>            SLELTI(P, PO_REFINEMENT, COMP(-<span class="dv">1</span>, J));</span>
+<span id="cb18-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-25"></a>        }</span>
+<span id="cb18-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-26"></a>    }</span>
+<span id="cb18-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-27"></a></span>
+<span id="cb18-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-28"></a>    <span class="co">// do refinement if the list of Ps is non-empty</span></span>
+<span id="cb18-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-29"></a>    <span class="cf">if</span> (Ps != NIL) {</span>
+<span id="cb18-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-30"></a>        Ch = RefineSubcad(k, Ch, Ps, PF);</span>
+<span id="cb18-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-31"></a>        SLELTI(D, CHILD, Ch);</span>
+<span id="cb18-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-32"></a>    }</span>
+<span id="cb18-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-33"></a></span>
+<span id="cb18-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-34"></a>    <span class="co">// no more refinement polynomials</span></span>
+<span id="cb18-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-35"></a>    <span class="cf">if</span> (A == NIL) {</span>
+<span id="cb18-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-36"></a>        <span class="cf">return</span> D;</span>
+<span id="cb18-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-37"></a>    }</span>
+<span id="cb18-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-38"></a></span>
+<span id="cb18-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-39"></a>    <span class="co">// walk the CAD, sections only.</span></span>
+<span id="cb18-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-40"></a>    Word C, junk;</span>
+<span id="cb18-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-41"></a>    ADV(Ch, &amp;junk, &amp;Ch);</span>
+<span id="cb18-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-42"></a>    PF = RED(PF);</span>
+<span id="cb18-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-43"></a>    <span class="cf">while</span> (Ch != NIL) {</span>
+<span id="cb18-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-44"></a>        ADV2(Ch, &amp;C, &amp;junk, &amp;Ch);</span>
+<span id="cb18-45"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-45"></a></span>
+<span id="cb18-46"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-46"></a>        C = REFINE(k+<span class="dv">1</span>, C, A, PF);</span>
+<span id="cb18-47"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-47"></a>    }</span>
+<span id="cb18-48"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-48"></a></span>
+<span id="cb18-49"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-49"></a>    <span class="cf">return</span> D;</span>
+<span id="cb18-50"><a href="7.1-implementation-on-top-of-qepcad.html#cb18-50"></a>}</span></code></pre></div>
+<ul>
+<li>Lines 13-26 identify the refinement polynomials. Note that <span class="math inline">\(-1\)</span> is appended to the cell index (stored in <code>PO_REFINEMENT</code>) to indicate that a refinement point has been used.</li>
+<li>Line 31 computes the refinement of the children projecting on <code>D</code> by calling <code>RefineSubcad()</code>.</li>
+<li>Line 40 onwards completes the depth-first-search walk of the (refined) children.</li>
+</ul>
+<p>The function <code>RefineSubcad</code> does all the heavy lifting.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word k</code> <span class="math inline">\(\in \mathbb{N}\)</span></li>
+<li><code>Word Ch</code>: list of children – level-<span class="math inline">\(k\)</span> QEPCAD cells, in ascending order of sample points, which project on a single level-<span class="math inline">\(k-1\)</span> QEPCAD cell,</li>
+<li><code>Word Ps</code>: list of refinement points (in ascending order) of the children,</li>
+<li><code>Word PFs</code>: projection factor set <span class="math inline">\((\mathcal{A}_{k+1},\ldots,\mathcal{A_n})\)</span>, used for recomputing sample points.</li>
+</ul>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>Word Ch'</code>: <code>Ch</code>, refined to be compatible with refinement points <code>Ps</code>, indices, sample points and data for all child cells has been updated.</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb19-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-1"></a>Word RefineSubcad(Word k, Word Ch, Word Ps, Word PFs)</span>
+<span id="cb19-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-2"></a>{</span>
+<span id="cb19-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-3"></a>    Word i1, Ch1, C, i, c, C0;</span>
+<span id="cb19-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-4"></a>    i1 = LELTI(LELTI(FIRST(Ch), INDX), k);</span>
+<span id="cb19-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-5"></a></span>
+<span id="cb19-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-6"></a>    <span class="cf">while</span> (Ps != NIL) {</span>
+<span id="cb19-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-7"></a>        Word PM, PI, J;</span>
+<span id="cb19-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-8"></a>        NextPolynomial(Ps, &amp;PM, &amp;PI, &amp;J, &amp;i, &amp;Ps);</span>
+<span id="cb19-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-9"></a></span>
+<span id="cb19-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-10"></a>        <span class="co">// find cell with index i.</span></span>
+<span id="cb19-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-11"></a>        Word j = <span class="dv">0</span>, S0M = NIL, S0I = NIL;</span>
+<span id="cb19-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-12"></a>        Ch1 = Ch, i = i - <span class="dv">1</span>;  <span class="co">// we are actually looking fro sector bottom</span></span>
+<span id="cb19-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-13"></a>        <span class="cf">while</span> (i &gt; <span class="dv">0</span> || Ch1 != NIL) {</span>
+<span id="cb19-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-14"></a>            ADV(Ch1, &amp;C, &amp;Ch1);</span>
+<span id="cb19-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-15"></a></span>
+<span id="cb19-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-16"></a>            <span class="co">// original cell indices are preserved until the last moment.</span></span>
+<span id="cb19-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-17"></a>            <span class="co">// we cannot just count in case a cell was refined.</span></span>
+<span id="cb19-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-18"></a>            j = LELTI(LELTI(C, INDX), k);</span>
+<span id="cb19-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-19"></a></span>
+<span id="cb19-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-20"></a>            <span class="cf">if</span> (j == i) {</span>
+<span id="cb19-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-21"></a>                <span class="co">// C is the cell bottom. get its sample k</span></span>
+<span id="cb19-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-22"></a>                GETSAMPLEK(-<span class="dv">1</span>, LELTI(C, SAMPLE), &amp;S0M, &amp;S0I);</span>
+<span id="cb19-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-23"></a></span>
+<span id="cb19-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-24"></a>                <span class="cf">break</span>;</span>
+<span id="cb19-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-25"></a>            }</span>
+<span id="cb19-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-26"></a>        }</span>
+<span id="cb19-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-27"></a></span>
+<span id="cb19-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-28"></a>        <span class="co">// first cell in Ch is to be refined, S1M, S1J is the k-th coordinate of the sample point of C_B</span></span>
+<span id="cb19-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-29"></a>        <span class="dt">bool</span> refine_after = false; <span class="co">// do we need to refine C3?</span></span>
+<span id="cb19-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-30"></a>        Ch1 = RefineCell(k, Ch1, PM, PI, S0M, S0I, PFs, &amp;refine_after);</span>
+<span id="cb19-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-31"></a></span>
+<span id="cb19-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-32"></a>        ADV(RED2(Ch1), &amp;C, &amp;Ch1);</span>
+<span id="cb19-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-33"></a>        <span class="co">// now FIRST(Ch) is the top of C, if C is bounded from above</span></span>
+<span id="cb19-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-34"></a></span>
+<span id="cb19-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-35"></a>        <span class="co">// might be that we need to refine C3</span></span>
+<span id="cb19-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-36"></a>        <span class="cf">if</span> (!refine_after) {</span>
+<span id="cb19-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-37"></a>            <span class="co">// don&#39;t forget to add missing signpfs</span></span>
+<span id="cb19-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-38"></a>            ADDSIGNPF(k, C, FIRST(PFs));</span>
+<span id="cb19-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-39"></a></span>
+<span id="cb19-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-40"></a>            <span class="cf">continue</span>;</span>
+<span id="cb19-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-41"></a>        }</span>
+<span id="cb19-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-42"></a></span>
+<span id="cb19-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-43"></a>        <span class="cf">if</span> (Ch1 == NIL) { <span class="co">// not bounded from above. easy!</span></span>
+<span id="cb19-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-44"></a>            c = RNSUM(SECOND(PI), RNINT(<span class="dv">1</span>));</span>
+<span id="cb19-45"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-45"></a>        } <span class="cf">else</span> {</span>
+<span id="cb19-46"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-46"></a>            GETSAMPLEK(-<span class="dv">1</span>, LELTI(FIRST(Ch1), SAMPLE), &amp;S0M, &amp;S0I);</span>
+<span id="cb19-47"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-47"></a>            c = RNQ(RNSUM(SECOND(PI), FIRST(S0I)), RNINT(<span class="dv">2</span>));</span>
+<span id="cb19-48"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-48"></a>            RNWRITE(SECOND(PI)); SWRITE(<span class="st">&quot; &quot;</span>); RNWRITE(FIRST(S0I)); SWRITE(<span class="st">&quot; &quot;</span>);  RNWRITE(c);</span>
+<span id="cb19-49"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-49"></a>        }</span>
+<span id="cb19-50"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-50"></a></span>
+<span id="cb19-51"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-51"></a>        SETSAMPLE(C, PMON(<span class="dv">1</span>,<span class="dv">1</span>), LIST1(c), RED(PFs));</span>
+<span id="cb19-52"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-52"></a>        ADDSIGNPF(k, C, FIRST(PFs));</span>
+<span id="cb19-53"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-53"></a>    }</span>
+<span id="cb19-54"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-54"></a></span>
+<span id="cb19-55"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-55"></a>    <span class="co">// finally update indices.</span></span>
+<span id="cb19-56"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-56"></a>    i = i1 - <span class="dv">1</span>, Ch1 = Ch;</span>
+<span id="cb19-57"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-57"></a>    <span class="cf">while</span> (Ch1 != NIL) {</span>
+<span id="cb19-58"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-58"></a>        ++i;</span>
+<span id="cb19-59"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-59"></a>        ADV(Ch1, &amp;C, &amp;Ch1);</span>
+<span id="cb19-60"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-60"></a></span>
+<span id="cb19-61"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-61"></a>        SETINDEXK(C, k, i);</span>
+<span id="cb19-62"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-62"></a>    }</span>
+<span id="cb19-63"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-63"></a></span>
+<span id="cb19-64"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-64"></a>    <span class="cf">return</span> Ch;</span>
+<span id="cb19-65"><a href="7.1-implementation-on-top-of-qepcad.html#cb19-65"></a>}</span></code></pre></div>
+<ul>
+<li><code>NextPolynomial()</code>, called on, e.g., Line 9, is a helper function for retrieving the next refinement point.
+Recall that <span class="math inline">\(\mathbf{b} = (b_1,\ldots,b_{k-1},c)\)</span> is a QEPCAD sample point such that <code>PI</code> is its isolating interval, <code>PM</code> the minimal polynomial for <span class="math inline">\(c\)</span> (or <span class="math inline">\((c,c)\)</span> if <span class="math inline">\(c\)</span> is rational) and <code>J</code> is the isolating interval containing <span class="math inline">\(c\)</span>. <code>j</code> is the index of the child cell containing <span class="math inline">\(c\)</span>.</li>
+<li>Suppose that <span class="math inline">\(C\)</span> is the child with index <span class="math inline">\(i\)</span>. Then <code>S0M</code> and <code>S0I</code>, set on line 24, are the minimal polynomial and isolating interval, respectively, for the sample point of <span class="math inline">\(C_B\)</span>. The function <code>GETSAMPLEK</code> is a helper function responsible for retrieving this information. The first argument indicates the coordinate to retrieve, <span class="math inline">\(-1\)</span> means the last coordinate.</li>
+<li><code>RefineCell</code>, called on line 32, takes a list of cells, <span class="math inline">\((C,C_T, \ldots,C_\ell)\)</span>, where <span class="math inline">\(C\)</span> is the cell to be refined and returns a list <span class="math inline">\((C_1,C_2,C_3,C_T,\ldots,C_\ell)\)</span>. The sample points are updated for <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>. The flag <code>refine_after</code> is set to <code>true</code> if the sample point of <span class="math inline">\(C_3\)</span>, which is still equal to the sample point of <span class="math inline">\(C\)</span> at this point, is incorrect.</li>
+<li>Some new projection factors, whose roots are the refinement points, have been added. <code>ADDSIGNPF</code> (called on lines 40 and 54) is responsible for ensuring that the signs of these polynomials are attached to refined cells. If a cell is not refined, this information will not be needed.</li>
+<li>Lines 45-53 update the sample point of <span class="math inline">\(C_3\)</span>, if needed.</li>
+<li>During the loop in which cells are refined (Lines 7-55), the positional indices for refined cells are not updated. This is so that the index attached to refinement points still points to the correct cell. Lines 57-64 updates the positional indices for all children, using the helper function <code>SETINDEXK</code>.</li>
+</ul>
+<p>The function <code>RefineCell</code> is now presented.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>Word k</code>$ <span class="math inline">\(\in \mathbb{N}\)</span>,</li>
+<li><code>Word Cs</code> list of cells <span class="math inline">\((C,C_T,\ldots)\)</span>, such that <span class="math inline">\(C\)</span> is the <span class="math inline">\((1)\)</span>-cell to be refined.</li>
+<li><code>Word PM</code>: minimal polynomial defining refinement point <span class="math inline">\(c\)</span> (<span class="math inline">\(x\)</span> if rational),</li>
+<li><code>Word PI</code>: isolating interval for refinement point,</li>
+<li><code>Word c</code>,</li>
+<li><code>Word PFs</code> <span class="math inline">\(= (\mathcal{F}_{k},\ldots,\mathcal{F}_n)\)</span> is the set of projection factors, needed to update sample points of children.</li>
+</ul>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>Word Ch'</code>: refined list of children <span class="math inline">\((C_1,C_2,C_3,C_T,\ldots)\)</span>, such that <span class="math inline">\(C\)</span> is refined into three cells <span class="math inline">\(C_1,C_2,C_3\)</span>,</li>
+<li><code>bool rc</code>: whether the refinement caused the sample point of the <span class="math inline">\((1)\)</span>-cell <span class="math inline">\(C_3\)</span> to be incorrect.</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb20-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-1"></a>Word RefineCell(Word k, Word Cs, Word PM, Word PI, Word c, Word PFs, <span class="dt">bool</span>* rc)</span>
+<span id="cb20-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-2"></a>{</span>
+<span id="cb20-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-3"></a>    Word Cs2 = Cs;</span>
+<span id="cb20-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-4"></a></span>
+<span id="cb20-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-5"></a>    <span class="co">// split projection factors</span></span>
+<span id="cb20-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-6"></a>    Word PF1;</span>
+<span id="cb20-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-7"></a>    ADV(PFs, &amp;PF1, &amp;PFs);</span>
+<span id="cb20-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-8"></a></span>
+<span id="cb20-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-9"></a>    <span class="co">// Let C = (a,b). C becomes (a,s), C2 becomes new cell s and C3 new cell (s,b)</span></span>
+<span id="cb20-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-10"></a>    Word C1;</span>
+<span id="cb20-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-11"></a>    ADV(Cs, &amp;C1, &amp;Cs);</span>
+<span id="cb20-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-12"></a>    Word C2 = LDCOPY(C1);</span>
+<span id="cb20-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-13"></a>    Word C3 = LDCOPY(C1);</span>
+<span id="cb20-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-14"></a></span>
+<span id="cb20-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-15"></a>    SWRITE(<span class="st">&quot;Refine cell &quot;</span>); LWRITE(LELTI(C1, INDX)); SWRITE(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb20-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-16"></a></span>
+<span id="cb20-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-17"></a>    <span class="co">// update sample</span></span>
+<span id="cb20-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-18"></a>    <span class="co">// we will need to update only two of the cells, as the existing sample will be correct for one of them</span></span>
+<span id="cb20-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-19"></a>    Word SQ, SJ;</span>
+<span id="cb20-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-20"></a>    GETSAMPLEK(-<span class="dv">1</span>, LELTI(C1, SAMPLE), &amp;SQ, &amp;SJ);</span>
+<span id="cb20-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-21"></a></span>
+<span id="cb20-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-22"></a>    Word sign = COMPARE(SQ, &amp;SJ, PM, &amp;PI);</span>
+<span id="cb20-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-23"></a>    <span class="co">// -1: C1 is correct, 0: C2 is correct, +1: C3 is correct.</span></span>
+<span id="cb20-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-24"></a></span>
+<span id="cb20-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-25"></a>    <span class="cf">if</span> (sign != -<span class="dv">1</span>) { <span class="co">// need to update C1 ...</span></span>
+<span id="cb20-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-26"></a>        <span class="co">// we need a rational number in between the bottom C1 and the refinement point.</span></span>
+<span id="cb20-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-27"></a>        Word c;</span>
+<span id="cb20-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-28"></a>        <span class="cf">if</span> (S0M == NIL) { <span class="co">// not bounded from below. easy!</span></span>
+<span id="cb20-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-29"></a>            c = RNSUM(FIRST(PI), RNINT(-<span class="dv">1</span>));</span>
+<span id="cb20-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-30"></a>        } <span class="cf">else</span> {</span>
+<span id="cb20-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-31"></a>            c = RNQ(RNSUM(SECOND(S0I), FIRST(PI)), RNINT(<span class="dv">2</span>));</span>
+<span id="cb20-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-32"></a>        }</span>
+<span id="cb20-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-33"></a></span>
+<span id="cb20-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-34"></a>        SETSAMPLE(C1, PMON(<span class="dv">1</span>,<span class="dv">1</span>), LIST1(c), PFs);</span>
+<span id="cb20-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-35"></a>    }</span>
+<span id="cb20-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-36"></a></span>
+<span id="cb20-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-37"></a>    <span class="cf">if</span> (sign != <span class="dv">0</span>) { <span class="co">// need to update C2 ...</span></span>
+<span id="cb20-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-38"></a>        <span class="co">// to the new &quot;refinement point&quot; given</span></span>
+<span id="cb20-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-39"></a>        SETSAMPLE(C2, PM, PI, PFs);</span>
+<span id="cb20-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-40"></a>    }</span>
+<span id="cb20-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-41"></a></span>
+<span id="cb20-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-42"></a>    <span class="co">// add missing signs of projection factors</span></span>
+<span id="cb20-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-43"></a>    ADDSIGNPF(k, C1, PF1);</span>
+<span id="cb20-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-44"></a>    ADDSIGNPF(k, C2, PF1);</span>
+<span id="cb20-45"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-45"></a></span>
+<span id="cb20-46"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-46"></a>    <span class="co">// we may will need to update the sample of C3, but this is done later.</span></span>
+<span id="cb20-47"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-47"></a>    *rc = sign != <span class="dv">1</span>;</span>
+<span id="cb20-48"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-48"></a></span>
+<span id="cb20-49"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-49"></a>    <span class="co">// append new cells</span></span>
+<span id="cb20-50"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-50"></a>    SRED(Cs2, COMP2(C2, C3, Cs));</span>
+<span id="cb20-51"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-51"></a>    <span class="cf">return</span> Cs2;</span>
+<span id="cb20-52"><a href="7.1-implementation-on-top-of-qepcad.html#cb20-52"></a>}</span></code></pre></div>
+<p>This function lets <span class="math inline">\(C = C_1\)</span> and inserts two copies <span class="math inline">\(C_1,C_2\)</span> of <span class="math inline">\(C\)</span> into the list of children. It then updates sample points, if needed (the sample point of <span class="math inline">\(C\)</span> is correct for exactly one of <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span> or <span class="math inline">\(C_3\)</span>), and adds missing signs of projection factors whose roots are the refinement points.
+The comments explain how the function works. The helper function <code>LDCOPY</code> (list “deep” copy) makes a copy of each element in a list, proceeding by induction if the element is a list. This is required as <span class="math inline">\(C_2,C_3\)</span> should not contain any pointers to data in <span class="math inline">\(C\)</span>. The functions <code>SETINDEXK</code>, <code>GETSAMPLEK</code> and <code>SETSAMPLEK</code> were discussed in relation to <code>RefineSubcad</code>.</p>
+</div>
+<div id="obtaining-defining-formulas-for-every-cell" class="section level3 hasAnchor" number="7.1.8">
+<h3><span class="header-section-number">7.1.8</span> Obtaining defining formulas for every cell<a href="7.1-implementation-on-top-of-qepcad.html#obtaining-defining-formulas-for-every-cell" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As discuss FD = FRONT
+in Section <a href="2.2-cylindrical-algebraic-decomposition.html#sec:cell-formula">2.2.5</a>, the projection factors may not be sufficient to produce a quantifier-free Boolean formula for every cell <span class="math inline">\(C\)</span> in a CAD.
+We would like to be able to examine every cell <span class="math inline">\(C \subset V_1,\ldots,V_k\)</span> by getting its defining formula.
+As such, a new command, <code>d-cell-tarski</code> has been implemented.
+This uses Brown’s solution formula construction algorithm. Given a CAD <span class="math inline">\(\mathcal{D}\)</span>, the algorithm builds an RCad <span class="math inline">\(\mathcal{D}_R\)</span>, which is a refinement of <span class="math inline">\(\mathcal{D}\)</span> such that each cell can be expressed as a basic semialgebraic set using only polynomials from the projection factor set. I.e., every cell <span class="math inline">\(C\)</span> of <span class="math inline">\(\mathcal{D}\)</span> can be expressed as a quantifier-free Boolean formula
+<span class="math display">\[
+F_1 \lor \ldots \lor F_k
+\]</span>
+where <span class="math inline">\(F_1,\ldots,F_k\)</span> are conjunctions of polynomial equations and inequalities defining the cells <span class="math inline">\(C_1,\ldots,C_k\)</span> of <span class="math inline">\(\mathcal{D}_R\)</span> such that <span class="math inline">\(C = C_1,\ldots,C_k\)</span>.
+The RCad is constructed when <code>d-cell-tarski</code> is used and then it is cached. If refinements to the original CAD are performed, e.g., because of <code>MONOTONE</code> or <code>FRONTIER</code>, the RCad is invalidated and must be reconstructed (see Line 77 of the <code>QEPCAD</code> function).</p>
+<p>To demonstrate <code>d-cell-tarski</code>, construct a CAD compatible with <span class="math display">\[
+V := \{ x = y^2 - 2y \}.
+\]</span>
+QEPCAD produces the following projection factors</p>
+<pre><code>d-proj-fac
+P_1,1  = fac(J_1,1) = fac(dis(A_2,1))
+       = 27 x^2 - 32
+
+
+A_2,1  = input
+       = y^3 - 2 y - x</code></pre>
+<p>Let <span class="math inline">\(a,b \in \mathbb{A}\)</span> be the unique roots of <span class="math inline">\(27x^2 - 32\)</span> in the intervals <span class="math inline">\((-1115/1024,-557/512)\)</span> and <span class="math inline">\((557/512, 1115/1024)\)</span> respectively. The cylinder <span class="math inline">\((a,b) \times \mathbb{R}\)</span> contains three true cells, on which <span class="math inline">\(x = y^3 - 2y\)</span> is equal to zero. It is not possible to represent these three cells as QFFs containing only the projection factors, although their positional indices and sample points may be used to distinguish them. We show the output of <code>d-cell-tarski</code> for the true cell with positional index <span class="math inline">\((3,2)\)</span>.</p>
+<pre><code>d-cell-tarski(3,2)
+---------- Information about the cell (3,2)
+
+Dimension (1,0) 1----------
+
+
+Signs of projection factors ------------------------
+
+Level 1
+  27 x^2 - 32 &lt; 0
+Level 2
+  y^3 - 2 y - x = 0
+
+
+Signs of (guaranteed definable ) projection factors
+
+*** Initialising the RCAD. ***
+
+This cell consists of 3 cells in the RCAD.
+
+Index in RCAD: (5,2)
+Level 1
+  27 x^2 - 32 &lt; 0
+  x &gt; 0
+Level 2
+  y^3 - 2 y - x = 0
+  3 y^2 - 2 &gt; 0
+  y &lt; 0
+
+Index in RCAD: (4,2)
+Level 1
+  27 x^2 - 32 &lt; 0
+  x = 0
+Level 2
+  y^3 - 2 y - x = 0
+  3 y^2 - 2 &gt; 0
+  y &lt; 0
+
+Index in RCAD: (3,2)
+Level 1
+  27 x^2 - 32 &lt; 0
+  x &lt; 0
+Level 2
+  y^3 - 2 y - x = 0
+  3 y^2 - 2 &gt; 0
+  y &lt; 0
+
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between -2 and -1
+      = -1.4142135624-
+
+Coordinate 1 = 0
+             = 0.0000000000
+Coordinate 2 = alpha
+             = -1.4142135624-
+
+
+----------------------------------------------------
+</code></pre>
+<p>The cell <span class="math inline">\(C\)</span> has been refined into three cells in the RCad, and it can be represented by a the QFF
+<span class="math display">\[
+(g &lt; 0 \land x &gt; 0 \land f = 0 \land y &lt; 0)
+\lor
+(x = 0 \land f = 0 \land y &lt; 0)
+\lor
+(g &lt; 0 \land x &lt; 0 \land f = 0 \land y &lt; 0)
+\]</span>
+where <span class="math inline">\(g := 27 x^2 - 32\)</span> and <span class="math inline">\(f := y^3 - 2 y - x\)</span>. Note that the polynomial <span class="math inline">\(3 y^2 - 2\)</span> is greater than zero at all points in <span class="math inline">\(C\)</span>, so it can be omitted from the formula.</p>
+</div>
+<div id="the-overall-algorithm" class="section level3 hasAnchor" number="7.1.9">
+<h3><span class="header-section-number">7.1.9</span> The overall algorithm<a href="7.1-implementation-on-top-of-qepcad.html#the-overall-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function <code>QEPCAD</code> is responsible for running the QEPCAD algorithm. The modified version of the function is presented below.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb23-1"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-1"></a><span class="dt">void</span> QepcadCls::QEPCAD(Word Fs, Word *t_, Word *F_e_, Word *F_n_, Word *F_s_)</span>
+<span id="cb23-2"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-2"></a>{</span>
+<span id="cb23-3"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-3"></a>    Word A,D,F,F_e,F_n,F_s,Fh,J,P,Q,Ths,f,i,r,t, T;</span>
+<span id="cb23-4"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-4"></a>    <span class="co">/* hide Ths,i,t; */</span></span>
+<span id="cb23-5"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-5"></a>    Word cL,**cC,cr,ce,ci,*cT,cj,cs,cl,ct; <span class="co">/* Chris variables. */</span></span>
+<span id="cb23-6"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-6"></a>    Word Cs,Ps,Qs,Pps,Cps,Qps,SF; <span class="co">/* Chris variables. */</span></span>
+<span id="cb23-7"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-7"></a>    <span class="dt">char</span> c1,c2; <span class="co">/* Chris variables. */</span></span>
+<span id="cb23-8"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-8"></a></span>
+<span id="cb23-9"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-9"></a>Step1: <span class="co">/* Normalize. */</span></span>
+<span id="cb23-10"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-10"></a>    FIRST4(Fs,&amp;r,&amp;f,&amp;Q,&amp;Fh);</span>
+<span id="cb23-11"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-11"></a>    <span class="co">/*Int*/</span> PCNSTEP = <span class="dv">1</span>;</span>
+<span id="cb23-12"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-12"></a>    <span class="co">/*Int*/</span> <span class="cf">if</span> (INTERACT()) USERINT(LFS(<span class="st">&quot;Before Normalization&quot;</span>),<span class="ch">&#39;a&#39;</span>);</span>
+<span id="cb23-13"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-13"></a>    <span class="co">/*Int*/</span> <span class="cf">if</span> (PCCONTINUE == TRUE) { <span class="cf">goto</span> Return; }</span>
+<span id="cb23-14"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-14"></a>    <span class="co">/*Int*/</span> Ths = ACLOCK();</span>
+<span id="cb23-15"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-15"></a>    F = NORMQFF(Fh);</span>
+<span id="cb23-16"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-16"></a>    <span class="cf">if</span> (GVUA != NIL) GVNA = NORMQFF(GVUA);</span>
+<span id="cb23-17"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-17"></a>    <span class="co">/*Int*/</span> Ths = ACLOCK() - Ths;</span>
+<span id="cb23-18"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-18"></a>    <span class="co">/*Int*/</span> TMNORMQFF = Ths;</span>
+<span id="cb23-19"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-19"></a>    <span class="co">/*Int*/</span> GVNQFF = F;</span>
+<span id="cb23-20"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-20"></a>    <span class="co">//       if (TYPEQFF(F) != UNDET) { t = EQU; F_e = F; goto Return; }</span></span>
+<span id="cb23-21"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-21"></a>    <span class="co">/*Int*/</span> GVREFL = NIL;</span>
+<span id="cb23-22"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-22"></a>    <span class="co">/*Int*/</span> GVTD = NIL;</span>
+<span id="cb23-23"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-23"></a></span>
+<span id="cb23-24"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-24"></a>Step2: <span class="co">/* Projection. */</span></span>
+<span id="cb23-25"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-25"></a>    <span class="cf">if</span> (GVUA != NIL) F = LIST3(ANDOP,GVNA,F);</span>
+<span id="cb23-26"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-26"></a>    A = EXTRACT(r,F);</span>
+<span id="cb23-27"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-27"></a>    <span class="cf">if</span> (GVUA != NIL) {</span>
+<span id="cb23-28"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-28"></a>        GVNA = SECOND(F);</span>
+<span id="cb23-29"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-29"></a>        F = THIRD(F);</span>
+<span id="cb23-30"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-30"></a>    }</span>
+<span id="cb23-31"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-31"></a></span>
+<span id="cb23-32"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-32"></a>    <span class="co">/*Int*/</span> <span class="cf">for</span> (i = <span class="dv">1</span>; i &lt;= r; i++) NMNIP[i] = LENGTH(LELTI(A,i));</span>
+<span id="cb23-33"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-33"></a>    <span class="co">/*Int*/</span> GVPF = LLCOPY(A);</span>
+<span id="cb23-34"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-34"></a>    <span class="co">/*Int*/</span> GVNIP = A;</span>
+<span id="cb23-35"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-35"></a>    <span class="co">/*Int*/</span> GVLV = r;</span>
+<span id="cb23-36"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-36"></a>    <span class="co">/*Int*/</span> PCNSTEP = <span class="dv">1</span>;</span>
+<span id="cb23-37"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-37"></a></span>
+<span id="cb23-38"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-38"></a>    <span class="co">/*Int if (INTERACT()) USERINT(LFS(&quot;After Normalization&quot;),&#39;A&#39;); */</span></span>
+<span id="cb23-39"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-39"></a>    <span class="co">/*Int PCNSTEP = 1; */</span></span>
+<span id="cb23-40"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-40"></a></span>
+<span id="cb23-41"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-41"></a>    <span class="co">// project and add jacobi determinants for quasi-affine cells</span></span>
+<span id="cb23-42"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-42"></a>    <span class="cf">if</span> (PCMCT == <span class="ch">&#39;y&#39;</span>) {</span>
+<span id="cb23-43"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-43"></a>        <span class="co">// note that quasi-affine does projection, too.</span></span>
+<span id="cb23-44"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-44"></a>        <span class="co">/*Int*/</span>     USERINT(LFS(<span class="st">&quot;Before Projection (quasi-affine)&quot;</span>),<span class="ch">&#39;b&#39;</span>);</span>
+<span id="cb23-45"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-45"></a>        QUASIAFFINE(r, GVVL, F, &amp;A, &amp;P, &amp;J);</span>
+<span id="cb23-46"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-46"></a>        GVNIP = A;</span>
+<span id="cb23-47"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-47"></a>        GVPF = P;</span>
+<span id="cb23-48"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-48"></a>        GVPJ = J;</span>
+<span id="cb23-49"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-49"></a>    } <span class="cf">else</span> { <span class="co">// standard case</span></span>
+<span id="cb23-50"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-50"></a>        PROJECT(r,A,&amp;P,&amp;J);</span>
+<span id="cb23-51"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-51"></a>    }</span>
+<span id="cb23-52"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-52"></a></span>
+<span id="cb23-53"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-53"></a>    <span class="co">/*Int*/</span> <span class="cf">if</span> (PCCONTINUE == TRUE) { <span class="cf">goto</span> Return; }</span>
+<span id="cb23-54"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-54"></a></span>
+<span id="cb23-55"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-55"></a>Step3: <span class="co">/* Truth-invariant CAD. */</span></span>
+<span id="cb23-56"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-56"></a>    <span class="co">/*Int*/</span> NMFPF = <span class="dv">0</span>;</span>
+<span id="cb23-57"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-57"></a>    <span class="co">/*Int*/</span> <span class="cf">for</span> (i=<span class="dv">1</span>; i&lt;=f; i++) NMFPF=NMFPF+LENGTH(LELTI(P,i));</span>
+<span id="cb23-58"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-58"></a>    <span class="co">/*Int*/</span> PCNSTEP = <span class="dv">1</span>;</span>
+<span id="cb23-59"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-59"></a>    D = TICAD(Q,F,f,P,A);</span>
+<span id="cb23-60"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-60"></a></span>
+<span id="cb23-61"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-61"></a>Step5: <span class="co">/* Monotone cells, if needed */</span></span>
+<span id="cb23-62"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-62"></a>    <span class="cf">if</span> (PCMCT == <span class="ch">&#39;y&#39;</span>) {</span>
+<span id="cb23-63"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-63"></a>        <span class="co">/*Int*/</span> GVPC = D;</span>
+<span id="cb23-64"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-64"></a>        <span class="co">/*Int*/</span> PCNSTEP = <span class="dv">1</span>;</span>
+<span id="cb23-65"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-65"></a>        <span class="co">/*Int*/</span> <span class="cf">if</span> (INTERACT()) USERINT(LFS(<span class="st">&quot;Before Refinement For Monotone Cells&quot;</span>),<span class="ch">&#39;m&#39;</span>);</span>
+<span id="cb23-66"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-66"></a>        <span class="co">/*Int*/</span> <span class="cf">if</span> (PCCONTINUE == TRUE) { <span class="cf">goto</span> Return; }</span>
+<span id="cb23-67"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-67"></a>        <span class="co">/*Int*/</span> Ths = ACLOCK();</span>
+<span id="cb23-68"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-68"></a></span>
+<span id="cb23-69"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-69"></a>        <span class="co">// add extra polynomials for [semi]-monotone cells and recompute the cad if needed</span></span>
+<span id="cb23-70"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-70"></a>        Word RPs = MONOTONE(&amp;P, &amp;J, D, r);</span>
+<span id="cb23-71"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-71"></a>        GVREFL = RPs;</span>
+<span id="cb23-72"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-72"></a></span>
+<span id="cb23-73"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-73"></a>        <span class="co">// refine the CAD</span></span>
+<span id="cb23-74"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-74"></a>        D = REFINE(<span class="dv">1</span>, D, GVREFL, P);</span>
+<span id="cb23-75"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-75"></a></span>
+<span id="cb23-76"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-76"></a>        <span class="co">// if we cached an ESPCAD, it will no longer be valid. If CAD was projection definable before, it will be still</span></span>
+<span id="cb23-77"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-77"></a>        <span class="co">// be projection definable now.</span></span>
+<span id="cb23-78"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-78"></a>        <span class="cf">if</span> (GVTD != NIL &amp;&amp; FIRST(GVTD) == <span class="dv">0</span>) {</span>
+<span id="cb23-79"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-79"></a>            SWRITE(<span class="st">&quot;*** Invalidating cached ESPCAD. ***</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb23-80"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-80"></a>        }</span>
+<span id="cb23-81"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-81"></a></span>
+<span id="cb23-82"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-82"></a>        <span class="co">// frontier condition</span></span>
+<span id="cb23-83"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-83"></a>        FRONTIER(f, D, P, &amp;P, &amp;J, &amp;RPs);</span>
+<span id="cb23-84"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-84"></a>        GVREFL = RPs;</span>
+<span id="cb23-85"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-85"></a>        D = REFINE(<span class="dv">1</span>, D, GVREFL, P);</span>
+<span id="cb23-86"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-86"></a></span>
+<span id="cb23-87"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-87"></a>        <span class="co">/*Int*/</span> <span class="cf">if</span> (PCCONTINUE == TRUE) { <span class="cf">goto</span> Return; }</span>
+<span id="cb23-88"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-88"></a>    }</span>
+<span id="cb23-89"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-89"></a></span>
+<span id="cb23-90"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-90"></a>Step6: <span class="co">/* Solution. */</span></span>
+<span id="cb23-91"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-91"></a>    <span class="co">/*Int*/</span> GVPC = D;</span>
+<span id="cb23-92"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-92"></a>    <span class="co">/*Int*/</span> PCNSTEP = <span class="dv">1</span>;</span>
+<span id="cb23-93"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-93"></a>    <span class="co">/*Int*/</span> <span class="cf">if</span> (INTERACT()) USERINT(LFS(<span class="st">&quot;Before Solution&quot;</span>),<span class="ch">&#39;e&#39;</span>);</span>
+<span id="cb23-94"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-94"></a>    <span class="co">/*Int*/</span> <span class="cf">if</span> (PCCONTINUE == TRUE) { <span class="cf">goto</span> Return; }</span>
+<span id="cb23-95"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-95"></a>    T = ACLOCK();</span>
+<span id="cb23-96"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-96"></a>    <span class="cf">if</span> (!PCMZERROR)</span>
+<span id="cb23-97"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-97"></a>        SFC3(GVPC,GVPF,GVPJ,GVNFV,CCONC(LIST10(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">5</span>),LIST1(-<span class="dv">1</span>)));</span>
+<span id="cb23-98"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-98"></a>    <span class="cf">else</span></span>
+<span id="cb23-99"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-99"></a>        SFCFULLD(GVPC,GVPF,GVPJ,GVNFV);</span>
+<span id="cb23-100"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-100"></a>    T = ACLOCK() - T;</span>
+<span id="cb23-101"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-101"></a>    TMSFCONST = COMP(T,TMSFCONST);</span>
+<span id="cb23-102"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-102"></a></span>
+<span id="cb23-103"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-103"></a>Return: <span class="co">/* Prepare for return. */</span></span>
+<span id="cb23-104"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-104"></a>    *t_ = t;</span>
+<span id="cb23-105"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-105"></a>    *F_e_ = F_e;</span>
+<span id="cb23-106"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-106"></a>    *F_n_ = F_n;</span>
+<span id="cb23-107"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-107"></a>    *F_s_ = F_s;</span>
+<span id="cb23-108"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-108"></a>    <span class="cf">return</span>;</span>
+<span id="cb23-109"><a href="7.1-implementation-on-top-of-qepcad.html#cb23-109"></a>}</span></code></pre></div>
+<ul>
+<li>The variable <code>PCMCT</code> indicates that a monotone CAD should be computed if it is equal to <span class="math inline">\(1\)</span>, and runs the standard algorithm otherwise.</li>
+<li>The first modification occurs on Lines 41-51, where standard projection is replaced by quasi-affine projection. The function <code>QUASIAFFINE</code> is called and the input polynomials, projection polynomials and projection factors are updated as necessary.</li>
+<li>Lines 55-61 remain unchanged, and construct a truth-invariant CAD. If monotone cells are to be produced, the CAD will have constant sign on the projection factors, as the option <code>full-cad</code> will be enabled.</li>
+<li>Lines 61-88 define a new step, where refinements for monotone cells and frontier condition are performed. Lines 70-71 compute the refinement points for monotone cells, by calling <code>MONOTONE</code> and Line 74 calls <code>REFINE</code> to compute the refinement. Line 84 calls <code>FRONTIER</code> to complete the refinement points above bad cells and Line 85 calls computes the refinement.</li>
+</ul>
+</div>
+<div id="additional-modifications-and-utility-functions" class="section level3 hasAnchor" number="7.1.10">
+<h3><span class="header-section-number">7.1.10</span> Additional modifications and Utility Functions<a href="7.1-implementation-on-top-of-qepcad.html#additional-modifications-and-utility-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A brief summary of new and modified functions is now presented.</p>
+<div id="modifications" class="section level4 hasAnchor" number="7.1.10.1">
+<h4><span class="header-section-number">7.1.10.1</span> Modifications<a href="7.1-implementation-on-top-of-qepcad.html#modifications" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p><code>extensions/sfext/addpol/CFLCELLLIST.c</code>: the function which identifies conflicting pairs of cells for solution formula construction. This function is now used to ensure that every cell can be defined by a Tarski formula. As such, it takes a <code>flag</code> which indicates that a conflicting pair of cells should not depend on their truth value.</p></li>
+<li><p><code>extensions/sfext/addpol/CLEAN_BIGLOOP.c</code>: modified to pass the <code>flag</code> to <code>CFLCELLLIST()</code>.</p></li>
+<li><p><code>extensions/sfext/addpol/STRIPPED_BIGLOOP.c</code>: modified to pass the <code>flag</code> to <code>CFLCELLLIST()</code>.</p></li>
+<li><p><code>extensions/sfext/sfcons/SFC3.c</code>: passes the <code>flag</code> to <code>CFLCELLLIST()</code>.</p></li>
+<li><p><code>source/db/CAPolicy.h</code>: defines the function <code>GROEBNER</code>, which uses <code>Singular</code> to compute a Groebner basis.</p></li>
+<li><p><code>source/db/CAServer.h</code>: defines the function <code>GROEBNER</code>, which uses <code>Singular</code> to compute a Groebner basis.</p></li>
+<li><p><code>source/db/SINGULAR.c</code>: implements the function <code>GROEBNER</code>, which uses <code>Singular</code> to compute a Groebner basis.</p></li>
+<li><p><code>source/db/SINGULAR.h</code>: defines the function <code>GROEBNER</code>, which uses <code>Singular</code> to compute a Groebner basis.</p></li>
+<li><p><code>source/db/SingSacPolicy.h</code>: defines the function <code>GROEBNER</code>, which uses <code>Singular</code> to compute a Groebner basis.</p></li>
+<li><p><code>source/db/SingularPolicy.h</code>: defines the function <code>GROEBNER</code>, which uses <code>Singular</code> to compute a Groebner basis.</p></li>
+<li><p><code>source/main/data.c</code>: defines and initialises <code>PCMCT</code>, the flag to indicate that a monotone CAD should be constructed.</p></li>
+<li><p><code>source/main/qepcadcls.h</code>:</p>
+<ul>
+<li>Defines <code>GVREFL</code> and <code>GVTD</code>, list of refinement points and the CAD in which every cell can be defined by sings of projection factors, respectively,</li>
+<li>Defines the new <code>QepcadCls::*</code> functions.</li>
+</ul></li>
+<li><p>1source/qepcad.h<code>: defines new non-</code>QepcadCls::*` functions.</p></li>
+<li><p><code>source/proj/EXTRACTS.c</code>: responsible for extracting projecion polynomials. <code>ADD2A</code> has been refactored and renamed <code>ADDPOL</code>.</p></li>
+<li><p><code>source/qepcad.help</code>: documents new commands, such as <code>d-cell-*-t</code> and <code>pcmct &lt;y/n&gt;</code>.</p></li>
+</ul>
+</div>
+<div id="new-files" class="section level4 hasAnchor" number="7.1.10.2">
+<h4><span class="header-section-number">7.1.10.2</span> New files<a href="7.1-implementation-on-top-of-qepcad.html#new-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p><code>source/io/CELLWRT.c</code>: writes a cell as a Tarski formula, implementing the command <code>d-cell-t</code>.</p></li>
+<li><p><code>extensions/sfext/crcads/ALLCELLWRITET.c</code>: writes all cells as Tarski formulas, implementing the command <code>d-all-cells-t</code>.</p></li>
+<li><p><code>extensions/sfext/crcads/FALSECELLWRITET.c</code>: writes false all cells as Tarski formulas, implementing the command <code>d-false-cells-t</code>.</p></li>
+<li><p><code>extensions/sfext/crcads/TRUECELLWRITET.c</code>: writes true all cells as Tarski formulas, implementing the command <code>d-true-cells-t</code>.</p></li>
+<li><p><code>extensions/sfext/sfcons/SFC3f.c</code>: writes true all cells as Tarski formulas, implementing the command <code>d-true-cells-t</code>.</p></li>
+<li><p><code>extensions/sfext/sfcons/SFC4.c</code>: writes true all cells as Tarski formulas, implementing the command <code>d-true-cells-t</code>.</p></li>
+<li><p><code>source/io/CELLIPLLDWR.c</code>: helper function for writing cells as Tarski formulas, writes <span class="math inline">\(f * 0\)</span>, where <span class="math inline">\(f\)</span> is a polynomial and <span class="math inline">\(* \in \{ &lt;, =, &gt; \}\)</span>.</p></li>
+<li><p><code>source/userint/PRDCT.c</code>: process <code>d-cell-t</code>.</p></li>
+<li><p><code>source/userint/PRMCT.c</code>: process <code>mct &lt;y/n&gt;</code>.</p></li>
+<li><p><code>source/userint/USERINT.c</code>: adds new user interface commands.</p></li>
+<li><p><code>source/util/ADDPOL.c</code>: refactoring of <code>ADD2A</code>.</p></li>
+<li><p><code>source/util/ADDPOLS.c</code>: bulk call to <code>ADDPOL</code>.</p></li>
+<li><p><code>source/proj/ProjMcxUtil.c</code>: Stripped down version of McCallum projection, used as a utility function, e.g., to compute the <span class="math inline">\(x_1\)</span>-coordinates of refinement points in <code>MONOTONE()</code>.</p></li>
+<li><p><code>source/proj/QUASIAFFINE.c</code>: computes a quasi-affine CAD, as discussed above.</p></li>
+<li><p><code>source/ticad/MONOTONE.c</code>: finds the set of refinement points required for each <span class="math inline">\(2\)</span>-dimensional cell in the CAD to be monotone.</p></li>
+<li><p><code>source/ticad/FRONTIER.c</code>: implements the function <code>FRONTIER()</code>, responsible for refining the CAD such that it satisfies teh frontier condition.</p></li>
+<li><p><code>source/ticad/LazardLifting.c</code>: helper function for <code>FRONTIER()</code>, responsible for implementing the extension of Lazard’s algorithm for lifting with bad points.</p></li>
+<li><p><code>source/ticad/REFINE.c</code>:: responsible for computing the refinements, defined in <code>GVREFL</code>.</p></li>
+<li><p><code>source/util/ADDREFINEMENTPOINTS.c</code>: adds refinement points (see above).</p></li>
+<li><p><code>source/util/GETSAMPLEK.c</code>: retrieves <span class="math inline">\(k\)</span>-th coordinate of a cell’s sample point.</p></li>
+<li><p><code>source/util/IPFRPmod.c</code>: the original “integral polynomial from rational polynomial” assumes that the input is in rational representation but always has integer coefficients. This version converts an arbitrary rational polynomial into an integral polynomial.</p></li>
+<li><p><code>source/util/JACOBI.c</code>: given a list of polynomials and variable indices, construct a Jacobi matrix.
+<code></code>source/util/LDCOPY.c`: list “deep” (recursive) copy.</p></li>
+<li><p><code>source/util/LEVELIDX.c</code>: helper function. Given a positional index for a cell <span class="math inline">\(C\)</span> with index <span class="math inline">\((i_1,\ldots,i_n)\)</span>, return <span class="math inline">\((j_1,\ldots,j_k)\)</span>, where <span class="math inline">\(j\le n\)</span> such that <span class="math inline">\(i_{j_\ell} = 1, 1 \le \ell \le k\)</span>.</p></li>
+<li><p><code>source/util/PADDVS.c</code>: append variables. Given <span class="math inline">\(f \in \mathbb{Z}[x_1,\ldots,x_k]\)</span>, output <span class="math inline">\(f\)</span> as a polynomial in <span class="math inline">\(\mathbb{Z}[x_1,\ldots,x_k,y_1,\ldots,y_\ell]\)</span>.</p></li>
+<li><p><code>source/util/PPREPVS.c</code>: prepend variables. Given <span class="math inline">\(f \in \mathbb{Z}[x_1,\ldots,x_k]\)</span>, output <span class="math inline">\(f\)</span> as a polynomial in <span class="math inline">\(\mathbb{Z}[y_1,\ldots,y_\ell,x_1,\ldots,x_k]\)</span>.</p></li>
+<li><p><code>source/util/ROOTS.c</code>: convenience function for univariate root fonding. Uses <code>saclib</code>’s <code>IPFSFB</code>, which computes a squaref-free basis.</p></li>
+<li><p><code>source/util/SUBSTITUTE.c</code>: takes a polynomial <span class="math inline">\(f \in \mathbb{Z}[x_1,\ldots,x_n]\)</span> and a sample point <span class="math inline">\(\mathbf{b} \in \mathbb{A}^k\)</span>, compute <span class="math inline">\(f(\mathbf{b}) \in \mathbb{Z}[x_{k+1},\ldots,x_n]\)</span>.</p></li>
+<li><p><code>source/util/TwoDimensionalIndex.c</code>: Given a cell’s positional index, which corresponds to the <span class="math inline">\((i_1,\ldots,i_k) \in \{0,1\}^n\)</span>, return <span class="math inline">\(j,k\)</span> such that <span class="math inline">\(i_j = i_k = 1\)</span>. If <span class="math inline">\((i_1,\ldots,i_n)\)</span> does not have exactly two elements equal to <span class="math inline">\(1\)</span>, the function returns an error.</p></li>
+</ul>
+<p>Some other files have changes (according to <code>git diff</code>). However these are just whitespace changes to make the code easier to read.</p>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-brownQepcad">
+<p>Brown, Christopher W. 2003. “QEPCAD B: A Program for Computing with Semi-Algebraic Sets Using Cads.” <em>SIGSAM Bull.</em> 37 (4): 97–108. <a href="https://doi.org/10.1145/968708.968710">https://doi.org/10.1145/968708.968710</a>.</p>
+</div>
+<div id="ref-brown99">
+<p>Brown, Christopher W. 1999. “Guaranteed Solution Formula Construction.” In <em>Proceedings of the 1999 International Symposium on Symbolic and Algebraic Computation</em>, 137–44. ISSAC ’99. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/309831.309890">https://doi.org/10.1145/309831.309890</a>.</p>
+</div>
+<div id="ref-chen2014">
+<p>Chen, Changbo, and Marc Moreno Maza. 2014. “An Incremental Algorithm for Computing Cylindrical Algebraic Decompositions.” In <em>Computer Mathematics</em>, 199–221. Springer.</p>
+</div>
+<div id="ref-collins1975">
+<p>Collins, George E. 1975. “Quantifier Elimination for Real Closed Fields by Cylindrical Algebraic Decompostion.” In <em>Automata Theory and Formal Languages</em>, 134–83. Springer.</p>
+</div>
+<div id="ref-lazard10">
+<p>Lazard, Daniel. 2010. “CAD and Topology of Semi-Algebraic Sets.” <em>Mathematics in Computer Science</em> 4 (1): 93–112.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="7-sec:implementation-and-testing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="7.2-test-cases-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/05-implementation-testing.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["thesis.pdf", "thesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

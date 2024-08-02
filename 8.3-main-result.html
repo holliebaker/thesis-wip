@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.3 Main Result | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <meta name="description" content="Hollie Baker’s thesis" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.3 Main Result | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Hollie Baker’s thesis" />
+  <meta name="github-repo" content="holliebaker/thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.3 Main Result | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  
+  <meta name="twitter:description" content="Hollie Baker’s thesis" />
+  
+
+<meta name="author" content="Hollie Baker" />
+
+
+<meta name="date" content="2024-08-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="8.2-theory.html"/>
+<link rel="next" href="8.4-generalisations-and-further-work.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Thesis: CAD with monotone cells</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-structure-of-this-thesis.html"><a href="1.1-structure-of-this-thesis.html"><i class="fa fa-check"></i><b>1.1</b> Structure of this thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-sec:background.html"><a href="2-sec:background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html"><i class="fa fa-check"></i><b>2.1</b> Semialgebraic sets and monotone cells</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#sets-definable-over-o-minimal-structures"><i class="fa fa-check"></i><b>2.1.1</b> Sets definable over O-minimal structures</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#monotone-cells"><i class="fa fa-check"></i><b>2.1.2</b> Monotone cells</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html"><i class="fa fa-check"></i><b>2.2</b> Cylindrical algebraic decomposition</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cad-construction"><i class="fa fa-check"></i><b>2.2.1</b> Constructing a CAD</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#bounds-and-variations"><i class="fa fa-check"></i><b>2.2.2</b> Bounds and variations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#the-projection-operator"><i class="fa fa-check"></i><b>2.2.3</b> The projection operator</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#projection-polynomials-vs-semialgebraic-functions"><i class="fa fa-check"></i><b>2.2.4</b> Projection polynomials vs semialgebraic functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cell-formula"><i class="fa fa-check"></i><b>2.2.5</b> CAD cells and their defining formulas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html"><i class="fa fa-check"></i><b>3</b> Smooth Stratification</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html"><i class="fa fa-check"></i><b>3.1</b> Description of the algorithm</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html#sec:strat-algorithm-details"><i class="fa fa-check"></i><b>3.1.1</b> Subroutines and Algorithm Details</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:strat-worked-example.html"><a href="3.2-sec:strat-worked-example.html"><i class="fa fa-check"></i><b>3.2</b> Worked example</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html"><i class="fa fa-check"></i><b>3.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#determining-the-codimension-and-basic-formula-for-each-stratum"><i class="fa fa-check"></i><b>3.3.1</b> Determining the codimension and basic formula for each stratum</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#discarding-redundant-equations"><i class="fa fa-check"></i><b>3.3.2</b> Discarding redundant equations</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#sec:strat-semialgebraic"><i class="fa fa-check"></i><b>3.3.3</b> From Basic Algebraic sets to Arbitrary Semialgebraic sets</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#implementation-in-c"><i class="fa fa-check"></i><b>3.3.4</b> Implementation in C</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:strat-complexity.html"><a href="3.4-sec:strat-complexity.html"><i class="fa fa-check"></i><b>3.4</b> Complexity Analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-test-cases.html"><a href="3.5-test-cases.html"><i class="fa fa-check"></i><b>3.5</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sec:quasi-affine.html"><a href="4-sec:quasi-affine.html"><i class="fa fa-check"></i><b>4</b> Quasi-affine cells</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><i class="fa fa-check"></i><b>4.1</b> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus"><i class="fa fa-check"></i><b>4.1.1</b> An alternative method for computing the smooth two-dimensional locus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><i class="fa fa-check"></i><b>4.2</b> Ensuring that every cell is the graph of a quasi-affine map</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm"><i class="fa fa-check"></i><b>4.2.1</b> Computing the quasi-affine CAD</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html"><i class="fa fa-check"></i><b>4.3</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html#sec:quasi-complexity"><i class="fa fa-check"></i><b>4.3.1</b> Complexity Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sec:monotone-cells.html"><a href="5-sec:monotone-cells.html"><i class="fa fa-check"></i><b>5</b> Monotone Cells</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html"><i class="fa fa-check"></i><b>5.1</b> Two-dimensional monotone sector cells</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement"><i class="fa fa-check"></i><b>5.1.1</b> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:sub-cad"><i class="fa fa-check"></i><b>5.1.2</b> Working with sub-decompositions above a 0-cell</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html"><i class="fa fa-check"></i><b>5.2</b> Two-dimensional monotone sections</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-1-2-le-j-le-alpha---1"><i class="fa fa-check"></i><b>5.2.1</b> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-2-alpha-1-le-j-le-n"><i class="fa fa-check"></i><b>5.2.2</b> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#critical-points-of-the-top-and-bottom-of-c"><i class="fa fa-check"></i><b>5.2.3</b> Critical points of the top and bottom of <span class="math inline">\(C\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html"><i class="fa fa-check"></i><b>5.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html#sec:monotone-algorithm"><i class="fa fa-check"></i><b>5.3.1</b> Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html"><i class="fa fa-check"></i><b>5.4</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity"><i class="fa fa-check"></i><b>5.4.1</b> Complexity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-sec:compute-refinement.html"><a href="5.5-sec:compute-refinement.html"><i class="fa fa-check"></i><b>5.5</b> Computing the refinements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-sec:frontier.html"><a href="6-sec:frontier.html"><i class="fa fa-check"></i><b>6</b> Frontier Condition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-sec:frontier-bgv.html"><a href="6.1-sec:frontier-bgv.html"><i class="fa fa-check"></i><b>6.1</b> Construction of a CAD with frontier condition, due to <span class="citation">Basu, Gabrielov, and Vorobjov (<span>2015</span>)</span>, Theorem 3.20</a></li>
+<li class="chapter" data-level="6.2" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html"><i class="fa fa-check"></i><b>6.2</b> Lazard’s method for dimension not greater than 3</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html#lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3"><i class="fa fa-check"></i><b>6.2.1</b> Lazard’s Algorithm for lifting with bad points in <span class="math inline">\(\mathbb{R}^3\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html"><i class="fa fa-check"></i><b>6.3</b> Generalisation of Lazard</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#sec:ext-lazard-algorithm"><i class="fa fa-check"></i><b>6.3.1</b> Algorithm for lifting above bad points, for CAD compatible with sets of dimension <span class="math inline">\(\le 2\)</span></a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#correctness-and-complexity-2"><i class="fa fa-check"></i><b>6.3.2</b> Correctness and Complexity</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#complexity-analysis"><i class="fa fa-check"></i><b>6.3.3</b> Complexity analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-sec:implementation-and-testing.html"><a href="7-sec:implementation-and-testing.html"><i class="fa fa-check"></i><b>7</b> Implementation And Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html"><i class="fa fa-check"></i><b>7.1</b> Implementation on top of QEPCAD</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#description-of-qepcad-b"><i class="fa fa-check"></i><b>7.1.1</b> Description of QEPCAD B</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#qepcad-cells-and-sample-points"><i class="fa fa-check"></i><b>7.1.2</b> QEPCAD Cells and Sample Points</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#modifications-to-qepcad"><i class="fa fa-check"></i><b>7.1.3</b> Modifications to QEPCAD</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#quasi-affine"><i class="fa fa-check"></i><b>7.1.4</b> Quasi-affine</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#monotone"><i class="fa fa-check"></i><b>7.1.5</b> Monotone</a></li>
+<li class="chapter" data-level="7.1.6" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#frontier-condition"><i class="fa fa-check"></i><b>7.1.6</b> Frontier Condition</a></li>
+<li class="chapter" data-level="7.1.7" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#sec:implementation-refinement"><i class="fa fa-check"></i><b>7.1.7</b> Refinement</a></li>
+<li class="chapter" data-level="7.1.8" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#obtaining-defining-formulas-for-every-cell"><i class="fa fa-check"></i><b>7.1.8</b> Obtaining defining formulas for every cell</a></li>
+<li class="chapter" data-level="7.1.9" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#the-overall-algorithm"><i class="fa fa-check"></i><b>7.1.9</b> The overall algorithm</a></li>
+<li class="chapter" data-level="7.1.10" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#additional-modifications-and-utility-functions"><i class="fa fa-check"></i><b>7.1.10</b> Additional modifications and Utility Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-test-cases-1.html"><a href="7.2-test-cases-1.html"><i class="fa fa-check"></i><b>7.2</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-sec:novel-frontier.html"><a href="8-sec:novel-frontier.html"><i class="fa fa-check"></i><b>8</b> A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^n\)</span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-statement-of-the-problem.html"><a href="8.1-statement-of-the-problem.html"><i class="fa fa-check"></i><b>8.1</b> Statement of the Problem</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-theory.html"><a href="8.2-theory.html"><i class="fa fa-check"></i><b>8.2</b> Theory</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-theory.html"><a href="8.2-theory.html#computing-the-frontier-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>8.2.1</b> Computing the frontier of a semialgebraic set</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-theory.html"><a href="8.2-theory.html#intermediate-results"><i class="fa fa-check"></i><b>8.2.2</b> Intermediate Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html"><i class="fa fa-check"></i><b>8.3</b> Main Result</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-main-result.html"><a href="8.3-main-result.html#algorithm-psuedo-code"><i class="fa fa-check"></i><b>8.3.1</b> Algorithm Psuedo-Code</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8.3-main-result.html"><a href="8.3-main-result.html#sec:worked-example"><i class="fa fa-check"></i><b>8.3.2</b> Worked Example</a></li>
+<li class="chapter" data-level="8.3.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html#mathematical-description"><i class="fa fa-check"></i><b>8.3.3</b> Mathematical Description</a></li>
+<li class="chapter" data-level="8.3.4" data-path="8.3-main-result.html"><a href="8.3-main-result.html#proof-of-correctness"><i class="fa fa-check"></i><b>8.3.4</b> Proof of correctness</a></li>
+<li class="chapter" data-level="8.3.5" data-path="8.3-main-result.html"><a href="8.3-main-result.html#complexity"><i class="fa fa-check"></i><b>8.3.5</b> Complexity</a></li>
+<li class="chapter" data-level="8.3.6" data-path="8.3-main-result.html"><a href="8.3-main-result.html#a-note-on-constructing-the-intermediate-decompositions"><i class="fa fa-check"></i><b>8.3.6</b> A Note on Constructing the Intermediate Decompositions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html"><i class="fa fa-check"></i><b>8.4</b> Generalisations and further work</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:pfaffian"><i class="fa fa-check"></i><b>8.4.1</b> Pfaffian Functions</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:novel-frontier-fw"><i class="fa fa-check"></i><b>8.4.2</b> Further Wrok</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-sec:conclusions.html"><a href="9-sec:conclusions.html"><i class="fa fa-check"></i><b>9</b> Conclusions and Further Work</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html"><i class="fa fa-check"></i><b>9.1</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#smooth-stratification-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>9.1.1</b> Smooth stratification of a semialgebraic set</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#an-algorithm-to-construct-monotone-cad-compatible-with-a-family-of-semialgebraic-sets-of-dimension-at-most-2"><i class="fa fa-check"></i><b>9.1.2</b> An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most <span class="math inline">\(2\)</span></a></li>
+<li class="chapter" data-level="9.1.3" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#a-novel-algorithm-for-computing-a-cad-with-frontier-condition-compatible-with-a-semialgebraic-set-of-arbitrary-dimension"><i class="fa fa-check"></i><b>9.1.3</b> A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-further-work.html"><a href="9.2-further-work.html"><i class="fa fa-check"></i><b>9.2</b> Further Work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-test-cases.html"><a href="appendix-a-test-cases.html"><i class="fa fa-check"></i>Appendix A: Test Cases</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cylindrical Algebraic Decompositions With Monotone Cells</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="main-result" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Main Result<a href="8.3-main-result.html#main-result" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="algorithm-psuedo-code" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Algorithm Psuedo-Code<a href="8.3-main-result.html#algorithm-psuedo-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We are now ready to prove the main result. We begin by presenting pseudo-code for the algorithm described in Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>.
+First some basic subroutines are defined.</p>
+<ul>
+<li><span class="math inline">\(\mathcal{E} := \mathcal{D} \ \&amp;\ \{F_1,\ldots,F_k\}\)</span>
+<ul>
+<li><strong>Input:</strong> <span class="math inline">\(\mathcal{D}\)</span> is a CAD of <span class="math inline">\(\mathbb{R}^n\)</span> and <span class="math inline">\(\{ F_1, \ldots, F_k \}\)</span> is a set of QFFs. Each <span class="math inline">\(F_i, 1 \le i \le k\)</span> defines a semialgebraic set <span class="math inline">\(S_i \subset \mathbb{R}^n\)</span>. Formulas <span class="math inline">\(F_i\)</span> and those defining cells of <span class="math inline">\(\mathcal{D}\)</span> contain <span class="math inline">\(s\)</span> different polynomials of maximum degree <span class="math inline">\(d\)</span> in <span class="math inline">\(\mathbb{Z}[x_1,\ldots,x_n]\)</span>.</li>
+<li><strong>Output:</strong> <span class="math inline">\(\mathcal{E}\)</span> is a refinement of <span class="math inline">\(\mathcal{D}\)</span> compatible with each of the sets <span class="math inline">\(S_i\)</span>.</li>
+<li><strong>Description:</strong> Construct a “classical” CAD of <span class="math inline">\(\mathbb{R}^n\)</span>, compatible with <span class="math inline">\(\{ F_1, \ldots, F_k \}\)</span> and all cells of <span class="math inline">\(\mathcal{D}\)</span> using classical CAD algorithm (see Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a>).</li>
+<li><strong>Complexity:</strong> <span class="math inline">\((sd)^{O(1)^{n}}\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(G := {\operatorname{fr} \left( F \right)}\)</span>
+<ul>
+<li><strong>Input:</strong> <span class="math inline">\(F\)</span>, a QFF defining a semialgebraic set <span class="math inline">\(X \subset \mathbb{R}^n\)</span>. Formula <span class="math inline">\(F\)</span> contains <span class="math inline">\(s\)</span> different polynomials of maximum degree <span class="math inline">\(d\)</span> in <span class="math inline">\(\mathbb{Z}[x_1,\ldots,x_n]\)</span>.</li>
+<li><strong>Output:</strong> <span class="math inline">\(G\)</span>, a QFF defining a semialgebraic set <span class="math inline">\(Y \subset \mathbb{R}^n\)</span> such that <span class="math inline">\(Y\)</span> is the frontier of <span class="math inline">\(X\)</span>.</li>
+<li><strong>Description:</strong> Represent the frontier of <span class="math inline">\(X\)</span> as a first-order formula and apply quantifier elimination to obtain <span class="math inline">\(G\)</span> (see Lemma <a href="8.2-theory.html#lem:frontier">8.1</a>).</li>
+<li><strong>Complexity:</strong> <span class="math inline">\((sd)^{O(n^2)}\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(N := \rm{Decrement}(M)\)</span>
+<ul>
+<li><strong>Input:</strong> <span class="math inline">\(M \in \{0,1\}^k, k &gt; 0\)</span>.</li>
+<li><strong>Output:</strong> <span class="math inline">\(N \in \{0,1\}^k\)</span> is the index immediately prior to <span class="math inline">\(M\)</span> with respect to <span class="math inline">\(&lt;_{\rm{lex}}\)</span>.</li>
+<li><strong>Description:</strong> Straightforward. E.g., view <span class="math inline">\(M\)</span> as an unsigned integer in binary and subtract 1.</li>
+<li><strong>Complexity:</strong> <span class="math inline">\(O(1)\)</span>.</li>
+</ul></li>
+</ul>
+<p>We now present the algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>.</p>
+<div id="algorithm-main" class="algorithm">
+<p><span class="math display">\[
+{\mathcal D} := \mathrm{CadFC}(F)
+\]</span></p>
+<p><strong>Input:</strong>
+<span class="math inline">\(F\)</span>: a QFF representing a semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span>.</p>
+<p><strong>Output:</strong>
+A CAD <span class="math inline">\(\mathcal D\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> compatible with <span class="math inline">\(S\)</span> and satisfying the frontier condition.</p>
+<p><strong>Complexity:</strong>
+<span class="math display">\[(sd)^{O(1)^{n2^n}}\]</span>
+where <span class="math inline">\(F\)</span> contains <span class="math inline">\(s\)</span> different polynomials of maximum degree <span class="math inline">\(d\)</span> in <span class="math inline">\(\mathbb{Z}[x_1,\ldots,x_n]\)</span>.</p>
+<hr />
+<ul>
+<li><p>Initialise <span class="math inline">\(M = (i_1,\ldots,i_{n-1}) := (1,\ldots,1) \in \{0,1\}^{n-1}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\mathcal{E}_M := \bf{true} \ \&amp;\ \{ F \}\)</span>, where <span class="math inline">\(\bf{true}\)</span> is the trivial CAD of <span class="math inline">\(\mathbb{R}^n\)</span>, be the initial CAD.</p></li>
+<li><p>Define the initial pair
+<span class="math inline">\(({\mathcal E}_M, \mathcal{F}_M):=({\mathcal E}, \emptyset)\)</span>.</p>
+<p><span class="math inline">\(\mathcal{E}_M\)</span> is a refinement of <span class="math inline">\(\mathcal{E}\)</span> and <span class="math inline">\(\mathcal{F}_M\)</span> is a set of QFFs, each defining a semialgebraic set contained in a union of cells of <span class="math inline">\(\mathcal{E}_M\)</span> with index <span class="math inline">\(\le_{\rm{lex}}(i_1,\ldots,i_{n-1},1)\)</span>.</p></li>
+<li><p>While <span class="math inline">\((0,\ldots,0) &lt;_{\rm{lex}}M\)</span>, do</p>
+<ul>
+<li><p>Let <span class="math inline">\(N := {\rm Decrement} (M)\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\mathcal{E}_N := \mathcal{E}_M\ \&amp;\ {\mathcal F}_M\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\mathcal{A}_0\)</span> be the family of QFFs defining all cells of <span class="math inline">\(\mathcal{E}_N\)</span> with index <span class="math inline">\((i_1,\ldots,i_{n-1},0)\)</span></p></li>
+<li><p>and <span class="math inline">\(\mathcal{A}_1\)</span> be the family of QFFs defining all cells of <span class="math inline">\(\mathcal{E}_N\)</span> with index <span class="math inline">\((i_1,\ldots,i_{n-1},1)\)</span>.</p></li>
+<li><p>Compute the set of frontiers
+<span class="math display">\[\begin{align*}
+{\mathcal F}_{N,0} =\ &amp; \left\{ {\operatorname{fr} \left( F_0 \right)} \mid F_0 \in \mathcal{A}_0 \right\}, \\
+{\mathcal F}_{N,1} =\ &amp; \left\{ {\operatorname{fr} \left( F_1 \land \neg( F_{1,B} \lor F_{1,T} ) \right)} \mid F_1 \in \mathcal{A}_1, F_{1,B}, F_{1,T} \in \mathcal{A}_0 \right\}, \\
+{\mathcal F}_N =\ &amp; {\mathcal F}_{N,0} \cup {\mathcal F}_{N,1}, \\
+\end{align*}\]</span>
+where <span class="math inline">\(F_{1,B}\)</span> (resp. <span class="math inline">\(F_{1,T}\)</span>) is a QFF defining the bottom (resp. top) of the sector cell defined by <span class="math inline">\(F_1\)</span>, or <span class="math inline">\(\mathbf{false}\)</span> if the bottom (resp. top) does not exist.</p></li>
+<li><p>Let <span class="math inline">\(M := N\)</span>.</p></li>
+</ul></li>
+<li><p>Return <span class="math inline">\({\mathcal E}_{(0,\ldots,0)}\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div id="sec:worked-example" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Worked Example<a href="8.3-main-result.html#sec:worked-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:initial-cad"></span>
+<img src="gnuplot/r3-initial.png" alt="Illustrates the initial decomposition constructed in Step 1 (projection onto the $(x,y)$-plane)." width="60%" />
+<p class="caption">
+Figure 8.2: Illustrates the initial decomposition constructed in Step 1 (projection onto the <span class="math inline">\((x,y)\)</span>-plane).
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:initial-fr"></span>
+<img src="gnuplot/r3-initial-fr.png" alt="Illustrates how $\fr{S}$ interacts with the cells of $\mathcal{E}$. The frontier is indicated by a dashed line, with the blow-up subset above the origin represented by a node." width="60%" />
+<p class="caption">
+Figure 8.3: Illustrates how <span class="math inline">\({\operatorname{fr} \left( S \right)}\)</span> interacts with the cells of <span class="math inline">\(\mathcal{E}\)</span>. The frontier is indicated by a dashed line, with the blow-up subset above the origin represented by a node.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:final-cad"></span>
+<img src="gnuplot/r3-refined.png" alt="Shows cells of $\mathcal{E}_{(0,1)}$, the refinement of $\mathcal{E}$ compatible with $\fr{S}$ computed in Step 4." width="60%" />
+<p class="caption">
+Figure 8.4: Shows cells of <span class="math inline">\(\mathcal{E}_{(0,1)}\)</span>, the refinement of <span class="math inline">\(\mathcal{E}\)</span> compatible with <span class="math inline">\({\operatorname{fr} \left( S \right)}\)</span> computed in Step 4.
+</p>
+</div>
+<table>
+<caption><span id="tab:cells-of-e">Table 8.1: </span> All cells of the CAD <span class="math inline">\(\mathcal{E}\)</span>, the initial CAD computed in Section <a href="8.3-main-result.html#sec:worked-example">8.3.2</a>.}</caption>
+<thead>
+<tr class="header">
+<th>Label</th>
+<th>Index</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\((1,1,1)\)</span></td>
+<td><span class="math inline">\(\{ x &lt; -1 \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_1\)</span></td>
+<td><span class="math inline">\((0,1,1)\)</span></td>
+<td><span class="math inline">\(\{ x = -1 \}\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\((1,1,1)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 1, y &lt; \vert x \vert \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_2\)</span></td>
+<td><span class="math inline">\((1,0,1)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 1, y = \vert x \vert \}\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\((1,1,1)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 1, \vert x \vert &lt; y &lt; 1, z &lt; \vert x/y \vert \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(S\)</span></td>
+<td><span class="math inline">\((1,1,0)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 1, \vert x \vert &lt; y &lt; 1, z = \vert x/y \vert \}\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\((1,1,1)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 1, \vert x \vert &lt; y &lt; 1, z &gt; \vert x/y \vert \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_3\)</span></td>
+<td><span class="math inline">\((1,0,1)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 1, y = 1 \}\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\((1,1,1)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 1, y &gt; 1 \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_4\)</span></td>
+<td><span class="math inline">\((0,1,1)\)</span></td>
+<td><span class="math inline">\(\{ x = 1 \}\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\((1,1,1)\)</span></td>
+<td><span class="math inline">\(\{ x &gt; 1 \}\)</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:cells-of-e-refined">Table 8.2: </span> Cells of the CAD <span class="math inline">\(\mathcal{E}_{(0,1)}\)</span> computed in step  of Section <a href="8.3-main-result.html#sec:worked-example">8.3.2</a>. Note that only cells which are part of <span class="math inline">\({\operatorname{cl} \left( S \right)}\)</span> are listed.</caption>
+<thead>
+<tr class="header">
+<th>Label</th>
+<th>Index</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\({C&#39;_1}\)</span></td>
+<td><span class="math inline">\((0,0,0)\)</span></td>
+<td><span class="math inline">\(\{ x = -1, y = 1, z = 1 \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\({C&#39;_2}\)</span></td>
+<td><span class="math inline">\((1,0,0)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 0, y = -x, z = 1 \}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\({C&#39;&#39;_{2,1}}\)</span></td>
+<td><span class="math inline">\((0,0,0)\)</span></td>
+<td><span class="math inline">\(\{ x = y = 0, z = 0 \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\({C&#39;&#39;_{2,2}}\)</span></td>
+<td><span class="math inline">\((0,0,1)\)</span></td>
+<td><span class="math inline">\(\{ x = y = 0, 0 &lt; z &lt; 1 \}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\({C&#39;&#39;_{2,3}}\)</span></td>
+<td><span class="math inline">\((0,0,0)\)</span></td>
+<td><span class="math inline">\(\{ x = y = 0, z = 1 \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\({C&#39;&#39;&#39;_2}\)</span></td>
+<td><span class="math inline">\((1,0,0)\)</span></td>
+<td><span class="math inline">\(\{ 0 &lt; x &lt; 1, y = x, z = 1 \}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(S&#39;\)</span></td>
+<td><span class="math inline">\((1,1,0)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 0, -x &lt; y &lt; 1, z = -x/y \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(S&#39;&#39;\)</span></td>
+<td><span class="math inline">\((0,1,0)\)</span></td>
+<td><span class="math inline">\(\{ x = 0, 0 &lt; y &lt; 1, z = 0 \}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(S&#39;&#39;&#39;\)</span></td>
+<td><span class="math inline">\((1,1,0)\)</span></td>
+<td><span class="math inline">\(\{ 0 &lt; x &lt; 1, x &lt; y &lt; 1, z = x/y \}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C&#39;_3\)</span></td>
+<td><span class="math inline">\((1,0,0)\)</span></td>
+<td><span class="math inline">\(\{ -1 &lt; x &lt; 0, y = 1, z = -x \}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C&#39;&#39;_3\)</span></td>
+<td><span class="math inline">\((0,0,0)\)</span></td>
+<td><span class="math inline">\(\{ x = 0, y = 1, z = 0\}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C&#39;&#39;&#39;_3\)</span></td>
+<td><span class="math inline">\((1,0,0)\)</span></td>
+<td><span class="math inline">\(\{ 0 &lt; x &lt; 1, y = 1, z = x \}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\({C&#39;_4}\)</span></td>
+<td><span class="math inline">\((0,0,0)\)</span></td>
+<td><span class="math inline">\(\{ x = 1, y = 1, z = 1 \}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>We demonstrate the <span class="math inline">\(\mathrm{CadFC}\)</span> algorithm by applying it to the set
+<span class="math display">\[
+S := \{ -1 &lt; x &lt; 1, \vert x\vert &lt;y &lt;1, z=\vert x/y\vert \}
+\]</span>
+from Example <a href="2.2-cylindrical-algebraic-decomposition.html#exm:top-bottom-not-cylindrical">2.2</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(F\)</span> be a QFF defining <span class="math inline">\(S\)</span> and compute <span class="math inline">\(\mathcal{E} := \mathbf{true}\ \&amp;\ \{F\}\)</span>, a CAD of <span class="math inline">\(\mathbb{R}^3\)</span> compatible with <span class="math inline">\(S\)</span> (see Table <a href="8.3-main-result.html#tab:cells-of-e">8.1</a> and Figure <a href="8.3-main-result.html#fig:initial-cad">8.2</a>). Observe that <span class="math inline">\(S\)</span> is a single 2-dimensional cylindrical <span class="math inline">\((1,1,0)\)</span>-cell of <span class="math inline">\(\mathcal{E}\)</span>.
+The initial pair <span class="math display">\[
+(\mathcal{E}_{(1,1)}, \mathcal{F}_{(1,1)}) = (\mathcal{E}, \emptyset).
+\]</span></p></li>
+<li><p>We compute the next pair <span class="math inline">\((\mathcal{E}_{(1,0)}, \mathcal{F}_{(1,0)})\)</span>.
+<span class="math display">\[\mathcal{E}_{(1,0)} := \mathcal{E}_{(1,1)}\ \&amp;\ \mathcal{F}_{(1,1)} = \mathcal{E}\ \&amp;\ \emptyset = \mathcal{E}.
+\]</span>
+Denote by <span class="math inline">\(X_{(1,0)}\)</span> the set of frontiers of cells of <span class="math inline">\(\mathcal{E}_{(1,0)}\)</span> with indices <span class="math inline">\((1,1,1)\)</span> and <span class="math inline">\((1,1,0)\)</span>.
+This set contains
+<span class="math display">\[\begin{align*}
+{\operatorname{fr} \left( S \right)} = &amp;\ S_B \cup S_T \cup \{ (-1,1,1), (1,1,1) \}\\
+\text{where }
+S_T = &amp;\ \{ -1 &lt; x &lt; 1, y = 1, z = \vert x \vert \} \\
+\text{and }
+S_B = &amp;\ \{ -1 &lt; x &lt; 0, y = -x, z = 1 \} \\
+\cup &amp;\ \{ x = y = 0, 0 \le z \le 1 \} \\
+\cup &amp;\ \{ 0 &lt; x &lt; 1, y = x, z = 1 \}
+\end{align*}\]</span>
+(see Figure <a href="8.3-main-result.html#fig:initial-fr">8.3</a>). The family <span class="math inline">\(\mathcal{F}_{(1,0)}\)</span> contains a QFF defining <span class="math inline">\(X_{(1,0)}\)</span>.
+Recall (from Example <a href="2.2-cylindrical-algebraic-decomposition.html#exm:top-bottom-not-cylindrical">2.2</a>) that <span class="math inline">\(S_B\)</span> cannot be a cylindrical cell as it is not the graph of a continuous function.</p></li>
+<li><p>Compute the next pair <span class="math inline">\((\mathcal{E}_{(0,1)}, \mathcal{F}_{(0,1)})\)</span> as follows. Let
+<span class="math display">\[
+\mathcal{E}_{(0,1)} := \mathcal{E}_{(1,0)}\ \&amp;\ \mathcal{F}_{(1,0)}.
+\]</span>
+The blow-up subset <span class="math inline">\(\{ x = y = 0, 0 \le z \le 1 \}\)</span> in <span class="math inline">\(X_{(1,0)}\)</span> results in a refinement of the decomposition induced by <span class="math inline">\(\mathcal{E}_{(1,0)}\)</span> on <span class="math inline">\(\mathbb{R}^1\)</span> such that it includes the cells <span class="math inline">\(\{-1 &lt; x &lt; 0\}, (0), \{ 0 &lt; x &lt; 1 \}\)</span>. Thus <span class="math inline">\(\mathcal{E}_{(0,1)}\)</span> includes a cell <span class="math inline">\(S&#39;&#39; = \{ x = 0, 0 &lt; y &lt; 1, z = 0 \}\)</span> and <span class="math inline">\(S\)</span> is split into three cells <span class="math inline">\(S&#39;, S&#39;&#39;, S&#39;&#39;&#39;\)</span> with indices <span class="math inline">\((1,1,0),(1,0,0)\)</span> and <span class="math inline">\((1,1,0)\)</span> respectively.
+Cells <span class="math inline">\(C_1,C_2,C_3\)</span> and <span class="math inline">\(C_4\)</span> of <span class="math inline">\(\mathcal{E}_{(1,0)} = \mathcal{E}\)</span> are also refined in this step so that they are compatible with <span class="math inline">\({\operatorname{fr} \left( S \right)}\)</span> (see Table <a href="8.3-main-result.html#tab:cells-of-e-refined">8.2</a> and Figure <a href="8.3-main-result.html#fig:final-cad">8.4</a>). As we will argue in the Correctness section, frontiers <span class="math inline">\({\rm{fr}}_S(S&#39;)\)</span> and <span class="math inline">\({\rm{fr}}_S(S&#39;&#39;&#39;)\)</span> coincide with <span class="math inline">\(S&#39;&#39;\)</span>, so no further refinements of cells with index <span class="math inline">\((1,1,1)\)</span> and <span class="math inline">\((1,1,0)\)</span> are needed.
+<span class="math inline">\(X_{(0,1)}\)</span> contains <span class="math inline">\({\operatorname{fr} \left( C&#39;_2 \right)}, {\operatorname{fr} \left( C&#39;&#39;&#39;_2 \right)}, {\operatorname{fr} \left( C&#39;_3 \right)}\)</span> and <span class="math inline">\({\operatorname{fr} \left( C&#39;&#39;&#39;_3 \right)}\)</span>. Thus, <span class="math inline">\(\mathcal{F}_{(0,1)}\)</span> contains QFFs defining <span class="math inline">\(X_{(0,1)}\)</span>.</p></li>
+<li><p>In this particular case, <span class="math inline">\(X_{(0,1)}\)</span> is already a union of cells of <span class="math inline">\(\mathcal{E}_{(0,1)}\)</span>, so <span class="math inline">\(\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}\)</span> as no refinement is needed.
+<span class="math inline">\(X_{(0,0)}\)</span> contains <span class="math inline">\({\operatorname{fr} \left( S&#39; \right)}\)</span>.</p></li>
+<li><p><span class="math inline">\(X_{(0,0)}\)</span> is already a union of cells of <span class="math inline">\(\mathcal{E}_{(0,0)}\)</span>, so no further refinement of <span class="math inline">\(\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}\)</span> is needed. The algorithm terminates and returns <span class="math inline">\(\mathcal{D} := \mathcal{E}_{(0,1)}\)</span>.</p></li>
+</ol>
+<p>Well-known implementations of cylindrical algebraic decomposition such as <code>QEPCAD B</code> <span class="citation">(Brown <a href="#ref-brownQepcad" role="doc-biblioref">2003</a>)</span> and Maple’s <code>CylindricalAlgebraicDecompose</code> <span class="citation">(Chen and Moreno Maza <a href="#ref-chen2014" role="doc-biblioref">2014</a>)</span> are unable to obtain the frontier condition in general. In particular, when applied to set <span class="math inline">\(S\)</span> from Example <a href="2.2-cylindrical-algebraic-decomposition.html#exm:top-bottom-not-cylindrical">2.2</a>, both {} and {} create three cells above the origin: <span class="math inline">\(B&#39; = \{ x = y = 0, z &lt; 0\}\)</span>, <span class="math inline">\(B&#39;&#39; = \{ x = y = 0, z = 0\}\)</span> and <span class="math inline">\(B&#39;&#39;&#39; = \{ x = y = 0, z &gt; 0\}\)</span>. Observe that <span class="math inline">\(B&#39;&#39;&#39; \cap {\operatorname{fr} \left( S \right)} \ne \emptyset\)</span>, but <span class="math inline">\(B&#39;&#39;&#39; \not \subset {\operatorname{fr} \left( S \right)}\)</span> so the frontier of <span class="math inline">\(S\)</span> is not a union of cells in the decomposition.</p>
+<p>TODO!! insert the tables.</p>
+</div>
+<div id="mathematical-description" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Mathematical Description<a href="8.3-main-result.html#mathematical-description" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The algorithm takes as input a quantifier-free Boolean formula <span class="math inline">\(F\)</span> representing a semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span>. Begin by computing a CAD <span class="math inline">\(\mathcal{E}\)</span> compatible with <span class="math inline">\(S\)</span>, by applying the algorithm from Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> to <span class="math inline">\(\{ F \}\)</span>.</p>
+<p>The algorithm computes a sequence of pairs
+<span class="math display" id="eq:pair">\[\begin{equation}
+({\mathcal E}_M,\ \mathcal{F}_M),
+\tag{8.4}
+\end{equation}\]</span>
+where <span class="math inline">\(M = (i_1,\ldots,i_{n-1}) \in \{0,1\}^{n-1}\)</span> is an index, <span class="math inline">\(\mathcal{E}_M\)</span> is a CAD of <span class="math inline">\(\mathbb{R}^n\)</span> which is a refinement of <span class="math inline">\(\mathcal{E}\)</span> and <span class="math inline">\(\mathcal{F}_M\)</span> is a family of quantifier-free Boolean formulas, each defining a semialgebraic set which is contained in the union of all cells of <span class="math inline">\({\mathcal E}_M\)</span> with indices <span class="math inline">\(\le_{\rm{lex}}(i_1,\ldots,i_{n-1},1)\)</span>. We will denote this family of cells by <span class="math inline">\(\mathcal{U}_M\)</span>.
+In equation <a href="8.3-main-result.html#eq:pair">(8.4)</a>, index <span class="math inline">\(M\)</span> refers to the pair rather than its elements.</p>
+<p>The sequence of pairs is computed recursively, starting with index <span class="math inline">\(M=(1,1, \ldots ,1)\)</span>,
+in descending order of indices <span class="math inline">\(M=(i_1, \ldots, i_{n-1})\)</span> with respect to <span class="math inline">\(&lt;_{\rm{lex}}\)</span>.
+Let the initial pair
+<span class="math display">\[({\mathcal E}_{(1, \ldots, 1)},\ \mathcal{F}_{(1, \ldots, 1)}) = ({\mathcal E},\ \emptyset).\]</span>
+The algorithm will construct the sequence (from right to left):
+<span class="math display" id="eq:sequence">\[\begin{equation}
+({\mathcal E}_{\mathbf{0}}, \mathcal{F}_{\mathbf{0}}) &lt;_{\rm{lex}}\cdots &lt;_{\rm{lex}}
+({\mathcal E}_N, \mathcal{F}_N) &lt;_{\rm{lex}}({\mathcal E}_M, \mathcal{F}_M)
+&lt;_{\rm{lex}}\cdots
+&lt;_{\rm{lex}}({\mathcal E} , \emptyset),
+\tag{8.5}
+\end{equation}\]</span>
+where <span class="math inline">\(\mathbf{0} = (0,\ldots,0)\)</span> and <span class="math inline">\(\mathcal{F}_{\mathbf{0}} := \{ F \mid F \text{ is a QFF defining } C \in{\mathcal U}_{(0, \ldots ,0)} \}\)</span>. Note that the <span class="math inline">\(&lt;_{\rm{lex}}\)</span> notation is naturally extended to elements of the sequence defined in Equation <a href="8.3-main-result.html#eq:sequence">(8.5)</a>.</p>
+<p>For a given index <span class="math inline">\(M=(i_1,\ldots,i_{n-1})\)</span>, assume that the algorithm has computed the pair <span class="math inline">\((\mathcal{E}_M,\ \mathbf{F}_M)\)</span>.
+Now we describe how the next pair, <span class="math inline">\(({\mathcal E}_N,\ \mathcal{F}_N)\)</span>, where <span class="math inline">\(N=(j_1, \ldots ,j_{n-1})\)</span> is the index immediately prior to <span class="math inline">\(M\)</span> with respect to <span class="math inline">\(&lt;_{\rm{lex}}\)</span>, is computed.
+Applying algorithm from Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> to <span class="math inline">\({\mathcal E}_M\)</span> and <span class="math inline">\(\mathcal{F}_M\)</span>, we obtain a CAD
+<span class="math inline">\({\mathcal E}_{N}\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> compatible with every cell of <span class="math inline">\({\mathcal E}_M\)</span> and each set defined by QFFs in <span class="math inline">\(\mathcal{F}_M\)</span>
+(see construction of <span class="math inline">\(\mathcal{E}_{(0,1)}\)</span> in Step 2 of the worked example).
+Consider the family <span class="math inline">\({\mathcal A}_0\)</span> of cells in <span class="math inline">\({\mathcal E}_{N}\)</span> with indices <span class="math inline">\((i_1,\ldots,i_{n-1},0)\)</span>
+(section cells)
+and the family <span class="math inline">\({\mathcal A}_1\)</span> of cells in <span class="math inline">\({\mathcal E}_{N}\)</span> with indices <span class="math inline">\((i_1,\ldots,i_{n-1},1)\)</span>
+(sector cells).
+Compute the set of frontiers
+<span class="math display" id="eq:front">\[\begin{equation}
+\tag{8.6}
+X_{N} := \bigcup_{C \in {\mathcal A}_0}{\operatorname{fr} \left( C \right)} \cup \bigcup_{C \in {\mathcal A}_1}({\operatorname{fr} \left( C \right)} \setminus (C_T \cup C_B)).
+\end{equation}\]</span>
+More precisely, apply the algorithm from Lemma <a href="8.2-theory.html#lem:frontier">8.1</a> to each QFF defining a cell <span class="math inline">\(C \in \mathcal{A}_0\)</span> and to the QFF defining <span class="math inline">\(C \setminus (C_T \cup C_B)\)</span> where <span class="math inline">\(C \in \mathcal{A}_1\)</span>. Observe that <span class="math inline">\(C_T, C_B\)</span> are already <span class="math inline">\((i_1,\ldots,i_{n-1},0)\)</span>-cells in <span class="math inline">\(\mathcal{A}_0\)</span>.
+According to Lemma <a href="8.2-theory.html#lem:fr-lex-less">8.2</a>, <span class="math inline">\(X_{N}\)</span> is contained in the union of cells in <span class="math inline">\({\mathcal E}_{N}\)</span>
+with indices <span class="math inline">\(\le_{\rm{lex}}(j_1,\ldots,j_{n-1},1) &lt;_{\rm{lex}}(i_1,\ldots,i_{n-1},0)\)</span> (see construction of <span class="math inline">\(X_{(1,0)}\)</span> in Step 1 of the worked example).</p>
+<p>When the algorithm reaches the final pair <span class="math inline">\(({\mathcal E}_{\mathbf{0}}, \mathcal{F}_{\mathbf{0}})\)</span> in the sequence,
+it computes a CAD <span class="math inline">\(\mathcal D\)</span>, using the algorithm from Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a>, compatible
+with <span class="math inline">\(\mathcal{F}_{\mathbf{0}}\)</span> and every cell of <span class="math inline">\({\mathcal E}_{\mathbf{0}}\)</span>. The algorithm terminates by returning <span class="math inline">\(\mathcal D\)</span>.</p>
+</div>
+<div id="proof-of-correctness" class="section level3 hasAnchor" number="8.3.4">
+<h3><span class="header-section-number">8.3.4</span> Proof of correctness<a href="8.3-main-result.html#proof-of-correctness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="proof">
+<p><span id="unlabeled-div-59" class="proof"><em>Proof</em>. </span>(of Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>)</p>
+<p>Let <span class="math inline">\(L=(k_1, \ldots ,k_{n-1})\)</span> be the index immediately prior to <span class="math inline">\(N=(j_1, \ldots ,j_{n-1} )\)</span> with respect to <span class="math inline">\(&lt;_{\rm{lex}}\)</span>.
+The algorithm computes <span class="math inline">\({\mathcal E}_L\)</span> as the refinement of <span class="math inline">\({\mathcal E}_N\)</span> compatible with each set represented by a formula in <span class="math inline">\(\mathcal{F}_N\)</span>. This is the set <span class="math inline">\(X_N\)</span> defined in Equation <a href="8.3-main-result.html#eq:front">(8.6)</a>.
+Suppose that the algorithm has computed the final decomposition <span class="math inline">\(\mathcal{D}\)</span>, as the refinement of <span class="math inline">\(\mathcal{E}_{\mathbf{0}}\)</span> compatible with <span class="math inline">\(\mathcal{F}_{\mathbf{0}}\)</span> in the sequence . Now construct a new sequence of decompositions (from left to right)
+<span class="math display" id="eq:seq-ind-hyp">\[\begin{equation}
+\mathcal{E}&#39;_{\mathbf{0}} &lt;_{\rm{lex}}\cdots &lt;_{\rm{lex}}\mathcal{E}&#39;_L &lt;_{\rm{lex}}\mathcal{E}&#39;_N &lt;_{\rm{lex}}\mathcal{E}&#39;_M &lt;_{\rm{lex}}\cdots &lt;_{\rm{lex}}\mathcal{E}&#39;_{(1,\ldots,1)}
+\tag{8.7}
+\end{equation}\]</span>
+where the initial element <span class="math inline">\(\mathcal{E}&#39;_{\mathbf{0}}\)</span> is the refinement of <span class="math inline">\(\mathcal{E}_{\mathbf{0}}\)</span> compatible with each cell of <span class="math inline">\(\mathcal{D}\)</span> and each <span class="math inline">\(\mathcal{E}&#39;_I\)</span> is the refinement of <span class="math inline">\(\mathcal{E}_I\)</span> compatible with all cells of <span class="math inline">\(\mathcal{E}&#39;_J\)</span>, where <span class="math inline">\(J\)</span> is the index immediately prior to <span class="math inline">\(I\)</span> with respect to <span class="math inline">\(&lt;_{\rm{lex}}\)</span>.
+We want to prove that every cell in <span class="math inline">\(\mathcal{E}&#39;_L\)</span> with index <span class="math inline">\(\le_{\rm{lex}}(i_1,\ldots,i_{n-1},1)\)</span> satisfies the frontier condition.</p>
+<p>If <span class="math inline">\(C\)</span> is a cell in <span class="math inline">\({\mathcal E}_N\)</span> with index <span class="math inline">\((i_1, \ldots ,i_{n-1},0)\)</span> (section cell),
+then <span class="math inline">\(C\)</span> is a union of cells of <span class="math inline">\({\mathcal E}_L\)</span> and, hence, of <span class="math inline">\(\mathcal{E}&#39;_L\)</span>, with indices <span class="math inline">\(\le_{\rm{lex}}(i_1, \ldots ,i_{n-1} ,0)\)</span>.
+Let <span class="math inline">\(C&#39; \subset C\)</span> be one of the cells in this refinement of <span class="math inline">\(C\)</span> with index <span class="math inline">\((i_1, \ldots ,i_{n-1} ,0)\)</span> and <span class="math inline">\(B\)</span> be
+the union of cells contained in the refinement of <span class="math inline">\(C\)</span> with indices <span class="math inline">\(&lt;_{\rm{lex}}(i_1, \ldots ,i_{n-1} ,0)\)</span>.
+Let <span class="math inline">\(B&#39; \subset B\)</span> be a cell of <span class="math inline">\({\mathcal E}_L\)</span> with index <span class="math inline">\((m_1,\ldots,m_{n-1},0) &lt;_{\rm{lex}}(i_1,\ldots,i_{n-1},0)\)</span>. We claim that <span class="math inline">\(\dim(B&#39;) &lt; \dim(C)\)</span>.
+Indeed, on the one hand, if <span class="math inline">\(i_k = 0\)</span>, for some <span class="math inline">\(1\le k \le n-1\)</span>, then <span class="math inline">\(m_k = 0\)</span> as well. Otherwise, <span class="math inline">\(\operatorname{proj}_{\mathbb{R}^k}(C)\)</span> is a section cell which must contain <span class="math inline">\(\operatorname{proj}_{\mathbb{R}^k}(B&#39;)\)</span>, which is a sector cell, but this is impossible.
+On the other hand, by the definition of <span class="math inline">\(&lt;_{\rm{lex}}\)</span>, there exists some <span class="math inline">\(1\le \ell \le n-1\)</span> such that <span class="math inline">\(m_1 = i_1, \ldots, m_{\ell-1} = i_{\ell-1}\)</span> and <span class="math inline">\(m_\ell = 0, i_\ell = 1\)</span>. This implies that <span class="math inline">\(\dim(B&#39;) = m_1 + \cdots + m_{n-1} &lt; i_1 + \cdots + m_{n-1} = \dim(C)\)</span> as required. It follows that <span class="math inline">\(\dim(B) &lt; \dim(C)\)</span> and <span class="math inline">\(B\)</span> is closed in <span class="math inline">\(C\)</span>.
+According to Lemma <a href="8.2-theory.html#lem:section-split">8.3</a>, <span class="math inline">\({\rm{fr}}_C (C \setminus B)=B\)</span> where <span class="math inline">\({\rm{fr}}_X(Y)\)</span> denotes the frontier of <span class="math inline">\(Y\)</span> in <span class="math inline">\(X\)</span>.
+Hence, <span class="math inline">\({\rm{fr}}_C (C&#39;) \subset B\)</span>.
+On the other hand, <span class="math inline">\({\operatorname{fr} \left( C&#39; \right)} \setminus {\rm{fr}}_C (C&#39;)\)</span> is a subset of <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span>, which is a union of cells of <span class="math inline">\(\mathcal{E}_L\)</span> (and of the refinement <span class="math inline">\(\mathcal{E}&#39;_L\)</span>) with index <span class="math inline">\(&lt;_{\rm{lex}}(i_1,\ldots,i_{n-1},0)\)</span>.</p>
+<p>By the induction hypothesis, all cells of <span class="math inline">\(\mathcal{E}&#39;_L\)</span> with index <span class="math inline">\(&lt;_{\rm{lex}}(i_1,\ldots,i_{n-1},0)\)</span> satisfy the frontier condition. In particular, <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> and <span class="math inline">\({\operatorname{fr} \left( B \right)}\subset {\operatorname{fr} \left( C \right)}\)</span> is a union of cells of <span class="math inline">\(\mathcal{E}&#39;_L\)</span>.
+It follows from the cylindrical structure of <span class="math inline">\(\mathcal{E}&#39;_L\)</span> that <span class="math inline">\(C&#39;\)</span> satisfies the frontier condition.</p>
+<p>If <span class="math inline">\(C\)</span> is a cell in <span class="math inline">\({\mathcal E}_N\)</span> with index <span class="math inline">\((i_1, \ldots ,i_{n-1} ,1)\)</span> (sector cell),
+then <span class="math inline">\(C\)</span> is a union of cells of <span class="math inline">\({\mathcal E}_L\)</span> with indices <span class="math inline">\(\le_{\rm{lex}}(i_1, \ldots ,i_{n-1} ,1)\)</span>.
+A similar argument to that used for section cells shows that each cell <span class="math inline">\(C&#39;\)</span> in this union,
+having index <span class="math inline">\((i_1, \ldots ,i_{n-1} ,1)\)</span>, satisfies the frontier condition in <span class="math inline">\(\mathcal{E}&#39;_L\)</span>. Note that when using
+Lemma <a href="8.2-theory.html#lem:section-split">8.3</a> we consider sector cell <span class="math inline">\(C\)</span> as a graph of a constant function over itself.</p>
+<p>Finally, each decomposition <span class="math inline">\(\mathcal{E}&#39;_I\)</span>, <span class="math inline">\(I \in \{0,1\}^{n-1}\)</span>, in the sequence  coincides with <span class="math inline">\(\mathcal{D}\)</span>. Indeed, <span class="math inline">\(\mathcal{D}\)</span> is a refinement of <span class="math inline">\(\mathcal{E}_I\)</span> and <span class="math inline">\(\mathcal{E}&#39;_I\)</span> is a refinement of <span class="math inline">\(\mathcal{E}_I\)</span> compatible with all cells of <span class="math inline">\(\mathcal{D}\)</span>. In other words, no refinement of <span class="math inline">\(\mathcal{D}\)</span> is required to obtain <span class="math inline">\(\mathcal{E}&#39;_{(1,\ldots,1)}\)</span>.
+It follows that every cell of <span class="math inline">\(\mathcal{D}\)</span> satisfies the frontier condition.</p>
+</div>
+</div>
+<div id="complexity" class="section level3 hasAnchor" number="8.3.5">
+<h3><span class="header-section-number">8.3.5</span> Complexity<a href="8.3-main-result.html#complexity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The number of different indices <span class="math inline">\((i_1, \ldots, i_n)\)</span>, where each <span class="math inline">\(i_k \in \{ 0,1 \}\)</span>, is <span class="math inline">\(2^n\)</span>.
+Therefore, the algorithm makes <span class="math inline">\(O(2^n)\)</span> ``steps’’: computing successive pairs <span class="math inline">\(({\mathcal E}_M, \mathcal{F}_M)\)</span> in the sequence ().
+In each step, we compute the next pair <span class="math inline">\((\mathcal{E}_N,\ \mathcal{F}_N)\)</span> from <span class="math inline">\((\mathcal{E}_M,\ \mathcal{F}_M)\)</span>, using Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> and Lemma <a href="8.2-theory.html#lem:frontier">8.1</a>.</p>
+<p>First, Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> is applied to compute <span class="math inline">\(\mathcal{E}_N\)</span>, the CAD of <span class="math inline">\(\mathbb{R}^n\)</span> compatible with all cells of <span class="math inline">\(\mathcal{E}_M\)</span> and the sets defined by formulas in <span class="math inline">\(\mathcal{F}_M\)</span>. The complexity of this operation depends on the number of polynomials, <span class="math inline">\(s_M\)</span>, and their maximum degree, <span class="math inline">\(d_M\)</span>, defining <span class="math inline">\((\mathcal{E}_M,\ \mathcal{F}_M)\)</span>.
+The complexity of this operation is
+<span class="math display">\[
+(s_Md_M)^{O(1)^n}.
+\]</span>
+Since this is also an upper bound on the number of cells, number of polynomials and their degrees defining <span class="math inline">\(\mathcal{E}_N\)</span>, let
+<span class="math display">\[
+s_N:=(s_Md_M)^{O(1)^n} \text{ and } d_N:=(s_Md_M)^{O(1)^n}.
+\]</span></p>
+<p>We now compute the set of frontiers <span class="math inline">\(\mathcal{F}_N\)</span> of cells of <span class="math inline">\(\mathcal{E}_M\)</span> with index <span class="math inline">\((i_1,\ldots,i_{n-1},i_n)\)</span>.
+The complexity of applying Lemma <a href="8.2-theory.html#lem:frontier">8.1</a> is
+<span class="math inline">\((s_Md_M)^{n^2O(1)^n},\)</span>
+which is asymptotically the same as <span class="math inline">\((s_Md_M)^{O(1)^n}\)</span>.
+Thus, the overall complexity of this “step” is again <span class="math display">\[(s_Md_M)^{O(1)^n}.\]</span></p>
+<p>The overall complexity is obtained by iterating this process for each index. E.g., the complexity of passing from <span class="math inline">\((\mathcal{E}_M\, \mathcal{F}_M)\)</span> to <span class="math inline">\((\mathcal{E}_L\, \mathcal{F}_L)\)</span>, where <span class="math inline">\(M &lt;_{\rm{lex}}N &lt;_{\rm{lex}}L\)</span> are subsequent indices in the lexicographical order, would be
+<span class="math display">\[
+(s_Nd_N)^{O(1)^n} = \left((s_Md_M)^{O(1)^n}(s_Md_M)^{O(1)^n}\right)^{O(1)^n}
+\]</span>
+Iterating this <span class="math inline">\(2^n\)</span> times, with initial parameters <span class="math inline">\(s_{(1, \ldots,1)}=s\)</span> and <span class="math inline">\(d_{(1, \ldots,1)}=d\)</span> being the number of input polynomials and their maximum degree, we obtain an overall complexity of
+<span class="math display">\[
+(sd)^{O(1)^{n2^n}}.
+\]</span>
+According to Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> and Lemma <a href="8.2-theory.html#lem:frontier">8.1</a>, this is also an upper bound on the number of cells in <span class="math inline">\(\mathcal D={\mathcal E}_{\mathbf{0}}\)</span>, the number of polynomials defining cells and their degrees.</p>
+</div>
+<div id="a-note-on-constructing-the-intermediate-decompositions" class="section level3 hasAnchor" number="8.3.6">
+<h3><span class="header-section-number">8.3.6</span> A Note on Constructing the Intermediate Decompositions<a href="8.3-main-result.html#a-note-on-constructing-the-intermediate-decompositions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the algorithm described in Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>, we construct, for each index <span class="math inline">\(M \in \{0,1\}^{n-1}\)</span>, a CAD compatible with <span class="math inline">\(\mathcal{F}_M = \{F_1,\ldots,F_k\}\)</span> and all cells of <span class="math inline">\(\mathcal{E}_M\)</span>.
+This can be achieved by constructing a CAD, using Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a>, such that each cell has constant sign on the polynomials in formulas <span class="math inline">\(\mathcal{F}_M\)</span> and all cells of <span class="math inline">\(\mathcal{E}_M\)</span>. Such a CAD is clearly compatible with sets defined by formulas in <span class="math inline">\(\mathcal{F}_M\)</span> and all cells of <span class="math inline">\(\mathcal{E}_M\)</span>. However, it may include some cells, outside <span class="math inline">\({\operatorname{cl} \left( S \right)}\)</span>, which we are not interested in.</p>
+<p>Fewer cells may be produced by computing a CAD compatible with <span class="math inline">\(\{F_1,\ldots,F_k, C_1,\ldots,C_r\}\)</span> where <span class="math inline">\(C_i,1\le i \le r\)</span> is a cell of <span class="math inline">\(\mathcal{E}\)</span> such that <span class="math inline">\(\bigcup_{1\le i \le r} C_i = \mathbb{R}^n\)</span>. This CAD is obviously compatible with all cells of <span class="math inline">\(\mathcal{E}_M\)</span> and is compatible with the required sets.</p>
+<p>Both options have the same asymptotic complexity. Therefore, the choice of CAD subroutine does not change the complexity bound obtained in the proof of Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>. We apply Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> to compute a CAD compatible with the input set <span class="math inline">\(S\subset \mathbb{R}^n\)</span> for the initial decomposition <span class="math inline">\(\mathcal{E}\)</span>
+The refinements are computed by applying a variant of the classical CAD algorithm which constructs a decomposition compatible with a family of sets.</p>
+<p>In the algorithm description, we pass from semialgebraic sets (and CAD cells) to quantifier-free Boolean formulas.
+This is clearly possible by Thom’s Lemma. However, the signs of polynomials on which each CAD cell has constant sign may not be sufficient to properly define every cell in the CAD. Signs of polynomials defining the CAD will be sufficient to define every cell if Collins’ augmented projection is used {<span class="citation">Collins (<a href="#ref-collins1975" role="doc-biblioref">1975</a>)</span>]. The drawback, of course, is that more polynomials will be produced in the projection phase, which leads to more work during the lifting phase.
+<span class="citation">Brown (<a href="#ref-brown99" role="doc-biblioref">1999</a>)</span> also presents an algorithm that ensures every cell can be represented by a formula containing projection polynomials and, possibly, a small number of derivatives. This may be preferable since fewer extra polynomials are needed.</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-brownQepcad">
+<p>Brown, Christopher W. 2003. “QEPCAD B: A Program for Computing with Semi-Algebraic Sets Using Cads.” <em>SIGSAM Bull.</em> 37 (4): 97–108. <a href="https://doi.org/10.1145/968708.968710">https://doi.org/10.1145/968708.968710</a>.</p>
+</div>
+<div id="ref-brown99">
+<p>Brown, Christopher W. 1999. “Guaranteed Solution Formula Construction.” In <em>Proceedings of the 1999 International Symposium on Symbolic and Algebraic Computation</em>, 137–44. ISSAC ’99. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/309831.309890">https://doi.org/10.1145/309831.309890</a>.</p>
+</div>
+<div id="ref-chen2014">
+<p>Chen, Changbo, and Marc Moreno Maza. 2014. “An Incremental Algorithm for Computing Cylindrical Algebraic Decompositions.” In <em>Computer Mathematics</em>, 199–221. Springer.</p>
+</div>
+<div id="ref-collins1975">
+<p>Collins, George E. 1975. “Quantifier Elimination for Real Closed Fields by Cylindrical Algebraic Decompostion.” In <em>Automata Theory and Formal Languages</em>, 134–83. Springer.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="8.2-theory.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="8.4-generalisations-and-further-work.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/06-novel-frontier.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["thesis.pdf", "thesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

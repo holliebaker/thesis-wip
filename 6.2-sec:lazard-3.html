@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.2 Lazard’s method for dimension not greater than 3 | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <meta name="description" content="Hollie Baker’s thesis" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.2 Lazard’s method for dimension not greater than 3 | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Hollie Baker’s thesis" />
+  <meta name="github-repo" content="holliebaker/thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.2 Lazard’s method for dimension not greater than 3 | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  
+  <meta name="twitter:description" content="Hollie Baker’s thesis" />
+  
+
+<meta name="author" content="Hollie Baker" />
+
+
+<meta name="date" content="2024-08-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="6.1-sec:frontier-bgv.html"/>
+<link rel="next" href="6.3-sec:lazard-n.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Thesis: CAD with monotone cells</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-structure-of-this-thesis.html"><a href="1.1-structure-of-this-thesis.html"><i class="fa fa-check"></i><b>1.1</b> Structure of this thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-sec:background.html"><a href="2-sec:background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html"><i class="fa fa-check"></i><b>2.1</b> Semialgebraic sets and monotone cells</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#sets-definable-over-o-minimal-structures"><i class="fa fa-check"></i><b>2.1.1</b> Sets definable over O-minimal structures</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#monotone-cells"><i class="fa fa-check"></i><b>2.1.2</b> Monotone cells</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html"><i class="fa fa-check"></i><b>2.2</b> Cylindrical algebraic decomposition</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cad-construction"><i class="fa fa-check"></i><b>2.2.1</b> Constructing a CAD</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#bounds-and-variations"><i class="fa fa-check"></i><b>2.2.2</b> Bounds and variations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#the-projection-operator"><i class="fa fa-check"></i><b>2.2.3</b> The projection operator</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#projection-polynomials-vs-semialgebraic-functions"><i class="fa fa-check"></i><b>2.2.4</b> Projection polynomials vs semialgebraic functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cell-formula"><i class="fa fa-check"></i><b>2.2.5</b> CAD cells and their defining formulas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html"><i class="fa fa-check"></i><b>3</b> Smooth Stratification</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html"><i class="fa fa-check"></i><b>3.1</b> Description of the algorithm</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html#sec:strat-algorithm-details"><i class="fa fa-check"></i><b>3.1.1</b> Subroutines and Algorithm Details</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:strat-worked-example.html"><a href="3.2-sec:strat-worked-example.html"><i class="fa fa-check"></i><b>3.2</b> Worked example</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html"><i class="fa fa-check"></i><b>3.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#determining-the-codimension-and-basic-formula-for-each-stratum"><i class="fa fa-check"></i><b>3.3.1</b> Determining the codimension and basic formula for each stratum</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#discarding-redundant-equations"><i class="fa fa-check"></i><b>3.3.2</b> Discarding redundant equations</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#sec:strat-semialgebraic"><i class="fa fa-check"></i><b>3.3.3</b> From Basic Algebraic sets to Arbitrary Semialgebraic sets</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#implementation-in-c"><i class="fa fa-check"></i><b>3.3.4</b> Implementation in C</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:strat-complexity.html"><a href="3.4-sec:strat-complexity.html"><i class="fa fa-check"></i><b>3.4</b> Complexity Analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-test-cases.html"><a href="3.5-test-cases.html"><i class="fa fa-check"></i><b>3.5</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sec:quasi-affine.html"><a href="4-sec:quasi-affine.html"><i class="fa fa-check"></i><b>4</b> Quasi-affine cells</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><i class="fa fa-check"></i><b>4.1</b> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus"><i class="fa fa-check"></i><b>4.1.1</b> An alternative method for computing the smooth two-dimensional locus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><i class="fa fa-check"></i><b>4.2</b> Ensuring that every cell is the graph of a quasi-affine map</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm"><i class="fa fa-check"></i><b>4.2.1</b> Computing the quasi-affine CAD</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html"><i class="fa fa-check"></i><b>4.3</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html#sec:quasi-complexity"><i class="fa fa-check"></i><b>4.3.1</b> Complexity Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sec:monotone-cells.html"><a href="5-sec:monotone-cells.html"><i class="fa fa-check"></i><b>5</b> Monotone Cells</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html"><i class="fa fa-check"></i><b>5.1</b> Two-dimensional monotone sector cells</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement"><i class="fa fa-check"></i><b>5.1.1</b> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:sub-cad"><i class="fa fa-check"></i><b>5.1.2</b> Working with sub-decompositions above a 0-cell</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html"><i class="fa fa-check"></i><b>5.2</b> Two-dimensional monotone sections</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-1-2-le-j-le-alpha---1"><i class="fa fa-check"></i><b>5.2.1</b> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-2-alpha-1-le-j-le-n"><i class="fa fa-check"></i><b>5.2.2</b> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#critical-points-of-the-top-and-bottom-of-c"><i class="fa fa-check"></i><b>5.2.3</b> Critical points of the top and bottom of <span class="math inline">\(C\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html"><i class="fa fa-check"></i><b>5.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html#sec:monotone-algorithm"><i class="fa fa-check"></i><b>5.3.1</b> Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html"><i class="fa fa-check"></i><b>5.4</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity"><i class="fa fa-check"></i><b>5.4.1</b> Complexity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-sec:compute-refinement.html"><a href="5.5-sec:compute-refinement.html"><i class="fa fa-check"></i><b>5.5</b> Computing the refinements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-sec:frontier.html"><a href="6-sec:frontier.html"><i class="fa fa-check"></i><b>6</b> Frontier Condition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-sec:frontier-bgv.html"><a href="6.1-sec:frontier-bgv.html"><i class="fa fa-check"></i><b>6.1</b> Construction of a CAD with frontier condition, due to <span class="citation">Basu, Gabrielov, and Vorobjov (<span>2015</span>)</span>, Theorem 3.20</a></li>
+<li class="chapter" data-level="6.2" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html"><i class="fa fa-check"></i><b>6.2</b> Lazard’s method for dimension not greater than 3</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html#lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3"><i class="fa fa-check"></i><b>6.2.1</b> Lazard’s Algorithm for lifting with bad points in <span class="math inline">\(\mathbb{R}^3\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html"><i class="fa fa-check"></i><b>6.3</b> Generalisation of Lazard</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#sec:ext-lazard-algorithm"><i class="fa fa-check"></i><b>6.3.1</b> Algorithm for lifting above bad points, for CAD compatible with sets of dimension <span class="math inline">\(\le 2\)</span></a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#correctness-and-complexity-2"><i class="fa fa-check"></i><b>6.3.2</b> Correctness and Complexity</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#complexity-analysis"><i class="fa fa-check"></i><b>6.3.3</b> Complexity analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-sec:implementation-and-testing.html"><a href="7-sec:implementation-and-testing.html"><i class="fa fa-check"></i><b>7</b> Implementation And Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html"><i class="fa fa-check"></i><b>7.1</b> Implementation on top of QEPCAD</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#description-of-qepcad-b"><i class="fa fa-check"></i><b>7.1.1</b> Description of QEPCAD B</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#qepcad-cells-and-sample-points"><i class="fa fa-check"></i><b>7.1.2</b> QEPCAD Cells and Sample Points</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#modifications-to-qepcad"><i class="fa fa-check"></i><b>7.1.3</b> Modifications to QEPCAD</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#quasi-affine"><i class="fa fa-check"></i><b>7.1.4</b> Quasi-affine</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#monotone"><i class="fa fa-check"></i><b>7.1.5</b> Monotone</a></li>
+<li class="chapter" data-level="7.1.6" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#frontier-condition"><i class="fa fa-check"></i><b>7.1.6</b> Frontier Condition</a></li>
+<li class="chapter" data-level="7.1.7" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#sec:implementation-refinement"><i class="fa fa-check"></i><b>7.1.7</b> Refinement</a></li>
+<li class="chapter" data-level="7.1.8" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#obtaining-defining-formulas-for-every-cell"><i class="fa fa-check"></i><b>7.1.8</b> Obtaining defining formulas for every cell</a></li>
+<li class="chapter" data-level="7.1.9" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#the-overall-algorithm"><i class="fa fa-check"></i><b>7.1.9</b> The overall algorithm</a></li>
+<li class="chapter" data-level="7.1.10" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#additional-modifications-and-utility-functions"><i class="fa fa-check"></i><b>7.1.10</b> Additional modifications and Utility Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-test-cases-1.html"><a href="7.2-test-cases-1.html"><i class="fa fa-check"></i><b>7.2</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-sec:novel-frontier.html"><a href="8-sec:novel-frontier.html"><i class="fa fa-check"></i><b>8</b> A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^n\)</span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-statement-of-the-problem.html"><a href="8.1-statement-of-the-problem.html"><i class="fa fa-check"></i><b>8.1</b> Statement of the Problem</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-theory.html"><a href="8.2-theory.html"><i class="fa fa-check"></i><b>8.2</b> Theory</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-theory.html"><a href="8.2-theory.html#computing-the-frontier-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>8.2.1</b> Computing the frontier of a semialgebraic set</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-theory.html"><a href="8.2-theory.html#intermediate-results"><i class="fa fa-check"></i><b>8.2.2</b> Intermediate Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html"><i class="fa fa-check"></i><b>8.3</b> Main Result</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-main-result.html"><a href="8.3-main-result.html#algorithm-psuedo-code"><i class="fa fa-check"></i><b>8.3.1</b> Algorithm Psuedo-Code</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8.3-main-result.html"><a href="8.3-main-result.html#sec:worked-example"><i class="fa fa-check"></i><b>8.3.2</b> Worked Example</a></li>
+<li class="chapter" data-level="8.3.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html#mathematical-description"><i class="fa fa-check"></i><b>8.3.3</b> Mathematical Description</a></li>
+<li class="chapter" data-level="8.3.4" data-path="8.3-main-result.html"><a href="8.3-main-result.html#proof-of-correctness"><i class="fa fa-check"></i><b>8.3.4</b> Proof of correctness</a></li>
+<li class="chapter" data-level="8.3.5" data-path="8.3-main-result.html"><a href="8.3-main-result.html#complexity"><i class="fa fa-check"></i><b>8.3.5</b> Complexity</a></li>
+<li class="chapter" data-level="8.3.6" data-path="8.3-main-result.html"><a href="8.3-main-result.html#a-note-on-constructing-the-intermediate-decompositions"><i class="fa fa-check"></i><b>8.3.6</b> A Note on Constructing the Intermediate Decompositions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html"><i class="fa fa-check"></i><b>8.4</b> Generalisations and further work</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:pfaffian"><i class="fa fa-check"></i><b>8.4.1</b> Pfaffian Functions</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:novel-frontier-fw"><i class="fa fa-check"></i><b>8.4.2</b> Further Wrok</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-sec:conclusions.html"><a href="9-sec:conclusions.html"><i class="fa fa-check"></i><b>9</b> Conclusions and Further Work</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html"><i class="fa fa-check"></i><b>9.1</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#smooth-stratification-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>9.1.1</b> Smooth stratification of a semialgebraic set</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#an-algorithm-to-construct-monotone-cad-compatible-with-a-family-of-semialgebraic-sets-of-dimension-at-most-2"><i class="fa fa-check"></i><b>9.1.2</b> An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most <span class="math inline">\(2\)</span></a></li>
+<li class="chapter" data-level="9.1.3" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#a-novel-algorithm-for-computing-a-cad-with-frontier-condition-compatible-with-a-semialgebraic-set-of-arbitrary-dimension"><i class="fa fa-check"></i><b>9.1.3</b> A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-further-work.html"><a href="9.2-further-work.html"><i class="fa fa-check"></i><b>9.2</b> Further Work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-test-cases.html"><a href="appendix-a-test-cases.html"><i class="fa fa-check"></i>Appendix A: Test Cases</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cylindrical Algebraic Decompositions With Monotone Cells</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:lazard-3" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Lazard’s method for dimension not greater than 3<a href="6.2-sec:lazard-3.html#sec:lazard-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The method described in Section <a href="6.1-sec:frontier-bgv.html#sec:frontier-bgv">6.1</a> is relatively straightforward as it relies on techniques we have used before (obtaining quasi-affine subsets and performing refinements). However, we may want to find an alternative method, so as to avoid the QE required to compute the forntiers of <span class="math inline">\(2\)</span>-dimensional cylindrical cells.
+In the following section, we will explore an alternative method to obtain the frontier condition, based on an algebraic construction described by <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>.</p>
+<p><span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span> presents an algorithm for constructing an <span class="math inline">\(\mathbf{F}\)</span>-invariant cylindrical algebraic decomposition of <span class="math inline">\(\mathbb{R}^n, n\le 3\)</span> such that every cell is a topologically regular cell and the frontier condition is satisfied.
+Lazard refers to a decomposition having these properties as a “strong” decomposition.</p>
+<div class="definition">
+<p><span id="def:laz-properties" class="definition"><strong>Definition 6.1  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Definition 2.7)</span></p>
+<ol style="list-style-type: decimal">
+<li>A cylindrical cell <span class="math inline">\(C\)</span> is boundary smooth if the intersection with <span class="math inline">\(C\)</span> of every small open ball centred on the boundary of <span class="math inline">\(C\)</span> is connected</li>
+<li>A <span class="math inline">\(k\)</span>-dimensional cylindrical cell is well-bordered if <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> is the closure of some <span class="math inline">\(k-1\)</span>-dimensional cylindrical cells.</li>
+<li>A cylindrical cell <span class="math inline">\(C\)</span> is boundary coherent if <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> is a union of cells.</li>
+</ol>
+</div>
+<div class="remark">
+<p><span id="unlabeled-div-41" class="remark"><em>Remark</em>. </span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Definition 2.7)</span></p>
+<p>These properties can be extended from cells to the whole CAD. I.e., a CAD <span class="math inline">\(\mathcal{D}\)</span> is called well-bordered (resp. boundary coherent, boundary smooth) if every cell in <span class="math inline">\(\mathcal{D}\)</span> is well-bordered (resp. boundary coherent, boundary smooth).</p>
+</div>
+<div class="remark">
+<p><span id="unlabeled-div-42" class="remark"><em>Remark</em>. </span>If a cylindrical cell satisfies Property 2 of Definition <a href="6.2-sec:lazard-3.html#def:laz-properties">6.1</a> (boundary smooth) then it is a topologically regular cell.</p>
+<p>Property 3 of Definition <a href="6.2-sec:lazard-3.html#def:laz-properties">6.1</a> (boundary coherent) is the frontier condition (see Definition <a href="2.2-cylindrical-algebraic-decomposition.html#def:frontier-condition">2.26</a>).
+<span class="citation">Davenport, Locatelli, and Sankaran (<a href="#ref-jhd20" role="doc-biblioref">2020</a>)</span> call this property closure finiteness.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-43" class="definition"><strong>Definition 6.2  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Definition 2.7)</span></p>
+<p>A CAD is called “strong” if every cell is boundary smooth, well-bordered and boundary coherent.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-44" class="definition"><strong>Definition 6.3  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Definition 4.1)</span></p>
+<p>Let <span class="math inline">\(\mathcal{D}\)</span> be an <span class="math inline">\(\mathbf{F}\)</span>-invariant CAD of <span class="math inline">\(\mathbb{R}^n\)</span> and <span class="math inline">\(\mathcal{D&#39;}\)</span> be the decomposition induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^{n-1}\)</span>. A cell <span class="math inline">\(C&#39;\)</span> of <span class="math inline">\(\mathcal{D&#39;}\)</span> is called “bad” if there is a polynomial <span class="math inline">\(f \in \mathbf{F} \subset \mathbb{Q}[x_1,\ldots,x_n]\)</span> such that <span class="math inline">\(f\)</span> is primitive and has positive degree in <span class="math inline">\(x_n\)</span> and <span class="math inline">\(f(\mathbf{x})\)</span>, for all <span class="math inline">\(\mathbf{x} \in C&#39;\)</span> vanishes over an open interval. Every point <span class="math inline">\(\mathbf{x}\)</span> in the bad cell <span class="math inline">\(C&#39;\)</span> is a blow-up point of the polynomial <span class="math inline">\(f\)</span> (see Definition @(def:blow-up-point)).</p>
+</div>
+<p>According to <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Corollary 4.7, in dimension <span class="math inline">\(\le 2\)</span>, there is nothing to do as Collins’ algorithm already produces these “strong” decompositions.
+For a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^3\)</span>, the process proceeds in three steps:</p>
+<ol style="list-style-type: decimal">
+<li>Obtain well-bordered cells</li>
+<li>Obtain boundary smooth cells</li>
+<li>“Lift above bad points” to satisfy the frontier condition.</li>
+</ol>
+<p>First, we must ensure that every cell is well-bordered. The following result shows that this is already the case for sign-invariant decompositions of <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+<div class="corollary">
+<p><span id="cor:lazard-5-4" class="corollary"><strong>Corollary 6.1  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Corollary 5.4)</span></p>
+<p>Every <span class="math inline">\(\mathbf{F}\)</span>-invariant CAD of <span class="math inline">\(\mathbb{R}^n, n \le 3\)</span> is well-bordered.</p>
+</div>
+<p>Corollary <a href="6.2-sec:lazard-3.html#cor:lazard-5-4">6.1</a> follows from <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Lemma 5.1 and Theorem 5.3.
+The former asserts that every <span class="math inline">\(0\)</span>- and <span class="math inline">\(1\)</span>-dimensional cell in a CAD of arbitrary dimension is well-bordered.
+The latter asserts that any cell in an <span class="math inline">\(\mathbf{F}\)</span>-invariant CAD <span class="math inline">\(\mathcal{D}\)</span> of <span class="math inline">\(\mathbb{R}^3\)</span>, such that the decomposition <span class="math inline">\(\mathcal{D}&#39;\)</span> induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^2\)</span> is strong, is well-bordered.
+Note that <span class="math inline">\(\mathcal{D}&#39;\)</span> is a <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{2}}}(\mathbf{F})\)</span>-invariant CAD of <span class="math inline">\(\mathbb{R}^2\)</span> and is always strong by <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Corollary 4.7.
+<span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Proposition 5.2 depends on the following result.</p>
+<div class="lemma">
+<p><span id="lem:lazard-5-2" class="lemma"><strong>Lemma 6.2  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Proposition 5,2)</span></p>
+<p>Let <span class="math inline">\(\cal D\)</span> be a CAD of <span class="math inline">\(\mathbb{R}^n\)</span> and <span class="math inline">\(\cal D&#39;\)</span> the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^{n-1}\)</span>. Let <span class="math inline">\(C\)</span> be a cell of <span class="math inline">\(\cal D\)</span> and <span class="math inline">\(C&#39; := {\operatorname{proj}_{\mathbb{R}^{n-1}}} (C)\)</span> such that <span class="math inline">\(C&#39;\)</span> is well-bordered.
+If <span class="math inline">\(p \in {\operatorname{fr} \left( C&#39; \right)}\)</span>, then <span class="math inline">\(I := (p \times \mathbb{R}) \cap {\operatorname{fr} \left( C \right)}\)</span> is connected.
+<span class="math inline">\(I\)</span> is therefore a point or a closed segment, either bounded or unbounded.
+Furthermore, if <span class="math inline">\(C\)</span> is a sector cell, then the set of points of <span class="math inline">\(I\)</span> which do not belong to the boundaries of the section cells delineating <span class="math inline">\(C\)</span> is either empty or an open interval.</p>
+</div>
+<p><span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Theorem 5.12 describes how to pass from a well-bordered, <span class="math inline">\(\mathbf{F}\)</span>-invariant CAD <span class="math inline">\(\mathcal{D}\)</span> of <span class="math inline">\(\mathbb{R}^3\)</span> to one in which every cell is boundary smooth. This is done by refining <span class="math inline">\(\mathcal{D}\)</span> such that it has constant sign on some new polynomials. This refinement contains only well-bordered, topologically regular cells.
+The construction of a CAD with monotone cells described in Section <a href="5-sec:monotone-cells.html#sec:monotone-cells">5</a> also satisfies these properties, if we limit ourselves to <span class="math inline">\(n\le3\)</span>. Indeed, the algorithm from Section <a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm">4.2.1</a> returns a CAD with constant sign on <span class="math inline">\(\mathbf{F&#39;}\)</span>, the set of input polynomials and the additional polynomials added to ensure that every cell is smooth and the graph of a quasi-affine map. Hence, every cell in this CAD is well-bordered. The algorithm for obtaining monotone cells, described in Section <a href="5.3-implementation-details-1.html#sec:monotone-algorithm">5.3.1</a> requires us to compute refinements of the kind <span class="math inline">\(\{ x_1 &lt; c \}, \{ x_1 = c \}, \{ x_1 &gt; c \}\)</span> of a <span class="math inline">\((1)\)</span>-cell <span class="math inline">\(C&#39;\)</span> in the sub-decomposition above a 0-dimensional cell.
+This refinement is also applied to every cell <span class="math inline">\(C\)</span> in this sub-decomposition such that <span class="math inline">\(C&#39; := {\operatorname{proj}_{\mathbb{R}^{1}}}(C)\)</span>. Thus, the refined CAD is sign invariant on <span class="math inline">\(\mathbf{F&#39;}\)</span> and the cells <span class="math inline">\(C\)</span> projecting on <span class="math inline">\(C&#39;\)</span> are sign-invariant with respect to polynomials <span class="math inline">\(x_1 - c\)</span>, defining each refinement point <span class="math inline">\(c\)</span>.
+Cells which were not refined are either already monotone or lie outside of the input sets <span class="math inline">\(V_1,\ldots,V_k\)</span>.
+As a result, we are able to apply Lazard’s method for lifting with bad points to the CAD produced by the algorithm from Section <a href="5.3-implementation-details-1.html#sec:monotone-algorithm">5.3.1</a>.</p>
+<p><span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Section 5.3 describes how to pass from an <span class="math inline">\(\mathbf{F}\)</span>-invariant CAD of <span class="math inline">\(\mathbb{R}^3\)</span> such that every cell is well-bordered and boundary smooth to one satisfying the frontier condition.
+By <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Theorem 4.4, a cell <span class="math inline">\(C\)</span> already satisfies the frontier condition if no points in its frontier project on a bad cell (see also <span class="citation">Davenport, Locatelli, and Sankaran (<a href="#ref-jhd20" role="doc-biblioref">2020</a>)</span>).
+Thus, only cells which fail to satisfy this property need to be considered. By <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Lemma 4.3, in <span class="math inline">\(\mathbb{R}^3\)</span>, if a bad cell exists, then it has dimension <span class="math inline">\(0\)</span>.</p>
+<div class="lemma">
+<p><span id="lem:only-bad-zero-cells" class="lemma"><strong>Lemma 6.3  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Lemma 4.3)</span></p>
+<p>A sign-invariant CAD of <span class="math inline">\(\mathbb{R}^2\)</span> contains no bad cells.</p>
+<p>For an <span class="math inline">\(\mathbf{F} \subset \mathbb{Q}[x_1,x_2,x_3]\)</span>-invariant CAD <span class="math inline">\(\mathcal{D}\)</span> of <span class="math inline">\(\mathbb{R}^3\)</span>, if the decomposition induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^2\)</span> contains a bad cell, then it is a <span class="math inline">\((0,0)\)</span>-cell.</p>
+</div>
+<p>This follows from the fact that, in <span class="math inline">\(\mathbb{R}^n\)</span>, a blow-up point of a polynomial in <span class="math inline">\(\mathbb{Q}[x_1,\ldots,x_n]\)</span> in <span class="math inline">\(\mathbb{R}^{n-1}\)</span> has codimension at least two (see Remark aftor Definition <a href="2.2-cylindrical-algebraic-decomposition.html#def:blow-up-point">2.21</a>).</p>
+<div class="lemma">
+<p><span id="lem:no-blow-up" class="lemma"><strong>Lemma 6.4  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Theorem 4.4)</span></p>
+<p>Let <span class="math inline">\(\mathcal{D}\)</span> be an <span class="math inline">\(\mathbf{F}\)</span>-invariant CAD of <span class="math inline">\(\mathbb{R}^n\)</span> and <span class="math inline">\(C\)</span> be a cell of <span class="math inline">\(\mathcal{D}\)</span> with <span class="math inline">\(C&#39; := \operatorname{proj}_{\mathbb{R}^{n-1}}(C)\)</span>. If the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^{n-1}\)</span> is strong and none of <span class="math inline">\(C&#39;\)</span> and any cell <span class="math inline">\(D&#39;\)</span> such that <span class="math inline">\(D&#39; \cap {\operatorname{fr} \left( C&#39; \right)} \ne \emptyset\)</span> is bad, <span class="math inline">\(C\)</span> is well-bordered, boundary smooth and <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> is a union of some cells of <span class="math inline">\(\mathcal{D}\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-45" class="proof"><em>Proof</em>. </span>This result follows from the following fact about roots of multivariate polynomials: given a polynomial <span class="math inline">\(f \in \mathbb{Q}[x_1,\ldots,x_{n-1}][x_n]\)</span>, i.e., considered as a univariate polynomial with polynomial coefficients, its complex roots depend continuously on the parameters in the region of the parameter space where the polynomial does not vanish identically. In fact, this is only true in the projective closure of <span class="math inline">\(\mathbb{C}\)</span> as some roots may pass through the point at infinity if the leading coefficient is zero.</p>
+<p>First suppose that <span class="math inline">\(C\)</span> is a section cell. I.e., it is a root of some polynomial <span class="math inline">\(f\)</span> and <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> is defined as the limit of this root over the boundary of <span class="math inline">\(C&#39;\)</span>. Thus <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{n-1}}}\)</span> is a continuous, injective map from <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> to <span class="math inline">\({\operatorname{fr} \left( C&#39; \right)}\)</span>. This follows from the assumption that the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^{n-1}\)</span> is strong and that if the root defining the section <span class="math inline">\(C\)</span> is infinite over some cell <span class="math inline">\(C&#39;&#39; \subset {\operatorname{fr} \left( C&#39; \right)}\)</span>, then it is also infinite over <span class="math inline">\({\operatorname{fr} \left( C&#39;&#39; \right)}\)</span>.</p>
+<p>Now suppose that <span class="math inline">\(C\)</span> is a sector cell. If nonempty, the top <span class="math inline">\(C_T\)</span> and bottom <span class="math inline">\(C_B\)</span> of <span class="math inline">\(C\)</span> are section cells. We complete the proof by describing <span class="math inline">\(W := {\operatorname{fr} \left( C \right)} \setminus (C_T \cup C_B)\)</span>.
+We will only consider the case where <span class="math inline">\(C \cap \{ \mathbf{x} \times \mathbb{R}\}\)</span> is an open interval bounded from below by a point in <span class="math inline">\(C_B\)</span> and above by a point in <span class="math inline">\(C_T\)</span>.</p>
+<p>Let <span class="math inline">\(\dim(C) = d + 1\)</span>. <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> consists of</p>
+<ul>
+<li>the cells in <span class="math inline">\({\operatorname{fr} \left( C_B \right)}\)</span> and <span class="math inline">\({\operatorname{fr} \left( C_T \right)}\)</span>, which have dimension <span class="math inline">\(&lt; d\)</span> and are contained in <span class="math inline">\({\operatorname{fr} \left( C&#39; \right)} \times \mathbb{R}\)</span>,</li>
+<li>the intervals (which may be empty) bounded by the points in <span class="math inline">\({\operatorname{fr} \left( C_B \right)}\)</span> and <span class="math inline">\({\operatorname{fr} \left( C_T \right)}\)</span>, contained in <span class="math inline">\(C&#39; \times \mathbb{R}\)</span>. Since <span class="math inline">\(C_B\)</span> and <span class="math inline">\(C_T\)</span> are section cells, they are roots of polynomials <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> and, if finite, the points in <span class="math inline">\({\operatorname{fr} \left( C_B \right)}\)</span> and <span class="math inline">\({\operatorname{fr} \left( C_T \right)}\)</span> are also roots of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> (respectively). Therefore, these intervals are contained in some cells of <span class="math inline">\(\cal D\)</span>. More precisely, the cells with dimension <span class="math inline">\(d\)</span> contained in <span class="math inline">\({\operatorname{fr} \left( C&#39; \right)} \times \mathbb{R}\)</span> are exactly those lying over a cell <span class="math inline">\(C&#39;&#39; \subset {\operatorname{fr} \left( C&#39; \right)}\)</span> with dimension <span class="math inline">\(d-1\)</span>.</li>
+</ul>
+<p>A cell of dimension <span class="math inline">\(&lt; d\)</span> either belongs to <span class="math inline">\({\operatorname{fr} \left( C_B \right)}\)</span> or <span class="math inline">\({\operatorname{fr} \left( C_T \right)}\)</span>, or is a sector over a cell <span class="math inline">\(D \subset {\operatorname{fr} \left( C&#39; \right)}\)</span> having dimension less than <span class="math inline">\(d-1\)</span>.
+As <span class="math inline">\(C&#39;\)</span> is well-bordered, <span class="math inline">\(D\)</span> belongs to the boundary of some cell <span class="math inline">\(E \subset {\operatorname{fr} \left( C&#39; \right)}\)</span> having dimension <span class="math inline">\(d-1\)</span>.
+Thus, the sector above <span class="math inline">\(D\)</span> is contained in the boundary of the sector above <span class="math inline">\(E\)</span>, which has dimension <span class="math inline">\(d\)</span></p>
+<p>This proves that, if the decomposition induced by <span class="math inline">\(D\)</span> on <span class="math inline">\(\mathbb{R}^{n-1}\)</span> is strong, then <span class="math inline">\(C\)</span> is well-bordered and also satisfies the frontier condition. In addition, this proves that <span class="math inline">\(C\)</span> is a topologically regular cell as <span class="math inline">\(C\)</span> and <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> are either homeomorphic to <span class="math inline">\(C&#39;\)</span> and <span class="math inline">\({\operatorname{fr} \left( C&#39; \right)}\)</span>, if <span class="math inline">\(C\)</span> is a sector cell, or to an open cylinder, either bounded or unbounded, and its boundary. It is clear that an open cylinder contained in <span class="math inline">\(C&#39; \times \mathbb{R}\)</span>, where <span class="math inline">\(C&#39;\)</span> is topologically regular, is also topologically regular.</p>
+<p>The other cases are deduced by omitting the cells defined from <span class="math inline">\(C_B\)</span> and <span class="math inline">\(C_T\)</span> as appropriate.</p>
+</div>
+<div class="lemma">
+<p><span id="lem:lazard-5-13" class="lemma"><strong>Lemma 6.5  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a> Proposition 5.13)</span>
+Let <span class="math inline">\(\mathcal{D}\)</span> be an <span class="math inline">\(\mathbf{F}\)</span>-invariant CAD of <span class="math inline">\(\mathbb{R}^3\)</span> and <span class="math inline">\(C\)</span> be a well-bordered, boundary smooth cell of <span class="math inline">\(\mathcal{D}\)</span>.
+Suppose that <span class="math inline">\(D\)</span> is a cell of <span class="math inline">\(\mathcal{D}\)</span> such that <span class="math inline">\(B := D \cap {\operatorname{fr} \left(  C  \right)} \neq \emptyset\)</span> and <span class="math inline">\(B \neq D\)</span>. Then either</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(C\)</span> is a <span class="math inline">\(1\)</span>-dimensional section cell whose endpoint, <span class="math inline">\(B\)</span>, projects on a bad cell, or</li>
+<li>there exists a cell <span class="math inline">\(E\)</span> of <span class="math inline">\(\mathcal{D}\)</span> such that <span class="math inline">\(\dim(E) &lt; \dim(C)\)</span> and <span class="math inline">\(\emptyset \neq D \cap {\operatorname{fr} \left(  E  \right)} \neq D\)</span>.</li>
+</ol>
+</div>
+<!--
+To illustrate this, consider the example of the whitney umbrella $W := \{ x^2 - y^2 z = 0 \}$. Let $C := \{ x > 0, y > 0, x^2 - y^2 z = 0 \} \subset W$ be one of the 2-dimensional topologically regular cells in a CAD of $\R^3$ compatible with $W$.
+Then case $2$ applies, with $D = \{ x = 0, y = 0 \}$ and $E = \{ x > 0, y = 0, z = 0 \}$.
+Taking $C = E$, (and the same $D$) we get case $1$.
+-->
+<div class="proof">
+<p><span id="unlabeled-div-46" class="proof"><em>Proof</em>. </span>By the proof of <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Theorem 4.4, <span class="math inline">\(D\)</span> will always be a <span class="math inline">\((0,0,1)\)</span>-cell in the cylinder above a bad cell <span class="math inline">\(D&#39;\)</span>.</p>
+<p>Consider each case for <span class="math inline">\(C\)</span> by cell index.</p>
+<ul>
+<li><p><span class="math inline">\((1,1,1)\)</span>-cell: since <span class="math inline">\(C\)</span> is well-bordered, its boundary is the closure of some 2-dimensional cells of <span class="math inline">\(\cal D\)</span> and <span class="math inline">\(B\)</span> is contained in the union of the boundaries of the 2-cells. Thus, case 2 applies and we can choose an appropriate 2-dimensional cell in <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> for <span class="math inline">\(E\)</span>.</p></li>
+<li><p><span class="math inline">\((1,0,1)\)</span>- or <span class="math inline">\((0,1,1)\)</span>-cell, we write <span class="math inline">\((i,j,1)\)</span>-cell where <span class="math inline">\(i+j=1\)</span>: observe that <span class="math inline">\(C\)</span> (if bounded) is delineated by some <span class="math inline">\((i,j,0)\)</span>-cells (one-dimensional curve intervals). Take <span class="math inline">\(B\)</span> to be the one-dimensional interval delineated by the endpoints of these cells. Since <span class="math inline">\(B \neq C\)</span>, at least one of these endpoints is not a <span class="math inline">\((0,0,0)\)</span>-cell of <span class="math inline">\(\cal D\)</span>. Case 2 applies, taking as <span class="math inline">\(E\)</span> the delineating <span class="math inline">\((i,j,0)\)</span>-cell.</p></li>
+<li><p><span class="math inline">\((1,0,0)\)</span>- or <span class="math inline">\((0,1,0)\)</span>-cells: consider the previous case, letting <span class="math inline">\(C = E\)</span>.</p></li>
+<li><p><span class="math inline">\((1,1,0)\)</span>-cell: these are necessarily the root of a polynomial <span class="math inline">\(f \in \mathbb{Q}[x_1,x_2,x_3]\)</span> which vanishes identically on <span class="math inline">\(D&#39;\)</span>, a <span class="math inline">\((0,0)\)</span> cell in the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^2\)</span>.
+Let <span class="math inline">\(V_r\)</span> be a small neighbourhood (with radius <span class="math inline">\(r &gt; 0\)</span>) centred around <span class="math inline">\(D&#39;\)</span> and consider <span class="math inline">\(V_r&#39;\)</span>, the cylinder above the boundary of <span class="math inline">\(V_r\)</span>. Since <span class="math inline">\(C\)</span> is a monotone cell, the maximum and minimum values of <span class="math inline">\(x_3\)</span> in this intersection are reached on the boundary of <span class="math inline">\(C\)</span>, for sufficiently small <span class="math inline">\(r\)</span>. The limits, as <span class="math inline">\(r\)</span> tends to <span class="math inline">\(0\)</span>, of this maximum and minimum clearly belong to the boundary of <span class="math inline">\(B\)</span>, if these limits do not tend to infinity. Note that both the maximum and minimum cannot be infinite, since this would imply that either <span class="math inline">\(B\)</span> is empty, or coincides with <span class="math inline">\(D\)</span>. Therefore, the non-infinite limits are the endpoints of some <span class="math inline">\(1\)</span>-dimensional cell belonging to the boundary of <span class="math inline">\(C\)</span>. Case 2 applies, taking <span class="math inline">\(E\)</span> to be this <span class="math inline">\(1\)</span>-dimensional cell.</p></li>
+<li><p><span class="math inline">\((0,0,1)\)</span>- or <span class="math inline">\((0,0,0)\)</span>-cells: don’t satisfy the hypothesis, there is nothing to do.</p></li>
+</ul>
+</div>
+<p>The following result shows how <span class="math inline">\((0,0,1)\)</span>-cells which project on a bad point can be refined to obtain the frontier condition.</p>
+<div class="proposition">
+<p><span id="prp:lazard-5-14" class="proposition"><strong>Proposition 6.1  </strong></span><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Proposition 5.14)</span>
+Let <span class="math inline">\(f \in \mathbb{Q}[x_1,x_2,x_3]\)</span> be an irreducible polynomial of the kind
+<span class="math display">\[f = g_dx_3^d + \ldots + g_1x_3 + g_0\]</span>
+with each <span class="math inline">\(g_i \in \mathbb{Q}[x_1,x_2]\)</span>, and
+<span class="math display">\[\mathbf{p} = (p_1,p_2)\]</span>
+be a common root of <span class="math inline">\(g_d,\ldots,g_1,g_0\)</span>.
+Let <span class="math inline">\(g\in \mathbb{Q}[x_1,x_2]\)</span> be an irreducible polynomial having <span class="math inline">\(\mathbf{p}\)</span> as a root.
+The limits of the common roots of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> as <span class="math inline">\((x_1, x_2) \to \mathbf{p}, (x_1, x_2) \ne \mathbf{p}\)</span> may be computed as solutions of a zero-dimensional
+polynomial system.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-47" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(f\)</span> is irreducible, it has at least two coefficients, <span class="math inline">\(g_i,g_j \in \mathbb{Q}[x_1,x_2]\)</span>, whose GCD is a constant.
+Therefore, any ideal generated by these coefficients has dimension zero. Any ideal containing these coefficients also contains another element, <span class="math inline">\(h\)</span>, which is not a multiple of <span class="math inline">\(g\)</span>.</p>
+<p>The saturation by <span class="math inline">\(h\)</span> of the ideal <span class="math inline">\(\langle f,g \rangle\)</span> is defined as the ideal
+<span class="math display">\[
+S := \langle f, g, 1 - zh \rangle \cap \mathbb{Q}[x_1,x_2,x_3].
+\]</span>
+The irreducible components of the zero set of <span class="math inline">\(S\)</span> are those of the zero set of <span class="math inline">\(\langle f,g \rangle\)</span> at which <span class="math inline">\(h\)</span> is not identically zero. It follows that the vertical line <span class="math inline">\(\{ x_1 = p_1, x_2 = p_2 \}\)</span> which is part of the zero set of <span class="math inline">\(f\)</span> ,<span class="math inline">\(g\)</span> and <span class="math inline">\(h\)</span>, is not contained in the zero set of <span class="math inline">\(S\)</span>. Meanwhile, the zero set of <span class="math inline">\(S\)</span> contains the limit points we are interested in finding.</p>
+<p>Therefore, the ideal generated by <span class="math inline">\(S\)</span> and the coefficients <span class="math inline">\(g_0,\ldots,g_d\)</span> of <span class="math inline">\(f\)</span> is zero-dimensional and the limits of <span class="math inline">\(\{ f=0,g=0 \}\)</span> as <span class="math inline">\((x_1,x_2) \to \mathbf{p}\)</span> can be computed as the zeros of <span class="math inline">\(S\)</span>.</p>
+</div>
+<p>The proof of <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Proposition 5.14 depends on taking Zariski closures. These are now defined and a relevant property presented, closely following <span class="citation">Cox, Little, and OShea (<a href="#ref-cox2013" role="doc-biblioref">2013</a>)</span>.</p>
+<div class="proposition">
+<p><span id="prp:cox-zariski" class="proposition"><strong>Proposition 6.2  </strong></span><span class="citation">(Cox, Little, and OShea <a href="#ref-cox2013" role="doc-biblioref">2013</a>, p203, part of Theorem 10)</span>
+Let <span class="math inline">\(I,J \subset K[x_1,\ldots,x_n]\)</span> be ideals, then
+<span class="math inline">\({\operatorname{cl} \left(  V(I) \setminus V(J)  \right)} \subset V(I : J^\infty)\)</span>,</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-48" class="proof"><em>Proof</em>. </span>We claim that <span class="math inline">\(I \subset I:J \subset I:J^\infty \subset I(V(i0) \setminus V(J))\)</span>. We have <span class="math inline">\(I \subset I:J \subset I:J^2 \subset \cdots \subset I:J^\infty\)</span> by the ascending chain condition.
+Suppose that <span class="math inline">\(f \in I:J\infty\)</span> and <span class="math inline">\(a \in V(I) \setminus V(J)\)</span>. Then <span class="math inline">\(fg^N \in I\)</span> for all <span class="math inline">\(g \in J\)</span> and a suitable (large enough) <span class="math inline">\(N\ge 0\)</span>. Since <span class="math inline">\(a \in V(I)\)</span>, <span class="math inline">\(f(a)g^N(a) = 0\)</span> (for all <span class="math inline">\(g\in J\)</span> and large enough <span class="math inline">\(N\)</span>). Since <span class="math inline">\(a \not \in V(J)\)</span>, there exists <span class="math inline">\(f \in J\)</span> and <span class="math inline">\(N \ge 0\)</span> such that <span class="math inline">\(g(a) \ne 0\)</span>. Hence <span class="math inline">\(f(a) = 0\)</span> for all <span class="math inline">\(a \in V(I) \setminus V(J)\)</span>. We have <span class="math inline">\(f \in I(V(I) \setminus V(J))\)</span>. Transitivity of <span class="math inline">\(\subset\)</span> proves the claim. Since <span class="math inline">\(V\)</span> reverses inclusion, we have <span class="math inline">\(= {\operatorname{cl} \left(  V(i) \setminus V(J)  \right)} = V(I(V(i) \setminus V(J))) \subset V(I:J^\infty)\)</span>.</p>
+</div>
+<p>The proof of <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, Proposition 5.14 begins with an irreducible polynomial <span class="math inline">\(f \in \mathbb{Q}[x_1,x_2,x_3]\)</span>, such that there exists a <span class="math inline">\((1,1,0)\)</span>-cell <span class="math inline">\(C \subset \{ \mathbf{x} \in \mathbb{R}^3 \mid f(\mathbf{x}) = 0 \}\)</span>, a point <span class="math inline">\(\mathbf{p} = (p_1,p_2) \in \mathbb{R}^2\)</span> such that <span class="math inline">\(\mathbf{p}\)</span> is a blow-up point of <span class="math inline">\(f\)</span> and <span class="math inline">\(g \in \mathbb{Q}[x_1,x_2]\)</span> such that <span class="math inline">\(g(\mathbf{p}) = 0\)</span>.
+Consider the variety <span class="math inline">\(V(\langle f \rangle + \langle g \rangle ) = V(f) \cap V(g)\)</span>, which contains some of the one-dimensional cells which form part of <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> and the blow-up subset <span class="math inline">\(B \subset \mathbf{p} \times \mathbb{R}\)</span>.
+The saturation by <span class="math inline">\(h\)</span> of <span class="math inline">\(I\)</span>,
+<span class="math display">\[
+S := \langle f, g, 1 - zh \rangle \cap \mathbb{Q}[x_1,x_2,x_3]
+\]</span>
+is constructed.
+By Proposition <a href="6.2-sec:lazard-3.html#prp:cox-zariski">6.2</a> (<span class="citation">Cox, Little, and OShea (<a href="#ref-cox2013" role="doc-biblioref">2013</a>)</span>, Theorem 10),
+<span class="math display">\[
+{\operatorname{cl} \left(  V(\langle f,g \rangle) \setminus V(\langle h \rangle)  \right)} \subset S.
+\]</span>
+Since our blow-up point <span class="math inline">\(\mathbf{p}\)</span> is <span class="math inline">\(0\)</span>-dimensional, computing this Zariski closure “fills in the hole” left by removing the blow-up subset from <span class="math inline">\(V(\langle f,g \rangle)\)</span>. Thus, we have the limit points of the cell <span class="math inline">\(C\)</span> as it approaches the blow-up subset <span class="math inline">\(B\)</span>.
+In order to find the refinement points above <span class="math inline">\(\mathbf{p}\)</span>, we compute a generating set (Groebner basis) <span class="math inline">\(\{ f_1,\ldots,f_k \}\)</span> for <span class="math inline">\(S\)</span> and solve the system of equations
+<span class="math display">\[
+f_1 = 0, \ldots, f_k = 0, g = 0, h = 0.
+\]</span></p>
+<p>Note that this procedure only works if the blow-up points have dimension zero. Otherwise, the endpoints of 1-dimensional cells in the frontier of <span class="math inline">\(C\)</span> will not be sufficient to satisfy the frontier condition.</p>
+<div id="lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Lazard’s Algorithm for lifting with bad points in <span class="math inline">\(\mathbb{R}^3\)</span><a href="6.2-sec:lazard-3.html#lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let <span class="math inline">\(\cal D\)</span> be an <span class="math inline">\(\mathbf{F}\)</span>-invariant CAD of <span class="math inline">\(\mathbb{R}^n, n \le 3\)</span>. If <span class="math inline">\(n \le 2\)</span>, <span class="math inline">\(\cal D\)</span> is already strong – well-bordered, boundary smooth and satisfies the frontier condition. In particular, by Lemma <a href="6.2-sec:lazard-3.html#lem:only-bad-zero-cells">6.3</a>, the frontier condition is already satisfied since there are no bad cells in the decomposition induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^2\)</span> <span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Lemma 4.3)</span>.
+Also by Lemma <a href="6.2-sec:lazard-3.html#lem:only-bad-zero-cells">6.3</a>, any bad cells in the decomposition induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^2\)</span> are <span class="math inline">\(0\)</span>-dimensional <span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Lemma 4.3)</span>.
+Therefore, the frontier condition is satisfied everywhere except in the neighbourhoods above bad cells in the induced decomposition of <span class="math inline">\(\mathbb{R}^2\)</span>. The following algorithm is a special method for lifting above a bad cell.</p>
+<hr />
+<p><span class="citation">(Lazard <a href="#ref-lazard10" role="doc-biblioref">2010</a>, Algorithm 5.15)</span></p>
+<p><strong>Input:</strong>
+<span class="math display">\[({\cal A}, {\cal D})\]</span></p>
+<ul>
+<li><p><span class="math inline">\({\cal A} = {\cal A}_1,{\cal A}_2,{\cal A}_3\)</span> is the family of projection polynomials, each <span class="math inline">\(\mathcal{A}_k \subset \mathbb{Q}[x_1,\ldots,x_k]\)</span>,</p></li>
+<li><p><span class="math inline">\(\cal D\)</span>: is an <span class="math inline">\(\mathcal{A}\)</span>-invariant CAD of <span class="math inline">\(\mathbb{R}^3\)</span> such that every cell of <span class="math inline">\(\mathcal{D}\)</span> is a topologically regular cell.</p></li>
+</ul>
+<p><strong>Output:</strong></p>
+<p><span class="math display">\[
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{2} \text{ is a } (0,0) \text{-cell in the decomposition induced by } {\cal D} \text{ on } \mathbb{R}^2 \}
+\]</span></p>
+<p>A set of refinement points, as described in Section <a href="5.3-implementation-details-1.html#sec:monotone-algorithm">5.3.1</a>.</p>
+<hr />
+<ul>
+<li><p>Let <span class="math inline">\({\cal R} = \emptyset\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\cal D&#39;\)</span> be the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^2\)</span>.</p></li>
+<li><p>For each <span class="math inline">\((0,0)\)</span>-cell <span class="math inline">\(\mathbf{b}\)</span> of <span class="math inline">\(\cal D&#39;\)</span>, determine whether it is a bad cell.</p>
+<p><span class="math inline">\(\mathbf{b}\)</span> is a bad cell if there exists a polynomial <span class="math inline">\(f \in {\cal A}_3\)</span> such that <span class="math inline">\(f\)</span> has constant sign on a <span class="math inline">\((0,0,1)\)</span>-cell <span class="math inline">\(C\)</span> of <span class="math inline">\(\cal D\)</span> such that <span class="math inline">\(\mathbf{b} = {\operatorname{proj}_{\mathbb{R}^{2}}}(C)\)</span>.</p>
+<p>(Note: this is an easy check – simply look at the signs of polynomials in <span class="math inline">\(\mathcal{A}_3\)</span> on <span class="math inline">\(C\)</span>. This is part of the information stored about <span class="math inline">\(C\)</span>.)</p></li>
+<li><p>If <span class="math inline">\(\mathbf{b}\)</span> is bad:</p>
+<ul>
+<li><p>Let <span class="math inline">\(g_1 \in {\cal A}_1, g_2 \in {\cal A}_2\)</span> such that <span class="math inline">\(g_1(\mathbf{b}) = 0\)</span> and <span class="math inline">\(g_2(\mathbf{b}) = 0\)</span> (find <span class="math inline">\(g_1\)</span> and <span class="math inline">\(g_2\)</span> using signs of projection polynomials on <span class="math inline">\(\mathbf{b}\)</span>).</p></li>
+<li><p>Let <span class="math inline">\({\cal A&#39;} := {\cal A}_1 \cup {\cal A}_2\)</span>.</p></li>
+<li><p>For each <span class="math inline">\(g \in {\cal A&#39;}\)</span>, do</p>
+<ul>
+<li><p>If <span class="math inline">\(g \in \mathbb{Q}[x_1]\)</span>, then <span class="math inline">\(h := g_2\)</span>. Otherwise, <span class="math inline">\(g \in \mathbb{Q}[x_1,x_2]\)</span> and <span class="math inline">\(h := g_1\)</span>.</p></li>
+<li><p>Define the saturation
+<span class="math display">\[
+I := \langle f, g, 1 - z h \rangle \cap \mathbb{Q}[x_1,x_2,x_3],
+\]</span>
+where <span class="math inline">\(z\)</span> is a new variable.</p></li>
+<li><p>Compute a generator system <span class="math inline">\(S\)</span>, i.e., a Groebner basis for the ideal <span class="math inline">\(I\)</span>.</p></li>
+<li><p>Compute
+<span class="math display">\[
+L := \{ {\mathrm{sub}}_{\mathbf{b}}(f&#39;) \in \mathbb{Q}[x_3] \mid f&#39; \in S \}
+\]</span>
+and find the real roots
+<span class="math display">\[
+(c_1,\ldots,c_t)
+\]</span>
+of <span class="math inline">\(L\)</span>.</p></li>
+<li><p>Let
+<span class="math display">\[
+{\cal R} := {\cal R} \cup \{ {\cal R}_{\mathbf{b}} = (c_1,\ldots,c_t) \}.
+\]</span></p></li>
+</ul></li>
+</ul></li>
+<li><p>return <span class="math inline">\(\cal R\)</span>.</p></li>
+</ul>
+<p>Compute the refinements, given by <span class="math inline">\(\mathcal{R}\)</span>, of sections above bad cells using the method described in Section <a href="5.5-sec:compute-refinement.html#sec:compute-refinement">5.5</a>.</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-cox2013">
+<p>Cox, David, John Little, and Donal OShea. 2013. <em>Ideals, Varieties, and Algorithms: An Introduction to Computational Algebraic Geometry and Commutative Algebra</em>. Springer Science &amp; Business Media.</p>
+</div>
+<div id="ref-jhd20">
+<p>Davenport, James H, AF Locatelli, and GK Sankaran. 2020. “Regular Cylindrical Algebraic Decomposition.” <em>Journal of the London Mathematical Society</em> 101 (1): 43–59.</p>
+</div>
+<div id="ref-lazard10">
+<p>Lazard, Daniel. 2010. “CAD and Topology of Semi-Algebraic Sets.” <em>Mathematics in Computer Science</em> 4 (1): 93–112.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="6.1-sec:frontier-bgv.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6.3-sec:lazard-n.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/04-frontier-condition.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["thesis.pdf", "thesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

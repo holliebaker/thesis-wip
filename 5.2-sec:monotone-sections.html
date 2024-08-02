@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.2 Two-dimensional monotone sections | Cylindrical Algebraic Decompositions With Monotone Cells</title>
+  <meta name="description" content="Hollie Baker’s thesis" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.2 Two-dimensional monotone sections | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Hollie Baker’s thesis" />
+  <meta name="github-repo" content="holliebaker/thesis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.2 Two-dimensional monotone sections | Cylindrical Algebraic Decompositions With Monotone Cells" />
+  
+  <meta name="twitter:description" content="Hollie Baker’s thesis" />
+  
+
+<meta name="author" content="Hollie Baker" />
+
+
+<meta name="date" content="2024-08-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="5.1-sec:monotone-sectors.html"/>
+<link rel="next" href="5.3-implementation-details-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Thesis: CAD with monotone cells</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-structure-of-this-thesis.html"><a href="1.1-structure-of-this-thesis.html"><i class="fa fa-check"></i><b>1.1</b> Structure of this thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-sec:background.html"><a href="2-sec:background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html"><i class="fa fa-check"></i><b>2.1</b> Semialgebraic sets and monotone cells</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#sets-definable-over-o-minimal-structures"><i class="fa fa-check"></i><b>2.1.1</b> Sets definable over O-minimal structures</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-semialgebraic-sets-and-monotone-cells.html"><a href="2.1-semialgebraic-sets-and-monotone-cells.html#monotone-cells"><i class="fa fa-check"></i><b>2.1.2</b> Monotone cells</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html"><i class="fa fa-check"></i><b>2.2</b> Cylindrical algebraic decomposition</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cad-construction"><i class="fa fa-check"></i><b>2.2.1</b> Constructing a CAD</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#bounds-and-variations"><i class="fa fa-check"></i><b>2.2.2</b> Bounds and variations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#the-projection-operator"><i class="fa fa-check"></i><b>2.2.3</b> The projection operator</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#projection-polynomials-vs-semialgebraic-functions"><i class="fa fa-check"></i><b>2.2.4</b> Projection polynomials vs semialgebraic functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2.2-cylindrical-algebraic-decomposition.html"><a href="2.2-cylindrical-algebraic-decomposition.html#sec:cell-formula"><i class="fa fa-check"></i><b>2.2.5</b> CAD cells and their defining formulas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-sec:smooth-strat.html"><a href="3-sec:smooth-strat.html"><i class="fa fa-check"></i><b>3</b> Smooth Stratification</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html"><i class="fa fa-check"></i><b>3.1</b> Description of the algorithm</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="3.1-sec:strat-alg-description.html"><a href="3.1-sec:strat-alg-description.html#sec:strat-algorithm-details"><i class="fa fa-check"></i><b>3.1.1</b> Subroutines and Algorithm Details</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:strat-worked-example.html"><a href="3.2-sec:strat-worked-example.html"><i class="fa fa-check"></i><b>3.2</b> Worked example</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html"><i class="fa fa-check"></i><b>3.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#determining-the-codimension-and-basic-formula-for-each-stratum"><i class="fa fa-check"></i><b>3.3.1</b> Determining the codimension and basic formula for each stratum</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#discarding-redundant-equations"><i class="fa fa-check"></i><b>3.3.2</b> Discarding redundant equations</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#sec:strat-semialgebraic"><i class="fa fa-check"></i><b>3.3.3</b> From Basic Algebraic sets to Arbitrary Semialgebraic sets</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3.3-implementation-details.html"><a href="3.3-implementation-details.html#implementation-in-c"><i class="fa fa-check"></i><b>3.3.4</b> Implementation in C</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:strat-complexity.html"><a href="3.4-sec:strat-complexity.html"><i class="fa fa-check"></i><b>3.4</b> Complexity Analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-test-cases.html"><a href="3.5-test-cases.html"><i class="fa fa-check"></i><b>3.5</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-sec:quasi-affine.html"><a href="4-sec:quasi-affine.html"><i class="fa fa-check"></i><b>4</b> Quasi-affine cells</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><i class="fa fa-check"></i><b>4.1</b> Computing the smooth two-dimensional locus of <span class="math inline">\(V\)</span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-computing-the-smooth-two-dimensional-locus-of-v.html"><a href="4.1-computing-the-smooth-two-dimensional-locus-of-v.html#an-alternative-method-for-computing-the-smooth-two-dimensional-locus"><i class="fa fa-check"></i><b>4.1.1</b> An alternative method for computing the smooth two-dimensional locus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><i class="fa fa-check"></i><b>4.2</b> Ensuring that every cell is the graph of a quasi-affine map</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html"><a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm"><i class="fa fa-check"></i><b>4.2.1</b> Computing the quasi-affine CAD</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html"><i class="fa fa-check"></i><b>4.3</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-correctness-and-complexity.html"><a href="4.3-correctness-and-complexity.html#sec:quasi-complexity"><i class="fa fa-check"></i><b>4.3.1</b> Complexity Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sec:monotone-cells.html"><a href="5-sec:monotone-cells.html"><i class="fa fa-check"></i><b>5</b> Monotone Cells</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html"><i class="fa fa-check"></i><b>5.1</b> Two-dimensional monotone sector cells</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement"><i class="fa fa-check"></i><b>5.1.1</b> Finding the critical points of <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-sec:monotone-sectors.html"><a href="5.1-sec:monotone-sectors.html#sec:sub-cad"><i class="fa fa-check"></i><b>5.1.2</b> Working with sub-decompositions above a 0-cell</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html"><i class="fa fa-check"></i><b>5.2</b> Two-dimensional monotone sections</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-1-2-le-j-le-alpha---1"><i class="fa fa-check"></i><b>5.2.1</b> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#case-2-alpha-1-le-j-le-n"><i class="fa fa-check"></i><b>5.2.2</b> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="5.2-sec:monotone-sections.html"><a href="5.2-sec:monotone-sections.html#critical-points-of-the-top-and-bottom-of-c"><i class="fa fa-check"></i><b>5.2.3</b> Critical points of the top and bottom of <span class="math inline">\(C\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html"><i class="fa fa-check"></i><b>5.3</b> Implementation Details</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="5.3-implementation-details-1.html"><a href="5.3-implementation-details-1.html#sec:monotone-algorithm"><i class="fa fa-check"></i><b>5.3.1</b> Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html"><i class="fa fa-check"></i><b>5.4</b> Correctness and Complexity</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-correctness-and-complexity-1.html"><a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity"><i class="fa fa-check"></i><b>5.4.1</b> Complexity Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-sec:compute-refinement.html"><a href="5.5-sec:compute-refinement.html"><i class="fa fa-check"></i><b>5.5</b> Computing the refinements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-sec:frontier.html"><a href="6-sec:frontier.html"><i class="fa fa-check"></i><b>6</b> Frontier Condition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-sec:frontier-bgv.html"><a href="6.1-sec:frontier-bgv.html"><i class="fa fa-check"></i><b>6.1</b> Construction of a CAD with frontier condition, due to <span class="citation">Basu, Gabrielov, and Vorobjov (<span>2015</span>)</span>, Theorem 3.20</a></li>
+<li class="chapter" data-level="6.2" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html"><i class="fa fa-check"></i><b>6.2</b> Lazard’s method for dimension not greater than 3</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-sec:lazard-3.html"><a href="6.2-sec:lazard-3.html#lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3"><i class="fa fa-check"></i><b>6.2.1</b> Lazard’s Algorithm for lifting with bad points in <span class="math inline">\(\mathbb{R}^3\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html"><i class="fa fa-check"></i><b>6.3</b> Generalisation of Lazard</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#sec:ext-lazard-algorithm"><i class="fa fa-check"></i><b>6.3.1</b> Algorithm for lifting above bad points, for CAD compatible with sets of dimension <span class="math inline">\(\le 2\)</span></a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#correctness-and-complexity-2"><i class="fa fa-check"></i><b>6.3.2</b> Correctness and Complexity</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6.3-sec:lazard-n.html"><a href="6.3-sec:lazard-n.html#complexity-analysis"><i class="fa fa-check"></i><b>6.3.3</b> Complexity analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-sec:implementation-and-testing.html"><a href="7-sec:implementation-and-testing.html"><i class="fa fa-check"></i><b>7</b> Implementation And Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html"><i class="fa fa-check"></i><b>7.1</b> Implementation on top of QEPCAD</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#description-of-qepcad-b"><i class="fa fa-check"></i><b>7.1.1</b> Description of QEPCAD B</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#qepcad-cells-and-sample-points"><i class="fa fa-check"></i><b>7.1.2</b> QEPCAD Cells and Sample Points</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#modifications-to-qepcad"><i class="fa fa-check"></i><b>7.1.3</b> Modifications to QEPCAD</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#quasi-affine"><i class="fa fa-check"></i><b>7.1.4</b> Quasi-affine</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#monotone"><i class="fa fa-check"></i><b>7.1.5</b> Monotone</a></li>
+<li class="chapter" data-level="7.1.6" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#frontier-condition"><i class="fa fa-check"></i><b>7.1.6</b> Frontier Condition</a></li>
+<li class="chapter" data-level="7.1.7" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#sec:implementation-refinement"><i class="fa fa-check"></i><b>7.1.7</b> Refinement</a></li>
+<li class="chapter" data-level="7.1.8" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#obtaining-defining-formulas-for-every-cell"><i class="fa fa-check"></i><b>7.1.8</b> Obtaining defining formulas for every cell</a></li>
+<li class="chapter" data-level="7.1.9" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#the-overall-algorithm"><i class="fa fa-check"></i><b>7.1.9</b> The overall algorithm</a></li>
+<li class="chapter" data-level="7.1.10" data-path="7.1-implementation-on-top-of-qepcad.html"><a href="7.1-implementation-on-top-of-qepcad.html#additional-modifications-and-utility-functions"><i class="fa fa-check"></i><b>7.1.10</b> Additional modifications and Utility Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-test-cases-1.html"><a href="7.2-test-cases-1.html"><i class="fa fa-check"></i><b>7.2</b> Test Cases</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-sec:novel-frontier.html"><a href="8-sec:novel-frontier.html"><i class="fa fa-check"></i><b>8</b> A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^n\)</span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-statement-of-the-problem.html"><a href="8.1-statement-of-the-problem.html"><i class="fa fa-check"></i><b>8.1</b> Statement of the Problem</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-theory.html"><a href="8.2-theory.html"><i class="fa fa-check"></i><b>8.2</b> Theory</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-theory.html"><a href="8.2-theory.html#computing-the-frontier-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>8.2.1</b> Computing the frontier of a semialgebraic set</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-theory.html"><a href="8.2-theory.html#intermediate-results"><i class="fa fa-check"></i><b>8.2.2</b> Intermediate Results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html"><i class="fa fa-check"></i><b>8.3</b> Main Result</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-main-result.html"><a href="8.3-main-result.html#algorithm-psuedo-code"><i class="fa fa-check"></i><b>8.3.1</b> Algorithm Psuedo-Code</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8.3-main-result.html"><a href="8.3-main-result.html#sec:worked-example"><i class="fa fa-check"></i><b>8.3.2</b> Worked Example</a></li>
+<li class="chapter" data-level="8.3.3" data-path="8.3-main-result.html"><a href="8.3-main-result.html#mathematical-description"><i class="fa fa-check"></i><b>8.3.3</b> Mathematical Description</a></li>
+<li class="chapter" data-level="8.3.4" data-path="8.3-main-result.html"><a href="8.3-main-result.html#proof-of-correctness"><i class="fa fa-check"></i><b>8.3.4</b> Proof of correctness</a></li>
+<li class="chapter" data-level="8.3.5" data-path="8.3-main-result.html"><a href="8.3-main-result.html#complexity"><i class="fa fa-check"></i><b>8.3.5</b> Complexity</a></li>
+<li class="chapter" data-level="8.3.6" data-path="8.3-main-result.html"><a href="8.3-main-result.html#a-note-on-constructing-the-intermediate-decompositions"><i class="fa fa-check"></i><b>8.3.6</b> A Note on Constructing the Intermediate Decompositions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html"><i class="fa fa-check"></i><b>8.4</b> Generalisations and further work</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:pfaffian"><i class="fa fa-check"></i><b>8.4.1</b> Pfaffian Functions</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-generalisations-and-further-work.html"><a href="8.4-generalisations-and-further-work.html#sec:novel-frontier-fw"><i class="fa fa-check"></i><b>8.4.2</b> Further Wrok</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-sec:conclusions.html"><a href="9-sec:conclusions.html"><i class="fa fa-check"></i><b>9</b> Conclusions and Further Work</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html"><i class="fa fa-check"></i><b>9.1</b> Conclusions</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#smooth-stratification-of-a-semialgebraic-set"><i class="fa fa-check"></i><b>9.1.1</b> Smooth stratification of a semialgebraic set</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#an-algorithm-to-construct-monotone-cad-compatible-with-a-family-of-semialgebraic-sets-of-dimension-at-most-2"><i class="fa fa-check"></i><b>9.1.2</b> An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most <span class="math inline">\(2\)</span></a></li>
+<li class="chapter" data-level="9.1.3" data-path="9.1-conclusions.html"><a href="9.1-conclusions.html#a-novel-algorithm-for-computing-a-cad-with-frontier-condition-compatible-with-a-semialgebraic-set-of-arbitrary-dimension"><i class="fa fa-check"></i><b>9.1.3</b> A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-further-work.html"><a href="9.2-further-work.html"><i class="fa fa-check"></i><b>9.2</b> Further Work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-test-cases.html"><a href="appendix-a-test-cases.html"><i class="fa fa-check"></i>Appendix A: Test Cases</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cylindrical Algebraic Decompositions With Monotone Cells</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:monotone-sections" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Two-dimensional monotone sections<a href="5.2-sec:monotone-sections.html#sec:monotone-sections" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let <span class="math inline">\(X := {\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}}(C)\)</span> and <span class="math inline">\((c_1,\ldots,c_r)\)</span> be the refinement points computed in the previous section such that
+<span class="math display">\[
+Y := \{ c_i &lt; x_1 &lt; c_{x+1}\} \cap X,
+\]</span>
+for some <span class="math inline">\(1 \le i \le r\)</span>, is a two-dimensional monotone sector cell.
+Let us return to <span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv15" role="doc-biblioref">2015</a>, Theorem 3.18)</span> to further refine <span class="math inline">\(Y\)</span> such that every two-dimensional section cell is a monotone cell.</p>
+<p>The procedure for computing the refinement of <span class="math inline">\(Y\)</span> such that <span class="math inline">\(f_j\)</span> is a monotone function, described in the proof of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Theorem 3.18, proceeds as follows.
+Let <span class="math inline">\(f_j : Y \to {\operatorname{span} \{x_j\}}\)</span> be a component of the quasi-affine map <span class="math inline">\(\mathbf{f} : X \to \mathbb{R}\)</span>. Since <span class="math inline">\(\mathbf{f}\)</span> is quasi-affine, each component of <span class="math inline">\(\mathbf{f}\)</span> is quasi-affine and the restriction of component <span class="math inline">\(f_j\)</span> to <span class="math inline">\(Y\)</span> is quasi-affine since <span class="math inline">\(Y \subset X\)</span>.
+Hence, <span class="math inline">\(f_j\)</span> is either strictly increasing in, strictly decreasing in, or independent of each variable <span class="math inline">\(x_1, x_\alpha\)</span>.
+In addition, the restriction <span class="math inline">\(f\vert_{Y \cap \{x_\alpha = c\}}\)</span> for any <span class="math inline">\(c \in \mathbb{R}\)</span> is either strictly increasing in, strictly decreasing in, or independent of <span class="math inline">\(x_\alpha\)</span>.
+We will compute a refinement of <span class="math inline">\(Y\)</span> such that <span class="math inline">\(f_j\vert_Y\)</span> is monotone, each <span class="math inline">\(B \subset Y\)</span> in the refinement.
+As before, only refinements of the kind
+<span class="math display">\[
+\{ x_1 &lt; c \}, \{ x_1 = c \}, \{ x_1 &gt; c \},
+\]</span>
+<span class="math inline">\(c \in \mathbb{R}\)</span>, which preserves both the cylindrical structure and existing monotone cells will be performed.</p>
+<div id="case-1-2-le-j-le-alpha---1" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Case 1: <span class="math inline">\(2 \le j \le \alpha - 1\)</span><a href="5.2-sec:monotone-sections.html#case-1-2-le-j-le-alpha---1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="lemma">
+<p><span id="lem:one-dim-qa-is-monotone" class="lemma"><strong>Lemma 5.1  </strong></span>Let <span class="math inline">\(Y \subset \mathbb{R}^n\)</span> be the graph of a quasi-affine map
+<span class="math display">\[
+\mathbf{f} : (a,b) \to \mathbb{R}^{n-1}
+\]</span>
+such that <span class="math inline">\((a,b) \subset \mathbb{R}\)</span>. Then <span class="math inline">\(Y\)</span> is a monotone cell.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-38" class="proof"><em>Proof</em>. </span>Consider a quasi-affine component <span class="math inline">\(f_j : (a,b) \to \mathbb{R}\)</span> of the map <span class="math inline">\(\mathbf{f}\)</span>. By definition, <span class="math inline">\(f_j\)</span> is either strictly increasing in, strictly decreasing in, or independent of <span class="math inline">\(x_i\)</span>. Assume for contradiction that <span class="math inline">\(Y\)</span> is not monotone and the intersection <span class="math inline">\(Z := Y \cap \{ x_i = c \}, c \in \mathbb{R}\)</span> is not connected. Since <span class="math inline">\(Y\)</span> itself is connected, <span class="math inline">\(Z\)</span> would consist of two isolated points. It is clear that the projection map <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_i\}}}}\vert_Y\)</span> is not injective and its image would be one-dimensional (if not, <span class="math inline">\(f_j\)</span> would be constant and equal to <span class="math inline">\(c\)</span> and Z would have one connected component).</p>
+<p>The proof is completed by applying this argument to each component of the map <span class="math inline">\(\mathbf{f}\)</span>.</p>
+</div>
+<p>Suppose that <span class="math inline">\(2 \le j \le \alpha - 1\)</span>.
+Since
+<span class="math display">\[
+{\operatorname{proj}_{{\operatorname{span} \{x_j,x_\alpha\}}}}(C)
+\]</span>
+is one-dimensional, connected and the graph of a quasi-affine map, it follows from Lemma <a href="5.2-sec:monotone-sections.html#lem:one-dim-qa-is-monotone">5.1</a> that <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_j,x_\alpha\}}}}(C)\)</span> is a monotone cell and <span class="math inline">\(f_j\vert_Y\)</span> is already a monotone function. No refinement is needed.</p>
+</div>
+<div id="case-2-alpha-1-le-j-le-n" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Case 2: <span class="math inline">\(\alpha + 1 \le j \le n\)</span><a href="5.2-sec:monotone-sections.html#case-2-alpha-1-le-j-le-n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now suppose that <span class="math inline">\(\alpha + 1 \le j \le n\)</span>.
+By <span class="citation">(Basu, Gabrielov, and Vorobjov <a href="#ref-bgv13" role="doc-biblioref">2013</a>, Theorem 3)</span>, if functions <span class="math display">\[\inf_{x_\alpha} f_j : {\operatorname{span} \{x_1\}} \to {\operatorname{span} \{x_j\}} \text{ and } \sup_{x_\alpha} f_j : {\operatorname{span} \{x_1\}} \to {\operatorname{span} \{x_j\}}\]</span> are monotone, then <span class="math inline">\(f_j\)</span> itself is monotone.
+Hence, we need to find refinement points
+<span class="math display">\[
+\{ b_1,\ldots,b_r \} \subset (c_i,c_{i+1})
+\]</span>
+such that, for each <span class="math inline">\(1\le \ell &lt; r\)</span>, the restrictions of both <span class="math inline">\(\inf_{x_\alpha} f_j\)</span> and <span class="math inline">\(\sup_{x_\alpha} f_j\)</span> to <span class="math inline">\(B := \{ b_\ell &lt; x_1 &lt; b_{\ell + 1} \}\)</span> are monotone.</p>
+<p>Consider <span class="math display">\[
+Z := {\operatorname{proj}_{{\operatorname{span} \{x_1,x_j\}}}}(C).
+\]</span>
+If <span class="math inline">\(\dim(Z) &lt; 2\)</span>, then it is clear that <span class="math inline">\(\dim(Z) = 1\)</span>, because
+<span class="math display">\[
+Y&#39; := {\operatorname{proj}_{\mathbb{R}^{1}}}(C)
+\]</span> is one-dimensional.
+It follows that <span class="math inline">\(\inf_{x_\alpha} f_j\)</span> and <span class="math inline">\(\sup_{x_\alpha} f_j\)</span> coincide. Since <span class="math inline">\(Z\)</span> is one-dimensional, connected and the graph of a quasi-affine map, Lemma <a href="5.2-sec:monotone-sections.html#lem:one-dim-qa-is-monotone">5.1</a> implies that <span class="math inline">\(f_j\)</span> is already monotone and no refinement is needed.</p>
+<p>On the other hand, if <span class="math inline">\(\dim(Z) = 2\)</span>, since <span class="math inline">\(\mathbf{f}\)</span> is quasi-affine, <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_1,x_j\}}}}\vert_C\)</span> is injective.
+Let <span class="math inline">\(Z_T\)</span> be the graph of <span class="math inline">\(\sup_{x_\alpha} f_j\)</span>. Despite the notation, <span class="math inline">\(Z_T\)</span> is not necesarily the top of <span class="math inline">\(Z\)</span>. In particular, <span class="math inline">\(Z_T\)</span> may have non-empty intersection with <span class="math inline">\(Z\)</span>.
+Since semialgebraic sets are closed under intersection and projection, there exist points
+<span class="math display">\[\{b_1,\ldots,b_k\} \subset (c_i,c_{i+1})
+\]</span> such that for all <span class="math inline">\(1 \le i &lt; k\)</span> <span class="math display">\[
+Z^{b_i,b_{i+1}}_T := Z_T \cap \{ b_i &lt; x_1 &lt; b_{i+1} \}
+\]</span>
+is either a subset of <span class="math inline">\(Z\)</span> or is disjoint from <span class="math inline">\(Z\)</span>.
+First suppose that <span class="math inline">\(Z^{b_i,b_{i+1}}_T \subset Z\)</span> for some <span class="math inline">\(1 \le i &lt; k\)</span>.
+In this case, <span class="math inline">\(Z\)</span> is not bounded from above, so <span class="math inline">\(\sup_{x_\alpha} f_j \vert_{\{ b_i &lt; x_1 &lt; b_{i+1} \}}\)</span> is independent of <span class="math inline">\(x_1\)</span> and is therefore already monotone.
+On the other hand, suppose that <span class="math inline">\(Z^{b_i,b_{i+1}}_T \cap Z = \emptyset\)</span>.
+In this case, <span class="math inline">\(Z^{b_i,b_{i+1}}_T \subset {\operatorname{proj}_{{\operatorname{span} \{x_1,x_j\}}}}(C_T)\)</span>.
+If there exists a point <span class="math inline">\(b \in (b_i,b_{i+1})\)</span> such that <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_1,x_j\}}}}(C_T) \cap \{x_1 = b\} \cap Z \neq \emptyset\)</span>,
+then it is clear that <span class="math inline">\(C_T \cap \{ b_i &lt; x_1 &lt; b_{i+1} \}\)</span> is not the graph of a continuous function.
+I.e., <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha,x_j\}}}}(C_T)\)</span> contains an open interval above <span class="math inline">\((b,y) \in Y_T\)</span>.
+Since <span class="math inline">\(\dim(C) = 2\)</span>, all blow-up points <span class="math inline">\((b,y)\)</span> have dimension <span class="math inline">\(0\)</span> and therefore there is a finite number of them. Repeating this process for <span class="math inline">\(\alpha + 1 \le j \le n\)</span>, it follows that there exist points
+<span class="math display">\[\{ b_{i,1}, \ldots, b_{i,k_i} \} \subset (b_i, b_{i+1})
+\]</span> such that, for all <span class="math inline">\(1 \le j &lt; k_i\)</span>, <span class="math inline">\(C_T \cap \{ b_{i,j} &lt; x_1 &lt; b_{i,j+1} \}\)</span> is the grah of a continuous map.
+In particular, <span class="math inline">\(C_T \cap \{ b_{i,j} &lt; x_i &lt; b_{i,j+1} \}\)</span> is the graph of <span class="math inline">\(\mathbf{f}\vert_{Y_T \cap \{ b_{i,j} &lt; x_1 &lt; b_{i,j+1} \}}\)</span>.</p>
+<p>Apply the same argument to <span class="math inline">\(\inf_{x_\alpha} f_j\)</span> (for <span class="math inline">\(C_B\)</span>) so that, <span class="math inline">\(C_T\)</span> and <span class="math inline">\(C_B\)</span>, if non-empty, are split into one-dimensional countinuous curves which are graphs of continuous functions, and the intervals above <span class="math inline">\(0\)</span>-dimensional blow-up points. Once this property has been satisfied, we are left with a similar construction of optimisation with constraints as in Scetion <a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement">5.1.1</a>.</p>
+</div>
+<div id="critical-points-of-the-top-and-bottom-of-c" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Critical points of the top and bottom of <span class="math inline">\(C\)</span><a href="5.2-sec:monotone-sections.html#critical-points-of-the-top-and-bottom-of-c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We now discuss how to perform this refinement on the CAD structure. Let us assume that <span class="math inline">\(C_T\ne \emptyset\)</span>. We must construct subsets <span class="math inline">\(W \subset Y\)</span> such that <span class="math inline">\(f_j\vert_{W_T}\)</span> is a smooth, continuous function.
+Let
+<span class="math display">\[
+{\cal A} = ({\cal A}_1, \ldots, {\cal A}_n)
+\]</span>
+be the projection factor set as defined in Equation <a href="5.1-sec:monotone-sectors.html#eq:proj-fac-set">(5.2)</a> and
+<span class="math display">\[
+C&#39; := {\operatorname{proj}_{\mathbb{R}^{j-1}}}(C), C^j := {\operatorname{proj}_{\mathbb{R}^{j}}}(C),
+\]</span>
+Begin with <span class="math inline">\(j := \alpha+1\)</span> so that <span class="math inline">\(C&#39;\)</span> is a cylindrical sector cell and there exists an algebraic variety <span class="math inline">\(V\)</span> containing polynomials <span class="math inline">\(g_2,\ldots,g_{j-1}\)</span> with each <span class="math inline">\(g_i \in {\cal A}_i, 2 \le i \le j-1\)</span>, defined in Equation <a href="5.1-sec:monotone-sectors.html#eq:c-alpha-top">(5.3)</a>, such that <span class="math inline">\(C&#39;_T\subset V\)</span>.
+By definition <span class="math display">\[
+C^j_T = {\operatorname{cl} \left( C^j \right)} \cap (C&#39;_T \times \mathbb{R})
+\]</span> and there exists a polynomial <span class="math inline">\(g_j \in {\cal A}_j\)</span> such that <span class="math inline">\(g_j(\mathbf{x}) = 0\)</span> for all <span class="math inline">\(\mathbf{x} \in C^j_T\)</span>. Since <span class="math inline">\(C^j_T\)</span> is either empty or the graph of a continuous function everywhere except, possibly, for a finite number of blow-up points, we need to find <span class="math inline">\(x_1\)</span>-coordinates of points in <span class="math inline">\(C&#39;_T\)</span> such that <span class="math inline">\(g_j\)</span> vanishes over an open interval.
+Since <span class="math inline">\(C^j_T\)</span> is one-dimensional, one way to achieve this is by computing a smooth stratification of <span class="math inline">\(C^j_T\)</span>. If the projection of a one-dimensional stratum onto <span class="math inline">\(x_1\)</span> is a <span class="math inline">\(0\)</span>-dimensional point <span class="math inline">\(b \in \mathbb{R}\)</span>, then <span class="math inline">\(b\)</span> is the <span class="math inline">\(x_1\)</span>-coordinate of a blow-up point.</p>
+<p>Alternatively, since the refinement points form a <span class="math inline">\(0\)</span>-dimensional semialgebraic subset of <span class="math inline">\(\mathbb{R}\)</span>, this set can be represented as a first-order Boolean formula
+<span class="math display">\[
+\exists x_2,\ldots,x_{j-1} \exists_\infty x_j ((x_1,\ldots,x_{j-1}) \in C&#39;_T, g_j(x_1,\ldots,g_j) = 0)
+\]</span>
+where <span class="math inline">\(\exists_\infty x\)</span> is a special quantifier defined in <code>QEPCAD</code> meaning “there exist infinitely many values of <span class="math inline">\(x\)</span>”.
+Using <span class="math inline">\(\exists_\infty\)</span>, some of the costly computations with algebraic numbers can be avoided, thereby improving efficiency in practice <span class="citation">(Brown and Hong <a href="#ref-qepcadDocs" role="doc-biblioref">2004</a>)</span>.
+Theoretically speaking, <span class="citation">(Basu, Pollack, and Roy <a href="#ref-bpr2006" role="doc-biblioref">2006</a>, Algorithm 14.21)</span> provides a singly exponential upper bound for quantifier elimination.</p>
+<p>Eliminating the <span class="math inline">\(j-1\)</span> quantifiers, we obtain the desired points <span class="math inline">\((b_{i,1},\ldots,b_{i,k_i})\)</span>, where each <span class="math inline">\(b_{i,j}\)</span> is the <span class="math inline">\(x_1\)</span>-coordinate of a blow-up point of <span class="math inline">\(g_j\)</span>.
+Now we can assume that <span class="math inline">\(C^j_T\cap \{ b_{i,j} &lt; x_1 &lt; b_{i,j+1}\}\)</span> is the graph of a continuous function. More precisely, the implicit function <span class="math inline">\(g_j\)</span> can be considered as a function from <span class="math inline">\(C&#39;_T \cap \{ b_{i,j} &lt; x_1 &lt; b_{i,j+1}\}\)</span> to <span class="math inline">\(\mathbb{R}\)</span>. We have a very similar construction as in Section <a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement">5.1.1</a>.
+That is, polynomials <span class="math inline">\(g_2,\ldots,g_{j-1}\)</span> will provide the constraints in the first <span class="math inline">\(j-2\)</span> columns of the matrix in Equation <a href="5.1-sec:monotone-sectors.html#eq:jacobi-det">(5.5)</a>, while <span class="math inline">\(\partial h / \partial x_i, 1 \le i \le j - 1\)</span> in the last column should be replaced with <span class="math inline">\(\partial g_j / \partial x_i\)</span>
+Denote this polynomial by <span class="math inline">\(J_T\)</span>, and repeat with <span class="math inline">\(C^j_B\)</span> if appropriate. Inequalities <span class="math inline">\(s_1 g_{1,1} &gt; 0, \ldots, s_1 g_{1,\ell} &gt; 0\)</span> (from Equation <a href="5.1-sec:monotone-sectors.html#eq:lagrange-solve-qe-ineqs">(5.11)</a>), <span class="math inline">\(d_T \ne 0\)</span> and <span class="math inline">\(d_B\)</span> (from Equation <a href="5.1-sec:monotone-sectors.html#eq:lagrange-solve-qe-denominators">(5.13)</a>) are obtained and solved for <span class="math inline">\(x_1\)</span> in a very similar way as in Section <a href="5.1-sec:monotone-sectors.html#sec:lagrange-refinement">5.1.1</a>. We obtain a set of refinement points
+<span class="math display">\[
+\{ b_{j,1}, \ldots, b_{j,r_j} \} \subset (c_i,c_{i+1})
+\]</span>
+such that each of <span class="math inline">\(C^j_T\)</span> and <span class="math inline">\(C^j_B\)</span> is either empty or the graph of a continuous, monotone function.</p>
+<p>The process is completed by induction on <span class="math inline">\(j\)</span>. Suppose that the refinement has been performed for <span class="math inline">\(\alpha + 1 \le j\)</span>. If <span class="math inline">\(j = n\)</span> we are done, and <span class="math inline">\(C\)</span> is now monotone. Otherwise, we proceed to <span class="math inline">\(j+1\)</span>. By the induction hypothesis, we know that <span class="math inline">\(C^{j}_T \cap \{b_{j-1,i} &lt; x_1 &lt; b_{j-1,i+1}\}, 1 \le i &lt; r_{j}\)</span> is either empty or the graph of a continuous (monotone) function.
+If <span class="math inline">\(C^{j}_T = \emptyset\)</span>, there is nothing to do as <span class="math inline">\(C^{j+1}_T\)</span> is empty, too, and the process will terminate.
+Otherwise, the new constraint <span class="math inline">\(g_{j} \in {\cal A}_{j}\)</span> is the polynomial defining <span class="math inline">\(C^{j}_T\)</span> and <span class="math inline">\(g_j \in {\cal A}_j\)</span> can be found such that <span class="math inline">\(g_j(\mathbf{x}) = 0\)</span> for all <span class="math inline">\(\mathbf{x} in C^{j+1}_T\)</span>.
+Perform the same computation described abov, to refine <span class="math inline">\(C^{j+1}_T\)</span> such that one-dimensional components are graphs of continuous, monotone functions. Repeat with <span class="math inline">\(C^{j+1}_B\)</span>.
+As before, a set of refinement poits
+<span class="math display">\[
+b_{j+1,1}, \ldots, b_{j+1,r_{j+1}}
+\]</span>
+is obtained.</p>
+<p>The union of sets of refinement points <span class="math display">\[
+\{b_{\alpha + 1,1}, \ldots, b_{\alpha + 1,r_{\alpha + 1}}\}, \ldots, \{b_{n,1}, \ldots, b_{n,r_n}\}
+\]</span>
+forms the refinement of <span class="math inline">\(C\)</span> into two-dimensional monotone cells.</p>
+<p>Altogether, we have proved the following.</p>
+<div class="proposition">
+<p><span id="prp:monotone-section-algorithm" class="proposition"><strong>Proposition 5.4  </strong></span>Let <span class="math inline">\(\mathcal{D}\)</span> be a CAD of <span class="math inline">\(\mathbb{R}^n\)</span> compatible with each set <span class="math inline">\(V_1,\ldots,V_k \subset \mathbb{R}^n\)</span> with <span class="math inline">\(\dim(V_i) \le 2\)</span> and such that each cell <span class="math inline">\(C \subset V_i\)</span> is the graph of a quasi-affine map, for <span class="math inline">\(1\le i \le k\)</span>. Let
+<span class="math display">\[
+{\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
+\]</span>
+where <span class="math inline">\({\cal A}_k \subset \mathbb{Z}[x_1,\ldots,x_k], 1 \le k \le n\)</span>, be the projection polynomials defining <span class="math inline">\(\cal D\)</span>.
+Let <span class="math inline">\(C\)</span> be a <span class="math inline">\(2\)</span>-dimensional section cell of the decomposition induced by <span class="math inline">\(\cal D\)</span> on <span class="math inline">\(\mathbb{R}^{j}\)</span> such that <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{j}}}^{-1}(C)\)</span> is a cell of <span class="math inline">\(\mathcal{D}\)</span> contained in <span class="math inline">\(V_1,\ldots,V_k\)</span> and <span class="math inline">\({\operatorname{proj}_{\mathbb{R}^{j-1}}}(C)\)</span> is monotone.</p>
+<p>Then there is an algorithm, taking <span class="math inline">\(\mathcal{D}\)</span> and <span class="math inline">\(\mathcal{A}\)</span> as input, which produces a set of algebraic numbers <span class="math inline">\((c_1,\ldots,c_r)\)</span> such that <span class="math inline">\(C \cap \{ c_i &lt; x_1 &lt; c_{i+1} \}\)</span> is monotone. Each <span class="math inline">\(c_i, 1 \le i \le r\)</span> is represented by a pair <span class="math inline">\((m_i, J_i) \in \mathbb{Z}[x_1] \times \mathbb{Q}\)</span> (see Equation <a href="5.1-sec:monotone-sectors.html#eq:algebraic-number">(5.16)</a>.</p>
+</div>
+<div id="monotone-sub-cad" class="Remark">
+<p>propositions <a href="5.1-sec:monotone-sectors.html#prp:monotone-sector-algorithm">5.3</a> and <a href="5.2-sec:monotone-sections.html#prp:monotone-section-algorithm">5.4</a> can also be applied to two-dimensional <span class="math inline">\((0,\ldots,0,1,i_{k+1},\ldots,i_n)\)</span>-cells by working in a sub-cad of <span class="math inline">\(\mathbb{R}^{n-k+1}\)</span> above a zero-cell, as described in Section <a href="5.1-sec:monotone-sectors.html#sec:sub-cad">5.1.2</a>.</p>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references hanging-indent">
+<div id="ref-bgv13">
+<p>Basu, Saugata, Andrei Gabrielov, and Nicolai Vorobjov. 2013. “Monotone Functions and Maps.” <em>Revista de La Real Academia de Ciencias Exactas, Fisicas Y Naturales. Serie A. Matematicas</em> 107 (1): 5–33.</p>
+</div>
+<div id="ref-bgv15">
+<p>Basu, Saugata, Andrei Gabrielov, and Nicolai Vorobjov. 2015. “Triangulations of Monotone Families I: Two-Dimensional Families.” <em>Proceedings of the London Mathematical Society</em> 111 (5): 1013–51.</p>
+</div>
+<div id="ref-bpr2006">
+<p>Basu, Saugata, Richard Pollack, and Marie-Françoise Roy. 2006. <em>Algorithms in Real Algebraic Geometry</em>. 2nd ed. 2006. Algorithms and Computation in Mathematics, 10. Berlin, Heidelberg: Springer Berlin Heidelberg : Imprint: Springer.</p>
+</div>
+<div id="ref-qepcadDocs">
+<p>Brown, C, and H QEPCAD Hong. 2004. “Quantifier Elimination by Partial Cylindrical Algebraic Decomposition.” <em>201 1]. Http://Www. CS. Usna. Edu/~ Qepcad/B/QEPCAD. Htm1</em>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5.1-sec:monotone-sectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5.3-implementation-details-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.bath.ac.uk/hb581/thesis/edit/master/03-2-monotone-cells.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["thesis.pdf", "thesis.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
