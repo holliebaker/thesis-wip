@@ -221,11 +221,11 @@ Given a subset
 $$
 I = \{x_{j_1}, \ldots, x_{j_m} \} \subset \{x_1 ,\ldots, x_n \},
 $$ let $W$ be the linear subspace of $\R^n$ where all coordinates in $I$ are equal to zero.
-We write $\opspan{x_{j_1},\ldots, x_{j_m} \}$ to mean the
+We write $\opspan{x_{j_1},\ldots, x_{j_m}}$ to mean the
 quotient space $\R^n / W$.
 Similarly, for any aﬃne coordinate subspace $L \subset \R^n$ on which all the
 functions $x_j \in I$ are constant, we will identify $L$ with its image under the canonical surjection
-to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k \}$.
+to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$.
 :::
 
 ::: { .definition #monotone-map-on }
@@ -268,5 +268,15 @@ Let $X \subset \R^n$ be a monotone cell. Then $\proj_{L}(X)$, for any affine coo
 [@bgv15, Remark 2.11]
 Let $Y \subset \R^n$ be a monotone cell and $L$ be a coordinate subspace such that $\proj_L\vert_Y$ is injective.
 Then $Y$ is the graph of a monotone map defined on $\proj_L(Y)$, by [@bgv13, Theorem 7 and Corollary 5].
+:::
+
+We finally revise the definition of Big O notation, following @gv2009, Definition 6.1.
+
+::: {.definition #big-o }
+[@gv2009, Definition 6.1]
+Let $f,g,h \N^\ell \to \N$ be functions and $n \in \N$.
+
+- The expression $f \le O(g)^n$ means that there exists $c \in \N$ such that $f < (cg)^n$ at every point in $\N^\ell$.
+- The expression $f \le g^{O(h)}$ means that there exists a $c \in \N$ such that $f \le g^{ch}$ at every point in $\N^\ell$.
 :::
 

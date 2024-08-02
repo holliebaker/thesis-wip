@@ -1,9 +1,9 @@
 ---
 title: "Cylindrical Algebraic Decompositions With Monotone Cells"
-author: "Hollie"
+author: "Hollie Baker"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: bookdown:gitbook
 documentclass: book
 bibliography: [references.bib]
 biblio-style: apalike
@@ -46,8 +46,11 @@ description: "Hollie Baker's thesis"
 
 
 
-Algebraic geometry is a fundamental and active area of research in mathematics and, loosely speaking, is concerned with studying sets with can be defined by polynomials. A fundamental object in algebraic geometry is the algebraic variety, a set defined by the simultaneous solutions to a system of polynomial equations. Sometimes, a wider class of sets, semialgebraic sets, which are defined by a Boolean combination of polynomial equations of inequalities, are studied. Complex algebraic geometry involves working over an algebraically closed field, where the fundamental theorem of algebra holds, while in real algebraic geometry we are restricted to the real numbers. The focus of this research is on algorithms for computing with semialgebraic sets defined over the real numbers.
-Computational algebraic geometry spans both mathematics and computer science and involves developing algorithm for working with the fundamental objects of algebraic geometry, e.g., algebraic varieties, polynomial ideals and semialgebraic sets.
+Algebraic geometry is a fundamental and active area of research in mathematics and, loosely speaking, is concerned with
+studying sets which can be defined by polynomials. A fundamental object in algebraic geometry is the algebraic variety,
+a set defined by the simultaneous solutions to a system of polynomial equations. Sometimes, a wider class of sets,
+semialgebraic sets, which are defined by a Boolean combination of polynomial equations and inequalities, are studied. Complex algebraic geometry involves working over an algebraically closed field, where the fundamental theorem of algebra holds, while in real algebraic geometry we are restricted to the real numbers. The focus of this research is on algorithms for computing with semialgebraic sets defined over the real numbers.
+Computational algebraic geometry spans both mathematics and computer science and involves developing algorithms for working with the fundamental objects of algebraic geometry, e.g., algebraic varieties, polynomial ideals and semialgebraic sets.
 Some fundamental results in this area were presented at the International Symposium on Symbolic and Algebraic Manipulation which was held in Marseille in 1979 (now part of ISSAC).
 @buchberger1979 presented his criterion and an algorithm for computing a Groebner basis for a polynomial ideal defined over a real closed field, which is still one of the most efficient methods for finding the complex solutions of a systems of multivariate polynomial equations.
 @lazard1979 also presented an algorithm, based on Macalay's multivariate resultants, for solving systems of homogeneous polynomial equations over any field (algebraically closed or otherwise), which has complexity singly exponential in the number of unknowns.
@@ -66,7 +69,7 @@ CAD has wide ranging applications in real algebraic geometry.
 Perhaps the most famous application is the one Collins was thinking of -- quantifier elimination: given a Boolean formula where literals are polynomial equations and inequalities and some variables are bound by $\forall$ and $\exists$ quantifiers, return a Boolean formula without quantifiers representing the same set.
 A similar problem uses CAD to decide whether a formula in which all variables are quantified is true or false -- the decision problem.
 More recently, alternative methods for performing quantifier elimination have been proposed, e.g., the critical point method (see @safeldin2013).
-Other notable uses include determining whether a semialgebraic set is empty, computing the real roots of a system of multivariate polynomials and determining the dimension of a semialgebraic set. @bpr98 employs the critical point method to the emptiness problem, obtaining a bound singly exponential in the number of variables and @koiran1999 proved that determining the dimension of a semialgebraic set is $\rm{NP}_{\R}$-complete, obtaining a singly exponential bound. 
+Other notable uses include determining whether a semialgebraic set is empty, computing the real roots of a system of multivariate polynomials and determining the dimension of a semialgebraic set. @bpr98 employs the critical point method to the emptiness problem, obtaining a bound singly exponential in the number of variables and @koiran1999 proved that determining the dimension of a semialgebraic set is ${\mathrm{NP}}_{\R}$-complete, obtaining a singly exponential bound.
 CAD can also be used to deduce topological properties of semialgebraic sets, for example by computing homologies.
 
 > TO DO: maybe ask James about further applications of CAD.
@@ -177,7 +180,7 @@ The algorithm also ensures that only the $k$ functions required to define a stra
 
 > TO DO: applications of the smooth stratification?
 
-### Structure of this thesis
+## Structure of this thesis
 
 Chapter \@ref(sec:background) gives some necessary definitions, then presents some useful results from @bgv15. The CAD
 is then formally defined, and the flow of the algorithm, following the description given by @coste2000 is outlined.
@@ -203,9 +206,11 @@ $$
 be quantifier-free Boolean formulas containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \in \Z[x_1,\ldots,x_n]$, having maximum degree $d$, such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
 
 Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs a cylindrical algebraic decomposition $\mathcal{D}$ of $\R^n$ satisfying the frontier condition, and monotone with respect to each $V_1, \ldots, V_k$.
-This algorithm has complexity ???
-<!-- TODO determine the complexity -->
-(at least that of CAD)
+This algorithm has complexity
+$$
+\left(s\left(d+1\right)\right)^{2^{O(n)}},
+$$
+which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
 This algorithm follows the construction given in the proof of @bgv15, Theorem 3.20, which proceeds in three stages.
@@ -220,7 +225,10 @@ be quantifier-free Boolean formulas containing $s$ different polynomials $\mathb
 
 Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$, which is obviously compatible with each $V_1,\ldots,V_k$, such that each cell $C \subset V_1\cup \ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
 This algorithm has complexity
-<!-- TODO determine the complexity -->
+$$
+\left(s\left(d+1\right)\right)^{2^{O(n)}},
+$$
+which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
 Chapter 5 discusses, following the proofs of @bgv15, Theorem 3.20 and Theorem 3.18, how the CAD $\mathcal{D}$ produced by the algorithm from Theorem \@ref(thm:bgv-quasi-algorithm) can be refined such that cells in the refinement are monotone with respect to each $V_1,\ldots,V_k$. An algorithm for constructing this refinement, starting with the polynomials which have constant sign on cells of $\mathcal{D}$, is presented.
@@ -235,7 +243,10 @@ Let $\mathbf{F} = \{f_1,\ldots,f_s\}$ be a set of polynomials in $\Z[x_1,\ldots,
 
 Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ monotone with respect to each $V_1, \ldots, V_k$.
 This algorithm has complexity
-<!-- TODO determine the complexity -->
+$$
+\left(s\left(d+1\right)\right)^{2^{O(n)}},
+$$
+which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
 Finally, Chapter \@ref(sec:frontier) describes how to complete the construction described in @bgv15, Theorem 3.20, by refining the CAD such that it satisfies the frontier condition. Section \@ref(sec:frontier-bgv) describes how the construction given in the last part of the proof of @bgv15, Theorem 3.20 can be applied to the CAD $\mathcal{D'}$, produced by the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) to produce a refinement $\mathcal{D''}$ of $\mathcal{D'}$ such that the closure of every cell of $\mathcal{D'}$ contained in $V_1\cup \ldots \cup V_k$ is the union of some cells of $\mathcal{D''}$.
@@ -246,9 +257,12 @@ The following is proved.
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of $s$ polynomials with maximum degree $d$.
 Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$, monotone with respect to each bounded semialgebraic set $V_1,\ldots,V_k$ ($\dim(V_i) \le 2 1\le i \le k$).
 
-Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ such that each cell $C \subset V_1\cup\ldots\cupV_k$ of $\mathcal{D'}$ satisfies the frontier condition.
+Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ of $\mathcal{D'}$ satisfies the frontier condition.
 This algorithm has complexity...
-<!-- TODO determine the complexity -->
+$$
+\left(s\left(d+1\right)\right)^{2^{O(n)}},
+$$
+which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
 All of these algorithms are presented as psuedo-code. Chapter \@ref(sec:implementation-and-testing) discusses the implementation of this algorithm on top of Brown's QEPCAD [@brownQepcad] and presents some test cases.

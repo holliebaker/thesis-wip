@@ -12,12 +12,13 @@ set terminal wxt size 700,524 enhanced font 'Verdana,10' persist
 # svg
 set terminal png size 700,700
 set output 'frontier.svg'
+set output
 # pdf
 #set terminal pdf size 700,700
 #set output 'example2.pdf'
 # png
-#set terminal pngcairo size 700,700 enhanced font 'Verdana,10'
-#set output 'example2.png'
+set terminal pngcairo size 700,700 enhanced font 'Verdana,10'
+set output 'frontier.png'
 
 # Style definitions
 set border lw 1.5

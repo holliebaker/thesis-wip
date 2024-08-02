@@ -1,4 +1,4 @@
-# A novel algorithm for the obtaining the frontier condition on a cylindrical decomposition of $\R^n$ { #sec:novel-frontier }
+# A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of $\R^n$ { #sec:novel-frontier }
 
 So far, we have been concerned only with cylindrical algebraic decompositions compatible with subsets of $\R^n$ having dimension at most two. We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
 
@@ -534,7 +534,7 @@ In fact, basic sets can be defined using any functions definable in $\R^n$ and i
 
 Note that it is not currently clear how this result can be implemented since in the algorithm for cylindrical decomposition by @gv01 the oracle is needed to decide whether a sub-Pfaffian set is empty or not.
 
-### Further Wrok
+### Further Wrok { #sec:novel-frontier-fw }
 
 The complexity upper bound of the algorithm from Theorem \@ref(thm:main) is significantly worse than the bound
 for classical CAD algorithm due to @collins1975 (and @wuthrich1976).

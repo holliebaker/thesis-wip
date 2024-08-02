@@ -1,0 +1,21 @@
+[0 < x < 1, -x < y < x, y^2 - x^2 z = 0]
+(x,y,z)
+3
+[ 0 < x /\ x < 1 /\ -x < y /\ y < x /\ y^2 - x^2 z = 0 ].
+mct y.
+g
+g
+g
+g
+d-proj-fac
+d-ref
+d-cell-t(3,2,2)
+d-cell-t(3,6,2)
+d-cell-t(4,2,2)
+d-cell-t(4,3,2)
+d-cell-t(4,4,2)
+d-cell-t(4,5,2)
+d-cell-t(4,6,2)
+d-cell-t(2,2,2)
+d-cell-t(2,2,3)
+d-cell-t(2,2,4)

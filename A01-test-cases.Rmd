@@ -1,0 +1,127 @@
+# Appendix A: Test Cases {-}
+
+We now present a few variations of this example, to test various situations. The following Example \@ref(exm:qanm-3-alg) requires an algebraic refinement point.
+
+::: {.example #qanm-3-alg }
+Let $n = 3$ and consider the 2-dimensional section cell
+$$
+C := \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y > 0, y - x^2 + 2x < 1, z = x^2 + y^2 \}.
+$$
+:::
+
+``` {r, child="test-cases/qanm-3-alg.Rmd"}
+
+```
+
+Note that two refinement polynomials are produced, but only one refinement point. `M_1_4` lies outside of $-1 < x < 1$, so it is ignored.
+
+Example \@ref(exm:qanm-4-rat), which follows, demonstrates what happens on sub-CADs above 0-dimensional cells. 
+
+::: {.example #qanm-4-rat }
+Let $n = 4$ and consider the semialgebraic set defined by the QFF
+$$
+F := ( ( 4 w = 7 \lor w^2 = 36 ) \land x > 0 \land x < 1 \land y > 0 \land x + y < 1 \land z = w x^2 + y^2 ).
+$$
+It has three connected components, $C_1$, $C_2$ and $C_3$, each of which is a cylindrical section cell in a sub-CAD of $\R^3$ above a $0$-dimensional cell ($\mathbf{b}_1$, $\mathbf{b}_2$, $\mathbf{b}_3$ respectively). 
+\begin{align}
+\mathbf{b}_1 &= 7/4, &C_1 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 7/4 x^2 + y^2 \}.\\
+\mathbf{b}_2 &= -6, &C_3 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = -6 x^2 + y^2 \}.\\
+\mathbf{b}_3 &= 6, &C_3 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 6 x^2 + y^2 \}.
+\end{align}
+
+$C_2$ is already monotone. This can be seen by examining the projections of its top and bottom onto $\opspan{x,z}$: 
+\begin{align}
+C_{2,B} &= \{ -1 < x < 1, z = -6x^2 \},\\
+C_{2,T} &= \{ -1 < x < 1, z = -5x - 2x + 1 \}.
+\end{align}
+
+$C_1$ and $C_3$ are of the same kind as the cell presented in Example \@ref(exm:qanm) and require refinement. 
+:::
+
+``` {r, child="test-cases/qanm-4-rat.Rmd"}
+
+```
+
+The following example requires a rational refinement above an algebraic zero-cell. 
+
+::: {.example #qanm-4-above-alg }
+Let $n = 4$ and consider the section cell
+$$
+C := \{ (w,x,y,z) \in \R^4 \mid w > 0, w^2 = 2, 0 < x < 1, y > 0, x + y < 1, z = 3x^2 + 2y^2 \}.
+$$
+:::
+
+This cell lies in the sub-cad of $\R^3$ above $\sqrt{2}$. `QEPCAD` output is presented below. Note that the sample points remain in extended representation, which is how they were generated in the lifting phase. 
+
+``` {r, child="test-cases/qanm-4-above-alg.Rmd"}
+
+```
+
+We now show a similar example, requiring an algebraic refinement. 
+
+::: {.example #qanm-4-alg }
+Let $n = 4$ and consider the section cell
+$$
+C := \{ (w,x,y,z) \in \R^4 \mid w > 0, w^2 = 3, 0 < x < 1, y > 0, y < (x-1)^2, z = 3x^2 + 2y^2 \}.
+$$
+:::
+
+Note that the sample points of the refined cells have been converted into primitive representation. 
+
+``` {r, child="test-cases/qanm-4-alg.Rmd"}
+
+```
+
+Now consider a $(1,1,0,0)$-cell in $\R^4$ requiring two refinements. 
+
+::: {.example #qanm-4-multi }
+Let $n = 4$ and consider the section cell
+$$
+C := \{ (w,x,y,z) \in \R^4 \mid  0 < w < 1, x > 0, w + x < 1, y = w^2 + x^2, z = 2 w^2 + x^2 \}.
+$$
+:::
+
+``` {r, child="test-cases/qanm-4-multi.Rmd"}
+
+```
+
+The following example, in $\R^5$ presents a $(1,0,1,0,0)$-cell, which requires two algebraic refinements of the CAD induced on $\R^1$. When running this test, `SACLIB` ran out of memory, so the number of available cells was doubled. 
+
+::: {.example #qanm-5-101 }
+Let $n = 5$ and consider the $(1,0,1,0,0)$-cell
+$$
+C = \{ (w,x,y,z) \in \R^4 \mid 0 < w < 1, x = 1 - w, y > 0, w + y < 1, z = w^2 + x y^2, t = 3 w^2 + x^2 y^2 \}.
+$$
+:::
+
+``` {r, child="test-cases/qanm-5-101.Rmd"}
+
+```
+
+::: {.example #fr-3-whitney-multi }
+Let $n = 4$ and consider the semialgebraic set defined by the QFF
+$$
+F = \{  \}.
+$$
+:::
+
+
+More examples
+
+- large sub-CAD, maybe R^5
+
+- cells in sub-CAD of different levels
+
+- some variations on the whitney umbrella
+
+  - algebraic refinement point?
+  - multiple levels refinement (stacked whitneys)
+  
+
+- whitney in a sub-CAD
+
+- whitney with multiple refinement points above it
+
+
+
+

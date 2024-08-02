@@ -18,9 +18,9 @@ h_{i_1}, \ldots , h_{i_k}
 $$ such that the restriction $h_{i_j}\vert_{X_i} = 0$ and $d h_{i_j} \ne 0$ at every point $\mathbf{x} \in X_k$, for each $1 \le j \le k$.
 :::
 
-Note that this definition does not assume any other desirable properties of the manifolds $X_k$. E.g., the closure of a stratum may not be a union of strata.
+Note that this definition does not assure any other desirable properties of the manifolds $X_k$. E.g., the closure of a stratum may not be a union of strata.
 
-### Description of the algorithm { #sec:strat-alg-description }
+## Description of the algorithm { #sec:strat-alg-description }
 
 Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets with almost no modifications. Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too.  Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an oracle will not be needed in this variation of the algorithm.
 The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives needed to define all the strata is based on the format of the input set. As every polynomial has  a finite number of partial derivatives, this bound will simply be the degree of the polynomial in the semialgebraic case.
@@ -143,9 +143,9 @@ Proceed by induction on $i_k$.
 
       - Otherwise, proceed by induction.
 
-          - Compute
-          $$(X^{\mathbf{m}}_{k+2},\ldots,X^{\mathbf{m}}_n) := {\rm Stratify}(k+1, F, (s,:\mathbf{h}), (i_\ell:\mathbf{i}), G)$$
-          where $x:L$ denotes the `cons` operator. I.g., add $x$ to the beginning of list $L$.
+        - Compute
+        $$(X^{\mathbf{m}}_{k+2},\ldots,X^{\mathbf{m}}_n) := {\rm Stratify}(k+1, F, (s,:\mathbf{h}), (i_\ell:\mathbf{i}), G)$$
+        where $x:L$ denotes the `cons` operator. I.g., add $x$ to the beginning of list $L$.
 
       - Let $\rm{Empty}(X,s)$ be a subroutine returning *true* if $s \in \Z[x_1,\ldots,x_n]$ is identically zero on the set $X \subset \R^n$.
 
@@ -180,7 +180,7 @@ If all $X_i = \emptyset, 1 \le i \le k$, then we can conclude that every partial
 Otherwise, let $X_0 = \emptyset$ so that ${\cal X} = (\emptyset, X_1,\ldots,x_n)$ where each $X_i,1\le i \le n$ is a smooth subset of $X$ of codimension $i$, such that each $X_i,X_j,i\ne j$ is pairwise disjoint and $X_1\cup \ldots \cup X_n = X$.
 Note, in the case that $X_0 = X$, the smooth stratification algorithm provides no information about the dimension of $X$.
 
-### Algorithm details { #sec:strat-algorithm-details }
+### Subroutines and Algorithm Details { #sec:strat-algorithm-details }
 
 The algorithm employs two subroutines, which were presented in the description as "black-box functions".
 The first of these is a subroutine which determines whether $Y_k$ is an open subset of $U_k$.
@@ -200,7 +200,7 @@ The second of these is $\rm{Empty}(S)$, where $S \subset \R^n$ is a semialgebrai
 $$
 \exists \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = \ldots = f_s(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0.
 $$
-This problem can be decided using the singly-exponential quantifier elimination algorithm from @bpr2006, Algorithm 14.21, which has complexity singly exponential in the number of variables. In practice, quantifier elimination can be performed using CAD. @bpr98 propose an algorithm for determining whether a semialgebraic set is empty, which has complexity $(sd)^{O(n)}$, for a semialgebraic set defined by $s$ polynomials having maximum degree $d$ in $n$ variables. 
+This problem can be decided using the singly-exponential quantifier elimination algorithm from @bpr2006, Algorithm 14.21, which has complexity singly exponential in the number of variables. In practice, quantifier elimination can be performed using CAD. @bpr98 propose an algorithm for determining whether a semialgebraic set is empty, which has complexity $(sd)^{O(n)}$, for a semialgebraic set defined by $s$ polynomials having maximum degree $d$ in $n$ variables.
 
 The algorithm may be implemented as above, but with some small tweaks to simplify the code and make the algorithm work slightly more efficiently.
 First, observe that not all derivatives are needed to define the candidate strata $Y_k$. One obvious situation is when a derivative $s_k$ turns out to be a nonzero constant $c \in \A$.
@@ -249,7 +249,7 @@ $$
 $$
 only the last row depends on $f$ and only the last column depends on $j$. Thus, we can save the $(k\times k)$-submatrix consisting of the first $k$ rows and columns and only append the new row and column. This matrix can be passed as an argument to ${\rm Stratify}(k,\ldots)$, with the matrix for $k=0$ being empty (i.e., $\mathbf{h} = \mathbf{i} = ()$ in the partial differential operator).
 
-### Worked example { #sec:strat-worked-example }
+## Worked example { #sec:strat-worked-example }
 
 We illustrate the smooth stratification algorithm with a worked example in $\R^3$. Consider
 $$
@@ -279,6 +279,8 @@ As expected, the algorithm outputs the set of strata
 \begin{align*}
 \mathcal{X}_{1}:=&\emptyset\\\mathcal{X}_{2}:=&\left\{ x_{1}^{2}−x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\mathcal{X}_{3}:=&\left\{ (0,0,0)\right\}
 \end{align*}
+
+## Implementation Details
 
 ### Determining the codimension and basic formula for each stratum
 
@@ -331,7 +333,7 @@ $$
 at every point of a stratum $X_k$ of codimension $k$ which includes the functions $h_1,\ldots,h_k$ in its definition.
 As we saw in the example, other functions vanish at every point of $X_k$. We need to find the "basic" set of $k$ functions needed to define $X_k$.
 
-#### Discarding redundant equations
+### Discarding redundant equations
 
 Let $F \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials, indexed by $(m_{i_1},\ldots,m_1,j)$ and, for $\mathbf{m} = (0,\ldots,0,m_\ell,\ldots,m_1,j),\ell > i_1$ let
 $$
@@ -377,13 +379,13 @@ $$
 where $\ast_i, 1 \le i \le s \in \{<, >, =\}$. $S$ can be partitioned into a finite union of some of the $s^3$ sign sets.
 If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_s)} \subset S$, and take the union of strata, we will obtain a smooth stratification of the set $S$. Indeed, since no two sign sets have non-empty intersection, it is clear that no two strata intersect, and since a finite number of the sign-sets form a partition of $S$, the smooth strata of these sign-sets also forms a partition of $S$.
 
-## Implementation Details
+### Implementation in C
 
 This algorithm has been implemented in `C`, using the computer algebra library `SACLIB`. `QEPCAD` is used to perform emptyness checks. Below is an example of the program's output, given the basic semialgebraic set
 $$
 \{ z = 0, x^2 - y^2 = 0 \} \subset \R^3,
 $$
-discussed in Section \@ref(sec:strat-worked-example). 
+discussed in Section \@ref(sec:strat-worked-example).
 
 ```
 Enter a variable list.
@@ -420,33 +422,33 @@ X_(2,1):
   , -y^2 + x^2 == 0
   , 2 x /= 0
   , 2 x /= 0
-  } 
+  }
 
 Strata of codimension 3
 X_(3,1):
   { -y^2 + x^2 == 0
   , z == 0
   , 2 x == 0
-  } 
+  }
 
 ```
 
-The program works in a similar way to QEPCAD, taking as input the variable list (which specifies the order) and a conjunction of polynomial equations, inequations and inequalities (written as a QEPCAD formula). The stratification is then computed and there is a basic repl which allows the user to see information about the polynomials and strata produced. 
+The program works in a similar way to QEPCAD, taking as input the variable list (which specifies the order) and a conjunction of polynomial equations, inequations and inequalities (written as a QEPCAD formula). The stratification is then computed and there is a basic repl which allows the user to see information about the polynomials and strata produced.
 
 Exerpts of the code are now presented and discussed. The entrypoint for the algorithm is `stratify`.
 
 **Input:**
 
 - `Word r` $\in \Z$ (ambient dimension),
-- `Word L` $ = (f_1,\ldots,f_k) \subset \Z[x_1,\ldots,x_r]$, 
-- `Word Ineqs` $= (g_1,\ldots,g_\ell) \subset \Z[x_1,\ldots,x_r]$, 
-- `Word V` $= (v_1,\ldots,v_r)$ is a variable list, 
+- `Word L` $= (f_1,\ldots,f_k) \subset \Z[x_1,\ldots,x_r]$,
+- `Word Ineqs` $= (g_1,\ldots,g_\ell) \subset \Z[x_1,\ldots,x_r]$,
+- `Word V` $= (v_1,\ldots,v_r)$ is a variable list,
 
-such that $X = \{ f_1 = 0, \ldots, f_k = 0, g_1 > 0, \ldots, g_\ell = 0 \}$ is the basic semialgebraic set to be stratified. 
+such that $X = \{ f_1 = 0, \ldots, f_k = 0, g_1 > 0, \ldots, g_\ell = 0 \}$ is the basic semialgebraic set to be stratified.
 
 **Output:**
 
-- `Word S`: set of smooth strata $(\mathcal{x}_1,\ldots,\mathcal{X}_r)$, such that $\mathcal{X}_i$ contains strata of comidemnios $i$ for $1 \le i \le r$, or `NIL` if $X$ is a smooth subset. 
+- `Word S`: set of smooth strata $(\mathcal{x}_1,\ldots,\mathcal{X}_r)$, such that $\mathcal{X}_i$ contains strata of comidemnios $i$ for $1 \le i \le r$, or `NIL` if $X$ is a smooth subset.
 
 ``` {c, code-strat-main, eval=FALSE, attr.source='.numberLines' }
 Word stratify(Word r, Word L, Word Ineqs, Word V, Word *S_)
@@ -491,25 +493,25 @@ Word stratify(Word r, Word L, Word Ineqs, Word V, Word *S_)
 }
 ```
 
-This function sets up the data structures required by `stratify_helper`, the recursive function which performs stratification of some input set $X \subset \R^n$. 
+This function sets up the data structures required by `stratify_helper`, the recursive function which performs stratification of some input set $X \subset \R^n$.
 
 **Input:**
 
-- `Word r` $\in \N$, `Word V`: variable list, Word Ineqs`: qepcad formula of inequalities $\{ g_1 > 0, \ldots, g_\ell >0 \}$, 
+- `Word r` $\in \N$, `Word V`: variable list, Word Ineqs`: qepcad formula of inequalities $\{ g_1 > 0, \ldots, g_\ell >0 \}$,
 - `Word k` $1\le k \le r$ is the codimension currently beind worked with,
-- `Word np`: number of polynomials, 
+- `Word np`: number of polynomials,
 - `Word Fs` $((f_1,\deg(f_1)), \ldots, (f_{\rm{np}}, \deg(f_{\rm{np}})))$ is the list of imput polynomials,
-- `Word Is` is a partial index $(0,,i_1,\ldots,i_{k-1})$, 
-- `Word Hs` is the set of polynomials $(h_{i_1},\ldots,h_{i_{k-1}})$, 
-- `Word Qs` is a list of polynomials $\subset \Z[x_1,\ldots,x_n]$, 
-- `Word Minor` is a $((k-1)\times (k-1))$-matrix $A = \verta_{ij} \vert = \partial h_{i} / partial x_{j}$ for $h_i \in \rm{Hs}, j \in \rm{Is}$. 
+- `Word Is` is a partial index $(0,,i_1,\ldots,i_{k-1})$,
+- `Word Hs` is the set of polynomials $(h_{i_1},\ldots,h_{i_{k-1}})$,
+- `Word Qs` is a list of polynomials $\subset \Z[x_1,\ldots,x_n]$,
+- `Word Minor` is a $((k-1)\times (k-1))$-matrix $A = \vert a_{ij} \vert = \partial h_{i} / partial x_{j}$ for $h_i \in \rm{Hs}, j \in \rm{Is}$.
 
 such that the input set $X$ is defined by equations `Fs` and `Hs`, inequalities `Ineqs` and inequations `Qs`.
 
 **Output:**
 
-- `Word Gs` $\subset \Z[x_1,\ldots,x_r]$ is the set of all partial differentials (for steps $k \le j \le r$), 
-- `int strat_count_` is the number of strata appended (for steps $k \le j \le r$), 
+- `Word Gs` $\subset \Z[x_1,\ldots,x_r]$ is the set of all partial differentials (for steps $k \le j \le r$),
+- `int strat_count_` is the number of strata appended (for steps $k \le j \le r$),
 - `Word S` is the set of strata (for steps $k \le j \le r$).
 
 ``` {c, code-strat-helper, eval=FALSE, attr.source='.numberLines' }
@@ -671,35 +673,35 @@ Word strat_helper(Word r, Word V, Word Ineqs, Word k, Word np, Word Fs, Word Is,
 }
 ```
 
-- For the base case, where there are no polynomials, or index $i_k \ge r$, (Line 7), there is nothing to do. No strata are appended and no polynomials computed. 
-- Prior to Line 57, initialisation is done. Metadata for each polynomial in `Fs` is stored. 
+- For the base case, where there are no polynomials, or index $i_k \ge r$, (Line 7), there is nothing to do. No strata are appended and no polynomials computed.
+- Prior to Line 57, initialisation is done. Metadata for each polynomial in `Fs` is stored.
 - The main loop, beginning on Line 57, computes partial derivatives in ascending lexicographical order of index $(i_r,\ldots,i_{k+1},j)$, $1 \le j \le \rm{np}$.
-- Lines 57-100 keeps track of the current polynomial `P` and "differentiation variable" `v` $\in x_{i_k+1},\ldots,i_r$. 
-- Line 101 calls the function `JacobiFromMinor`, which takes a $((k-1)\times (k-1))$-matrix $A = \vert a_{ij} \vert = \partial h_i / \partial x_j$, a polynomial $f$ and index $\ell$, and returns the $(k \times k)$-matrix obtained from $A$ by appending column $(\partial h_1 / \partial x_\ell, \ldots, \partial h_{k-1} / \partial x_\ell)^T$ and row $(\partial f / \partial x_{i_1}, \ldots, \partial f / \partial x_{i_{k-1}}, \partial f / \partial \ell)$. I.e., it constructs the martix from the partial differential operator (Definition \@ref(def:pdo)) and saves recomputing the whole matrix of partial derivatives. Note that, when $k=1$, `JacobiFromMinor` returns the one-element matrix $\partial f / \partial \ell$. 
-- On line 105, the determinant of the matrix computed on Line 101 is computed, for the partial differential oporator. 
-- Line 116 determines if the candidate stratum is empty (see comment on Lines 112-115). 
-- If non-empty, we proceed by induction, calling `strat_helper` recursively (for $k+1$, appending index `v` and polynomial `P`, and passing the $(k \times k$-matrix as the `Minor`). The number of strata of codimension $> k$ which were added to `S` is returned. If no strata were appended, all the partial derivatives vanish identically on the candidate, and we can conclude that it is smooth and has codimension $k$.  
-- Line 128 represents the candidate stratum as a basic semialgebraic set containing $k$ equations. The function `construct_stratum_basic` is discussed shortly.  
-- The rest of the function is responsible for updating the metadata and keeping track of the list of polynomials `Gs1` to be returned. 
+- Lines 57-100 keeps track of the current polynomial `P` and "differentiation variable" `v` $\in x_{i_k+1},\ldots,i_r$.
+- Line 101 calls the function `JacobiFromMinor`, which takes a $((k-1)\times (k-1))$-matrix $A = \vert a_{ij} \vert = \partial h_i / \partial x_j$, a polynomial $f$ and index $\ell$, and returns the $(k \times k)$-matrix obtained from $A$ by appending column $(\partial h_1 / \partial x_\ell, \ldots, \partial h_{k-1} / \partial x_\ell)^T$ and row $(\partial f / \partial x_{i_1}, \ldots, \partial f / \partial x_{i_{k-1}}, \partial f / \partial \ell)$. I.e., it constructs the martix from the partial differential operator (Definition \@ref(def:pdo)) and saves recomputing the whole matrix of partial derivatives. Note that, when $k=1$, `JacobiFromMinor` returns the one-element matrix $\partial f / \partial \ell$.
+- On line 105, the determinant of the matrix computed on Line 101 is computed, for the partial differential oporator.
+- Line 116 determines if the candidate stratum is empty (see comment on Lines 112-115).
+- If non-empty, we proceed by induction, calling `strat_helper` recursively (for $k+1$, appending index `v` and polynomial `P`, and passing the $(k \times k$-matrix as the `Minor`). The number of strata of codimension $> k$ which were added to `S` is returned. If no strata were appended, all the partial derivatives vanish identically on the candidate, and we can conclude that it is smooth and has codimension $k$.
+- Line 128 represents the candidate stratum as a basic semialgebraic set containing $k$ equations. The function `construct_stratum_basic` is discussed shortly.
+- The rest of the function is responsible for updating the metadata and keeping track of the list of polynomials `Gs1` to be returned.
 
 The function `construct_stratum_basic` is responsible for representing a candidate stratum as a basic semialgebraic set defined using $k$ polynomial equations. It discards redundant polynomias as described in Section \@ref(sec:strat-algorithm-details).
 
 **Input:**
 
-- `Word r` $\in \N$: ambient dimension, 
-- `Word k` $0 \le k \le r$: codimension of candidate stratum, 
-- `Word V`: variable list, 
-- `Word Hs` $= (h_{i_1},\ldots,h_{i_{k-1}}) \subset \Z[x_1,\ldots,x_r]$, 
-- `Word Q` $\in \Z[x_1,\ldots,x_r]$, 
-- `Word Qs` $\subset \Z[x_1,\ldots,x_r]$, 
-- `Word Gs` $\subset \Z[x_1,\ldots,x_r]$, 
-- `Word Ineqs`: a QEPCAD formula of inequalities, 
+- `Word r` $\in \N$: ambient dimension,
+- `Word k` $0 \le k \le r$: codimension of candidate stratum,
+- `Word V`: variable list,
+- `Word Hs` $= (h_{i_1},\ldots,h_{i_{k-1}}) \subset \Z[x_1,\ldots,x_r]$,
+- `Word Q` $\in \Z[x_1,\ldots,x_r]$,
+- `Word Qs` $\subset \Z[x_1,\ldots,x_r]$,
+- `Word Gs` $\subset \Z[x_1,\ldots,x_r]$,
+- `Word Ineqs`: a QEPCAD formula of inequalities,
 
-such that `Hs`, `Qs`, `Q`, `Gs` and `Ineqs` define a candidate stratum $Y_k$. All of `Hs` and `Gs` are equal to zero on $Y$, all of `Q` and `Qs` are not equal to zero on $Y$ and the formula `Ineqs` defines a semialgebraic set containing $Y$. 
+such that `Hs`, `Qs`, `Q`, `Gs` and `Ineqs` define a candidate stratum $Y_k$. All of `Hs` and `Gs` are equal to zero on $Y$, all of `Q` and `Qs` are not equal to zero on $Y$ and the formula `Ineqs` defines a semialgebraic set containing $Y$.
 
 **Output**=
 
-- `Word k1` $\ge$ `k` is the actual codimension of $Y$, 
+- `Word k1` $\ge$ `k` is the actual codimension of $Y$,
 - `Word F` is the stratum $Y$ defined by `k1` equations and the inequations and inequalities from `Qs`, `Q` and `Ineqs`
 
 ``` {c, code-strat-basic, eval=FALSE, attr.source='.numberLines' }
@@ -752,16 +754,16 @@ void construct_stratum_basic(Word k, Word r, Word V, Word Hs, Word Q, Word Qs, W
 }
 ```
 
-The idea is to use emptiness checking to find the minimal number, `k1` of equations needed to define the stratum $Y$ as a basic semialgebraic set. `k1` is the codimension of $Y$. 
+The idea is to use emptiness checking to find the minimal number, `k1` of equations needed to define the stratum $Y$ as a basic semialgebraic set. `k1` is the codimension of $Y$.
 
-The function `ISEMPTY` performs emptiness checking. 
+The function `ISEMPTY` performs emptiness checking.
 
 **Input:**
 
-- `Word r` $\in \N$, 
-- `Word V`: variable list $(x_1,\ldots,x_r)$, 
-- `Word Fs` $= (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_r]$, 
-- `Word Gs` $= (h_1,\ldots,h_t) \subset \Z[x_1,\ldots,x_r]$, 
+- `Word r` $\in \N$,
+- `Word V`: variable list $(x_1,\ldots,x_r)$,
+- `Word Fs` $= (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_r]$,
+- `Word Gs` $= (h_1,\ldots,h_t) \subset \Z[x_1,\ldots,x_r]$,
 - `Word Ineqs`: list of atomic QEPCAD formulas $\{ g_1 > 0 \},\ldots,\{ g_\ell > 0 \}$
 
 such that the input set $S \subset \R^r$ can be defined by the QFF
@@ -771,7 +773,7 @@ $$
 
 **Output:**
 
-- `true` if $S$ is empty, `false` otherwise. 
+- `true` if $S$ is empty, `false` otherwise.
 
 ``` {c, code-strat-isempty, eval=FALSE, attr.source='.numberLines' }
 Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
@@ -820,10 +822,11 @@ Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
 
 ```
 
-The function constructs $F$, the defining formula for $S$ and uses QEPCAD to construct a CAD of $\R^r$ compatible with $S$. Is $S$ is empty, then this CAD will contain no true cells, so the function checks this condition. 
+The function constructs $F$, the defining formula for $S$ and uses QEPCAD to construct a CAD of $\R^r$ compatible with $S$. Is $S$ is empty, then this CAD will contain no true cells, so the function checks this condition.
 
-### Complexity
+## Complexity Analysis {#sec:strat-complexity}
 
+We first briefly summarise the semi-Pfaffian case, as presented by @gv1995.
 The algorithm from @gv1995, Theorem 1 takes as input a semi-Pfaffian set with the format $(r, N, \alpha, \beta, n)$ (see Definition \@ref(def:pfaff-format)) and has a complexity upper bound of
 $$
 3^N N^{n+1} {\cal B}
@@ -832,52 +835,61 @@ where
 $$
 {\cal B} = (\alpha + \beta + 1)^{(r+1)^{O(n)}}.
 $$
-Without the Oracle, the total number of strata, some of which may be empty, does not exceed $N^{n+r}{\cal B}$, each of which has format $(r, N{\cal B},\alpha, {\cal B}, n)$. 
-If the Oracle, used for checking emptiness, is allowed, then the algorithm has complexity not exceeding $N^{n+r}{\cal B}$. 
+Without the Oracle, the total number of strata, some of which may be empty, does not exceed $N^{n+r}{\cal B}$, each of which has format $(r, N{\cal B},\alpha, {\cal B}, n)$.
+If the Oracle, used for checking emptiness, is allowed, then the algorithm has complexity not exceeding $N^{n+r}{\cal B}$.
 
-A set of polynomials maximum degree $d$ are Pfaffian functions of order $r=0$ and degree $(\alpha, \beta) = (1, d)$. [@gv04, 2.3] 
-Hence, the input set
-$$
+Now consider this algorithm applied to the semialgebraic set
+\begin{equation}
 X := \{ \mathbf{x} \in \R^n \mid f_1 = 0, \ldots, f_k = 0, g_1 > 0, \ldots, g_\ell > 0 \},
+(\#eq:strat-imput-set)
+\end{equation}
+where all $s := k + \ell$ functions $f_i,g_j$ are polynomials with maximum degree $d$.
+The upper complexity bound for the algorithm without Oracle is
 $$
-where all $s := k + \ell$ functions $f_i,g_j$ are polynomials with maximum degree $d$, is a semi-Pfaffian set with format
+3^{s} s^{n+1} (d + 1)^{1^{O(n)}}.
 $$
-(0, s, 1, d, n).
-$$
-Thus, the algorithm (without Oracle) has complexity not exceeding
-$$
-3^{s} s^{n+1} (d + 1)^{1^{O(n)}},
-$$
-or, with Oracle
+The number of strata, some of which may be empty, does not exceed
+$$s^{n} (d + 1)^{1^{O(n)}}.$$
+Each stratum is defined by at most $s (d + 1)^{1^{O(n)}}$ polynomial equations and inequalities of maximum degree $(d + 1)^{1^{O(n)}}$.
+If the Oracle is allowed, no empty strata will be produced and the algorithm has complexity not exceeding
 $$
 s^{n+1} (d + 1)^{1^{O(n)}}.
 $$
-The upper bound for the number of strata is also $s^{n} (d + 1)^{1^{O(n)}}$, each of which has the format
-$(0, s (d + 1)^{1^{O(n)}}, 1, (d + 1)^{1^{O(n)}}, n)$. In other words, the number of polynomials equations and inequalities does not exceed $s (d + 1)^{1^{O(n)}}$ and their maximum degree is $(d + 1)^{1^{O(n)}}$.
+These bounds follow immediately from @gv1995, Theorem 6.2.
+We will now analyse the complexity of the algorithm presented in Section \@ref(sec:strat-alg-description), which performs emptiness checking on candidate strata.
 
-For the algorithm described in Section \@ref(sec:strat-alg-description), an emptiness check is performed for each of the $s^{n} (d + 1)^{1^{O(n)}}$ candidate strata $Y_k$. This is to determine if all partial differentials $s_k$ vanish at every point of the input set $X$ which was passed from step $k-1$. 
-This check is implemented used CAD (a call to `QEPCAD-B`). 
-However, for complexity purposes, we will use a singly exponential QE algorithm. In fact, @bpr98 propose an algorithm which takes a semialgebraic set defined by $s$ polynomials with maximum degree $d$ in $n < s$ variables and produces a witness point contained in every "cell" in a decomposition of this set. The algorithm is well-suited to determining the emptiness of a semialgebraic set and requires $s(s/n)^n d^{O(n)}$ arithmetic operations.
-This is asymptotically the same as $$s^n d^{O(n)}.$$ 
+There are $s^{n} (d + 1)^{1^{O(n)}}$ candidate strata $Y_k$, and the algorithm determines whether each of them is empty, in order to determine whether all partial differential equations vanish identically on the input set $X$.
+In the implementation, the check is done using CAD (a call to `QEPCAD-B`).
+For complexity analysis purposes, we will use a theoretical algorithm, having singly exponential complexity in the number of variables.
+@bpr98 propose an algorithm which takes a semialgebraic set $S \subset \R^n$ defined by $s$ polynomials with maximum degree $d$ in $n < s$ variables and produces a "witness" -- a point contained in every cell in a decomposition of $S$.
+The algorithm can be used to determine the emptiness of $S$ and requires $s(s/n)^n d^{O(n)}$ arithmetic operations.
+This is asymptotically the same as $$(sd)^{O(n)}.$$
 Using the bounds for the number and degrees of polynomials defining strata, each emptiness check costs
 $$
-s \cdot (d + 1)^{1^{O(n)}} \cdot (d + 1)^{1^{O(n)}} = s (d + 1)^{{1^{O(n)}}^2}.
+\left( s (d+1)^{1^{O(n)}} (d+1)^{1^{O(n)}} \right)^{O(n)}
+= \left( s (d+1)^{2^{O(n)}} \right)^{O(n)},
 $$
-Repeating this for every candidate stratum, we get a total complexity, for emptiness checking, of
+which is asymptotically the same as
 $$
-s^{n+1} (d + 1)^{{1^{O(n)}}^3}.
+\left(s (d+1)\right)^{2^{O(n)}}.
 $$
-The total complexity is 
+This operation must be performed for all of the
+$s^{n} (d + 1)^{1^{O(n)}}$
+candidate strata, resulting in a total complexity for emptiness checking of
 $$
-3^{s} s^{n+1} (d + 1)^{1^{O(n)}} + s^{n+1} (d + 1)^{{1^{O(n)}}^3},
+\left(s (d+1)\right)^{2\cdot 2^{O(n)}} = \left(s (d+1)\right)^{2^{O(n)}},
 $$
-which is dominated by the emptiness checking and is asymptotically the same as
+The total complexity of stratification is therefore
 $$
-s^{n+1} (d + 1)^{{1^{O(n)}}^3}.
+\left(s (d+1)\right)^{2\cdot 2^{O(n)}} = \left(s (d+1)\right)^{2^{O(n)}},
++ s^{n+1} (d + 1)^{1^{O(n)}},
+$$
+which is asymptotically the same as
+$$
+(s(d+1))^{2^{O(n)}}.
 $$
 
-
-### Test Cases
+## Test Cases
 
 Some test cases are now presented
 
@@ -891,20 +903,20 @@ Some test cases are now presented
     X_(1,1):
       { y == 0
       , x /= 0
-      } 
+      }
     X_(1,2):
       { x y == 0
       , y /= 0
-      } 
-    
+      }
+
     Strata of codimension 2
     X_(2,1):
       { y == 0
       , x == 0
-      } 
-    ```  
+      }
+    ```
 
-1. 
+1.
 
   - **Input:** $(x,y), \{ x^5 y^4 = 0 \}$
 
@@ -915,17 +927,17 @@ Some test cases are now presented
     X_(1,1):
       { 120 y^4 == 0
       , 24 x^5 /= 0
-      } 
+      }
     X_(1,2):
       { x^5 y^4 == 0
       , 120 y^4 /= 0
-      } 
+      }
 
     Strata of codimension 2
     X_(2,1):
       { 120 y^4 == 0
       , 24 x^5 == 0
-      } 
+      }
     ```
 
 1.
@@ -939,14 +951,14 @@ Some test cases are now presented
     X_(1,1):
       { y^2 + x^2 - 1 == 0
       , 2 x /= 0
-      } 
+      }
 
     Strata of codimension 2
     X_(2,1):
       { y^2 + x^2 - 1 == 0
       , 2 x == 0
       , 4 y /= 0
-      } 
+      }
 
     ```
 
@@ -961,7 +973,7 @@ Some test cases are now presented
     X_(1,1):
       { y^4 + 2 x^2 y^2 - y^2 + x^4 - x^2 == 0
       , 4 x y^2 + 4 x^3 - 2 x /= 0
-      } 
+      }
 
     Strata of codimension 2
     X_(2,1):
@@ -969,13 +981,13 @@ Some test cases are now presented
       , 4 x y^2 + 4 x^3 - 2 x == 0
       , 4 y^2 + 12 x^2 - 2 /= 0
       , 320 y^6 + 832 x^2 y^4 - 352 y^4 + 704 x^4 y^2 - 576 x^2 y^2 + 112 y^2 + 192 x^6 - 224 x^4 + 80 x^2 - 8 /= 0
-      } 
+      }
     X_(2,2):
       { y^4 + 2 x^2 y^2 - y^2 + x^4 - x^2 == 0
       , 4 x y^2 + 4 x^3 - 2 x == 0
       , 4 y^2 + 12 x^2 - 2 /= 0
       , 16 y^5 + 32 x^2 y^3 - 16 y^3 + 16 x^4 y - 16 x^2 y + 4 y /= 0
-      } 
+      }
 
     ```
 
@@ -990,27 +1002,27 @@ Some test cases are now presented
     X_(1,1):
       { z == 0
       , x y /= 0
-      } 
+      }
     X_(1,2):
       { y z == 0
       , x z /= 0
-      } 
+      }
     X_(1,3):
       { x y z == 0
       , y z /= 0
-      } 
+      }
 
     Strata of codimension 2
     X_(2,1):
       { z == 0
       , x y == 0
       , y /= 0
-      } 
+      }
     X_(2,2):
       { y z == 0
       , x z == 0
       , z /= 0
-      } 
+      }
 
     Strata of codimension 3
 
@@ -1032,7 +1044,7 @@ Some test cases are now presented
       { z^2 + y^2 + x^2 == 0
       , 4 y == 0
       , 2 x == 0
-      } 
+      }
 
     ```
 

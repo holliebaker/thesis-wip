@@ -1,7 +1,7 @@
 ## Cylindrical algebraic decomposition
 
-We now give some background on Cylindrical Algebraic Decomposition (CAD). 
-@collins1975 introduced both the concept of Cylindrical Algebraic Decomposition along with an algorithm to construct a CAD, which is a finite partition of $\R^n$ into so-called Cylindrical Cells, such that each polynomial in $\mathbf{F} \subset \R[x_1,\ldots,x_n]$ has a constant sign on every cylindrical cell in the decomposition. 
+We now give some background on Cylindrical Algebraic Decomposition (CAD).
+@collins1975 introduced both the concept of Cylindrical Algebraic Decomposition along with an algorithm to construct a CAD, which is a finite partition of $\R^n$ into so-called Cylindrical Cells, such that each polynomial in $\mathbf{F} \subset \R[x_1,\ldots,x_n]$ has a constant sign on every cylindrical cell in the decomposition.
 
 Before describing Collins' algorithm, we will first define, closely following @bgv15, a cylindrical cell and cylindrical decomposition. Note that @bgv15 work in the broader class of definable sets.
 
@@ -51,13 +51,13 @@ There is no requirement that $C_W$ will be (a union of) cylindrical cells.
 ::: {.definition #blow-up-point }
 [@bgv15, Definition 9.2]
 
-Let $\varphi : W \to \R$ be a continuous function on a semialgebraic set $W \subset \R^n$, and let $\Phi \subset \R^{n+1}$ be its graph. 
+Let $\varphi : W \to \R$ be a continuous function on a semialgebraic set $W \subset \R^n$, and let $\Phi \subset \R^{n+1}$ be its graph.
 
 A point $\mathbf{x} \in \overline{W} \setminus W$ is called a blow-up point of $\Phi$ if $$\proj^{-1}_{\R^n} (\mathbf{x}) \cap \overline{\Phi}$$ contains an open interval.
 :::
 
 ::: {.remark #blow-up-codimension }
-The closure of the graph of a continuous defanible function is the graph of a continuous definable function everywhere except, possibly, over a subset of codimension at lesat $2$ (see the proof of @bgv15, Lemma 3.14). 
+The closure of the graph of a continuous defanible function is the graph of a continuous definable function everywhere except, possibly, over a subset of codimension at lesat $2$ (see the proof of @bgv15, Lemma 3.14).
 :::
 
 ::: { .example #top-bottom-not-cylindrical }
@@ -143,11 +143,11 @@ A cylindrical algebraic decomposition (CAD) is a cylindrical decomposition in wh
 :::
 
 ::: {.definition}
-Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. A cylindrical algebraic decomposition $\cal D$ is called sign-invariant with respect to $\mathbf{F}$  (or simply $\mathbf{F}$-invariant) if each polynomial $f \in \mathbf{F}$ has a constant sign (either $< 0$, $= 0$ or $> 0$) on every cylindrical cell $C$ of $\mathcal{D}$. 
+Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. A cylindrical algebraic decomposition $\cal D$ is called sign-invariant with respect to $\mathbf{F}$  (or simply $\mathbf{F}$-invariant) if each polynomial $f \in \mathbf{F}$ has a constant sign (either $< 0$, $= 0$ or $> 0$) on every cylindrical cell $C$ of $\mathcal{D}$.
 :::
 
 ::: {.remark}
-The fundamental theorem of algebra implies that for the coefficients of $\mathbf{F}$, we may choose any ring $K \subset \R$. $\Z$ has been chosen for convenience, but some authors (e.g., @pianomovers1983) choose $\Q$ instead. It is also common to take polynomials with coefficients over $\R$. However, the choice has been made to avoid this so as to work over the algebraic numbers $\mathcal{A}$, whose elements are easily represented in, and manipulated by, computers. 
+The fundamental theorem of algebra implies that for the coefficients of $\mathbf{F}$, we may choose any ring $K \subset \R$. $\Z$ has been chosen for convenience, but some authors (e.g., @pianomovers1983) choose $\Q$ instead. It is also common to take polynomials with coefficients over $\R$. However, the choice has been made to avoid this so as to work over the algebraic numbers $\mathcal{A}$, whose elements are easily represented in, and manipulated by, computers.
 :::
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm proposed by @collins1975, closely following @coste2000, for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
@@ -312,7 +312,7 @@ Complexity, number of cells, number of polynomials and degrees are the same as i
 :::
 
 ::: { .proof }
-Let $f_1,\ldots,f_s \in \R[x_1,\ldots,x_n]$ be the polynomials from formulas $F_1,\ldots,F_k$ and let $\mathcal{E}'$ be the CAD of $\R^n$ produced by Proposition \@ref{prp:collins} with $f_1,\ldots,f_s$ as input. Since $F_i$ for each $1\le i\le k$ provides a set of sign conditions on polynomials $f_1,\ldots,f_s$, $\mathcal{E}'$ is a refinement of the CAD produced by this algorithm.
+Let $f_1,\ldots,f_s \in \R[x_1,\ldots,x_n]$ be the polynomials from formulas $F_1,\ldots,F_k$ and let $\mathcal{E}'$ be the CAD of $\R^n$ produced by Proposition \@ref(prp:collins) with $f_1,\ldots,f_s$ as input. Since $F_i$ for each $1\le i\le k$ provides a set of sign conditions on polynomials $f_1,\ldots,f_s$, $\mathcal{E}'$ is a refinement of the CAD produced by this algorithm.
 
 Truth values of $F_1,\ldots,F_k$ on ecah cell can easily be computed from the CAD produced by Proposition \@ref(prp:collins) by considering the signs of $f_1,\ldots,f_s$ on ecah cell, which we computed in the construction of $\mathcal{E}'$.
 Observe that this does not change the asymptotic complexity or bounds in Propoosition \ref{prop:collins}.

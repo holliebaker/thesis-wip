@@ -5,5 +5,18 @@
   \thm@preskip=8pt plus 2pt minus 4pt
   \thm@postskip=\thm@preskip
 }
-\makeatother
 
+% allow deeply nested lists, fixes error in strat code
+\makeatother
+\usepackage{enumitem}
+\setlistdepth{7}
+
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=$\bullet$}
+\setlist[itemize,3]{label=$\bullet$}
+\setlist[itemize,4]{label=$\bullet$}
+\setlist[itemize,5]{label=$\bullet$}
+\setlist[itemize,6]{label=$\bullet$}
+\setlist[itemize,7]{label=$\bullet$}
+
+\renewlist{itemize}{itemize}{7}

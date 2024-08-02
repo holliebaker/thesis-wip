@@ -1,0 +1,532 @@
+``` {fr-3-whitney-jhd}
+Before Solution >
+d-proj-fac
+A_1,1  = fac2(J_2,1) = fac2(ldcf(A_3,1))
+       = fac(J_1,1) = fac(res(A_2,1|A_2,2))
+       = fac(J_1,2) = fac(res(A_2,1|P_2,3))
+       = fac(J_1,3) = fac(res(A_2,2|P_2,3))
+       = x
+
+A_1,2  = input
+       = x - 1
+
+
+A_2,1  = input
+       = y + x
+
+A_2,2  = input
+       = y - x
+
+P_2,3  = fac2(J_2,2) = fac2(ldcf(red(A_3,1)))
+       = y
+
+
+A_3,1  = input
+       = x^2 z - y^2
+
+Q_3,2  = fac(Q_3,1) = fac(input)
+       = z
+
+M_3,3  = fac(K_3,3) = fac(input)
+       = z - 1
+
+
+
+Before Solution >
+d-ref
+
+
+M_3,1  = input  *** Refinement of cell (2,2,3) ***
+       = The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000
+
+Coordinate 1 = 0
+             = 0.0000
+Coordinate 2 = 0
+             = 0.0000
+Coordinate 3 = 1
+             = 1.0000
+
+
+
+Before Solution >
+d-cell-t(3,2,2)---------- Information about the cell (3,2,2) (Dimension (1,0,0) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x > 0
+  x - 1 < 0
+Level 2
+  y + x = 0
+  y - x < 0
+  y < 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+*** Initialising the RCAD. ***
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (3,2,2)
+Level 1
+  x > 0
+  x - 1 < 0
+Level 2
+  y + x = 0
+  y - x < 0
+  y < 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1/2
+             = 0.5000000000
+Coordinate 2 = -1/2
+             = -0.5000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(3,6,2)---------- Information about the cell (3,6,2) (Dimension (1,0,0) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x > 0
+  x - 1 < 0
+Level 2
+  y + x > 0
+  y - x = 0
+  y > 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (3,6,2)
+Level 1
+  x > 0
+  x - 1 < 0
+Level 2
+  y + x > 0
+  y - x = 0
+  y > 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1/2
+             = 0.5000000000
+Coordinate 2 = 1/2
+             = 0.5000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(4,2,2)---------- Information about the cell (4,2,2) (Dimension (0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x = 0
+  y - x < 0
+  y < 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (4,2,2)
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x = 0
+  y - x < 0
+  y < 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1
+             = 1.0000000000
+Coordinate 2 = -1
+             = -1.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(4,3,2)---------- Information about the cell (4,3,2) (Dimension (0,1,0) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x > 0
+  y - x < 0
+  y < 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (4,3,2)
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x > 0
+  y - x < 0
+  y < 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1
+             = 1.0000000000
+Coordinate 2 = -1/2
+             = -0.5000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(4,4,2)---------- Information about the cell (4,4,2) (Dimension (0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x > 0
+  y - x < 0
+  y = 0
+Level 3
+  x^2 z - y^2 = 0
+  z = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (4,4,2)
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x > 0
+  y - x < 0
+  y = 0
+Level 3
+  x^2 z - y^2 = 0
+  z = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1
+             = 1.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(4,5,2)---------- Information about the cell (4,5,2) (Dimension (0,1,0) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x > 0
+  y - x < 0
+  y > 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (4,5,2)
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x > 0
+  y - x < 0
+  y > 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1
+             = 1.0000000000
+Coordinate 2 = 1/4
+             = 0.2500000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(4,6,2)---------- Information about the cell (4,6,2) (Dimension (0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x > 0
+  y - x = 0
+  y > 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (4,6,2)
+Level 1
+  x > 0
+  x - 1 = 0
+Level 2
+  y + x > 0
+  y - x = 0
+  y > 0
+Level 3
+  x^2 z - y^2 < 0
+  z = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1
+             = 1.0000000000
+Coordinate 2 = 1
+             = 1.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,2)---------- Information about the cell (2,2,2) (Dimension (0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x = 0
+  x - 1 < 0
+Level 2
+  y + x = 0
+  y - x = 0
+  y = 0
+Level 3
+  x^2 z - y^2 = 0
+  z = 0
+  z - 1 < 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,2)
+Level 1
+  x = 0
+  x - 1 < 0
+Level 2
+  y + x = 0
+  y - x = 0
+  y = 0
+Level 3
+  x^2 z - y^2 = 0
+  z = 0
+  z - 1 < 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 0
+             = 0.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,3)---------- Information about the cell (2,2,3) (Dimension (0,0,1) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x = 0
+  x - 1 < 0
+Level 2
+  y + x = 0
+  y - x = 0
+  y = 0
+Level 3
+  x^2 z - y^2 = 0
+  z > 0
+  z - 1 < 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,3)
+Level 1
+  x = 0
+  x - 1 < 0
+Level 2
+  y + x = 0
+  y - x = 0
+  y = 0
+Level 3
+  x^2 z - y^2 = 0
+  z > 0
+  z - 1 < 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 0
+             = 0.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 1/2
+             = 0.5000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,4)---------- Information about the cell (2,2,4) (Dimension (0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  x = 0
+  x - 1 < 0
+Level 2
+  y + x = 0
+  y - x = 0
+  y = 0
+Level 3
+  x^2 z - y^2 = 0
+  z > 0
+  z - 1 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,4)
+Level 1
+  x = 0
+  x - 1 < 0
+Level 2
+  y + x = 0
+  y - x = 0
+  y = 0
+Level 3
+  x^2 z - y^2 = 0
+  z > 0
+  z - 1 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 0
+             = 0.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 1
+             = 1.0000000000
+
+
+----------------------------------------------------
+
+```

@@ -44,7 +44,7 @@ The `QEPCAD B` algorithm proceeds in five stages:
 1. **Normalisation**
 
     Let $(Q_1,v_1),\ldots,(Q_k,v_k) F$ be the input formula. The normalisation phase uses logical equivalences and polynomial factorisation to transform $F$ into a "normalised" formula $G$, defined by induction as follows:
-    - atoms are of the form $f \ast 0$ where $f \in \Z[v_1,\ldots,v_n]$ is a primitive, irreducible polynomial and $\ast \in \{=, \ne, \lt, \le, \gt, \ge \}$.
+    - atoms are of the form $f \ast 0$ where $f \in \Z[v_1,\ldots,v_n]$ is a primitive, irreducible polynomial and $\ast \in \{=, \ne, <, \le, >, \ge \}$.
     - Suppose that normalised formulas $G_1,\ldots,G_k$ are already defined, then
     $$
     G_1 \land \cdots \land G_k \text{ and } G_1 \lor \cdots \lor G_k
@@ -240,7 +240,7 @@ The QEPCAD algorithm has been modified to include construction of quasi-affine c
       {\cal R} := \{ {\cal R}_{\mathbf{b}} =  (c_1,\ldots,c_t ) \subset \A \mid \mathbf{b} \in \R^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^k \}
       $$ and add new polynomials (to $\mathcal{A}$, factorised to $\mathcal{F}$) which are equal to zero at these refinement points.
 
-      For each refinement point $c$ \in \A$ in each family $\mathcal{R}_\mathbf{b}$, refine the sub-CAD of $\R^{n-k}$ $\mathcal{D}$ above the $0$-cell $\mathbf{b}$ by intersecting it with straight lines and half-planes
+      For each refinement point $c \in \A$ in each family $\mathcal{R}_\mathbf{b}$, refine the sub-CAD of $\R^{n-k}$ $\mathcal{D}$ above the $0$-cell $\mathbf{b}$ by intersecting it with straight lines and half-planes
       $$
       \{ x_{k+1} < c \}, \{ x_{k+1} = c \}, \{ x_{k+1} > c \}.
       $$
@@ -361,7 +361,7 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
 \end{pmatrix}
   $$ with parameters
 
-  - $r \is N$,
+  - $r \in N$,
   - $f \in \Z[x_1,\ldots,x_r]$,
   - $j \in \Z_{\ge 0}$
   - $\rm{Hs} = (h_1,\ldots,h_k), h_i \in \Z[x_1,\ldots,x_r], 1 \le i \le k$
@@ -764,7 +764,7 @@ $$
 $$
 where $(b_1,\ldots,b_{k-1})$ is the sample point, and $(m_1,\ldots,m_{k-1})$ is the positional index of the $0$-cell $\mathbf{b}$ and $c$ refines the $(1)$-cell in the sub-CAD of $\mathcal{D}$ above $\mathcal{b}$ with positional index $(m_k)$.
 $(b_1,\ldots,b_{k-1},c)$ is stored as a QEPCAD sample point.
-If all of $(b_1,\ldots,b_{k-1})$ are rational, or are elements of the same algebraic extension, $\Q(\alpha)$, associated with the sample point of the cell $\matcal{b}$, as $c$, then $(b_1,\ldots,b_{k-1},c)$ is a primitive QEPCAD sample point. If $(b_1,\ldots,b_{k-}) \in \Q(\alpha)$ and $c \not \in \Q(\alpha)$ then $(c_1,\ldots,b_{k-1},c)$ is a QEPCAD sample point stored in extended representation.
+If all of $(b_1,\ldots,b_{k-1})$ are rational, or are elements of the same algebraic extension, $\Q(\alpha)$, associated with the sample point of the cell $\mathbf{b}$, as $c$, then $(b_1,\ldots,b_{k-1},c)$ is a primitive QEPCAD sample point. If $(b_1,\ldots,b_{k-}) \in \Q(\alpha)$ and $c \not \in \Q(\alpha)$ then $(c_1,\ldots,b_{k-1},c)$ is a QEPCAD sample point stored in extended representation.
 The refinement point $c$ is a root of a polynomial $f \in \Q[x_k]$, computed by `MONOTONE()` or `FRONTIER()`. This polynomial is stored in the projection polynomial set, and its factors in the projection factor set.
 
 The function `REFINE` computes the refinements.
@@ -1233,9 +1233,68 @@ Return: /* Prepare for return. */
 
 ### Additional modifications and Utility Functions
 
-A brief summary of new functions follows.
+A brief summary of new and modified functions is now presented.
 
-The following files in the QEPCAD codebase have been modified.
+#### Modifications
+
+- `extensions/sfext/addpol/CFLCELLLIST.c`: the function which identifies conflicting pairs of cells for solution formula construction. This function is now used to ensure that every cell can be defined by a Tarski formula. As such, it takes a `flag` which indicates that a conflicting pair of cells should not depend on their truth value.
+- `extensions/sfext/addpol/CLEAN_BIGLOOP.c`: modified to pass the `flag` to `CFLCELLLIST()`.
+- `extensions/sfext/addpol/STRIPPED_BIGLOOP.c`: modified to pass the `flag` to `CFLCELLLIST()`.
+- `extensions/sfext/sfcons/SFC3.c`: passes the `flag` to `CFLCELLLIST()`.
+
+- `source/db/CAPolicy.h`: defines the function `GROEBNER`, which uses `Singular` to compute a Groebner basis. 
+- `source/db/CAServer.h`: defines the function `GROEBNER`, which uses `Singular` to compute a Groebner basis. 
+- `source/db/SINGULAR.c`: implements the function `GROEBNER`, which uses `Singular` to compute a Groebner basis. 
+- `source/db/SINGULAR.h`: defines the function `GROEBNER`, which uses `Singular` to compute a Groebner basis. 
+- `source/db/SingSacPolicy.h`: defines the function `GROEBNER`, which uses `Singular` to compute a Groebner basis. 
+- `source/db/SingularPolicy.h`: defines the function `GROEBNER`, which uses `Singular` to compute a Groebner basis. 
+
+- `source/main/data.c`: defines and initialises `PCMCT`, the flag to indicate that a monotone CAD should be constructed.
+- `source/main/qepcadcls.h`:
+  - Defines `GVREFL` and `GVTD`, list of refinement points and the CAD in which every cell can be defined by sings of projection factors, respectively,
+  - Defines the new `QepcadCls::*` functions.
+- 1source/qepcad.h`: defines new non-`QepcadCls::*` functions. 
+- `source/proj/EXTRACTS.c`: responsible for extracting projecion polynomials. `ADD2A` has been refactored and renamed `ADDPOL`. 
+- `source/qepcad.help`: documents new commands, such as `d-cell-*-t` and `pcmct <y/n>`.
+
+
+#### New files
+
+- `source/io/CELLWRT.c`: writes a cell as a Tarski formula, implementing the command `d-cell-t`.
+- `extensions/sfext/crcads/ALLCELLWRITET.c`: writes all cells as Tarski formulas, implementing the command `d-all-cells-t`.
+- `extensions/sfext/crcads/FALSECELLWRITET.c`: writes false all cells as Tarski formulas, implementing the command `d-false-cells-t`.
+- `extensions/sfext/crcads/TRUECELLWRITET.c`: writes true all cells as Tarski formulas, implementing the command `d-true-cells-t`.
+- `extensions/sfext/sfcons/SFC3f.c`: writes true all cells as Tarski formulas, implementing the command `d-true-cells-t`.
+- `extensions/sfext/sfcons/SFC4.c`: writes true all cells as Tarski formulas, implementing the command `d-true-cells-t`.
+- `source/io/CELLIPLLDWR.c`: helper function for writing cells as Tarski formulas, writes $f * 0$, where $f$ is a polynomial and $* \in \{ <, =, > \}$. 
+
+- `source/userint/PRDCT.c`: process `d-cell-t`.
+- `source/userint/PRMCT.c`: process `mct <y/n>`.
+- `source/userint/USERINT.c`: adds new user interface commands. 
+
+- `source/util/ADDPOL.c`: refactoring of `ADD2A`.
+- `source/util/ADDPOLS.c`: bulk call to `ADDPOL`.
+
+- `source/proj/ProjMcxUtil.c`: Stripped down version of McCallum projection, used as a utility function, e.g., to compute the $x_1$-coordinates of refinement points in `MONOTONE()`.
+- `source/proj/QUASIAFFINE.c`: computes a quasi-affine CAD, as discussed above. 
+- `source/ticad/MONOTONE.c`: finds the set of refinement points required for each $2$-dimensional cell in the CAD to be monotone. 
+- `source/ticad/FRONTIER.c`: implements the function `FRONTIER()`, responsible for refining the CAD such that it satisfies teh frontier condition. 
+- `source/ticad/LazardLifting.c`: helper function for `FRONTIER()`, responsible for implementing the extension of Lazard's algorithm for lifting with bad points. 
+- `source/ticad/REFINE.c`:: responsible for computing the refinements, defined in `GVREFL`.
+
+- `source/util/ADDREFINEMENTPOINTS.c`: adds refinement points (see above).
+- `source/util/GETSAMPLEK.c`: retrieves $k$-th coordinate of a cell's sample point. 
+- `source/util/IPFRPmod.c`: the original "integral polynomial from rational polynomial" assumes that the input is in rational representation but always has integer coefficients. This version converts an arbitrary rational polynomial into an integral polynomial. 
+- `source/util/JACOBI.c`: given a list of polynomials and variable indices, construct a Jacobi matrix.
+` `source/util/LDCOPY.c`: list "deep" (recursive) copy.
+- `source/util/LEVELIDX.c`: helper function. Given a positional index for a cell $C$ with index $(i_1,\ldots,i_n)$, return $(j_1,\ldots,j_k)$, where $j\le n$ such that $i_{j_\ell} = 1, 1 \le \ell \le k$. 
+- `source/util/PADDVS.c`: append variables. Given $f \in \Z[x_1,\ldots,x_k]$, output $f$ as a polynomial in $\Z[x_1,\ldots,x_k,y_1,\ldots,y_\ell]$. 
+- `source/util/PPREPVS.c`: prepend variables. Given $f \in \Z[x_1,\ldots,x_k]$, output $f$ as a polynomial in $\Z[y_1,\ldots,y_\ell,x_1,\ldots,x_k]$. 
+- `source/util/ROOTS.c`: convenience function for univariate root fonding. Uses `saclib`'s `IPFSFB`, which computes a squaref-free basis.
+- `source/util/SUBSTITUTE.c`: takes a polynomial $f \in \Z[x_1,\ldots,x_n]$ and a sample point $\mathbf{b} \in \A^k$, compute $f(\mathbf{b}) \in \Z[x_{k+1},\ldots,x_n]$.
+- `source/util/TwoDimensionalIndex.c`: Given a cell's positional index, which corresponds to the $(i_1,\ldots,i_k) \in \{0,1\}^n$, return $j,k$ such that $i_j = i_k = 1$. If $(i_1,\ldots,i_n)$ does not have exactly two elements equal to $1$, the function returns an error. 
+
+Some other files have changes (according to `git diff`). However these are just whitespace changes to make the code easier to read. 
 
 ## Test Cases
 
@@ -1318,115 +1377,75 @@ knitr::include_graphics(rep("gnuplot/qanm.svg"))
 
 ```
 
-We now present a few variations of this example, to test various situations. The following Example \@ref(exm:qanm-3-alg) requires an algebraic refinement point.
 
-::: {.example #qanm-3-alg }
-Let $n = 3$ and consider the 2-dimensional section cell
+
+Example \@ref(exm:whitney-jhd) (@jhd20, Example 2.1) illustrated a CAD which fails to satisfy the frontier condition due to a blow-up point. 
+The cell shown in the example is part of the Whitney umbrella, and, unlike the examples considered so far, its frontier is not homeomorphic to a circle. 
+
+::: {.example #fr-3-whitney-jhd }
+[@jhd20, Example 2.1]
+
+Let $n = 3$ and consider the $(1,1,0)$-cell
 $$
-C := \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y > 0, y - x^2 + 2x < 1, z = x^2 + y^2 \}.
-$$
-:::
-
-``` {r, child="test-cases/qanm-3-alg.Rmd"}
-
-```
-
-Note that two refinement polynomials are produced, but only one refinement point. `M_1_4` lies outside of $-1 < x < 1$, so it is ignored.
-
-Example \@ref(exm:qanm-4-rat), which follows, demonstrates what happens on sub-CADs above 0-dimensional cells. 
-
-::: {.example #qanm-4-rat }
-Let $n = 4$ and consider the semialgebraic set defined by the QFF
-$$
-F := ( ( 4 w = 7 \lor w^2 = 36 ) \land x > 0 \land x < 1 \land y > 0 \land x + y < 1 \land z = w x^2 + y^2 ).
-$$
-It has three connected components, $C_1$, $C_2$ and $C_3$, each of which is a cylindrical section cell in a sub-CAD of $\R^3$ above a $0$-dimensional cell ($\mathbf{b}_1$, $\mathbf{b}_2$, $\mathbf{b}_3$ respectively). 
-\begin{align}
-\mathbf{b}_1 &= 7/4, &C_1 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 7/4 x^2 + y^2 \}.\\
-\mathbf{b}_2 &= -6, &C_3 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = -6 x^2 + y^2 \}.\\
-\mathbf{b}_3 &= 6, &C_3 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 6 x^2 + y^2 \}.
-\end{align}
-
-$C_2$ is already monotone. This can be seen by examining the projections of its top and bottom onto $\opspan{x,z}$: 
-\begin{align}
-C_{2,B} &= \{ -1 < x < 1, z = -6x^2 \},\\
-C_{2,T} &= \{ -1 < x < 1, z = -5x - 2x + 1 \}.
-\end{align}
-
-$C_1$ and $C_3$ are of the same kind as the cell presented in Example \@ref(exm:qanm) and require refinement. 
-:::
-
-``` {r, child="test-cases/qanm-4-rat.Rmd"}
-
-```
-
-The following example requires a rational refinement above an algebraic zero-cell. 
-
-::: {.example #qanm-4-above-alg }
-Let $n = 4$ and consider the section cell
-$$
-C := \{ (w,x,y,z) \in \R^4 \mid w > 0, w^2 = 2, 0 < x < 1, y > 0, x + y < 1, z = 3x^2 + 2y^2 \}.
+C = \{ (x,y,z) \in \R^3 \mid 0 < x < 1, -x < y < x, y^2 - x^2 z = 0 \}.
 $$
 :::
 
-This cell lies in the sub-cad of $\R^3$ above $\sqrt{2}$. `QEPCAD` output is presented below. Note that the sample points remain in extended representation, which is how they were generated in the lifting phase. 
+Quasi-affine**:
 
-``` {r, child="test-cases/qanm-4-above-alg.Rmd"}
+  critical points of
+  - $\projops{x,y}: z = 0$
+  - $\projops{x,z}: y = 0$
+  - $\projops{y,z}: x = 0$
+- **Monotone**:
+
+  $C$ is partitioned, in the quasi-affine step, into three cells
+  \begin{align}
+  C_1 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, -x < y < 0, y^2 - x^2 z = 0 \},\\
+  C_2 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = 0, y^2 - x^2 z = 0 \},\\
+  C_3 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, 0 < y < x, y^2 - x^2 z = 0 \},\\
+  \end{align}
+  each of which is already monotone. 
+
+- **Frontier Condition**:
+
+  there is one bad point, $\mathbf{b} = (0,0)$ in the decomposition induced on $\R^2$, above which the polynomial $y^2 - x^2 z$ vanishes identically. 
+  The CAD contains three cells projecting on $\mathbf{b}$:
+  \begin{align}
+  B_1 &= \{ (0,0,z) \in \R^3 \mid z < 0 \},\\
+  B_2 &= \{ (0,0,z) \in \R^3 \mid z = 0 \},\\
+  B_3 &= \{ (0,0,z) \in \R^3 \mid z > 0 \}.\\
+  \end{align}
+  This CAD does not satisfy the frontier condition. 
+  Indeed, we have
+  $$
+  B := B_3 \cap \fr(C_1) = B_3 \cap \fr(C_2)
+  $$ which is not a cell of the CAD.  
+  According to Lemma \@ref(lem:lazard-5-13) (@lazard10, Proposition 5.13), the following situation should occur:
+  
+  > there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C_1) = \dim((C_2)$ and $\emptyset \neq B_3 \cap \fr{ E } \neq B_3$.
+
+  For $C_1$, the cell $E$ in question is the $(1,0,0)$-cell $\{ 0 < x < 1, x + y = 0, z = 1 \}$,
+  and for $C_3$, $E$ is the $(1,0,0)$-cell $\{ 0 < x < 1, x - y = 0, z = 1 \}$
+  In both cases, $\fr(E) \cap B_3 = (0,0,1)$ -- the required refinement point. 
+
+  @lazard10, Algorithm 5.15 is then applied, resulting in the computation of the following saturations:
+  \begin{align}
+  I_1 &:= \{ y^2 - x^2 z, x, 1 - y t \} \cap \Z[x,y,z], \\
+  I_2 &:= \{ y^2 - x^2 z, y, 1 - x t \} \cap \Z[x,y,z], \\
+  I_3 &:= \{ y^2 - x^2 z, x, 1 - (x + y) t \} \cap \Z[x,y,z], \\
+  I_4 &:= \{ y^2 - x^2 z, x + y, 1 - x t \} \cap \Z[x,y,z], \\
+  I_5 &:= \{ y^2 - x^2 z, x, 1 - (x - y) t \} \cap \Z[x,y,z], \\
+  I_6 &:= \{ y^2 - x^2 z, x - y, 1 - x t \} \cap \Z[x,y,z], \\
+  \end{align}
+  where $t$ is a new variable. 
+
+  The Groebner basis for $I_2$ contains the polynomial $z$, which defines the refinement point $(0,0,0)$, which is already a cell in the CAD.
+  The Groebner bases for $I_4$ and $I_6$ both contain $z-1$, defining the refinement point $(0,0,1)$, which was identified by Lemma \@ref(lem:lazard-5-13). 
+
+Part of the QEPCAD output is now presented. In particular the projection factors, refinement points and the collection of cells which comprises the frontier of $C$. 
+
+``` {r, child="test-cases/fr-3-whitney-jhd.Rmd"}
 
 ```
-
-We now show a similar example, requiring an algebraic refinement. 
-
-::: {.example #qanm-4-alg }
-Let $n = 4$ and consider the section cell
-$$
-C := \{ (w,x,y,z) \in \R^4 \mid w > 0, w^2 = 3, 0 < x < 1, y > 0, y < (x-1)^2, z = 3x^2 + 2y^2 \}.
-$$
-:::
-
-Note that the sample points of the refined cells have been converted into primitive representation. 
-
-``` {r, child="test-cases/qanm-4-alg.Rmd"}
-
-```
-
-Now consider a $(1,1,0,0)$-cell in $\R^4$ requiring two refinements. 
-
-::: {.example #qanm-4-multi }
-Let $n = 4$ and consider the section cell
-$$
-C := \{ (w,x,y,z) \in \R^4 \mid  0 < w < 1, x > 0, w + x < 1, y = w^2 + x^2, z = 2 w^2 + x^2 \}.
-$$
-:::
-
-``` {r, child="test-cases/qanm-4-multi.Rmd"}
-
-```
-
-The following example, in $\R^5$ presents a $(1,0,1,0,0)$-cell, which requires two algebraic refinements of the CAD induced on $\R^1$. When running this test, `SACLIB` ran out of memory, so the number of available cells was doubled. 
-
-::: {.example #qanm-5-101 }
-Let $n = 5$ and consider the $(1,0,1,0,0)$-cell
-$$
-C = \{ (w,x,y,z) \in \R^4 \mid 0 < w < 1, x = 1 - w, y > 0, w + y < 1, z = w^2 + x y^2, t = 3 w^2 + x^2 y^2 \}.
-$$
-:::
-
-``` {r, child="test-cases/qanm-5-101.Rmd"}
-
-```
-
-
-More examples
-
-- large sub-CAD, maybe R^5
-
-- cells in sub-CAD of different levels
-
-- some variations on the whitney umbrella
-
-- whitney in a sub-CAD
-
-- whitney with multiple refinement points above it
-
 

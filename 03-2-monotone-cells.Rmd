@@ -75,7 +75,10 @@ Let $\mathbf{F} = \{f_1,\ldots,f_s\}$ be a set of polynomials in $\Z[x_1,\ldots,
 
 Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ monotone with respect to each $V_1, \ldots, V_k$.
 This algorithm has complexity
-<!-- TODO determine the complexity -->
+$$
+\left(s\left(d+1\right)\right)^{2^{O(n)}},
+$$
+which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
 ## Two-dimensional monotone sector cells {#sec:monotone-sectors}
@@ -148,8 +151,8 @@ Applying Corollary \@ref(cor:gamma-top-bottom) to $C$, we obtain continuous defi
 Let $$
 (c_1,\ldots,c_t)
 $$
-such that the graphs of $\varphi_{\{ c_i < x_1 < c_{i+1} \}}$ and $\varpsi_{\{ c_i < x_1 < c_{i+1} \}}$ for all $1 \le i \le t-1$ are monotone curve intervals. By @bgv15, Theorem 1.7, $X \cap \{ c_i < x_1 < c_{i+1} \}$ for all $1\le i \le t-1$ is a semi-monotone set [@bgv15, proof of Lemma 3.18].
-For the graphs of $\varphi$ and $\varpsi$ to be monotone curve intervals, we require that $\varphi$ and $\varpsi$ are either strictly increasing in, strictly decreasing in or independent of $x_1$. Thus, $(c_1,\ldots,c_t)$ are the critical points of $\varphi$ and $\psi$.
+such that the graphs of $\varphi_{\{ c_i < x_1 < c_{i+1} \}}$ and $\psi_{\{ c_i < x_1 < c_{i+1} \}}$ for all $1 \le i \le t-1$ are monotone curve intervals. By @bgv15, Theorem 1.7, $X \cap \{ c_i < x_1 < c_{i+1} \}$ for all $1\le i \le t-1$ is a semi-monotone set [@bgv15, proof of Lemma 3.18].
+For the graphs of $\varphi$ and $\psi$ to be monotone curve intervals, we require that $\varphi$ and $\psi$ are either strictly increasing in, strictly decreasing in or independent of $x_1$. Thus, $(c_1,\ldots,c_t)$ are the critical points of $\varphi$ and $\psi$.
 Note that if $X$ is not bounded from below, then $\varphi$ does not exist and does not have a graph.
 In this case, it is clear that no refinement of $X_B$ is required.
 
@@ -284,18 +287,19 @@ where $J'_T$ is the matrix from Equation \@ref(eq:jacobi-det) with the $\partial
 (\#eq:jacobi-det-2)
 \end{equation}
 
-Observe that $J_T$ is a rational function: a fraction in which the numerator and denominator are both polynomials. $\mathbf{x} \in \R^{\alpha - 1}$ is a solution of this rational function if and anly if $J'_T(\mathbf{x}) = 0$ and $d_T(\mathbf{x}) \ne 0$. Thus, solutions of the system $$
+Observe that $J_T$ is a rational function: a fraction in which the numerator and denominator are both polynomials. $\mathbf{x} \in \R^{\alpha - 1}$ is a solution of this rational function if and only if $J'_T(\mathbf{x}) = 0$ and $d_T(\mathbf{x}) \ne 0$. Thus, solutions of the system $$
 \{ J'_T = 0, d_T \ne 0 \}
 $$ should be found.
 Observe that this is a semialgebraic set, since
 $\{ d_T(\mathbf{x}) \ne 0 \} \leftrightarrow \R^{\alpha - 1 } \setminus \{ d_T(\mathbf{x}) = 0 \}$.
 Note that, when $\deg(d_T) = 0$, $d_T$ is a constant and therefore has no solutions. Thus, the condition $d_T = 0$ can be dropped in this case.
 
-Repeating this process to obtain $J'_B$ and $d_B$, if sector cell $C$ is bounded from below, we have a set of polynomial equations
-\begin{equation}
-\{ g_2,\ldots,g_{\alpha-1}, J'_B, J'_T \},
+Repeating this process to obtain $J'_B$ and $d_B$, if sector cell $C$ is bounded from below, we have two systems of polynomial equations
+\begin{align}
+\{ g_2,\ldots,g_{\alpha-1}, J'_B \},\\
+\{ g_2,\ldots,g_{\alpha-1}, J'_T \}\\
 (\#eq:lagrange-solve)
-\end{equation}
+\end{align}
 and inequalities
 \begin{equation}
 \{ s_1 g_{1,1} > 0, \ldots, s_\ell g_{1,\ell} > 0, d_B \ne 0, d_T \ne 0 \}
@@ -326,9 +330,10 @@ P(x_1,\ldots,x_\alpha) = & s_1 g_{1,1}(x_1) > 0 \land \ldots \land s_\ell g_{1,\
 (\#eq:lagrange-solve-qe-jacobis) \\
 \end{align}
 Computing the projection onto $\R^1$ of polynomials $\{g_2,\ldots,g_{\alpha - 1} J'_B, J'_T \}$ from Equations \@ref(eq:lagrange-solve-qe-constraints) and \@ref(eq:lagrange-solve-qe-jacobis), a system
-$$
+\begin{equation}
 \cal{F} := \{ f_1=0 ,\ldots,f_r=0 \} \subset \Z[x_1]
-$$
+(\#eq:lagrange-solve-projected)
+\end{equation}
 is obtained, whose real roots include the refinement points $(c_1,\ldots,c_t)$.
 Let ${\cal E} \subset \Z[x_1]$ be the set of polynomials obtained by computing the projection onto $\R^1$ of $\{ d_B, d_T \}$ (from Equation \@ref(eq:lagrange-solve-qe-denominators)) and
 $${\cal G} := \{ s_1 g_{1,1}, \ldots, s_\ell g_{1,\ell} \}
@@ -356,7 +361,7 @@ $$
 where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
 Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projop{\alpha}^{-1}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$.
 
-Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1 \}$ is monotone. Each $c_i, 1 \le i \le t$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
+Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i \le t$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
 :::
 
 ### Working with sub-decompositions above a 0-cell { #sec:sub-cad }
@@ -694,12 +699,50 @@ $C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}}
 The construction described in Section \@ref(sec:monotone-sections) describes how to find the refinement points to ensure that $\mathbf{f}$ is a monotone map.
 Thus, the construction in this section satisfies the properties required in the proof of @bgv15, Lemma 3.18 for $C$ to be monotone.
 
-<!--
-Complexity
-- refinements are easy. but how many poits do we get?
-- how many 2d cells. we know how many cells in total, but how many of dimension 2?
-- what is the complexity of computing the jacobi determinant. we do CAD projection to get back to R^2. so the dgree oft his polynomial is important. In practice, it was better to factorise. is there some theorem about factorising polynomials where s'd' <= d?
--->
+### Complexity Analysis { #sec:monotone-complexity }
+
+Let $C$ be a $(0,\ldots,0,i_j,0,\ldots,0,i_k,0\ldots,0)$-cell, with $i_j = i_k = 1$. 
+The Jacobi determinant, defined in Equation \@ref(eq:jacobi-det-2), is computed for all $k \le \ell \le n$. 
+As discussed in Section \@ref(sec:quasi-complexity), the determinant of a $(k \times k)$-matrix of polynomials with maximum degree $d$ is a polynomial of maximum dergee $kd$.
+Also from Section \@ref(sec:quasi-complexity), the complexity of computing the CAD with quasi-affine cells is
+$$
+(s(d+1))^{2^{O(n)}},
+$$
+which, according to Proposition \@ref(prp:collins), is also an upper bound on the number of polynomials, their degree and the number of cells in this CAD.
+Thus, the degree of the polynomial defined in Equation \@ref(eq:jacobi-det) is at most $n(s(d+1))^{2^{O(n)}}$, which is asymptotically the same as $(s(d+1))^{2^{O(n)}}$.
+
+We then compute the $x_1$-coordinates of the solutions to the $0$-dimensional system of equations (defined in Equations \@ref(eq:lagrange-solve)), subject to the inequalities (defined in Equation \@ref(eq:lagrange-solve-ineqs)). In the implementation, CAD projection is used to compute a family of polynomials ${\cal F}$, defined in Equation \@ref(eq:lagrange-solve-projected), such that the required refinement points contain their roots.
+As we are well aware, the number of polynomials and their degrees will be doubly exponential in $n$. However, a better bound on the number of refinement points can be obtained.
+Equation \@ref(eq:lagrange-solve) defines two systems of $\alpha - 1$ equations in $\alpha - 1$ unknowns and both systems have a finite number of solutions. 
+A generalisation of Bezout's Theorem (see @masser1983) states that, oven an algebraically closed field, if a system of $n$ polynomial equations, having dergees $d_1,\ldots,d_n$, in $n$ unknowns has a finite number of solutions, then this number, counted with multiplicities, is at most the product $d_1 \cdots d_n$. This will be an upper bound on the number of different real solutions to the system of polynomials. Since we only have an upper bound on the maximum degree $d$ of polynomials appearing in the systems from Equation \@ref(eq:lagrange-solve), then there are at most $d^n$ distinct real solutions to the system. 
+An even tighter bound can be obtained by considering the number of connected components of the algebraic set defined by the this system of equations. 
+Indeed, the number of connected components of a definable set is given by the $0$-th Betti number, $b_0$, of the set.
+@gv2009 Section 6.1 present some bounds on the total Betti number -- sum of Betti numbers of all orders -- ${\tt b}(S)$ of a semialgebraic set $S \subset \R^n$.
+For a semialgebraic set $S \subset \R^n$ defined by a conjunction of any number of polynomials having maximum dergee $d$, ${\tt b}(S) \le d(2d - 1)^{n-1}$ [@gv2009, Section 6.1 (a)].
+This bound is sufficient for our situation because the inequalities define a subset of these roots.
+Using the upper bound on the degrees of polynomials defining the CAD and the determ0inant of the matrix, along with the bound on the number of roots given by Bezout's theorem, we get a bound for the number of refinement points of
+$$
+\left(s(d+1)\right)^{n \cdot 2^{O(n)}}.
+$$
+which is asymptotically the same as
+$$
+(s(d+1))^{2^{O(n)}}.
+$$
+
+For the cell $C$, this process is repeated at most $2(n-2)$ times, and then repeated for each $2$-dimensional cell in the CAD contained in the input set $V$.
+There are at most
+$$
+(s(d+1))^{2^{O(n)}}
+$$
+cells in total, which is obviously an upper bound on the cells of dimension $2$. Thus, we get an upper bound on the number of refinement points of
+$$
+(s(d+1))^{2^{O(n)^2}},
+$$
+which is asymptotically the same as
+$$
+(s(d+1))^{2^{O(n)}}.
+$$
+Thuse, we obtain a bound on the total number of refinement points, which is asymptotically the same as the bound in the number of cells in the CAD containing quasi-affine cells. This gives us an upper bound on the complexity, number of cells, number of polynomials and dergees defining a CAD which is monotone with respect to all $V_1,\ldots,V_k$. 
 
 ## Computing the refinements { #sec:compute-refinement }
 

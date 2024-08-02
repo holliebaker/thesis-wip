@@ -21,7 +21,10 @@ be quantifier-free Boolean formulas containing $s$ different polynomials $\mathb
 
 Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$, which is obviously compatible with each $V_1,\ldots,v_k$, such that each cell $C \subset V_1\cup,\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
 This algorithm has complexity
-<!-- TODO determine the complexity -->
+$$
+\left(s\left(d+1\right)\right)^{2^{O(n)}},
+$$
+which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
 ## Computing the smooth two-dimensional locus of $V$
@@ -170,24 +173,45 @@ Correctness of Theorem \@ref(thm:bgv-quasi-algorithm) follows from the proof of 
 By @mccallum1988, Theorems 2.2.3 and 2.2.4, each cell $C \subset V$ of $\cal E$ will be an analytic submanifold, since $\dim(V_i) \le 2, 1\le i \le k$.
 The algorithm then makes the CAD compatible with the determinants of matrices $J_{C_2,\mathbf{m}}$ and $J_{C_1,\mathbf{m}}$, defined in Equations \@(ref:eq-jacobi-two) and \@ref(eq:jacobi-one) respectively. These are the critical points of projections of two- and one- dimensional smooth cylindrical cells $C \subset V_1,\ldots,V_k$. Thus, $\mathcal{D}$, the CAD output by the algorithm from Section \@ref(sec:quasiaffine-algorithm) is compatible with the critical points of projections of the smooth two-dimensional locus of $V_1\cup \ldots \cup V_k$ onte one- and two-dimensional coordinate subspaces, as required in the proof of @bgv15, Lemma 3.19.
 
-### Complexity Analysis
+### Complexity Analysis { #sec:quasi-complexity }
 
 Let us examine the complexity by supposing that the smooth stratification algorithm is used to find the smooth two-dimensional locus of $V = V_1\cup \ldots \cup V_k \subset \R^n$, defined by $s$ polynomials having maximum degree $d$.
-The smooth stratification step with emptiness checking has complexity
+By the result from Section \@ref(sec:strat-complexity), the smooth stratification step with emptiness checking has complexity
 $$
-s^{n+1} (d + 1)^{{1^{O(n)}}^3}.
+\left(s(d+1)\right)^{2^{O(n)}}.
 $$
-The critical points of two- and one- dimensional strata are then computed. This is done by computing determinants of $(n-2)$- and $(n-1)$-dimensional Jacobi matrices, containing the $n-2$ and $n-1$ polynomial equations which define the strata of codimension $2$ and $1$ respectively. These polynomial equations have maximum degree $(d + 1)^{1^{O(n)}}$. 
-In order to estimate the maximum degree of polynomials appearing in the Jacobi determinant of a $(k \times k)$-matrix, suppose that elementary row operations -- swapping two rows, multiplying a row by a number and adding one row to another -- will be used to convert the matrix into upper triangular form, then the elements on the main diagonal will be multiplied. 
-Elementary row operationns do not change the upper bound on degree. For the determinant, multiplying $k$ polynomials of maximum degree $d$ will result in a polynomial of maximum degree $kd$. Thus, the maximum dergee of the determinant of the $((n-2)\times (n-2))$-matrix will be $(n-2)(d + 1)^{1^{O(n)}}$ and the $((n-1) \times (n-1))$-matrix will be $(n-1)(d + 1)^{1^{O(n)}}$. These are both asymptotically the same as 
+The critical points of one- and two- dimensional strata are then computed. This is done by computing determinants of $(n-1)$- and $(n-2)$-dimensional Jacobi matrices, containing the $n-1$ and $n-2$ polynomial equations which define the strata of codimension $1$ and $2$ respectively.
+These polynomials have maximum degree $(d + 1)^{1^{O(n)}}$.
+In order to estimate the maximum degree of polynomials appearing in the Jacobi determinant of a $(k \times k)$-matrix, suppose that elementary row operations -- swapping two rows, multiplying a row by a number and adding one row to another -- will be used to convert the matrix into upper triangular form, then the elements on the main diagonal will be multiplied.
+Elementary row operationns do not change the upper bound on degree. For the determinant, multiplying $k$ polynomials of maximum degree $d$ will result in a polynomial of maximum degree $kd$. Thus, the maximum degree of the determinant of the $((n-2)\times (n-2))$-matrix will be $(n-2)(d + 1)^{1^{O(n)}}$ and the $((n-1) \times (n-1))$-matrix will be $(n-1)(d + 1)^{1^{O(n)}}$. These are both asymptotically the same as
 $$
-n (d + 1)^{1^{O(n)}}.
+n (d + 1)^{1^{O(n)}},
 $$
-For the critical points of $\projops{x_i}, 1 \le i \le n$, there will be $n$ Jacobi determinants, and for $\projops{x_i,x_j}, 1 \le i < j \le n$, there will be $(n-1) + (n-2) + \cdots + 1 = 1/2 (n-1)n$, which is asymptotically the same as $n^2$. 
+which is asymptotically the same as
+$$
+(d + 1)^{1^{O(n)}}.
+$$
+For the critical points of $\projops{x_i}, 1 \le i \le n$, there will be $n$ Jacobi determinants, and for $\projops{x_i,x_j}, 1 \le i < j \le n$, there will be $(n-1) + (n-2) + \cdots + 1 = \tfrac{1}{2} (n-1)n$, which is asymptotically the same as $n^2$.
 
-When a "classical" CAD, having constant sign on the $s$ input polynomials plus the $n + n^2$ Jacobi determinants, we have a complexity, according to @bpr2006, Algorithm 11.2, of
+A classical CAD, having constant sign on the $s$ input polynomials along with the $n + n^2$ Jacobi determinants, which have maximum degree $(d + 1)^{1^{O(n)}}$, is then constructed.
+According to Proposition \@ref(prp:collins) (@bpr2006, Algorithm 11.2), classical CAD has complexity
 $$
-((s + n^2 + n) (n^2 (d + 1)^{1^{O(n)}}))^{O(1)^{n}}.
+\left(s'd'\right)^{O(1)^{n}},
 $$
+where $s'$ is the number of input polynomials and $d'$ their maximum degree.
+Using the bounds obtained from the application of smooth stratification, we get
+$$
+\left((s + n^2 + n)(d + 1)^{1^{O(n)}}\right)^{O(1)^n}
+= \left(s(d + 1)^{1^{O(n)}} + n(d + 1)^{1^{O(n)}} + n^2 (d + 1)^{1^{O(n)}}\right)^{O(1)^n},
+$$
+which is bounded from above by
+$$
+\left(s(d + 1)\right)^{2^{O(n)}}.
+$$
+By Proposition \@ref(prp:collins), this is also an upper bound on the number of cells, number of polynomials defining the CAD and their maximum degree.
 
+Since this is the same complexity bound as for stratification, the total complexity of constructing a CAD, compatible with all $V_1,\ldots,V_k$ and such that each cell contained in $V_1 \cup \ldots \cup V_k$ is smooth and the graph of a quasi-affine map is
+$$
+\left(s\left(d+1\right)\right)^{2^{O(n)}}.
+$$
 
