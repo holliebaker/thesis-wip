@@ -23,7 +23,7 @@
 <meta name="author" content="Hollie Baker" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -304,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sec:strat-complexity" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Complexity Analysis<a href="3.4-sec:strat-complexity.html#sec:strat-complexity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We first briefly summarise the semi-Pfaffian case, as presented by <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>.
-The algorithm from <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 1 takes as input a semi-Pfaffian set with the format <span class="math inline">\((r, N, \alpha, \beta, n)\)</span> (see Definition <a href="2.1-semialgebraic-sets-and-monotone-cells.html#def:pfaff-format">2.11</a>) and has a complexity upper bound of
+The algorithm from <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 2 takes as input a semi-Pfaffian set with the format <span class="math inline">\((r, N, \alpha, \beta, n)\)</span> (see Definition <a href="2.1-semialgebraic-sets-and-monotone-cells.html#def:pfaff-format">2.11</a>) and has a complexity upper bound of
 <span class="math display">\[
 3^N N^{n+1} {\cal B}
 \]</span>
@@ -319,49 +319,47 @@ If the Oracle, used for checking emptiness, is allowed, then the algorithm has c
 X := \{ \mathbf{x} \in \mathbb{R}^n \mid f_1 = 0, \ldots, f_k = 0, g_1 &gt; 0, \ldots, g_\ell &gt; 0 \},
 \tag{3.1}
 \end{equation}\]</span>
-where all <span class="math inline">\(s := k + \ell\)</span> functions <span class="math inline">\(f_i,g_j\)</span> are polynomials with maximum degree <span class="math inline">\(d\)</span>.
+where all <span class="math inline">\(s := k + \ell\)</span> functions <span class="math inline">\(f_i,g_j\)</span> are polynomials with maximum degree <span class="math inline">\(d\)</span> – Pfaffian functions of order <span class="math inline">\(0\)</span> and dergee <span class="math inline">\((\alpha, \beta)\)</span>.
 The upper complexity bound for the algorithm without Oracle is
 <span class="math display">\[
-3^{s} s^{n+1} (d + 1)^{1^{O(n)}}.
+3^{s} s^{n+1} (d + 1)^2.
 \]</span>
 The number of strata, some of which may be empty, does not exceed
-<span class="math display">\[s^{n} (d + 1)^{1^{O(n)}}.\]</span>
-Each stratum is defined by at most <span class="math inline">\(s (d + 1)^{1^{O(n)}}\)</span> polynomial equations and inequalities of maximum degree <span class="math inline">\((d + 1)^{1^{O(n)}}\)</span>.
+<span class="math display">\[s^{n} (d + 1)^2.\]</span>
+Each stratum is defined by at most <span class="math inline">\(s (d + 1)^2\)</span> polynomial equations and inequalities of maximum degree <span class="math inline">\((d + 1)^2\)</span>.
 If the Oracle is allowed, no empty strata will be produced and the algorithm has complexity not exceeding
 <span class="math display">\[
-s^{n+1} (d + 1)^{1^{O(n)}}.
+s^{n+1} (d + 1)^2.
 \]</span>
 These bounds follow immediately from <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 6.2.
 We will now analyse the complexity of the algorithm presented in Section <a href="3.1-sec:strat-alg-description.html#sec:strat-alg-description">3.1</a>, which performs emptiness checking on candidate strata.</p>
-<p>There are <span class="math inline">\(s^{n} (d + 1)^{1^{O(n)}}\)</span> candidate strata <span class="math inline">\(Y_k\)</span>, and the algorithm determines whether each of them is empty, in order to determine whether all partial differential equations vanish identically on the input set <span class="math inline">\(X\)</span>.
+<p>There are <span class="math inline">\(s^{n} (d + 1)^2\)</span> candidate strata <span class="math inline">\(Y_k\)</span>, and the algorithm determines whether each of them is empty, in order to decide whether all partial differential equations vanish identically on the input set <span class="math inline">\(X\)</span>.
 In the implementation, the check is done using CAD (a call to <code>QEPCAD-B</code>).
-For complexity analysis purposes, we will use a theoretical algorithm, having singly exponential complexity in the number of variables.
+For the purposes of complexity analysis, we will use a theoretical algorithm, having singly exponential complexity in the number of variables.
 <span class="citation">Basu, Pollack, and Roy (<a href="#ref-bpr98" role="doc-biblioref">1998</a>)</span> propose an algorithm which takes a semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span> defined by <span class="math inline">\(s\)</span> polynomials with maximum degree <span class="math inline">\(d\)</span> in <span class="math inline">\(n &lt; s\)</span> variables and produces a “witness” – a point contained in every cell in a decomposition of <span class="math inline">\(S\)</span>.
 The algorithm can be used to determine the emptiness of <span class="math inline">\(S\)</span> and requires <span class="math inline">\(s(s/n)^n d^{O(n)}\)</span> arithmetic operations.
 This is asymptotically the same as <span class="math display">\[(sd)^{O(n)}.\]</span>
 Using the bounds for the number and degrees of polynomials defining strata, each emptiness check costs
 <span class="math display">\[
-\left( s (d+1)^{1^{O(n)}} (d+1)^{1^{O(n)}} \right)^{O(n)}
-= \left( s (d+1)^{2^{O(n)}} \right)^{O(n)},
+\left(s(d+1)^{2}(d+1)^{2}\right)^{O(n)}=\left(s(d+1)^{4}\right)^{O(n)},
 \]</span>
 which is asymptotically the same as
 <span class="math display">\[
-\left(s (d+1)\right)^{2^{O(n)}}.
+\left(s(d+1)\right)^{O(n)}
 \]</span>
 This operation must be performed for all of the
-<span class="math inline">\(s^{n} (d + 1)^{1^{O(n)}}\)</span>
+<span class="math inline">\(s^{n} (d + 1)^{2}\)</span>
 candidate strata, resulting in a total complexity for emptiness checking of
 <span class="math display">\[
-\left(s (d+1)\right)^{2\cdot 2^{O(n)}} = \left(s (d+1)\right)^{2^{O(n)}},
+\left(s(d+1)\right)^{O(n)^{2}}.
 \]</span>
-The total complexity of stratification is therefore
+The total complexity of stratification, given by the sum of the complexity of applying the algorithm and performing the emptiness checks, is
 <span class="math display">\[
-\left(s (d+1)\right)^{2\cdot 2^{O(n)}} = \left(s (d+1)\right)^{2^{O(n)}},
-+ s^{n+1} (d + 1)^{1^{O(n)}},
+3^{s}s^{n+1}(d+1)^{2}+\left(s(d+1)\right)^{O(n)^{2}}.
 \]</span>
-which is asymptotically the same as
+Since <span class="math inline">\(s^{n+1}(d+1)^{2}\)</span> is bounded from above by <span class="math inline">\(\left(s(d+1)\right)^{O(n)^{2}}\)</span>, we get a total complexity upper bound of
 <span class="math display">\[
-(s(d+1))^{2^{O(n)}}.
+3^{s}\left(s(d+1)\right)^{O(n)^{2}}.
 \]</span></p>
 </div>
 <h3>References</h3>

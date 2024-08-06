@@ -23,7 +23,7 @@
 <meta name="author" content="Hollie Baker" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -306,23 +306,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Semialgebraic sets will usually be represented by Quantifier-Free Boolean formulas (QFFs) (see Definition <a href="2.1-semialgebraic-sets-and-monotone-cells.html#def:qff">2.3</a>).
 Occasionally, First-Order formulas, a wider class of formulas in which some variables may be bound by quantifiers <span class="math inline">\(\forall\)</span> and <span class="math inline">\(\exists\)</span> (see Definition <a href="2.1-semialgebraic-sets-and-monotone-cells.html#def:first-order-formula">2.4</a>).</p>
 <div class="theorem">
-<p><span id="thm:main" class="theorem"><strong>Theorem 1.5  </strong></span>Let <span class="math inline">\(S \subset \mathbb{R}^n\)</span> be a semialgebraic set defined by a QFF <span class="math inline">\(F\)</span> with <span class="math inline">\(s\)</span> different polynomials of maximum degree <span class="math inline">\(d\)</span> in <span class="math inline">\(\mathbb{R}[x_1,\ldots,x_n]\)</span>.
+<p><span id="thm:main" class="theorem"><strong>Theorem 1.6  </strong></span>Let <span class="math inline">\(S \subset \mathbb{R}^n\)</span> be a semialgebraic set defined by a QFF <span class="math inline">\(F\)</span> with <span class="math inline">\(s\)</span> different polynomials of maximum degree <span class="math inline">\(d\)</span> in <span class="math inline">\(\mathbb{R}[x_1,\ldots,x_n]\)</span>.
 There is an algorithm, taking <span class="math inline">\(F\)</span> as input, which outputs a cylindrical decomposition <span class="math inline">\(\mathcal D\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> compatible with <span class="math inline">\(S\)</span> and
 satisfying the frontier condition.
 The complexity of this algorithm is <span class="math inline">\((sd)^{O(1)^{n2^n}}\)</span>.
 This is also an upper bound on the number of cells in <span class="math inline">\(\mathcal D\)</span>, number of polynomials defining cells and their degrees.</p>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-54" class="remark"><em>Remark</em>. </span>The algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a> is understood as a Blum-Shub-Smale (BSS) real numbers machine <span class="citation">(Blum, Shub, and Smale <a href="#ref-blum1998" role="doc-biblioref">1998</a>)</span>.
+<p><span id="unlabeled-div-54" class="remark"><em>Remark</em>. </span>The algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a> is understood as a Blum-Shub-Smale (BSS) real numbers machine <span class="citation">(Blum, Shub, and Smale <a href="#ref-blum1998" role="doc-biblioref">1998</a>)</span>.
 A similar statement is also true for the Turing machine model, in which case the complexity bound
 depends, in addition, polynomially on maximal bit-size of coefficients (cf. <span class="citation">Collins (<a href="#ref-collins1975" role="doc-biblioref">1975</a>)</span>).</p>
 </div>
-<p>The following result, which is somewhat natural and is also mentioned by <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> will be proved. This will allow us to apply Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a> directly to semialgebraic sets defined by first-order Boolean formulas with quantifiers.</p>
+<p>The following result, which is somewhat natural and is also mentioned by <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> will be proved. This will allow us to apply Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a> directly to semialgebraic sets defined by first-order Boolean formulas with quantifiers.</p>
 <div class="theorem">
 <p><span id="thm:proj" class="theorem"><strong>Theorem 8.1  </strong></span>Let <span class="math inline">\(\mathcal{D}\)</span> be a CAD of <span class="math inline">\(\mathbb{R}^n\)</span> compatible with a semialgebraic set <span class="math inline">\(S\subset \mathbb{R}^n\)</span> and satisfying the frontier condition.
 Then the decomposition induced by <span class="math inline">\(\mathcal{D}\)</span> on <span class="math inline">\(\mathbb{R}^{k}\)</span> for all <span class="math inline">\(1\le k &lt; n\)</span> is a cylindrical decomposition of <span class="math inline">\(\mathbb{R}^k\)</span> compatible with <span class="math inline">\(\operatorname{proj}_{\mathbb{R}^k}(S)\)</span> and satisfying the frontier condition.</p>
 </div>
-<p>This will allow us to apply Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a> to semialgebraic sets represented by first-order Boolean formulas (with quantifiers) and obtain a decomposition compatible with <span class="math inline">\(S\)</span> and satisfying the frontier condition.</p>
+<p>This will allow us to apply Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a> to semialgebraic sets represented by first-order Boolean formulas (with quantifiers) and obtain a decomposition compatible with <span class="math inline">\(S\)</span> and satisfying the frontier condition.</p>
 </div>
 <h3>References</h3>
 <div id="refs" class="references hanging-indent">

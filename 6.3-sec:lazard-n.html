@@ -23,7 +23,7 @@
 <meta name="author" content="Hollie Baker" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -511,25 +511,25 @@ The procedure described above explains how to obtain some new polynomials which 
 </div>
 <div id="complexity-analysis" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Complexity analysis<a href="6.3-sec:lazard-n.html#complexity-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will see, in Section <a href="8-sec:novel-frontier.html#sec:novel-frontier">8</a>, that there is an algorithm for obtaining the frontier condition on a CAD compatible with a semialgebraic set of arbitrary dimension. This algorithm has complexity <span class="math inline">\((sd)^{O(1)^{n2^n}}\)</span> – triply exponential in the number of variables. However, in the particular case of semialgebraic sets having dimension at most two, the complexity may be lower. This is now discussed.</p>
 <p>Let us first discuss complexity in relation to the procedure described by <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> in Theorem 3.20. Given the family <span class="math inline">\(V_1,\ldots,V_k\)</span>, <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> is computed for each <span class="math inline">\(2\)</span>-dimensional cell <span class="math inline">\(C \subset V_1\cup \ldots \cup V_k\)</span> According to Lemma <a href="8.2-theory.html#lem:frontier">8.1</a>, there is an algorithm, which uses <span class="citation">Basu, Pollack, and Roy (<a href="#ref-bpr2006" role="doc-biblioref">2006</a>)</span> Algorithm 14.21 as its main subroutine, for computing <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span>, having complexity <span class="math display">\[
 (sd)^{O(n^2)},
 \]</span>
-where <span class="math inline">\(C\)</span> is defined by <span class="math inline">\(s\)</span> different polynomials of maximum dergee <span class="math inline">\(d\)</span>.
-<span class="math inline">\(C\)</span> has constant sign on all polynomials defining the CAD (although it may be the case that only some of them will be needed to define it), so, using the bounds discussed in Sections <a href="4.3-correctness-and-complexity.html#sec:quasi-complexity">4.3.1</a> and <a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity">5.4.1</a>, the complexity upper bound for computing <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> is
+where <span class="math inline">\(C\)</span> is defined by <span class="math inline">\(s\)</span> different polynomials of maximum degree <span class="math inline">\(d\)</span>.
+<span class="math inline">\(C\)</span> has constant sign on all polynomials defining the CAD, so, using the bounds discussed in Sections <a href="4.3-correctness-and-complexity.html#sec:quasi-complexity">4.3.1</a> and <a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity">5.4.1</a>, the complexity upper bound for computing <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> is
 <span class="math display">\[
-\left( \left( s (d+1) \right)^{2^{O(n)}} \left( s (d+1) \right)^{2^{O(n)}} \right)^{O(n^2)}
-= \left( s (d+1) \right)^{O(n^2) \cdot 2\cdot 2^{O(n)}}
-,
+\left(\left(s(d+1)\right)^{O(1)^{n}}\cdot\left(s(d+1)\right)^{O(1)^{n}}\right)^{O(n^2)},
 \]</span>
 which is asymptotically the same as
 <span class="math display">\[
-(s(d+1))^{2^{O(n)}}.
+(s(d+1))^{O(1)^{n}}..
 \]</span>
+Note that, in some cases, only some of the <span class="math inline">\(\left(s(d+1)\right)^{O(1)^{n}}\)</span> polynomials are required to define the cell <span class="math inline">\(C\)</span>.
 This is, according to Lemma <a href="8.2-theory.html#lem:frontier">8.1</a>, an upper bound on the number of polynomials and their degrees in the QFF defining <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span>.
 The procedure requires us to partition <span class="math inline">\({\operatorname{fr} \left( C \right)}\)</span> into points and monotone curve intervals.
-In order to do this, a similar process as that used to obtain monotone cells (see Section <a href="5-sec:monotone-cells.html#sec:monotone-cells">5</a>) can be used. This will be repeated for each <span class="math inline">\(2\)</span>-dimensional cells contained in <span class="math inline">\(V_1\cup \ldots \cup V_k\)</span>. As such, the overall complexity will be the same as that presented in Section <a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity">5.4.1</a>. I.e.,
+In order to do this, a similar process as that used to obtain monotone cells (see Section <a href="5-sec:monotone-cells.html#sec:monotone-cells">5</a>) can be used. This will be repeated for each of the <span class="math inline">\(2\)</span>-dimensional cells contained in <span class="math inline">\(V_1\cup \ldots \cup V_k\)</span>. As such, the overall complexity will be the same as that presented in Section <a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity">5.4.1</a>. I.e.,
 <span class="math display">\[
-(s(d+1))^{2^{O(n)}}.
+(s(d+1))^{O(1)^{n}}.
 \]</span></p>
 <p>Now let us consider the extension of <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span>, discussed in Section <a href="6.3-sec:lazard-n.html#sec:lazard-n">6.3</a>.
 For each <span class="math inline">\(1\)</span>-dimensional sector cell which projects on a <span class="math inline">\(0\)</span>-dimensional bad cell, the saturation of ideals, defined in Equations <a href="6.3-sec:lazard-n.html#eq:lazard-n-1">(6.1)</a> and <a href="6.3-sec:lazard-n.html#eq:lazard-n-2">(6.2)</a> are computed. There will be at most <span class="math inline">\(n\)</span> polynomials, in <span class="math inline">\(n+1\)</span> variables, appearing in these ideals. The saturation of these ideals is computed by finding a Groebner basis for them.
@@ -543,25 +543,25 @@ n \cdot 2^{2^n} = 2^{n 2^n}.
 The bound on the number of bad cells is unknown, but it is obviously bounded from above by the total number of cells in the induced decomposition of <span class="math inline">\(\mathbb{R}^{n-1}\)</span>. I.e., <span class="math inline">\((s(d+1))^{2^{O(n-1)}}\)</span>.
 It follows that the complexity of the algorithm arising from the generalisation of Lazard is
 <span class="math display">\[
-(s(d+1))^{2^{O(n-1)}} 2^{n 2^n},
+(s(d+1))^{O(1)^{n-1}} \cdot 2^{n 2^n},
 \]</span>
 which is bounded from above by
 <span class="math display">\[
-(s(d+1))^{2^{O(n)}}.
+(s(d+1))^{O(1)^{n}}.
 \]</span></p>
-<p>Both approaches – <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> and the gerenalisation of <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span> – have the same complexity upper bound.</p>
-<p>To sum up, each of the three stages – quasi-affine, monotone and frontier condition – of the algorithm for computing a CAD which is monotone with respect to all <span class="math inline">\(V_1,\ldots,V_k\)</span>, such that <span class="math inline">\(\dim(V_i) \le 2\)</span> for all <span class="math inline">\(1 \le i \le k\)</span>, and satisfying the frontier condition each has complexity <span class="math inline">\((s(d+1))^{2^{O(n-1)}}\)</span>.
+<p>Both approaches – <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span> and the generalisation of <span class="citation">Lazard (<a href="#ref-lazard10" role="doc-biblioref">2010</a>)</span> – have the same complexity upper bound.</p>
+<p>To summarise, each of the three stages – quasi-affine, monotone and frontier condition – of the algorithm for computing a CAD which is monotone with respect to all <span class="math inline">\(V_1,\ldots,V_k\)</span>, such that <span class="math inline">\(\dim(V_i) \le 2\)</span> for all <span class="math inline">\(1 \le i \le k\)</span>, and satisfying the frontier condition each has complexity <span class="math inline">\((s(d+1))^{2^{O(n)}}\)</span>.
 Thus, the overall complexity of this algorithm is
 <span class="math display">\[
-(s(d+1))^{2^{O(n-1)}}.
+(s(d+1))^{O(1)^{n}}.
 \]</span>
 By Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a>, this is also an upper bound on the number of cells, number of polynomials and their degrees defining this CAD.</p>
 <p>Recall that the complexity of computing a “classical” CAD (from Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a>) is <span class="math display">\[
 (sd)^{O(1)^n}.
 \]</span>
-Therefore, the monotone CAD algorithm has, as expected, a higher complexity than that of the classical algorithm.
-However, the complexity is not significantly worse, still being doubly exponential in the number of variables and can still (very loosely) be said to have complexity <span class="math inline">\(2^{2^n}\)</span>.
-This discussion completes the proof of Theorem <a href="1.1-structure-of-this-thesis.html#thm:bgv-algorithm">1.1</a>.</p>
+Therefore, the monotone CAD algorithm has, as expected, a slightly higher complexity than that of the classical algorithm.
+However, the complexity is not significantly worse, still being doubly exponential in the number of variables.
+This discussion completes the proof of Theorem <a href="1.1-structure-of-this-thesis.html#thm:bgv-algorithm">1.2</a>.</p>
 
 </div>
 </div>

@@ -1,5 +1,6 @@
 eq:basic-semialgebraic
 def:unlabeled-div-1
+thm:strat
 prp:bgv-main
 thm:bgv-algorithm
 thm:bgv-quasi-algorithm
@@ -139,7 +140,8 @@ exm:qanm-4-above-alg
 exm:qanm-4-alg
 exm:qanm-4-multi
 exm:qanm-5-101
-exm:fr-3-whitney-multi
+exm:fr-4-whitney-multi
+exm:fr-4-whitney-alg
 intro
 structure-of-this-thesis
 sec:background

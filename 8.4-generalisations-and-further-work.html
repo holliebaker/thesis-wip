@@ -23,7 +23,7 @@
 <meta name="author" content="Hollie Baker" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.4</span> Generalisations and further work<a href="8.4-generalisations-and-further-work.html#generalisations-and-further-work" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="sec:pfaffian" class="section level3 hasAnchor" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Pfaffian Functions<a href="8.4-generalisations-and-further-work.html#sec:pfaffian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a> can be extended to restricted sub-Pfaffian sets as described by <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv04" role="doc-biblioref">2004</a>)</span>.
+<p>Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a> can be extended to restricted sub-Pfaffian sets as described by <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv04" role="doc-biblioref">2004</a>)</span>.
 In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by {} <span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv04" role="doc-biblioref">2004</a>, Section 2.6)</span>, whose structure is destroyed by a change of coordinates, and obtain a bound on the number of cells in these decompositions.</p>
 <p>The idea of the proof is still valid. Only a modification to the subroutines for computing the frontier, and for constructing a classical CAD, is needed. For the former, replace the quantifier elimination algorithm in Lemma <a href="8.2-theory.html#lem:frontier">8.1</a> with the result of <span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv04" role="doc-biblioref">2004</a>, Section 5)</span>. In the latter case, the classical CAD algorithm from Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> should be replaced by the main result of <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv01" role="doc-biblioref">2001</a>)</span> (see also <span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv04" role="doc-biblioref">2004</a>, Section 7)</span>). The rest of the proof can be reproduced almost identically.
 Care must be taken to ensure that Lemma <a href="8.2-theory.html#lem:section-split">8.3</a> is still applicable to restricted sub-Pfaffian sets. The projection of a sub-Pfaffian set is a semi-Pfaffian set, which admits the representation as a finite union of basic semi-Pfaffian sets.
@@ -314,7 +314,7 @@ In fact, basic sets can be defined using any functions definable in <span class=
 </div>
 <div id="sec:novel-frontier-fw" class="section level3 hasAnchor" number="8.4.2">
 <h3><span class="header-section-number">8.4.2</span> Further Wrok<a href="8.4-generalisations-and-further-work.html#sec:novel-frontier-fw" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The complexity upper bound of the algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a> is significantly worse than the bound
+<p>The complexity upper bound of the algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a> is significantly worse than the bound
 for classical CAD algorithm due to <span class="citation">Collins (<a href="#ref-collins1975" role="doc-biblioref">1975</a>)</span> (and <span class="citation">Wüthrich (<a href="#ref-wuthrich1976" role="doc-biblioref">1976</a>)</span>).
 This is caused by the parameter of its recursive loop: the index of a cylindrical cell, which is exponential in the ambient dimension.
 It is difficult to see another parameter that could make the recursion significantly shorter. Thus, if any progress is to be made towards a better asymptotic complexity, the method used may need to be based on a completely different ideas.

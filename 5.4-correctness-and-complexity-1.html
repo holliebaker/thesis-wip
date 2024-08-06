@@ -23,7 +23,7 @@
 <meta name="author" content="Hollie Baker" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="correctness-and-complexity-1" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Correctness and Complexity<a href="5.4-correctness-and-complexity-1.html#correctness-and-complexity-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The correctness of the algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:bgv-monotone-algorithm">1.3</a> follows from <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Theorem 3.20 and Lemma 3.19.
+<p>The correctness of the algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:bgv-monotone-algorithm">1.4</a> follows from <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Theorem 3.20 and Lemma 3.19.
 The algorithm described in Section <a href="5.3-implementation-details-1.html#sec:monotone-algorithm">5.3.1</a> considers each <span class="math inline">\(2\)</span>-dimensional cell in a sub-cad <span class="math inline">\(\mathcal{E}\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> above a <span class="math inline">\(0\)</span>-dimensional cell <span class="math inline">\(\mathbf{b} \in \mathbb{R}^{k-1}\)</span>. This is exactly the inductive step of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Theorem 3.20, where an <span class="math inline">\((i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)\)</span>-cell, where <span class="math inline">\(i_1 = i_\alpha = 1\)</span>, is considered.
 By Corollary <a href="5.1-sec:monotone-sectors.html#cor:gamma-top-bottom">5.1</a> to <span class="math inline">\(C\)</span>, the two-dimensional subset <span class="math inline">\(X \subset {\operatorname{span} \{x_1,x_\alpha\}}\)</span> is obtained. The first part of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.18 describes how <span class="math inline">\(X\)</span> should be refined into two-dimensional semi-monotone sets. The construction described in Section <a href="4-sec:quasi-affine.html#sec:quasi-affine">4</a> explains how to obtain the set of refinement points <span class="math inline">\((c_1,\ldots,c_t) \subset \mathbb{A}\)</span>.
 <span class="math inline">\(C\)</span> is the graph of a quasi-affine map <span class="math inline">\(\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})\)</span> where each component <span class="math inline">\(f_j : X \to {\operatorname{span} \{x_j\}}\)</span> for <span class="math inline">\(j \in \{1,\ldots,n\} \setminus \{1,\alpha\}\)</span> is a quasi-affine function. The second part of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.18 describes how to refine <span class="math inline">\(X\)</span> such that each function <span class="math inline">\(f_j\)</span> is monotone. By <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.16, if every component <span class="math inline">\(f_i\)</span> is monotone on a subset in the refinement of <span class="math inline">\(X\)</span>, then the map <span class="math inline">\(\mathbf{f}\)</span> itself is monotone on that subset of <span class="math inline">\(X\)</span>.
@@ -313,44 +313,45 @@ Thus, the construction in this section satisfies the properties required in the 
 <h3><span class="header-section-number">5.4.1</span> Complexity Analysis<a href="5.4-correctness-and-complexity-1.html#sec:monotone-complexity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let <span class="math inline">\(C\)</span> be a <span class="math inline">\((0,\ldots,0,i_j,0,\ldots,0,i_k,0\ldots,0)\)</span>-cell, with <span class="math inline">\(i_j = i_k = 1\)</span>.
 The Jacobi determinant, defined in Equation <a href="5.1-sec:monotone-sectors.html#eq:jacobi-det-2">(5.8)</a>, is computed for all <span class="math inline">\(k \le \ell \le n\)</span>.
-As discussed in Section <a href="4.3-correctness-and-complexity.html#sec:quasi-complexity">4.3.1</a>, the determinant of a <span class="math inline">\((k \times k)\)</span>-matrix of polynomials with maximum degree <span class="math inline">\(d\)</span> is a polynomial of maximum dergee <span class="math inline">\(kd\)</span>.
+As discussed in Section <a href="4.3-correctness-and-complexity.html#sec:quasi-complexity">4.3.1</a>, the determinant of a <span class="math inline">\((k \times k)\)</span>-matrix of polynomials with maximum degree <span class="math inline">\(d\)</span> is a polynomial of maximum degree <span class="math inline">\(kd\)</span>.
 Also from Section <a href="4.3-correctness-and-complexity.html#sec:quasi-complexity">4.3.1</a>, the complexity of computing the CAD with quasi-affine cells is
 <span class="math display">\[
-(s(d+1))^{2^{O(n)}},
+(s(d+1))^{O(1)^{n}},
 \]</span>
 which, according to Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a>, is also an upper bound on the number of polynomials, their degree and the number of cells in this CAD.
-Thus, the degree of the polynomial defined in Equation <a href="5.1-sec:monotone-sectors.html#eq:jacobi-det">(5.5)</a> is at most <span class="math inline">\(n(s(d+1))^{2^{O(n)}}\)</span>, which is asymptotically the same as <span class="math inline">\((s(d+1))^{2^{O(n)}}\)</span>.</p>
+Thus, the degree of the polynomial defined in Equation <a href="5.1-sec:monotone-sectors.html#eq:jacobi-det">(5.5)</a> is at most <span class="math inline">\(n\cdot(s(d+1))^{O(1)^{n}}\)</span>, which is asymptotically the same as
+<span class="math inline">\((s(d+1))^{O(1)^{n}}\)</span>.</p>
 <p>We then compute the <span class="math inline">\(x_1\)</span>-coordinates of the solutions to the <span class="math inline">\(0\)</span>-dimensional system of equations (defined in Equations <a href="5.1-sec:monotone-sectors.html#eq:lagrange-solve">(5.9)</a>), subject to the inequalities (defined in Equation <a href="5.1-sec:monotone-sectors.html#eq:lagrange-solve-ineqs">(5.10)</a>). In the implementation, CAD projection is used to compute a family of polynomials <span class="math inline">\({\cal F}\)</span>, defined in Equation <a href="5.1-sec:monotone-sectors.html#eq:lagrange-solve-projected">(5.15)</a>, such that the required refinement points contain their roots.
 As we are well aware, the number of polynomials and their degrees will be doubly exponential in <span class="math inline">\(n\)</span>. However, a better bound on the number of refinement points can be obtained.
 Equation <a href="5.1-sec:monotone-sectors.html#eq:lagrange-solve">(5.9)</a> defines two systems of <span class="math inline">\(\alpha - 1\)</span> equations in <span class="math inline">\(\alpha - 1\)</span> unknowns and both systems have a finite number of solutions.
-A generalisation of Bezout’s Theorem (see <span class="citation">Masser and Wüstholz (<a href="#ref-masser1983" role="doc-biblioref">1983</a>)</span>) states that, oven an algebraically closed field, if a system of <span class="math inline">\(n\)</span> polynomial equations, having dergees <span class="math inline">\(d_1,\ldots,d_n\)</span>, in <span class="math inline">\(n\)</span> unknowns has a finite number of solutions, then this number, counted with multiplicities, is at most the product <span class="math inline">\(d_1 \cdots d_n\)</span>. This will be an upper bound on the number of different real solutions to the system of polynomials. Since we only have an upper bound on the maximum degree <span class="math inline">\(d\)</span> of polynomials appearing in the systems from Equation <a href="5.1-sec:monotone-sectors.html#eq:lagrange-solve">(5.9)</a>, then there are at most <span class="math inline">\(d^n\)</span> distinct real solutions to the system.
-An even tighter bound can be obtained by considering the number of connected components of the algebraic set defined by the this system of equations.
+A generalisation of Bezout’s Theorem (see <span class="citation">Masser and Wüstholz (<a href="#ref-masser1983" role="doc-biblioref">1983</a>)</span>) states that, over an algebraically closed field, if a system of <span class="math inline">\(n\)</span> polynomial equations, having degrees <span class="math inline">\(d_1,\ldots,d_n\)</span>, in <span class="math inline">\(n\)</span> unknowns has a finite number of solutions, then this number, counted with multiplicities, is at most the product <span class="math inline">\(d_1 \cdots d_n\)</span>. This will be an upper bound on the number of different real solutions to the system of polynomials. Since we only have an upper bound on the maximum degree <span class="math inline">\(d\)</span> of polynomials appearing in the systems from Equation <a href="5.1-sec:monotone-sectors.html#eq:lagrange-solve">(5.9)</a>, then there are at most <span class="math inline">\(d^n\)</span> distinct real solutions to the system.
+An even tighter bound can be obtained by considering the number of connected components of the algebraic set defined by this system of equations.
 Indeed, the number of connected components of a definable set is given by the <span class="math inline">\(0\)</span>-th Betti number, <span class="math inline">\(b_0\)</span>, of the set.
-<span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv2009" role="doc-biblioref">2009</a>)</span> Section 6.1 present some bounds on the total Betti number – sum of Betti numbers of all orders – <span class="math inline">\({\tt b}(S)\)</span> of a semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span>.
-For a semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span> defined by a conjunction of any number of polynomials having maximum dergee <span class="math inline">\(d\)</span>, <span class="math inline">\({\tt b}(S) \le d(2d - 1)^{n-1}\)</span> <span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv2009" role="doc-biblioref">2009</a>, Section 6.1 (a))</span>.
+<span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv2009" role="doc-biblioref">2009</a>)</span> Section 6.1 present some bounds on the total Betti number – sum of Betti numbers of all orders – <span class="math inline">\({\tt{b}}(S)\)</span> of a semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span>.
+For a semialgebraic set <span class="math inline">\(S \subset \mathbb{R}^n\)</span> defined by a conjunction of any number of polynomials having maximum degree <span class="math inline">\(d\)</span>, <span class="math inline">\({\tt{b}}(S) \le d(2d - 1)^{n-1}\)</span> <span class="citation">(Gabrielov and Vorobjov <a href="#ref-gv2009" role="doc-biblioref">2009</a>, Section 6.1 (a))</span>.
 This bound is sufficient for our situation because the inequalities define a subset of these roots.
-Using the upper bound on the degrees of polynomials defining the CAD and the determ0inant of the matrix, along with the bound on the number of roots given by Bezout’s theorem, we get a bound for the number of refinement points of
+Using the upper bound on the degrees of polynomials defining the CAD and the determinant of the matrix, along with the bound on the number of roots given by Bezout’s theorem, we get a bound for the number of refinement points of
 <span class="math display">\[
-\left(s(d+1)\right)^{n \cdot 2^{O(n)}}.
+\left(s(d+1)\right)^{n \cdot O(1)^{n}}.
 \]</span>
-which is asymptotically the same as
+This is asymptotically the same as
 <span class="math display">\[
-(s(d+1))^{2^{O(n)}}.
+(s(d+1))^{O(1)^{n}}.
 \]</span></p>
 <p>For the cell <span class="math inline">\(C\)</span>, this process is repeated at most <span class="math inline">\(2(n-2)\)</span> times, and then repeated for each <span class="math inline">\(2\)</span>-dimensional cell in the CAD contained in the input set <span class="math inline">\(V\)</span>.
 There are at most
 <span class="math display">\[
-(s(d+1))^{2^{O(n)}}
+(s(d+1))^{O(1)^{n}}
 \]</span>
 cells in total, which is obviously an upper bound on the cells of dimension <span class="math inline">\(2\)</span>. Thus, we get an upper bound on the number of refinement points of
 <span class="math display">\[
-(s(d+1))^{2^{O(n)^2}},
+\left((s(d+1))^{O(1)^{n}}\right)^2
 \]</span>
 which is asymptotically the same as
 <span class="math display">\[
-(s(d+1))^{2^{O(n)}}.
+(s(d+1))^{O(1)^{n}}.
 \]</span>
-Thuse, we obtain a bound on the total number of refinement points, which is asymptotically the same as the bound in the number of cells in the CAD containing quasi-affine cells. This gives us an upper bound on the complexity, number of cells, number of polynomials and dergees defining a CAD which is monotone with respect to all <span class="math inline">\(V_1,\ldots,V_k\)</span>.</p>
+Thus, we obtain a bound on the total number of refinement points, which is asymptotically the same as the bound on the number of cells in the CAD containing quasi-affine cells. This gives us an upper bound on the complexity, number of cells, number of polynomials and degrees defining a CAD which is monotone with respect to all <span class="math inline">\(V_1,\ldots,V_k\)</span>.</p>
 </div>
 </div>
 <h3>References</h3>

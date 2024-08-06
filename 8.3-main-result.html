@@ -23,7 +23,7 @@
 <meta name="author" content="Hollie Baker" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.3</span> Main Result<a href="8.3-main-result.html#main-result" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="algorithm-psuedo-code" class="section level3 hasAnchor" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Algorithm Psuedo-Code<a href="8.3-main-result.html#algorithm-psuedo-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We are now ready to prove the main result. We begin by presenting pseudo-code for the algorithm described in Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>.
+<p>We are now ready to prove the main result. We begin by presenting pseudo-code for the algorithm described in Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a>.
 First some basic subroutines are defined.</p>
 <ul>
 <li><span class="math inline">\(\mathcal{E} := \mathcal{D} \ \&amp;\ \{F_1,\ldots,F_k\}\)</span>
@@ -330,7 +330,7 @@ First some basic subroutines are defined.</p>
 <li><strong>Complexity:</strong> <span class="math inline">\(O(1)\)</span>.</li>
 </ul></li>
 </ul>
-<p>We now present the algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>.</p>
+<p>We now present the algorithm from Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a>.</p>
 <div id="algorithm-main" class="algorithm">
 <p><span class="math display">\[
 {\mathcal D} := \mathrm{CadFC}(F)
@@ -619,7 +619,7 @@ with <span class="math inline">\(\mathcal{F}_{\mathbf{0}}\)</span> and every cel
 <div id="proof-of-correctness" class="section level3 hasAnchor" number="8.3.4">
 <h3><span class="header-section-number">8.3.4</span> Proof of correctness<a href="8.3-main-result.html#proof-of-correctness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="proof">
-<p><span id="unlabeled-div-59" class="proof"><em>Proof</em>. </span>(of Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>)</p>
+<p><span id="unlabeled-div-59" class="proof"><em>Proof</em>. </span>(of Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a>)</p>
 <p>Let <span class="math inline">\(L=(k_1, \ldots ,k_{n-1})\)</span> be the index immediately prior to <span class="math inline">\(N=(j_1, \ldots ,j_{n-1} )\)</span> with respect to <span class="math inline">\(&lt;_{\rm{lex}}\)</span>.
 The algorithm computes <span class="math inline">\({\mathcal E}_L\)</span> as the refinement of <span class="math inline">\({\mathcal E}_N\)</span> compatible with each set represented by a formula in <span class="math inline">\(\mathcal{F}_N\)</span>. This is the set <span class="math inline">\(X_N\)</span> defined in Equation <a href="8.3-main-result.html#eq:front">(8.6)</a>.
 Suppose that the algorithm has computed the final decomposition <span class="math inline">\(\mathcal{D}\)</span>, as the refinement of <span class="math inline">\(\mathcal{E}_{\mathbf{0}}\)</span> compatible with <span class="math inline">\(\mathcal{F}_{\mathbf{0}}\)</span> in the sequence . Now construct a new sequence of decompositions (from left to right)
@@ -681,10 +681,10 @@ According to Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#p
 </div>
 <div id="a-note-on-constructing-the-intermediate-decompositions" class="section level3 hasAnchor" number="8.3.6">
 <h3><span class="header-section-number">8.3.6</span> A Note on Constructing the Intermediate Decompositions<a href="8.3-main-result.html#a-note-on-constructing-the-intermediate-decompositions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the algorithm described in Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>, we construct, for each index <span class="math inline">\(M \in \{0,1\}^{n-1}\)</span>, a CAD compatible with <span class="math inline">\(\mathcal{F}_M = \{F_1,\ldots,F_k\}\)</span> and all cells of <span class="math inline">\(\mathcal{E}_M\)</span>.
+<p>In the algorithm described in Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a>, we construct, for each index <span class="math inline">\(M \in \{0,1\}^{n-1}\)</span>, a CAD compatible with <span class="math inline">\(\mathcal{F}_M = \{F_1,\ldots,F_k\}\)</span> and all cells of <span class="math inline">\(\mathcal{E}_M\)</span>.
 This can be achieved by constructing a CAD, using Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a>, such that each cell has constant sign on the polynomials in formulas <span class="math inline">\(\mathcal{F}_M\)</span> and all cells of <span class="math inline">\(\mathcal{E}_M\)</span>. Such a CAD is clearly compatible with sets defined by formulas in <span class="math inline">\(\mathcal{F}_M\)</span> and all cells of <span class="math inline">\(\mathcal{E}_M\)</span>. However, it may include some cells, outside <span class="math inline">\({\operatorname{cl} \left( S \right)}\)</span>, which we are not interested in.</p>
 <p>Fewer cells may be produced by computing a CAD compatible with <span class="math inline">\(\{F_1,\ldots,F_k, C_1,\ldots,C_r\}\)</span> where <span class="math inline">\(C_i,1\le i \le r\)</span> is a cell of <span class="math inline">\(\mathcal{E}\)</span> such that <span class="math inline">\(\bigcup_{1\le i \le r} C_i = \mathbb{R}^n\)</span>. This CAD is obviously compatible with all cells of <span class="math inline">\(\mathcal{E}_M\)</span> and is compatible with the required sets.</p>
-<p>Both options have the same asymptotic complexity. Therefore, the choice of CAD subroutine does not change the complexity bound obtained in the proof of Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.5</a>. We apply Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> to compute a CAD compatible with the input set <span class="math inline">\(S\subset \mathbb{R}^n\)</span> for the initial decomposition <span class="math inline">\(\mathcal{E}\)</span>
+<p>Both options have the same asymptotic complexity. Therefore, the choice of CAD subroutine does not change the complexity bound obtained in the proof of Theorem <a href="1.1-structure-of-this-thesis.html#thm:main">1.6</a>. We apply Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> to compute a CAD compatible with the input set <span class="math inline">\(S\subset \mathbb{R}^n\)</span> for the initial decomposition <span class="math inline">\(\mathcal{E}\)</span>
 The refinements are computed by applying a variant of the classical CAD algorithm which constructs a decomposition compatible with a family of sets.</p>
 <p>In the algorithm description, we pass from semialgebraic sets (and CAD cells) to quantifier-free Boolean formulas.
 This is clearly possible by Thom’s Lemma. However, the signs of polynomials on which each CAD cell has constant sign may not be sufficient to properly define every cell in the CAD. Signs of polynomials defining the CAD will be sufficient to define every cell if Collins’ augmented projection is used {<span class="citation">Collins (<a href="#ref-collins1975" role="doc-biblioref">1975</a>)</span>]. The drawback, of course, is that more polynomials will be produced in the projection phase, which leads to more work during the lifting phase.

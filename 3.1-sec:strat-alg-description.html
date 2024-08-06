@@ -23,7 +23,7 @@
 <meta name="author" content="Hollie Baker" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,6 +328,24 @@ We define the partial differential operator <span class="math inline">\(\partial
 We write <span class="math inline">\(\partial^m_{\mathbf{h}, \mathbf{i}, j}\)</span> to mean the <span class="math inline">\(m\)</span>-th iteration of <span class="math inline">\(\partial_{\mathbf{h}, \mathbf{i}, j}\)</span>.</p>
 </div>
 <p>We can now present the algorithm from <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 2.</p>
+<div class="theorem">
+<p><span id="thm:strat" class="theorem"><strong>Theorem 1.1  </strong></span>Let
+<span class="math display">\[
+X := \{ \mathbf{x} \in \mathbb{R}^n \mid f_1 = 0, \ldots, f_k = 0, g_1 &gt; 0, \ldots, g_\ell &gt; 0 \},
+\]</span>
+be a semialgebraic set defined by <span class="math inline">\(s = k + \ell\)</span> different polynomials of maximum degree <span class="math inline">\(d\)</span>.
+Then there is an algorithm, without oracle, which partitions <span class="math inline">\(X\)</span> into a family
+<span class="math display">\[
+{\cal X} = (X_0, \ldots, X_n)
+\]</span>
+such that, if <span class="math inline">\(X\)</span> is nonsingular, <span class="math inline">\(X_0 = X\)</span> and all other sets are empty.
+Otherwise, <span class="math inline">\(X_0 = \emptyset\)</span> and each <span class="math inline">\(X_k, 1 \le k \le n\)</span> is a possibly empty, effectively nonsingular stratum of codimension <span class="math inline">\(k\)</span>.
+This algorithm has complexity
+<span class="math display">\[
+3^{s}\left(s(d+1)\right)^{O(n)^{2}}.
+\]</span>
+The number of strata does not exceed <span class="math inline">\(s^{n} (d + 1)^2\)</span>, and each stratum is defined by at most <span class="math inline">\(s (d + 1)^2\)</span> polynomial equations and inequalities of maximum degree <span class="math inline">\((d + 1)^2\)</span>.</p>
+</div>
 <p>Let <span class="math display">\[
 X = \{ \mathbf{x} \in \mathbb{R}^n \mid f_1(\mathbf{x}) = 0,\ldots,f_s(\mathbf{x}) = 0, g_1(\mathbf{x}) &gt; 0, \ldots, g_t(\mathbf{x}) &gt; 0 \}.
 \]</span></p>
@@ -449,7 +467,7 @@ This can be expressed as a first-order Boolean formula with two quantifier alter
 <span class="math display">\[
 \forall \mathbf{x} \in Y_k \&gt; \exists \varepsilon &gt; 0 \in \mathbb{R}\&gt; \forall \mathbf{y} \in U_k \mid \Vert \mathbf{x} - \mathbf{y} \Vert &lt; \varepsilon \rightarrow \mathbf{y} \in Y_k
 \]</span>
-An alternative method, as described in <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 1, is to check whether every derivative computed at step <span class="math inline">\(k+1\)</span> vanishes on the set
+An alternative method, as described in <span class="citation">Gabrielov and Vorobjov (<a href="#ref-gv1995" role="doc-biblioref">1995</a>)</span>, Theorem 2, is to check whether every derivative computed at step <span class="math inline">\(k+1\)</span> vanishes on the set
 <span class="math display">\[
 U_k \cap \{ x_1 = \tt{const} \mid i &lt; i_1 \}
 \]</span>

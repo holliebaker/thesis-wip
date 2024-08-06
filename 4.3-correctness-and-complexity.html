@@ -23,7 +23,7 @@
 <meta name="author" content="Hollie Baker" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="correctness-and-complexity" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Correctness and Complexity<a href="4.3-correctness-and-complexity.html#correctness-and-complexity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Correctness of Theorem <a href="1.1-structure-of-this-thesis.html#thm:bgv-quasi-algorithm">1.2</a> follows from the proof of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.19. Let <span class="math inline">\(\mathcal{E}\)</span> be the CAD computed by the algorithm from Section <a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm">4.2.1</a>, using the McCallum projection operator, in which each cell has constant sign on the polynomials defining sets <span class="math inline">\(V_1,\ldots,V_k\)</span>.
+<p>Correctness of Theorem <a href="1.1-structure-of-this-thesis.html#thm:bgv-quasi-algorithm">1.3</a> follows from the proof of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.19. Let <span class="math inline">\(\mathcal{E}\)</span> be the CAD computed by the algorithm from Section <a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm">4.2.1</a>, using the McCallum projection operator, in which each cell has constant sign on the polynomials defining sets <span class="math inline">\(V_1,\ldots,V_k\)</span>.
 By <span class="citation">McCallum (<a href="#ref-mccallum1988" role="doc-biblioref">1988</a>)</span>, Theorems 2.2.3 and 2.2.4, each cell <span class="math inline">\(C \subset V\)</span> of <span class="math inline">\(\cal E\)</span> will be an analytic submanifold, since <span class="math inline">\(\dim(V_i) \le 2, 1\le i \le k\)</span>.
 The algorithm then makes the CAD compatible with the determinants of matrices <span class="math inline">\(J_{C_2,\mathbf{m}}\)</span> and <span class="math inline">\(J_{C_1,\mathbf{m}}\)</span>, defined in Equations @(ref:eq-jacobi-two) and <a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#eq:jacobi-one">(4.2)</a> respectively. These are the critical points of projections of two- and one- dimensional smooth cylindrical cells <span class="math inline">\(C \subset V_1,\ldots,V_k\)</span>. Thus, <span class="math inline">\(\mathcal{D}\)</span>, the CAD output by the algorithm from Section <a href="4.2-ensuring-that-every-cell-is-the-graph-of-a-quasi-affine-map.html#sec:quasiaffine-algorithm">4.2.1</a> is compatible with the critical points of projections of the smooth two-dimensional locus of <span class="math inline">\(V_1\cup \ldots \cup V_k\)</span> onte one- and two-dimensional coordinate subspaces, as required in the proof of <span class="citation">Basu, Gabrielov, and Vorobjov (<a href="#ref-bgv15" role="doc-biblioref">2015</a>)</span>, Lemma 3.19.</p>
 <div id="sec:quasi-complexity" class="section level3 hasAnchor" number="4.3.1">
@@ -311,21 +311,17 @@ The algorithm then makes the CAD compatible with the determinants of matrices <s
 <p>Let us examine the complexity by supposing that the smooth stratification algorithm is used to find the smooth two-dimensional locus of <span class="math inline">\(V = V_1\cup \ldots \cup V_k \subset \mathbb{R}^n\)</span>, defined by <span class="math inline">\(s\)</span> polynomials having maximum degree <span class="math inline">\(d\)</span>.
 By the result from Section <a href="3.4-sec:strat-complexity.html#sec:strat-complexity">3.4</a>, the smooth stratification step with emptiness checking has complexity
 <span class="math display">\[
-\left(s(d+1)\right)^{2^{O(n)}}.
+3^{s}\left(s(d+1)\right)^{O(n)^{2}}
 \]</span>
 The critical points of one- and two- dimensional strata are then computed. This is done by computing determinants of <span class="math inline">\((n-1)\)</span>- and <span class="math inline">\((n-2)\)</span>-dimensional Jacobi matrices, containing the <span class="math inline">\(n-1\)</span> and <span class="math inline">\(n-2\)</span> polynomial equations which define the strata of codimension <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> respectively.
-These polynomials have maximum degree <span class="math inline">\((d + 1)^{1^{O(n)}}\)</span>.
-In order to estimate the maximum degree of polynomials appearing in the Jacobi determinant of a <span class="math inline">\((k \times k)\)</span>-matrix, suppose that elementary row operations – swapping two rows, multiplying a row by a number and adding one row to another – will be used to convert the matrix into upper triangular form, then the elements on the main diagonal will be multiplied.
-Elementary row operationns do not change the upper bound on degree. For the determinant, multiplying <span class="math inline">\(k\)</span> polynomials of maximum degree <span class="math inline">\(d\)</span> will result in a polynomial of maximum degree <span class="math inline">\(kd\)</span>. Thus, the maximum degree of the determinant of the <span class="math inline">\(((n-2)\times (n-2))\)</span>-matrix will be <span class="math inline">\((n-2)(d + 1)^{1^{O(n)}}\)</span> and the <span class="math inline">\(((n-1) \times (n-1))\)</span>-matrix will be <span class="math inline">\((n-1)(d + 1)^{1^{O(n)}}\)</span>. These are both asymptotically the same as
+These polynomials have maximum degree <span class="math inline">\((d + 1)^{2}\)</span>.
+In order to estimate the maximum degree of polynomials appearing in the Jacobi determinant of a <span class="math inline">\((k \times k)\)</span>-matrix, suppose that elementary row operations – swapping two rows, multiplying a row by a number and adding one row to another – will be used to convert the matrix into upper triangular form, then the elements on the main diagonal will be multiplied. Note that the complexity of performing these row operations to transform the matrix into row echelon form has complexity <span class="math inline">\(O\left(n^2\right)\)</span>.
+Elementary row operationns do not change the upper bound on degree. For the determinant, multiplying <span class="math inline">\(k\)</span> polynomials of maximum degree <span class="math inline">\(d\)</span> will result in a polynomial of maximum degree <span class="math inline">\(kd\)</span>. Thus, the maximum degree of the determinant of the <span class="math inline">\(((n-2)\times (n-2))\)</span>-matrix will be <span class="math inline">\((n-2)(d + 1)^{2}\)</span> and the <span class="math inline">\(((n-1) \times (n-1))\)</span>-matrix will be <span class="math inline">\((n-1)(d + 1)^{2}\)</span>. These are both bounded from above by
 <span class="math display">\[
-n (d + 1)^{1^{O(n)}},
-\]</span>
-which is asymptotically the same as
-<span class="math display">\[
-(d + 1)^{1^{O(n)}}.
-\]</span>
-For the critical points of <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_i\}}}}, 1 \le i \le n\)</span>, there will be <span class="math inline">\(n\)</span> Jacobi determinants, and for <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_i,x_j\}}}}, 1 \le i &lt; j \le n\)</span>, there will be <span class="math inline">\((n-1) + (n-2) + \cdots + 1 = \tfrac{1}{2} (n-1)n\)</span>, which is asymptotically the same as <span class="math inline">\(n^2\)</span>.</p>
-<p>A classical CAD, having constant sign on the <span class="math inline">\(s\)</span> input polynomials along with the <span class="math inline">\(n + n^2\)</span> Jacobi determinants, which have maximum degree <span class="math inline">\((d + 1)^{1^{O(n)}}\)</span>, is then constructed.
+n (d + 1)^{2},
+\]</span></p>
+<p>For the critical points of <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_i\}}}}, 1 \le i \le n\)</span>, there will be <span class="math inline">\(n\)</span> Jacobi determinants, and for <span class="math inline">\({\operatorname{proj}_{{\operatorname{span} \{x_i,x_j\}}}}, 1 \le i &lt; j \le n\)</span>, there will be <span class="math inline">\((n-1) + (n-2) + \cdots + 1 = \tfrac{1}{2} (n-1)n\)</span>, which is asymptotically the same as <span class="math inline">\(n^2\)</span>.</p>
+<p>A classical CAD, having constant sign on the <span class="math inline">\(s\)</span> input polynomials along with the <span class="math inline">\(n + n^2\)</span> Jacobi determinants, which have maximum degree <span class="math inline">\(n(d + 1)^{2}\)</span>, is then constructed.
 According to Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a> (<span class="citation">Basu, Pollack, and Roy (<a href="#ref-bpr2006" role="doc-biblioref">2006</a>)</span>, Algorithm 11.2), classical CAD has complexity
 <span class="math display">\[
 \left(s&#39;d&#39;\right)^{O(1)^{n}},
@@ -333,17 +329,21 @@ According to Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#p
 where <span class="math inline">\(s&#39;\)</span> is the number of input polynomials and <span class="math inline">\(d&#39;\)</span> their maximum degree.
 Using the bounds obtained from the application of smooth stratification, we get
 <span class="math display">\[
-\left((s + n^2 + n)(d + 1)^{1^{O(n)}}\right)^{O(1)^n}
-= \left(s(d + 1)^{1^{O(n)}} + n(d + 1)^{1^{O(n)}} + n^2 (d + 1)^{1^{O(n)}}\right)^{O(1)^n},
+n^{k\cdot O(1)^{n}}\cdot s^{O(1)^{n}}\cdot\left(d+1\right)^{2\cdot O(1)^{n}}.
 \]</span>
-which is bounded from above by
+Since the expression <span class="math inline">\(n^{O(1)^{n}}\)</span> can be simplified to <span class="math inline">\(2^{O(1)^{n}}\)</span> we get an upper complexity bound, for constructing a quasi-affine CAD, of
 <span class="math display">\[
-\left(s(d + 1)\right)^{2^{O(n)}}.
+\left(s(d+1)\right)^{O(1)^{n}}.
 \]</span>
 By Proposition <a href="2.2-cylindrical-algebraic-decomposition.html#prp:collins">2.9</a>, this is also an upper bound on the number of cells, number of polynomials defining the CAD and their maximum degree.</p>
-<p>Since this is the same complexity bound as for stratification, the total complexity of constructing a CAD, compatible with all <span class="math inline">\(V_1,\ldots,V_k\)</span> and such that each cell contained in <span class="math inline">\(V_1 \cup \ldots \cup V_k\)</span> is smooth and the graph of a quasi-affine map is
+<p>Adding the stratification step, we get a total complexity of
 <span class="math display">\[
-\left(s\left(d+1\right)\right)^{2^{O(n)}}.
+3^{s}\left(s(d+1)\right)^{O(n)^{2}}
++ \left(s(d+1)\right)^{O(1)^{n}},
+\]</span>
+which is bounded from above by the doubly exponential CAD computation, leading to a complexity upper bound of
+<span class="math display">\[
+\left(s(d+1)\right)^{O(1)^{n}}.
 \]</span></p>
 
 </div>
