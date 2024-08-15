@@ -1,77 +1,88 @@
 \contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}%
-\contentsline {subsection}{\numberline {1.0.1}Structure of this thesis}{12}{subsection.1.0.1}%
-\contentsline {chapter}{\numberline {2}Background}{15}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Semialgebraic sets and monotone cells}{15}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Sets definable over O-minimal structures}{15}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Monotone cells}{19}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Cylindrical algebraic decomposition}{21}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Constructing a CAD}{25}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Bounds and variations}{29}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}The projection operator}{30}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Projection polynomials vs semialgebraic functions}{31}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}CAD cells and their defining formulas}{32}{subsection.2.2.5}%
-\contentsline {chapter}{\numberline {3}Smooth Stratification}{35}{chapter.3}%
-\contentsline {subsection}{\numberline {3.0.1}Description of the algorithm}{36}{subsection.3.0.1}%
-\contentsline {subsection}{\numberline {3.0.2}Algorithm details}{39}{subsection.3.0.2}%
-\contentsline {subsection}{\numberline {3.0.3}Worked example}{42}{subsection.3.0.3}%
-\contentsline {subsection}{\numberline {3.0.4}Determining the codimension and basic formula for each stratum}{44}{subsection.3.0.4}%
-\contentsline {subsubsection}{\numberline {3.0.4.1}Discarding redundant equations}{46}{subsubsection.3.0.4.1}%
-\contentsline {subsection}{\numberline {3.0.5}From Basic Algebraic sets to Arbitrary Semialgebraic sets}{47}{subsection.3.0.5}%
-\contentsline {section}{\numberline {3.1}Implementation Details}{47}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Complexity}{57}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Test Cases}{59}{subsection.3.1.2}%
-\contentsline {chapter}{\numberline {4}Quasi-affine cells}{63}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Computing the smooth two-dimensional locus of \(V\)}{64}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}An alternative method for computing the smooth two-dimensional locus}{64}{subsection.4.1.1}%
-\contentsline {section}{\numberline {4.2}Ensuring that every cell is the graph of a quasi-affine map}{65}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Computing the quasi-affine CAD}{66}{subsection.4.2.1}%
-\contentsline {section}{\numberline {4.3}Correctness and Complexity}{68}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Complexity Analysis}{68}{subsection.4.3.1}%
-\contentsline {chapter}{\numberline {5}Monotone Cells}{71}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Two-dimensional monotone sector cells}{73}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Finding the critical points of \(\mitvarphi \) and \(\mitpsi \)}{76}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Working with sub-decompositions above a 0-cell}{80}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}Two-dimensional monotone sections}{81}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Case 1: \(2 \le j \le \mitalpha - 1\)}{82}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Case 2: \(\mitalpha + 1 \le j \le n\)}{83}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Critical points of the top and bottom of \(C\)}{84}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}Implementation Details}{86}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Algorithm}{86}{subsection.5.3.1}%
-\contentsline {section}{\numberline {5.4}Correctness and Complexity}{88}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Complexity}{89}{subsection.5.4.1}%
-\contentsline {section}{\numberline {5.5}Computing the refinements}{89}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Frontier Condition}{91}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Construction of a CAD with frontier condition, due to \citet {bgv15}, Theorem 3.20}{92}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Lazard's method for dimension not greater than 3}{94}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Lazard's Algorithm for lifting with bad points in \(\symbb {R}^3\)}{100}{subsection.6.2.1}%
-\contentsline {section}{\numberline {6.3}Generalisation of Lazard}{102}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Algorithm for lifting above bad points, for CAD compatible with sets of dimension \(\le 2\)}{107}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Correctness and Complexity}{109}{subsection.6.3.2}%
-\contentsline {chapter}{\numberline {7}A novel algorithm for the obtaining the frontier condition on a cylindrical decomposition of \(\symbb {R}^n\)}{111}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Statement of the Problem}{113}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Theory}{113}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Computing the frontier of a semialgebraic set}{113}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Intermediate Results}{114}{subsection.7.2.2}%
-\contentsline {section}{\numberline {7.3}Main Result}{116}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Algorithm Psuedo-Code}{116}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Worked Example}{118}{subsection.7.3.2}%
-\contentsline {subsection}{\numberline {7.3.3}Mathematical Description}{122}{subsection.7.3.3}%
-\contentsline {subsection}{\numberline {7.3.4}Proof of correctness}{123}{subsection.7.3.4}%
-\contentsline {subsection}{\numberline {7.3.5}Complexity}{124}{subsection.7.3.5}%
-\contentsline {subsection}{\numberline {7.3.6}A Note on Constructing the Intermediate Decompositions}{124}{subsection.7.3.6}%
-\contentsline {section}{\numberline {7.4}Generalisations and further work}{125}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Pfaffian Functions}{125}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Further Wrok}{126}{subsection.7.4.2}%
-\contentsline {chapter}{\numberline {8}Implementation And Testing}{127}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Implementation on top of QEPCAD}{127}{section.8.1}%
-\contentsline {subsection}{\numberline {8.1.1}Description of QEPCAD B}{128}{subsection.8.1.1}%
-\contentsline {subsection}{\numberline {8.1.2}QEPCAD Cells and Sample Points}{130}{subsection.8.1.2}%
-\contentsline {subsection}{\numberline {8.1.3}Modifications to QEPCAD}{133}{subsection.8.1.3}%
-\contentsline {subsection}{\numberline {8.1.4}Quasi-affine}{134}{subsection.8.1.4}%
-\contentsline {subsection}{\numberline {8.1.5}Monotone}{137}{subsection.8.1.5}%
-\contentsline {subsection}{\numberline {8.1.6}Frontier Condition}{142}{subsection.8.1.6}%
-\contentsline {subsection}{\numberline {8.1.7}Refinement}{146}{subsection.8.1.7}%
-\contentsline {subsection}{\numberline {8.1.8}Obtaining defining formulas for every cell}{152}{subsection.8.1.8}%
-\contentsline {subsection}{\numberline {8.1.9}The overall algorithm}{155}{subsection.8.1.9}%
-\contentsline {subsection}{\numberline {8.1.10}Additional modifications and Utility Functions}{158}{subsection.8.1.10}%
-\contentsline {section}{\numberline {8.2}Test Cases}{158}{section.8.2}%
+\contentsline {section}{\numberline {1.1}Structure of this thesis}{12}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Background}{17}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Semialgebraic sets and monotone cells}{17}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Sets definable over O-minimal structures}{17}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Monotone cells}{22}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Cylindrical algebraic decomposition}{23}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Constructing a CAD}{27}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Bounds and variations}{31}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}The projection operator}{33}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Projection polynomials vs semialgebraic functions}{34}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}CAD cells and their defining formulas}{35}{subsection.2.2.5}%
+\contentsline {chapter}{\numberline {3}Smooth Stratification}{37}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Description of the algorithm}{38}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Subroutines and Algorithm Details}{42}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Worked example}{44}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Optimisation of the Output}{46}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Determining the codimension and basic formula for each stratum}{46}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Discarding redundant equations}{48}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}From Basic Algebraic sets to Arbitrary Semialgebraic sets}{49}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Implementation in C}{50}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}Complexity Analysis}{60}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Test Cases}{61}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Quasi-affine cells}{65}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Computing the smooth two-dimensional locus of V}{66}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}An alternative method for computing the smooth two-dimensional locus}{66}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}Ensuring that every cell is the graph of a quasi-affine map}{67}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Computing the quasi-affine CAD}{68}{subsection.4.2.1}%
+\contentsline {section}{\numberline {4.3}Correctness and Complexity}{70}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Complexity Analysis}{70}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Monotone Cells}{73}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Two-dimensional monotone sector cells}{76}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Finding the critical points of functions phi and psi}{78}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Working with sub-decompositions above a 0-cell}{82}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Two-dimensional monotone sections}{84}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Case 1: \(2 \le j \le \alpha - 1\)}{84}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Case 2: \(\alpha + 1 \le j \le n\)}{85}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Critical points of the top and bottom of C}{86}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Implementation Details}{88}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Algorithm}{88}{subsection.5.3.1}%
+\contentsline {section}{\numberline {5.4}Correctness and Complexity}{91}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Complexity Analysis}{91}{subsection.5.4.1}%
+\contentsline {section}{\numberline {5.5}Computing the refinements}{93}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Frontier Condition}{95}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Construction of a CAD with frontier condition due to \citet {bgv15}}{96}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Lazard's method for dimension not greater than 3}{98}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Lazard's Algorithm for lifting with bad points in \(\mathbb {R}^3\)}{104}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}Generalisation of Lazard}{106}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Algorithm for lifting above bad points, for CAD compatible with sets of dimension \(\le 2\)}{112}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Correctness and Complexity}{114}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Complexity analysis}{114}{subsection.6.3.3}%
+\contentsline {chapter}{\numberline {7}Implementation And Testing}{117}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Implementation on top of QEPCAD}{117}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Description of QEPCAD B}{118}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}QEPCAD Cells and Sample Points}{120}{subsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.1.3}Modifications to QEPCAD}{123}{subsection.7.1.3}%
+\contentsline {subsection}{\numberline {7.1.4}Quasi-affine}{124}{subsection.7.1.4}%
+\contentsline {subsection}{\numberline {7.1.5}Monotone}{127}{subsection.7.1.5}%
+\contentsline {subsection}{\numberline {7.1.6}Frontier Condition}{132}{subsection.7.1.6}%
+\contentsline {subsection}{\numberline {7.1.7}Refinement}{136}{subsection.7.1.7}%
+\contentsline {subsection}{\numberline {7.1.8}Obtaining defining formulas for every cell}{143}{subsection.7.1.8}%
+\contentsline {subsection}{\numberline {7.1.9}The overall algorithm}{145}{subsection.7.1.9}%
+\contentsline {subsection}{\numberline {7.1.10}Additional modifications and Utility Functions}{148}{subsection.7.1.10}%
+\contentsline {subsubsection}{\numberline {7.1.10.1}Modifications}{148}{subsubsection.7.1.10.1}%
+\contentsline {subsubsection}{\numberline {7.1.10.2}New files}{149}{subsubsection.7.1.10.2}%
+\contentsline {section}{\numberline {7.2}Test Cases}{151}{section.7.2}%
+\contentsline {chapter}{\numberline {8}A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of n-dimensional space}{199}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Statement of the Problem}{200}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Theory}{201}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Computing the frontier of a semialgebraic set}{201}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Intermediate Results}{202}{subsection.8.2.2}%
+\contentsline {section}{\numberline {8.3}Main Result}{204}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Algorithm Psuedo-Code}{204}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Worked Example}{206}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Mathematical Description}{210}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}Proof of correctness}{211}{subsection.8.3.4}%
+\contentsline {subsection}{\numberline {8.3.5}Complexity}{212}{subsection.8.3.5}%
+\contentsline {subsection}{\numberline {8.3.6}A Note on Constructing the Intermediate Decompositions}{213}{subsection.8.3.6}%
+\contentsline {section}{\numberline {8.4}Generalisations and further work}{213}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Pfaffian Functions}{213}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}Further Wrok}{214}{subsection.8.4.2}%
+\contentsline {chapter}{\numberline {9}Conclusions and Further Work}{217}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Conclusions}{217}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Smooth stratification of a semialgebraic set}{217}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most 2}{218}{subsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.1.3}A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension}{219}{subsection.9.1.3}%
+\contentsline {section}{\numberline {9.2}Further Work}{220}{section.9.2}%
+\contentsline {chapter}{Appendix A: Test Cases}{223}{chapter*.2}%

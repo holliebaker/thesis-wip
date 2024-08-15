@@ -1,4 +1,4 @@
-# A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of $\R^n$ { #sec:novel-frontier }
+# A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of n-dimensional space { #sec:novel-frontier }
 
 So far, we have been concerned only with cylindrical algebraic decompositions compatible with subsets of $\R^n$ having dimension at most two. We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
 
@@ -75,7 +75,7 @@ This will allow us to apply Theorem \@ref(thm:main) to semialgebraic sets repres
 
 ## Theory
 
-### Computing the frontier of a semialgebraic set
+### Computing the frontier of a semialgebraic set {#sec:novel-frontier-fr}
 
 We presentd the classical CAD algorithm due to @collins1975, as formulated in @bpr2006, Algorithm 11.2, in \@ref(prp:collins).
 Given a set of $s$ different polynomials with maximum degree $d$ in $\Z[x_1,\ldots,x_n$, this algorithm has complexity
@@ -243,7 +243,7 @@ First some basic subroutines are defined.
 
 We now present the algorithm from Theorem \@ref(thm:main).
 
-::: {.algorithm #algorithm-main}
+::: {.algorithm #algorithm-main data-latex="CadFC"}
 $$
 {\mathcal D} := \mathrm{CadFC}(F)
 $$
@@ -257,8 +257,6 @@ A CAD $\mathcal D$ of $\R^n$ compatible with $S$ and satisfying the frontier con
 **Complexity:**
 $$(sd)^{O(1)^{n2^n}}$$
 where $F$ contains $s$ different polynomials of maximum degree $d$ in $\Z[x_1,\ldots,x_n]$.
-
----
 
 - Initialise $M = (i_1,\ldots,i_{n-1}) := (1,\ldots,1) \in \{0,1\}^{n-1}$.
 
@@ -291,7 +289,6 @@ where $F_{1,B}$ (resp. $F_{1,T}$) is a QFF defining the bottom (resp. top) of th
   - Let $M := N$.
 
 - Return ${\mathcal E}_{(0,\ldots,0)}$.
-
 :::
 
 ### Worked Example { #sec:worked-example }
@@ -324,7 +321,7 @@ Table: (\#tab:cells-of-e) All cells of the CAD $\mathcal{E}$, the initial CAD co
 | $C_4$ | $(0,1,1)$ | $\{ x = 1 \}$ |
 |       | $(1,1,1)$ | $\{ x > 1 \}$ |
 
-Table: (\#tab:cells-of-e-refined) Cells of the CAD $\mathcal{E}_{(0,1)}$ computed in step \ref{step:one-zero} of Section \@ref(sec:worked-example). Note that only cells which are part of $\cl{S}$ are listed.
+Table: (\#tab:cells-of-e-refined) Cells of the CAD $\mathcal{E}_{(0,1)}$ computed in step 3 of Section \@ref(sec:worked-example). Note that only cells which are part of $\cl{S}$ are listed.
 
 | Label | Index | Formula |
 |-------|-------|---------|

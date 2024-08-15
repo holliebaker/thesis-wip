@@ -1,8 +1,11 @@
 # Frontier Condition {#sec:frontier}
 
-Now suppose we have a CAD $\cal D'$ monotone with respect to each bounded semialgebraic set $V_1,\ldots,V_k$, such that $\dim(V_i) \le 2, 1 \le i \le k$.
-The algorithm from Section \@ref(sec:monotone-algorithm) produces such a CAD, which is also sign-invariant on a set of polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. It is clear that $\mathbf{F}$ should contain the polynomials in defining formulas for sets $V_i$, along with some additional polynomials which ensure that each cell $C \subset V_1 \cup \ldots \cup V_k$ monotone.
-In this section, we describe how to refine $\mathcal{D'}$ in order that it satisfies the frontier condition. A refinement, $\mathcal{D''}$ of $\mathcal{D'}$ satisfies the frontier condition if $\fr{C}$ is a union of cells of $\mathcal{D''}$, for each cell $C \subset V_1 \cup \ldots \cup V_k$ of $\mathcal{D'}$.
+Suppose we have a CAD $\cal D'$ monotone with respect to each bounded semialgebraic set $V_1,\ldots,V_k$, such that $\dim(V_i) \le 2, 1 \le i \le k$.
+The algorithm from Section \@ref(sec:monotone-algorithm) produces such a CAD, which is also sign-invariant on a set of
+polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. It is clear that $\mathbf{F}$ should contain the polynomials in
+defining formulas for sets $V_i$, along with some additional polynomials which ensure that each cell $C \subset V_1 \cup
+\ldots \cup V_k$ is monotone.
+In this section, we describe how to refine $\mathcal{D'}$ in order that it satisfies the frontier condition. A refinement, $\mathcal{D''}$ of $\mathcal{D'}$ satisfies the frontier condition if $\fr{C}$ is a union of cells of $\mathcal{D''}$, for each cell $C \subset V_1 \cup \ldots \cup V_k$ of $\mathcal{D''}$ (Definition \@ref(def:frontier-condition)).
 
 We first present a motivating example due to @jhd20.
 
@@ -13,14 +16,15 @@ Let $f := y^2 - x^2 z$ and observe that $f(0,0,z) = 0, z \in \R$, i.e., $f$ "blo
 $$
 W := \{ (x,y,z) \in \R^3 \mid (x,y) \in \Delta, f(x,y,z) = 0 \}.
 $$
-Consider $\fr{W}$, which can be expressed as the disjoint union of four semialgebraic sets:
-\begin{align*}
-\fr{W} =& \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = x, z = 1 \}, \\
-& \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = -x, z = 1 \}, \\
-& \{ (x,y,z) \in \R^3 \mid x = 1, -1 < y < 1, z = y^2 \}, \\
-& \{ (0,0,z) \in \R^3 \mid 0 \le z \le 1 \}.
-\end{align*}
-Due to the blow-up point above the origin, $\fr{W}$ contains the subset $B := \{ (0,0,z) \in \R^3 \mid 0 \le z \le 1 \}$.
+Consider $\fr{W}$, which can be expressed as the disjoint union of four basic semialgebraic sets:
+\begin{align}
+\fr{W} =&\ \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = x, z = 1 \} \\
+\cup&\ \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = -x, z = 1 \} \\
+\cup&\ \{ (x,y,z) \in \R^3 \mid x = 1, -1 < y < 1, z = y^2 \} \\
+\cup&\ \{ (0,0,z) \in \R^3 \mid 0 \le z \le 1 \}.
+(\#eq:jhd-whitney-blow-up)
+\end{align}
+Due to the blow-up point above the origin, $\fr{W}$ contains the subset $B := \{ (0,0,z) \in \R^3 \mid 0 \le z \le 1 \}$ (from Equation \@ref(eq:jhd-whitney-blow-up)).
 
 A CAD having constant sign on the polynomials
 $$
@@ -30,24 +34,24 @@ $$ defining $W$ will not contain the blow-up subset $B$, because two additional 
 
 It is clear from Example \@ref(exm:whitney-jhd) that a sign-invariant CAD may not always be sufficient to construct a CAD with frontier condition. @pianomovers1983 proved that it is always possible to construct a sign-invariant CAD which satisfies the frontier condition if a linear rotation of coordinates is permitted. @jhd20 also proved that a sign-invariant CAD will always satisfy the frontier condition if polynomials containing blow-up points are not allowed. In the following sections, we discuss what to do when a rotation of coordinates is not permitted and when blow-up points may be present.
 
-Note that $W$, from Example \@ref(exm:whitney-jhd), is a $(1,1,0)$-cell, but it is not monotone. In fact, $W$ is not even the graph of a quasi-affine map, since $\projops{x,z}(W)$ is two-dimensional, but $\projops{x,z}\vert_W$ is not injective. The blow-up subset $B$, contained in $\fr{W}$ means that $W$ is not a topologically regular cell -- a weaker property than being monotone.
+Note that $W$, from Example \@ref(exm:whitney-jhd), is a $(1,1,0)$-cell, but it is not monotone. In fact, $W$ is not even the graph of a quasi-affine map, since $\projops{x,z}(W)$ is two-dimensional, but the projection map $\projops{x,z}\vert_W$ is not injective. The blow-up subset $B$, contained in $\fr{W}$ means that $W$ is not a topologically regular cell, since $\fr(W)$ is not homeomorphic to a circle.
 In the procedures described in the following sections, due to @bgv15 and @lazard10, the cells on which the frontier condition is to be satisfied must be topologically regular cells.
 
-## Construction of a CAD with frontier condition, due to @bgv15, Theorem 3.20 { #sec:frontier-bgv }
+## Construction of a CAD with frontier condition due to @bgv15 { #sec:frontier-bgv }
 
-Given the monotone CAD $\mathcal{D'}$ computed in the algorithm from Section \@ref(sec:monotone-algorithm), our final step, according to [@bgv15, Theorem 3.20] is to compute a refinement $\mathcal{D''}$ of $\mathcal{D}$ such that the frontier $\fr{C} = \cl{C} \setminus C$ of each $2$-dimensional cell $C \subset V_1\cup \ldots, \cup V_k$ is a union of cells of $\cal D'$.
+Given the monotone CAD $\mathcal{D'}$ computed in the algorithm from Section \@ref(sec:monotone-algorithm), our final step, according to [@bgv15, Theorem 3.20] is to compute a refinement $\mathcal{D''}$ of $\mathcal{D'}$ such that the frontier $\fr{C} = \cl{C} \setminus C$ of every cell $C \subset V = V_1\cup \ldots, \cup V_k$ is a union of cells of $\cal D''$.
 
-The proof of @bgv15, Theorem 3.20 proceeds as follows. For each cell $C \subset V$, compute the the semialgebraic set $\fr{C}$. Since $C$ is monotone, we can assume that $\fr{C}$ is homeomorphic to a circle. Construct a partition $\cal U$ of $\fr{C}$ into monotone one-dimensional curves and points, such that $\cal U$ is compatible with all one-dimensional cells of $\cal D'$.
-Let $\mathbf{c} = (c_1,\ldots,c_n)$ be one of the one-dimensional components of $\cal U$. If $c_1$ is not a $0$-dimensional cell of the decomposition induced by $\cal D'$ on $\R^1$, then perform a refinement of the kind $x_1 < c_1, x_1 = c_1, x_1 > c_1$. Recall that these refinements, according to [@bgv15, Lemma 3,11], preserve the cylindrical structure and monotone cells. Otherwise, $c_1$ is a $0$-cell and we apply the same argument to the sub-CAD of $\cal D'$ above $c_1$.
+The construction from @bgv15, Theorem 3.20 proceeds as follows. For each $2$-dimensional cell $C \subset V$, consider the semialgebraic set $\fr{C}$. Since $C$ is monotone, we can assume that $\fr{C}$ is homeomorphic to a circle. Construct a partition $\cal U$ of $\fr{C}$ into monotone one-dimensional curves and points, such that $\cal U$ is compatible with all one-dimensional cells of $\cal D'$.
+Let $\mathbf{c} = (c_1,\ldots,c_n)$ be one of the one-dimensional components of $\cal U$. If $c_1$ is not a $0$-dimensional cell of the decomposition induced by $\cal D'$ on $\R^1$, then perform a refinement of the kind $x_1 < c_1, x_1 = c_1, x_1 > c_1$. Recall that these refinements, according to [@bgv15, Lemma 3.11], preserve the cylindrical structure and monotone cells. Otherwise, $c_1$ is a $0$-cell and we apply the same argument to the sub-CAD of $\cal D'$ above $c_1$.
 
-Now let $T \in {\cal U}$ be one of the one-dimensional components. If $T$ is not an existing 1-dimensional cell of $\cal D'$, then it is a subset of a 2-dimensional cell, $Z$, of $\cal D'$. In fact, it divides $Z$ into two cells $Z \setminus T$, both of which, according to [@bgv13, Theorem 11], are 2-dimensional monotone cylindrical cells. Hence, replacing $Z$ by $T$ and the two components of $Z \setminus T$ makes $Z$ compatible with $\fr{C}$ and ensures that $Z$ is refined into monotone cells.
+Now let $T \in {\cal U}$ be one of the one-dimensional components. If $T$ is not an existing 1-dimensional cell of $\cal D'$, then it is a subset of a 2-dimensional cell $Z$ of $\cal D'$. In fact, it divides $Z$ into two cells $Z \setminus T$, both of which, according to [@bgv13, Theorem 11], are 2-dimensional monotone cylindrical cells. Hence, replacing $Z$ by $T$ and the two monotone connected components of $Z \setminus T$ makes $Z$ compatible with $\fr{C}$, while the refinement of $Z$ consists of only monotone cells. 
 
 Repeating this process for each $0$- and $1$-dimensional component of $\cal U$, we obtain a refinement of $\cal D'$ compatible with $\fr{C}$.
-This completes the construction of a cylindrical decomposition satisfying the frontier condition, compatible with and monotone with respect to, each $V_1,\ldots,V_k$.
+This completes the construction of a cylindrical decomposition $\mathcal{D''}$ satisfying the frontier condition and monotone with respect to each bounded semialgebraic set of dimension at most two $V_1,\ldots,V_k$.
 
-The most computationally difficult part of implementing this construction is finding $\fr{C}$ for each $2$-dimensional cell $C \subset V$.
+The most computationally difficult part of implementing this construction is computing $\fr{C}$.
 
-::: {.lemma}
+::: {.lemma #frontier}
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$
 containing $s$ different polynomials in $\R [x_1, \ldots ,x_n]$ having maximum degree $d$.
 There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr{ S }$ by a quantifier-free Boolean formula $F'$ with complexity
@@ -56,18 +60,10 @@ $$
 This is also an upper bound on the number of polynomials in $F'$ and their degrees.
 :::
 
-::: {.proof}
-Observe that $\fr{ S }$ can be represented by a first-order Boolean formula
-$$
-\fr{ S } = \left\{ \mathbf{x} \in (\R^n \setminus S) \mid \forall \varepsilon >0\> \exists \mathbf{y} \in S\> (\Vert \mathbf{x} - \mathbf{y} \Vert < \varepsilon ) \right\}.
-$$
-Using singly-exponential quantifier elimination algorithm [@bpr2006 Algorithm 14.21], we represent $\fr{ S }$
-as a quantifier-free Boolean formula $F'$ with the bounds required in the lemma.
-:::
+Lemma \@ref(lem:frontier) is proved and discussed in more detail in Section \@ref(sec:novel-frontier-fr).
+The "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier alternations. Using an efficient algorithm, e.g., [@bpr2006, Algorithm 14.21], this procedure has complexity singly exponential in the number of variables. $\partial C$ is represented by a quantifier-free Boolean formula $F$.
 
-We see that the "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier alternations. Using an efficient algorithm, e.g., [@bpr2006, Algorithm 14.21], this procedure has complexity singly exponential in the number of variables. $\partial C$ is represented by a quentifier-free Boolean formula $F$.
-
-First, we construct the family $\cal U$ of one-dimensional curve intervals $T$ and the points between them $\mathbf{c}$. By Lemma \@ref(lem:one-dim-qa-is-monotone), one-dimensional quasi-affine cells are always monotone. Thus, we may apply the method described in Section \@ref(sec:quasi-affine) to obtain Jacobi matrices whose determinants are zero at the critical points of projections onto one and two-dimensional coordinate subspaces.
+Once $\fr(C)$ has been computed, we first construct the family $\cal U$ of one-dimensional curve intervals $T$ and the points between them $\mathbf{c}$. By Lemma \@ref(lem:one-dim-qa-is-monotone), one-dimensional quasi-affine cells are always monotone. Thus, we may apply the method described in Section \@ref(sec:quasi-affine) to obtain Jacobi matrices whose determinants are zero at the critical points of projections onto one and two-dimensional coordinate subspaces.
 If CAD with the McCallum projection operator is used to solve the QE problem, then each smooth 1-dimensional cell $D$ in $\fr{C}$ will be defined by $n-1$ polynomials. We refine $\fr{C}$ to be compatible with the critical points of $\projops{x_i}(D), 1\le i \le n$ defined by $\det(J_{\{1,\ldots,n\}\setminus \{i\}}) = 0$.
 
 A further refinement of each one-dimensional component $T$ of $\cal U$ to be compatible with existing cells of $\cal D'$ may also be required.
@@ -81,7 +77,7 @@ Now consider the zero-dimensional components $\mathbf{c} = (c_1,\ldots,c_n)$ of 
 Let $\cal D''$ be the refinement of $\cal D'$, compatible with $\fr{C}$ for all 2-dimensional cells $C$ of $\cal D'$. This CAD is compatible with, and monotone with respect to all $V_1,\ldots,V_k$, and the frontier of each cell $C \subset V_1\cup \ldots V_k$ of $\cal D''$ is the union of some other cells of $\cal D''$ of smaller dimension.
 $\cal D''$ satisfies the frontier condition, so the construction is complete.
 
-We have proved the following.
+We have proved that the following algorithm exists, and will discuss its complexity later.
 
 ::: { .theorem #lazard-rn }
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of $s$ polynomials with maximum degree $d$.
@@ -97,7 +93,7 @@ which is also an upper bound on the number of cells in the CAD, number of polyno
 
 ## Lazard's method for dimension not greater than 3 { #sec:lazard-3 }
 
-The method described in Section \@ref(sec:frontier-bgv) is relatively straightforward as it relies on techniques we have used before (obtaining quasi-affine subsets and performing refinements). However, we may want to find an alternative method, so as to avoid the QE required to compute the forntiers of $2$-dimensional cylindrical cells. 
+The method described in Section \@ref(sec:frontier-bgv) is relatively straightforward as it relies on techniques we have used before (obtaining quasi-affine subsets and performing refinements). However, we may want to find an alternative method, so as to avoid the QE required to compute the frontiers of $2$-dimensional cylindrical cells.
 In the following section, we will explore an alternative method to obtain the frontier condition, based on an algebraic construction described by @lazard10.
 
 @lazard10 presents an algorithm for constructing an $\mathbf{F}$-invariant cylindrical algebraic decomposition of $\R^n, n\le 3$ such that every cell is a topologically  regular cell and the frontier condition is satisfied.
@@ -133,7 +129,7 @@ A CAD is called "strong" if every cell is boundary smooth, well-bordered and bou
 ::: {.definition}
 [@lazard10, Definition 4.1]
 
-Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ and $\mathcal{D'}$ be the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$. A cell $C'$ of $\mathcal{D'}$ is called "bad" if there is a polynomial $f \in \mathbf{F} \subset \Q[x_1,\ldots,x_n]$ such that $f$ is primitive and has positive degree in $x_n$ and $f(\mathbf{x})$, for all $\mathbf{x} \in C'$ vanishes over an open interval. Every point $\mathbf{x}$ in the bad cell $C'$ is a blow-up point of the polynomial $f$ (see Definition @\ref(def:blow-up-point)).
+Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ and $\mathcal{D'}$ be the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$. A cell $C'$ of $\mathcal{D'}$ is called "bad" if there is a polynomial $f \in \mathbf{F} \subset \Q[x_1,\ldots,x_n]$ such that $f$ is primitive and has positive degree in $x_n$ and $f(\mathbf{x})$, for all $\mathbf{x} \in C'$ vanishes over an open interval. Every point $\mathbf{x}$ in the bad cell $C'$ is a blow-up point of the polynomial $f$ (see Definition \@ref(def:blow-up-point)).
 :::
 
 According to @lazard10, Corollary 4.7, in dimension $\le 2$, there is nothing to do as Collins' algorithm already produces these "strong" decompositions.
@@ -311,8 +307,7 @@ Let $\cal D$ be an $\mathbf{F}$-invariant CAD of $\R^n, n \le 3$. If $n \le 2$, 
 Also by Lemma \@ref(lem:only-bad-zero-cells), any bad cells in the decomposition induced by $\mathcal{D}$ on $\R^2$ are $0$-dimensional [@lazard10, Lemma 4.3].
 Therefore, the frontier condition is satisfied everywhere except in the neighbourhoods above bad cells in the induced decomposition of $\R^2$. The following algorithm is a special method for lifting above a bad cell.
 
----
-
+::: {.algorithm data-latex="Lazard Lifting With Bad Points in $\R^3$"}
 [@lazard10, Algorithm 5.15]
 
 **Input:**
@@ -329,8 +324,6 @@ $$
 $$
 
 A set of refinement points, as described in Section \@ref(sec:monotone-algorithm).
-
----
 
 - Let ${\cal R} = \emptyset$.
 
@@ -376,6 +369,7 @@ A set of refinement points, as described in Section \@ref(sec:monotone-algorithm
     $$
 
 - return $\cal R$.
+:::
 
 Compute the refinements, given by $\mathcal{R}$, of sections above bad cells using the method described in Section \@ref(sec:compute-refinement).
 
@@ -389,7 +383,8 @@ Therefore, it might be natural to ask whether the result from @lazard10 for lift
 Our goal is to construct a CAD $\mathcal{D}$ of $\R^n$, monotone with respect to each set $V_1, \ldots, V_k$ such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, such that $\cl{C}$, for each cell $C \subset V_1 \cup \ldots \cup V_k$ of $\mathcal{D}$ is a union of some cells of $\mathcal{D}$.
 Note that this method is not claimed to work for all cells of $\mathcal{D}$, in particular, those of dimension $> 2$.
 
-In Section \@ref(sec:lazard-3), we applied Lazard's method for lifting with bad cells to CADs of $\R^3$ output by the algorithm described in Section \@ref(sec:monotone-algorithm). Lazard's algorithm required the input CAD to have two properties. First, each cell must be boundary smooth. Since each cell of dimension $\le 2$ is constructed to be monotone, it is already topologically regular by Proposition \@ref(prp:monotone-topologically-regular) (@bgv13, Theorem 1). Since each cell in a decomposition produced by the algorithm described in Section \@ref(sec:monotone-algorithm) is monotone with respect to each $V_1,\ldots,V_k \subset V$, each cell $C \subset V$ can be assumed to be topologically regular and, therefore, boundary smooth. The second requirement is that every cell must be well-bordered. While Corollary \@ref(cor:lazard-5-4) (@lazard10, Corollary 5.4) asserts that any sign-invariant CAD of $\R^3$ is well-bordered, this property cannot be extended to CADs of arbitrary dimension. Indeed, @lazard10, Example 2.11 describes a $3$-dimensional cylindrical cell in $\R^4$ which cannot be well-bordered since its frontier consists of a single half-line. This condition is necessary to get the configuration of cells described in Lemma \@ref(lem:lazard-5-13) (@lazard10, Lemma 5.13), which is required to apply the algorithm for lifting with bad points. Therefore, it seems unlikely that this method could be generalised to cells of dimension $> 2$.
+In Section \@ref(sec:lazard-3), we applied Lazard's method for lifting with bad cells to CADs of $\R^3$ output by the algorithm described in Section \@ref(sec:monotone-algorithm). Lazard's algorithm required the input CAD to have two properties. First, each cell must be boundary smooth. Since each cell $C \subset V = V_1\cup \ldots \cup V_k$ is constructed to be monotone, it is already topologically regular by Proposition \@ref(prp:monotone-topologically-regular) (@bgv13, Theorem 1), and is therefore already boundary smooth. 
+The second requirement is that every cell must be well-bordered. While Corollary \@ref(cor:lazard-5-4) (@lazard10, Corollary 5.4) asserts that any sign-invariant CAD of $\R^3$ is well-bordered, this property cannot be extended to CADs of arbitrary dimension. Indeed, @lazard10, Example 2.11 describes a $3$-dimensional cylindrical cell in $\R^4$ which cannot be well-bordered since its frontier consists of a single half-line. This condition is necessary to get the configuration of cells described in Lemma \@ref(lem:lazard-5-13) (@lazard10, Lemma 5.13), which is required to apply the algorithm for lifting with bad points. Therefore, it seems unlikely that this method could be generalised to cells of dimension $> 2$.
 
 ::: {.definition #strong-about-c }
 Let $\mathcal{D}$ be a CAD of $\R^n$ and $C$ be a cell of $\mathcal{D}$. $\mathcal{D}$ will be called strong about $C$ if $C$ is well-bordered, boundary coherent and every cell contained in $\cl(C)$ is boundary smooth.
@@ -555,8 +550,7 @@ Let $\cal D$ be an $\mathbf{F}$-invariant cylindrical algebraic decomposition of
 We now extend @lazard10, Algorithm 5.15 to CAD of this kind.
 First, prepare $\mathcal{D}$ by marking each cell $C' := \projop{r}(C)$, such that $C'$ is a two-dimensional section cell in the decomposition induced by $\mathcal{D}$ on $\R^r$ such that $C$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$ for $3 \le r \le n$.
 
----
-
+::: {.algorithm data-latex="Extension of Lazard's Lifting With Bad Points, for $2$-dimensional cells in $\R^n$"}
 [Extension of @lazard10, Algorithm 5.15]
 
 **Input:**
@@ -573,8 +567,6 @@ $$
 $$
 
 A set of refinement points, as described in Section \@ref(sec:monotone-algorithm).
-
----
 
 - Let $\cal D'$ be the decomposition induced by $\cal D$ on $\R^{n-1}$.
 
@@ -632,7 +624,7 @@ A set of refinement points, as described in Section \@ref(sec:monotone-algorithm
     $$
 
 - return $\cal R$.
-
+:::
 
 Apply this procedure to each decomposition, for $3 \le k \le n$ induced by $\mathcal{D}$ on $\R^k$ and compute the refinement of sections above bad cells using the same method described in Section \@ref(sec:compute-refinement) to obtain a refinement $\mathcal{E}$ of $\mathcal{D}$. Note that, since refinement points are algebraic numbers splitting $(1)$-cells in induced decompositions, @bgv15, Lemma 3.11 asserts that the cylindrical structure and monotone cells are preserved in $\mathcal{E}$.
 
@@ -646,25 +638,26 @@ If $C$ is a $2$-dimensional sector cell, then its top and bottom are $1$-dimensi
 
 ### Complexity analysis
 
+We will see, in Section \@ref(sec:novel-frontier), that there is an algorithm for obtaining the frontier condition on a CAD compatible with a semialgebraic set of arbitrary dimension. This algorithm has complexity $(sd)^{O(1)^{n2^n}}$ -- triply exponential in the number of variables. However, in the particular case of semialgebraic sets having dimension at most two, the complexity may be lower. This is now discussed.
+
 Let us first discuss complexity in relation to the procedure described by @bgv15 in Theorem 3.20. Given the family $V_1,\ldots,V_k$, $\fr{C}$ is computed for each $2$-dimensional cell $C \subset V_1\cup \ldots \cup V_k$ According to Lemma \@ref(lem:frontier), there is an algorithm, which uses @bpr2006 Algorithm 14.21 as its main subroutine, for computing $\fr{C}$, having complexity $$
 (sd)^{O(n^2)},
 $$
-where $C$ is defined by $s$ different polynomials of maximum dergee $d$.
-$C$ has constant sign on all polynomials defining the CAD (although it may be the case that only some of them will be needed to define it), so, using the bounds discussed in Sections \@ref(sec:quasi-complexity) and \@ref(sec:monotone-complexity), the complexity upper bound for computing $\fr{C}$ is
+where $C$ is defined by $s$ different polynomials of maximum degree $d$.
+$C$ has constant sign on all polynomials defining the CAD, so, using the bounds discussed in Sections \@ref(sec:quasi-complexity) and \@ref(sec:monotone-complexity), the complexity upper bound for computing $\fr{C}$ is
 $$
-\left( \left( s (d+1) \right)^{2^{O(n)}} \left( s (d+1) \right)^{2^{O(n)}} \right)^{O(n^2)}
-= \left( s (d+1) \right)^{O(n^2) \cdot 2\cdot 2^{O(n)}}
-,
+\left(\left(s(d+1)\right)^{O(1)^{n}}\cdot\left(s(d+1)\right)^{O(1)^{n}}\right)^{O(n^2)},
 $$
 which is asymptotically the same as
 $$
-(s(d+1))^{2^{O(n)}}.
+(s(d+1))^{O(1)^{n}}..
 $$
+Note that, in some cases, only some of the $\left(s(d+1)\right)^{O(1)^{n}}$ polynomials are required to define the cell $C$.
 This is, according to Lemma \@ref(lem:frontier), an upper bound on the number of polynomials and their degrees in the QFF defining $\fr{C}$.
 The procedure requires us to partition $\fr{C}$ into points and monotone curve intervals.
-In order to do this, a similar process as that used to obtain monotone cells (see Section \@ref(sec:monotone-cells)) can be used. This will be repeated for each $2$-dimensional cells contained in $V_1\cup \ldots \cup V_k$. As such, the overall complexity will be the same as that presented in Section \@ref(sec:monotone-complexity). I.e.,
+In order to do this, a similar process as that used to obtain monotone cells (see Section \@ref(sec:monotone-cells)) can be used. This will be repeated for each of the $2$-dimensional cells contained in $V_1\cup \ldots \cup V_k$. As such, the overall complexity will be the same as that presented in Section \@ref(sec:monotone-complexity). I.e.,
 $$
-(s(d+1))^{2^{O(n)}}.
+(s(d+1))^{O(1)^{n}}.
 $$
 
 Now let us consider the extension of @lazard10, discussed in Section \@ref(sec:lazard-n).
@@ -679,25 +672,25 @@ $$
 The bound on the number of bad cells is unknown, but it is obviously bounded from above by the total number of cells in the induced decomposition of $\R^{n-1}$. I.e., $(s(d+1))^{2^{O(n-1)}}$.
 It follows that the complexity of the algorithm arising from the generalisation of Lazard is
 $$
-(s(d+1))^{2^{O(n-1)}} 2^{n 2^n},
+(s(d+1))^{O(1)^{n-1}} \cdot 2^{n 2^n},
 $$
 which is bounded from above by
 $$
-(s(d+1))^{2^{O(n)}}.
+(s(d+1))^{O(1)^{n}}.
 $$
 
-Both approaches -- @bgv15 and the gerenalisation of @lazard10 -- have the same complexity upper bound.
+Both approaches -- @bgv15 and the generalisation of @lazard10 -- have the same complexity upper bound.
 
-To sum up, each of the three stages -- quasi-affine, monotone and frontier condition -- of the algorithm for computing a CAD which is monotone with respect to all $V_1,\ldots,V_k$, such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, and satisfying the frontier condition each has complexity $(s(d+1))^{2^{O(n-1)}}$.
+To summarise, each of the three stages -- quasi-affine, monotone and frontier condition -- of the algorithm for computing a CAD which is monotone with respect to all $V_1,\ldots,V_k$, such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, and satisfying the frontier condition each has complexity $(s(d+1))^{2^{O(n)}}$.
 Thus, the overall complexity of this algorithm is
 $$
-(s(d+1))^{2^{O(n-1)}}.
+(s(d+1))^{O(1)^{n}}.
 $$
 By Proposition \@ref(prp:collins), this is also an upper bound on the number of cells, number of polynomials and their degrees defining this CAD.
 
 Recall that the complexity of computing a "classical" CAD (from Proposition \@ref(prp:collins)) is $$
 (sd)^{O(1)^n}.
 $$
-Therefore, the monotone CAD algorithm has, as expected, a higher complexity than that of the classical algorithm.
-However, the complexity is not significantly worse, still being doubly exponential in the number of variables and can still (very loosely) be said to have complexity $2^{2^n}$.
+Therefore, the monotone CAD algorithm has, as expected, a slightly higher complexity than that of the classical algorithm.
+However, the complexity is not significantly worse, still being doubly exponential in the number of variables.
 This discussion completes the proof of Theorem \@ref(thm:bgv-algorithm).

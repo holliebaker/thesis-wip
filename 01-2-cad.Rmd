@@ -57,7 +57,8 @@ A point $\mathbf{x} \in \overline{W} \setminus W$ is called a blow-up point of $
 :::
 
 ::: {.remark #blow-up-codimension }
-The closure of the graph of a continuous defanible function is the graph of a continuous definable function everywhere except, possibly, over a subset of codimension at lesat $2$ (see the proof of @bgv15, Lemma 3.14).
+The closure of the graph of a continuous definable function is the graph of a continuous definable function everywhere
+except, possibly, over a subset of codimension at least $2$ (see the proof of @bgv15, Lemma 3.14).
 :::
 
 ::: { .example #top-bottom-not-cylindrical }
@@ -77,7 +78,7 @@ A cylindrical decomposition is defined by induction on $n \ge 0$.
 
 - When $n > 0$: Let $\cal D$ be a partition of $\R^n$ into cylindrical cells.
 Define $\cal D'$ to be the set of all projections $C' := \projop{n-1}(C)$ for all $C$ in $\cal D$.
-$\cal D$ is a cylindrical decomposition of $\R^n$ if $\cal D'$ is a cylindrical decomposition of $\R^{n-1}$. We call $\cal D'$ the *decomposition of $\R^{n-1}$ induced by $\cal D$.
+$\cal D$ is a cylindrical decomposition of $\R^n$ if $\cal D'$ is a cylindrical decomposition of $\R^{n-1}$. We call $\cal D'$ the decomposition of $\R^{n-1}$ induced by $\cal D$.
 :::
 
 Less formally, a partition $\cal D$ of $\R^n$ into definable subsets is cylindrical if the projection of any two cells of $\cal D$ onto $\R^{n-1}$ is either disjoint or coincides.
@@ -106,9 +107,9 @@ Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cell of $\cal
 If every cell in $\cal D$ satisfies the frontier condition, then the cylindrical decomposition $\cal D$ satisfies the frontier condition.
 :::
 
-We saw in Example \ref(exm:top-bottom-not-cylindrical) that the top and bottom of a 2-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
+We saw in Example \@ref(exm:top-bottom-not-cylindrical) that the top and bottom of a 2-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
 However, it is clear from the cylindrical property that, if $C$ is a 2-dimensional section cell satisfying the frontier condition in a decomposition $\cal D$, then the top and bottom of $C$ are single cylindrical cells.
-If $C$ is a 2-dimensional section cell, then it is said to satisfy the strong frontier condition if the one-dimensional components of its side-wall are 1-dimensional section cells. This condition may be impossible, even in $\R^3$, as Example @\ref(exm:side-wall) demonstrates.
+If $C$ is a 2-dimensional section cell, then it is said to satisfy the strong frontier condition if the one-dimensional components of its side-wall are 1-dimensional section cells. This condition may be impossible, even in $\R^3$, as Example \@ref(exm:side-wall) demonstrates.
 
 ::: {.example #side-wall}
 Consider the two cylindrical cells
@@ -136,6 +137,12 @@ Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then $C' := \pro
 Let $C \subset \R^n$ be a 2-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall $W \subset \fr{C}$ has exactly two connected components, each of which is either a point or a closed curve interval.
 :::
 
+::: {.remark}
+It was proved by @pianomovers1983 that a cylindrical decomposition, compatible with a semialgebraic set and satisfying the frontier condition, can be obtained following a linear rotation of coordinates.
+@jhd20 prove that a cylindrical decomposition having constant sign on a set of input polynomials will contain topologically regular cells and satisfy the frontier condition, regardless of the method used to construct it, as long as the input polynomials do not blow up anywhere.
+Proposition \@ref(prp:monotone-topologically-regular) (@bgv13, Theorem 1) asserts that every monotone cell is topologically regular, so @bgv15, Theorem 3.20 describes the construction of a CAD, compatible with a family $V_1,\ldots,V_k$ of definable subsets of $\R^n$, each having dimension at most $2$, in the potential presence of blow-up points and without the need to make a change of coordinates.
+:::
+
 ### Constructing a CAD {#sec:cad-construction}
 
 ::: {.remark}
@@ -152,7 +159,8 @@ The fundamental theorem of algebra implies that for the coefficients of $\mathbf
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm proposed by @collins1975, closely following @coste2000, for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
 
-Collins' algorithm uses the idea of projections and lifting. More precisely, successive projections of the set of input polynomials to smaller and smaller dimensions are taken, until a set of univariate polynomials is obtained. The CAD of $\R^1$ is constructed by isolating the roots of these univariate polynomials, with section cells being the roots and sector cells being the open intervals in between them. The lifting phase then works recursively: given a collection of cells in $\R^k$ and a set of polynomials in $\R^{k+1}$, the roots of these polynomials within each cell $C$ are isolated. The section cells in the cylinder $C \times \R$ are the roots of these polynomials, while the sector cells are the bands in between the roots. The projection operation was designed such that the cylindrical property holds. I.e., above $C$, each polynomial has a constant number of roots and the roots of no two polynomials crosses one another. This second property is called delineability.
+Collins' algorithm uses the idea of projection and lifting. More precisely, successive projections of the set of input polynomials to smaller and smaller dimensions are taken, until a set of univariate polynomials is obtained. The CAD of $\R^1$ is constructed by isolating the roots of these univariate polynomials, with section cells being the roots and sector cells being the open intervals in between them. The lifting phase then works recursively: given a collection of cells in $\R^k$ and a set of polynomials in $\R^{k+1}$, the roots of these polynomials within each cell $C$ are isolated. The section cells in the cylinder $C \times \R$ are the roots of these polynomials, while the sector cells are the bands in between the roots. The projection operation was designed such that the cylindrical property holds. I.e., above $C$, each polynomial has a constant number of roots and the roots of no two polynomials "cross over" each other.
+The second property is called delineability.
 
 Let us begin the description of the algorithm by considering a single polynomial $f \in \Z[x_1,\ldots,x_n]$.
 We want to partition $\R^{n-1}$ into connected semialgebraic sets $C'$ such that, for all $\mathbf{x} \in C'$, $f(\mathbf{x},x_n)$ has constant degree and a constant number of roots.
@@ -172,7 +180,7 @@ Moreover, the multiplicity of each of these roots is constant.
 The argument relies on the "continuity of roots":
 
 > Fix $\mathbf{c} \in C'$ and let $z_1,\ldots,z_k$ be the distinct roots of $f(\mathbf{c},x_n)$ with multiplicities $m_1,\ldots,m_k$.
-Choose $\varepsilon > 0$ small enough that the open discs $D(z_i,\varepsilon) z_i \in \mathbb{C}$ (center $z_i$, radius $\varepsilon) are disjoint. If $\mathbf{b} \in C'$ is sufficiently close to $\mathbf{c}$, then the polynomial $f(\mathbf{b}, x_n)$ has exactly $m_i$ roots, counted with multiplicities, in $D(z_i,\varepsilon)$ for $1\le i \le k$.
+Choose $\varepsilon > 0$ small enough that the open discs $D(z_i,\varepsilon) z_i \in \mathbb{C}$ (center $z_i$, radius $\varepsilon$) are disjoint. If $\mathbf{b} \in C'$ is sufficiently close to $\mathbf{c}$, then the polynomial $f(\mathbf{b}, x_n)$ has exactly $m_i$ roots, counted with multiplicities, in $D(z_i,\varepsilon)$ for $1\le i \le k$.
 
 Since $f(\mathbf{b},x_n)$ has $k$ distinct complex roots, and $d = m_1+ \ldots + m_k$ complex roots counted with multiplicities, it follows that each $D(z_i,\varepsilon)$ contains exactly one root, denoted $\zeta_i$, of $f(\mathbf{b},x_n)$ with multiplicity $m_i$.
 If $z_i$ is real, then $\zeta_i$ is real, otherwise the complex conjugate of $\zeta_i$ would be another root of $f(\mathbf{b},x_n)$ in the disc $D(z_i,\varepsilon)$.
@@ -202,7 +210,7 @@ $$
 Let $m_i$ (resp $p_i$) be the multiplicity of $z_i$ as a root of $f(\mathbf{x},x_n)$ (resp. $g(\mathbf{x}, x_n)$) where multiplicity zero indicates that $z_i$ is not a root.
 The degree of $\gcd(f(\mathbf{x}, x_n), g(\mathbf{x}, x_n))$ is $\min(m_1,p_1) + \cdots + \min(m_k,p_k)$ and each $z_i$ has multiplicity $\min(m_i,p_i)$ as a root of this GCD.
 Choose $\varepsilon > 0$ small enough that the discs $D(z_i,\varepsilon)$ are disjoint.
-For each $\mathbf{b} \in C'$ close enough to $\mathbf{c}$, each disc contains a root of multiplicity $m_i$ of $f(\mathbf{b}, x_n)$ and a root of multiplicity $p_i$ of $g(\mathbf{b}, x_n)$. Since the degree of the GCD of $f$ and $g$ (evaluated at any $\mathbf{x}$ \in $C'$) is equal to $\min(m_1,p_1) + \cdots + \min(m_k,p_k)$, this GCD must have one root of multiplicity $\min(m_i,p_i)$ in each disc $D(z_i,\varepsilon)$ such that $\min(m_i,p_i) > 0$.
+For each $\mathbf{b} \in C'$ close enough to $\mathbf{c}$, each disc contains a root of multiplicity $m_i$ of $f(\mathbf{b}, x_n)$ and a root of multiplicity $p_i$ of $g(\mathbf{b}, x_n)$. Since the degree of the GCD of $f$ and $g$ (evaluated at any $\mathbf{x} \in C'$) is equal to $\min(m_1,p_1) + \cdots + \min(m_k,p_k)$, this GCD must have one root of multiplicity $\min(m_i,p_i)$ in each disc $D(z_i,\varepsilon)$ such that $\min(m_i,p_i) > 0$.
 In  particular, it follows that $\phi(\mathbf{b}) = \psi(\mathbf{b})$. Since $C'$ is connected, this equality holds for all $\mathbf{x} \in C'$.
 :::
 
@@ -303,19 +311,18 @@ $$
 This is also an upper bound on the number of cells in $\cal D$, number of polynomials defining cells and their degrees.
 :::
 
-Observe that these bounds are doubly exponential in the number of variables. Indeed, @davenportHeintz1988 give an example of a CAD in which a doubly exponential number of cells is obtained. In practice, we can obtain a CAD with fewer cells, e.g., by constructing a trath invariant or partial CAD.
+Observe that these bounds are doubly exponential in the number of variables. It is not possible to improve upon this doubly exponential bound.
+Indeed, @davenportHeintz1988 give an example of a CAD in which a doubly exponential number of cells is obtained. In practice, we can obtain a CAD with fewer cells, e.g., by constructing a truth invariant or partial CAD.
 
-::: { .proposition #collins-sets}
+::: { .corollary #collins-sets}
 Let $S_1,\ldots,S_k$ be a finite collection of semialgebraic subsets of $\R^n$ defined by quantifier-free Boolean formulas $F_1,\ldots,F_k$ respectively. Together, these formulas include $s$ different polynomials in $\Z[x_1,\ldots,x_n]$ with maximum degree $d$.
 There is an algorithm, taking $\{F_1,\ldots,F_k\}$ as input, which produces a cylindrical decomposition $\mathcal E$ of $\R^n$ compatible with each set $S_i, 1 \le i \le k$.
-Complexity, number of cells, number of polynomials and degrees are the same as in Proposition @\ref(prp:collins) but, in practice, more efficient algorithms exist (see e.g., @collins1991 and @bradford2014).
+Complexity, number of cells, number of polynomials and degrees are the same as in Proposition \@ref(prp:collins) but, in practice, more efficient algorithms exist (see e.g., @collins1991 and @bradford2014).
 :::
 
 ::: { .proof }
-Let $f_1,\ldots,f_s \in \R[x_1,\ldots,x_n]$ be the polynomials from formulas $F_1,\ldots,F_k$ and let $\mathcal{E}'$ be the CAD of $\R^n$ produced by Proposition \@ref(prp:collins) with $f_1,\ldots,f_s$ as input. Since $F_i$ for each $1\le i\le k$ provides a set of sign conditions on polynomials $f_1,\ldots,f_s$, $\mathcal{E}'$ is a refinement of the CAD produced by this algorithm.
-
-Truth values of $F_1,\ldots,F_k$ on ecah cell can easily be computed from the CAD produced by Proposition \@ref(prp:collins) by considering the signs of $f_1,\ldots,f_s$ on ecah cell, which we computed in the construction of $\mathcal{E}'$.
-Observe that this does not change the asymptotic complexity or bounds in Propoosition \ref{prop:collins}.
+This construction follows immediately from Proposition \@ref(prp:collins), where truth values of $F_1,\ldots,F_k$ associated to each cell.
+The complexity upper bound (and bounds on number of cell, polynomials and degrees) is the same as in Proposition \@ref(prp:collins).
 :::
 
 It is also common to construct a CAD compatible with a single semialgebraic set.
@@ -327,10 +334,10 @@ Complexity, number of cells, number of polynomials and degrees are the same as i
 :::
 
 ::: { .proof }
-Immediate, by applying Proposition \@ref(cor:collins-set) to $\{ F \}$.
+Immediate, by applying Corollary \@ref(cor:collins-set) to $\{ F \}$.
 :::
 
-The construction described in Proposition \@ref(prp:collins-sets) is somewhat naive.
+The construction described in Corollary \@ref(cor:collins-sets) is somewhat naive.
 Constructions which are far more efficient in practice are presented in e.g., @collins1991. An alternative approach is presented by @bradford2014.
 While very useful in practice, these constructions are unable to lower the upper bound from Proposition \@ref(prp:collins) due to some extreme cases, e.g., when the input formulas define a sign-invariant CAD (see @bradford2014, Section 6.2.1].
 
@@ -353,7 +360,7 @@ $\mathbf{F}$ is called well-oriented if, when $n > 1$,
 - $\proj(\mathbf{F})$ is well-oriented. [@mccallum1998, condition WO2]
 :::
 
-@brown2001 then observed that even more polynomials can be discarded, creating the Reduced McCallum Projection Operator. This is commonly used in practice, e.g., in QEPCAD-B [@brownQepcad].
+@brown2001 then observed that even more polynomials can be discarded, creating the Reduced McCallum Projection Operator. This is commonly used in practice, e.g., in `QEPCAD-B` [@brownQepcad].
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a well-oriented set of polynomials and $\cal D$ be an $\mathbf{F}$-invariant CAD constructed using the McCallum projection operator [@mccallum1998]. Then, by @mccallum1988 Theorems 2.2.3 and 2.2.4, every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$. Informally, if $\dim(C) = k$, thent $C$ is a non-empty subset of $\R^n$ which "looks locally like $\R^k$" (see Definition \@ref(def:analytic-submanifold) for the precise definition).
 
@@ -366,7 +373,7 @@ Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean
 Then a CAD $\cal D$ of $\R^n$ compatible with $S$ and such that every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$ can be obtained by constructing an $\mathbf{F}$-invariant CAD of $\R^n$ using the McCallum projection operator.
 :::
 
-More recently, @mccallum2019 completed the proof that Lazard's projection operator is valid. He also proved, without the condition on well-orientedness of input polynomials, that every cell of a sign-invariant CAD constructed using Lazard's projection operator is an analytic submanifold. Thus, we can generalise Proposition \@ref(prp:mc-smooth) further:
+More recently, @mccallum2019 completed the proof that Lazard's projection operator is valid. McCallum also proved, without the condition on well-orientedness of input polynomials, that every cell of a sign-invariant CAD constructed using Lazard's projection operator is an analytic submanifold. Thus, we can generalise Proposition \@ref(prp:mc-smooth) further:
 
 ::: {.proposition #lz-smooth}
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula constructed from the set of polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$.
@@ -386,11 +393,12 @@ $$
 such that $C$ is the graph of $\phi\vert_{C'}$. However, it's clear that $\phi$ is not a polynomial.
 
 In computations, we work exclusively with section cells. When dealing with sector cells, we will consider the graphs of functions defining their top and bottom.
-Since we will be using SACLIB and sometimes Singular, which are polynomial libraries, we will not be able to use the functions $\phi$ in computations. We will instead use a different representation for a section cell $C$ in $\R^n$. Let $C$ be the root of a polynomial $f \in \Z[x_1,\ldots,x_n]$ and $C' := \projop{n-1}(C)$ satisfy the conditions in Proposition \ref(prp:coste-polynomial-to-cell). Then
+Since we will be using `SACLIB` and sometimes `Singular`, which are polynomial libraries, we will not be able to use the functions $\phi$ in computations. We will instead use a different representation for a section cell $C$ in $\R^n$. Let $C$ be the root of a polynomial $f \in \Z[x_1,\ldots,x_n]$ and $C' := \projop{n-1}(C)$ satisfy the conditions in Proposition \@ref(prp:coste-polynomial-to-cell). Then
 $$
 C \subset Z := \{ (\mathbf{x},x_n) \in \R^n \mid \mathbf{x} \in C', f(\mathbf{x},x_n) = 0 \} \subset C' \times \R.
 $$
-In particular, $Z$ consists of the roots of $f$ in the cylinder $C' \times \R$, including the section cell $C$. It is clear from the Tarski-Seidenberg theorem that it is possible to represent $C$ as a first-order Boolean formula. In practice, since $C$ is the root of a polynomial, we may define it using Thom's Lemma [@costeRoyThomLemma]. I.e., a root of a polynomial may be defined by sign conditions on its derivatives. Thus, let
+In particular, $Z$ consists of the roots of $f$ in the cylinder $C' \times \R$, which includes the section cell $C$. It is
+clear from the Tarski--Seidenberg theorem that it is possible to represent $C$ as a first-order Boolean formula. In practice, since $C$ is the root of a polynomial, we may define it using Thom's Lemma [@costeRoyThomLemma]. I.e., a root of a polynomial may be defined by sign conditions on its derivatives. Thus, let
 $$
 C = \{ (\mathbf{x},x_n) \in \R^n \mid \mathbf{x} \in C', f(\mathbf{x},x_n) = 0, g_1(\mathbf{x},x_n) > 0, \ldots, g_k(\mathbf{x},x_n) > 0 \}
 $$
@@ -398,31 +406,30 @@ where $g_1,\ldots,g_k$ are derivatives of the polynomial $f$.
 
 ### CAD cells and their defining formulas { #sec:cell-formula }
 
-Although it is possible to construct a "full" (sign-invariant) CAD, QEPCAD-B provides an implementation of the "truth-invariant" CAD described in Proposition \@ref(prp:collins-sets). Indeed, QEPCAD-B, being designed primarily to perform quantifier elimination, frequently constructs a "partial" CAD of $\R^n$ [@brownQepcad].
+Although it is possible to construct a "full" (sign-invariant) CAD, `QEPCAD-B` provides an implementation of the "truth-invariant" CAD described in Corollary \@ref(cor:collins-sets). Indeed, QEPCAD-B, being designed primarily to perform quantifier elimination, frequently constructs a "partial" CAD of $\R^n$ [@brownQepcad].
 We will force the construction of the sign-invariant CAD and use McCallum's projection operator so as to obtain smooth cells (see Proosition \@ref(prp:mc-smooth)).
 
 Once constructed, one may want to examine individual cells of the CAD.
 In order to do this, we will need a convenient representation for each cell.
-Depending on the purpose for which the CAD has been constructed, a particular representation may be chosen. For example, if we only need a witness, i.e., some point in the cell, only the sample points will suffice. Indeed, this is a common requirement and Maple's 'RegularChains::CylindricalAlgebraicDecompose' function provides output in this representation [@chen2014].
+Depending on the purpose for which the CAD has been constructed, a particular representation may be chosen. For example, if we only need a witness, i.e., some point in the cell, only the sample points are needed. Indeed, this is a common requirement and Maple's `RegularChains::CylindricalAlgebraicDecompose` function provides output in this representation [@chen2014].
 On the other hand, one might want to view each cell as a semialgebraic set. In this case, a defining formula will be necessary.
-Such a representation using only the input and projection polynomials may be impossible and, as such, an "extended language" has been introduced in both Maple and QEPCAD [@chen2014, @brownQepcad]. The extended language includes the rules of first-order Boolean formulas (see Definition \@ref(def:qff)) along with a means of representing "the $i$-th root of polynomial $f$". We find this representation a little inconvenient (TODO why?) and would prefer each cell to be representable by an ordinary first-order Boolean formula.
+Such a representation using only the input and projection polynomials may be impossible and, as such, an "extended language" has been introduced in both Maple and `QEPCAD` [@chen2014, @brownQepcad]. The extended language includes the rules of first-order Boolean formulas (see Definition \@ref(def:qff)) along with a means of representing "the $i$-th root of polynomial $f$". We find this representation a little inconvenient and would prefer each cell to be representable by an ordinary first-order Boolean formula.
 
 To see how the signs of projection factors may be insufficient to represent a cylindrical cell, consider the following simple example in $\R^2$.
 Let $f = x - y^2$ and construct an $\{f\}$-invariant CAD. The projection polynomials
 $$
 P = \{ x, x - y^2 \}.
 $$
-** TODO: draw a picture, label cells by C_1 and C_2. **
-The two distinct cells $C_1$ and $C_2$ having sign $x > 0, x - y^2 = 0$. By Thom's Lemma, it is possible to represent these cells by sign conditions on derivatives of $f$.
-In this example, it is clear that another polynomial, $y$, is needed to distinguish between these cells. @brown99 proposed an algorithm for constructing a solution formula where the projection polynomials are not sufficient. The basic idea is that "conflicting pairs", distinct cells having the same signature (signs of projection factors), are identified, then additional derivatives of projection factors are added so that the conflicting pairs can be distinguished.
+The two distinct cells $C_1$ and $C_2$ have signs $x > 0, x - y^2 = 0$. By Thom's Lemma, it is possible to represent these cells by sign conditions on derivatives of $f$.
+In this example, it is clear that another polynomial, $y$, is needed to distinguish between these cells. @brown99 proposed an algorithm for constructing a solution formula if the projection polynomials are not sufficient. The basic idea is that "conflicting pairs", distinct cells having the same signature (signs of projection factors), are identified, then additional derivatives of projection factors are added so that the conflicting pairs can be distinguished.
 
 The algorithm proposed by @brown99 is implemented as the "solution formula construction phase" in QEPCAD. A small modification has been made such that this algorithm may be used to construct formulas for individual cells as opposed to the set of points satisfying the input formula. More precisely, the definition of a conflicting pair was slightly modified.
 
 ::: {.definition}
 Let $C_1$ and $C_2$ be distinct cells in a CAD $\cal D$ of $\R^n$. Each cell $C$ is assigned a truth value $T_C \in \{\tt{True}, \tt{False}, \tt{undet}\}$ and a list $S_C = (S_1,\ldots,S_k)$ where $S_i = (s_{i,1},\ldots,s_{i,s_i}, 1\le i \le k$ is the list of signs of level-$i$ (factorised) projection polynomials $f_1,\ldots,f_{i_s} \in \Z[x_1,\ldots,x_i]$, with $s_{i,j} \in \{-1,0,1\}$.
-$(C_1, C_2)$ is called a conflicting pair in $\cal D$ if $T_{C_1}, T_{C_2} \in \{\tt{True}, \tt{False}\}$ and $T_{C_1} = T_{C_2}$ and $S_{C_1} = S_{C_2}$.
+$(C_1, C_2)$ is called a conflicting pair in $\cal D$ if $T_{C_1}, T_{C_2} \in \{\tt{True}, \tt{False}\}$ and $T_{C_1} = T_{C_2}$ and $S_{C_1} = S_{C_2}$ (equality determined component-wise).
 :::
 
-The condition on truth values being equal has been dropped so that every cell in the CAD may be distinguished by the signs of its projection polynomials only. In all other aspects, Brown's solution formula construction algorithm may be applied unchanged. In order to represent a cell by a quantifier-free Booleean formula, it may be necessary to split a cell into several disjoint semialgebraic sets. Thus, each cell will be represented in disjunctive normal form, where each literal is a sign condition on a projection polynomial or one of its derivatives.
+For our purposes, the condition on truth values being equal has been dropped so that every cell in the CAD may be distinguished by the signs of its projection polynomials only. In all other aspects, Brown's solution formula construction algorithm may be applied unchanged. In order to represent a cell by a quantifier-free Booleean formula, it may be necessary to split a cell into several disjoint semialgebraic sets. Thus, each cell will be represented in disjunctive normal form, where each literal is a sign condition on a projection polynomial or one of its derivatives.
 
 

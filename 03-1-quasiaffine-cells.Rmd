@@ -1,13 +1,13 @@
 # Quasi-affine cells { #sec:quasi-affine }
 
-In this section, we develop an algorithm, based on @bgv15, Theorem 3.18, for constructing a CAD whose two-, one-, and zero-dimensional cells are the graphs of quasi-affine maps.
+In this section, we develop an algorithm, based on @bgv15, Theorem 3.19, for constructing a CAD whose two-, one-, and zero-dimensional cells are the graphs of quasi-affine maps. This is the first step to constructing a monotone cylindrical decomposition, as described in @bgv15, Theorem 3.20.
 
-::: {.proposition #bgv-quase }
+::: {.proposition #bgv-quasi }
 [@bgv15, Theorem 3.19]
 
 Let $V_1,\ldots,V_k$ be bounded deﬁnable subsets in $\R^n$ with $\dim (V_i) \le 2$ for each
-$ 1 \le i \le k$.
-Then there is a cylindrical cell decomposition of $\R^n$, compatible with every $V_i$ such that every cylindrical cell contained in $V := V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map.
+$1 \le i \le k$.
+Then there is a cylindrical cell decomposition of $\R^n$, compatible with each $V_i$ such that every cylindrical cell contained in $V := V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map.
 :::
 
 The following will be proved.
@@ -17,9 +17,9 @@ Let
 $$
 F_1,\ldots,F_k
 $$
-be quantifier-free Boolean formulas containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \in \Z[x_1,\ldots,x_n]$, having maximum degree $d$, such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
+be quantifier-free Boolean formulas containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \subset \Z[x_1,\ldots,x_n]$, having maximum degree $d$, such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
 
-Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$, which is obviously compatible with each $V_1,\ldots,v_k$, such that each cell $C \subset V_1\cup,\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
+Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map. $\mathcal{D}$ is obviously compatible with each $V_1,\ldots,V_K$. 
 This algorithm has complexity
 $$
 \left(s\left(d+1\right)\right)^{2^{O(n)}},
@@ -27,40 +27,42 @@ $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
-## Computing the smooth two-dimensional locus of $V$
+## Computing the smooth two-dimensional locus of V
 
 The proof of @bgv15, Theorem 3.19 begins by introducing $W$, the smooth $2$-dimensional locus of $V = V_1 \cup \ldots \cup V_k$.
 Since $V$ is a semialgebraic set, it can be represented by a quantifier-free Boolean formula $F$.
-$W$ can be computed using the smooth stratification algorithm described in @\ref(sec:smooth-strat).
+$W$ can be computed using the smooth stratification algorithm described in \@ref(sec:smooth-strat).
 In order to apply the algorithm, consider the sign sets $S_{(\ast_1,\ldots,\ast_s)} \subset \R^n$ of polynomials $f_1,\ldots,f_s$ appearing in the formula $F$, as described in Section \@ref(sec:strat-semialgebraic). Observe that a finite number of these sign-sets $S_1,\ldots,S_m$ form a partition of $V$.
 For each $S_i \subset V$, apply the smooth stratification algorithm to obtain a family $(X_{i,1}, \ldots X_{i,n})$ of strata, where each $X_{i,j}$ is a smooth subset of $S_i$ of codimension $j$.
 We have $\dim(S_i) \le 2$, since each of the sets in the union $V$ has dimension at most 2. Hence, every stratum $X_{i,j}$ of codimension $j < n-2$ will be empty.
-We obtain the smooth two-dimensional locus of $V$ by taking the union of strata of codimension $n-2$. For each of stratum, it is important to keep the set of $n-2$ polynomials defining it, as these will be needed in the next step. We will need the strata of codimension $n-1$, as each one-dimensional cell must also be the graph of a quasi-affine map.
+We obtain the smooth two-dimensional locus of $V$ by taking the union of strata of codimension $n-2$. For each stratum, it is important to keep the set of $n-2$ polynomials defining it, as these will be needed in the next step. We will need the strata of codimension $n-1$, as each one-dimensional cell must also be the graph of a quasi-affine map.
 
 ### An alternative method for computing the smooth two-dimensional locus
 
 Recall from Section \@ref(sec:cad-construction)) that smooth cells can be guaranteed by choosing a certain projection operator.
 More precisely, according to @mccallum1988, Theorems 2.2.3 and 2.2.4, if there is a finite number of blow-up points, then the McCallum projection operator will result in a CAD where all cells are analytic submanifolds.
-Since $\dim(V_i) \le 2$ for all $1 \le i \le k$, we may assume that blow-up points will have dimension at most $0$. Hence, the McCallum projection operator will result in smooth cells being produced. Since each input set $V_i$ has dimension at most two, $\cl(V_1)$ will only contain zero-dimensional blow-up points.
+Since $\dim(V_i) \le 2$ for all $1 \le i \le k$, blow-up points in $\cl(V_i)$ have dimension at most $0$ (see the Remark after Definition \@ref(def:blow-up-point)). 
+Hence, the McCallum projection operator is sufficient to produce smooth cells. 
 
-Let $\mathbf{F} \subset \R^n$ be the set of polynomials appearing in the quantifier-free Boolean formulas defining $V$ and use the McCallum projection operator to construct an $F$-invariant CAD, $\cal E$, of $\R^n$. Since cells of a CAD are disjoint by construction and smooth by the use of the McCallum projection operator, $\cal E$ forms a smooth stratification of $V$.
+Let $\mathbf{F} \subset \R^n$ be the set of different polynomials appearing in the quantifier-free Boolean formulas defining $V$ and use the McCallum projection operator to construct an $F$-invariant CAD, $\cal E$, of $\R^n$. Since cells of a CAD are disjoint by construction and smooth by the use of the McCallum projection operator, $\cal E$ forms a smooth stratification of $V$.
 Thus, we can take as $W$ the (separate) sets of $2$- and $1$-dimensional cells of $\cal E$ which are contained in $V$.
-Let $C$ be one of these cells, and suppose it has index $(i_1,\ldots,i_n) \in \{0,1\}^n$. Since $\dim(C) = 2$, $\sum_{1\le i \le n} = 2$. Let $i_{j_1}, = i_{j_2} = 1$ for $j_1 \ne j_2$ and all other elements of the index be equal to zero. Then $\projop{k}(C)$, for $k\ne j_1,k\ne j_2$, is the root of a projection polynomial $f_k \in \Z[x_1,\ldots,x_k]$. Hence, we have, $n-2$ projection polynomials at which every $\mathbf{x} \in C$ is equal to zero.
-The polynomials can be determined by using the set of signs of projection factors and used to define an algebraic variety $V \supset C$. Note that we need some additional inequalities to define $C$ properly, but these are not needed to compute the critical points of projections in the next section.
+Recall, from Definition \@ref(def:cells), that each cylindrical cell has a corresponding multi-index $(i_1,\ldots,i_n) \in \{0,1\}^n$.
+Let $C \subset V$ be a $2$-dimensional be a cell of $\mathcal{E}$, and suppose it has index $(i_1,\ldots,i_n)$. Since $\dim(C) = 2$, $\sum_{1\le i \le n} = 2$. Let $i_{j_1}, = i_{j_2} = 1$ for $j_1 \ne j_2$ while all other elements of the index be equal to zero. Then $\projop{k}(C)$, for $k\ne j_1,k\ne j_2$, is the root of a projection polynomial $f_k \in \Z[x_1,\ldots,x_k]$. Hence, we have, $n-2$ projection polynomials at which every $\mathbf{x} \in C$ is equal to zero.
+The polynomials can be determined by using the set of signs of projection factors and used to define an algebraic variety $Y \supset C$. Note that we need some additional inequalities to define $C$ properly, but these are not needed to compute the critical points of projections in the next section.
 Similarly for $1$-dimensional cells, only one element of the index will be equal to $1$, while all other elements are equal to $0$. It follows that we can find $n-1$ polynomials, in a similar way, which are equal to zero on each one-dimensional cell.
 
-It is possible to compute $W$ using either technique. Theoretically speaking, using the smooth stratification algorithm seems cleaner, as it is the correct tool for decomposing a set into smooth manifolds. @gv04, Theorem 3.7 gives a method (which can be turned into an algorithm) for efficiently listing all these sign sets and @bpr2006, Algorithm 14.21 describes how quantifier elimination can be performed in singly exponential time.
+It is possible to compute $W$ using either technique. Theoretically speaking, using the smooth stratification algorithm seems cleaner, as it is the correct tool for the job. In addition, the bound on number of strata is singly exponential, while the bound on number of CAD cells is doubly exponential. An estimate for the number of cells of strata having a certain dimension is not currently known, but it seems likely that the number of strata will be less than the number of CAD cells. 
+@gv04, Theorem 3.7 gives a method (which can be turned into an algorithm) for efficiently listing all sign sets associated with a set of polynomials and @bpr2006, Algorithm 14.21 describes how quantifier elimination can be performed in singly exponential time.
 However, in the implementation
-<!-- TODO (see implementation and testing section) -->
-CAD is used to perform the emptiness check. Thus, the second option seems more appealing because a single recomputation of the CAD is preferrable to many calls to the CAD algorithm, which would be required for the tratification-based approach.
+CAD is used to perform the emptiness check. Thus, the second option seems more appealing because a single recomputation of the CAD is preferrable to many calls to the CAD algorithm, which would be required for the stratification-based approach in the form that it has been implemented.
 In addition, @kremer2020 propose an algorithm, along with its implementation, for refining a CAD to be compatible with new polynomials. This gives us hope that we may be able to avoid a full re-computation. In conclusion, the second option, where we compute an initial CAD consisting of smooth cells, is more tractable in practice.
 
 ## Ensuring that every cell is the graph of a quasi-affine map
 
-We now discuss how to obtain quasi-affine cells. A cell $C$ is the graph of a quasi-affine map if, for each affine coordinate subspace $L \subset \R^n$, the restriction of the projection map $\proj_{L}\vert_C$ if and only if the image under this map is $n$-dimensional (see Definition \@ref(def:quasi-affine)).
+We now discuss how to obtain quasi-affine cells. A $k$-dimensional cell $C$ is the graph of a quasi-affine map if, for each affine coordinate subspace $L \subset \R^n$, the image of the projection map $\proj_{L}(C)$ is $k$-dimensional if and only if the map $\proj_{L}\vert_C$ is injective (see Definition \@ref(def:quasi-affine)).
 In order to satisfy this property, @bgv15, Lemma 3.19 states that the CAD $\cal D$ also needs to be compatible with the critical points, $W_{i}$ and $W_{i,j}$, of projections of $W$ onto one and two-dimensional coordinate subspaces $\opspan{x_i,x_j}$ and $\opspan{x_i}$.
 
-Let $W'_k$ be one of the strata computed in the previous section, with $k\in \{1,2\}$. Since $W'_k$ has codimension $n-k$ and is a basic semialgebraic set, its formula contains $n-k$ polynomial equations and, possibly, some inequalities.
+Let $W'_k$ be one of the strata (or smooth cylindrical cells) computed in the previous section, with $k\in \{1,2\}$. Since $W'_k$ has codimension $n-k$ and is a basic semialgebraic set, its formula contains $n-k$ polynomial equations and, possibly, some inequalities.
 Consider the Jacobi matrix
 $$
 J_{i_1,\ldots,i_\ell}:=\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} & \ldots & \partial f_{1}/\partial x_{i_{\ell}}\\
@@ -73,22 +75,21 @@ Regular points of the projection of $W'$ onto $\opspan{j_1,\ldots,j_{n - \ell}}$
 Thus, we can compute the critical points $W'_{i,j}$ of $\projops{x_i,x_j}$ by finding the points at which the Jacobi matrix $J_{\{1,\ldots,n\} \setminus \{i,j\}}$ does not have full rank.
 
 Note that, for $W'_{i,j}$, the corresponding $J_{\{1,\ldots,n\} \setminus \{i,j\}}$ will be a $((n-2) \times (n-2))$-matrix, so we simply need to find the points at which $\det(J_{\{1\ldots,n\} \setminus \{i,j\}}) = 0$.
-On the other hand, $J_{\{1,\ldots,n\} \setminus \{i\}}$ will be an $((n-2) \times (n-1))$-matrix. It will fail to have full rank if the determinants of all of the $((n-2) \times (n-2))$ minors is zero. Observe that the minors of $J_{\{1,\ldots,n\} \setminus \{i\}}, i \in \{1,\ldots,n\}$ are the $((n-2)\times (n-2))$-jacobi matrices $J_{\{1,\ldots,n\} \setminus \{i,j\}}, j \in \{1,\ldots,n\} \setminus \{i\}$. I.e., they will coincide with the square matrices associated with $W'_{i,j}$. Thus, we need to make the CAD have constant sign on
+On the other hand, $J_{\{1,\ldots,n\} \setminus \{i\}}$ will be an $((n-2) \times (n-1))$-matrix. It will fail to have full rank if the determinants of all of the $((n-2) \times (n-2))$-minors is zero. Observe that the minors of $J_{\{1,\ldots,n\} \setminus \{i\}}, i \in \{1,\ldots,n\}$ are the $((n-2)\times (n-2))$-jacobi matrices $J_{\{1,\ldots,n\} \setminus \{i,j\}}, j \in \{1,\ldots,n\} \setminus \{i\}$. I.e., they will coincide with the square matrices associated with $W'_{i,j}$. Thus, we need to make the CAD have constant sign on the determinants of each of the matrices
 $$
-J_{\{1,\ldots,n\} \setminus \{i,j\}} \text{ for all } i \ne j,
+J_{\{1,\ldots,n\} \setminus \{i,j\}} \text{ for all } 1 \le i < j \le n,
 $$
 for all two-dimensional smooth strata (or cells) of $V$, whose definition includes $n-2$ polynomial equations.
 
 Now consider the critical points $Z$ of $\projops{x_i,x_j}(W'_1)$, where $W'_1$ is a smooth one-dimensional stratum. If $\dim(Z) = 1$, then every point of $\projops{x_i,x_j}(W'_1)$ is critical as $W'_1$ is smooth. Note that $z$ may contain zero-dimensional critical points of $\projops{x_i}$ and $\projops{x_j}$.
-Otherwise, $\dim(Z) = 0$, so $Z$ is a collection of isolated points $(c_i,c_j)$. $c_i$ is also a critical point of $\projops{x_i}(W'_1)$ and $c_j$ is also a critical point of $\projops{x_j}(W'_1)$. Therefore, it is sufficient to consider only critical points of projections onto one-dimensional coordinate subspaces. Hence, we only -consider Jacobi matrices
-$J_{\{1,\ldots,n\} \setminus \{i\}}$ for all $1\le i \le n$, for the $n-1$ polynomials defining $W'_1$. Critical points exist when their determinants are equal to zero.
+Otherwise, $\dim(Z) = 0$, so $Z$ is a collection of isolated points $(c_i,c_j)$. $c_i$ is also a critical point of $\projops{x_i}(W'_1)$ and $c_j$ is also a critical point of $\projops{x_j}(W'_1)$. Therefore, it is sufficient to consider only critical points of projections onto one-dimensional coordinate subspaces. Hence, we only consider Jacobi matrices
+$J_{\{1,\ldots,n\} \setminus \{i\}}$ for all $1\le i \le n$, for the $n-1$ polynomials defining $W'_1$. Critical points are those at which their determinants are equal to zero.
 
 ### Computing the quasi-affine CAD { #sec:quasiaffine-algorithm }
 
 We now present pseudo-code for the quasi-affine part of the algorithm.
 
----
-
+::: {.algorithm data-latex="Quasi-Affine CAD"}
 **Input:**
 $$(F_1,\ldots,F_k)$$
 
@@ -102,98 +103,94 @@ $$(F_1,\ldots,F_k)$$
 $$
 ({\cal D})
 $$
-  - $\cal D$: an $\mathbf{F'}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots,V_k$ such that each cell $C \subset V$ is the graph of a quasi-affine map, where $\mathbf{F'}  \subset \Z[x_1,\ldots,x_n]$ contains all polynomials from formulas $F_1,\ldots,F_k$ and, possibly, some additional polynomials which are zero at singlura points of $V_1\cup \ldots, \cup V_k$ and the critical points of projections of $Y_1 \cup \ldots \cup V_k$ onto one- and two- dimensional coordinate subsipcase.
-
----
+  - $\cal D$: an $\mathbf{F'}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots,V_k$ such that each cell $C \subset V$ is the graph of a quasi-affine map, where $\mathbf{F'}  \subset \Z[x_1,\ldots,x_n]$ contains all polynomials from formulas $F_1,\ldots,F_k$ and, possibly, some additional polynomials which are zero at singular points of $V_1\cup \ldots, \cup V_k$ and the critical points of projections of $Y_1 \cup \ldots \cup V_k$ onto one- and two- dimensional coordinate subspaces.
 
 - Let $$
 \mathbf{F} \subset \Z[x_1,\ldots,x_n]
 $$
 be the set of polynomials appearing in the formulas $F_1,\ldots,F_k$.
 
-- Compute $\cal E$, a CAD of $\R^n$ compatible with $V$, using the McCallum projection operator.
+- Compute $\cal E$, an $\mathbf{F}$-invariant CAD of $\R^n$ (obviously compatible with each $V_1,\ldots,V_k$) using the McCallum projection operator.
 
-- Let ${\cal A} = ({\cal A}_1,\ldots,{\cal A}_{n})$ be the family of projection polynomials for $\cal E$, where each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$.
+- Let ${\cal A} = ({\cal A}_1,\ldots,{\cal A}_{n})$ be the family of projection polynomials for $\cal E$, where each ${\cal A}_k \subset \Z[x_1,\ldots,x_k]$.
 
-- For each cell $C_k \subset V$ with index $(i_1,\ldots,i_n) \in \{0,1\}^n$, such that $i_{j_1} = \ldots = i_{j_k} = 1$ while all other elements of the index are equal to $0$ (observe $\dim(C_k) = k$):
+- For each cell $C_k \subset V$ with index $(i_1,\ldots,i_n) \in \{0,1\}^n$, such that $i_{j_1} = \ldots = i_{j_k} = 1$ while all other elements of the index are equal to $0$ (since $\dim(V) \le 2$, $k \le 2$ and $\dim(C_k) = k$):
 
-  - Let $f_1,\ldots,f_{n-k}$ be a set of projection polynomials which are equal to $0$ on the cell $C_k$.
+  - Let $f_1,\ldots,f_{n-k}$ be a set of projection polynomials, where $f_i \in \mathcal{A}_i$, which are equal to $0$ on the cell $C_k$.
 
   - For each $i \in \{1,\ldots,n\} \setminus \{j_1,\ldots,j_k\}$, find a polynomial in ${\cal A}_i$ which is $0$ at every point $\mathbf{x} \in C_k$. This can be done by checking the set of signs of projection factors.
 
 - For each $2$-dimensional cell $C_2 \subset V$ and pair $1 \le i_1 < i_2 \le n$:
 
-  - Find the set of polynomials $f_1,\ldots,f_{n-2}$ defining $C_2$.
+  - Find the set of polynomials $f_1,\ldots,f_{n-2}$ defining $C_2$ as described above.
 
-  - Let $\mathbf{m} = \{j_1,\ldots,j_\ell\} = \{1\ldots,n\} \setminus \{i_1,i_2\}$.
+  - Let $\mathbf{m} = \{j_1,\ldots,j_{n-2}\} = \{1\ldots,n\} \setminus \{i_1,i_2\}$.
 
   - Define
     \begin{equation}
     J_{C_2,\mathbf{m}} :=
-\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} & \ldots & \partial f_{1}/\partial x_{i_{\ell}}\\
+\begin{pmatrix}\partial f_{1}/\partial x_{j_{1}} & \ldots & \partial f_{1}/\partial x_{j_{n-2}}\\
 \vdots &  & \vdots\\
-\partial f_{n-2}/\partial x_{i_{1}} & \ldots & \partial f_{n-2}/\partial x_{i_{\ell}}
-\end{pmatrix}
+\partial f_{n-2}/\partial x_{j_{1}} & \ldots & \partial f_{n-2}/\partial x_{j_{n-2}}
+\end{pmatrix},
 (\#eq:jacobi-two)
     \end{equation}
-    be an $((n-2)\times (n-2))$ Jacobi matrix.
+    an $((n-2)\times (n-2))$ Jacobi matrix.
 
     $\det(J_{C_2,\mathbf{m}}) = 0$ at the critical points of $\projops{i_1,i_2}$.
 
-- For each $1$-dimensional cell $C_1 \subset V$ pair $1 \le i_1 < i_2 \le n$:
+- For each $1$-dimensional cell $C_1 \subset V$ and each $1 \le i \le n$:
 
   - Find the set of polynomials $f_1,\ldots,f_{n-1}$ defining $C_1$.
 
-  - Let $\mathbf{m} = \{j_1,\ldots,j_\ell\} = \{1\ldots,n\} \setminus \{i_1\}$.
+  - Let $\mathbf{m} = \{j_1,\ldots,j_{n-1}\} = \{1\ldots,n\} \setminus \{i\}$.
 
   - Define
   \begin{equation}
   J_{C_1,\mathbf{m}} :=
-\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} & \ldots & \partial f_{1}/\partial x_{i_{\ell}}\\
+\begin{pmatrix}\partial f_{1}/\partial x_{j_{1}} & \ldots & \partial f_{1}/\partial x_{j_{n-1}}\\
 \vdots &  & \vdots\\
-\partial f_{n-2}/\partial x_{i_{1}} & \ldots & \partial f_{n-1}/\partial x_{i_{\ell}}
-\end{pmatrix}
+\partial f_{n-1}/\partial x_{j_{1}} & \ldots & \partial f_{n-1}/\partial x_{j_{n-1}}
+\end{pmatrix},
 (\#eq:jacobi-one)
   \end{equation}
-  be an $((n-1)\times (n-1))$ Jacobi matrix.
+  an $((n-1)\times (n-1))$ Jacobi matrix.
 
-  $\det(J_{C_1,\mathbf{m}}) = 0$ at the critical points of $\projops{i_1}$.
+  $\det(J_{C_1,\mathbf{m}}) = 0$ at the critical points of $\projops{i}$.
 
   - Return the CAD $\cal D$, which is sign invariant on
-  $$
-  \mathbf{F} \cup
-  \bigcup_{C_2 \subset V,\mathbf{m} = \{1,\ldots,n\} \setminus \{i_1,i_2\}} \det\left(J_{C_2,\mathbf{m}}\right),
-  \bigcup_{C_1 \subset V,\mathbf{n} = \{1,\ldots,n\} \setminus \{i_1\}} \det\left(J_{C_1,\mathbf{n}}\right)
-  $$
-  for each two and one-dimensional cell $C_1,C_2 \subset V$ of $\cal E$ and each pair $0\le i_1 < i_2 \le n$.
+    \begin{align*}
+    \mathbf{F}' =\ & & \mathbf{F}\\
+    \cup\ & \bigcup_{C_2 \subset V,\dim(C_2) = 2,\mathbf{m} = \{1,\ldots,n\} \setminus \{i_1,i_2\}, 1 \le i_1 < i_2 \le n} & \det\left(J_{C_2,\mathbf{m}}\right)\\
+    \cup\ & \bigcup_{C_1 \subset V,\dim(C_1) = 1,\mathbf{m} = \{1,\ldots,n\} \setminus \{i\}, 1 \le i \le n} & \det\left(J_{C_1,\mathbf{m}}\right).\\
+    \end{align*}
+:::
 
 ## Correctness and Complexity
 
 Correctness of Theorem \@ref(thm:bgv-quasi-algorithm) follows from the proof of @bgv15, Lemma 3.19. Let $\mathcal{E}$ be the CAD computed by the algorithm from Section \@ref(sec:quasiaffine-algorithm), using the McCallum projection operator, in which each cell has constant sign on the polynomials defining sets $V_1,\ldots,V_k$.
 By @mccallum1988, Theorems 2.2.3 and 2.2.4, each cell $C \subset V$ of $\cal E$ will be an analytic submanifold, since $\dim(V_i) \le 2, 1\le i \le k$.
-The algorithm then makes the CAD compatible with the determinants of matrices $J_{C_2,\mathbf{m}}$ and $J_{C_1,\mathbf{m}}$, defined in Equations \@(ref:eq-jacobi-two) and \@ref(eq:jacobi-one) respectively. These are the critical points of projections of two- and one- dimensional smooth cylindrical cells $C \subset V_1,\ldots,V_k$. Thus, $\mathcal{D}$, the CAD output by the algorithm from Section \@ref(sec:quasiaffine-algorithm) is compatible with the critical points of projections of the smooth two-dimensional locus of $V_1\cup \ldots \cup V_k$ onte one- and two-dimensional coordinate subspaces, as required in the proof of @bgv15, Lemma 3.19.
+The algorithm then makes the CAD compatible with the determinants of matrices $J_{C_2,\mathbf{m}}$ and $J_{C_1,\mathbf{m}}$, defined in Equations \@ref(eq:jacobi-two) and \@ref(eq:jacobi-one) respectively. These are the critical points of projections of two- and one- dimensional smooth cylindrical cells $C \subset V_1,\ldots,V_k$. Thus, $\mathcal{D}$, the CAD output by the algorithm from Section \@ref(sec:quasiaffine-algorithm) is compatible with the critical points of projections of the smooth two-dimensional locus of $V_1\cup \ldots \cup V_k$ onte one- and two-dimensional coordinate subspaces, as required in the proof of @bgv15, Lemma 3.19.
 
 ### Complexity Analysis { #sec:quasi-complexity }
 
 Let us examine the complexity by supposing that the smooth stratification algorithm is used to find the smooth two-dimensional locus of $V = V_1\cup \ldots \cup V_k \subset \R^n$, defined by $s$ polynomials having maximum degree $d$.
 By the result from Section \@ref(sec:strat-complexity), the smooth stratification step with emptiness checking has complexity
 $$
-\left(s(d+1)\right)^{2^{O(n)}}.
+3^{s}\left(s(d+1)\right)^{O(n)^{2}}
 $$
 The critical points of one- and two- dimensional strata are then computed. This is done by computing determinants of $(n-1)$- and $(n-2)$-dimensional Jacobi matrices, containing the $n-1$ and $n-2$ polynomial equations which define the strata of codimension $1$ and $2$ respectively.
-These polynomials have maximum degree $(d + 1)^{1^{O(n)}}$.
-In order to estimate the maximum degree of polynomials appearing in the Jacobi determinant of a $(k \times k)$-matrix, suppose that elementary row operations -- swapping two rows, multiplying a row by a number and adding one row to another -- will be used to convert the matrix into upper triangular form, then the elements on the main diagonal will be multiplied.
-Elementary row operationns do not change the upper bound on degree. For the determinant, multiplying $k$ polynomials of maximum degree $d$ will result in a polynomial of maximum degree $kd$. Thus, the maximum degree of the determinant of the $((n-2)\times (n-2))$-matrix will be $(n-2)(d + 1)^{1^{O(n)}}$ and the $((n-1) \times (n-1))$-matrix will be $(n-1)(d + 1)^{1^{O(n)}}$. These are both asymptotically the same as
+These polynomials have maximum degree $(d + 1)^{2}$.
+In order to estimate the maximum degree of polynomials appearing in the Jacobi determinant of a $(k \times k)$-matrix, suppose that elementary row operations -- swapping two rows, multiplying a row by a number and adding one row to another -- will be used to convert the matrix into upper triangular form, then the elements on the main diagonal will be multiplied. Note that the complexity of performing these row operations to transform the matrix into row echelon form has complexity $O\left(n^2\right)$.
+Elementary row operationns do not change the upper bound on degree. For the determinant, multiplying $k$ polynomials of maximum degree $d$ will result in a polynomial of maximum degree $kd$. Thus, the maximum degree of the determinant of the $((n-2)\times (n-2))$-matrix will be $(n-2)(d + 1)^{2}$ and the $((n-1) \times (n-1))$-matrix will be $(n-1)(d + 1)^{2}$. These are both bounded from above by
 $$
-n (d + 1)^{1^{O(n)}},
+n (d + 1)^{2},
 $$
-which is asymptotically the same as
-$$
-(d + 1)^{1^{O(n)}}.
-$$
-For the critical points of $\projops{x_i}, 1 \le i \le n$, there will be $n$ Jacobi determinants, and for $\projops{x_i,x_j}, 1 \le i < j \le n$, there will be $(n-1) + (n-2) + \cdots + 1 = \tfrac{1}{2} (n-1)n$, which is asymptotically the same as $n^2$.
 
-A classical CAD, having constant sign on the $s$ input polynomials along with the $n + n^2$ Jacobi determinants, which have maximum degree $(d + 1)^{1^{O(n)}}$, is then constructed.
+For the critical points of $\projops{x_i}, 1 \le i \le n$, there will be $n$ Jacobi determinants, and for $\projops{x_i,x_j}, 1 \le i < j \le n$, there will be $(n-1) + (n-2) + \cdots + 1 = \tfrac{1}{2} (n-1)n$, which is asymptotically the same as $n^2$.
+Accordirg to Section \@ref(sec:strat-complexity), the smooth stratification algorithm will produce at most $s^n (d+1)^2$. The bound on the number of strata of each codimension is not known, but the total number of strata is, of course, an upper bound. Therefore, there will be at most $n \left(s^n (d+1)^2\right)$ additional polynomials. 
+
+A classical CAD, having constant sign on the $s$ input polynomials along with the $n \left(s^n (d+1)^2\right)$ Jacobi determinants, which have maximum degree $n(d + 1)^{2}$, is then constructed.
 According to Proposition \@ref(prp:collins) (@bpr2006, Algorithm 11.2), classical CAD has complexity
 $$
 \left(s'd'\right)^{O(1)^{n}},
@@ -201,17 +198,25 @@ $$
 where $s'$ is the number of input polynomials and $d'$ their maximum degree.
 Using the bounds obtained from the application of smooth stratification, we get
 $$
-\left((s + n^2 + n)(d + 1)^{1^{O(n)}}\right)^{O(1)^n}
-= \left(s(d + 1)^{1^{O(n)}} + n(d + 1)^{1^{O(n)}} + n^2 (d + 1)^{1^{O(n)}}\right)^{O(1)^n},
+\left(\left(s+n\left(s^{n}(d+1)^{2}\right)\right)n\left(d+1\right)^{2}\right)^{O(1)^{n}},
 $$
-which is bounded from above by
+Which can be simplified to
 $$
-\left(s(d + 1)\right)^{2^{O(n)}}.
+\left(n s^n \left(d+1\right)\right)^{O(1)^n}.
+$$
+Since the expression $n^{O(1)^{n}}$ can be simplified to $2^{O(1)^{n}}$ we get an upper complexity bound, for constructing a quasi-affine CAD, of
+$$
+\left(s(d+1)\right)^{O(1)^{n}}.
 $$
 By Proposition \@ref(prp:collins), this is also an upper bound on the number of cells, number of polynomials defining the CAD and their maximum degree.
 
-Since this is the same complexity bound as for stratification, the total complexity of constructing a CAD, compatible with all $V_1,\ldots,V_k$ and such that each cell contained in $V_1 \cup \ldots \cup V_k$ is smooth and the graph of a quasi-affine map is
+Adding the stratification step, we get a total complexity of
 $$
-\left(s\left(d+1\right)\right)^{2^{O(n)}}.
+3^{s}\left(s(d+1)\right)^{O(n)^{2}}
++ \left(s(d+1)\right)^{O(1)^{n}},
+$$
+which is bounded from above by the doubly exponential CAD computation, leading to a complexity upper bound of
+$$
+\left(s(d+1)\right)^{O(1)^{n}}.
 $$
 

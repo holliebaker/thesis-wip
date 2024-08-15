@@ -40,14 +40,6 @@
   publisher={Springer}
 }
 
-@book{vdd98,
-  title={Tame topology and o-minimal structures},
-  author={Van den Dries, Lou and others},
-  volume={248},
-  year={1998},
-  publisher={Cambridge university press}
-}
-
 @article{bgv13sets,
   title={Semi-monotone sets},
   author={Basu, Saugata and Gabrielov, Andrei and Vorobjov, Nicolai},
@@ -274,15 +266,14 @@ numpages = {8},
     series = {ISSAC '99}
 }
 
-@article{kleene1952,
-  title={Introduction to metamathematics},
-  author={Kleene, Stephen Cole},
-  year={2012},
-  isbn={978-1258437961},
-  publisher={Literary Licensing, LLC}
+@book{kleene1952,
+	address = {Groningen},
+	author = {Stephen Cole Kleene},
+	editor = {},
+	publisher = {P. Noordhoff N.V.},
+	title = {Introduction to Metamathematics},
+	year = {1952}
 }
-
-
 
 @article{collins1991,
     title = {Partial Cylindrical Algebraic Decomposition for quantifier elimination},
@@ -318,6 +309,19 @@ doi = {https://doi.org/10.1016/j.jsc.2019.07.018},
 url = {https://www.sciencedirect.com/science/article/pii/S0747717119300847},
 author = {Gereon Kremer and Erika Ábrahám},
 keywords = {Cylindrical algebraic decomposition, Incrementality, Backtracking, Satisfiability modulo theories},
+}
+
+@InProceedings{mccallum1998,
+    author="McCallum, Scott",
+    editor="Caviness, Bob F.
+        and Johnson, Jeremy R.",
+    title="An Improved Projection Operation for Cylindrical Algebraic Decomposition",
+    booktitle="Quantifier Elimination and Cylindrical Algebraic Decomposition",
+    year="1998",
+    publisher="Springer Vienna",
+    address="Vienna",
+    pages="242--268",
+    isbn="978-3-7091-9459-1"
 }
 
 @incollection{mccallum1998,
@@ -450,15 +454,16 @@ keywords = {Cylindrical algebraic decomposition, Incrementality, Backtracking, S
 
 
 @article{vdd1988tarski,
-issn = {0022-4812},
-journal = {The journal of symbolic logic.},
-pages = {7--19},
-volume = {53},
-publisher = {Association for Symbolic Logic,},
-number = {1},
-year = {1988},
-title = {Alfred Tarski's elimination theory for real closed fields},
-address = {Champaign, Ill. :},
+  issn = {0022-4812},
+  journal = {The journal of symbolic logic.},
+  pages = {7--19},
+  volume = {53},
+  publisher = {Association for Symbolic Logic,},
+  number = {1},
+  year = {1988},
+  title = {Alfred Tarski's elimination theory for real closed fields},
+  author={Van den Dries, Lou and others},
+  address = {Champaign, Ill. :},
 }
 
 @book{vdd1998,
@@ -800,8 +805,7 @@ and Johnson, Jeremy R.",
 
 @Inbook{lakshman1991,
     author="Lakshman, Y. N.",
-    editor="Mora, Teo
-and Traverso, Carlo",
+    editor="Mora, Teo and Traverso, Carlo",
     title="A Single Exponential Bound on the Complexity of Computing Gr{\"o}bner Bases of Zero Dimensional Ideals",
     bookTitle="Effective Methods in Algebraic Geometry",
     year="1991",
@@ -824,5 +828,12 @@ and Traverso, Carlo",
     doi = {https://doi.org/10.1006/jcom.1997.0447},
     url = {https://www.sciencedirect.com/science/article/pii/S0885064X97904477},
     author = {Ernst W. Mayr},
+}
+
+@misc{saclib,
+  title = {saclib: Computations with real algebraic numbers},
+  year={2024},
+  howpublished = {\url{https://doc.sagemath.org/html/en/reference/spkg/saclib.html}},
+  note = {Accessed: 2024-08-09}
 }
 

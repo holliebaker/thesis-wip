@@ -1,0 +1,358 @@
+\begin{thebibliography}{}
+
+\bibitem[sac, 2024]{saclib}
+ (2024).
+\newblock saclib: Computations with real algebraic numbers.
+\newblock \url{https://doc.sagemath.org/html/en/reference/spkg/saclib.html}.
+\newblock Accessed: 2024-08-09.
+
+\bibitem[Arnon, 1979]{arnon1979}
+Arnon, D. (1979).
+\newblock A cellular decomposition algorithm for semialgebraic sets.
+\newblock In Ng, E.~W., editor, {\em Symbolic and Algebraic Computation}, pages
+  301--315, Berlin, Heidelberg. Springer Berlin Heidelberg.
+
+\bibitem[Arnon et~al., 1984]{arnon1984}
+Arnon, D.~S., Collins, G.~E., and McCallum, S. (1984).
+\newblock Cylindrical algebraic decomposition ii: An adjacency algorithm for
+  the plane.
+\newblock In Caviness, B.~F. and Johnson, J.~R., editors, {\em Quantifier
+  Elimination and Cylindrical Algebraic Decomposition}, pages 152--165, Vienna.
+  Springer Vienna.
+
+\bibitem[Arnon et~al., 1987]{arnon1987}
+Arnon, D.~S., Collins, G.~E., and McCallum, S. (1987).
+\newblock An adjacency algorithm for cylindrical algebraic decompositions of
+  three-dimensional space.
+\newblock In Caviness, B.~F., editor, {\em EUROCAL '85}, pages 246--261,
+  Berlin, Heidelberg. Springer Berlin Heidelberg.
+
+\bibitem[Basu et~al., 2013]{bgv13}
+Basu, S., Gabrielov, A., and Vorobjov, N. (2013).
+\newblock Monotone functions and maps.
+\newblock {\em Revista de la Real Academia de Ciencias Exactas, Fisicas y
+  Naturales. Serie A. Matematicas}, 107(1):5--33.
+
+\bibitem[Basu et~al., 2015]{bgv15}
+Basu, S., Gabrielov, A., and Vorobjov, N. (2015).
+\newblock Triangulations of monotone families i: two-dimensional families.
+\newblock {\em Proceedings of the London Mathematical Society},
+  111(5):1013--1051.
+
+\bibitem[Basu et~al., rint]{bgvII}
+Basu, S., Gabrielov, A., and Vorobjov, N. (preprint).
+\newblock Triangulation of monotone families ii: families in r3.
+
+\bibitem[Basu et~al., 1998]{bpr98}
+Basu, S., Pollack, R., and Roy, M.-F. (1998).
+\newblock A new algorithm to find a point in every cell defined by a family of
+  polynomials.
+\newblock In Caviness, B.~F. and Johnson, J.~R., editors, {\em Quantifier
+  Elimination and Cylindrical Algebraic Decomposition}, pages 341--350, Vienna.
+  Springer Vienna.
+
+\bibitem[Basu et~al., 2006]{bpr2006}
+Basu, S., Pollack, R., and Roy, M.-F. (2006).
+\newblock {\em Algorithms in Real Algebraic Geometry}.
+\newblock Algorithms and Computation in Mathematics, 10. Springer Berlin
+  Heidelberg : Imprint: Springer, Berlin, Heidelberg, 2nd ed. 2006. edition.
+
+\bibitem[Blum et~al., 1998]{blum1998}
+Blum, L., Shub, M., and Smale, S. (1998).
+\newblock {\em Complexity and Real Computation}.
+\newblock Springer New York : Imprint: Springer, New York, NY.
+
+\bibitem[Bradford et~al., 2014]{bradford2014}
+Bradford, R., Chen, C., Davenport, J.~H., England, M., Moreno~Maza, M., and
+  Wilson, D. (2014).
+\newblock Truth table invariant cylindrical algebraic decomposition by regular
+  chains.
+\newblock In {\em Computer Algebra in Scientific Computing: 16th International
+  Workshop, CASC 2014, Warsaw, Poland, September 8-12, 2014. Proceedings 16},
+  pages 44--58. Springer.
+
+\bibitem[Brown and Hong, 2004]{qepcadDocs}
+Brown, C. and Hong, H.~Q. (2004).
+\newblock Quantifier elimination by partial cylindrical algebraic
+  decomposition.
+
+\bibitem[Brown, 1999]{brown99}
+Brown, C.~W. (1999).
+\newblock Guaranteed solution formula construction.
+\newblock In {\em Proceedings of the 1999 International Symposium on Symbolic
+  and Algebraic Computation}, ISSAC '99, page 137–144, New York, NY, USA.
+  Association for Computing Machinery.
+
+\bibitem[Brown, 2001]{brown2001}
+Brown, C.~W. (2001).
+\newblock Improved projection for cylindrical algebraic decomposition.
+\newblock {\em Journal of Symbolic Computation}, 32(5):447--465.
+
+\bibitem[Brown, 2003]{brownQepcad}
+Brown, C.~W. (2003).
+\newblock Qepcad b: A program for computing with semi-algebraic sets using
+  cads.
+\newblock {\em SIGSAM Bull.}, 37(4):97–108.
+
+\bibitem[Brown and Davenport, 2007]{brown07}
+Brown, C.~W. and Davenport, J.~H. (2007).
+\newblock The complexity of quantifier elimination and cylindrical algebraic
+  decomposition.
+\newblock In {\em Proceedings of the 2007 international symposium on Symbolic
+  and algebraic computation}, pages 54--60.
+
+\bibitem[Buchberger, 1979]{buchberger1979}
+Buchberger, B. (1979).
+\newblock A criterion for detecting unnecessary reductions in the construction
+  of gr{\"o}bner-bases.
+\newblock In {\em International Symposium on Symbolic and Algebraic
+  Manipulation}, pages 3--21. Springer.
+
+\bibitem[Chen and Moreno~Maza, 2014]{chen2014}
+Chen, C. and Moreno~Maza, M. (2014).
+\newblock An incremental algorithm for computing cylindrical algebraic
+  decompositions.
+\newblock In {\em Computer Mathematics}, pages 199--221. Springer.
+
+\bibitem[Chen et~al., 2020]{chen2020}
+Chen, C., Zhu, Z., and Chi, H. (2020).
+\newblock Variable ordering selection for cylindrical algebraic decomposition
+  with artificial neural networks.
+\newblock In Bigatti, A.~M., Carette, J., Davenport, J.~H., Joswig, M., and
+  de~Wolff, T., editors, {\em Mathematical Software -- ICMS 2020}, pages
+  281--291, Cham. Springer International Publishing.
+
+\bibitem[Collins, 1975]{collins1975}
+Collins, G.~E. (1975).
+\newblock Quantifier elimination for real closed fields by cylindrical
+  algebraic decompostion.
+\newblock In {\em Automata theory and formal languages}, pages 134--183.
+  Springer.
+
+\bibitem[Collins and Hong, 1991]{collins1991}
+Collins, G.~E. and Hong, H. (1991).
+\newblock Partial cylindrical algebraic decomposition for quantifier
+  elimination.
+\newblock {\em Journal of Symbolic Computation}, 12(3):299--328.
+
+\bibitem[Coste, 2000]{coste2000}
+Coste, M. (2000).
+\newblock An introduction to semialgebraic geometry.
+
+\bibitem[Coste and Roy, 1988]{costeRoyThomLemma}
+Coste, M. and Roy, M. (1988).
+\newblock Thom's lemma, the coding of real algebraic numbers and the
+  computation of the topology of semi-algebraic sets.
+\newblock {\em Journal of Symbolic Computation}, 5(1):121--129.
+
+\bibitem[Cox et~al., 2013]{cox2013}
+Cox, D., Little, J., and OShea, D. (2013).
+\newblock {\em Ideals, varieties, and algorithms: an introduction to
+  computational algebraic geometry and commutative algebra}.
+\newblock Springer Science \& Business Media.
+
+\bibitem[Davenport and Heintz, 1988]{davenportHeintz1988}
+Davenport, J.~H. and Heintz, J. (1988).
+\newblock Real quantifier elimination is doubly exponential.
+\newblock {\em Journal of symbolic computation}, 5(1):29--35.
+
+\bibitem[Davenport et~al., 2020]{jhd20}
+Davenport, J.~H., Locatelli, A., and Sankaran, G. (2020).
+\newblock Regular cylindrical algebraic decomposition.
+\newblock {\em Journal of the London Mathematical Society}, 101(1):43--59.
+
+\bibitem[del R{\'i}o and England, 2022]{delrio2022}
+del R{\'i}o, T. and England, M. (2022).
+\newblock New heuristic to choose a cylindrical algebraic decomposition
+  variable ordering motivated by complexity analysis.
+\newblock In Boulier, F., England, M., Sadykov, T.~M., and Vorozhtsov, E.~V.,
+  editors, {\em Computer Algebra in Scientific Computing}, pages 300--317,
+  Cham. Springer International Publishing.
+
+\bibitem[Gabrielov, 1996]{gabrielov1996}
+Gabrielov, A. (1996).
+\newblock Complements of subanalytic sets and existential formulas for analytic
+  functions.
+\newblock {\em Inventiones mathematicae}, 125(1):1--12.
+
+\bibitem[Gabrielov and Vorobjov, 1995]{gv1995}
+Gabrielov, A. and Vorobjov, N. (1995).
+\newblock Complexity of stratification of semi-pfaffian sets.
+\newblock {\em Discrete \& computational geometry}, 14(1):71--91.
+
+\bibitem[Gabrielov and Vorobjov, 2001]{gv01}
+Gabrielov, A. and Vorobjov, N. (2001).
+\newblock Complexity of cylindrical decompositions of sub-pfaffian sets.
+\newblock {\em Journal of Pure and Applied Algebra}, 164(1-2):179--197.
+
+\bibitem[Gabrielov and Vorobjov, 2004]{gv04}
+Gabrielov, A. and Vorobjov, N. (2004).
+\newblock Complexity of computations with pfaffian and noetherian functions.
+\newblock {\em Normal forms, bifurcations and finiteness problems in
+  differential equations}, 137:211--250.
+
+\bibitem[Gabrielov and Vorobjov, 2009]{gv2009}
+Gabrielov, A. and Vorobjov, N. (2009).
+\newblock Approximation of definable sets by compact families, and upper bounds
+  on homotopy and homology.
+\newblock {\em Journal of the London Mathematical Society}, 80(1):35--54.
+
+\bibitem[Hong, 1990]{hong1990}
+Hong, H. (1990).
+\newblock An improvement of the projection operator in cylindrical algebraic
+  decomposition.
+\newblock In {\em Proceedings of the international symposium on Symbolic and
+  algebraic computation}, pages 261--264.
+
+\bibitem[Hong, 1993]{hong1993}
+Hong, H. (1993).
+\newblock Heuristic search strategies for cylindrical algebraic decomposition.
+\newblock In Calmet, J. and Campbell, J.~A., editors, {\em Artificial
+  Intelligence and Symbolic Mathematical Computing}, Berlin, Heidelberg.
+  Springer Berlin Heidelberg.
+
+\bibitem[Huang et~al., 2014]{huang2014}
+Huang, Z., England, M., Wilson, D., Davenport, J.~H., Paulson, L.~C., and
+  Bridge, J. (2014).
+\newblock Applying machine learning to the problem of choosing a heuristic to
+  select the variable ordering for cylindrical algebraic decomposition.
+\newblock In Watt, S.~M., Davenport, J.~H., Sexton, A.~P., Sojka, P., and
+  Urban, J., editors, {\em Intelligent Computer Mathematics}, pages 92--107,
+  Cham. Springer International Publishing.
+
+\bibitem[Kleene, 1952]{kleene1952}
+Kleene, S.~C. (1952).
+\newblock {\em Introduction to Metamathematics}.
+\newblock P. Noordhoff N.V., Groningen.
+
+\bibitem[Koiran, 1999]{koiran1999}
+Koiran, P. (1999).
+\newblock The real dimension problem is npr-complete.
+\newblock {\em Journal of Complexity}, 15(2):227--238.
+
+\bibitem[Kremer and Ábrahám, 2020]{kremer2020}
+Kremer, G. and Ábrahám, E. (2020).
+\newblock Fully incremental cylindrical algebraic decomposition.
+\newblock {\em Journal of Symbolic Computation}, 100:11--37.
+\newblock Symbolic Computation and Satisfiability Checking.
+
+\bibitem[Lakshman, 1991]{lakshman1991}
+Lakshman, Y.~N. (1991).
+\newblock {\em A Single Exponential Bound on the Complexity of Computing
+  Gr{\"o}bner Bases of Zero Dimensional Ideals}, pages 227--234.
+\newblock Birkh{\"a}user Boston, Boston, MA.
+
+\bibitem[Lazard, 1979]{lazard1979}
+Lazard, D. (1979).
+\newblock Systems of algebraic equations.
+\newblock In {\em Symbolic and Algebraic Computation: EUROSM'79, An
+  International Symposium on Symbolic and Algebraic Manipulation, Marseille,
+  France, June 1979 2}, pages 88--94. Springer.
+
+\bibitem[Lazard, 2010]{lazard10}
+Lazard, D. (2010).
+\newblock Cad and topology of semi-algebraic sets.
+\newblock {\em Mathematics in Computer Science}, 4(1):93--112.
+
+\bibitem[Lojasiewicz, 1964]{lojasiewicz1964}
+Lojasiewicz, S. (1964).
+\newblock Triangulation of semi-analytic sets.
+\newblock {\em Annali della Scuola Normale Superiore di Pisa - Scienze Fisiche
+  e Matematiche}, Ser. 3, 18(4):449--474.
+
+\bibitem[Masser and W{\"u}stholz, 1983]{masser1983}
+Masser, D.~W. and W{\"u}stholz, G. (1983).
+\newblock Fields of large transcendence degree generated by values of elliptic
+  functions.
+\newblock {\em Inventiones mathematicae}, 72:407--464.
+
+\bibitem[Mayr, 1997]{mayr1997}
+Mayr, E.~W. (1997).
+\newblock Some complexity results for polynomial ideals.
+\newblock {\em Journal of Complexity}, 13(3):303--325.
+
+\bibitem[McCallum, 1988]{mccallum1988}
+McCallum, S. (1988).
+\newblock An improved projection operation for cylindrical algebraic
+  decomposition of three-dimensional space.
+\newblock {\em Journal of Symbolic Computation}, 5(1):141--161.
+
+\bibitem[McCallum, 1993]{mccallum1993}
+McCallum, S. (1993).
+\newblock {Solving Polynomial Strict Inequalities Using Cylindrical Algebraic
+  Decomposition}.
+\newblock {\em The Computer Journal}, 36(5):432--438.
+
+\bibitem[McCallum, 1998]{mccallum1998}
+McCallum, S. (1998).
+\newblock An improved projection operation for cylindrical algebraic
+  decomposition.
+\newblock In Caviness, B.~F. and Johnson, J.~R., editors, {\em Quantifier
+  Elimination and Cylindrical Algebraic Decomposition}, pages 242--268, Vienna.
+  Springer Vienna.
+
+\bibitem[McCallum et~al., 2019]{mccallum2019}
+McCallum, S., Parusi{\'n}ski, A., and Paunescu, L. (2019).
+\newblock Validity proof of lazard's method for cad construction.
+\newblock {\em Journal of Symbolic Computation}, 92:52--69.
+
+\bibitem[Reif, 1979]{reif1979}
+Reif, J.~H. (1979).
+\newblock Complexity of the mover's problem and generalizations.
+\newblock In {\em 20th Annual Symposium on Foundations of Computer Science
+  (sfcs 1979)}, pages 421--427. IEEE Computer Society.
+
+\bibitem[Safey El~Din, 2013]{safeldin2013}
+Safey El~Din, M. (2013).
+\newblock Critical point methods and effective real algebraic geometry: new
+  results and trends.
+\newblock In {\em Proceedings of the 38th International Symposium on Symbolic
+  and Algebraic Computation}, pages 5--6.
+
+\bibitem[Schwartz and Sharir, 1983]{pianomovers1983}
+Schwartz, J.~T. and Sharir, M. (1983).
+\newblock On the “piano movers” problem. ii. general techniques for
+  computing topological properties of real algebraic manifolds.
+\newblock {\em Advances in applied Mathematics}, 4(3):298--350.
+
+\bibitem[Seidenberg, 1954]{seidenberg1954}
+Seidenberg, A. (1954).
+\newblock A new decision method for elementary algebra.
+\newblock {\em Annals of Mathematics}, pages 365--374.
+
+\bibitem[Sierpi{\'n}ski and Tarski, 1930]{sierpinski1930}
+Sierpi{\'n}ski, W. and Tarski, A. (1930).
+\newblock Sur une propri{\'e}t{\'e} caract{\'e}ristique des nombres
+  inaccessibles.
+\newblock {\em Fundamenta Mathematicae}, 1(15):292--300.
+
+\bibitem[Tarski, 1998]{tarski1998}
+Tarski, A. (1998).
+\newblock A decision method for elementary algebra and geometry.
+\newblock In {\em Quantifier elimination and cylindrical algebraic
+  decomposition}, pages 24--84. Springer.
+
+\bibitem[Van~den Dries, 1998]{vdd1998}
+Van~den Dries, L. (1998).
+\newblock {\em Tame topology and o-minimal structures}, volume 248.
+\newblock Cambridge university press.
+
+\bibitem[Van~den Dries et~al., 1988]{vdd1988tarski}
+Van~den Dries, L. et~al. (1988).
+\newblock Alfred tarski's elimination theory for real closed fields.
+\newblock {\em The journal of symbolic logic.}, 53(1):7--19.
+
+\bibitem[Whitney, 1992]{whitney1992}
+Whitney, H. (1992).
+\newblock Elementary structure of real algebraic varieties.
+\newblock {\em Hassler Whitney Collected Papers}, pages 456--467.
+
+\bibitem[Wüthrich, 1976]{wuthrich1976}
+Wüthrich, H.~R. (1976).
+\newblock Ein entscheidungsverfahren für die theorie der reell-abgeschlossenen
+  körper.
+\newblock In {\em Komplexität von Entscheidungsproblemen Ein Seminar}, Lecture
+  Notes in Computer Science 43, 138162, pages 138--162, Berlin, Heidelberg.
+  Springer.
+
+\end{thebibliography}

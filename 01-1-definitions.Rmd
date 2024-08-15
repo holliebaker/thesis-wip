@@ -4,8 +4,10 @@
 
 ### Sets definable over O-minimal structures
 
-We will be working mostly in the category *Semialgebraic Set* and sometimes in the more general category of sets definable over an O-minimal structures.
+<!-- TODO why semialgebrai set -->
+We will be working mostly in the category *Semialgebraic Set* and sometimes in the more general category of sets definable over an O-minimal structure.
 A semialgebraic subset of $\R^n$ is the set of points in $\R^n$ satisfying a Boolean combination of polynomial equations and inequalities with coefficients in $\R$.
+A polynomial with coefficients in a field $K$ and variables $x_1,\ldots,x_n$ will be denoted as an element of $K[x_1,\ldots,x_n]$.
 
 ::: { .definition #semialgebraic-set }
 The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets of $\R^n$ satisfying the following properties.
@@ -14,8 +16,18 @@ The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets o
 1. If $A, B \in {SA}_n$, then $A \cup B$, $A \cap B$ and $\R^n \setminus A$ are elements of ${SA}_n$.
 :::
 
+::: {.definition #graph-def-map }
+Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets. 
+Let $f : X \to Y$ be a mapping from $X$ to $Y$. The graph of $f$ is the definable set
+$$
+\{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}.
+$$
+Sometimes, the domain of $f$ is $\R^n$. In this case, we often use the restriction $f\vert_X$ so that only images of $f$ at points in $X$ are considered,
+The graph of $f$ on $X$ may be denoted by $f(X)$. 
+:::
+
 ::: {.definition}
-Let $X \subset \R^n$ and $Y \subset \R^m$. A mapping $f : X \to Y$ is called semialgebraic if its graph
+Let $X \subset \R^n$ and $Y \subset \R^m$. A mapping $f : X \to Y$ is called semialgebraic if its graph (see Definition \@ref(def:graph-def-map))
 $$
 \{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}
 $$
@@ -32,13 +44,14 @@ A quantifier-free Boolean formula is obtained by the following rules:
 :::
 
 ::: { .definition #first-order-formula }
-A first-order Boolean formula is obtained by rules 1 and 2 from Definition @\ref(def:qff) and
+A first-order Boolean formula is obtained by rules 1 and 2 from Definition \@ref(def:qff) and
 
 3. If $F$ is a first-order Boolean formula and $y$ is a variable ranging over $\R$, then $\exists y\ F$ and $\forall y\ F$ are first-order Boolean formulas.
 :::
 
 Semialgebraic sets are closed under taking finite unions and intersections and the difference of two semialgebraic sets is semialgebraic.
-A fundamental result in semialgebraic geometry is the Tarski-Seidenberg Theorem, which asserts that semialgebraic sets are also closed under taking projection.
+A fundamental result in semialgebraic geometry is the Tarski--Seidenberg Theorem, which asserts that semialgebraic sets are also closed under taking projection. 
+The proof of Tarski's theorem was published in [@tarski1998], whose release was delayed due to the war. It is very likely that Tarski actually proved the theorem much earlier, since Tarski mentioned this result in @sierpinski1930. The following statement of the theorem comes from [@vdd1988tarski], but the theorem should obviously be attributed to Tarski. 
 
 ::: { .theorem #tarski-seinedberg }
 [@vdd1988tarski]
@@ -46,7 +59,7 @@ Let $S \subset \R^{n+1}$ and $\projop{n} : \R^{n+1} \to \R^n$ be the projection 
 :::
 
 One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formula.
-Since the closure of a semialgebraic set may be represented by a first-order Boolean formula with quantifiers, it follows from the Tarski-Seidenberg Theorem that the closure of a semialgebraic set is a semialgebraic set.
+Since the closure of a semialgebraic set may be represented by a first-order Boolean formula with quantifiers, it follows from the Tarski--Seidenberg Theorem that the closure of a semialgebraic set is a semialgebraic set.
 
 We present an algorithm for performing quantifier elimination over real numbers. This algorithm will be used to provide theoretical complexity bounds for solving quantifier elimination problems later.
 
@@ -67,10 +80,11 @@ F' := \lor_{1 \le i \le I} \land_{1 \le j \le J_i} \left( \lor_{1 \le \ell \le L
 $$
 where each $f_{i,j,n}$ is a polynomial in $K[x_1,\ldots,x_n]$ and $\ast_{i,j,\ell} \in \{<, =, >\}$ determines its sign.
 Bounds on this formula are as follows
+
 - $I \le s^{(k_1 + 1)(k_2 + 1) \ldots (k_\omega + 1)(n+1)}d^{O(k_1) O(k_2) \ldots O(k_\omega)}$,
 - $J_i \le s^{(k_1 + 1)(k_2 + 1) \ldots (k_\omega + 1)}d^{O(k_1) O(k_2) \ldots O(k_\omega)}$,
 - $L_{i,j} \le d^{O(k_1) O(k_2) \ldots O(k_\omega)}$,
-- polynomials $f_{i,j,\ell}$ have maximum dergee $d^{O(k_1) O(k_2) \ldots O(k_\omega)}$.
+- polynomials $f_{i,j,\ell}$ have maximum degree $d^{O(k_1) O(k_2) \ldots O(k_\omega)}$.
 
 There is an algorithm, taking $F$ as input, which computes $F'$ with complexity
 $$
@@ -80,9 +94,8 @@ $$
 
 In many quantifier elimination problems, there is only a small number of quantifier alternations and this algorithm gives a favourable complexity bound (better than, e.g., using CAD). For example, the formula for computing the closure of a semialgebraic set contains only two quantifier alternations, and this algorithm gives a complexity bound singly exponential in the number of variables (see Lemma \@ref(lem:frontier)).
 
-Anowher useful property of semialgebraic sets is that they admit a basic representation, as stated below.
+Another useful property of semialgebraic sets is that they admit a basic representation, as stated below.
 
-::: { .proposition #union-of-conjunctionss }
 Every semialgebraic subset of $\R^n$ is the (not necessarily disjoint) union of finitely many semialgebraic subsets of the kind
 $$
 \{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \cdots, g_k(\mathbf{x}) > 0 \}
@@ -170,7 +183,7 @@ Let ${\cal I}^k := [-1,1]^k$ be the closed cube in an open domain $G \subset \R^
 $X \subset {\cal I}^n$ is called restricted sub-Pfaffian if $X := \projop{n}(Y)$, where $Y \subset {\cal I}^{n+m}$ is a restricted semi-Pfaffian set.
 :::
 
-The restricted sub-pfaffian sets form a Boolean subalgebra. Restricted sub-pfaffian sets are clearly closed under taking finite unions and intersections. The property that the compliment of restricted sub-pfaffian set is restricted sub-pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results may not be applied to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of sub-Pfaffian sets and, due to the Tarski-Seidenberg Theorem, semialgebraics sets satisfy the compliment theorem.
+The restricted sub-pfaffian sets form a Boolean subalgebra. Restricted sub-pfaffian sets are clearly closed under taking finite unions and intersections. The property that the compliment of restricted sub-pfaffian set is restricted sub-pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results may not be applied to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of sub-Pfaffian sets and, due to the Tarski--Seidenberg Theorem, semialgebraics sets satisfy the compliment theorem.
 
 ::: {.definition #pfaff-format}
 [@gv04, Definition 2.11]
@@ -179,7 +192,7 @@ Consider a semi-Pfaffian set
 $$
 X := \bigcup_{1 \le i \le M} \{ \mathbf{x} \in \R^s \mid f_{i,1} = 0, \ldots, f_{i,I_i} = 0, g_{i,1} > 0, \ldots, g_{i,J_i} > 0 \} \subset G
 $$
-where $f_{ij}$ and $g_{ij}$ are Pfaffian functions of order $r$ and dergee $(\alpha, \beta)$ defined in an open domain $G$
+where $f_{ij}$ and $g_{ij}$ are Pfaffian functions of order $r$ and degree $(\alpha, \beta)$ defined in an open domain $G$
 The format of $X$ is a tuple
 $$
 (r, N, \alpha, \beta, s)
@@ -230,7 +243,7 @@ to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x
 
 ::: { .definition #monotone-map-on }
 [@bgv15, Definition 2.10]
-Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} : X \to \opspan{y_1,\ldots,y_k}$ be a continuous map having graph $Y \subset \opspan{x_1,\ldots,x_n,y_1,\ldots,y_k}. If $Y$ is a monotone cell, then $\mathbf{f}$ is called monotone on $X$.
+Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} : X \to \opspan{y_1,\ldots,y_k}$ be a continuous map having graph $Y \subset \opspan{x_1,\ldots,x_n,y_1,\ldots,y_k}$. If $Y$ is a monotone cell, then $\mathbf{f}$ is called monotone on $X$.
 :::
 
 ::: { .definition #monotone-cell }
@@ -274,7 +287,7 @@ We finally revise the definition of Big O notation, following @gv2009, Definitio
 
 ::: {.definition #big-o }
 [@gv2009, Definition 6.1]
-Let $f,g,h \N^\ell \to \N$ be functions and $n \in \N$.
+Let $f,g,h : \N^\ell \to \N$ be functions and $n \in \N$.
 
 - The expression $f \le O(g)^n$ means that there exists $c \in \N$ such that $f < (cg)^n$ at every point in $\N^\ell$.
 - The expression $f \le g^{O(h)}$ means that there exists a $c \in \N$ such that $f \le g^{ch}$ at every point in $\N^\ell$.

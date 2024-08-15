@@ -1,0 +1,27 @@
+[]
+(t,x,y,z)
+4
+[
+  [ t^2 = 2 /\ 0 < x /\ x < 1 /\ -x < y /\ y < x /\ y^2 - x^2 (z - t) = 0 ]
+].
+mct y.
+g
+g
+g
+d-cell-t(2,2,2,3)
+g
+d-ref
+d-cell(2,2,2)
+d-cell-t(2,2,2,1)
+d-cell-t(2,2,2,2)
+d-cell-t(2,2,2,3)
+d-cell-t(2,2,2,4)
+d-cell-t(2,2,2,5)
+d-cell-t(2,2,2,6)
+d-cell-t(2,2,2,7)
+d-cell(8,2,2)
+d-cell-t(8,2,2,1)
+d-cell-t(8,2,2,2)
+d-cell-t(8,2,2,3)
+d-cell-t(8,2,2,4)
+d-cell-t(8,2,2,5)

@@ -1,6 +1,8 @@
 # Smooth Stratification {#sec:smooth-strat}
 
-Before turning our attention to cylindrical decompositions, we will present another useful algorithm for decomposing a semialgebraic set. A smooth stratification is a finite partition of a set into smooth manifolds.
+Before turning our attention to cylindrical decompositions, we will present another useful algorithm for decomposing a semialgebraic set.
+A smooth stratification is a finite partition of a set into smooth manifolds.
+This algorithm will form part of the later work in constructing a CAD with monotone cells, which requires the input sets to first be partitioned into smooth smooth manifolds (see Section \@ref(sec:quasi-affine). However, the algorithm and implementation described in this section are useful in their own right.
 
 In 1957, @whitney1992 proved that every algebraic variety can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set.
 Lojasiewicz extended this result by proving that every real semianalytic set admits a smooth stratification, such that every stratum is a semianalytic set [@lojasiewicz1964]. However, the proof was non-constructive and did not provide any information on the class of functions defining the strata.
@@ -9,7 +11,7 @@ As part of his Complement Theorem, @gabrielov1996 proved that the strata of a se
 
 ::: {.definition}
 [@gv04, Definition 6.2]
-A weak stratification of a semi-Pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ called strata. Strata need not be connected (or even have a finite number of connectod components) and may be empty.
+A weak stratification of a semi-Pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ called strata. Strata need not be connected (or even have a finite number of connected components) and may be empty.
 
 The stratification is called basic if all strata are basic semi-Pfaffian sets which are effectively nonsingular.
 I.e., the system of equations and inequalities defining each stratum $X_k$ of codimension $k$ includes a set of $k$ Pfaffian functions
@@ -18,12 +20,13 @@ h_{i_1}, \ldots , h_{i_k}
 $$ such that the restriction $h_{i_j}\vert_{X_i} = 0$ and $d h_{i_j} \ne 0$ at every point $\mathbf{x} \in X_k$, for each $1 \le j \le k$.
 :::
 
-Note that this definition does not assure any other desirable properties of the manifolds $X_k$. E.g., the closure of a stratum may not be a union of strata.
+Note that this definition does not guarantee any other desirable properties of the manifolds $X_k$. E.g., the closure of a stratum may not be a union of strata.
 
 ## Description of the algorithm { #sec:strat-alg-description }
 
-Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets with almost no modifications. Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too.  Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an oracle will not be needed in this variation of the algorithm.
-The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives needed to define all the strata is based on the format of the input set. As every polynomial has  a finite number of partial derivatives, this bound will simply be the degree of the polynomial in the semialgebraic case.
+Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets with almost no modifications.
+Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too.  Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an Oracle will not be needed in this variation of the algorithm.
+The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives which must be considered is bounded by the format of the input set. As every polynomial has  a finite number of partial derivatives, the bound for the semialgebraic case will simply be the degree of the polynomial.
 
 We will need the following notation for partial derivatives and the partial differential operator defined by @gv1995.
 
@@ -52,12 +55,31 @@ We write $\partial^m_{\mathbf{h}, \mathbf{i}, j}$ to mean the $m$-th iteration o
 
 We can now present the algorithm from @gv1995, Theorem 2.
 
+::: {.theorem #strat }
+Let
+$$
+X := \{ \mathbf{x} \in \R^n \mid f_1 = 0, \ldots, f_k = 0, g_1 > 0, \ldots, g_\ell > 0 \},
+$$
+be a semialgebraic set defined by $s = k + \ell$ different polynomials of maximum degree $d$.
+Then there is an algorithm, without oracle, which partitions $X$ into a family
+$$
+{\cal X} = (X_0, \ldots, X_n)
+$$
+such that, if $X$ is nonsingular, $X_0 = X$ and all other sets are empty.
+Otherwise, $X_0 = \emptyset$ and each $X_k, 1 \le k \le n$ is a possibly empty, effectively nonsingular stratum of codimension $k$.
+This algorithm has complexity
+$$
+3^{s}\left(s(d+1)\right)^{O(n)^{2}}.
+$$
+The number of strata does not exceed $s^{n} (d + 1)^2$, and each stratum is defined by at most $s (d + 1)^2$ polynomial equations and inequalities of maximum degree $(d + 1)^2$.
+:::
+
+
 Let $$
 X = \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = 0,\ldots,f_s(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0 \}.
 $$
 
----
-
+::: {.algorithm data-latex="Smooth Stratification"}
 $${\cal X} := \rm{Stratify}(k, F, \mathbf{h}, \mathbf{i}, G)$$
 
 **Input:**
@@ -74,8 +96,6 @@ $$
 $$
 $X_i, k+1 \le i \le n$ is a possibly empty, effectively nonsingular stratum of codimension $i$.
 Note that ${\cal X}_{n+1} = ()$.
-
----
 
 Proceed by induction on $i_k$.
 
@@ -133,7 +153,7 @@ Proceed by induction on $i_k$.
 
       - Note
 
-        - Clearly $Y_{k+1} \subset X' and $Y_{k+1} \subset U_{k+1}$
+        - Clearly $Y_{k+1} \subset X'$ and $Y_{k+1} \subset U_{k+1}$
         - $h_{k+1}(\mathbf{x}) = 0$ for all $\mathbf{x} \in Y_{k+1}$.
         - $U_{k+1}$ is a nonsingular subset of $\R^n$ having codimension $k+1$.
 
@@ -168,8 +188,7 @@ Proceed by induction on $i_k$.
       - Then proceed to the index immediately after $\mathbf{m}$ with respect to $\prec$.
 
       - The algorithm terminates when maximal index $M_j$ for every polynomial $f_j \in F$ has been considered.
-
----
+:::
 
 To call this algorithm on a semialgebraic set $X \subset \R^n$ defined by equations $F \subset \Z[x_1,\ldots,x_n]$ and $G \subset \Z[x_1,\ldots,z_n]$, compute
 $$
@@ -189,21 +208,22 @@ This can be expressed as a first-order Boolean formula with two quantifier alter
 $$
 \forall \mathbf{x} \in Y_k \> \exists \varepsilon > 0 \in \R \> \forall \mathbf{y} \in U_k \mid \Vert \mathbf{x} - \mathbf{y} \Vert < \varepsilon \rightarrow \mathbf{y} \in Y_k
 $$
-An alternative method, as described in @gv1995, Theorem 1, is to check whether every derivative computed at step $k+1$ vanishes on the set
+An alternative method, as described in @gv1995, Theorem 2, is to check whether every derivative computed at step $k+1$ vanishes on the set
 $$
 U_k \cap \{ x_1 = \tt{const} \mid i < i_1 \}
 $$
 where $i_k \in \{1,\ldots,n\}$ is a parameter passed from step $k$ to $k+1$ in the algorithm.
 This, again, reduces to the emptiness check.
 
-The second of these is $\rm{Empty}(S)$, where $S \subset \R^n$ is a semialgebraic set represented by a quantifier-free Boolean formula which is a conjunction of polynomial equations, inequations and inequalities. Note that an inequation $\{ f(\mathbf{x}) \ne 0 \}$ can b e rewritten as $\{ f(\mathbf{x}) < 0 \lor f(\mathbf{x}) > 0 \}$, so it is possible to represent $S$ by two systems of polynomial equations and inequalities, or a Boolean formula containing the conjunction above. This permits various methods for checking emptiness. We may write $\rm{Empty}(S)$ as a quantifier elimination problem
+The second of these is $\rm{Empty}(S)$, where $S \subset \R^n$ is a semialgebraic set represented by a quantifier-free Boolean formula which is a conjunction of polynomial equations, inequations and inequalities. Note that an inequation $\{ f(\mathbf{x}) \ne 0 \}$ can be rewritten as $\{ f(\mathbf{x}) < 0 \lor f(\mathbf{x}) > 0 \}$, so it is possible to represent $S$ by two systems of polynomial equations and inequalities, or a Boolean formula containing the conjunction above. This permits various methods for checking emptiness. We may write $\rm{Empty}(S)$ as a quantifier elimination problem
 $$
 \exists \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = \ldots = f_s(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0.
 $$
-This problem can be decided using the singly-exponential quantifier elimination algorithm from @bpr2006, Algorithm 14.21, which has complexity singly exponential in the number of variables. In practice, quantifier elimination can be performed using CAD. @bpr98 propose an algorithm for determining whether a semialgebraic set is empty, which has complexity $(sd)^{O(n)}$, for a semialgebraic set defined by $s$ polynomials having maximum degree $d$ in $n$ variables.
+This problem can be decided using the singly-exponential quantifier elimination algorithm from Proposition \@ref(prp:bpr-qe) (@bpr2006, Algorithm 14.21), which, with one quantifier alternation, has complexity $(sd)^{O(n)}$ where $s$ is the number of different polynomials defining the set and $d$ their maximum degree -- singly exponential in the number of variables. Alternatively, the algorithm presented by @bpr98, which produces a witness point in every cell in a decomposition of the input set, may be used to decide emptiness. This algorithm also has complexity $(sd)^{O(n)}$.
+In practice, quantifier elimination can be performed using CAD. This, of course, has complexity doubly exponential in the number of variables: $(sd)^{O(1)^n}$ (see Proposition \@ref(prp:collins)).
 
 The algorithm may be implemented as above, but with some small tweaks to simplify the code and make the algorithm work slightly more efficiently.
-First, observe that not all derivatives are needed to define the candidate strata $Y_k$. One obvious situation is when a derivative $s_k$ turns out to be a nonzero constant $c \in \A$.
+First, observe that not all derivatives are needed to define the candidate stratum $Y_k$. One obvious situation is when a derivative $s_k$ turns out to be a nonzero constant $c \in \A$.
 In the formula for $Y_k$, the inequation $c \ne 0$ will appear, which is obviously true. Since $X' \supset Y_k$ was assumed to be non-empty, we can immediately conclude that $Y_k$ is non-empty and equal to $X'$. No further derivatives at step $k$ need to be considered, since $X' \setminus Y_1 = \emptyset$.
 A similar situation may arise, even with nonconstant functions $s_k$. For example, for the input set
 $$
@@ -212,7 +232,7 @@ $$
 the derivative for index $(0,1)$ is $\partial (x^2 y^2) / \partial x_1 = 2x y^2$, which is equal to zero at every point of $X$.
 By discarding these redundant functions, we minimise the number of polynomials defining sets in the emptiness check. Note that we have to keep track of every derivative computed, even the redundant ones, so that we can find the function $h_k$ such that $s_k = \partial_{\mathbf{h}, \mathbf{i}, j} h_1$.
 
-Now consider the operation of finding the derivative with index $(0,\ldots,i_\ell - 1,i_{\ell - 1}, \ldots, i_{k+1},j)$. The following observation allows us to quickly find this polynomial, avoiding a search in $\cal G$ or unnecesary recomputation of derivatives.
+Now consider the operation of finding the derivative with index $(0,\ldots,0,i_\ell - 1,i_{\ell - 1}, \ldots, i_{k+1},j)$. The following observation allows us to quickly find this polynomial, avoiding a search in $\cal G$ or unnecesary recomputation of derivatives.
 Suppose we are considering index
 $$
 \mathbf{m} = (0,\ldots,0,i_\ell,i_{\ell - 1},\ldots,i_{k+1},j)$$
@@ -221,7 +241,7 @@ $$
 \mathbf{j} = (0,\ldots,0,i_\ell - 1,i_{\ell - 1},\ldots,i_{k+1},j).$$
 The set $\cal G$ includes polynomials computed in previous rounds of induction and those with index $\mathbf{i} \prec \mathbf{m}$, since we proceed in ascending lexicographical order. Hence $\cal G$ contains the derivative with index $\mathbf{j}$.
 There is a convenient way to find this derivative.
-Let us first illustrate the process with an example. Let $f_j \in \Z[x_1,\ldots,x_3]$ with $M_j = (1,2,2)$ and consider the lexicographically ordered list of indices
+Let us first illustrate the process with an example. Let $f_j \in \Z[x_1,x_2,x_3]$ with $M_j = (1,2,2)$ and consider the lexicographically ordered list of indices
 $$
 \begin{matrix}
 L_1 :=\ &  (0,0,0),&(0,0,1),&(0,0,2),&(0,1,0),&(0,1,1),&(0,1,2),&(1,0,0),&(1,0,1)&\ldots\\
@@ -260,11 +280,16 @@ Note that the algorithm imposes an order on polynomials. Here we take $f_1 := z$
 The algorithm proceeds as follows
 
 \begin{align}
-k=0,X'&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0\right\} \\\left(0,0,1,1\right)\ h_{1}&=f_{1}=x_{3}\\s_{1}=\partial f_{1}/\partial x_{1}&=0\\Y_{1}&:=\left\{ \mathbf{x}\in X'\mid0\ne0\right\} =\emptyset\\(0,0,1,2)\ h_{1}&=f_{2}=x_{1}^{2}-x_{2}^{2}\\s_{1}=\partial f_{2}/\partial x_{1}&=2x_{1}\\Y_{1}&:=\left\{ \mathbf{x}\in X'\mid2x_1\ne0\right\} \\U_{1}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,2x_{1}\ne0\right\} \\&\text{Not open, proceed by induction}\\k=1,h_{1}=f_{2},i_{1}=1,X''&:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2}\right\} \\\left(0,1,1\right)\ h_{2}&=f_{1}\\s_{2}&=0\text{ since }f_{1}\text{ doesn't depend on }x_{1},x_{2}\\\left(0,1,2\right)\ h_{2}&=f_{2}\\s_{2}&=0\text{ snce }h_{1}=h_{2}\\\left(1,0,1\right)\ h_{2}&=f_{1}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{3}\\
+k=0,X'&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0\right\} \\\left(0,0,1,1\right)\ h_{1}&=f_{1}=x_{3}\\s_{1}=\partial f_{1}/\partial x_{1}&=0\\Y_{1}&:=\left\{ \mathbf{x}\in X'\mid0\ne0\right\} =\emptyset\\(0,0,1,2)\ h_{1}&=f_{2}=x_{1}^{2}-x_{2}^{2}\\s_{1}=\partial f_{2}/\partial x_{1}&=2x_{1}\\Y_{1}&:=\left\{ \mathbf{x}\in X'\mid2x_1\ne0\right\} \\U_{1}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,2x_{1}\ne0\right\} \\&\text{Not open, proceed by induction}\\
+k=1,h_{1}=f_{2},i_{1}=1,X''&:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2}\right\} \\\left(0,1,1\right)\ h_{2}&=f_{1}\\s_{2}&=0\text{ since }f_{1}\text{ doesn't depend on }x_{1},x_{2}\\\left(0,1,2\right)\ h_{2}&=f_{2}\\s_{2}&=0\text{ snce }h_{1}=h_{2}\\\left(1,0,1\right)\ h_{2}&=f_{1}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{3}\\
 \partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{3}
 \end{pmatrix}&=\det\begin{pmatrix}2x_{1} & 0\\
 0 & 1
-\end{pmatrix}=2x_{1}\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid2x_{1}\ne0\right\}\\U_{2}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\text{Note }&Y_{1}=Y_{2}=U_{2}\\Y_{2}&\text{ is smooth and has codimension }2\\\text{since }X''&:=\left\{ \mathbf{x}\in X''\mid2x_{1}=0\right\} =\emptyset\text{, we return to }k=0\\k=0,X'&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0,2x_{1}=0\right\} \\\text{Obsrve }X'&=(0,0,0)\\\left(0,0,2,1\right)\ h_{1}&=0,s_{1}=0\\\left(0,0,2,2\right)\ h_{1}&=2x_{1}\\s_{1}&=2\\Y_{1}&:=\left\{ \mathbf{x}\in X'\mid2\ne0\right\} =X'\\U_{1}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,2\ne0\right\} \\&\text{Not open, proceed by induction}\\k=1,h_{1}=2x,i_{1}=1,X''&:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2},f_{3}=2x_{1}\right\} \\\left(0,1,1\right)\ h_{2}&=f_{1}=x_{3}\\s_{2}&=0\\\left(0,1,2\right)\ h_{2}&=f_{2}=x_{1}^{2}-x_{2}^{2}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{2}\\
+\end{pmatrix}=2x_{1}\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid2x_{1}\ne0\right\}\\U_{2}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{1}^{2}-x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\text{Note }&Y_{1}=Y_{2}=U_{2}\\Y_{2}&\text{ is smooth and has codimension }2\\\text{since }X''&:=\left\{ \mathbf{x}\in X''\mid2x_{1}=0\right\} =\emptyset\text{, we return to }k=0\\k=0,X'&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0,2x_{1}=0\right\} \\\text{Obsrve }X'&=(0,0,0)\\\left(0,0,2,1\right)\ h_{1}&=0,s_{1}=0\\\left(0,0,2,2\right)\ h_{1}&=2x_{1}\\s_{1}&=2\\Y_{1}&:=\left\{ \mathbf{x}\in X'\mid2\ne0\right\} =X'\\U_{1}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,2\ne0\right\} \\&\text{Not open, proceed by induction}\\
+\end{align}
+
+\begin{align}
+k=1,h_{1}=2x,i_{1}=1,X''&:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2},f_{3}=2x_{1}\right\} \\\left(0,1,1\right)\ h_{2}&=f_{1}=x_{3}\\s_{2}&=0\\\left(0,1,2\right)\ h_{2}&=f_{2}=x_{1}^{2}-x_{2}^{2}\\s_{2}=\det\begin{pmatrix}\partial h_{1}/\partial x_{1} & \partial h_{1}/\partial x_{2}\\
 \partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{2}
 \end{pmatrix}&=\det\begin{pmatrix}2 & 0\\
 2x_{1} & 2x_{2}
@@ -277,10 +302,10 @@ k=0,X'&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid x_{3}=0,x_{1}^{2}-x_{2}^{2}=0\r
 
 As expected, the algorithm outputs the set of strata
 \begin{align*}
-\mathcal{X}_{1}:=&\emptyset\\\mathcal{X}_{2}:=&\left\{ x_{1}^{2}−x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\mathcal{X}_{3}:=&\left\{ (0,0,0)\right\}
+\mathcal{X}_{1}:=&\emptyset\\\mathcal{X}_{2}:=&\left\{ x_{1}^{2} - x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\mathcal{X}_{3}:=&\left\{ (0,0,0)\right\}
 \end{align*}
 
-## Implementation Details
+## Optimisation of the Output
 
 ### Determining the codimension and basic formula for each stratum
 
@@ -293,7 +318,8 @@ S := \{ (x_1,x_2) \in \R^2 \mid x_1 x_2 = 0 \}
 $$
 Apply the algorithm.
 \begin{align*}
-k=0,X':=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid f_{1}:=x_{1}x_{2}=0\right\} \\\left(0,1,1\right)h_{1}=&f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{1}=&x_{2}\\Y_{1}:=&\left\{ \mathbf{x}\in X'\mid y\ne0\right\} \\U_{1}:=&\left\{ \mathbf{x}\in \mathbb{R}^2\mid x_{1}x_{2}=0,x_{2}\ne0\right\} \\&\text{Proceed by induction}\\k=1,h_{1}=f_{1},i_{1}=1,X'':=&Y_{1},F_{1}=\left\{ f_{1}\right\} \\\left(1,1\right),h_{2}=&f_{1}\\s_{2}=&\begin{pmatrix}\partial f_{1}/\partial x_{1} & \partial f_{1}/\partial x_{2}\\
+k=0,X':=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid f_{1}:=x_{1}x_{2}=0\right\} \\\left(0,1,1\right)h_{1}=&f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{1}=&x_{2}\\Y_{1}:=&\left\{ \mathbf{x}\in X'\mid y\ne0\right\} \\U_{1}:=&\left\{ \mathbf{x}\in \mathbb{R}^2\mid x_{1}x_{2}=0,x_{2}\ne0\right\} \\&\text{Proceed by induction}\\
+k=1,h_{1}=f_{1},i_{1}=1,X'':=&Y_{1},F_{1}=\left\{ f_{1}\right\} \\\left(1,1\right),h_{2}=&f_{1}\\s_{2}=&\begin{pmatrix}\partial f_{1}/\partial x_{1} & \partial f_{1}/\partial x_{2}\\
 \partial f_{2}/\partial x_{1} & \partial f_{1}/\partial x_{2}
 \end{pmatrix}=0\\&\text{since both columns are equal.}\\\text{Return. }Y_{1}&\text{ is smooth.}\\
 \end{align*}
@@ -305,7 +331,7 @@ For the next nonzero derivative, with index $(1,0,1)$, we get
 k=0,X':=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,y=0\right\} \\\left(1,0,1\right)\ h_{1}=&f_{1}=x_{1}x_{2}\\s_{1}=\partial f_{1}/\partial x_{2}=&x_{1}\\Y_{1}:=&\left\{ \mathbf{x}\in X'\mid x_{1}\ne0\right\} \\U_{1}:=&\left\{ \mathbf{x}\in\mathbb{R}^{2}\mid x_{1}x_{2}=0,x_{1}\ne0\right\} \\&\text{Proceed by indection.}\\k=1,h_{1}=f_{1},i_{1}=2,X'':=&Y_{1}\ldots\\&\text{No partial derivatives can be computed.}\\\text{Return. }Y_{1}&\text{ is smooth.}
 \end{align*}
 
-Notice that the inductive step returns immediately. This is because $i_1=2$, so it is not passible to take further partial derivatives with respect to $j > i_1$. In the formula for
+Notice that the inductive step returns immediately. This is because $i_1=2$, so it is not possible to take further partial derivatives with respect to $j > i_1$. In the formula for
 $$
 Y_1 := \{ \mathbf{x} \in \R^2 \mid f_1 := x_1 x_2 = 0, h_1 := x_2 = 0, x_1 \ne 0 \},
 $$
@@ -323,7 +349,7 @@ We see that three equations appear in the definition of $Y_1$, but the first one
 :::
 
 This example shows two things. Firstly, not all functions are required to represent the smooth stratum and secondly $k$, the current step of induction, gives a lower bound on the codimension of strata.
-@gv1995, Theorem 1 states that
+@gv1995, Theorem 2 states that
 $$
 \det\begin{pmatrix}\partial h_{1}/\partial x_{i_{1}} & \ldots & \partial h_{1}/\partial x_{i_{k}}\\
 \vdots &  & \vdots\\
@@ -381,7 +407,7 @@ If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_
 
 ### Implementation in C
 
-This algorithm has been implemented in `C`, using the computer algebra library `SACLIB`. `QEPCAD` is used to perform emptyness checks. Below is an example of the program's output, given the basic semialgebraic set
+This algorithm has been implemented in `C`, using the computer algebra library `SACLIB`. `QEPCAD` is used to perform emptyness checks using cylindrical algebraic decomposition. Below is an example of the program's output, given the basic semialgebraic set
 $$
 \{ z = 0, x^2 - y^2 = 0 \} \subset \R^3,
 $$
@@ -433,7 +459,7 @@ X_(3,1):
 
 ```
 
-The program works in a similar way to QEPCAD, taking as input the variable list (which specifies the order) and a conjunction of polynomial equations, inequations and inequalities (written as a QEPCAD formula). The stratification is then computed and there is a basic repl which allows the user to see information about the polynomials and strata produced.
+The program works in a similar way to `QEPCAD` (see Section \@ref(sec:qepcad)), taking as input the variable list (which specifies the order) and a conjunction of polynomial equations, inequations and inequalities (written as a QEPCAD "prenex" formula). The stratification is then computed and there is a basic REPL which allows the user to see information about the polynomials and strata produced.
 
 Exerpts of the code are now presented and discussed. The entrypoint for the algorithm is `stratify`.
 
@@ -448,7 +474,7 @@ such that $X = \{ f_1 = 0, \ldots, f_k = 0, g_1 > 0, \ldots, g_\ell = 0 \}$ is t
 
 **Output:**
 
-- `Word S`: set of smooth strata $(\mathcal{x}_1,\ldots,\mathcal{X}_r)$, such that $\mathcal{X}_i$ contains strata of comidemnios $i$ for $1 \le i \le r$, or `NIL` if $X$ is a smooth subset.
+- `Word S`: set of smooth strata $(\mathcal{X}_1,\ldots,\mathcal{X}_r)$, such that $\mathcal{X}_i$ contains strata of comidemnios $i$ for $1 \le i \le r$, or `NIL` if $X$ is a smooth subset.
 
 ``` {c, code-strat-main, eval=FALSE, attr.source='.numberLines' }
 Word stratify(Word r, Word L, Word Ineqs, Word V, Word *S_)
@@ -677,14 +703,14 @@ Word strat_helper(Word r, Word V, Word Ineqs, Word k, Word np, Word Fs, Word Is,
 - Prior to Line 57, initialisation is done. Metadata for each polynomial in `Fs` is stored.
 - The main loop, beginning on Line 57, computes partial derivatives in ascending lexicographical order of index $(i_r,\ldots,i_{k+1},j)$, $1 \le j \le \rm{np}$.
 - Lines 57-100 keeps track of the current polynomial `P` and "differentiation variable" `v` $\in x_{i_k+1},\ldots,i_r$.
-- Line 101 calls the function `JacobiFromMinor`, which takes a $((k-1)\times (k-1))$-matrix $A = \vert a_{ij} \vert = \partial h_i / \partial x_j$, a polynomial $f$ and index $\ell$, and returns the $(k \times k)$-matrix obtained from $A$ by appending column $(\partial h_1 / \partial x_\ell, \ldots, \partial h_{k-1} / \partial x_\ell)^T$ and row $(\partial f / \partial x_{i_1}, \ldots, \partial f / \partial x_{i_{k-1}}, \partial f / \partial \ell)$. I.e., it constructs the martix from the partial differential operator (Definition \@ref(def:pdo)) and saves recomputing the whole matrix of partial derivatives. Note that, when $k=1$, `JacobiFromMinor` returns the one-element matrix $\partial f / \partial \ell$.
-- On line 105, the determinant of the matrix computed on Line 101 is computed, for the partial differential oporator.
+- Line 101 calls the function `JacobiFromMinor`, which takes a $((k-1)\times (k-1))$-matrix $A = \vert a_{ij} \vert = \partial h_i / \partial x_j$, a polynomial $f$ and index $\ell$, and returns the $(k \times k)$-matrix obtained from $A$ by appending column $(\partial h_1 / \partial x_\ell, \ldots, \partial h_{k-1} / \partial x_\ell)^T$ and row $(\partial f / \partial x_{i_1}, \ldots, \partial f / \partial x_{i_{k-1}}, \partial f / \partial \ell)$. I.e., it constructs the matrix from the partial differential operator (Definition \@ref(def:pdo)) and saves recomputing the whole matrix of partial derivatives. Note that, when $k=1$, `JacobiFromMinor` returns the one-element matrix $\partial f / \partial \ell$.
+- On line 105, the determinant of the matrix computed on Line 101 is calculated, for the partial differential operator.
 - Line 116 determines if the candidate stratum is empty (see comment on Lines 112-115).
 - If non-empty, we proceed by induction, calling `strat_helper` recursively (for $k+1$, appending index `v` and polynomial `P`, and passing the $(k \times k$-matrix as the `Minor`). The number of strata of codimension $> k$ which were added to `S` is returned. If no strata were appended, all the partial derivatives vanish identically on the candidate, and we can conclude that it is smooth and has codimension $k$.
 - Line 128 represents the candidate stratum as a basic semialgebraic set containing $k$ equations. The function `construct_stratum_basic` is discussed shortly.
 - The rest of the function is responsible for updating the metadata and keeping track of the list of polynomials `Gs1` to be returned.
 
-The function `construct_stratum_basic` is responsible for representing a candidate stratum as a basic semialgebraic set defined using $k$ polynomial equations. It discards redundant polynomias as described in Section \@ref(sec:strat-algorithm-details).
+The function `construct_stratum_basic` is responsible for representing a candidate stratum as a basic semialgebraic set defined using $k$ polynomial equations. It discards redundant polynomials as described in Section \@ref(sec:strat-algorithm-details).
 
 **Input:**
 
@@ -822,12 +848,12 @@ Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
 
 ```
 
-The function constructs $F$, the defining formula for $S$ and uses QEPCAD to construct a CAD of $\R^r$ compatible with $S$. Is $S$ is empty, then this CAD will contain no true cells, so the function checks this condition.
+The function constructs $F$, the defining formula for $S$ and uses QEPCAD to construct a CAD of $\R^r$ compatible with $S$. If $S$ is empty, then this CAD will contain no true cells, so the function checks this condition.
 
 ## Complexity Analysis {#sec:strat-complexity}
 
 We first briefly summarise the semi-Pfaffian case, as presented by @gv1995.
-The algorithm from @gv1995, Theorem 1 takes as input a semi-Pfaffian set with the format $(r, N, \alpha, \beta, n)$ (see Definition \@ref(def:pfaff-format)) and has a complexity upper bound of
+The algorithm from @gv1995, Theorem 2 takes as input a semi-Pfaffian set with the format $(r, N, \alpha, \beta, n)$ (see Definition \@ref(def:pfaff-format)) and has a complexity upper bound of
 $$
 3^N N^{n+1} {\cal B}
 $$
@@ -843,50 +869,48 @@ Now consider this algorithm applied to the semialgebraic set
 X := \{ \mathbf{x} \in \R^n \mid f_1 = 0, \ldots, f_k = 0, g_1 > 0, \ldots, g_\ell > 0 \},
 (\#eq:strat-imput-set)
 \end{equation}
-where all $s := k + \ell$ functions $f_i,g_j$ are polynomials with maximum degree $d$.
+where all $s := k + \ell$ functions $f_i,g_j$ are polynomials with maximum degree $d$ -- Pfaffian functions of order $0$ and degree $(\alpha, \beta)$.
 The upper complexity bound for the algorithm without Oracle is
 $$
-3^{s} s^{n+1} (d + 1)^{1^{O(n)}}.
+3^{s} s^{n+1} (d + 1)^2.
 $$
 The number of strata, some of which may be empty, does not exceed
-$$s^{n} (d + 1)^{1^{O(n)}}.$$
-Each stratum is defined by at most $s (d + 1)^{1^{O(n)}}$ polynomial equations and inequalities of maximum degree $(d + 1)^{1^{O(n)}}$.
+$$s^{n} (d + 1)^2.$$
+Each stratum is defined by at most $s (d + 1)^2$ polynomial equations and inequalities of maximum degree $(d + 1)^2$.
 If the Oracle is allowed, no empty strata will be produced and the algorithm has complexity not exceeding
 $$
-s^{n+1} (d + 1)^{1^{O(n)}}.
+s^{n+1} (d + 1)^2.
 $$
 These bounds follow immediately from @gv1995, Theorem 6.2.
 We will now analyse the complexity of the algorithm presented in Section \@ref(sec:strat-alg-description), which performs emptiness checking on candidate strata.
 
-There are $s^{n} (d + 1)^{1^{O(n)}}$ candidate strata $Y_k$, and the algorithm determines whether each of them is empty, in order to determine whether all partial differential equations vanish identically on the input set $X$.
+There are $s^{n} (d + 1)^2$ candidate strata $Y_k$, and the algorithm determines whether each of them is empty, in order to decide whether all partial differential equations vanish identically on the input set $X$.
 In the implementation, the check is done using CAD (a call to `QEPCAD-B`).
-For complexity analysis purposes, we will use a theoretical algorithm, having singly exponential complexity in the number of variables.
+For the purposes of complexity analysis, we will use a theoretical algorithm, having singly exponential complexity in the number of variables.
 @bpr98 propose an algorithm which takes a semialgebraic set $S \subset \R^n$ defined by $s$ polynomials with maximum degree $d$ in $n < s$ variables and produces a "witness" -- a point contained in every cell in a decomposition of $S$.
 The algorithm can be used to determine the emptiness of $S$ and requires $s(s/n)^n d^{O(n)}$ arithmetic operations.
 This is asymptotically the same as $$(sd)^{O(n)}.$$
 Using the bounds for the number and degrees of polynomials defining strata, each emptiness check costs
 $$
-\left( s (d+1)^{1^{O(n)}} (d+1)^{1^{O(n)}} \right)^{O(n)}
-= \left( s (d+1)^{2^{O(n)}} \right)^{O(n)},
+\left(s(d+1)^{2}(d+1)^{2}\right)^{O(n)}=\left(s(d+1)^{4}\right)^{O(n)},
 $$
 which is asymptotically the same as
 $$
-\left(s (d+1)\right)^{2^{O(n)}}.
+\left(s(d+1)\right)^{O(n)}
 $$
 This operation must be performed for all of the
-$s^{n} (d + 1)^{1^{O(n)}}$
+$s^{n} (d + 1)^{2}$
 candidate strata, resulting in a total complexity for emptiness checking of
 $$
-\left(s (d+1)\right)^{2\cdot 2^{O(n)}} = \left(s (d+1)\right)^{2^{O(n)}},
+\left(s(d+1)\right)^{O(n)^{2}}.
 $$
-The total complexity of stratification is therefore
+The total complexity of stratification, given by the sum of the complexity of applying the algorithm and performing the emptiness checks, is
 $$
-\left(s (d+1)\right)^{2\cdot 2^{O(n)}} = \left(s (d+1)\right)^{2^{O(n)}},
-+ s^{n+1} (d + 1)^{1^{O(n)}},
+3^{s}s^{n+1}(d+1)^{2}+\left(s(d+1)\right)^{O(n)^{2}}.
 $$
-which is asymptotically the same as
+Since $s^{n+1}(d+1)^{2}$ is bounded from above by $\left(s(d+1)\right)^{O(n)^{2}}$, we get a total complexity upper bound of
 $$
-(s(d+1))^{2^{O(n)}}.
+3^{s}\left(s(d+1)\right)^{O(n)^{2}}.
 $$
 
 ## Test Cases
@@ -1047,11 +1071,11 @@ Some test cases are now presented
       }
 
     ```
-
+<!---
 1.
 
   - **Input:** $(x,y) x^2 + y^2 = 1$
 
   - **Output:**
-
+-->
 

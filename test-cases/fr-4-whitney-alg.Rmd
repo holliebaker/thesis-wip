@@ -1,0 +1,795 @@
+``` {test-fr-4-whitney-alg-cells}
+d-cell(2,2,2)---------- Information about the cell (2,2,2) ----------
+
+Level                       : 3
+Dimension                   : 0
+Number of children          : 7
+Truth value                 : F    by trial evaluation.
+Degrees after substitution  : (-1,1)
+Multiplicities              : ((1,1),(2,1),(3,2),(4,1))
+Signs of Projection Factors
+Level 1  : (0,-,-)
+Level 2  : (0,-)
+Level 3  : (0,0,0,0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142135624-
+
+Coordinate 1 = alpha
+             = -1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,2,1)---------- Information about the cell (2,2,2,1) (Dimension (0,0,0,1) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t < 0
+  z^2 - 2 z - 1 > 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,2,1)
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t < 0
+  z^2 - 2 z - 1 > 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142135624-
+
+Coordinate 1 = alpha
+             = -1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = -5
+             = -5.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,2,2)---------- Information about the cell (2,2,2,2) (Dimension (0,0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t = 0
+  z^2 - 2 z - 1 < 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,2,2)
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t = 0
+  z^2 - 2 z - 1 < 0
+
+Sample point ----------------------------------------
+
+The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142135624-
+
+Coordinate 1 = alpha
+             = -1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = the unique root of x - alpha between -4 and 0
+             = the unique root of x^2 - 2 between -4 and 0
+             = -1.4142135624-
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,2,3)---------- Information about the cell (2,2,2,3) (Dimension (0,0,0,1) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 > 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,2,3)
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 > 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142135624-
+
+Coordinate 1 = alpha
+             = -1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = -19/16
+             = -1.1875000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,2,4)---------- Information about the cell (2,2,2,4) (Dimension (0,0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,2,4)
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142135624-
+
+Coordinate 1 = alpha
+             = -1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
+             = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
+             = -0.4142135624-
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,2,5)---------- Information about the cell (2,2,2,5) (Dimension (0,0,0,1) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 < 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,2,5)
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 < 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142135624-
+
+Coordinate 1 = alpha
+             = -1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = 1
+             = 1.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,2,6)---------- Information about the cell (2,2,2,6) (Dimension (0,0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,2,6)
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142135624-
+
+Coordinate 1 = alpha
+             = -1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = the unique root of x^2 - 2 x - 1 between 2 and 4
+             = the unique root of x^2 - 2 x - 1 between 2 and 4
+             = 2.4142135624-
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(2,2,2,7)---------- Information about the cell (2,2,2,7) (Dimension (0,0,0,1) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 > 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (2,2,2,7)
+Level 1
+  t^2 - 2 = 0
+  t < 0
+  t + 1 < 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 > 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142135624-
+
+Coordinate 1 = alpha
+             = -1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = 5
+             = 5.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell(8,2,2)---------- Information about the cell (8,2,2) ----------
+
+Level                       : 3
+Dimension                   : 0
+Number of children          : 5
+Truth value                 : F    by trial evaluation.
+Degrees after substitution  : (-1,1)
+Multiplicities              : ((1,1),(2,1),(3,2),(4,1))
+Signs of Projection Factors
+Level 1  : (0,+,+)
+Level 2  : (0,-)
+Level 3  : (0,0,0,0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
+      = 1.4142135624-
+
+Coordinate 1 = alpha
+             = 1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(8,2,2,1)---------- Information about the cell (8,2,2,1) (Dimension (0,0,0,1) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t < 0
+  z^2 - 2 z - 1 > 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (8,2,2,1)
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t < 0
+  z^2 - 2 z - 1 > 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
+      = 1.4142135624-
+
+Coordinate 1 = alpha
+             = 1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = -1
+             = -1.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(8,2,2,2)---------- Information about the cell (8,2,2,2) (Dimension (0,0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t < 0
+  z^2 - 2 z - 1 = 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (8,2,2,2)
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t < 0
+  z^2 - 2 z - 1 = 0
+
+Sample point ----------------------------------------
+
+The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
+      = 1.4142135624-
+
+Coordinate 1 = alpha
+             = 1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
+             = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
+             = -0.4142135624-
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(8,2,2,3)---------- Information about the cell (8,2,2,3) (Dimension (0,0,0,1) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t < 0
+  z^2 - 2 z - 1 < 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (8,2,2,3)
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t < 0
+  z^2 - 2 z - 1 < 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
+      = 1.4142135624-
+
+Coordinate 1 = alpha
+             = 1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = -1/8
+             = -0.1250000000
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(8,2,2,4)---------- Information about the cell (8,2,2,4) (Dimension (0,0,0,0) (0))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t = 0
+  z^2 - 2 z - 1 < 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (8,2,2,4)
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t = 0
+  z^2 - 2 z - 1 < 0
+
+Sample point ----------------------------------------
+
+The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
+      = 1.4142135624-
+
+Coordinate 1 = alpha
+             = 1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = the unique root of x - alpha between 0 and 4
+             = the unique root of x^2 - 2 between 0 and 4
+             = 1.4142135624-
+
+
+----------------------------------------------------
+
+Before Solution >
+d-cell-t(8,2,2,5)---------- Information about the cell (8,2,2,5) (Dimension (0,0,0,1) (1))
+
+Signs of projection factors ------------------------
+
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 > 0
+
+Signs of projection factors (for defining formula) -
+
+Index in RCAD: (8,2,2,5)
+Level 1
+  t^2 - 2 = 0
+  t > 0
+  t + 1 > 0
+Level 2
+  x = 0
+  x - 1 < 0
+Level 3
+  y + x = 0
+  y - x = 0
+  y^2 + t x^2 = 0
+  y = 0
+Level 4
+  x^2 z - y^2 - t x^2 = 0
+  z - t > 0
+  z^2 - 2 z - 1 > 0
+
+Sample point ----------------------------------------
+
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
+      = 1.4142135624-
+
+Coordinate 1 = alpha
+             = 1.4142135624-
+Coordinate 2 = 0
+             = 0.0000000000
+Coordinate 3 = 0
+             = 0.0000000000
+Coordinate 4 = 5
+             = 5.0000000000
+
+
+----------------------------------------------------
+```

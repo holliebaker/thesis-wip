@@ -98,19 +98,123 @@ $$
 
 ```
 
-::: {.example #fr-3-whitney-multi }
-Let $n = 4$ and consider the semialgebraic set defined by the QFF
+::: {.example #fr-4-whitney-multi }
+Let $n = 4$ and consider the semialgebraic set defined by the QFF, containing polynomials in $Z[t,x,y,z]$,
 $$
-F = \{  \}.
+F = \{ (t = 0 \lor t = 2) \land 0 < x < 1 \land -x < y < x \land y^2 - x^2 (z - t) = 0 \}.
 $$
 :::
+
+The QFF defines two cylindrical cells in $\R^3$ (equipped with $(x,y,z)$), similar to those defined in Example \@ref(exm:whitney-jhd).
+The following refinement points are obtained. 
+
+``` {test-fr-4-whitney-multi)
+M_4,2  = input  *** Refinement of cell (6,2,2,5) ***  
+       = The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000
+
+Coordinate 1 = 2
+             = 2.0000
+Coordinate 2 = 0
+             = 0.0000
+Coordinate 3 = 0
+             = 0.0000
+Coordinate 4 = 3
+             = 3.0000
+
+
+M_4,1  = input  *** Refinement of cell (4,2,2,3) ***  
+       = The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000
+
+Coordinate 1 = 0
+             = 0.0000
+Coordinate 2 = 0
+             = 0.0000
+Coordinate 3 = 0
+             = 0.0000
+Coordinate 4 = 1
+             = 1.0000
+```
+
+::: {.example #fr-4-whitney-alg }
+Let $n = 4$ and consider the twe $2$-diemnsional subsets of the Whitney whitney umbrella defined by the QFF
+$$
+F = \{ (t,x,y,z) \in \R^4 \mid t^2 = 0 \land 0 < x < 1 \land -x < y < x \land y^2 - x^2 (z - t) = 0 \}.
+$$
+:::
+
+THe following algebraic refinement points are produced.
+
+``` {test-fr-4-whitney-alg}
+M_4,3  = input  *** Refinement of cell (8,2,2,1) ***  
+       = The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
+      = 1.4142+
+
+Coordinate 1 = alpha
+             = 1.4142+
+Coordinate 2 = 0
+             = 0.0000
+Coordinate 3 = 0
+             = 0.0000
+Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
+             = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
+             = -0.4142+
+
+
+M_4,2  = input  *** Refinement of cell (2,2,2,3) ***  
+       = The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142+
+
+Coordinate 1 = alpha
+             = -1.4142+
+Coordinate 2 = 0
+             = 0.0000
+Coordinate 3 = 0
+             = 0.0000
+Coordinate 4 = the unique root of x^2 - 2 x - 1 between 0 and 4
+             = the unique root of x^2 - 2 x - 1 between 0 and 4
+             = 2.4142+
+
+
+M_4,1  = input  *** Refinement of cell (2,2,2,3) ***  
+       = The sample point is in an EXTENDED representation.
+
+alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
+      = -1.4142+
+
+Coordinate 1 = alpha
+             = -1.4142+
+Coordinate 2 = 0
+             = 0.0000
+Coordinate 3 = 0
+             = 0.0000
+Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
+             = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
+             = -0.4142+
+```
+
+This results in the following cells above, respectively, $2,2,2)$ and $(8,2,2)$. 
+
+``` {r, child="test-cases/fr-4-whitney-alg.Rmd"}
+
+```
+
 
 
 More examples
 
 - large sub-CAD, maybe R^5
 
-- cells in sub-CAD of different levels
+- cel ls in sub-CAD of different levels
 
 - some variations on the whitney umbrella
 
@@ -121,6 +225,14 @@ More examples
 - whitney in a sub-CAD
 
 - whitney with multiple refinement points above it
+
+3D multi: multi-3.txt. many unnecesary refinements computed resulting from quasi-affine. had to use +N5000000
+
+4D multi: it's similar, but requiring algebraic refinements. this required +N50000000 for saclib and look at how many cells it produced!
+we should probably associate the quasi polynomials with the true cell so that we don't make a truly tsign-invariant CAD 
+
+
+
 
 
 

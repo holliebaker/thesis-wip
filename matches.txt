@@ -1,0 +1,27 @@
+  Reference `def:blow-up-point' on page 8 undefined on input line 248
+  Reference `def:blow-up-point' on page 87 undefined on input line 3262
+  Reference `def:blow-up-point' on page 89 undefined on input line 3320
+  Reference `def:blow-up-point' on page 94 undefined on input line 3546
+  Reference `def:blow-up-point' on page 99 undefined on input line 3696
+  Reference `def:cells' on page 188 undefined on input line 7670
+  Reference `def:cells' on page 190 undefined on input line 7756
+  Reference `def:frontier-condition' on page 87 undefined on input line 3249
+  Reference `prp:collins' on page 103 undefined on input line 3882
+  Reference `prp:collins' on page 103 undefined on input line 3884
+  Reference `prp:collins' on page 189 undefined on input line 7724
+  Reference `prp:collins' on page 189 undefined on input line 7730
+  Reference `prp:collins' on page 193 undefined on input line 7885
+  Reference `prp:collins' on page 198 undefined on input line 8107
+  Reference `prp:collins' on page 198 undefined on input line 8133
+  Reference `prp:collins' on page 199 undefined on input line 8150
+  Reference `prp:collins' on page 200 undefined on input line 8198
+  Reference `prp:collins' on page 200 undefined on input line 8200
+  Reference `prp:collins' on page 200 undefined on input line 8224
+  Reference `prp:collins' on page 200 undefined on input line 8230
+  Reference `prp:collins' on page 201 undefined on input line 8234
+  Reference `prp:collins' on page 201 undefined on input line 8250
+  Reference `prp:collins' on page 202 undefined on input line 8273
+  Reference `prp:collins' on page 59 undefined on input line 2266
+  Reference `prp:collins' on page 59 undefined on input line 2279
+  Reference `prp:collins' on page 79 undefined on input line 3064
+
