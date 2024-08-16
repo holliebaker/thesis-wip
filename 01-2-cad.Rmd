@@ -129,11 +129,13 @@ The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of t
 
 ::: { .proposition #delete-zero-index }
 [@bgv15, Lemma 3.3]
+
 Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then $C' := \projops{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n}(C)$ is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a monotone map $f : C' \to \opspan{x_k}$.
 :::
 
 ::: { .proposition }
 [@bgv15, Lemma 3.4]
+
 Let $C \subset \R^n$ be a 2-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall $W \subset \fr{C}$ has exactly two connected components, each of which is either a point or a closed curve interval.
 :::
 
@@ -167,6 +169,7 @@ We want to partition $\R^{n-1}$ into connected semialgebraic sets $C'$ such that
 
 ::: {.proposition #coste-polynomial-to-cell }
 [@coste2000, Proposition 2.16]
+
 Let $f \in \Z[x_1,\ldots,x_n]$ and, $C' \subset \R^{n-1}$ be a connected semialgebraic set and $k \le d \in \N$ such that, for every point $\mathbf{x} \in C'$, the univariate polynomial $f(\mathbf{x},x_n) \in \A[x_n]$ has degree $d$ and exactly $k$ distinct (complex) roots in $C'$.
 Then there are $\ell \le k$ distinct semialgebraic functions
 $$\psi_1,\ldots,\psi_\ell : C' \to \R
@@ -195,6 +198,7 @@ To extend this result to more than one polynomial, we also need to ensure that t
 
 ::: {.proposition}
 [@coste2000, Proposition 2.18]
+
 Let $f,g \in \Z[x_1,\ldots,x_n]$, $C' \subset \R^{n-1}$ such that, for all $\mathbf{x} \in C'$, the degree and number of roots of $f(\mathbf{x},x_n)$ and $g(\mathbf{x},x_n)$ is constant and the degree of the GCD of $f(\mathbf{x},x_n)$ and $g(\mathbf{x},x_n)$ is constant.
 Let $\phi,\psi : C' \to \R$ be continuous semialgebraic functions such that $f(\mathbf{x},\phi(\mathbf{x})) = 0$ and $g(\mathbf{x},\psi(\mathbf{x})) = 0$ for all $\mathbf{x} in C'$.
 If there exists $\mathbf{c} \in C'$ such that $\phi(\mathbf{c}) = \psi(\mathbf{c})$, then $\phi(\mathbf{x}) = \psi(\mathbf{x})$ for all $\mathbf{x} \in C'$.
@@ -303,6 +307,7 @@ present the bounds, along with some variations, from @bpr2006.
 
 ::: { .proposition #collins }
 [@bpr2006, Algorithm 11.2]
+
 Let $\mathbf{F} := f_1,\ldots,f_s$ be set of polynomials in $\Z[x_1, \ldots ,x_n]$ with maximum degree $d$.
 There is an algorithm, taking $\mathbf{F}$ as input, which produces an $\mathbf{F}$-invariant CAD $\cal D$ of $\R^n$.
 The complexity of the algorithm is
@@ -368,14 +373,16 @@ Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a well-oriented set of polynomial
 $S \subset \R^n$ such that $\dim(S) = k$ is an analytic submanifold if, for every point $\mathbf{x} \in S$, there is an analytic coordinate system about $\mathbf{x}$ with respect to which $S$ is locally the intersection of $n-k$ coordinate hyperplanes.
 :::
 
-::: {.proposition #mc-smooth}
+::: {.corollary #mc-smooth}
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula constructed from the set of polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$, such that $\mathbf{F}$ is well-oriented.
 Then a CAD $\cal D$ of $\R^n$ compatible with $S$ and such that every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$ can be obtained by constructing an $\mathbf{F}$-invariant CAD of $\R^n$ using the McCallum projection operator.
 :::
 
-More recently, @mccallum2019 completed the proof that Lazard's projection operator is valid. McCallum also proved, without the condition on well-orientedness of input polynomials, that every cell of a sign-invariant CAD constructed using Lazard's projection operator is an analytic submanifold. Thus, we can generalise Proposition \@ref(prp:mc-smooth) further:
+More recently, @mccallum2019 completed the proof that Lazard's projection operator is valid. McCallum also proved,
+without the condition on well-orientedness of input polynomials, that every cell of a sign-invariant CAD constructed
+using Lazard's projection operator is an analytic submanifold. Thus, we can generalise Corollary \@ref(cor:mc-smooth) further:
 
-::: {.proposition #lz-smooth}
+::: {.rolollry #lz-smooth}
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula constructed from the set of polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$.
 Then a CAD $\cal D$ of $\R^n$ compatible with $S$ and such that every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$ can be obtained by constructing an $\mathbf{F}$-invariant CAD of $\R^n$ using the McCallum projection operator.
 :::
@@ -407,7 +414,8 @@ where $g_1,\ldots,g_k$ are derivatives of the polynomial $f$.
 ### CAD cells and their defining formulas { #sec:cell-formula }
 
 Although it is possible to construct a "full" (sign-invariant) CAD, `QEPCAD-B` provides an implementation of the "truth-invariant" CAD described in Corollary \@ref(cor:collins-sets). Indeed, QEPCAD-B, being designed primarily to perform quantifier elimination, frequently constructs a "partial" CAD of $\R^n$ [@brownQepcad].
-We will force the construction of the sign-invariant CAD and use McCallum's projection operator so as to obtain smooth cells (see Proosition \@ref(prp:mc-smooth)).
+We will force the construction of the sign-invariant CAD and use McCallum's projection operator so as to obtain smooth
+cells (see Corollary \@ref(cor:mc-smooth)).
 
 Once constructed, one may want to examine individual cells of the CAD.
 In order to do this, we will need a convenient representation for each cell.

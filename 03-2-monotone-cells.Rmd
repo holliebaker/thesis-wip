@@ -194,14 +194,14 @@ such that $C' \subset V'$.
 
 Now consider the top of $C$, denoted by $C_T$.
 By definition, if $C$ is not bounded from above, then $C_T$ does not exist. Otherwise, $C_T$ is the graph of a continuous definable function $h : C' \to \R$.
-In the first case, there is nothing to do. 
+In the first case, there is nothing to do.
 In the second case, $C_T$ can be written as
 \begin{equation}
 \{ \mathbf{x} \in \R^\alpha \mid a < x_1 < b, g_2(\mathbf{x}) = 0, \ldots, g_{\alpha - 1}(\mathbf{x}) = 0, x_\alpha = h(\mathbf{x}) \},
 (\#eq:c-alpha-top)
 \end{equation}
 where $\mathbf{x}$ is shorthand for $(x_1,\ldots,x_\alpha)$.
-By the construction of $\cal D$ (e.g., using Proposition \@ref(prp:mc-smooth)) $C_T$ is $C^\infty$ smooth, therefore $h$ is a differentiable function everywhere in $C'$.
+By the construction of $\cal D$ (e.g., using Corollary \@ref(cor:mc-smooth)) $C_T$ is $C^\infty$ smooth, therefore $h$ is a differentiable function everywhere in $C'$.
 
 This representation lends itself naturally to the problem of optimisation with constraints -- Lagrange multipliers.
 
@@ -262,7 +262,7 @@ V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0, g_\alpha
 \end{equation}
 such that $C_T \subset V$, where $g_2,\ldots,g_{\alpha - 1}$ are the same polynomials appearing in Equation \@ref(eq:c-alpha-top).
 
-Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$ -- it is multivariate a polynomial -- while $h$ from Equation \@ref(eq:jacobi-det) is expected to be a continuous differentiable function from $\R^{\alpha - 1} \to \R$. In order to use the above construction, we have to be careful only to consider points at which $g_\alpha$ is differentiable. 
+Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$ -- it is multivariate a polynomial -- while $h$ from Equation \@ref(eq:jacobi-det) is expected to be a continuous differentiable function from $\R^{\alpha - 1} \to \R$. In order to use the above construction, we have to be careful only to consider points at which $g_\alpha$ is differentiable.
 In other words, we need to compute derivatives of the implicit function $g_\alpha$:
 \begin{equation}
 \dfrac{d x_\alpha}{d x_i} = \dfrac{\partial g_\alpha / \partial x_i}{\partial g_\alpha / \partial x_\alpha}
@@ -314,7 +314,7 @@ We can easily find pairs $(s_j, g_{1,j}) \in \{-1,1\} \times {\cal A}_1$ by cons
 - If $g_{1.j}(c) < 0$, then $s_j = -1$.
 - The final case, $g_{1,j}(c) = 0$, is impossible since an irreducible univariate polynomial cannot be zero over an interval.
 
-Perhaps an easier way, if the information available, is to examine the signs of polynomials from $\mathcal{A}$ on the cell $X'$. Clearly, if the sign on $g_j$ is positive, $s_i = 1$ and if the sign is negative $s_i = -1$. 
+Perhaps an easier way, if the information available, is to examine the signs of polynomials from $\mathcal{A}$ on the cell $X'$. Clearly, if the sign on $g_j$ is positive, $s_i = 1$ and if the sign is negative $s_i = -1$.
 
 For the refinement points $(c_1,\ldots,c_t)$, we want to find $x_1$-coordinates of the roots of polynomials from Equation \@ref(eq:lagrange-solve) subject to the constraints from Equation \@ref(eq:lagrange-solve-ineqs).
 
@@ -356,7 +356,7 @@ Note that, being solutions of polynomials, every $(c_1,\ldots,c_t)$ contains onl
 
 Since this procedure follows the construction described in @bgv15, Theorem 3.18, the following has been proved.
 
-::: {.proposition #monotone-sector-algorithm }
+::: {.lemma #monotone-sector-algorithm }
 Let $\mathcal{D}$ be a sign-invariant CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ with $\dim(V_i) \le 2$ and such that each cell $C \subset V_i$ is the graph of a quasi-affine map, for $1\le i \le k$. Let
 $$
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
@@ -562,7 +562,7 @@ forms the refinement of $C$ into two-dimensional monotone cells.
 
 Altogether, we have proved the following.
 
-::: {.proposition #monotone-section-algorithm}
+::: {.lemma #monotone-section-algorithm}
 Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ with $\dim(V_i) \le 2$ and such that each cell $C \subset V_i$ is the graph of a quasi-affine map, for $1\le i \le k$. Let
 $$
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
@@ -574,7 +574,7 @@ Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, whi
 :::
 
 ::: {.Remark #monotone-sub-cad }
-propositions \@ref(prp:monotone-sector-algorithm) and \@ref(prp:monotone-section-algorithm) can also be applied to two-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-cad of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
+Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm) can also be applied to two-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-cad of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
 :::
 
 ## Implementation Details
@@ -692,7 +692,8 @@ by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 
 ## Correctness and Complexity
 
-The correctness of the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) follows from @bgv15, Theorem 3.20 and Lemma 3.19, and is proved in Propositions \@ref(prp:monotone-sector-algorithm) and \@ref(prp:monotone-section-algorithm). 
+The correctness of the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) follows from @bgv15, Theorem 3.20 and
+Lemma 3.19, and is proved in Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm).
 The algorithm described in Section \@ref(sec:monotone-algorithm) considers each $2$-dimensional cell in a sub-cad $\mathcal{E}$ of $\R^n$ above a $0$-dimensional cell $\mathbf{b} \in \R^{k-1}$. This is exactly the inductive step of @bgv15, Theorem 3.20, where an $(i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)$-cell, where $i_1 = i_\alpha = 1$, is considered.
 By Corollary \@ref(cor:gamma-top-bottom) to $C$, the two-dimensional subset $X \subset \opspan{x_1,x_\alpha}$ is obtained. The first part of @bgv15, Lemma 3.18 describes how $X$ should be refined into two-dimensional semi-monotone sets. The construction described in Section \@ref(sec:quasi-affine) explains how to obtain the set of refinement points $(c_1,\ldots,c_t) \subset \A$.
 $C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})$ where each component $f_j : X \to \opspan{x_j}$ for $j \in \{1,\ldots,n\} \setminus \{1,\alpha\}$ is a quasi-affine function. The second part of @bgv15, Lemma 3.18 describes how to refine $X$ such that each function $f_j$ is monotone. By @bgv15, Lemma 3.16, if every component $f_i$ is monotone on a subset in the refinement of $X$, then the map $\mathbf{f}$ itself is monotone on that subset of $X$.
@@ -753,8 +754,8 @@ For $0 \le k \le n$, consider each refinement point $\mathbf{c} = (c_1,\ldots,c_
 Let ${\cal D}'$ be the sub-cad of $\R^{n-k}$ above $(c_1,\ldots,c_k)$, which is a $(0,\ldots,0)$-cell of the CAD induced by $\cal D$ on $\R^k$ and let ${\cal D}''$ be the CAD induced by ${\cal D}'$ on $\R^{k+1}$. We want to refine ${\cal D}''$ such that $\mathbf{c}$ is a new $(0)$-cell.
 We need only to consider coordinate $k+1$ of $\mathbf{c}$. Denote it by $c_{k+1}$.
 For each $(0)$-cell $b_{k+1}$ of ${\cal D}''$, compute $s := \sign(b_{k+1} - c_{k+1})$. If $s \le 0$, consider the next $(0)$-cell in ${\cal D}''$. Otherwise, $s > 0$ and there is a $(1)$-cell $C$ in ${\cal D}''$ such that $c_{k+1} \in C$. This is the cell we need to refine.
-Make two new copies of $C$, so that we have three identical cells $C_1,C_2,C_3$. Recall that, to each cell belongs a sample point and possibly some other information. E.g., in QEPCAD, each cell has a set of signs of projection factors, which should remain unchanged, and a positional index which describes where in the CAD the cell can be found. Let $C_1$ have positional index $(j_1,\ldots,j_k,j_{k+1})$. New cells $C_2$ and $C_3$ should have positional indices $(j_1,\ldots,j_k,j_{k+1} + 1$ and $(j_1,\ldots,j_k,j_{k+1}+2)$ respectively. For each existing cell with positional index $(l_1,\ldots,l_k,l_{k+1})$ with $l_k+1 > j_{k+1}$, the index should be updated to $(l_1,\ldots,l_k,l_{k+1} + 2)$. We now need to update the sample points. The sample point of the section cell $C_2$ should be $\mathbf{c}$. This might turn out to be the case by chance. In this case, there is nothing to be done with $C_2$ and the sample points of sector cells $C_1$ and $C_3$ are incorrect. Otherwise, $\mathbf{c}$ is either greater than the sample point of $C_1$, in which case the sample point of $C_1$ is already correct, or $\mathbf{c}$ is less than $C_3$, in which case the sample point of $C_3$ is already correct. I.e., in every case, exactly two of the sample points of the cells $C_1$, $C_2$ and $C_3$ must be updated. 
-Let $C$ be the open interval $(a_1,a_2)$. If the sample point of $C_1$ needs to be updated, then set it to $(a_1 + c_{k+1}) / 2$ and if the sample point of $C_3$ needs updating, then set it to $(c_{k+1} + a_2) / 2$. Observe that, if we have updated the sample point of a cell $C$, then the sample points of every cell which projects on $C$ are now incorrect. 
+Make two new copies of $C$, so that we have three identical cells $C_1,C_2,C_3$. Recall that, to each cell belongs a sample point and possibly some other information. E.g., in QEPCAD, each cell has a set of signs of projection factors, which should remain unchanged, and a positional index which describes where in the CAD the cell can be found. Let $C_1$ have positional index $(j_1,\ldots,j_k,j_{k+1})$. New cells $C_2$ and $C_3$ should have positional indices $(j_1,\ldots,j_k,j_{k+1} + 1$ and $(j_1,\ldots,j_k,j_{k+1}+2)$ respectively. For each existing cell with positional index $(l_1,\ldots,l_k,l_{k+1})$ with $l_k+1 > j_{k+1}$, the index should be updated to $(l_1,\ldots,l_k,l_{k+1} + 2)$. We now need to update the sample points. The sample point of the section cell $C_2$ should be $\mathbf{c}$. This might turn out to be the case by chance. In this case, there is nothing to be done with $C_2$ and the sample points of sector cells $C_1$ and $C_3$ are incorrect. Otherwise, $\mathbf{c}$ is either greater than the sample point of $C_1$, in which case the sample point of $C_1$ is already correct, or $\mathbf{c}$ is less than $C_3$, in which case the sample point of $C_3$ is already correct. I.e., in every case, exactly two of the sample points of the cells $C_1$, $C_2$ and $C_3$ must be updated.
+Let $C$ be the open interval $(a_1,a_2)$. If the sample point of $C_1$ needs to be updated, then set it to $(a_1 + c_{k+1}) / 2$ and if the sample point of $C_3$ needs updating, then set it to $(c_{k+1} + a_2) / 2$. Observe that, if we have updated the sample point of a cell $C$, then the sample points of every cell which projects on $C$ are now incorrect.
 Since polynomials are delineable over the original cell, then they will be delineable over the smaller cells in the refinement, so we simply need to run the sample point computation part of the lifting phase recursively on the stack above $C$. This involves evaluating each level $k+1$ projection factor $f$ at the new sample point $\mathbf{b}$ and finding the roots of the (possibly algebraic) univariate polynomial $f(\mathbf{b},x_n)$.
 
 Repeating this process with each refinement point in $\mathbf{R}_k$, we obtain the refinement described in [@bgv15, Lemma 3.11].

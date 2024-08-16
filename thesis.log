@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.31)  15 AUG 2024 10:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.31)  15 AUG 2024 16:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -942,15 +942,15 @@ Underfull \vbox (badness 10000) detected at line 5038
  []
 
 [129] [130] [131] [132] [133] [134]
-Underfull \vbox (badness 10000) detected at line 5340
+Underfull \vbox (badness 10000) detected at line 5345
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5340
+Underfull \vbox (badness 10000) detected at line 5345
  []
 
 [135]
-Overfull \hbox (104.54103pt too wide) detected at line 5360
+Overfull \hbox (104.54103pt too wide) detected at line 5365
 \OMS/lmsy/m/n/10 R \OT1/lmr/m/n/10 := \OMS/lmsy/m/n/10 fR[] \OT1/lmr/m/n/10 = \
 OMS/lmsy/m/n/10 f\OML/lmm/m/it/10 c[]; [] ; c[]\OMS/lmsy/m/n/10 g ^^Z \U/msb/m/
 n/10 A \OMS/lmsy/m/n/10 j \OT1/lmr/bx/n/10 b \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 R
@@ -958,14 +958,11 @@ n/10 A \OMS/lmsy/m/n/10 j \OT1/lmr/bx/n/10 b \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 R
 /10 D[]\U/msb/m/n/10 R[]\OMS/lmsy/m/n/10 g\OML/lmm/m/it/10 :
  []
 
-[136] [137]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[138] [139] [140] [141]
+[136] [137] [138] [139] [140] [141]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [142]
-Overfull \hbox (9.37016pt too wide) in paragraph at lines 5693--5694
+Overfull \hbox (9.37016pt too wide) in paragraph at lines 5700--5701
 []\T1/lmr/m/n/10 (-20) Let $\OML/lmm/m/it/10 a; b \OMS/lmsy/m/n/10 2 \U/msb/m/n
 /10 A$ \T1/lmr/m/n/10 (-20) be the unique roots of $\OT1/lmr/m/n/10 (-20) 27\OM
 L/lmm/m/it/10 x[] \OMS/lmsy/m/n/10 ^^@ \OT1/lmr/m/n/10 (-20) 32$ \T1/lmr/m/n/10
@@ -975,191 +972,183 @@ m/n/10 (-20) 1115\OML/lmm/m/it/10 =\OT1/lmr/m/n/10 (-20) 1024\OML/lmm/m/it/10 ;
  (-20) 512)$
  []
 
-[143] [144]
-Overfull \hbox (7.7714pt too wide) detected at line 5767
-\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 g < \OT1/lmr/m/n/10 0 \OMS/lmsy/m/n/10 ^ \OML
-/lmm/m/it/10 x > \OT1/lmr/m/n/10 0 \OMS/lmsy/m/n/10 ^ \OML/lmm/m/it/10 f \OT1/l
-mr/m/n/10 = 0 \OMS/lmsy/m/n/10 ^ \OML/lmm/m/it/10 y < \OT1/lmr/m/n/10 0) \OMS/l
-msy/m/n/10 _ \OT1/lmr/m/n/10 (\OML/lmm/m/it/10 x \OT1/lmr/m/n/10 = 0 \OMS/lmsy/
-m/n/10 ^ \OML/lmm/m/it/10 f \OT1/lmr/m/n/10 = 0 \OMS/lmsy/m/n/10 ^ \OML/lmm/m/i
-t/10 y < \OT1/lmr/m/n/10 0) \OMS/lmsy/m/n/10 _ \OT1/lmr/m/n/10 (\OML/lmm/m/it/1
-0 g < \OT1/lmr/m/n/10 0 \OMS/lmsy/m/n/10 ^ \OML/lmm/m/it/10 x < \OT1/lmr/m/n/10
- 0 \OMS/lmsy/m/n/10 ^ \OML/lmm/m/it/10 f \OT1/lmr/m/n/10 = 0 \OMS/lmsy/m/n/10 ^
- \OML/lmm/m/it/10 y < \OT1/lmr/m/n/10 0)
- []
+[143]
+Underfull \vbox (badness 2698) has occurred while \output is active []
 
-[145]
-Underfull \vbox (badness 10000) detected at line 5887
+[144] [145]
+Underfull \vbox (badness 10000) detected at line 5892
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5887
+Underfull \vbox (badness 10000) detected at line 5892
  []
 
 [146]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 10000) detected at line 5892
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5892
+ []
 
 [147] [148] [149] [150]
 <gnuplot/sphere.png, id=2054, 803.0pt x 803.0pt>
 File: gnuplot/sphere.png Graphic file (type png)
 <use gnuplot/sphere.png>
-Package pdftex.def Info: gnuplot/sphere.png  used on input line 6027.
+Package pdftex.def Info: gnuplot/sphere.png  used on input line 6032.
 (pdftex.def)             Requested size: 206.99843pt x 206.99843pt.
 [151 <./gnuplot/sphere.png>]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,2,2) (Dimension (0,0
 ,0) (0))[] 
  []
 
-
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
 [152]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,6,2) (Dimension (1,0
 ,0) (1))[] 
  []
 
 [153]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,5,6) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [154]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,5,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [155]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,4,6) (Dimension (1,0
 ,0) (1))[] 
  []
 
 [156]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,4,2) (Dimension (1,0
 ,0) (1))[] 
  []
 
 [157]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,3,6) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [158]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,3,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [159]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,2,2) (Dimension (1,0
 ,0) (1))[] 
  []
 
 [160]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,6,2) (Dimension (0,0
 ,0) (0))[] 
  []
 
 [161]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,5,6) (Dimension (0,1
 ,0) (1))[] 
  []
 
 [162]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,5,2) (Dimension (0,1
 ,0) (1))[] 
  []
 
 [163]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,4,6) (Dimension (0,0
 ,0) (0))[] 
  []
 
 [164]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,4,2) (Dimension (0,0
 ,0) (0))[] 
  []
 
 [165]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,3,6) (Dimension (0,1
 ,0) (1))[] 
  []
 
 [166]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,3,2) (Dimension (0,1
 ,0) (1))[] 
  []
 
 [167]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,2,2) (Dimension (0,0
 ,0) (0))[] 
  []
 
 [168]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,6,2) (Dimension (1,0
 ,0) (1))[] 
  []
 
 [169]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,5,6) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [170]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,5,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [171]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,4,6) (Dimension (1,0
 ,0) (1))[] 
  []
 
 [172]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,4,2) (Dimension (1,0
 ,0) (1))[] 
  []
 
 [173]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,3,6) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [174]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,3,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [175]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,2,2) (Dimension (1,0
 ,0) (1))[] 
  []
 
 [176]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7272--7272
 []\T1/lmtt/m/n/10 ---------- Information about the cell (2,2,2) (Dimension (0,0
 ,0) (0))[] 
  []
@@ -1167,121 +1156,118 @@ Overfull \hbox (17.24895pt too wide) in paragraph at lines 7267--7267
 [177]
 File: gnuplot/qanm-surf.png Graphic file (type png)
 <use gnuplot/qanm-surf.png>
-Package pdftex.def Info: gnuplot/qanm-surf.png  used on input line 7282.
+Package pdftex.def Info: gnuplot/qanm-surf.png  used on input line 7287.
 (pdftex.def)             Requested size: 206.99843pt x 206.99843pt.
 [178]
-<gnuplot/qanm.png, id=2181, 803.0pt x 803.0pt>
+<gnuplot/qanm.png, id=2180, 803.0pt x 803.0pt>
 File: gnuplot/qanm.png Graphic file (type png)
 <use gnuplot/qanm.png>
-Package pdftex.def Info: gnuplot/qanm.png  used on input line 7321.
+Package pdftex.def Info: gnuplot/qanm.png  used on input line 7326.
 (pdftex.def)             Requested size: 206.99843pt x 206.99843pt.
-[179 <./gnuplot/qanm.png>]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7551--7551
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7556--7556
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,3,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
-
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
-[180]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7551--7551
+[179] [180 <./gnuplot/qanm.png>] [181]
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7556--7556
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,3,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
-[181]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7551--7551
+[182]
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7556--7556
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,3,2) (Dimension (0,1
 ,0) (1))[] 
  []
 
-[182]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 7551--7551
+[183]
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 7556--7556
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,3,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
-[183] [184] [185] [186]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+[184] [185] [186]
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(3,2,2)---------- Information about the cell (3,2,2) 
 (Dimension (1,0,0) (1))[] 
  []
 
 [187]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(3,6,2)---------- Information about the cell (3,6,2) 
 (Dimension (1,0,0) (1))[] 
  []
 
 [188]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(4,2,2)---------- Information about the cell (4,2,2) 
 (Dimension (0,0,0) (0))[] 
  []
 
 [189]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(4,3,2)---------- Information about the cell (4,3,2) 
 (Dimension (0,1,0) (1))[] 
  []
 
 [190]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(4,4,2)---------- Information about the cell (4,4,2) 
 (Dimension (0,0,0) (0))[] 
  []
 
 [191]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(4,5,2)---------- Information about the cell (4,5,2) 
 (Dimension (0,1,0) (1))[] 
  []
 
 [192]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(4,6,2)---------- Information about the cell (4,6,2) 
 (Dimension (0,0,0) (0))[] 
  []
 
 [193]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(2,2,2)---------- Information about the cell (2,2,2) 
 (Dimension (0,0,0) (0))[] 
  []
 
 [194]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(2,2,3)---------- Information about the cell (2,2,3) 
 (Dimension (0,0,1) (1))[] 
  []
 
-[195]
-Overfull \hbox (95.99872pt too wide) in paragraph at lines 8154--8154
+[195] [196]
+Overfull \hbox (95.99872pt too wide) in paragraph at lines 8159--8159
 []\T1/lmtt/m/n/10 d-cell-t(2,2,4)---------- Information about the cell (2,2,4) 
 (Dimension (0,0,0) (0))[] 
  []
 
-[196] [197] [198
-
-]
+[197] [198]
 Chapter 8.
-[199]pdfTeX warning (ext4): destination with the same identifier (name{exm:top-
-bottom-not-cylindrical}) has been already used, duplicate ignored
+[199
+
+]pdfTeX warning (ext4): destination with the same identifier (name{exm:top-bott
+om-not-cylindrical}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.8181 ...target{exm:top-bottom-not-cylindrical}{}
+l.8186 ...target{exm:top-bottom-not-cylindrical}{}
                                                   \label{exm:top-bottom-not-...
 <gnuplot/frontier.png, id=2306, 702.625pt x 702.625pt>
 File: gnuplot/frontier.png Graphic file (type png)
 <use gnuplot/frontier.png>
-Package pdftex.def Info: gnuplot/frontier.png  used on input line 8199.
+Package pdftex.def Info: gnuplot/frontier.png  used on input line 8204.
 (pdftex.def)             Requested size: 207.00455pt x 207.00455pt.
 pdfTeX warning (ext4): destination with the same identifier (name{thm:main}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.8216 \protect\hypertarget{thm:main}{}
+l.8221 \protect\hypertarget{thm:main}{}
                                        \label{thm:main}Let \(S \subset \math...
 
 Overfull \hbox (404.33444pt too wide) has occurred while \output is active
@@ -1293,7 +1279,7 @@ THE FRONTIER CONDITION ON A CYLINDRICAL DECOMPOSITION OF N-DIMENSIONAL SPACE
  same identifier (name{lem:frontier}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.8257 \protect\hypertarget{lem:frontier}{}
+l.8262 \protect\hypertarget{lem:frontier}{}
                                            \label{lem:frontier}Let \(S \subs...
 
 Overfull \hbox (404.33444pt too wide) has occurred while \output is active
@@ -1311,17 +1297,17 @@ THE FRONTIER CONDITION ON A CYLINDRICAL DECOMPOSITION OF N-DIMENSIONAL SPACE
 <gnuplot/r3-initial.png, id=2390, 702.625pt x 702.625pt>
 File: gnuplot/r3-initial.png Graphic file (type png)
 <use gnuplot/r3-initial.png>
-Package pdftex.def Info: gnuplot/r3-initial.png  used on input line 8502.
+Package pdftex.def Info: gnuplot/r3-initial.png  used on input line 8507.
 (pdftex.def)             Requested size: 207.00455pt x 207.00455pt.
 <gnuplot/r3-initial-fr.png, id=2391, 702.625pt x 702.625pt>
 File: gnuplot/r3-initial-fr.png Graphic file (type png)
 <use gnuplot/r3-initial-fr.png>
-Package pdftex.def Info: gnuplot/r3-initial-fr.png  used on input line 8511.
+Package pdftex.def Info: gnuplot/r3-initial-fr.png  used on input line 8516.
 (pdftex.def)             Requested size: 207.00455pt x 207.00455pt.
 <gnuplot/r3-refined.png, id=2392, 702.625pt x 702.625pt>
 File: gnuplot/r3-refined.png Graphic file (type png)
 <use gnuplot/r3-refined.png>
-Package pdftex.def Info: gnuplot/r3-refined.png  used on input line 8520.
+Package pdftex.def Info: gnuplot/r3-refined.png  used on input line 8525.
 (pdftex.def)             Requested size: 207.00455pt x 207.00455pt.
 
 Overfull \hbox (404.33444pt too wide) has occurred while \output is active
@@ -1336,13 +1322,13 @@ THE FRONTIER CONDITION ON A CYLINDRICAL DECOMPOSITION OF N-DIMENSIONAL SPACE
  []
 
 [208 <./gnuplot/r3-refined.png>] [209]
-Underfull \hbox (badness 3579) in paragraph at lines 8639--8642
+Underfull \hbox (badness 3579) in paragraph at lines 8644--8647
 []\T1/lmr/m/n/10 (+20) The se-quence of pairs is com-puted re-cur-sively, start
 -ing with in-dex
  []
 
 
-Underfull \hbox (badness 1199) in paragraph at lines 8639--8642
+Underfull \hbox (badness 1199) in paragraph at lines 8644--8647
 \OML/lmm/m/it/10 M \OT1/lmr/m/n/10 (+20) = (1\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10
  (+20) 1\OML/lmm/m/it/10 ; [] ; \OT1/lmr/m/n/10 (+20) 1)$\T1/lmr/m/n/10 (+20) ,
  in de-scend-ing or-der of in-dices $\OML/lmm/m/it/10 M \OT1/lmr/m/n/10 (+20) =
@@ -1362,7 +1348,7 @@ THE FRONTIER CONDITION ON A CYLINDRICAL DECOMPOSITION OF N-DIMENSIONAL SPACE
  []
 
 [212]
-Underfull \hbox (badness 1642) in paragraph at lines 8754--8755
+Underfull \hbox (badness 1642) in paragraph at lines 8759--8760
 []\T1/lmr/m/n/10 (+20) Fewer cells may be pro-duced by com-put-ing a CAD com-pa
 t-i-ble with
  []
@@ -1383,99 +1369,102 @@ THE FRONTIER CONDITION ON A CYLINDRICAL DECOMPOSITION OF N-DIMENSIONAL SPACE
 
 ]
 Chapter 9.
-[217] [218] [219] [220] [221] [222
+[217] [218]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[219] [220] [221] [222
 
 ] [223]
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 9080--9080
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 9091--9091
 []\T1/lmtt/m/n/10 alpha = the unique root of 2 x^3 - 6 x^2 + 7 x - 2 between 1/
 4 and 1/2[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 9080--9080
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 9091--9091
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,3,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [224]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 9080--9080
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 9091--9091
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,3,2) (Dimension (0,1
 ,0) (1))[] 
  []
 
 [225]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 9080--9080
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 9091--9091
 []\T1/lmtt/m/n/10 alpha = the unique root of 2 x^3 - 6 x^2 + 7 x - 2 between 3/
 8 and 7/16[] 
  []
 
 
-Overfull \hbox (148.49857pt too wide) in paragraph at lines 9080--9080
+Overfull \hbox (148.49857pt too wide) in paragraph at lines 9091--9091
 []\T1/lmtt/m/n/10 Coordinate 3 = the unique root of 262144 x^3 - 536576 x^2 + 1
 654976 x - 287873 between 0 and 4[] 
  []
 
 
-Overfull \hbox (148.49857pt too wide) in paragraph at lines 9080--9080
+Overfull \hbox (148.49857pt too wide) in paragraph at lines 9091--9091
 []             \T1/lmtt/m/n/10 = the unique root of 262144 x^3 - 536576 x^2 + 1
 654976 x - 287873 between 0 and 4[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 9080--9080
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 9091--9091
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,3,2) (Dimension (1,1
 ,0) (2))[] 
  []
 
 [226]
-Overfull \hbox (6.32494pt too wide) detected at line 9096
+Overfull \hbox (6.32494pt too wide) detected at line 9107
 []
  []
 
 [227] [228]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9594--9594
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9605--9605
 []\T1/lmtt/m/n/10 ---------- Information about the cell (8,5,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [229] [230]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9594--9594
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9605--9605
 []\T1/lmtt/m/n/10 ---------- Information about the cell (8,4,3,2) (Dimension (0
 ,0,1,0) (1))[] 
  []
 
 [231]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9594--9594
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9605--9605
 []\T1/lmtt/m/n/10 ---------- Information about the cell (8,3,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [232]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9594--9594
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9605--9605
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,5,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [233]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9594--9594
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9605--9605
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,4,3,2) (Dimension (0
 ,0,1,0) (1))[] 
  []
 
 [234] [235]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9594--9594
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9605--9605
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,3,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [236]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9594--9594
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9605--9605
 []\T1/lmtt/m/n/10 ---------- Information about the cell (2,3,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [237]
-Overfull \hbox (6.06801pt too wide) detected at line 9602
+Overfull \hbox (6.06801pt too wide) detected at line 9613
 \OML/lmm/m/it/10 C \OT1/lmr/m/n/10 := \OMS/lmsy/m/n/10 f\OT1/lmr/m/n/10 (\OML/l
 mm/m/it/10 w; x; y; z\OT1/lmr/m/n/10 ) \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 R[] \OM
 S/lmsy/m/n/10 j \OML/lmm/m/it/10 w > \OT1/lmr/m/n/10 0\OML/lmm/m/it/10 ; w[] \O
@@ -1487,31 +1476,31 @@ lmsy/m/n/10 g\OML/lmm/m/it/10 :
  []
 
 
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9873--9873
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9884--9884
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,3,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [238] [239] [240]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9873--9873
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9884--9884
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,5,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [241]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9873--9873
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9884--9884
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,4,3,2) (Dimension (0
 ,0,1,0) (1))[] 
  []
 
 [242]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 9873--9873
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 9884--9884
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,3,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [243]
-Overfull \hbox (18.33183pt too wide) detected at line 9881
+Overfull \hbox (18.33183pt too wide) detected at line 9892
 \OML/lmm/m/it/10 C \OT1/lmr/m/n/10 := \OMS/lmsy/m/n/10 f\OT1/lmr/m/n/10 (\OML/l
 mm/m/it/10 w; x; y; z\OT1/lmr/m/n/10 ) \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 R[] \OM
 S/lmsy/m/n/10 j \OML/lmm/m/it/10 w > \OT1/lmr/m/n/10 0\OML/lmm/m/it/10 ; w[] \O
@@ -1523,109 +1512,109 @@ ML/lmm/m/it/10 y[]\OMS/lmsy/m/n/10 g\OML/lmm/m/it/10 :
  []
 
 
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,3,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [244] [245] [246]
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 Coordinate 2 = the unique root of 2 x^3 - 6 x^2 + 7 x - 2 bet
 ween 1/4 and 1/2[] 
  []
 
 
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 10174--10174
 []             \T1/lmtt/m/n/10 = the unique root of 2 x^3 - 6 x^2 + 7 x - 2 bet
 ween 1/4 and 1/2[] 
  []
 
 
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,5,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [247]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,4,3,2) (Dimension (0
 ,0,1,0) (1))[] 
  []
 
 [248]
-Overfull \hbox (200.99841pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (200.99841pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 alpha = the unique root of 4 x^6 - 24 x^5 + 28 x^4 + 52 x^3 -
  35 x^2 - 64 x - 107 between 17/8 and 69/32[] 
  []
 
 
-Overfull \hbox (284.99817pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (284.99817pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 Coordinate 1 = 300/8777 alpha^5 - 1518/8777 alpha^4 + 322/877
 7 alpha^3 + 5607/8777 alpha^2 + 6683/8777 alpha - 9577/8777[] 
  []
 
 
-Overfull \hbox (290.24815pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (290.24815pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 Coordinate 2 = -300/8777 alpha^5 + 1518/8777 alpha^4 - 322/87
 77 alpha^3 - 5607/8777 alpha^2 + 2094/8777 alpha + 9577/8777[] 
  []
 
 
-Overfull \hbox (148.49857pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (148.49857pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 Coordinate 4 = the unique root of 262144 x^3 - 536576 x^2 + 1
 654976 x - 287873 between 0 and 4[] 
  []
 
 
-Overfull \hbox (148.49857pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (148.49857pt too wide) in paragraph at lines 10174--10174
 []             \T1/lmtt/m/n/10 = the unique root of 262144 x^3 - 536576 x^2 + 1
 654976 x - 287873 between 0 and 4[] 
  []
 
 
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10163--10163
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10174--10174
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,3,3,2) (Dimension (0
 ,1,1,0) (2))[] 
  []
 
 [249]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10546--10546
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10557--10557
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,3,2,2) (Dimension (1
 ,1,0,0) (2))[] 
  []
 
 [250] [251] [252]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10546--10546
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10557--10557
 []\T1/lmtt/m/n/10 ---------- Information about the cell (7,3,2,2) (Dimension (1
 ,1,0,0) (2))[] 
  []
 
 [253]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10546--10546
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10557--10557
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,3,2,2) (Dimension (0
 ,1,0,0) (1))[] 
  []
 
 [254]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10546--10546
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10557--10557
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,3,2,2) (Dimension (1
 ,1,0,0) (2))[] 
  []
 
 [255]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10546--10546
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10557--10557
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,3,2,2) (Dimension (0
 ,1,0,0) (1))[] 
  []
 
 [256]
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 10546--10546
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 10557--10557
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,3,2,2) (Dimension (1
 ,1,0,0) (2))[] 
  []
 
 [257] [258]
-Overfull \hbox (48.97568pt too wide) detected at line 10554
+Overfull \hbox (48.97568pt too wide) detected at line 10565
 \OML/lmm/m/it/10 C \OT1/lmr/m/n/10 = \OMS/lmsy/m/n/10 f\OT1/lmr/m/n/10 (\OML/lm
 m/m/it/10 w; x; y; z\OT1/lmr/m/n/10 ) \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 R[] \OMS
 /lmsy/m/n/10 j \OT1/lmr/m/n/10 0 \OML/lmm/m/it/10 < w < \OT1/lmr/m/n/10 1\OML/l
@@ -1637,259 +1626,259 @@ OT1/lmr/m/n/10 1\OML/lmm/m/it/10 ; z \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 w[] \OT
  []
 
 [259]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 alpha = the unique root of 2 x^3 - 6 x^2 + 9 x - 2 between 1/
 4 and 5/16[] 
  []
 
 [260]
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 ---------- Information about the cell (7,4,9,2,2) (Dimension 
 (1,0,1,0,0) (2))[] 
  []
 
 [261]
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 ---------- Information about the cell (6,4,9,2,2) (Dimension 
 (0,0,1,0,0) (1))[] 
  []
 
 [262]
-Overfull \hbox (6.74898pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 Coordinate 5 = the unique root of 3 x^2 - 46 x + 27 between 0
  and 4[] 
  []
 
 [263]
-Overfull \hbox (6.74898pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 11013--11013
 []             \T1/lmtt/m/n/10 = the unique root of 3 x^2 - 46 x + 27 between 0
  and 4[] 
  []
 
 
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 ---------- Information about the cell (5,4,9,2,2) (Dimension 
 (1,0,1,0,0) (2))[] 
  []
 
 [264]
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 ---------- Information about the cell (4,4,9,2,2) (Dimension 
 (0,0,1,0,0) (1))[] 
  []
 
 [265]
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 alpha = the unique root of 2 x^3 - 6 x^2 + 9 x - 2 between 1/
 4 and 5/16[] 
  []
 
 [266]
-Overfull \hbox (368.99792pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (368.99792pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 Coordinate 5 = the unique root of 1125899906842624 x^3 + 4457
 66065717248 x^2 + 147784030448320512 x - 41702561940151521 between 0 and 32[] 
  []
 
 
-Overfull \hbox (368.99792pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (368.99792pt too wide) in paragraph at lines 11013--11013
 []             \T1/lmtt/m/n/10 = the unique root of 1125899906842624 x^3 + 4457
 66065717248 x^2 + 147784030448320512 x - 41702561940151521 between 0 and 32[] 
  []
 
 
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 11002--11002
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 11013--11013
 []\T1/lmtt/m/n/10 ---------- Information about the cell (3,4,9,2,2) (Dimension 
 (1,0,1,0,0) (2))[] 
  []
 
 [267] [268] [269]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11106--11106
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11117--11117
 []\T1/lmtt/m/n/10 Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 
 and -1/4[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11106--11106
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11117--11117
 []             \T1/lmtt/m/n/10 = the unique root of x^2 - 2 x - 1 between -1/2 
 and -1/4[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11106--11106
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11117--11117
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11106--11106
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11117--11117
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11106--11106
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11117--11117
 []\T1/lmtt/m/n/10 Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 
 and -1/4[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11106--11106
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11117--11117
 []             \T1/lmtt/m/n/10 = the unique root of x^2 - 2 x - 1 between -1/2 
 and -1/4[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell(2,2,2)---------- Information about the cell (2,2,2) --
 --------[] 
  []
 
 [270]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(2,2,2,1)---------- Information about the cell (2,2,2
 ,1) (Dimension (0,0,0,1) (1))[] 
  []
 
 [271]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(2,2,2,2)---------- Information about the cell (2,2,2
 ,2) (Dimension (0,0,0,0) (0))[] 
  []
 
 [272]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 [273]
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(2,2,2,3)---------- Information about the cell (2,2,2
 ,3) (Dimension (0,0,0,1) (1))[] 
  []
 
 [274]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(2,2,2,4)---------- Information about the cell (2,2,2
 ,4) (Dimension (0,0,0,0) (0))[] 
  []
 
 [275]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 
 and -1/4[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11915--11915
 []             \T1/lmtt/m/n/10 = the unique root of x^2 - 2 x - 1 between -1/2 
 and -1/4[] 
  []
 
 
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(2,2,2,5)---------- Information about the cell (2,2,2
 ,5) (Dimension (0,0,0,1) (1))[] 
  []
 
 [276]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 [277]
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(2,2,2,6)---------- Information about the cell (2,2,2
 ,6) (Dimension (0,0,0,0) (0))[] 
  []
 
 [278]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(2,2,2,7)---------- Information about the cell (2,2,2
 ,7) (Dimension (0,0,0,1) (1))[] 
  []
 
 [279]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (1.499pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 alpha = the unique root of x^2 - 2 between -1449/1024 and -18
 1/128[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell(8,2,2)---------- Information about the cell (8,2,2) --
 --------[] 
  []
 
 [280]
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(8,2,2,1)---------- Information about the cell (8,2,2
 ,1) (Dimension (0,0,0,1) (1))[] 
  []
 
 [281]
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(8,2,2,2)---------- Information about the cell (8,2,2
 ,2) (Dimension (0,0,0,0) (0))[] 
  []
 
 [282] [283]
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 
 and -1/4[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 11915--11915
 []             \T1/lmtt/m/n/10 = the unique root of x^2 - 2 x - 1 between -1/2 
 and -1/4[] 
  []
 
 
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(8,2,2,3)---------- Information about the cell (8,2,2
 ,3) (Dimension (0,0,0,1) (1))[] 
  []
 
 [284]
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(8,2,2,4)---------- Information about the cell (8,2,2
 ,4) (Dimension (0,0,0,0) (0))[] 
  []
 
 [285]
-Overfull \hbox (127.49863pt too wide) in paragraph at lines 11904--11904
+Overfull \hbox (127.49863pt too wide) in paragraph at lines 11915--11915
 []\T1/lmtt/m/n/10 d-cell-t(8,2,2,5)---------- Information about the cell (8,2,2
 ,5) (Dimension (0,0,0,1) (1))[] 
  []
@@ -1906,13 +1895,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 16424 strings out of 480129
- 256175 string characters out of 5893409
- 604455 words of memory out of 5000000
+ 16420 strings out of 480129
+ 256129 string characters out of 5893409
+ 604216 words of memory out of 5000000
  32738 multiletter control sequences out of 15000+600000
- 596402 words of font info for 329 fonts, out of 8000000 for 9000
+ 596142 words of font info for 327 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 74i,14n,77p,1379b,1290s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,14n,77p,1379b,1284s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/d
 vips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/shar
 e/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm
@@ -1935,10 +1924,10 @@ fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.
 pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on thesis.pdf (293 pages, 3223089 bytes).
+Output written on thesis.pdf (293 pages, 3221247 bytes).
 PDF statistics:
- 3419 PDF objects out of 3580 (max. 8388607)
- 3025 compressed objects within 31 object streams
+ 3426 PDF objects out of 3580 (max. 8388607)
+ 3032 compressed objects within 31 object streams
  895 named destinations out of 1000 (max. 500000)
  61772 words of extra memory for PDF output out of 61914 (max. 10000000)
 

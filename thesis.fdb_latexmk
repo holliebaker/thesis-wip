@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex thesis"] 1723646531 "thesis.aux" "thesis.bbl" "thesis" 1723646535
+["bibtex thesis"] 1723733146 "thesis.aux" "thesis.bbl" "thesis" 1723733146
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
   "references.bib" 1723469216 31735 1f63b559d3f1610812c826c106b69637 ""
-  "thesis.aux" 1723646535 59446 f70e2ad88133638651cb8dd5654f769c "pdflatex"
+  "thesis.aux" 1723733146 59268 b4270fdfa66d2d02c19012eb01acf10f "pdflatex"
   (generated)
   "thesis.bbl"
   "thesis.blg"
-["pdflatex"] 1723646532 "thesis.tex" "thesis.pdf" "thesis" 1723646535
+["pdflatex"] 1723733143 "thesis.tex" "thesis.pdf" "thesis" 1723733143
   "/etc/texmf/web2c/texmf.cnf" 1651504177 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -192,10 +192,10 @@
   "gnuplot/r3-initial.png" 1718551402 157252 dc413c681314a3df2ed95cb7b6afe727 ""
   "gnuplot/r3-refined.png" 1718551420 158234 905b7b0577e62771adc9f9705a901c16 ""
   "gnuplot/sphere.png" 1717589799 501130 914f94e6c2d52933ec9aaf58fe897b8e ""
-  "thesis.aux" 1723646535 59446 f70e2ad88133638651cb8dd5654f769c "pdflatex"
-  "thesis.bbl" 1723646531 14670 10447ed08e4ff08138d5a286a9c7865b "bibtex thesis"
-  "thesis.tex" 1723646506 568520 66e8b11d373997bf7f0dcc39e7c5a73c ""
-  "thesis.toc" 1723646535 8652 df03e5ba5d21087bdfc191c9f6a1812c "pdflatex"
+  "thesis.aux" 1723733057 59251 8e0a0c9fcd96b9f01bacb56e7b8ced3a "pdflatex"
+  "thesis.bbl" 1723733142 14670 10447ed08e4ff08138d5a286a9c7865b "bibtex thesis"
+  "thesis.tex" 1723733055 569636 fcc3b6169b79cedfbfcfc74bce787c8b ""
+  "thesis.toc" 1723733057 8637 0ec053f5842c94e26685ff617300831e "pdflatex"
   (generated)
   "thesis.aux"
   "thesis.log"

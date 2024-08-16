@@ -5161,7 +5161,7 @@ Once the set of refinement points has been computed, the CAD is refined using th
 \hypertarget{frontier-condition}{%
 \subsection{Frontier Condition}\label{frontier-condition}}
 
-The frontier condition is obtained by using the generalisation of Lazard's method for lifting with bad points, as described in section \ref{sec:lazard-n}, the entry point for computing a CAD with frontier condition is \texttt{FRONTIER}. This function identifies bad zero-dimensional cells and adds refinements points, in the same format as that used in the construction of monotone cells.
+The frontier condition is obtained by using the generalisation of Lazard's method for lifting with bad points, as described in section \ref{sec:lazard-n}, the entry point for computing a CAD with frontier condition is \texttt{FRONTIER}. This function identifies bad zero-dimensional cells and adds refinement points, in the same format as that used in the construction of monotone cells.
 
 \textbf{Input:}
 
@@ -5178,7 +5178,12 @@ The frontier condition is obtained by using the generalisation of Lazard's metho
 \end{itemize}
 
 \textbf{Output:}
-- \texttt{Word\ A}, \texttt{Word\ J}, \texttt{Word\ RPs}: refinement points for bad cells contained in the sub-CAD above \texttt{D} are added.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Word\ A}, \texttt{Word\ J}, \texttt{Word\ RPs}: refinement points for bad cells contained in the sub-CAD above \texttt{D} are added.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
@@ -5232,7 +5237,7 @@ The frontier condition is obtained by using the generalisation of Lazard's metho
 \begin{itemize}
 \tightlist
 \item
-  Lines 6-12 determine if bad cells are possible. I.e., if the dimension of the sub-CAD above \texttt{D} in greater than \(3\) and if there is more than one child cell, since bad cells can only occur above \(0\)-cells.
+  Lines 6-12 determine if bad cells are possible. I.e., if the dimension of the sub-CAD above \texttt{D} is greater than \(3\) and if there is more than one child cell, since bad cells can only occur above \(0\)-cells.
 \item
   A note is kept of cells which were already refined (Line 14). This information is stored in the form \((j,i_1,\ldots,i_{k+1})\), where \((i_1,\ldots,i_{k+1})\) is the positional index of the cell \(C\) to be refined and \(j\) the index of the level-\((k+1)\) polynomial which vanishes identically over \(C\). This prevents the program computing the same refinement points multiple times, as the same bad cell may lie in the projection of the boundary of multiple \(2\)-dimensional cells.
 \item
@@ -5240,7 +5245,7 @@ The frontier condition is obtained by using the generalisation of Lazard's metho
 \item
   \texttt{SI} (Line 31) is a list \((i_{k+1},\ldots,i_r)\) where each \(i_j \in \mathbb{Z}\) is equal to the index of the first polynomial in \(\mathcal{A}_j\) which is equal to zero on \(C\), or \(-1\) if no such polynomial exists. In particular, \(i_k = i_\ell = 1\).
 \item
-  Bad cells, in \({\operatorname{fr} \left( ( \right)}{\operatorname{proj}_{\mathbb{R}^{\ell}}}(C))\), may lie in the sub-CADs above the \((0,\ldots,0)\)-cells \({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_B\) and \({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_T\). The function \texttt{ProcessBadClls} (called on Lines 34 and 35) identifies bad cells and adds refinement points.
+  Bad cells, in \({\operatorname{fr} \left( {\operatorname{proj}_{\mathbb{R}^{\ell}}}(C) \right)}\), may lie in the sub-CADs above the \((0,\ldots,0)\)-cells \({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_B\) and \({\operatorname{proj}_{\mathbb{R}^{k}}}(C)_T\). The function \texttt{ProcessBadCells} (called on Lines 34 and 35) identifies bad cells and adds refinement points. This function is described next.
 \end{itemize}
 
 \textbf{Input:}
@@ -5339,8 +5344,8 @@ The frontier condition is obtained by using the generalisation of Lazard's metho
 \end{Highlighting}
 \end{Shaded}
 
-This function looks proceeds by induction, recursing on zero-dimensional cells of above \texttt{C} whose signature (indices of projection factors which are equal to zero) matches \texttt{S}. Note that coordinates \(i\) and \(j\) of \texttt{S} are equal to \(-1\), so any zero-dimensional cells at those levels are candidates for being bad cells. Lines 45-59 process possible bad cells. A bad cell is a \((0,...,0,1)\)-cell of level greater than \(j\), which has not yet been refined, and such that a polynomial vanishes identically on it.
-The function \texttt{LazardLifting} uses \texttt{Singular} to compute the Groebner basis for the two saturation of ideals
+This function proceeds by induction, recursing on zero-dimensional cells above \texttt{C} whose signature (indices of projection factors which are equal to zero) matches \texttt{S}. Note that coordinates \(i\) and \(j\) of \texttt{S} are equal to \(-1\), so any zero-dimensional cells at those levels are candidates for being bad cells. Lines 45-59 process possible bad cells. A bad cell is a \((0,...,0,1)\)-cell of level greater than \(j\), which has not yet been refined, and such that a polynomial vanishes identically on it.
+The function \texttt{LazardLifting} uses \texttt{Singular} to compute the Groebner basis for the saturations of two ideals
 \[
 I_1 := \langle f, g_{j_1}, \ldots, g_{j_{k-3}}, g_{\ell_2}, 1 - z g_{\ell_1} \rangle \cap \mathbb{Z}[x_1,\ldots,x_k]
 \]
@@ -5360,11 +5365,11 @@ Given the CAD \(\mathcal{D}\) of \(\mathbb{R}^n\) constructed in the lifting pha
 \]
 The function \texttt{REFINE()} computes refinements of \(\mathcal{D}\) to be compatible with these points. Each refinement point \((b_1,\ldots,b_{k-1},c) \in \mathbb{A}^k\), such that \((b_1,\ldots,b_k)\) is a \(0\)-dimensional cell, \(\mathbf{b}\), in the CAD induced by \(\mathcal{D}\) on \(\mathbb{R}^{k-1}\) is stored separately, is stored separately as a pair
 \[
-(b_1,\ldots,b_{k-1},c), (m_1,\ldots,m_{k-1},m_k)
+((b_1,\ldots,b_{k-1},c), (m_1,\ldots,m_{k-1},m_k))
 \]
 where \((b_1,\ldots,b_{k-1})\) is the sample point, and \((m_1,\ldots,m_{k-1})\) is the positional index of the \(0\)-cell \(\mathbf{b}\) and \(c\) refines the \((1)\)-cell in the sub-CAD of \(\mathcal{D}\) above \(\mathcal{b}\) with positional index \((m_k)\).
 \((b_1,\ldots,b_{k-1},c)\) is stored as a QEPCAD sample point.
-If all of \((b_1,\ldots,b_{k-1})\) are rational, or are elements of the same algebraic extension, \(\mathbb{Q}(\alpha)\), associated with the sample point of the cell \(\mathbf{b}\), as \(c\), then \((b_1,\ldots,b_{k-1},c)\) is a primitive QEPCAD sample point. If \((b_1,\ldots,b_{k-}) \in \mathbb{Q}(\alpha)\) and \(c \not \in \mathbb{Q}(\alpha)\) then \((c_1,\ldots,b_{k-1},c)\) is a QEPCAD sample point stored in extended representation.
+If all of \((b_1,\ldots,b_{k-1})\) are rational, or are elements of the same algebraic extension, \(\mathbb{Q}(\alpha)\), as the sample point of the cell \(\mathbf{b}\), as \(c\), then \((b_1,\ldots,b_{k-1},c)\) is a QEPCAD sample point in the primitive representation. If \((b_1,\ldots,b_{k-1}) \in \mathbb{Q}(\alpha)\) and \(c \not \in \mathbb{Q}(\alpha)\) then \((c_1,\ldots,b_{k-1},c)\) is a QEPCAD sample point stored in extended representation.
 The refinement point \(c\) is a root of a polynomial \(f \in \mathbb{Q}[x_k]\), computed by \texttt{MONOTONE()} or \texttt{FRONTIER()}. This polynomial is stored in the projection polynomial set, and its factors in the projection factor set.
 
 The function \texttt{REFINE} computes the refinements.
@@ -5391,9 +5396,10 @@ The function \texttt{REFINE} computes the refinements.
   \texttt{Word\ D\textquotesingle{}}, a refinement of \(\rm{D}\) compatible with the refinement points in \(\mathcal{A}_k\).
 \end{itemize}
 
-QEPCAD represents a CAD \(\mathcal{D}\) of \(\mathbb{R}^n\) as a tree of cells. The root is the unique cell \(\mathbf{0}\) in the CAD of \(\mathbb{R}^0\) and its children are the cells of the CAD induced by \(\mathcal{D}\) on \(\mathbb{R}^1\). As one might expect, given a QEPCAD cell \(C\) in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^k\), its children are the cells of the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^{k+1}\) which project on \(C\). QEPCAD constructs a ``partial CAD''. This means that there may be cells of level \(k < n\) with no children. This means that, if \(C\) is an \((i_1,\ldots,i_k)\)-cell, then \({\operatorname{proj}_{\mathbb{R}^{k}}}^{-1}(C)\) is an \((i_1,\ldots,i_k,1,\ldots,1)\)-cell of \(\mathcal{D}\).
+QEPCAD represents a CAD \(\mathcal{D}\) of \(\mathbb{R}^n\) as a tree of cells. The root is the unique cell \(\mathbf{0}\) in the CAD of \(\mathbb{R}^0\) and its children are the cells of the CAD induced by \(\mathcal{D}\) on \(\mathbb{R}^1\). As one might expect, given a QEPCAD cell \(C\) in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^k\), its children are the cells of the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^{k+1}\) which project on \(C\). QEPCAD constructs a ``partial CAD''. This means that there may be cells of level \(k < n\) with no children.
+In other words, if \(C\) is an \((i_1,\ldots,i_k)\)-cell in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^k\) with no children, then \({\operatorname{proj}_{\mathbb{R}^{k}}}^{-1}(C)\) is an \((i_1,\ldots,i_k,1,\ldots,1)\)-cell of \(\mathcal{D}\).
 
-Refine proceeds by induction on CAD cells by ``walking'' the CAD (similar to a depth-first-search), identifying cells which need refinement by checking the level-\(k\) refinement points, computing this refinement and returning the refined CAD.
+Refine proceeds by induction on CAD cells by ``walking'' the CAD (in the same way as a depth-first-search), identifying cells which need refinement by checking the level-\(k\) refinement points, computing this refinement and returning the refined CAD.
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
@@ -5453,7 +5459,7 @@ Refine proceeds by induction on CAD cells by ``walking'' the CAD (similar to a d
 \begin{itemize}
 \tightlist
 \item
-  Lines 13-26 identify the refinement polynomials. Note that \(-1\) is appended to the cell index (stored in \texttt{PO\_REFINEMENT}) to indicate that a refinement point has been used.
+  Lines 13-26 identify the refinement polynomials. Note that \(-1\) is appended to the cell index (stored in \texttt{PO\_REFINEMENT}) to indicate that the refinement by that point has been completed, marking the point as ``used''.
 \item
   Line 31 computes the refinement of the children projecting on \texttt{D} by calling \texttt{RefineSubcad()}.
 \item
@@ -5558,17 +5564,17 @@ The function \texttt{RefineSubcad} does all the heavy lifting.
 \tightlist
 \item
   \texttt{NextPolynomial()}, called on, e.g., Line 9, is a helper function for retrieving the next refinement point.
-  Recall that \(\mathbf{b} = (b_1,\ldots,b_{k-1},c)\) is a QEPCAD sample point such that \texttt{PI} is its isolating interval, \texttt{PM} the minimal polynomial for \(c\) (or \((c,c)\) if \(c\) is rational) and \texttt{J} is the isolating interval containing \(c\). \texttt{j} is the index of the child cell containing \(c\).
+  Recall that \(\mathbf{b} = (b_1,\ldots,b_{k-1},c)\) is a QEPCAD sample point such that \texttt{PI} is its isolating interval and \texttt{PM} the minimal polynomial for \(c\). If \(c\) is rational, \(I = (c,c)\). \texttt{J} is the isolating interval containing \(c \in \mathbb{A}\). \texttt{j} is the index of the child cell which requires refinement.
 \item
-  Suppose that \(C\) is the child with index \(i\). Then \texttt{S0M} and \texttt{S0I}, set on line 24, are the minimal polynomial and isolating interval, respectively, for the sample point of \(C_B\). The function \texttt{GETSAMPLEK} is a helper function responsible for retrieving this information. The first argument indicates the coordinate to retrieve, \(-1\) means the last coordinate.
+  Suppose that \(C\) is the cell with index \(j\). Then \texttt{S0M} and \texttt{S0I}, set on line 24, are the minimal polynomial and isolating interval, respectively, for the sample point of \(C_B\). The function \texttt{GETSAMPLEK} is a helper function responsible for retrieving this information. The first argument indicates the coordinate to retrieve, with \(-1\) being shorthand for last coordinate.
 \item
   \texttt{RefineCell}, called on line 32, takes a list of cells, \((C,C_T, \ldots,C_\ell)\), where \(C\) is the cell to be refined and returns a list \((C_1,C_2,C_3,C_T,\ldots,C_\ell)\). The sample points are updated for \(C_1\) and \(C_2\). The flag \texttt{refine\_after} is set to \texttt{true} if the sample point of \(C_3\), which is still equal to the sample point of \(C\) at this point, is incorrect.
 \item
-  Some new projection factors, whose roots are the refinement points, have been added. \texttt{ADDSIGNPF} (called on lines 40 and 54) is responsible for ensuring that the signs of these polynomials are attached to refined cells. If a cell is not refined, this information will not be needed.
+  Some new projection factors, whose roots are the refinement points, were added to the projection factor set, but cell signatures have not yet been updated to reflect this. \texttt{ADDSIGNPF} (called on lines 40 and 54) is responsible for ensuring that the signs of these polynomials are attached to refined cells. If a cell is not refined, this information will not be needed.
 \item
   Lines 45-53 update the sample point of \(C_3\), if needed.
 \item
-  During the loop in which cells are refined (Lines 7-55), the positional indices for refined cells are not updated. This is so that the index attached to refinement points still points to the correct cell. Lines 57-64 updates the positional indices for all children, using the helper function \texttt{SETINDEXK}.
+  During the loop in which cells are refined (Lines 7-55), the positional indices for refined cells are not updated. This is so that the index attached to refinement points still refers to the correct positional index. Lines 57-64 updates the positional indices for all children, using the helper function \texttt{SETINDEXK}.
 \end{itemize}
 
 The function \texttt{RefineCell} is now presented.
@@ -5664,15 +5670,16 @@ The comments explain how the function works. The helper function \texttt{LDCOPY}
 \hypertarget{obtaining-defining-formulas-for-every-cell}{%
 \subsection{Obtaining defining formulas for every cell}\label{obtaining-defining-formulas-for-every-cell}}
 
-As discuss FD = FRONT
-in Section \ref{sec:cell-formula}, the projection factors may not be sufficient to produce a quantifier-free Boolean formula for every cell \(C\) in a CAD.
-We would like to be able to examine every cell \(C \subset V_1,\ldots,V_k\) by getting its defining formula.
+As discussed in Section \ref{sec:cell-formula}, the projection factors may not be sufficient to produce a quantifier-free Boolean formula for every cell \(C\) in a CAD.
+We would like to be able to examine every cell \(C \subset V_1,\ldots,V_k\) using its defining formula.
 As such, a new command, \texttt{d-cell-tarski} has been implemented.
-This uses Brown's solution formula construction algorithm. Given a CAD \(\mathcal{D}\), the algorithm builds an RCad \(\mathcal{D}_R\), which is a refinement of \(\mathcal{D}\) such that each cell can be expressed as a basic semialgebraic set using only polynomials from the projection factor set. I.e., every cell \(C\) of \(\mathcal{D}\) can be expressed as a quantifier-free Boolean formula
+This uses Brown's solution formula construction algorithm for guaranteed solution formula construction. Given a CAD \(\mathcal{D}\), the algorithm builds an RCad \(\mathcal{D}_R\), which is a refinement of \(\mathcal{D}\) such that each cell can be expressed as a disjoint union of basic semialgebraic sets using only polynomials from the projection factor set.
+In most cases, each cell can be written as a basic semialgebraic set (conjunction of sign conditions on polynomials), but occasionally, a cell \(C\) of \(\mathcal{D}\) is refined in \(\mathcal{D}_R\).
+In both cases, every cell \(C\) of \(\mathcal{D}\) can be expressed as a quantifier-free Boolean formula
 \[
 F_1 \lor \ldots \lor F_k
 \]
-where \(F_1,\ldots,F_k\) are conjunctions of polynomial equations and inequalities defining the cells \(C_1,\ldots,C_k\) of \(\mathcal{D}_R\) such that \(C = C_1,\ldots,C_k\).
+where \(F_1,\ldots,F_k\) are conjunctions of polynomial equations and inequalities defining the cells \(C_1,\ldots,C_k\) of \(\mathcal{D}_R\) such that \(C = C_1\cup\ldots\cup C_k\).
 The RCad is constructed when \texttt{d-cell-tarski} is used and then it is cached. If refinements to the original CAD are performed, e.g., because of \texttt{MONOTONE} or \texttt{FRONTIER}, the RCad is invalidated and must be reconstructed (see Line 77 of the \texttt{QEPCAD} function).
 
 To demonstrate \texttt{d-cell-tarski}, construct a CAD compatible with \[
@@ -5757,14 +5764,12 @@ Coordinate 2 = alpha
 ----------------------------------------------------
 \end{verbatim}
 
-The cell \(C\) has been refined into three cells in the RCad, and it can be represented by a the QFF
-\[
-(g < 0 \land x > 0 \land f = 0 \land y < 0)
-\lor
-(x = 0 \land f = 0 \land y < 0)
-\lor
-(g < 0 \land x < 0 \land f = 0 \land y < 0)
-\]
+The cell \(C\) has been refined into three cells in the RCad, and it can be represented by the QFF
+\begin{align*}
+& (g < 0 \ \land\ x > 0\ \land\ f = 0\ \land\ y < 0)\ \lor\\
+& (x = 0\ \land\ f = 0\ \land\ y < 0)\ \lor \\
+& (g < 0\ \land\ x < 0\ \land\ f = 0\ \land\ y < 0)
+\end{align*}
 where \(g := 27 x^2 - 32\) and \(f := y^3 - 2 y - x\). Note that the polynomial \(3 y^2 - 2\) is greater than zero at all points in \(C\), so it can be omitted from the formula.
 
 \hypertarget{the-overall-algorithm}{%
@@ -5940,9 +5945,11 @@ A brief summary of new and modified functions is now presented.
     Defines the new \texttt{QepcadCls::*} functions.
   \end{itemize}
 \item
-  1source/qepcad.h\texttt{:\ defines\ new\ non-}QepcadCls::*` functions.
+  \texttt{source/qepcad.h}: defines new non-\texttt{QepcadCls::*} functions.
 \item
   \texttt{source/proj/EXTRACTS.c}: responsible for extracting projecion polynomials. \texttt{ADD2A} has been refactored and renamed \texttt{ADDPOL}.
+\item
+  \texttt{source/userint/USERINT.c}: adds new user interface commands.
 \item
   \texttt{source/qepcad.help}: documents new commands, such as \texttt{d-cell-*-t} and \texttt{pcmct\ \textless{}y/n\textgreater{}}.
 \end{itemize}
@@ -5969,8 +5976,6 @@ A brief summary of new and modified functions is now presented.
   \texttt{source/userint/PRDCT.c}: process \texttt{d-cell-t}.
 \item
   \texttt{source/userint/PRMCT.c}: process \texttt{mct\ \textless{}y/n\textgreater{}}.
-\item
-  \texttt{source/userint/USERINT.c}: adds new user interface commands.
 \item
   \texttt{source/util/ADDPOL.c}: refactoring of \texttt{ADD2A}.
 \item
@@ -6010,7 +6015,7 @@ A brief summary of new and modified functions is now presented.
   \texttt{source/util/TwoDimensionalIndex.c}: Given a cell's positional index, which corresponds to the \((i_1,\ldots,i_k) \in \{0,1\}^n\), return \(j,k\) such that \(i_j = i_k = 1\). If \((i_1,\ldots,i_n)\) does not have exactly two elements equal to \(1\), the function returns an error.
 \end{itemize}
 
-Some other files have changes (according to \texttt{git\ diff}). However these are just whitespace changes to make the code easier to read.
+Note that some other files show changes, when using git diff, but these are just formatting and whitespace changes which made the code more readable.
 
 \hypertarget{test-cases-1}{%
 \section{Test Cases}\label{test-cases-1}}
@@ -8619,7 +8624,7 @@ from Example \ref{exm:top-bottom-not-cylindrical}.
   \(X_{(0,0)}\) is already a union of cells of \(\mathcal{E}_{(0,0)}\), so no further refinement of \(\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}\) is needed. The algorithm terminates and returns \(\mathcal{D} := \mathcal{E}_{(0,1)}\).
 \end{enumerate}
 
-Well-known implementations of cylindrical algebraic decomposition such as \texttt{QEPCAD\ B} \citep{brownQepcad} and Maple's \texttt{CylindricalAlgebraicDecompose} \citep{chen2014} are unable to obtain the frontier condition in general. In particular, when applied to set \(S\) from Example \ref{exm:top-bottom-not-cylindrical}, both \{\em CylindricalAlgebraicDecompose\} and \{\em QEPCAD B\} create three cells above the origin: \(B' = \{ x = y = 0, z < 0\}\), \(B'' = \{ x = y = 0, z = 0\}\) and \(B''' = \{ x = y = 0, z > 0\}\). Observe that \(B''' \cap {\operatorname{fr} \left( S \right)} \ne \emptyset\), but \(B''' \not \subset {\operatorname{fr} \left( S \right)}\) so the frontier of \(S\) is not a union of cells in the decomposition.
+Well-known implementations of cylindrical algebraic decomposition such as \texttt{QEPCAD\ B} \citep{brownQepcad} and Maple's \texttt{CylindricalAlgebraicDecompose} \citep{chen2014} are unable to obtain the frontier condition in general. In particular, when applied to set \(S\) from Example \ref{exm:top-bottom-not-cylindrical}, both `CylindricalAlgebraicDecompose' and `QEPCAD B' create three cells above the origin: \(B' = \{ x = y = 0, z < 0\}\), \(B'' = \{ x = y = 0, z = 0\}\) and \(B''' = \{ x = y = 0, z > 0\}\). Observe that \(B''' \cap {\operatorname{fr} \left( S \right)} \ne \emptyset\), but \(B''' \not \subset {\operatorname{fr} \left( S \right)}\) so the frontier of \(S\) is not a union of cells in the decomposition.
 
 TODO!! insert the tables.
 
@@ -8767,7 +8772,7 @@ This is clearly possible by Thom's Lemma. However, the signs of polynomials on w
 \subsection{Pfaffian Functions}\label{sec:pfaffian}}
 
 Theorem \ref{thm:main} can be extended to restricted sub-Pfaffian sets as described by \citet{gv04}.
-In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by \{\em fewnomials\} \citep[Section 2.6]{gv04}, whose structure is destroyed by a change of coordinates, and obtain a bound on the number of cells in these decompositions.
+In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by \emph{fewnomials} \citep[Section 2.6]{gv04}, whose structure is destroyed by a change of coordinates, and obtain a bound on the number of cells in these decompositions.
 
 The idea of the proof is still valid. Only a modification to the subroutines for computing the frontier, and for constructing a classical CAD, is needed. For the former, replace the quantifier elimination algorithm in Lemma \ref{lem:frontier} with the result of \citep[Section 5]{gv04}. In the latter case, the classical CAD algorithm from Proposition \ref{prp:collins} should be replaced by the main result of \citet{gv01} (see also \citep[Section 7]{gv04}). The rest of the proof can be reproduced almost identically.
 Care must be taken to ensure that Lemma \ref{lem:section-split} is still applicable to restricted sub-Pfaffian sets. The projection of a sub-Pfaffian set is a semi-Pfaffian set, which admits the representation as a finite union of basic semi-Pfaffian sets.
@@ -8808,12 +8813,12 @@ This thesis makes three main contributions:
 \item
   an implementation of a smooth stratification algorithm, based on the work of \citet{gv1995};
 \item
-  a concrete algorithm for constructing a CAD, monotone with respect to semialgebraic sets \(V_1,\ldots,V_k \subset \mathbb{R}^n\) such that \(\dim(V_i) \le 2\), and satisfying the frontier condition;
+  a concrete algorithm and implementation for constructing a CAD, monotone with respect to semialgebraic sets \(V_1,\ldots,V_k \subset \mathbb{R}^n\) such that \(\dim(V_i) \le 2\), and satisfying the frontier condition;
 \item
   and a novel algorithm for constructing a CAD, satisfying the frontier condition and compatible with a semialgebraic set \(S \subset \mathbb{R}^n\) of arbitrary dimension.
 \end{enumerate}
 
-Complexity results for each of the algorithms are presented, and the first two algorithms have been implemented in C, on top of `saclib'.
+Complexity results for each of the algorithms are presented, and the first two algorithms have been implemented in C, on top of \texttt{saclib}.
 
 \hypertarget{smooth-stratification-of-a-semialgebraic-set}{%
 \subsection{Smooth stratification of a semialgebraic set}\label{smooth-stratification-of-a-semialgebraic-set}}
@@ -8827,30 +8832,36 @@ Complexity bounds, based on \citet{gv1995} and a singly exponential algorithm fo
 \citet{bgv15}, Theorem 3.20 gives a constructive proof that there exists a CAD, monotone with respect to a collection of bounded definable sets \(V_1,\ldots,V_k\), each of which has dimension at most \(2\), and satisfying the frontier condition. The main contribution of Chapters \ref{sec:quasi-affine}, \ref{sec:monotone-cells} and \ref{sec:frontier} is the design and implementation of an algorithm, based on \citet{bgv15}, Theorem 3.20, for constructing such a CAD. Following the construction due to \citet{bgv15}, the algorithm proceeds in three steps.
 
 First, a CAD, compatible with each of \(V_1,\ldots,V_k\) and such that each cell \(C \subset V_1 \cup \ldots \cup V_k\) is the graph of a quasi-affine map, following \citet{bgv15} Lemma 3.19, is constructed. This lemma first instructs us to consider \(W\), the smooth \(2\)-dimensional locus of \(V_1 \cup \ldots \cup V_k\).
-This can be done by applying the smooth stratification algorithm, as presented in Section \ref{sec:smooth-strat}, and collecting the strata of codimension \(n-2\). Then, \citet{mccallum1998} Theorems 2.2.3 and 2.2.4 are applied to this CAD to show that, if McCallum's projection operator is used and there is only a finite number of blow-up points, smooth cells are obtained automatically.
+This can be done by applying the smooth stratification algorithm, as presented in Section \ref{sec:smooth-strat}, and collecting the strata of codimension \(n-2\).
+It was then observed that, according to \citet{mccallum1998} Theorems 2.2.3 and 2.2.4, if McCallum's projection operator is used and there is only a finite number of blow-up points, smooth cells are obtained automatically.
 \citet{bgv15}, Lemma 3.19 then tells us to construct a CAD which is compatible with all \(V_1,\ldots,V_k\) and the critical points of the projections of \(W\) onto one- and two-dimensional coordinate subspaces. This can be done by ensuring that the CAD has constant sign on all polynomials defining the sets \(V_1,\ldots,V_k\), along with some additional polynomials which arise from computing the determinants of Jacobi matrices defining either the (smooth) \(2\)-dimensional cells, or \(2\)-dimensional strata.
-This completes the construction described in \citet{bgv15}, Lemma 3.19. Pseudo-code is presented and a complexity bound of \(\left(s (d+1)\right)^{2^{O(n)}}\), which is slightly worse than classical CAD, is obtained.
+This completes the construction described in \citet{bgv15}, Lemma 3.19. Pseudo-code is presented and a complexity bound of \(\left(s (d+1)\right)^{O(1)^{n}}\), which is slightly worse than classical CAD, is obtained.
 
-Next, Chapter \ref{sec:monotone-cells} describes how some simple refinements of the quasi-affine CAD can be performed such that each cell \(C \subset V_1 \cup \ldots \cup V_k\) is monotone. These refinements, described in \citet{bgv15}, Lemma 3.11, are of the kind \(\{ x_1 = c \}, \{ x_1 > c \}, \{ x_1 < c \}\), where \(c \in \mathbb{R}\). Since the real roots of polynomials are always algebraic numbers, in the semialgebraic case, \(c\) is always an element of \(\mathbb{A}\). These refinements are easy to perform, as they simply split \((1)\)-cells, and, by \citet{bgv15} Lemma 3.11, they preserve the cylindrical structure along with existing monotone cells.
-\citet{bgv15}, Lemma 3.18, defines these refinement points as those which ensure that the top and bottom of every \(2\)-dimensional cell contained in \(V_1\cup \ldots V_k\) is the graph of a continuous, definable, monotone map. The main contribution of this Chapter is how this can be done using Lagrange Multipliers. This process relies on computing determinants of square matrices of polynomials and finding the first coordinate of their real root -- straightforward tools which are readily available in almost every computer algebra system.
+Next, Chapter \ref{sec:monotone-cells} describes how some simple refinements of the quasi-affine CAD can be performed such that each cell \(C \subset V_1 \cup \ldots \cup V_k\) is monotone. These refinements, described in \citet{bgv15}, Lemma 3.11, are of the kind \(\{ x_1 = c \}, \{ x_1 > c \}, \{ x_1 < c \}\), where \(c \in \mathbb{R}\). Since the real roots of polynomials are always algebraic numbers, in the semialgebraic case, \(c\) is always an element of \(\mathbb{A}\). These refinements are easy to perform, as they simply split \((1)\)-cells, and, by \citet{bgv15} Lemma 3.11, this type of refinement preserves the cylindrical structure along with existing monotone cells.
+\citet{bgv15}, Lemma 3.18, defines these refinement points as those which ensure that the top and bottom of every \(2\)-dimensional cell contained in \(V_1\cup \ldots V_k\) is the graph of a continuous, definable, monotone map. The main contribution of this Chapter is the application of Lagrange Multipliers to find these refinement points. This process relies on computing determinants of square matrices of polynomials and finding the first coordinate of their real root -- straightforward tools which are readily available in almost every computer algebra system.
 Again, pseudo-code is presented and a complexity result, which is the same as that presented in Chapter \ref{sec:quasi-affine}, is obtained.
 
 Finally, Chapter \ref{sec:frontier} explains how to refine the CAD such that it satisfies the frontier condition. The
 first approach is a direct translation of the last part of \citet{bgv15}, Theorem 3.20. I.e., the frontiers of \(2\)-dimensional
 cells are computed and then partitioned into points and monotone curve intervals. The latter part of this construction,
-partitioning a one-dimensional curve into monotone pieces -- is easy, as it was already done in the previous chapter.
-However, the task of computing the frontier of a semialgebraic set is not as easy. Lemma \ref{lem:frontier} describes how to do this using quantifier elimination, and asserts that it has complexity singly exponential in the number of variables.
-Endeavouring to avoid this, we turn to \citet{lazard10}, who presents an algorithm for computing a CAD of \(\mathbb{R}^3\) with frontier condition. This algorithm relies on a CAD, containing only topologically regular cells, and having constant sign on a set of polynomials to be computed. Since this has already been done (in Chapters \ref{sec:quasi-affine} and \ref{sec:monotone-cells}), Lazard's algorithm can be applied directly in dimension \(3\). Furthermore, if \(2\)-dimensional cells are contained in a sub-CAD of \(\mathbb{R}^3\) above a \(0\)-dimensional cell, hen Lazard's algorithm can be applied directly to the sub-CAD.
-The main contribution of Chapter \ref{sec:frontier} is the observation that a similar situation to that described by Lazard exists in the special case of \(2\)-dimensional cells in a CAD of \(\mathbb{R}^n\) and an extension of Lazard's method to this situation.
-This is the approach taken in the implementation, since it is more tractable than computing the frontier of every cell, which would need to be done using CAD, which is doubly exponential in the number of variables.
-Pseudo-code for the extension of Lazard's algorithm and a complexity analysis for both Gabrielov and Vorobjov's approach and Lazard's approached is performed. The complexity, again, is \(\left(s (d+1)\right)^{2^{O(n)}}\), which is the overall complexity of constructing the CAD with the properties from \citet{bgv15}, Theorem 3.20.
+partitioning a one-dimensional curve into monotone pieces -- is straightforward, as it has already been done when constructing monotone cells in the previous chapter.
+However, the task of computing the frontier of a semialgebraic set is not as easy. Lemma \ref{lem:frontier} describes how to do this using quantifier elimination, and asserts that it has complexity singly exponential in the number of variables. However, the algorithm presented in \citep[Algorithm 14.21]{bpr2006} is theoretical in nature and, in practice, we would have to resort to doubly exponential CAD to solve the QE problem.
+Endeavouring to avoid this, we turned to \citet{lazard10}, who presents an algorithm for computing a CAD of \(\mathbb{R}^3\) with frontier condition. This algorithm relies on a CAD, containing only topologically regular cells, and having constant sign on a set of polynomials to be given. Since this has already been done (in Chapters \ref{sec:quasi-affine} and \ref{sec:monotone-cells}), Lazard's algorithm can be applied directly in dimension \(3\). Furthermore, if \(2\)-dimensional cells are contained in a sub-CAD of \(\mathbb{R}^3\) above a \(0\)-dimensional cell, hen Lazard's algorithm can, again, be applied directly to the sub-CAD.
+The main contribution of Chapter \ref{sec:frontier} is the observation that a similar situation to that described by Lazard exists in the special case of \(2\)-dimensional cells in a CAD of \(\mathbb{R}^n\) and the suggestion of an extension of Lazard's method to this situation.
+This is the approach taken in the implementation, since it is more tractable than computing the frontier of every cell.
+Pseudo-code for the extension of Lazard's algorithm and a complexity analysis for both Gabrielov and Vorobjov's approach and Lazard's approach is performed. The complexity, for both approaches, is \(\left(s (d+1)\right)^{O(1)^{n}}\), which is the overall complexity of constructing the CAD with the properties from \citet{bgv15}, Theorem 3.20.
 
-Chapter \ref{sec:implementation-and-testing} is concerned with the implementation details of the algorithm based on the proof of Theorem 3.20 and presents some test cases which give an exposition of the three stages.
+Thus, a concrete description of an algorithm to construct the cylindrical decomposition, in the semialgebraic case, described in \citet{bgv15}, Theorem 3.20 is given, which has complexity only slightly worse than classical CAD.
+Chapter \ref{sec:implementation-and-testing} is concerned with the implementation details of the this algorithm, along with presenting some test cases which give an exposition of its three stages: quasi-affine, monotone and frontier condition.
 
 \hypertarget{a-novel-algorithm-for-computing-a-cad-with-frontier-condition-compatible-with-a-semialgebraic-set-of-arbitrary-dimension}{%
 \subsection{A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension}\label{a-novel-algorithm-for-computing-a-cad-with-frontier-condition-compatible-with-a-semialgebraic-set-of-arbitrary-dimension}}
 
-The final contribution is an algorithm, having ELEMENTARY complexity, for constructing a CAD, compatible with a semialgebraic set of arbitrary dimension and satisfying the frontier condition. It was not clear how this could be achieved using the usual induction -- on the ambient dimension -- so a novel approach was needed. The algorithm relies on a recursion on the lexicographical order of cell index \((i_1,\ldots,i_n) \in \{0,1\}^n\). A mathematical description, proof of correctness, complexity analysis and pseudo-code are presented for this algorithm, which has complexity doubly exponential in the number of variables. This algorithm has not yet been implemented due to time constraints, but it is clear from the pseudo-code that it could be done using the tools we have been using throughout this thesis.
+The final contribution is an algorithm, having ELEMENTARY complexity, for constructing a CAD, compatible with a semialgebraic set of arbitrary dimension and satisfying the frontier condition.
+This algorithm removes the restriction imposed by \citet{jhd20}, as blow-ups are permitted, and does not require the rotation of coordinates proposed by \citet{pianomovers1983}.
+It was not clear how this could be achieved using the usual induction -- on the ambient dimension -- so a novel approach was needed. The algorithm relies on a recursion on the lexicographical order of cell index \((i_1,\ldots,i_n) \in \{0,1\}^n\). A mathematical description, proof of correctness, complexity analysis and pseudo-code are presented for this algorithm, which has complexity doubly exponential in the number of variables.
+This work was presented in extended abstract form at CASC 2023 and is currently under review for publication in the Journal of Symbolic Computation.
+This algorithm has not yet been implemented due to time constraints, but it is clear from the pseudo-code that it could be done using the tools we have been using throughout this thesis.
 
 \hypertarget{further-work}{%
 \section{Further Work}\label{further-work}}
@@ -8883,7 +8894,7 @@ Finally, the implementation of the monotone CAD algorithm is a proof of concept 
 \chapter*{Appendix A: Test Cases}\label{appendix-a-test-cases}}
 \addcontentsline{toc}{chapter}{Appendix A: Test Cases}
 
-We now present a few variations of this example, to test various situations. The following Example \ref{exm:qanm-3-alg} requires an algebraic refinement point.
+We first present a few variations of Example \ref{exm:qanm}, to test various situations. The following Example \ref{exm:qanm-3-alg} requires an algebraic refinement point.
 
 \begin{example}
 \protect\hypertarget{exm:qanm-3-alg}{}\label{exm:qanm-3-alg}Let \(n = 3\) and consider the 2-dimensional section cell

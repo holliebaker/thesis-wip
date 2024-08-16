@@ -17,13 +17,13 @@ The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets o
 :::
 
 ::: {.definition #graph-def-map }
-Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets. 
+Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets.
 Let $f : X \to Y$ be a mapping from $X$ to $Y$. The graph of $f$ is the definable set
 $$
 \{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}.
 $$
 Sometimes, the domain of $f$ is $\R^n$. In this case, we often use the restriction $f\vert_X$ so that only images of $f$ at points in $X$ are considered,
-The graph of $f$ on $X$ may be denoted by $f(X)$. 
+The graph of $f$ on $X$ may be denoted by $f(X)$.
 :::
 
 ::: {.definition}
@@ -50,8 +50,8 @@ A first-order Boolean formula is obtained by rules 1 and 2 from Definition \@ref
 :::
 
 Semialgebraic sets are closed under taking finite unions and intersections and the difference of two semialgebraic sets is semialgebraic.
-A fundamental result in semialgebraic geometry is the Tarski--Seidenberg Theorem, which asserts that semialgebraic sets are also closed under taking projection. 
-The proof of Tarski's theorem was published in [@tarski1998], whose release was delayed due to the war. It is very likely that Tarski actually proved the theorem much earlier, since Tarski mentioned this result in @sierpinski1930. The following statement of the theorem comes from [@vdd1988tarski], but the theorem should obviously be attributed to Tarski. 
+A fundamental result in semialgebraic geometry is the Tarski--Seidenberg Theorem, which asserts that semialgebraic sets are also closed under taking projection.
+The proof of Tarski's theorem was published in [@tarski1998], whose release was delayed due to the war. It is very likely that Tarski actually proved the theorem much earlier, since Tarski mentioned this result in @sierpinski1930. The following statement of the theorem comes from [@vdd1988tarski], but the theorem should obviously be attributed to Tarski.
 
 ::: { .theorem #tarski-seinedberg }
 [@vdd1988tarski]
@@ -259,6 +259,7 @@ $Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph
 
 ::: { .proposition #monotone-topologically-regular }
 [@bgv13, Theorem 1]
+
 Every monotone cell is a topologically regular cell.
 :::
 
@@ -274,6 +275,7 @@ Let $X \subset \R^n$ be a monotone cell, then
 
 ::: { .proposition }
 [@bgv13, Theorem 10]
+
 Let $X \subset \R^n$ be a monotone cell. Then $\proj_{L}(X)$, for any affine coordinate subspace $L \subset \R^n$ is also a monotone cell.
 :::
 

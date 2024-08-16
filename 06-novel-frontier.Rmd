@@ -381,7 +381,7 @@ $X_{(0,0)}$ contains $\fr{S'}$.
 
 5. $X_{(0,0)}$ is already a union of cells of $\mathcal{E}_{(0,0)}$, so no further refinement of $\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}$ is needed. The algorithm terminates and returns $\mathcal{D} := \mathcal{E}_{(0,1)}$.
 
-Well-known implementations of cylindrical algebraic decomposition such as `QEPCAD B` [@brownQepcad] and Maple's `CylindricalAlgebraicDecompose` [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example \@ref(exm:top-bottom-not-cylindrical), both {\em CylindricalAlgebraicDecompose} and {\em QEPCAD B} create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr{S} \ne \emptyset$, but $B''' \not \subset \fr{S}$ so the frontier of $S$ is not a union of cells in the decomposition.
+Well-known implementations of cylindrical algebraic decomposition such as `QEPCAD B` [@brownQepcad] and Maple's `CylindricalAlgebraicDecompose` [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example \@ref(exm:top-bottom-not-cylindrical), both 'CylindricalAlgebraicDecompose' and 'QEPCAD B' create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr{S} \ne \emptyset$, but $B''' \not \subset \fr{S}$ so the frontier of $S$ is not a union of cells in the decomposition.
 
 TODO!! insert the tables.
 
@@ -523,7 +523,7 @@ This is clearly possible by Thom's Lemma. However, the signs of polynomials on w
 ### Pfaffian Functions { #sec:pfaffian }
 
 Theorem \@ref(thm:main) can be extended to restricted sub-Pfaffian sets as described by @gv04.
-In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by {\em fewnomials} [@gv04, Section 2.6], whose structure is destroyed by a change of coordinates, and obtain a bound on the number of cells in these decompositions.
+In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by *fewnomials* [@gv04, Section 2.6], whose structure is destroyed by a change of coordinates, and obtain a bound on the number of cells in these decompositions.
 
 The idea of the proof is still valid. Only a modification to the subroutines for computing the frontier, and for constructing a classical CAD, is needed. For the former, replace the quantifier elimination algorithm in Lemma \@ref(lem:frontier) with the result of [@gv04, Section 5]. In the latter case, the classical CAD algorithm from Proposition \@ref(prp:collins) should be replaced by the main result of @gv01 (see also [@gv04, Section 7]). The rest of the proof can be reproduced almost identically.
 Care must be taken to ensure that Lemma \@ref(lem:section-split) is still applicable to restricted sub-Pfaffian sets. The projection of a sub-Pfaffian set is a semi-Pfaffian set, which admits the representation as a finite union of basic semi-Pfaffian sets.

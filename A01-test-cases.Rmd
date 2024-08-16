@@ -1,6 +1,6 @@
 # Appendix A: Test Cases {-}
 
-We now present a few variations of this example, to test various situations. The following Example \@ref(exm:qanm-3-alg) requires an algebraic refinement point.
+We first present a few variations of Example \@ref(exm:qanm), to test various situations. The following Example \@ref(exm:qanm-3-alg) requires an algebraic refinement point.
 
 ::: {.example #qanm-3-alg }
 Let $n = 3$ and consider the 2-dimensional section cell

@@ -153,7 +153,7 @@ The latter asserts that any cell in an $\mathbf{F}$-invariant CAD $\mathcal{D}$ 
 Note that $\mathcal{D}'$ is a $\projop{2}(\mathbf{F})$-invariant CAD of $\R^2$ and is always strong by @lazard10, Corollary 4.7.
 @lazard10, Proposition 5.2 depends on the following result.
 
-::: {.lemma #lazard-5-2}
+::: {.proposition #lazard-5-2}
 [@lazard10, Proposition 5,2]
 
 Let $\cal D$ be a CAD of $\R^n$ and $\cal D'$ the decomposition induced by $\cal D$ on $\R^{n-1}$. Let $C$ be a cell of $\cal D$ and $C' := \projop{n-1} (C)$ such that $C'$ is well-bordered.
@@ -172,7 +172,7 @@ As a result, we are able to apply Lazard's method for lifting with bad points to
 By @lazard10, Theorem 4.4, a cell $C$ already satisfies the frontier condition if no points in its frontier project on a bad cell (see also @jhd20).
 Thus, only cells which fail to satisfy this property need to be considered. By @lazard10, Lemma 4.3, in $\R^3$, if a bad cell exists, then it has dimension $0$.
 
-::: { .lemma #only-bad-zero-cells }
+::: { .proposition #only-bad-zero-cells }
 [@lazard10, Lemma 4.3]
 
 A sign-invariant CAD of $\R^2$ contains no bad cells.
@@ -182,7 +182,7 @@ For an $\mathbf{F} \subset \Q[x_1,x_2,x_3]$-invariant CAD $\mathcal{D}$ of $\R^3
 
 This follows from the fact that, in $\R^n$, a blow-up point of a polynomial in $\Q[x_1,\ldots,x_n]$ in $\R^{n-1}$ has codimension at least two (see Remark aftor Definition \@ref(def:blow-up-point)).
 
-::: { .lemma #no-blow-up }
+::: { .proposition #no-blow-up }
 [@lazard10, Theorem 4.4]
 
 Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ and $C$ be a cell of $\mathcal{D}$ with $C' := \proj_{\R^{n-1}}(C)$. If the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and none of $C'$ and any cell $D'$ such that $D' \cap \fr{C'} \ne \emptyset$ is bad, $C$ is well-bordered, boundary smooth and $\fr{C}$ is a union of some cells of $\mathcal{D}$.
@@ -210,8 +210,9 @@ This proves that, if the decomposition induced by $D$ on $\R^{n-1}$ is strong, t
 The other cases are deduced by omitting the cells defined from $C_B$ and $C_T$ as appropriate.
 :::
 
-::: {.lemma #lazard-5-13}
+::: {.proposition #lazard-5-13}
 [@lazard10 Proposition 5.13]
+
 Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^3$ and $C$ be a well-bordered, boundary smooth cell of $\mathcal{D}$.
 Suppose that $D$ is a cell of $\mathcal{D}$ such that $B := D \cap \fr{ C } \neq \emptyset$ and $B \neq D$. Then either
 
@@ -246,6 +247,7 @@ The following result shows how $(0,0,1)$-cells which project on a bad point can 
 
 ::: { .proposition #lazard-5-14 }
 [@lazard10, Proposition 5.14]
+
 Let $f \in \Q[x_1,x_2,x_3]$ be an irreducible polynomial of the kind
 $$f = g_dx_3^d + \ldots + g_1x_3 + g_0$$
 with each $g_i \in \Q[x_1,x_2]$, and
@@ -273,6 +275,7 @@ The proof of @lazard10, Proposition 5.14 depends on taking Zariski closures. The
 
 ::: {.proposition #cox-zariski}
 [@cox2013 p203, part of Theorem 10]
+
 Let $I,J \subset K[x_1,\ldots,x_n]$ be ideals, then
 $\cl{ V(I) \setminus V(J) } \subset V(I : J^\infty)$,
 :::
@@ -303,8 +306,8 @@ Note that this procedure only works if the blow-up points have dimension zero. O
 
 ### Lazard's Algorithm for lifting with bad points in $\R^3$
 
-Let $\cal D$ be an $\mathbf{F}$-invariant CAD of $\R^n, n \le 3$. If $n \le 2$, $\cal D$ is already strong -- well-bordered, boundary smooth and satisfies the frontier condition. In particular, by Lemma \@ref(lem:only-bad-zero-cells), the frontier condition is already satisfied since there are no bad cells in the decomposition induced by $\mathcal{D}$ on $\R^2$ [@lazard10, Lemma 4.3].
-Also by Lemma \@ref(lem:only-bad-zero-cells), any bad cells in the decomposition induced by $\mathcal{D}$ on $\R^2$ are $0$-dimensional [@lazard10, Lemma 4.3].
+Let $\cal D$ be an $\mathbf{F}$-invariant CAD of $\R^n, n \le 3$. If $n \le 2$, $\cal D$ is already strong -- well-bordered, boundary smooth and satisfies the frontier condition. In particular, by Proposition \@ref(prp:only-bad-zero-cells), the frontier condition is already satisfied since there are no bad cells in the decomposition induced by $\mathcal{D}$ on $\R^2$ [@lazard10, Lemma 4.3].
+Also by Proposition \@ref(prp:only-bad-zero-cells), any bad cells in the decomposition induced by $\mathcal{D}$ on $\R^2$ are $0$-dimensional [@lazard10, Lemma 4.3].
 Therefore, the frontier condition is satisfied everywhere except in the neighbourhoods above bad cells in the induced decomposition of $\R^2$. The following algorithm is a special method for lifting above a bad cell.
 
 ::: {.algorithm data-latex="Lazard Lifting With Bad Points in $\R^3$"}
@@ -384,7 +387,7 @@ Our goal is to construct a CAD $\mathcal{D}$ of $\R^n$, monotone with respect to
 Note that this method is not claimed to work for all cells of $\mathcal{D}$, in particular, those of dimension $> 2$.
 
 In Section \@ref(sec:lazard-3), we applied Lazard's method for lifting with bad cells to CADs of $\R^3$ output by the algorithm described in Section \@ref(sec:monotone-algorithm). Lazard's algorithm required the input CAD to have two properties. First, each cell must be boundary smooth. Since each cell $C \subset V = V_1\cup \ldots \cup V_k$ is constructed to be monotone, it is already topologically regular by Proposition \@ref(prp:monotone-topologically-regular) (@bgv13, Theorem 1), and is therefore already boundary smooth. 
-The second requirement is that every cell must be well-bordered. While Corollary \@ref(cor:lazard-5-4) (@lazard10, Corollary 5.4) asserts that any sign-invariant CAD of $\R^3$ is well-bordered, this property cannot be extended to CADs of arbitrary dimension. Indeed, @lazard10, Example 2.11 describes a $3$-dimensional cylindrical cell in $\R^4$ which cannot be well-bordered since its frontier consists of a single half-line. This condition is necessary to get the configuration of cells described in Lemma \@ref(lem:lazard-5-13) (@lazard10, Lemma 5.13), which is required to apply the algorithm for lifting with bad points. Therefore, it seems unlikely that this method could be generalised to cells of dimension $> 2$.
+The second requirement is that every cell must be well-bordered. While Corollary \@ref(cor:lazard-5-4) (@lazard10, Corollary 5.4) asserts that any sign-invariant CAD of $\R^3$ is well-bordered, this property cannot be extended to CADs of arbitrary dimension. Indeed, @lazard10, Example 2.11 describes a $3$-dimensional cylindrical cell in $\R^4$ which cannot be well-bordered since its frontier consists of a single half-line. This condition is necessary to get the configuration of cells described in Proposition \@ref(prp:lazard-5-13) (@lazard10, Lemma 5.13), which is required to apply the algorithm for lifting with bad points. Therefore, it seems unlikely that this method could be generalised to cells of dimension $> 2$.
 
 ::: {.definition #strong-about-c }
 Let $\mathcal{D}$ be a CAD of $\R^n$ and $C$ be a cell of $\mathcal{D}$. $\mathcal{D}$ will be called strong about $C$ if $C$ is well-bordered, boundary coherent and every cell contained in $\cl(C)$ is boundary smooth.
@@ -402,29 +405,29 @@ Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^3$ such that the decom
 ::: {.proof}
 If $\dim(C) < 2$, then $C$ is well-bordered by @lazard10, Lemma 5.1.
 
-If $\dim(C) = 2$ and $C$ is a $(1,1,0)$-cell, then its boundary consists of some section cells which project onto one-dimensional cells in $\mathcal{D}$ and which are contained in $\fr{C'}$ and points or intervals projecting on some $0$-cells in $\fr{C'}$ by Lemma \@ref(lem:lazard-5-2) (@lazard10, Proposition 5.2).
+If $\dim(C) = 2$ and $C$ is a $(1,1,0)$-cell, then its boundary consists of some section cells which project onto one-dimensional cells in $\mathcal{D}$ and which are contained in $\fr{C'}$ and points or intervals projecting on some $0$-cells in $\fr{C'}$ by Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2).
 We need to prove that these points belong to the boundary of some of the $1$-cells contained in $\fr{C}$.
 Let $\mathbf{c}$ be a $0$-cell of $\mathcal{D'}$ contained in $\fr{C'}$ such that $\mathbf{c}$ is the projection of exactly one point, $\mathbf{p}$, in $\fr{C}$.
 Since $C'$ is well-bordered (as $\mathcal{D'}$ is strong), there is a $1$-dimensional cell $C'_1 \subset \fr{C'}$ such that $\mathbf{c}$ is an endpoint.
 If $C'_1$ is the projection of a $1$-dimensional cell contained in $\fr{C}$, we are done -- the boundary of this one-dimensional cell consists of some isolated points including $\mathbf{p}$.
-$C'_1$ is not the projection of a section cell, then the limits of the sequences of points in $C$, whose projections tend to $C'_1$, tend to $-\infty$ or $\infty$. Therefore $\mathbf{p}$ is either $-\infty$ or $\infty$, being an endpoint of the interval $I$ associated to $C$ by Lemma \@ref(lem:lazard-5-2) (@lazard10, Proposition 5.2). This contradicts the assumption that $\projop{2}^{-1}(\mathbf{c}) \cap \fr{C}$ contains only $\mathbf{p}$.
+$C'_1$ is not the projection of a section cell, then the limits of the sequences of points in $C$, whose projections tend to $C'_1$, tend to $-\infty$ or $\infty$. Therefore $\mathbf{p}$ is either $-\infty$ or $\infty$, being an endpoint of the interval $I$ associated to $C$ by Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2). This contradicts the assumption that $\projop{2}^{-1}(\mathbf{c}) \cap \fr{C}$ contains only $\mathbf{p}$.
 
 If $\dim(C) = 2$ and it is a sector ($(i_1,i_2,1)$-cell), then $\fr{C}$ consists of the two $(i_1,i_2,0)$-cells $C_B$ and $C_T$ which project on $C'$ the side-wall $W = \fr{C} \setminus (C_B \cup C_T)$ which consists of points or intervals projecting on the endpoints of $C'$.
-If $W$ contains an isolated point above an endpoint $\mathbf{c}$ of $C'$. Then Lemma \@ref(lem:lazard-5-2) (@lazard10, Proposition 5.2) asserts that it belongs to the boundary of a section bounding $C$ from below or above (i.e., $C_B$ or $C_T$), and we are done.
+If $W$ contains an isolated point above an endpoint $\mathbf{c}$ of $C'$. Then Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2) asserts that it belongs to the boundary of a section bounding $C$ from below or above (i.e., $C_B$ or $C_T$), and we are done.
 
 Finally, suppose that $C$ is a $(1,1,1)$-cell.
 By the proof of @lazard10, Theorem 4.4, we only need to consider points in $\fr{C}$ which projects on a bad cell, say $\mathbf{b}$, of $\mathcal{D'}$.
 By @lazard10, Lemma 4.3 $\dim(\mathbf{b}) = 0$.
-$C_B$ and $C_T$ are $(1,1,0)$-cells, therefore we only need to consider the blow-up subsets $B := (\fr{C} \setminus (\cl{C_B} \cup \cl{C_T})) \cap (\mathbf{b} \times \R)$. By Lemma \@ref(lem:lazard-5-2) (@lazard10, Proposition 5.2) $B$ is an open interval.
+$C_B$ and $C_T$ are $(1,1,0)$-cells, therefore we only need to consider the blow-up subsets $B := (\fr{C} \setminus (\cl{C_B} \cup \cl{C_T})) \cap (\mathbf{b} \times \R)$. By Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2) $B$ is an open interval.
 As $C'$ is well-bordered, there is a $1$-dimensional cell $C'_1 \subset \fr{C'}$ such that $\mathbf{b}$ is an endpoint.
 The set of points of $\fr{C}$ which project onto $C'_1$ are bounded from below and above by points of $\fr{C_B}$ and $\fr{C_T}$, thus they are $1$-dimensional section cells. The boundaries of these section cells are included in $\fr{C_B}$ and $\fr{C_T}$.
-Lemma \@ref(lem:lazard-5-2) (@lazard10, Proposition 5.2) implies that these sections which project onto $C'_1$ define a (finite and non empty) $2$-dimensional sector cell which projects onto $C'_1$ whose boundary
+Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2) implies that these sections which project onto $C'_1$ define a (finite and non empty) $2$-dimensional sector cell which projects onto $C'_1$ whose boundary
 contains $B$.
 
 As all cases have been considered, this completes the proof.
 :::
 
-::: {.proposition #ext-lazard-5-3 }
+::: {.corollary #ext-lazard-5-3 }
 (Corollary to @lazard10, Theorem 5.3)
 
 Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ and $C$ be a cell of $\mathcal{D}$ of dimension $\le 2$ such that the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$ is strong about $\projop{n-1}(C)$. Then $C$ is well-bordered.
@@ -437,12 +440,12 @@ If $\dim(C) = 2$ and $C$ is a sector cell, the same argument as in Theorem \@ref
 Otherwise, $\dim(C) = 2$ and $C$ is a sector cell. $C' := \projop{n-1}(C)$ is a well-bordered, boundary smooth and boundary coherent $2$-dimensional cell in $\mathcal{D'}$. The same argument as in Theorem \@ref(thm:lazard-5-3) (@lazard10, Theorem 5.3) can be applied to the cells in $\cl{C'} \times \R$, which have dimension $\le 2$ or are sector cells of dimension $3$.
 :::
 
-By Lemma \@ref(lem:no-blow-up), if no cells which intersect $\fr{C}$ project on a bad cell and the induced decomposition is strong, $C$ is well-bordered, boundary smooth and satisfies the frontier condition. Since the proof of Lemma \@ref(lem:no-blow-up) only considers cells contained in $\projop{n-1}(\cl{C}) \times \R$ this property is also true for the weaker property that the induced decomposition is strong about $\projop{n-1}(C)$.
+By Proposition \@ref(prp:no-blow-up), if no cells which intersect $\fr{C}$ project on a bad cell and the induced decomposition is strong, $C$ is well-bordered, boundary smooth and satisfies the frontier condition. Since the proof of Proposition \@ref(prp:no-blow-up) only considers cells contained in $\projop{n-1}(\cl{C}) \times \R$ this property is also true for the weaker property that the induced decomposition is strong about $\projop{n-1}(C)$.
 Thus, we need to look at what happens in the neighbourhood of bad cells (blow-up points) only.
-If there is a blow-up point, then we claim that the following situation, similar to that described in Lemma \@ref(lem:lazard-5-13) (@lazard10, Lemma 5.13), occurs.
+If there is a blow-up point, then we claim that the following situation, similar to that described in Proposition \@ref(prp:lazard-5-13) (@lazard10, Lemma 5.13), occurs.
 
 ::: {.lemma #ext-lazard-5-13 }
-(Extension of Lemma \@ref(lem:lazard-5-13) [@lazard10, Proposition 5.13])
+(Extension of Proposition \@ref(prp:lazard-5-13) [@lazard10, Proposition 5.13])
 
 Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ and $C$ be a cell of $\mathcal{D}$ of dimension at most two, such that the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$ is strong about $\projop{n-1}(C)$. Let $D$ be a cell of $\mathcal{D}$ such that $B := D \cap \fr{ C } \neq \emptyset$ and $B \neq D$. Then either
 
@@ -470,7 +473,7 @@ Let $V_r$ be a small neighbourhood (with radius $r > 0$) centred around $D'$ and
 ::: {.remark}
 Let $C$ be a $(i_1,\ldots,i_{n-1},0)$-cell as described in Lemma \@ref(lem:ext-lazard-5-13) such that $i_1=i_k = 1$ for some $1 \le k \le n$ and all other elements of the index are equal to zero.
 The cell $D$, which projects on a bad-cell is necessarily a $(0,\ldots,0,1)$-cell and the cell $E$, which has dimension one, is contained in $\cl{C}$. Hence, $E$ must have index either $(i_1,0\ldots,0)$ or $(0,\ldots,0,i_k,0,\ldots,0)$.
-By Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3), the images of $C$, $D$ and $E$ under the projection map $\projops{i_1,i_k,i_n}$ are cylindrical cells and satisfy Lemma \@ref(lem:lazard-5-13) (@lazard10, Lemma 5.13).
+By Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3), the images of $C$, $D$ and $E$ under the projection map $\projops{i_1,i_k,i_n}$ are cylindrical cells and satisfy Proposition \@ref(prp:lazard-5-13) (@lazard10, Lemma 5.13).
 :::
 
 This implies that we should be able to use a similar technique to that described in Proposition \@ref(prp:lazard-5-14) (@lazard10, Proposition 5.14) to lift above bad cells and satisfy the frontier condition on two-dimensional section cells in decompositions of arbitrary dimension.
@@ -511,7 +514,7 @@ For $k=3$, recall that every cell is well-bordered by Corollary \@ref(cor:lazard
 
 For $k>3$ let $\mathcal{D'}$ be the decomposition induced by $\mathcal{D}$ on $\R^k$ and let $C$ be a cell of $\mathcal{D'}$ such that $\projop{k}^{-1}(C) \subset V_1 \cup \ldots \cup V_k$.
 By the induction hypothesis, the decomposition induced by $\mathcal{D'}$ on $\R^{k-1}$ is strong about $\projop{k-1}(C)$.
-$C$ is topologically regular since the projection of a monotone cell is monotone and $C$ is well-bordered by Proposition \@ref(prp:ext-lazard-5-3) since $\dim(C) \le 2$.
+$C$ is topologically regular since the projection of a monotone cell is monotone and $C$ is well-bordered by Corollary \@ref(cor:ext-lazard-5-3) since $\dim(C) \le 2$.
 If $\dim(C) < 2$, $C$ already satisfies the frontier condition since it is well-bordered.
 If $\dim(C') = 2$, then $C$ is an $(i_1,\ldots,i_k)$-cell such that $i_{\ell_1} = i_{\ell_2} = 1$ and all other elements of the index are equal to zero.
 
@@ -631,7 +634,7 @@ Apply this procedure to each decomposition, for $3 \le k \le n$ induced by $\mat
 ### Correctness and Complexity
 
 Since zero- and one-dimensional cells already satisfy the frontier condition, it suffices to consider cells of dimension two.
-Let $\mathcal{D}$ be a CAD of $\R^k$ and $C$ be a two-dimensional section cell of $\mathcal{D}$ such that the decomposition induced by $\mathcal{D}$ on $\R^{k-1}$ is strong about $C$. Proposition \@ref(prp:ext-lazard-5-3) asserts that $C$ is well-bordered, so its frontier consists of the closure of some one-dimensional cells of $\mathcal{D}$. The frontier condition fails in the region of sector cells of $\mathcal{D}$ above $0$-dimensional bad cells in the decomposition induced by $\mathcal{D}$ on $\R^{k-1}$.
+Let $\mathcal{D}$ be a CAD of $\R^k$ and $C$ be a two-dimensional section cell of $\mathcal{D}$ such that the decomposition induced by $\mathcal{D}$ on $\R^{k-1}$ is strong about $C$. Corollary \@ref(cor:ext-lazard-5-3) asserts that $C$ is well-bordered, so its frontier consists of the closure of some one-dimensional cells of $\mathcal{D}$. The frontier condition fails in the region of sector cells of $\mathcal{D}$ above $0$-dimensional bad cells in the decomposition induced by $\mathcal{D}$ on $\R^{k-1}$.
 The procedure described above explains how to obtain some new polynomials which allow these one-dimensional sectors to be refined such that they are compatible with the frontier of $C$. By performing this refinement, $C$ is made to satisfy the forntier condition.
 
 If $C$ is a $2$-dimensional sector cell, then its top and bottom are $1$-dimensional sector cells of $\mathcal{D}$ and the side-wall of $C$ is contained in cylinders $\mathbf{c} \times \R$, where $\mathbf{c}$ is a zero-dimensional cell which is an endpoint of $\projop{k-1}(C)$. It follows that $C$ satisfies the frontier condition sits its top and bottom, which are one-dimensional cells, satisfy the frontier condition.

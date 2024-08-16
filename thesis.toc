@@ -83,6 +83,6 @@
 \contentsline {section}{\numberline {9.1}Conclusions}{217}{section.9.1}%
 \contentsline {subsection}{\numberline {9.1.1}Smooth stratification of a semialgebraic set}{217}{subsection.9.1.1}%
 \contentsline {subsection}{\numberline {9.1.2}An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most 2}{218}{subsection.9.1.2}%
-\contentsline {subsection}{\numberline {9.1.3}A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension}{219}{subsection.9.1.3}%
+\contentsline {subsection}{\numberline {9.1.3}A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension}{220}{subsection.9.1.3}%
 \contentsline {section}{\numberline {9.2}Further Work}{220}{section.9.2}%
 \contentsline {chapter}{Appendix A: Test Cases}{223}{chapter*.2}%
