@@ -94,76 +94,7 @@ $$
 
 Below is an excerpt from QEPCAD's output.
 
-```{qepcad-output}
-Enter an informal description  between '[' and ']':
-[ Unit circle ]Enter a variable list:
-(x,y)Enter the number of free variables:
-2
-Enter a Prenex formula:
-[ x^2 - y^2 = 1 ].
-
-=======================================================
-
-...
-
-Before Solution >
-d-nqf-formula y^2 - x^2 + 1 = 0
-
-Before Solution >
-d-input # input polynomials
-A_2,1  = input
-       = y^2 - x^2 + 1
-
-
-
-Before Solution >
-d-proj-pol # projection polynomials
-J_1,1= dis(A_2,1)
-       = 4 x^2 - 4
-
-
-
-Before Solution >
-d-proj-fac # projection factors
-P_1,1= fac(J_1,1) = fac(dis(A_2,1))
-       = x + 1
-
-P_1,2  = fac(J_1,1) = fac(dis(A_2,1))
-       = x - 1
-
-
-A_2,1  = input
-       = y^2 - x^2 + 1
-
-
-
-Before Solution >
-d-cell(2,2) # the cell which coincides with the unit circle
----------- Information about the cell (2,2) ----------
-
-Level                       : 2
-Dimension                   : 0
-Number of children          : 0
-Truth value                 : T    by trial evaluation.
-Degrees after substitution  : Not known yet or No polynomial.
-Multiplicities              : ((1,2))
-Signs of Projection Factors
-Level 1  : (0,-)
-Level 2  : (0)
-----------   Sample point  ----------
-The sample point is in a PRIMITIVE representation.
-
-alpha = the unique root of x between 0 and 0
-      = 0.0000000000
-
-Coordinate 1 = -1
-             = -1.0000000000
-Coordinate 2 = 0
-             = 0.0000000000
-
-
-----------------------------------------------------
-...
+``` {r, child="test-cases/sample.Rmd"}
 
 ```
 
@@ -237,8 +168,10 @@ The QEPCAD algorithm has been modified to include construction of quasi-affine c
     - *Monotone Cells*
 
       Following the algorithm described in Section \@ref(sec:monotone-algorithm), construct the family of refinement points $$
-      {\cal R} := \{ {\cal R}_{\mathbf{b}} =  (c_1,\ldots,c_t ) \subset \A \mid \mathbf{b} \in \R^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^k \}
-      $$ and add new polynomials (to $\mathcal{A}$, along with their factors to $\mathcal{F}$) which are equal to zero at these refinement points.
+      {\cal R} := \{ {\cal R}_{\mathbf{b}} =  (c_1,\ldots,c_t ) \subset \A \mid \mathbf{b} \in \R^{k-1}  \}
+      $$ 
+      where is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^k$,
+      and add new polynomials (to $\mathcal{A}$, along with their factors to $\mathcal{F}$) which are equal to zero at these refinement points.
 
       For each refinement point $c \in \A$ in each family $\mathcal{R}_\mathbf{b}$, refine the sub-CAD of $\R^{n-k}$ $\mathcal{D}$ above the $0$-cell $\mathbf{b}$ by intersecting it with straight lines and half-planes
       $$
@@ -758,8 +691,10 @@ as described in Section \@ref(sec:lazard-n). To obtain a refinement polynomial i
 
 Given the CAD $\mathcal{D}$ of $\R^n$ constructed in the lifting phase, both `MONOTONE()` and `FRONTIER()` produces a set of refinement points
 $$
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal D} \text{ on } \R^k \}.
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \}.
 $$
+where 
+$\mathbf{b} \in \R^{k-1}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal D}$ on $\R^k$.
 The function `REFINE()` computes refinements of $\mathcal{D}$ to be compatible with these points. Each refinement point $(b_1,\ldots,b_{k-1},c) \in \A^k$, such that $(b_1,\ldots,b_k)$ is a $0$-dimensional cell, $\mathbf{b}$, in the CAD induced by $\mathcal{D}$ on $\R^{k-1}$ is stored separately, is stored separately as a pair
 $$
 ((b_1,\ldots,b_{k-1},c), (m_1,\ldots,m_{k-1},m_k))

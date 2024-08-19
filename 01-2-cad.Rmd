@@ -62,11 +62,11 @@ except, possibly, over a subset of codimension at least $2$ (see the proof of @b
 :::
 
 ::: { .example #top-bottom-not-cylindrical }
-In $\R^3$, let $C' := \{ -1 < x < 1, \vert x \vert < y < 1 \}$ and $\phi(x,y) = \vert x / y \vert$ so that $C$ is the graph of $\phi\vert_{C'}$.
+In $\R^3$, let $C' := \{ -1 < x < 1, \vert x \vert < y < 1 \}$ and $\varphi(x,y) = \vert x / y \vert$ so that $C$ is the graph of $\varphi\vert_{C'}$.
 Consider $$
 C_B := \{ -1 < x < 1, y = \vert x \vert, z = 1 \} \cup \{ (0,0,z) \mid 0 \le x \le 1 \}.
 $$
-$C_B$ is not the graph of a continuous function due to the blow-up point of $\phi$ at the origin.
+$C_B$ is not the graph of a continuous function due to the blow-up point of $\varphi$ at the origin.
 :::
 
 We now define the cylindrical decomposition.
@@ -130,7 +130,10 @@ The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of t
 ::: { .proposition #delete-zero-index }
 [@bgv15, Lemma 3.3]
 
-Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then $C' := \projops{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n}(C)$ is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a monotone map $f : C' \to \opspan{x_k}$.
+Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then
+$$C' := \projops{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n}(C)
+$$
+is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a monotone map $f : C' \to \opspan{x_k}$.
 :::
 
 ::: { .proposition }
@@ -183,7 +186,7 @@ Moreover, the multiplicity of each of these roots is constant.
 The argument relies on the "continuity of roots":
 
 > Fix $\mathbf{c} \in C'$ and let $z_1,\ldots,z_k$ be the distinct roots of $f(\mathbf{c},x_n)$ with multiplicities $m_1,\ldots,m_k$.
-Choose $\varepsilon > 0$ small enough that the open discs $D(z_i,\varepsilon) z_i \in \mathbb{C}$ (center $z_i$, radius $\varepsilon$) are disjoint. If $\mathbf{b} \in C'$ is sufficiently close to $\mathbf{c}$, then the polynomial $f(\mathbf{b}, x_n)$ has exactly $m_i$ roots, counted with multiplicities, in $D(z_i,\varepsilon)$ for $1\le i \le k$.
+Choose $\varepsilon > 0$ small enough that the open discs $D(z_i,\varepsilon), z_i \in \mathbb{C}$ (center $z_i$, radius $\varepsilon$) are disjoint. If $\mathbf{b} \in C'$ is sufficiently close to $\mathbf{c}$, then the polynomial $f(\mathbf{b}, x_n)$ has exactly $m_i$ roots, counted with multiplicities, in $D(z_i,\varepsilon)$ for $1\le i \le k$.
 
 Since $f(\mathbf{b},x_n)$ has $k$ distinct complex roots, and $d = m_1+ \ldots + m_k$ complex roots counted with multiplicities, it follows that each $D(z_i,\varepsilon)$ contains exactly one root, denoted $\zeta_i$, of $f(\mathbf{b},x_n)$ with multiplicity $m_i$.
 If $z_i$ is real, then $\zeta_i$ is real, otherwise the complex conjugate of $\zeta_i$ would be another root of $f(\mathbf{b},x_n)$ in the disc $D(z_i,\varepsilon)$.
@@ -200,22 +203,22 @@ To extend this result to more than one polynomial, we also need to ensure that t
 [@coste2000, Proposition 2.18]
 
 Let $f,g \in \Z[x_1,\ldots,x_n]$, $C' \subset \R^{n-1}$ such that, for all $\mathbf{x} \in C'$, the degree and number of roots of $f(\mathbf{x},x_n)$ and $g(\mathbf{x},x_n)$ is constant and the degree of the GCD of $f(\mathbf{x},x_n)$ and $g(\mathbf{x},x_n)$ is constant.
-Let $\phi,\psi : C' \to \R$ be continuous semialgebraic functions such that $f(\mathbf{x},\phi(\mathbf{x})) = 0$ and $g(\mathbf{x},\psi(\mathbf{x})) = 0$ for all $\mathbf{x} in C'$.
-If there exists $\mathbf{c} \in C'$ such that $\phi(\mathbf{c}) = \psi(\mathbf{c})$, then $\phi(\mathbf{x}) = \psi(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+Let $\varphi,\psi : C' \to \R$ be continuous semialgebraic functions such that $f(\mathbf{x},\varphi(\mathbf{x})) = 0$ and $g(\mathbf{x},\psi(\mathbf{x})) = 0$ for all $\mathbf{x} \in C'$.
+If there exists $\mathbf{c} \in C'$ such that $\varphi(\mathbf{c}) = \psi(\mathbf{c})$, then $\varphi(\mathbf{x}) = \psi(\mathbf{x})$ for all $\mathbf{x} \in C'$.
 :::
 
 ::: {.proof}
 We use the same method of proof as in the previous proposition.
-For an arbitrary element $\mathbf{c} \in C'$, let $z_1 = \phi(\mathbf{c}) = \psi(\mathbf{c}), \ldots, z_k$ be the distinct roots in $\mathbb{C}$ of the product
+For an arbitrary element $\mathbf{c} \in C'$, let $z_1 = \varphi(\mathbf{c}) = \psi(\mathbf{c}), \ldots, z_k$ be the distinct roots in $\mathbb{C}$ of the product
 $$
-f(\mathbf{c},x_n) g(\mathbf{c},x_n)
+f(\mathbf{c},x_n)\ g(\mathbf{c},x_n)
 $$
 (recall that $fg = 0$ if either $f=0$ or $g=0$).
 Let $m_i$ (resp $p_i$) be the multiplicity of $z_i$ as a root of $f(\mathbf{x},x_n)$ (resp. $g(\mathbf{x}, x_n)$) where multiplicity zero indicates that $z_i$ is not a root.
 The degree of $\gcd(f(\mathbf{x}, x_n), g(\mathbf{x}, x_n))$ is $\min(m_1,p_1) + \cdots + \min(m_k,p_k)$ and each $z_i$ has multiplicity $\min(m_i,p_i)$ as a root of this GCD.
 Choose $\varepsilon > 0$ small enough that the discs $D(z_i,\varepsilon)$ are disjoint.
 For each $\mathbf{b} \in C'$ close enough to $\mathbf{c}$, each disc contains a root of multiplicity $m_i$ of $f(\mathbf{b}, x_n)$ and a root of multiplicity $p_i$ of $g(\mathbf{b}, x_n)$. Since the degree of the GCD of $f$ and $g$ (evaluated at any $\mathbf{x} \in C'$) is equal to $\min(m_1,p_1) + \cdots + \min(m_k,p_k)$, this GCD must have one root of multiplicity $\min(m_i,p_i)$ in each disc $D(z_i,\varepsilon)$ such that $\min(m_i,p_i) > 0$.
-In  particular, it follows that $\phi(\mathbf{b}) = \psi(\mathbf{b})$. Since $C'$ is connected, this equality holds for all $\mathbf{x} \in C'$.
+In  particular, it follows that $\varphi(\mathbf{b}) = \psi(\mathbf{b})$. Since $C'$ is connected, this equality holds for all $\mathbf{x} \in C'$.
 :::
 
 Now we have algebraic conditions on the polynomials in the set of level-$(n-1)$ projection polynomials $\mathbf{F}' = \proj(\mathbf{F})$. We now describe how these properties can be satisfied and, as such, how the set $\mathbf{F}'$ can be constructed. We will need the concept of the principal subresultant coefficient of two polynomials $f$ and $g$.
@@ -308,7 +311,7 @@ present the bounds, along with some variations, from @bpr2006.
 ::: { .proposition #collins }
 [@bpr2006, Algorithm 11.2]
 
-Let $\mathbf{F} := f_1,\ldots,f_s$ be set of polynomials in $\Z[x_1, \ldots ,x_n]$ with maximum degree $d$.
+Let $\mathbf{F} := f_1,\ldots,f_s$ be a set of polynomials in $\Z[x_1, \ldots ,x_n]$ with maximum degree $d$.
 There is an algorithm, taking $\mathbf{F}$ as input, which produces an $\mathbf{F}$-invariant CAD $\cal D$ of $\R^n$.
 The complexity of the algorithm is
 $$(sd)^{O(1)^{n}}.
@@ -343,7 +346,7 @@ Immediate, by applying Corollary \@ref(cor:collins-set) to $\{ F \}$.
 :::
 
 The construction described in Corollary \@ref(cor:collins-sets) is somewhat naive.
-Constructions which are far more efficient in practice are presented in e.g., @collins1991. An alternative approach is presented by @bradford2014.
+A far more efficient algorithm are presented in e.g., @collins1991. An alternative approach is presented by @bradford2014.
 While very useful in practice, these constructions are unable to lower the upper bound from Proposition \@ref(prp:collins) due to some extreme cases, e.g., when the input formulas define a sign-invariant CAD (see @bradford2014, Section 6.2.1].
 
 ### The projection operator
@@ -389,18 +392,18 @@ Then a CAD $\cal D$ of $\R^n$ compatible with $S$ and such that every cell $C$ o
 
 ### Projection polynomials vs semialgebraic functions
 
-Recall that Proposition \@ref(prp:coste-polynomial-to-cell) allows us to pass from a projection polynomial $f \in \Z[x_1,\ldots,x_k]$ to the continuous semialgebraic functions $\phi : C' \to \R$, where $C' \subset \R^{n-1}$ is a cylindrical cell, from Definition \@ref(def:cells) which define some of the section cells in the cylinder $C' \times \R$. The construction described in @bgv15, Theorem 3.20 (and related lemmas) works with these continuous semialgebraic functions. However, we are given only the projection polynomials $f$ of which $\phi$ defines one of the roots.
+Recall that Proposition \@ref(prp:coste-polynomial-to-cell) allows us to pass from a projection polynomial $f \in \Z[x_1,\ldots,x_k]$ to the continuous semialgebraic functions $\varphi : C' \to \R$, where $C' \subset \R^{n-1}$ is a cylindrical cell, from Definition \@ref(def:cells) which define some of the section cells in the cylinder $C' \times \R$. The construction described in @bgv15, Theorem 3.20 (and related lemmas) works with these continuous semialgebraic functions. However, we are given only the projection polynomials $f$ of which $\varphi$ defines one of the roots.
 
-Let $C$ be a section cell in $\R^n$: a semialgebraic set which is the graph of a continuous semialgebraic function $\phi : C' \to \R$, where $C' \subset \R^{n-1}$ is a cylindrical cell. A simple example in $\R^2$ demonstrates that, although $C$ is a semialgebraic set, $\phi$ may not be a polynomial. Indeed, let
+Let $C$ be a section cell in $\R^n$: a semialgebraic set which is the graph of a continuous semialgebraic function $\varphi : C' \to \R$, where $C' \subset \R^{n-1}$ is a cylindrical cell. A simple example in $\R^2$ demonstrates that, although $C$ is a semialgebraic set, $\varphi$ may not be a polynomial. Indeed, let
 $$ C := \{ (x,y) \in \R^2 \mid x > 0, y > 0, y = x^2 \} $$
 be a cylindrical cell in $\R^2$ such that $C' := \projop{1}(C) = \{ x \in \R \mid x > 0 \}$. We can write
 $$
-\phi(x) = +\sqrt{x}
+\varphi(x) = +\sqrt{x}
 $$
-such that $C$ is the graph of $\phi\vert_{C'}$. However, it's clear that $\phi$ is not a polynomial.
+such that $C$ is the graph of $\varphi\vert_{C'}$. However, it's clear that $\varphi$ is not a polynomial.
 
 In computations, we work exclusively with section cells. When dealing with sector cells, we will consider the graphs of functions defining their top and bottom.
-Since we will be using `SACLIB` and sometimes `Singular`, which are polynomial libraries, we will not be able to use the functions $\phi$ in computations. We will instead use a different representation for a section cell $C$ in $\R^n$. Let $C$ be the root of a polynomial $f \in \Z[x_1,\ldots,x_n]$ and $C' := \projop{n-1}(C)$ satisfy the conditions in Proposition \@ref(prp:coste-polynomial-to-cell). Then
+Since we will be using `SACLIB` and sometimes `Singular`, which are polynomial libraries, we will not be able to use the functions $\varphi$ in computations. We will instead use a different representation for a section cell $C$ in $\R^n$. Let $C$ be the root of a polynomial $f \in \Z[x_1,\ldots,x_n]$ and $C' := \projop{n-1}(C)$ satisfy the conditions in Proposition \@ref(prp:coste-polynomial-to-cell). Then
 $$
 C \subset Z := \{ (\mathbf{x},x_n) \in \R^n \mid \mathbf{x} \in C', f(\mathbf{x},x_n) = 0 \} \subset C' \times \R.
 $$

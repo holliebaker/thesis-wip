@@ -3,7 +3,7 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: thesis.aux
 The style file: apalike.bst
 Case mismatch error between cite keys BGV15 and bgv15
----line 450 of file thesis.aux
+---line 449 of file thesis.aux
  : \citation{BGV15
  :                }
 I'm skipping whatever remains of this command

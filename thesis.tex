@@ -118,6 +118,10 @@
   \thm@postskip=\thm@preskip
 }
 
+% code wrapping
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+
 % algorithm style
 \newtheorem{algorithm}{Algorithm}
 
@@ -140,7 +144,7 @@
 
 \title{Cylindrical Algebraic Decompositions With Monotone Cells}
 \author{Hollie Baker}
-\date{2024-08-15}
+\date{2024-08-19}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -783,6 +787,7 @@ Let \(X \subset {\operatorname{span} \{x_1,\ldots,x_n\}}\) be a monotone cell an
 
 \begin{proposition}
 \protect\hypertarget{prp:monotone-topologically-regular}{}\label{prp:monotone-topologically-regular}\citep[Theorem 1]{bgv13}
+
 Every monotone cell is a topologically regular cell.
 \end{proposition}
 
@@ -806,6 +811,7 @@ Let \(X \subset \mathbb{R}^n\) be a monotone cell, then
 
 \begin{proposition}
 \citep[Theorem 10]{bgv13}
+
 Let \(X \subset \mathbb{R}^n\) be a monotone cell. Then \(\operatorname{proj}_{L}(X)\), for any affine coordinate subspace \(L \subset \mathbb{R}^n\) is also a monotone cell.
 \end{proposition}
 
@@ -904,11 +910,11 @@ except, possibly, over a subset of codimension at least \(2\) (see the proof of 
 \end{remark}
 
 \begin{example}
-\protect\hypertarget{exm:top-bottom-not-cylindrical}{}\label{exm:top-bottom-not-cylindrical}In \(\mathbb{R}^3\), let \(C' := \{ -1 < x < 1, \vert x \vert < y < 1 \}\) and \(\phi(x,y) = \vert x / y \vert\) so that \(C\) is the graph of \(\phi\vert_{C'}\).
+\protect\hypertarget{exm:top-bottom-not-cylindrical}{}\label{exm:top-bottom-not-cylindrical}In \(\mathbb{R}^3\), let \(C' := \{ -1 < x < 1, \vert x \vert < y < 1 \}\) and \(\varphi(x,y) = \vert x / y \vert\) so that \(C\) is the graph of \(\varphi\vert_{C'}\).
 Consider \[
 C_B := \{ -1 < x < 1, y = \vert x \vert, z = 1 \} \cup \{ (0,0,z) \mid 0 \le x \le 1 \}.
 \]
-\(C_B\) is not the graph of a continuous function due to the blow-up point of \(\phi\) at the origin.
+\(C_B\) is not the graph of a continuous function due to the blow-up point of \(\varphi\) at the origin.
 \end{example}
 
 We now define the cylindrical decomposition.
@@ -976,11 +982,16 @@ The tangent at the origin of \(c := {\operatorname{proj}_{\mathbb{R}^{2}}}(V'')\
 
 \begin{proposition}
 \protect\hypertarget{prp:delete-zero-index}{}\label{prp:delete-zero-index}\citep[Lemma 3.3]{bgv15}
-Let \(C\) be an \((i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)\)-cell. Then \(C' := {\operatorname{proj}_{{\operatorname{span} \{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n\}}}}(C)\) is a cylindrical \((i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)\)-cell and \(C\) is the graph of a monotone map \(f : C' \to {\operatorname{span} \{x_k\}}\).
+
+Let \(C\) be an \((i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)\)-cell. Then
+\[C' := {\operatorname{proj}_{{\operatorname{span} \{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n\}}}}(C)
+\]
+is a cylindrical \((i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)\)-cell and \(C\) is the graph of a monotone map \(f : C' \to {\operatorname{span} \{x_k\}}\).
 \end{proposition}
 
 \begin{proposition}
 \citep[Lemma 3.4]{bgv15}
+
 Let \(C \subset \mathbb{R}^n\) be a 2-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall \(W \subset {\operatorname{fr} \left( C \right)}\) has exactly two connected components, each of which is either a point or a closed curve interval.
 \end{proposition}
 
@@ -1015,6 +1026,7 @@ We want to partition \(\mathbb{R}^{n-1}\) into connected semialgebraic sets \(C'
 
 \begin{proposition}
 \protect\hypertarget{prp:coste-polynomial-to-cell}{}\label{prp:coste-polynomial-to-cell}\citep[Proposition 2.16]{coste2000}
+
 Let \(f \in \mathbb{Z}[x_1,\ldots,x_n]\) and, \(C' \subset \mathbb{R}^{n-1}\) be a connected semialgebraic set and \(k \le d \in \mathbb{N}\) such that, for every point \(\mathbf{x} \in C'\), the univariate polynomial \(f(\mathbf{x},x_n) \in \mathbb{A}[x_n]\) has degree \(d\) and exactly \(k\) distinct (complex) roots in \(C'\).
 Then there are \(\ell \le k\) distinct semialgebraic functions
 \[\psi_1,\ldots,\psi_\ell : C' \to \mathbb{R}
@@ -1029,7 +1041,7 @@ The argument relies on the ``continuity of roots'':
 
 \begin{quote}
 Fix \(\mathbf{c} \in C'\) and let \(z_1,\ldots,z_k\) be the distinct roots of \(f(\mathbf{c},x_n)\) with multiplicities \(m_1,\ldots,m_k\).
-Choose \(\varepsilon > 0\) small enough that the open discs \(D(z_i,\varepsilon) z_i \in \mathbb{C}\) (center \(z_i\), radius \(\varepsilon\)) are disjoint. If \(\mathbf{b} \in C'\) is sufficiently close to \(\mathbf{c}\), then the polynomial \(f(\mathbf{b}, x_n)\) has exactly \(m_i\) roots, counted with multiplicities, in \(D(z_i,\varepsilon)\) for \(1\le i \le k\).
+Choose \(\varepsilon > 0\) small enough that the open discs \(D(z_i,\varepsilon), z_i \in \mathbb{C}\) (center \(z_i\), radius \(\varepsilon\)) are disjoint. If \(\mathbf{b} \in C'\) is sufficiently close to \(\mathbf{c}\), then the polynomial \(f(\mathbf{b}, x_n)\) has exactly \(m_i\) roots, counted with multiplicities, in \(D(z_i,\varepsilon)\) for \(1\le i \le k\).
 \end{quote}
 
 Since \(f(\mathbf{b},x_n)\) has \(k\) distinct complex roots, and \(d = m_1+ \ldots + m_k\) complex roots counted with multiplicities, it follows that each \(D(z_i,\varepsilon)\) contains exactly one root, denoted \(\zeta_i\), of \(f(\mathbf{b},x_n)\) with multiplicity \(m_i\).
@@ -1045,23 +1057,24 @@ To extend this result to more than one polynomial, we also need to ensure that t
 
 \begin{proposition}
 \citep[Proposition 2.18]{coste2000}
+
 Let \(f,g \in \mathbb{Z}[x_1,\ldots,x_n]\), \(C' \subset \mathbb{R}^{n-1}\) such that, for all \(\mathbf{x} \in C'\), the degree and number of roots of \(f(\mathbf{x},x_n)\) and \(g(\mathbf{x},x_n)\) is constant and the degree of the GCD of \(f(\mathbf{x},x_n)\) and \(g(\mathbf{x},x_n)\) is constant.
-Let \(\phi,\psi : C' \to \mathbb{R}\) be continuous semialgebraic functions such that \(f(\mathbf{x},\phi(\mathbf{x})) = 0\) and \(g(\mathbf{x},\psi(\mathbf{x})) = 0\) for all \(\mathbf{x} in C'\).
-If there exists \(\mathbf{c} \in C'\) such that \(\phi(\mathbf{c}) = \psi(\mathbf{c})\), then \(\phi(\mathbf{x}) = \psi(\mathbf{x})\) for all \(\mathbf{x} \in C'\).
+Let \(\varphi,\psi : C' \to \mathbb{R}\) be continuous semialgebraic functions such that \(f(\mathbf{x},\varphi(\mathbf{x})) = 0\) and \(g(\mathbf{x},\psi(\mathbf{x})) = 0\) for all \(\mathbf{x} \in C'\).
+If there exists \(\mathbf{c} \in C'\) such that \(\varphi(\mathbf{c}) = \psi(\mathbf{c})\), then \(\varphi(\mathbf{x}) = \psi(\mathbf{x})\) for all \(\mathbf{x} \in C'\).
 \end{proposition}
 
 \begin{proof}
 We use the same method of proof as in the previous proposition.
-For an arbitrary element \(\mathbf{c} \in C'\), let \(z_1 = \phi(\mathbf{c}) = \psi(\mathbf{c}), \ldots, z_k\) be the distinct roots in \(\mathbb{C}\) of the product
+For an arbitrary element \(\mathbf{c} \in C'\), let \(z_1 = \varphi(\mathbf{c}) = \psi(\mathbf{c}), \ldots, z_k\) be the distinct roots in \(\mathbb{C}\) of the product
 \[
-f(\mathbf{c},x_n) g(\mathbf{c},x_n)
+f(\mathbf{c},x_n)\ g(\mathbf{c},x_n)
 \]
 (recall that \(fg = 0\) if either \(f=0\) or \(g=0\)).
 Let \(m_i\) (resp \(p_i\)) be the multiplicity of \(z_i\) as a root of \(f(\mathbf{x},x_n)\) (resp. \(g(\mathbf{x}, x_n)\)) where multiplicity zero indicates that \(z_i\) is not a root.
 The degree of \(\gcd(f(\mathbf{x}, x_n), g(\mathbf{x}, x_n))\) is \(\min(m_1,p_1) + \cdots + \min(m_k,p_k)\) and each \(z_i\) has multiplicity \(\min(m_i,p_i)\) as a root of this GCD.
 Choose \(\varepsilon > 0\) small enough that the discs \(D(z_i,\varepsilon)\) are disjoint.
 For each \(\mathbf{b} \in C'\) close enough to \(\mathbf{c}\), each disc contains a root of multiplicity \(m_i\) of \(f(\mathbf{b}, x_n)\) and a root of multiplicity \(p_i\) of \(g(\mathbf{b}, x_n)\). Since the degree of the GCD of \(f\) and \(g\) (evaluated at any \(\mathbf{x} \in C'\)) is equal to \(\min(m_1,p_1) + \cdots + \min(m_k,p_k)\), this GCD must have one root of multiplicity \(\min(m_i,p_i)\) in each disc \(D(z_i,\varepsilon)\) such that \(\min(m_i,p_i) > 0\).
-In particular, it follows that \(\phi(\mathbf{b}) = \psi(\mathbf{b})\). Since \(C'\) is connected, this equality holds for all \(\mathbf{x} \in C'\).
+In particular, it follows that \(\varphi(\mathbf{b}) = \psi(\mathbf{b})\). Since \(C'\) is connected, this equality holds for all \(\mathbf{x} \in C'\).
 \end{proof}
 
 Now we have algebraic conditions on the polynomials in the set of level-\((n-1)\) projection polynomials \(\mathbf{F}' = \operatorname{proj}(\mathbf{F})\). We now describe how these properties can be satisfied and, as such, how the set \(\mathbf{F}'\) can be constructed. We will need the concept of the principal subresultant coefficient of two polynomials \(f\) and \(g\).
@@ -1165,7 +1178,8 @@ present the bounds, along with some variations, from \citet{bpr2006}.
 
 \begin{proposition}
 \protect\hypertarget{prp:collins}{}\label{prp:collins}\citep[Algorithm 11.2]{bpr2006}
-Let \(\mathbf{F} := f_1,\ldots,f_s\) be set of polynomials in \(\mathbb{Z}[x_1, \ldots ,x_n]\) with maximum degree \(d\).
+
+Let \(\mathbf{F} := f_1,\ldots,f_s\) be a set of polynomials in \(\mathbb{Z}[x_1, \ldots ,x_n]\) with maximum degree \(d\).
 There is an algorithm, taking \(\mathbf{F}\) as input, which produces an \(\mathbf{F}\)-invariant CAD \(\cal D\) of \(\mathbb{R}^n\).
 The complexity of the algorithm is
 \[(sd)^{O(1)^{n}}.
@@ -1200,7 +1214,7 @@ Immediate, by applying Corollary \ref{cor:collins-set} to \(\{ F \}\).
 \end{proof}
 
 The construction described in Corollary \ref{cor:collins-sets} is somewhat naive.
-Constructions which are far more efficient in practice are presented in e.g., \citet{collins1991}. An alternative approach is presented by \citet{bradford2014}.
+A far more efficient algorithm are presented in e.g., \citet{collins1991}. An alternative approach is presented by \citet{bradford2014}.
 While very useful in practice, these constructions are unable to lower the upper bound from Proposition \ref{prp:collins} due to some extreme cases, e.g., when the input formulas define a sign-invariant CAD (see \citet{bradford2014}, Section 6.2.1{]}.
 
 \hypertarget{the-projection-operator}{%
@@ -1236,33 +1250,34 @@ Let \(\mathbf{F} \subset \mathbb{Z}[x_1,\ldots,x_n]\) be a well-oriented set of 
 \protect\hypertarget{def:analytic-submanifold}{}\label{def:analytic-submanifold}\(S \subset \mathbb{R}^n\) such that \(\dim(S) = k\) is an analytic submanifold if, for every point \(\mathbf{x} \in S\), there is an analytic coordinate system about \(\mathbf{x}\) with respect to which \(S\) is locally the intersection of \(n-k\) coordinate hyperplanes.
 \end{definition}
 
-\begin{proposition}
-\protect\hypertarget{prp:mc-smooth}{}\label{prp:mc-smooth}Let \(S \subset \mathbb{R}^n\) be a semialgebraic set defined by a quantifier-free Boolean formula constructed from the set of polynomials \(\mathbf{F} \subset \mathbb{Z}[x_1,\ldots,x_n]\), such that \(\mathbf{F}\) is well-oriented.
+\begin{corollary}
+\protect\hypertarget{cor:mc-smooth}{}\label{cor:mc-smooth}Let \(S \subset \mathbb{R}^n\) be a semialgebraic set defined by a quantifier-free Boolean formula constructed from the set of polynomials \(\mathbf{F} \subset \mathbb{Z}[x_1,\ldots,x_n]\), such that \(\mathbf{F}\) is well-oriented.
 Then a CAD \(\cal D\) of \(\mathbb{R}^n\) compatible with \(S\) and such that every cell \(C\) of \(\cal D\) is an analytic submanifold of \(\mathbb{R}^n\) can be obtained by constructing an \(\mathbf{F}\)-invariant CAD of \(\mathbb{R}^n\) using the McCallum projection operator.
-\end{proposition}
+\end{corollary}
 
-More recently, \citet{mccallum2019} completed the proof that Lazard's projection operator is valid. McCallum also proved, without the condition on well-orientedness of input polynomials, that every cell of a sign-invariant CAD constructed using Lazard's projection operator is an analytic submanifold. Thus, we can generalise Proposition \ref{prp:mc-smooth} further:
+More recently, \citet{mccallum2019} completed the proof that Lazard's projection operator is valid. McCallum also proved,
+without the condition on well-orientedness of input polynomials, that every cell of a sign-invariant CAD constructed
+using Lazard's projection operator is an analytic submanifold. Thus, we can generalise Corollary \ref{cor:mc-smooth} further:
 
-\begin{proposition}
-\protect\hypertarget{prp:lz-smooth}{}\label{prp:lz-smooth}Let \(S \subset \mathbb{R}^n\) be a semialgebraic set defined by a quantifier-free Boolean formula constructed from the set of polynomials \(\mathbf{F} \subset \mathbb{Z}[x_1,\ldots,x_n]\).
+\leavevmode\hypertarget{lz-smooth}{}%
+Let \(S \subset \mathbb{R}^n\) be a semialgebraic set defined by a quantifier-free Boolean formula constructed from the set of polynomials \(\mathbf{F} \subset \mathbb{Z}[x_1,\ldots,x_n]\).
 Then a CAD \(\cal D\) of \(\mathbb{R}^n\) compatible with \(S\) and such that every cell \(C\) of \(\cal D\) is an analytic submanifold of \(\mathbb{R}^n\) can be obtained by constructing an \(\mathbf{F}\)-invariant CAD of \(\mathbb{R}^n\) using the McCallum projection operator.
-\end{proposition}
 
 \hypertarget{projection-polynomials-vs-semialgebraic-functions}{%
 \subsection{Projection polynomials vs semialgebraic functions}\label{projection-polynomials-vs-semialgebraic-functions}}
 
-Recall that Proposition \ref{prp:coste-polynomial-to-cell} allows us to pass from a projection polynomial \(f \in \mathbb{Z}[x_1,\ldots,x_k]\) to the continuous semialgebraic functions \(\phi : C' \to \mathbb{R}\), where \(C' \subset \mathbb{R}^{n-1}\) is a cylindrical cell, from Definition \ref{def:cells} which define some of the section cells in the cylinder \(C' \times \mathbb{R}\). The construction described in \citet{bgv15}, Theorem 3.20 (and related lemmas) works with these continuous semialgebraic functions. However, we are given only the projection polynomials \(f\) of which \(\phi\) defines one of the roots.
+Recall that Proposition \ref{prp:coste-polynomial-to-cell} allows us to pass from a projection polynomial \(f \in \mathbb{Z}[x_1,\ldots,x_k]\) to the continuous semialgebraic functions \(\varphi : C' \to \mathbb{R}\), where \(C' \subset \mathbb{R}^{n-1}\) is a cylindrical cell, from Definition \ref{def:cells} which define some of the section cells in the cylinder \(C' \times \mathbb{R}\). The construction described in \citet{bgv15}, Theorem 3.20 (and related lemmas) works with these continuous semialgebraic functions. However, we are given only the projection polynomials \(f\) of which \(\varphi\) defines one of the roots.
 
-Let \(C\) be a section cell in \(\mathbb{R}^n\): a semialgebraic set which is the graph of a continuous semialgebraic function \(\phi : C' \to \mathbb{R}\), where \(C' \subset \mathbb{R}^{n-1}\) is a cylindrical cell. A simple example in \(\mathbb{R}^2\) demonstrates that, although \(C\) is a semialgebraic set, \(\phi\) may not be a polynomial. Indeed, let
+Let \(C\) be a section cell in \(\mathbb{R}^n\): a semialgebraic set which is the graph of a continuous semialgebraic function \(\varphi : C' \to \mathbb{R}\), where \(C' \subset \mathbb{R}^{n-1}\) is a cylindrical cell. A simple example in \(\mathbb{R}^2\) demonstrates that, although \(C\) is a semialgebraic set, \(\varphi\) may not be a polynomial. Indeed, let
 \[ C := \{ (x,y) \in \mathbb{R}^2 \mid x > 0, y > 0, y = x^2 \} \]
 be a cylindrical cell in \(\mathbb{R}^2\) such that \(C' := {\operatorname{proj}_{\mathbb{R}^{1}}}(C) = \{ x \in \mathbb{R}\mid x > 0 \}\). We can write
 \[
-\phi(x) = +\sqrt{x}
+\varphi(x) = +\sqrt{x}
 \]
-such that \(C\) is the graph of \(\phi\vert_{C'}\). However, it's clear that \(\phi\) is not a polynomial.
+such that \(C\) is the graph of \(\varphi\vert_{C'}\). However, it's clear that \(\varphi\) is not a polynomial.
 
 In computations, we work exclusively with section cells. When dealing with sector cells, we will consider the graphs of functions defining their top and bottom.
-Since we will be using \texttt{SACLIB} and sometimes \texttt{Singular}, which are polynomial libraries, we will not be able to use the functions \(\phi\) in computations. We will instead use a different representation for a section cell \(C\) in \(\mathbb{R}^n\). Let \(C\) be the root of a polynomial \(f \in \mathbb{Z}[x_1,\ldots,x_n]\) and \(C' := {\operatorname{proj}_{\mathbb{R}^{n-1}}}(C)\) satisfy the conditions in Proposition \ref{prp:coste-polynomial-to-cell}. Then
+Since we will be using \texttt{SACLIB} and sometimes \texttt{Singular}, which are polynomial libraries, we will not be able to use the functions \(\varphi\) in computations. We will instead use a different representation for a section cell \(C\) in \(\mathbb{R}^n\). Let \(C\) be the root of a polynomial \(f \in \mathbb{Z}[x_1,\ldots,x_n]\) and \(C' := {\operatorname{proj}_{\mathbb{R}^{n-1}}}(C)\) satisfy the conditions in Proposition \ref{prp:coste-polynomial-to-cell}. Then
 \[
 C \subset Z := \{ (\mathbf{x},x_n) \in \mathbb{R}^n \mid \mathbf{x} \in C', f(\mathbf{x},x_n) = 0 \} \subset C' \times \mathbb{R}.
 \]
@@ -1277,7 +1292,8 @@ where \(g_1,\ldots,g_k\) are derivatives of the polynomial \(f\).
 \subsection{CAD cells and their defining formulas}\label{sec:cell-formula}}
 
 Although it is possible to construct a ``full'' (sign-invariant) CAD, \texttt{QEPCAD-B} provides an implementation of the ``truth-invariant'' CAD described in Corollary \ref{cor:collins-sets}. Indeed, QEPCAD-B, being designed primarily to perform quantifier elimination, frequently constructs a ``partial'' CAD of \(\mathbb{R}^n\) \citep{brownQepcad}.
-We will force the construction of the sign-invariant CAD and use McCallum's projection operator so as to obtain smooth cells (see Proosition \ref{prp:mc-smooth}).
+We will force the construction of the sign-invariant CAD and use McCallum's projection operator so as to obtain smooth
+cells (see Corollary \ref{cor:mc-smooth}).
 
 Once constructed, one may want to examine individual cells of the CAD.
 In order to do this, we will need a convenient representation for each cell.
@@ -1581,9 +1597,11 @@ where \(i_k \in \{1,\ldots,n\}\) is a parameter passed from step \(k\) to \(k+1\
 This, again, reduces to the emptiness check.
 
 The second of these is \(\rm{Empty}(S)\), where \(S \subset \mathbb{R}^n\) is a semialgebraic set represented by a quantifier-free Boolean formula which is a conjunction of polynomial equations, inequations and inequalities. Note that an inequation \(\{ f(\mathbf{x}) \ne 0 \}\) can be rewritten as \(\{ f(\mathbf{x}) < 0 \lor f(\mathbf{x}) > 0 \}\), so it is possible to represent \(S\) by two systems of polynomial equations and inequalities, or a Boolean formula containing the conjunction above. This permits various methods for checking emptiness. We may write \(\rm{Empty}(S)\) as a quantifier elimination problem
-\[
-\exists \mathbf{x} \in \mathbb{R}^n \mid f_1(\mathbf{x}) = \ldots = f_s(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0.
-\]
+\begin{align*}
+\exists \mathbf{x} \in \mathbb{R}^n \mid\ & f_1(\mathbf{x}) = \ldots = f_s(\mathbf{x}) = 0,\\
+& s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0,\\
+& g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0.
+\end{align*}
 This problem can be decided using the singly-exponential quantifier elimination algorithm from Proposition \ref{prp:bpr-qe} (\citet{bpr2006}, Algorithm 14.21), which, with one quantifier alternation, has complexity \((sd)^{O(n)}\) where \(s\) is the number of different polynomials defining the set and \(d\) their maximum degree -- singly exponential in the number of variables. Alternatively, the algorithm presented by \citet{bpr98}, which produces a witness point in every cell in a decomposition of the input set, may be used to decide emptiness. This algorithm also has complexity \((sd)^{O(n)}\).
 In practice, quantifier elimination can be performed using CAD. This, of course, has complexity doubly exponential in the number of variables: \((sd)^{O(1)^n}\) (see Proposition \ref{prp:collins}).
 
@@ -1674,7 +1692,7 @@ k=1,h_{1}=2x,i_{1}=1,X''&:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2}
 \partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{3}
 \end{pmatrix}&=\det\begin{pmatrix}2 & 0\\
 0 & 1
-\end{pmatrix}=2\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid2\ne0\right\} =X''\\U_{2}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,x_{3}=0\right\} \\&\text{Since }i_{2}=3\text{ it is impossible to compute further derivatives.}\\&\text{We conclude that}\\Y_{2}&\text{ is smooth and has codimension }3.
+\end{pmatrix}=2\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid2\ne0\right\} =X''\\U_{2}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,x_{3}=0\right\} \\&\text{Since }i_{2}=3\text{ it is impossible to compute}\\ & \text{further derivatives.}\\&\text{We conclude that}\\Y_{2}&\text{ is smooth and has codimension }3.
 \end{align}
 
 As expected, the algorithm outputs the set of strata
@@ -1795,8 +1813,8 @@ discussed in Section \ref{sec:strat-worked-example}.
 
 \begin{verbatim}
 Enter a variable list.
+Please enter a QEPCAD formula defining a basic semialgebraic set.
 (x,y,z)
-Please enter a QEPCAD formula defining a basic semialgebraic set(i.e., conjunction of equations and inequalities).
 [ z = 0 /\ x^2 - y^2 = 0 ].
 
 Stratification computed. Please select an option.
@@ -2824,7 +2842,7 @@ However, \(y \cap \{ z = 3/4 \}\) is not connected, hence \(\phi\vert_\Delta\) i
 
 }
 
-\caption{Plot of the 2-dimensional quasi-affine cylindrical cell $Y$ defined in Example \\ref{exm:monotone-cells},}\label{fig:unnamed-chunk-1}
+\caption{Plot of the 2-dimensional quasi-affine cylindrical cell $Y$ defined in Example \\ref{exm:monotone-cells},}\label{fig:unnamed-chunk-2}
 \end{figure}
 
 \begin{definition}
@@ -2908,43 +2926,47 @@ Although the cell \(X\) under consideration is a \(2\)-dimensional cylindrical c
 
 (to Proposition \ref{prp:delete-zero-index} (\citet{bgv15}, Lemma 3.3))
 
-Let \(C\subset \mathbb{R}^\alpha\) be a \((1,0,\ldots,0,1)\)-cell, \(X := {\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}} (C)\) and \(X' := {\operatorname{proj}_{\mathbb{R}^{1}}}(C)\). Suppose we have the family \({\cal I}(c), c \in X'\) and set of one-dimensional curves associated with \(C\) by \(\gamma\). Then
+Let \(C\subset \mathbb{R}^\alpha\) be a \((1,0,\ldots,0,1)\)-cell, \(X := {\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}} (C)\) and \(X' := {\operatorname{proj}_{\mathbb{R}^{1}}}(C)\). Suppose we have the family \({\cal I}(c), c \in X'\) and \(\gamma\) be the set of one-dimensional curves associated with \(C\).
+Then
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The projection map \({\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}}\vert_C\) is injective.
+  \(X\) is a \((1,1)\)-cell.
 \item
-  \(X\) is a \(2\)-dimensional cylindrical sector cell.
+  The projection map \({\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}}\vert_C\) is injective.
 \item
   For each \(c \in X'\), the family \({\cal I}(c)\) contains a single open interval.
 \item
-  \(\gamma\) consists of zero, one or two disjoint curve intervals which coincide with the top and bottom of \(X\). Furthermore, connected components of \(\gamma\) can be defined as the graph of continuous definable functions from \(X'\) to \(\mathbb{R}\), using the functions defining the cell \(C\).
+  \(\gamma\) consists of zero, one or two disjoint curve intervals which coincide with the top and bottom of \(X\). Furthermore, the connected components of \(\gamma\) can be defined as the graphs of continuous definable functions from \(X'\) to \(\mathbb{R}\), using the functions defining the cell \(C\).
 \end{enumerate}
 
 \end{corollary}
 
-The above follows from \citet{bgv15}, Lemma 3.3 and the property that \(C\) is the graph of a quasi-affine map. An alternative proof is given here.
+Corollary \ref{cor:gamma-top-bottom} follows from \citet{bgv15}, Lemma 3.3 and the property that \(C\) is the graph of a quasi-affine map.
+A proof is presented below, which explicitly defines the functions which send points in \(X'\) to points in each of the connected components of \(\gamma\).
 
 \begin{proof}
-Since \(C\) is the graph of a quasi-affine map from \(X \to {\operatorname{span} \{x_2,\ldots,x_{\alpha - 1}\}}\), it follows that the projection map \({\operatorname{proj}_{{\operatorname{span} \{x_1,x_\alpha\}}}}\vert_C\) is injective. This proves the first claim. The second claim follows by iteratively applying the projection defined in \citet{bgv15}, Lemma 3.3 to obtain the \(2\)-dimensional cylindrical sector cell \(X\).
-By definition, \[
-X := \{ (x_1,t) \in \mathbb{R}^2 \mid x_1 \in X', \varphi(x_1) < t < \psi(x_1) \}
+Property (1) is proved by repeatedly applying the projection defined in Proposition \ref{prp:delete-zero-index} (\citet{bgv15}, Lemma 3.3) to \(C\) to obtain \(X\). Property (2)
+follows immediately from the fact that \(X\) is \(2\)-dimensional and \(C\) is the graph of a quasi-affine map.
+
+Since \(X\) is a \(2\)-dimensional sector cell, by definition it is the semialgebraic set \[
+\{ (x_1,t) \in \mathbb{R}^2 \mid x_1 \in X', \varphi(x_1) < t < \psi(x_1) \}
 \]
 where \(\varphi,\psi : X' \to \mathbb{R}\) are continuous definable functions such that \(\varphi(x_1) < \psi(x_1)\) for all \(x_1 \in X'\).
-Note that \(X\) may not be bounded from below (resp. above). In this case, we take \(\varphi(x_1) = -\infty\) (resp. \(\psi(x_1) = \infty\)) for all \(\mathbf{x} \in X'\). Functions \(\varphi\) and \(\psi\) are either infinite or finite at every point in \(X'\), otherwise, new one-dimensional section cells would exist whose projections onto \(\mathbb{R}^1\) form a proper subset of \(X'\). This would contradict the cylindrical property.
-It is clear from this definition that \({\cal I}(c)\) contains a single open interval \((\varphi(c), \psi(c))\), proving the third claim. It follows that \(\gamma\), which consists of the endpoints of intervals in \({\cal I}(c)\), consists of one-dimensional curve intervals which are the graphs of \(\varphi\) and \(\psi\) (if finite).
+Note that \(X\) may not be bounded from below (resp. above).
+In this case, \(\varphi\) (resp. \(\psi\)) are omitted from the definition of \(X\), as in Definition \ref{def:cells}.
+It is clear that \({\cal I}(c)\) contains a single open interval \((\varphi(c), \psi(c))\), proving (3).
+It follows that \(\gamma\), which consists of the endpoints of intervals in \({\cal I}(c)\), consists of one-dimensional curve intervals which are the graphs of \(\varphi\) and \(\psi\) (if they exist).
 
-The proof of the final claim is completed by defining the functions \(\varphi\) and \(\psi\).
-
+We now prove (4) by defining \(\varphi\) and \(\psi\) using the definition of cylindrical cells.
 Since \(C' := {\operatorname{proj}_{\mathbb{R}^{\alpha - 1}}}(C)\) is a \((1,\ldots,0,0)\)-cell, it is the graph of a continuous definable map \(\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : X' \to \mathbb{R}^{\alpha - 2}\) and \[
 C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\}
 \]
 where \(f,g : \mathbb{R}^{\alpha - 1} \to \mathbb{R}\) are continuous definable functions such that \(f(\mathbf{x}) < g(\mathbf{x})\) for all \(\mathbf{x} \in C'\).
-Again, if not bounded from above (resp. below), \(f\) (resp. \(g\)) are taken to be \(-\infty\) (resp. \(\infty\)) at every point.
-Observe that the graph of \(f\) (if finite) is the bottom of \(C\) and the graph of \(g\) (if finite) is the top of \(C\).
+Again, if not bounded from below (resp. above), \(f\) (resp. \(g\)) are omitted.
 
-Writing \(C\) in terms of \(x_1 \in X'\), \(f\), \(g\) and \(\mathbf{h}\), we obtain the functions
+Finally, we write \(C\) in terms of \(x_1 \in X'\), \(f\), \(g\) and \(\mathbf{h}\), we obtain the functions
 \begin{align}
 \varphi &:\> C'' \to \mathbb{R}& \psi &:\> C'' \to \mathbb{R}\\
 \varphi(x_1) &= f(x_1,\mathbf{h}(x_1)) & \psi(x_1) &= g(x_1,\mathbf{h}(x_1))
@@ -3021,7 +3043,7 @@ In the second case, \(C_T\) can be written as
 \label{eq:c-alpha-top}
 \end{equation}
 where \(\mathbf{x}\) is shorthand for \((x_1,\ldots,x_\alpha)\).
-By the construction of \(\cal D\) (e.g., using Proposition \ref{prp:mc-smooth}) \(C_T\) is \(C^\infty\) smooth, therefore \(h\) is a differentiable function everywhere in \(C'\).
+By the construction of \(\cal D\) (e.g., using Corollary \ref{cor:mc-smooth}) \(C_T\) is \(C^\infty\) smooth, therefore \(h\) is a differentiable function everywhere in \(C'\).
 
 This representation lends itself naturally to the problem of optimisation with constraints -- Lagrange multipliers.
 
@@ -3182,8 +3204,8 @@ Note that, being solutions of polynomials, every \((c_1,\ldots,c_t)\) contains o
 
 Since this procedure follows the construction described in \citet{bgv15}, Theorem 3.18, the following has been proved.
 
-\begin{proposition}
-\protect\hypertarget{prp:monotone-sector-algorithm}{}\label{prp:monotone-sector-algorithm}Let \(\mathcal{D}\) be a sign-invariant CAD of \(\mathbb{R}^n\) compatible with each set \(V_1,\ldots,V_k \subset \mathbb{R}^n\) with \(\dim(V_i) \le 2\) and such that each cell \(C \subset V_i\) is the graph of a quasi-affine map, for \(1\le i \le k\). Let
+\begin{lemma}
+\protect\hypertarget{lem:monotone-sector-algorithm}{}\label{lem:monotone-sector-algorithm}Let \(\mathcal{D}\) be a sign-invariant CAD of \(\mathbb{R}^n\) compatible with each set \(V_1,\ldots,V_k \subset \mathbb{R}^n\) with \(\dim(V_i) \le 2\) and such that each cell \(C \subset V_i\) is the graph of a quasi-affine map, for \(1\le i \le k\). Let
 \[
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
 \]
@@ -3191,7 +3213,7 @@ where \({\cal A}_k \subset \mathbb{Z}[x_1,\ldots,x_k], 1 \le k \le n\), be the p
 Let \(C\) be a \((1,0,\ldots,0,1)\)-cell of the decomposition induced by \(\cal D\) on \(\mathbb{R}^{\alpha}\) such that \({\operatorname{proj}_{\mathbb{R}^{\alpha}}}^{-1}(C)\) is a cell of \(\mathcal{D}\) contained in \(V_1,\ldots,V_k\).
 
 Then there is an algorithm, taking \(\mathcal{D}\) and \(\mathcal{A}\) as input, which produces a set of algebraic numbers \((c_1,\ldots,c_t)\) such that \(C \cap \{ c_i < x_1 < c_{i+1} \}\) is monotone. Each \(c_i, 1 \le i < t\) is represented by a pair \((m_i, J_i) \in \mathbb{Z}[x_1] \times \mathbb{Q}\) (see Equation \eqref{eq:algebraic-number}.
-\end{proposition}
+\end{lemma}
 
 \hypertarget{sec:sub-cad}{%
 \subsection{Working with sub-decompositions above a 0-cell}\label{sec:sub-cad}}
@@ -3293,9 +3315,10 @@ such that \((a,b) \subset \mathbb{R}\). Then \(Y\) is a monotone cell.
 \end{lemma}
 
 \begin{proof}
-Consider a quasi-affine component \(f_j : (a,b) \to \mathbb{R}\) of the map \(\mathbf{f}\). By definition, \(f_j\) is either strictly increasing in, strictly decreasing in, or independent of \(x_i\). Assume for contradiction that \(Y\) is not monotone and the intersection \(Z := Y \cap \{ x_i = c \}, c \in \mathbb{R}\) is not connected. Since \(Y\) itself is connected, \(Z\) would consist of two isolated points. It is clear that the projection map \({\operatorname{proj}_{{\operatorname{span} \{x_i\}}}}\vert_Y\) is not injective and its image would be one-dimensional (if not, \(f_j\) would be constant and equal to \(c\) and Z would have one connected component).
-
-The proof is completed by applying this argument to each component of the map \(\mathbf{f}\).
+Assume for contradiction that \(Y\) is not monotone. Then intersection \(Z := Y \cap \{ x_i = c \}\), for some \(1\le i \le n\) and \(c \in \mathbb{R}\), is not connected.
+\(Z\) cannot contain an interval, since \(Y\) is connected, one-dimensional and the graph of a continuous map.
+Hence, \(Z\) consists of more than one isolated point, which implies that \({\operatorname{proj}_{{\operatorname{span} \{i\}}}}\vert_Y\) is not injective, but its image is one-dimensional.
+This contradicts the assumption that \(Y\) is the graph of a quasi-affine map.
 \end{proof}
 
 Suppose that \(2 \le j \le \alpha - 1\).
@@ -3399,8 +3422,8 @@ forms the refinement of \(C\) into two-dimensional monotone cells.
 
 Altogether, we have proved the following.
 
-\begin{proposition}
-\protect\hypertarget{prp:monotone-section-algorithm}{}\label{prp:monotone-section-algorithm}Let \(\mathcal{D}\) be a CAD of \(\mathbb{R}^n\) compatible with each set \(V_1,\ldots,V_k \subset \mathbb{R}^n\) with \(\dim(V_i) \le 2\) and such that each cell \(C \subset V_i\) is the graph of a quasi-affine map, for \(1\le i \le k\). Let
+\begin{lemma}
+\protect\hypertarget{lem:monotone-section-algorithm}{}\label{lem:monotone-section-algorithm}Let \(\mathcal{D}\) be a CAD of \(\mathbb{R}^n\) compatible with each set \(V_1,\ldots,V_k \subset \mathbb{R}^n\) with \(\dim(V_i) \le 2\) and such that each cell \(C \subset V_i\) is the graph of a quasi-affine map, for \(1\le i \le k\). Let
 \[
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
 \]
@@ -3408,10 +3431,10 @@ where \({\cal A}_k \subset \mathbb{Z}[x_1,\ldots,x_k], 1 \le k \le n\), be the p
 Let \(C\) be a \(2\)-dimensional section cell of the decomposition induced by \(\cal D\) on \(\mathbb{R}^{j}\) such that \({\operatorname{proj}_{\mathbb{R}^{j}}}^{-1}(C)\) is a cell of \(\mathcal{D}\) contained in \(V_1,\ldots,V_k\) and \({\operatorname{proj}_{\mathbb{R}^{j-1}}}(C)\) is monotone.
 
 Then there is an algorithm, taking \(\mathcal{D}\) and \(\mathcal{A}\) as input, which produces a set of algebraic numbers \((c_1,\ldots,c_r)\) such that \(C \cap \{ c_i < x_1 < c_{i+1} \}\) is monotone. Each \(c_i, 1 \le i \le r\) is represented by a pair \((m_i, J_i) \in \mathbb{Z}[x_1] \times \mathbb{Q}\) (see Equation \eqref{eq:algebraic-number}.
-\end{proposition}
+\end{lemma}
 
 \leavevmode\hypertarget{monotone-sub-cad}{}%
-propositions \ref{prp:monotone-sector-algorithm} and \ref{prp:monotone-section-algorithm} can also be applied to two-dimensional \((0,\ldots,0,1,i_{k+1},\ldots,i_n)\)-cells by working in a sub-cad of \(\mathbb{R}^{n-k+1}\) above a zero-cell, as described in Section \ref{sec:sub-cad}.
+Lemmas \ref{lem:monotone-sector-algorithm} and \ref{lem:monotone-section-algorithm} can also be applied to two-dimensional \((0,\ldots,0,1,i_{k+1},\ldots,i_n)\)-cells by working in a sub-cad of \(\mathbb{R}^{n-k+1}\) above a zero-cell, as described in Section \ref{sec:sub-cad}.
 
 \hypertarget{implementation-details}{%
 \section{Implementation Details}\label{implementation-details}}
@@ -3435,12 +3458,15 @@ We now present psuedocode for the monotone part of the algorithm.
 
 \textbf{Output:}
 \[
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \mathbb{R}^k \}
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1}  \}
 \]
+where \(\mathbf{b} \in \mathbb{R}^{k-1}\) is a \((0,\ldots,0)\)-cell in the decomposition induced by \({\cal E}\) on \(\mathbb{R}^k\),
 such that, for each \({\cal R}_\mathbf{b}\), intersecting the sub-cad \(\cal D\) above \(\mathbf{b}\) with straight lines and half-planes of the kind \(\{x_1 < c_i \}, \{x_1 = c_i \}, \{x_1 > c_i\}, 1 \le i \le t\) results in a refinement of \(\cal D\) such that each true cell of \(\cal D\) with dimension at most \(2\) is monotone.
 
 First, define a subroutine
-\[{\rm sub}_{\mathbf{y}} (g) \mid g \in \mathbb{Z}[y_1,\ldots,y_m,x_1,\ldots,x_n], \mathbf{y} \in \mathbb{A}^m, n > 0,\]
+\[
+{\rm sub}_{\mathbf{y}} (g) \mid g \in \mathbb{Z}[y_1,\ldots,y_m,x_1,\ldots,x_n], \mathbf{y} \in \mathbb{A}^m, n > 0,
+\]
 which computes \(h := g(\mathbf{y}) \in \mathbb{A}[x_{1},\ldots,x_m]\) and returns the normalised polynomial of \(h\), in \(\mathbb{Z}[x_{m+1},\ldots,x_n]\) (see Section \ref{sec:sub-cad}).
 
 It will be convenient to overload this operator and write \({\rm sub}_{\mathbf{y}} (L)\), where \(L\) is a set (or list) of polynomials to mean \(\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}\).
@@ -3554,7 +3580,8 @@ Then:
 \hypertarget{correctness-and-complexity-1}{%
 \section{Correctness and Complexity}\label{correctness-and-complexity-1}}
 
-The correctness of the algorithm from Theorem \ref{thm:bgv-monotone-algorithm} follows from \citet{bgv15}, Theorem 3.20 and Lemma 3.19, and is proved in Propositions \ref{prp:monotone-sector-algorithm} and \ref{prp:monotone-section-algorithm}.
+The correctness of the algorithm from Theorem \ref{thm:bgv-monotone-algorithm} follows from \citet{bgv15}, Theorem 3.20 and
+Lemma 3.19, and is proved in Lemmas \ref{lem:monotone-sector-algorithm} and \ref{lem:monotone-section-algorithm}.
 The algorithm described in Section \ref{sec:monotone-algorithm} considers each \(2\)-dimensional cell in a sub-cad \(\mathcal{E}\) of \(\mathbb{R}^n\) above a \(0\)-dimensional cell \(\mathbf{b} \in \mathbb{R}^{k-1}\). This is exactly the inductive step of \citet{bgv15}, Theorem 3.20, where an \((i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)\)-cell, where \(i_1 = i_\alpha = 1\), is considered.
 By Corollary \ref{cor:gamma-top-bottom} to \(C\), the two-dimensional subset \(X \subset {\operatorname{span} \{x_1,x_\alpha\}}\) is obtained. The first part of \citet{bgv15}, Lemma 3.18 describes how \(X\) should be refined into two-dimensional semi-monotone sets. The construction described in Section \ref{sec:quasi-affine} explains how to obtain the set of refinement points \((c_1,\ldots,c_t) \subset \mathbb{A}\).
 \(C\) is the graph of a quasi-affine map \(\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})\) where each component \(f_j : X \to {\operatorname{span} \{x_j\}}\) for \(j \in \{1,\ldots,n\} \setminus \{1,\alpha\}\) is a quasi-affine function. The second part of \citet{bgv15}, Lemma 3.18 describes how to refine \(X\) such that each function \(f_j\) is monotone. By \citet{bgv15}, Lemma 3.16, if every component \(f_i\) is monotone on a subset in the refinement of \(X\), then the map \(\mathbf{f}\) itself is monotone on that subset of \(X\).
@@ -3797,14 +3824,14 @@ The latter asserts that any cell in an \(\mathbf{F}\)-invariant CAD \(\mathcal{D
 Note that \(\mathcal{D}'\) is a \({\operatorname{proj}_{\mathbb{R}^{2}}}(\mathbf{F})\)-invariant CAD of \(\mathbb{R}^2\) and is always strong by \citet{lazard10}, Corollary 4.7.
 \citet{lazard10}, Proposition 5.2 depends on the following result.
 
-\begin{lemma}
-\protect\hypertarget{lem:lazard-5-2}{}\label{lem:lazard-5-2}\citep[Proposition 5,2]{lazard10}
+\begin{proposition}
+\protect\hypertarget{prp:lazard-5-2}{}\label{prp:lazard-5-2}\citep[Proposition 5,2]{lazard10}
 
 Let \(\cal D\) be a CAD of \(\mathbb{R}^n\) and \(\cal D'\) the decomposition induced by \(\cal D\) on \(\mathbb{R}^{n-1}\). Let \(C\) be a cell of \(\cal D\) and \(C' := {\operatorname{proj}_{\mathbb{R}^{n-1}}} (C)\) such that \(C'\) is well-bordered.
 If \(p \in {\operatorname{fr} \left( C' \right)}\), then \(I := (p \times \mathbb{R}) \cap {\operatorname{fr} \left( C \right)}\) is connected.
 \(I\) is therefore a point or a closed segment, either bounded or unbounded.
 Furthermore, if \(C\) is a sector cell, then the set of points of \(I\) which do not belong to the boundaries of the section cells delineating \(C\) is either empty or an open interval.
-\end{lemma}
+\end{proposition}
 
 \citet{lazard10}, Theorem 5.12 describes how to pass from a well-bordered, \(\mathbf{F}\)-invariant CAD \(\mathcal{D}\) of \(\mathbb{R}^3\) to one in which every cell is boundary smooth. This is done by refining \(\mathcal{D}\) such that it has constant sign on some new polynomials. This refinement contains only well-bordered, topologically regular cells.
 The construction of a CAD with monotone cells described in Section \ref{sec:monotone-cells} also satisfies these properties, if we limit ourselves to \(n\le3\). Indeed, the algorithm from Section \ref{sec:quasiaffine-algorithm} returns a CAD with constant sign on \(\mathbf{F'}\), the set of input polynomials and the additional polynomials added to ensure that every cell is smooth and the graph of a quasi-affine map. Hence, every cell in this CAD is well-bordered. The algorithm for obtaining monotone cells, described in Section \ref{sec:monotone-algorithm} requires us to compute refinements of the kind \(\{ x_1 < c \}, \{ x_1 = c \}, \{ x_1 > c \}\) of a \((1)\)-cell \(C'\) in the sub-decomposition above a 0-dimensional cell.
@@ -3816,21 +3843,21 @@ As a result, we are able to apply Lazard's method for lifting with bad points to
 By \citet{lazard10}, Theorem 4.4, a cell \(C\) already satisfies the frontier condition if no points in its frontier project on a bad cell (see also \citet{jhd20}).
 Thus, only cells which fail to satisfy this property need to be considered. By \citet{lazard10}, Lemma 4.3, in \(\mathbb{R}^3\), if a bad cell exists, then it has dimension \(0\).
 
-\begin{lemma}
-\protect\hypertarget{lem:only-bad-zero-cells}{}\label{lem:only-bad-zero-cells}\citep[Lemma 4.3]{lazard10}
+\begin{proposition}
+\protect\hypertarget{prp:only-bad-zero-cells}{}\label{prp:only-bad-zero-cells}\citep[Lemma 4.3]{lazard10}
 
 A sign-invariant CAD of \(\mathbb{R}^2\) contains no bad cells.
 
 For an \(\mathbf{F} \subset \mathbb{Q}[x_1,x_2,x_3]\)-invariant CAD \(\mathcal{D}\) of \(\mathbb{R}^3\), if the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^2\) contains a bad cell, then it is a \((0,0)\)-cell.
-\end{lemma}
+\end{proposition}
 
 This follows from the fact that, in \(\mathbb{R}^n\), a blow-up point of a polynomial in \(\mathbb{Q}[x_1,\ldots,x_n]\) in \(\mathbb{R}^{n-1}\) has codimension at least two (see Remark aftor Definition \ref{def:blow-up-point}).
 
-\begin{lemma}
-\protect\hypertarget{lem:no-blow-up}{}\label{lem:no-blow-up}\citep[Theorem 4.4]{lazard10}
+\begin{proposition}
+\protect\hypertarget{prp:no-blow-up}{}\label{prp:no-blow-up}\citep[Theorem 4.4]{lazard10}
 
 Let \(\mathcal{D}\) be an \(\mathbf{F}\)-invariant CAD of \(\mathbb{R}^n\) and \(C\) be a cell of \(\mathcal{D}\) with \(C' := \operatorname{proj}_{\mathbb{R}^{n-1}}(C)\). If the decomposition induced by \(\cal D\) on \(\mathbb{R}^{n-1}\) is strong and none of \(C'\) and any cell \(D'\) such that \(D' \cap {\operatorname{fr} \left( C' \right)} \ne \emptyset\) is bad, \(C\) is well-bordered, boundary smooth and \({\operatorname{fr} \left( C \right)}\) is a union of some cells of \(\mathcal{D}\).
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
 This result follows from the following fact about roots of multivariate polynomials: given a polynomial \(f \in \mathbb{Q}[x_1,\ldots,x_{n-1}][x_n]\), i.e., considered as a univariate polynomial with polynomial coefficients, its complex roots depend continuously on the parameters in the region of the parameter space where the polynomial does not vanish identically. In fact, this is only true in the projective closure of \(\mathbb{C}\) as some roots may pass through the point at infinity if the leading coefficient is zero.
@@ -3859,10 +3886,11 @@ This proves that, if the decomposition induced by \(D\) on \(\mathbb{R}^{n-1}\) 
 The other cases are deduced by omitting the cells defined from \(C_B\) and \(C_T\) as appropriate.
 \end{proof}
 
-\begin{lemma}
-\protect\hypertarget{lem:lazard-5-13}{}\label{lem:lazard-5-13}
+\begin{proposition}
+\protect\hypertarget{prp:lazard-5-13}{}\label{prp:lazard-5-13}
 
 \citep[ Proposition 5.13]{lazard10}
+
 Let \(\mathcal{D}\) be an \(\mathbf{F}\)-invariant CAD of \(\mathbb{R}^3\) and \(C\) be a well-bordered, boundary smooth cell of \(\mathcal{D}\).
 Suppose that \(D\) is a cell of \(\mathcal{D}\) such that \(B := D \cap {\operatorname{fr} \left(  C  \right)} \neq \emptyset\) and \(B \neq D\). Then either
 
@@ -3875,7 +3903,7 @@ Suppose that \(D\) is a cell of \(\mathcal{D}\) such that \(B := D \cap {\operat
   there exists a cell \(E\) of \(\mathcal{D}\) such that \(\dim(E) < \dim(C)\) and \(\emptyset \neq D \cap {\operatorname{fr} \left(  E  \right)} \neq D\).
 \end{enumerate}
 
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
 
@@ -3894,7 +3922,7 @@ Consider each case for \(C\) by cell index.
   \((1,1,0)\)-cell: these are necessarily the root of a polynomial \(f \in \mathbb{Q}[x_1,x_2,x_3]\) which vanishes identically on \(D'\), a \((0,0)\) cell in the decomposition induced by \(\cal D\) on \(\mathbb{R}^2\).
   Let \(V_r\) be a small neighbourhood (with radius \(r > 0\)) centred around \(D'\) and consider \(V_r'\), the cylinder above the boundary of \(V_r\). Since \(C\) is a monotone cell, the maximum and minimum values of \(x_3\) in this intersection are reached on the boundary of \(C\), for sufficiently small \(r\). The limits, as \(r\) tends to \(0\), of this maximum and minimum clearly belong to the boundary of \(B\), if these limits do not tend to infinity. Note that both the maximum and minimum cannot be infinite, since this would imply that either \(B\) is empty, or coincides with \(D\). Therefore, the non-infinite limits are the endpoints of some \(1\)-dimensional cell belonging to the boundary of \(C\). Case 2 applies, taking \(E\) to be this \(1\)-dimensional cell.
 \item
-  \((0,0,1)\)- or \((0,0,0)\)-cells: don't satisfy the hypothesis, there is nothing to do.
+  \((0,0,1)\)- or \((0,0,0)\)-cells: do not satisfy the hypothesis, there is nothing to do.
 \end{itemize}
 
 \end{proof}
@@ -3903,6 +3931,7 @@ The following result shows how \((0,0,1)\)-cells which project on a bad point ca
 
 \begin{proposition}
 \protect\hypertarget{prp:lazard-5-14}{}\label{prp:lazard-5-14}\citep[Proposition 5.14]{lazard10}
+
 Let \(f \in \mathbb{Q}[x_1,x_2,x_3]\) be an irreducible polynomial of the kind
 \[f = g_dx_3^d + \ldots + g_1x_3 + g_0\]
 with each \(g_i \in \mathbb{Q}[x_1,x_2]\), and
@@ -3930,6 +3959,7 @@ The proof of \citet{lazard10}, Proposition 5.14 depends on taking Zariski closur
 
 \begin{proposition}
 \protect\hypertarget{prp:cox-zariski}{}\label{prp:cox-zariski}\citep[ p203, part of Theorem 10]{cox2013}
+
 Let \(I,J \subset K[x_1,\ldots,x_n]\) be ideals, then
 \({\operatorname{cl} \left(  V(I) \setminus V(J)  \right)} \subset V(I : J^\infty)\),
 \end{proposition}
@@ -3939,7 +3969,7 @@ We claim that \(I \subset I:J \subset I:J^\infty \subset I(V(i0) \setminus V(J))
 Suppose that \(f \in I:J\infty\) and \(a \in V(I) \setminus V(J)\). Then \(fg^N \in I\) for all \(g \in J\) and a suitable (large enough) \(N\ge 0\). Since \(a \in V(I)\), \(f(a)g^N(a) = 0\) (for all \(g\in J\) and large enough \(N\)). Since \(a \not \in V(J)\), there exists \(f \in J\) and \(N \ge 0\) such that \(g(a) \ne 0\). Hence \(f(a) = 0\) for all \(a \in V(I) \setminus V(J)\). We have \(f \in I(V(I) \setminus V(J))\). Transitivity of \(\subset\) proves the claim. Since \(V\) reverses inclusion, we have \(= {\operatorname{cl} \left(  V(i) \setminus V(J)  \right)} = V(I(V(i) \setminus V(J))) \subset V(I:J^\infty)\).
 \end{proof}
 
-The proof of \citet{lazard10}, Proposition 5.14 begins with an irreducible polynomial \(f \in \mathbb{Q}[x_1,x_2,x_3]\), such that there exists a \((1,1,0)\)-cell \(C \subset \{ \mathbf{x} \in \mathbb{R}^3 \mid f(\mathbf{x}) = 0 \}\), a point \(\mathbf{p} = (p_1,p_2) \in \mathbb{R}^2\) such that \(\mathbf{p}\) is a blow-up point of \(f\) and \(g \in \mathbb{Q}[x_1,x_2]\) such that \(g(\mathbf{p}) = 0\).
+The proof of \citet{lazard10}, Proposition 5.14 begins with an irreducible polynomial \(f \in \mathbb{Q}[x_1,x_2,x_3]\), such that there exists a \((1,1,0)\)-cell \(C \subset \{ \mathbf{x} \in \mathbb{R}^3 \mid f(\mathbf{x}) = 0 \}\), a point \(\mathbf{p} = (p_1,p_2) \in \mathbb{R}^2\) such that \(\mathbf{p}\) is a blow-up point of \(f\), and \(g \in \mathbb{Q}[x_1,x_2]\) such that \(g(\mathbf{p}) = 0\).
 Consider the variety \(V(\langle f \rangle + \langle g \rangle ) = V(f) \cap V(g)\), which contains some of the one-dimensional cells which form part of \({\operatorname{fr} \left( C \right)}\) and the blow-up subset \(B \subset \mathbf{p} \times \mathbb{R}\).
 The saturation by \(h\) of \(I\),
 \[
@@ -3961,8 +3991,8 @@ Note that this procedure only works if the blow-up points have dimension zero. O
 \hypertarget{lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3}{%
 \subsection{\texorpdfstring{Lazard's Algorithm for lifting with bad points in \(\mathbb{R}^3\)}{Lazard's Algorithm for lifting with bad points in \textbackslash mathbb\{R\}\^{}3}}\label{lazards-algorithm-for-lifting-with-bad-points-in-mathbbr3}}
 
-Let \(\cal D\) be an \(\mathbf{F}\)-invariant CAD of \(\mathbb{R}^n, n \le 3\). If \(n \le 2\), \(\cal D\) is already strong -- well-bordered, boundary smooth and satisfies the frontier condition. In particular, by Lemma \ref{lem:only-bad-zero-cells}, the frontier condition is already satisfied since there are no bad cells in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^2\) \citep[Lemma 4.3]{lazard10}.
-Also by Lemma \ref{lem:only-bad-zero-cells}, any bad cells in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^2\) are \(0\)-dimensional \citep[Lemma 4.3]{lazard10}.
+Let \(\cal D\) be an \(\mathbf{F}\)-invariant CAD of \(\mathbb{R}^n, n \le 3\). If \(n \le 2\), \(\cal D\) is already strong -- well-bordered, boundary smooth and satisfies the frontier condition. In particular, by Proposition \ref{prp:only-bad-zero-cells}, the frontier condition is already satisfied since there are no bad cells in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^2\) \citep[Lemma 4.3]{lazard10}.
+Also by Proposition \ref{prp:only-bad-zero-cells}, any bad cells in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^2\) are \(0\)-dimensional \citep[Lemma 4.3]{lazard10}.
 Therefore, the frontier condition is satisfied everywhere except in the neighbourhoods above bad cells in the induced decomposition of \(\mathbb{R}^2\). The following algorithm is a special method for lifting above a bad cell.
 
 \begin{algorithm}Lazard Lifting With Bad Points in $\R^3$
@@ -3982,8 +4012,9 @@ Therefore, the frontier condition is satisfied everywhere except in the neighbou
 \textbf{Output:}
 
 \[
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{2} \text{ is a } (0,0) \text{-cell in the decomposition induced by } {\cal D} \text{ on } \mathbb{R}^2 \}
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\}
 \]
+where \(\mathbf{b}\in \mathbb{R}^{2}\) is a \((0,0)\)-cell in the decomposition induced by \(\cal D\) on \(\mathbb{R}^2\).
 
 A set of refinement points, as described in Section \ref{sec:monotone-algorithm}.
 
@@ -4048,75 +4079,75 @@ Compute the refinements, given by \(\mathcal{R}\), of sections above bad cells u
 \hypertarget{sec:lazard-n}{%
 \section{Generalisation of Lazard}\label{sec:lazard-n}}
 
-Every \(2\)-dimensional cylindrical cell in a CAD of \(\mathbb{R}^n\) is the graph of a continuous definable map \(\mathbf{f} = (f_1,\ldots,f_{n-2}) : X \to \mathbb{R}^{n-2}\) where \(X \subset {\operatorname{span} \{x_i,x_j\}}, 1 \le i < j \le n\) in a cylindrical
+Every \(2\)-dimensional cylindrical cell in a CAD of \(\mathbb{R}^n\) is the graph of a continuous definable map \(\mathbf{f} = (f_1,\ldots,f_{n-2}) : X \to \mathbb{R}^{n-2}\) where \(X \subset {\operatorname{span} \{x_i,x_j\}}, 1 \le i < j \le n\) is a cylindrical
 \((1,1)\)-cell by Proposition \ref{prp:delete-zero-index} (\citet{bgv13}, Lemma 3.3). According to the remark following
-Definition \ref{def:blow-up-point}, each component \(f_j : X \to {\operatorname{span} \{x_j\}}\) of \(\mathbf{f}\) is a continuous definable map at every point in \({\operatorname{cl} \left( X \right)}\) except for a finite set of isolated points in \({\operatorname{fr} \left( X \right)} = {\operatorname{cl} \left( X \right)} \setminus X\).
+Definition \ref{def:blow-up-point}, each component \(f_j : X \to {\operatorname{span} \{x_j\}}\) of \(\mathbf{f}\) is a continuous definable map at every point in \({\operatorname{cl} \left( X \right)}\) except, perhaps, for a finite set of isolated points in \({\operatorname{fr} \left( X \right)} = {\operatorname{cl} \left( X \right)} \setminus X\).
 Therefore, it might be natural to ask whether the result from \citet{lazard10} for lifting with bad points can be generalised to cylindrical decompositions of \(\mathbb{R}^n, n > 3\) compatible with semialgebraic sets of dimension at most \(2\).
 Our goal is to construct a CAD \(\mathcal{D}\) of \(\mathbb{R}^n\), monotone with respect to each set \(V_1, \ldots, V_k\) such that \(\dim(V_i) \le 2\) for all \(1 \le i \le k\), such that \({\operatorname{cl} \left( C \right)}\), for each cell \(C \subset V_1 \cup \ldots \cup V_k\) of \(\mathcal{D}\) is a union of some cells of \(\mathcal{D}\).
 Note that this method is not claimed to work for all cells of \(\mathcal{D}\), in particular, those of dimension \(> 2\).
 
 In Section \ref{sec:lazard-3}, we applied Lazard's method for lifting with bad cells to CADs of \(\mathbb{R}^3\) output by the algorithm described in Section \ref{sec:monotone-algorithm}. Lazard's algorithm required the input CAD to have two properties. First, each cell must be boundary smooth. Since each cell \(C \subset V = V_1\cup \ldots \cup V_k\) is constructed to be monotone, it is already topologically regular by Proposition \ref{prp:monotone-topologically-regular} (\citet{bgv13}, Theorem 1), and is therefore already boundary smooth.
-The second requirement is that every cell must be well-bordered. While Corollary \ref{cor:lazard-5-4} (\citet{lazard10}, Corollary 5.4) asserts that any sign-invariant CAD of \(\mathbb{R}^3\) is well-bordered, this property cannot be extended to CADs of arbitrary dimension. Indeed, \citet{lazard10}, Example 2.11 describes a \(3\)-dimensional cylindrical cell in \(\mathbb{R}^4\) which cannot be well-bordered since its frontier consists of a single half-line. This condition is necessary to get the configuration of cells described in Lemma \ref{lem:lazard-5-13} (\citet{lazard10}, Lemma 5.13), which is required to apply the algorithm for lifting with bad points. Therefore, it seems unlikely that this method could be generalised to cells of dimension \(> 2\).
+The second requirement is that every cell must be well-bordered. While Corollary \ref{cor:lazard-5-4} (\citet{lazard10}, Corollary 5.4) asserts that any sign-invariant CAD of \(\mathbb{R}^3\) is well-bordered, this property cannot be extended to CADs of arbitrary dimension. Indeed, \citet{lazard10}, Example 2.11 describes a \(3\)-dimensional cylindrical cell in \(\mathbb{R}^4\) which cannot be well-bordered since its frontier consists of a single half-line. This condition is necessary to get the configuration of cells described in Proposition \ref{prp:lazard-5-13} (\citet{lazard10}, Lemma 5.13), which is required to apply the algorithm for lifting with bad points. Therefore, it seems unlikely that this method could be generalised to cells of dimension \(> 2\).
 
 \begin{definition}
-\protect\hypertarget{def:strong-about-c}{}\label{def:strong-about-c}Let \(\mathcal{D}\) be a CAD of \(\mathbb{R}^n\) and \(C\) be a cell of \(\mathcal{D}\). \(\mathcal{D}\) will be called strong about \(C\) if \(C\) is well-bordered, boundary coherent and every cell contained in \({\operatorname{cl} \left( ( \right)}C)\) is boundary smooth.
+\protect\hypertarget{def:strong-about-c}{}\label{def:strong-about-c}Let \(\mathcal{D}\) be a CAD of \(\mathbb{R}^n\) and \(C\) be a cell of \(\mathcal{D}\). \(\mathcal{D}\) will be called strong about \(C\) if \(C\) is well-bordered, boundary coherent and every cell contained in \({\operatorname{cl} \left( C \right)}\) is boundary smooth.
 \end{definition}
 
 We first extend Corollary \ref{cor:lazard-5-4} (\citet{lazard10}, Corollary 5.4) to cells of dimension \(\le 2\) in a sign-invariant CAD of \(\mathbb{R}^n\).
 This can be done by extending \citet{lazard10}, Theorem 5.3.
 
-\begin{theorem}
-\protect\hypertarget{thm:lazard-5-3}{}\label{thm:lazard-5-3}\citep[Theorem 5.3]{lazard10}
+\begin{proposition}
+\protect\hypertarget{prp:lazard-5-3}{}\label{prp:lazard-5-3}\citep[Theorem 5.3]{lazard10}
 
 Let \(\mathcal{D}\) be an \(\mathbf{F}\)-invariant CAD of \(\mathbb{R}^3\) such that the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^2\) is strong. Then every cell \(C\) of \(\mathcal{D}\) is well-bordered.
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 If \(\dim(C) < 2\), then \(C\) is well-bordered by \citet{lazard10}, Lemma 5.1.
 
-If \(\dim(C) = 2\) and \(C\) is a \((1,1,0)\)-cell, then its boundary consists of some section cells which project onto one-dimensional cells in \(\mathcal{D}\) and which are contained in \({\operatorname{fr} \left( C' \right)}\) and points or intervals projecting on some \(0\)-cells in \({\operatorname{fr} \left( C' \right)}\) by Lemma \ref{lem:lazard-5-2} (\citet{lazard10}, Proposition 5.2).
+If \(\dim(C) = 2\) and \(C\) is a \((1,1,0)\)-cell, then its boundary consists of some section cells which project onto one-dimensional cells in \(\mathcal{D}\) and which are contained in \({\operatorname{fr} \left( C' \right)}\) and points or intervals projecting on some \(0\)-cells in \({\operatorname{fr} \left( C' \right)}\) by Proposition \ref{prp:lazard-5-2} (\citet{lazard10}, Proposition 5.2).
 We need to prove that these points belong to the boundary of some of the \(1\)-cells contained in \({\operatorname{fr} \left( C \right)}\).
 Let \(\mathbf{c}\) be a \(0\)-cell of \(\mathcal{D'}\) contained in \({\operatorname{fr} \left( C' \right)}\) such that \(\mathbf{c}\) is the projection of exactly one point, \(\mathbf{p}\), in \({\operatorname{fr} \left( C \right)}\).
 Since \(C'\) is well-bordered (as \(\mathcal{D'}\) is strong), there is a \(1\)-dimensional cell \(C'_1 \subset {\operatorname{fr} \left( C' \right)}\) such that \(\mathbf{c}\) is an endpoint.
 If \(C'_1\) is the projection of a \(1\)-dimensional cell contained in \({\operatorname{fr} \left( C \right)}\), we are done -- the boundary of this one-dimensional cell consists of some isolated points including \(\mathbf{p}\).
-\(C'_1\) is not the projection of a section cell, then the limits of the sequences of points in \(C\), whose projections tend to \(C'_1\), tend to \(-\infty\) or \(\infty\). Therefore \(\mathbf{p}\) is either \(-\infty\) or \(\infty\), being an endpoint of the interval \(I\) associated to \(C\) by Lemma \ref{lem:lazard-5-2} (\citet{lazard10}, Proposition 5.2). This contradicts the assumption that \({\operatorname{proj}_{\mathbb{R}^{2}}}^{-1}(\mathbf{c}) \cap {\operatorname{fr} \left( C \right)}\) contains only \(\mathbf{p}\).
+\(C'_1\) is not the projection of a section cell, then the limits of the sequences of points in \(C\), whose projections tend to \(C'_1\), tend to \(-\infty\) or \(\infty\). Therefore \(\mathbf{p}\) is either \(-\infty\) or \(\infty\), being an endpoint of the interval \(I\) associated to \(C\) by Proposition \ref{prp:lazard-5-2} (\citet{lazard10}, Proposition 5.2). This contradicts the assumption that \({\operatorname{proj}_{\mathbb{R}^{2}}}^{-1}(\mathbf{c}) \cap {\operatorname{fr} \left( C \right)}\) contains only \(\mathbf{p}\).
 
 If \(\dim(C) = 2\) and it is a sector (\((i_1,i_2,1)\)-cell), then \({\operatorname{fr} \left( C \right)}\) consists of the two \((i_1,i_2,0)\)-cells \(C_B\) and \(C_T\) which project on \(C'\) the side-wall \(W = {\operatorname{fr} \left( C \right)} \setminus (C_B \cup C_T)\) which consists of points or intervals projecting on the endpoints of \(C'\).
-If \(W\) contains an isolated point above an endpoint \(\mathbf{c}\) of \(C'\). Then Lemma \ref{lem:lazard-5-2} (\citet{lazard10}, Proposition 5.2) asserts that it belongs to the boundary of a section bounding \(C\) from below or above (i.e., \(C_B\) or \(C_T\)), and we are done.
+If \(W\) contains an isolated point above an endpoint \(\mathbf{c}\) of \(C'\). Then Proposition \ref{prp:lazard-5-2} (\citet{lazard10}, Proposition 5.2) asserts that it belongs to the boundary of a section bounding \(C\) from below or above (i.e., \(C_B\) or \(C_T\)), and we are done.
 
 Finally, suppose that \(C\) is a \((1,1,1)\)-cell.
 By the proof of \citet{lazard10}, Theorem 4.4, we only need to consider points in \({\operatorname{fr} \left( C \right)}\) which projects on a bad cell, say \(\mathbf{b}\), of \(\mathcal{D'}\).
 By \citet{lazard10}, Lemma 4.3 \(\dim(\mathbf{b}) = 0\).
-\(C_B\) and \(C_T\) are \((1,1,0)\)-cells, therefore we only need to consider the blow-up subsets \(B := ({\operatorname{fr} \left( C \right)} \setminus ({\operatorname{cl} \left( C_B \right)} \cup {\operatorname{cl} \left( C_T \right)})) \cap (\mathbf{b} \times \mathbb{R})\). By Lemma \ref{lem:lazard-5-2} (\citet{lazard10}, Proposition 5.2) \(B\) is an open interval.
+\(C_B\) and \(C_T\) are \((1,1,0)\)-cells, therefore we only need to consider the blow-up subsets \(B := ({\operatorname{fr} \left( C \right)} \setminus ({\operatorname{cl} \left( C_B \right)} \cup {\operatorname{cl} \left( C_T \right)})) \cap (\mathbf{b} \times \mathbb{R})\). By Proposition \ref{prp:lazard-5-2} (\citet{lazard10}, Proposition 5.2) \(B\) is an open interval.
 As \(C'\) is well-bordered, there is a \(1\)-dimensional cell \(C'_1 \subset {\operatorname{fr} \left( C' \right)}\) such that \(\mathbf{b}\) is an endpoint.
 The set of points of \({\operatorname{fr} \left( C \right)}\) which project onto \(C'_1\) are bounded from below and above by points of \({\operatorname{fr} \left( C_B \right)}\) and \({\operatorname{fr} \left( C_T \right)}\), thus they are \(1\)-dimensional section cells. The boundaries of these section cells are included in \({\operatorname{fr} \left( C_B \right)}\) and \({\operatorname{fr} \left( C_T \right)}\).
-Lemma \ref{lem:lazard-5-2} (\citet{lazard10}, Proposition 5.2) implies that these sections which project onto \(C'_1\) define a (finite and non empty) \(2\)-dimensional sector cell which projects onto \(C'_1\) whose boundary
+Proposition \ref{prp:lazard-5-2} (\citet{lazard10}, Proposition 5.2) implies that these sections which project onto \(C'_1\) define a (finite and non empty) \(2\)-dimensional sector cell which projects onto \(C'_1\) whose boundary
 contains \(B\).
 
 As all cases have been considered, this completes the proof.
 \end{proof}
 
-\begin{proposition}
-\protect\hypertarget{prp:ext-lazard-5-3}{}\label{prp:ext-lazard-5-3}(Corollary to \citet{lazard10}, Theorem 5.3)
+\begin{corollary}
+\protect\hypertarget{cor:ext-lazard-5-3}{}\label{cor:ext-lazard-5-3}(Corollary to \citet{lazard10}, Theorem 5.3)
 
 Let \(\mathcal{D}\) be an \(\mathbf{F}\)-invariant CAD of \(\mathbb{R}^n\) and \(C\) be a cell of \(\mathcal{D}\) of dimension \(\le 2\) such that the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^{n-1}\) is strong about \({\operatorname{proj}_{\mathbb{R}^{n-1}}}(C)\). Then \(C\) is well-bordered.
-\end{proposition}
+\end{corollary}
 
 \begin{proof}
 If \(\dim(C) \le 2\), then it is well-bordered by \citet{lazard10}, Lemma 5.1.
-If \(\dim(C) = 2\) and \(C\) is a sector cell, the same argument as in Theorem \ref{thm:lazard-5-3} (\citet{lazard10}, Theorem 5.3) can be applied.
+If \(\dim(C) = 2\) and \(C\) is a sector cell, the same argument as in Proposition \ref{prp:lazard-5-3} (\citet{lazard10}, Theorem 5.3) can be applied.
 
-Otherwise, \(\dim(C) = 2\) and \(C\) is a sector cell. \(C' := {\operatorname{proj}_{\mathbb{R}^{n-1}}}(C)\) is a well-bordered, boundary smooth and boundary coherent \(2\)-dimensional cell in \(\mathcal{D'}\). The same argument as in Theorem \ref{thm:lazard-5-3} (\citet{lazard10}, Theorem 5.3) can be applied to the cells in \({\operatorname{cl} \left( C' \right)} \times \mathbb{R}\), which have dimension \(\le 2\) or are sector cells of dimension \(3\).
+Otherwise, \(\dim(C) = 2\) and \(C\) is a sector cell. \(C' := {\operatorname{proj}_{\mathbb{R}^{n-1}}}(C)\) is a well-bordered, boundary smooth and boundary coherent \(2\)-dimensional cell in \(\mathcal{D'}\). The same argument as in Proposition \ref{prp:lazard-5-3} (\citet{lazard10}, Theorem 5.3) can be applied to the cells in \({\operatorname{cl} \left( C' \right)} \times \mathbb{R}\), which have dimension \(\le 2\) or are sector cells of dimension \(3\).
 \end{proof}
 
-By Lemma \ref{lem:no-blow-up}, if no cells which intersect \({\operatorname{fr} \left( C \right)}\) project on a bad cell and the induced decomposition is strong, \(C\) is well-bordered, boundary smooth and satisfies the frontier condition. Since the proof of Lemma \ref{lem:no-blow-up} only considers cells contained in \({\operatorname{proj}_{\mathbb{R}^{n-1}}}({\operatorname{cl} \left( C \right)}) \times \mathbb{R}\) this property is also true for the weaker property that the induced decomposition is strong about \({\operatorname{proj}_{\mathbb{R}^{n-1}}}(C)\).
+By Proposition \ref{prp:no-blow-up}, if no cells which intersect \({\operatorname{fr} \left( C \right)}\) project on a bad cell and the induced decomposition is strong, \(C\) is well-bordered, boundary smooth and satisfies the frontier condition. Since the proof of Proposition \ref{prp:no-blow-up} only considers cells contained in \({\operatorname{proj}_{\mathbb{R}^{n-1}}}({\operatorname{cl} \left( C \right)}) \times \mathbb{R}\) this property is also true for the weaker condition that the induced decomposition is strong about \({\operatorname{proj}_{\mathbb{R}^{n-1}}}(C)\).
 Thus, we need to look at what happens in the neighbourhood of bad cells (blow-up points) only.
-If there is a blow-up point, then we claim that the following situation, similar to that described in Lemma \ref{lem:lazard-5-13} (\citet{lazard10}, Lemma 5.13), occurs.
+If there is a blow-up point, then we claim that the following situation, similar to that described in Proposition \ref{prp:lazard-5-13} (\citet{lazard10}, Lemma 5.13), occurs.
 
 \begin{lemma}
 \protect\hypertarget{lem:ext-lazard-5-13}{}\label{lem:ext-lazard-5-13}
 
-(Extension of Lemma \ref{lem:lazard-5-13} \citep[Proposition 5.13]{lazard10})
+(Extension of Proposition \ref{prp:lazard-5-13} \citep[Proposition 5.13]{lazard10})
 
 Let \(\mathcal{D}\) be a sign-invarient decomposition of \(\mathbb{R}^n\) and \(C\) be a cell of \(\mathcal{D}\) of dimension at most two, such that the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^{n-1}\) is strong about \({\operatorname{proj}_{\mathbb{R}^{n-1}}}(C)\). Let \(D\) be a cell of \(\mathcal{D}\) such that \(B := D \cap {\operatorname{fr} \left(  C  \right)} \neq \emptyset\) and \(B \neq D\). Then either
 
@@ -4154,7 +4185,7 @@ We consider each case by cell index.
 \begin{remark}
 Let \(C\) be a \((i_1,\ldots,i_{n-1},0)\)-cell as described in Lemma \ref{lem:ext-lazard-5-13} such that \(i_1=i_k = 1\) for some \(1 \le k \le n\) and all other elements of the index are equal to zero.
 The cell \(D\), which projects on a bad-cell is necessarily a \((0,\ldots,0,1)\)-cell and the cell \(E\), which has dimension one, is contained in \({\operatorname{cl} \left( C \right)}\). Hence, \(E\) must have index either \((i_1,0\ldots,0)\) or \((0,\ldots,0,i_k,0,\ldots,0)\).
-By Proposition \ref{prp:delete-zero-index} (\citet{bgv15}, Lemma 3.3), the images of \(C\), \(D\) and \(E\) under the projection map \({\operatorname{proj}_{{\operatorname{span} \{i_1,i_k,i_n\}}}}\) are cylindrical cells and satisfy Lemma \ref{lem:lazard-5-13} (\citet{lazard10}, Lemma 5.13).
+By Proposition \ref{prp:delete-zero-index} (\citet{bgv15}, Lemma 3.3), the images of \(C\), \(D\) and \(E\) under the projection map \({\operatorname{proj}_{{\operatorname{span} \{i_1,i_k,i_n\}}}}\) are cylindrical cells and satisfy Proposition \ref{prp:lazard-5-13} (\citet{lazard10}, Lemma 5.13).
 \end{remark}
 
 This implies that we should be able to use a similar technique to that described in Proposition \ref{prp:lazard-5-14} (\citet{lazard10}, Proposition 5.14) to lift above bad cells and satisfy the frontier condition on two-dimensional section cells in decompositions of arbitrary dimension.
@@ -4182,20 +4213,20 @@ S := \langle f, g_{i_1}, \ldots, g_{i_{n-2}}, 1 - z g_\ell \rangle \cap \mathbb{
 \]
 The irreducible components of the zero set of \(S\) are those of the zero set of \(\langle f,g_{i_1},\ldots,i_{n-2} \rangle\) at which \(g_\ell\) is not identically zero. It follows that the vertical line \(\{ x_1 = p_1, \ldots, x_{n-1} = p_{n-1} \}\) which is part of the zero set of \(f\),
 \(g_{i_1},\ldots,g_{i_{n-2}}\) and \(g_\ell\), is not contained in the zero set of \(S\).
-Meanwhile, the zero set of \(S\) contains the limit points we are interested in finding.
+Meanwhile, the zero set of \(S\) contains the limit points we want to find.
 
 Therefore, the ideal generated by \(S\), the coefficients \(h_0,\ldots,h_d\) of \(f\) and the polynomials \(g_{i_1},\ldots,g_{i_{n-2}}\) is zero-dimensional and the limits of \(\{ f = 0, g_{i_1} = 0, \ldots, g_{i_{n-n}} = 0 \}\) as \((x_1,\ldots,x_{n-1}) \to \mathbf{p}\) can be computed as the solutions of \(S\).
 \end{proof}
 
 Let \(\mathcal{D}\) be an \(\mathbf{F}\) invariant CAD of \(\mathbb{R}^n\) as constructed by the algorithm in Section \ref{sec:monotone-algorithm}.
-Recall that, in the previous results, we require the decomposition induced on \(\mathbb{R}^{n-1}\) to be strong about the projections of some cells of \(\mathcal{D}\). Therefore, we need to proceed by induction on decompositions induced by \(\mathcal{D}\) on \(\mathbb{R}^k, k \ge 1\) to be able to apply Lemma \ref{lem:ext-lazard-5-13} and Conjecture \ref{cnj:ext-lazard-5-14}.
+Recall that, for the previous results, we require the decomposition induced on \(\mathbb{R}^{n-1}\) to be strong about the projections of some cells of \(\mathcal{D}\). Therefore, we need to proceed by induction on decompositions induced by \(\mathcal{D}\) on \(\mathbb{R}^k, k \ge 1\) to be able to apply Lemma \ref{lem:ext-lazard-5-13} and Conjecture \ref{cnj:ext-lazard-5-14}.
 
 For \(k\le 2\), we have a \({\operatorname{proj}_{\mathbb{R}^{k}}}(\mathbf{F})\)-invariant CAD which already satisfies the frontier condition by \citet{lazard10}, Corollary 4.7.
 For \(k=3\), recall that every cell is well-bordered by Corollary \ref{cor:lazard-5-4} (\citet{lazard10}, Corollary 5.4). We already described how to construct a \({\operatorname{proj}_{\mathbb{R}^{3}}}(\mathbf{F})\)-invariant CAD of \(\mathbb{R}^3\) satisfying the frontier condition using \citet{lazard10}, Algorithm 5.15.
 
 For \(k>3\) let \(\mathcal{D'}\) be the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^k\) and let \(C\) be a cell of \(\mathcal{D'}\) such that \({\operatorname{proj}_{\mathbb{R}^{k}}}^{-1}(C) \subset V_1 \cup \ldots \cup V_k\).
 By the induction hypothesis, the decomposition induced by \(\mathcal{D'}\) on \(\mathbb{R}^{k-1}\) is strong about \({\operatorname{proj}_{\mathbb{R}^{k-1}}}(C)\).
-\(C\) is topologically regular since the projection of a monotone cell is monotone and \(C\) is well-bordered by Proposition \ref{prp:ext-lazard-5-3} since \(\dim(C) \le 2\).
+\(C\) is topologically regular since the projection of a monotone cell is monotone and \(C\) is well-bordered by Corollary \ref{cor:ext-lazard-5-3} since \(\dim(C) \le 2\).
 If \(\dim(C) < 2\), \(C\) already satisfies the frontier condition since it is well-bordered.
 If \(\dim(C') = 2\), then \(C\) is an \((i_1,\ldots,i_k)\)-cell such that \(i_{\ell_1} = i_{\ell_2} = 1\) and all other elements of the index are equal to zero.
 
@@ -4204,29 +4235,29 @@ Let \(C' = {\operatorname{proj}_{\mathbb{R}^{k-1}}}(C)\). \(C'\) satisfies the f
 \({\operatorname{cl} \left( C \right)}\) is the graph of \(\varphi\) for all but, possibly, a finite number of isolated blow-up points in \({\operatorname{cl} \left( C' \right)}\) (see Remark after Definition \ref{def:blow-up-point}).
 Let \(\mathcal{A}_1,\ldots,\mathcal{A}_k\) be the set of projection polynomials defining \(\mathcal{D'}\). By the construction of CAD, these polynomials are irreducible. Let
 \[
-C \subset \{ \mathbf{x} \in \mathbb{R}^k \mid g_{j_1}(\mathbf{x}) = 0, \ldots, g_{j_{n-2}}(\mathbf{x}) = 0, f(\mathbf{x}) = 0 \}
+C \subset \{ \mathbf{x} \in \mathbb{R}^k \mid g_{j_1}(\mathbf{x}) = 0, \ldots, g_{j_{k-2}}(\mathbf{x}) = 0, f(\mathbf{x}) = 0 \}
 \]
-where each \(g_i \in \mathcal{A}_i\) for \(j \in \{i_1,\ldots,i_{k-1}\} \setminus \{i_{\ell_1}, i_{\ell_2} \}\) and \(f \in \mathcal{A}_k\).
-Suppose that there is a \((0,\ldots,0,1)\)-cell \(D\) such that \(D \cap {\operatorname{fr} \left( C \right)}\) and \(f(\mathbf{x}) = 0\) for all \(\mathbf{x} \in D\). I.e., \(\mathbf{b} := {\operatorname{proj}_{\mathbb{R}^{k-1}}}(D)\) \(D\) is a bad cell and is a common root of \(g_{j_1}, \ldots, g_{j_{n-2}}\) and some \(g_{\ell_1} \in \mathcal{A}_{\ell_1}, g_{\ell_2} \in \mathcal{A}_{\ell_2}\).
-Apply a method similar to that described in \citet{lazard10}, Algorithm 5.15 to \(C\) and \(D\). Using Conjecture \ref{cnj:ext-lazard-5-14}, compute the saturations by \(g_{\ell_1}\) and \(g_{\ell_2}\), respectively:
+where each \(g_i \in \mathcal{A}_i\) for \(i \in \{j_1,\ldots,j_{k-2}\} = \{1,\ldots,k-1\} \setminus \{{\ell_1}, {\ell_2} \}\) and \(f \in \mathcal{A}_k\).
+Suppose that there is a \((0,\ldots,0,1)\)-cell \(D\) such that \(D \cap {\operatorname{fr} \left( C \right)}\) and \(f(\mathbf{x}) = 0\) for all \(\mathbf{x} \in D\). I.e., \(\mathbf{b} := {\operatorname{proj}_{\mathbb{R}^{k-1}}}(D)\) is a bad cell and is a common root of \(g_{j_1}, \ldots, g_{j_{k-2}}\) and some \(g_{\ell_1} \in \mathcal{A}_{\ell_1}, g_{\ell_2} \in \mathcal{A}_{\ell_2}\).
+Apply a method similar to that described in \citet{lazard10}, Algorithm 5.15 to \(C\) and \(D\) -- using Conjecture \ref{cnj:ext-lazard-5-14}, compute the saturations by \(g_{\ell_1}\) and \(g_{\ell_2}\), respectively:
 \begin{equation}
-I_1 := \langle f, g_{j_1}, \ldots, g_{j_{k-3}}, g_{\ell_2}, 1 - z g_{\ell_1} \rangle \cap \mathbb{Z}[x_1,\ldots,x_k]
+I_1 := \langle f, g_{j_1}, \ldots, g_{j_{k-2}}, g_{\ell_2}, 1 - z g_{\ell_1} \rangle \cap \mathbb{Z}[x_1,\ldots,x_k]
 \label{eq:lazard-n-1}
 \end{equation}
 and
 \begin{equation}
-I_2 := \langle f, g_{j_1}, \ldots, g_{j_{k-3}}, g_{\ell_1}, 1 - z g_{\ell_2} \rangle \cap \mathbb{Z}[x_1,\ldots,x_k],
+I_2 := \langle f, g_{j_1}, \ldots, g_{j_{k-2}}, g_{\ell_1}, 1 - z g_{\ell_2} \rangle \cap \mathbb{Z}[x_1,\ldots,x_k],
 \label{eq:lazard-n-2}
 \end{equation}
 where \(z\) is a new variable.
-Let \(S_1, S_2\) be Groebner bases for \(I_1,I_2\) respectively. The union of zero-dimensional solutions to \(S_1,S_2\) forms the set of refinement points \(\mathcal{R}_\mathbf{b}\) whiche contains the endpoints of \(D \cap {\operatorname{fr} \left( C \right)}\), By considering each bad cell in \({\operatorname{fr} \left( ( \right)}{\operatorname{proj}_{\mathbb{R}^{k-1}}}(C))\), \(\mathcal{D}'\) can be refined such that \(C\) satisfies the frontier condition.
+Let \(S_1, S_2\) be Groebner bases for \(I_1,I_2\) respectively. The union of zero-dimensional solutions to \(S_1,S_2\) forms the set of refinement points \(\mathcal{R}_\mathbf{b}\) whiche contains the endpoints of the open interval \(D \cap {\operatorname{fr} \left( C \right)}\), By considering each bad cell in \({\operatorname{fr} \left( ( \right)}{\operatorname{proj}_{\mathbb{R}^{k-1}}}(C))\), \(\mathcal{D}'\) can be refined such that \(C\) satisfies the frontier condition.
 
-On the other hand, if \(\ell_2 = k\), \(C\) is a sector cell. In this case, \(C\) already satisfies the frontier condition since its top and bottom, which are one-dimensional section cells, already satisfy the frontier condition and its side-wall consists of at most two connected components, points or closed intervals, whose endpoints are endpoints of the top and bottom of \(C\).
+On the other hand, if \(\ell_2 = k\), \(C\) is a sector cell. In this case, \(C\) already satisfies the frontier condition since its top and bottom, which are one-dimensional section cells, already satisfy the frontier condition and its side-wall consists of at most two connected components -- points or closed intervals, whose endpoints coincide with the endpoints of the top and bottom of \(C\).
 
-Finaly, if \(\ell_1 > 1\) then \(C\) is a \((0,\ldots,0,i_{\ell_1},\ldots,i_k)\)-cell. Apply the method above to the \((i_{\ell_1 + 1},\ldots,i_k)\)-cell in the sub-cad above \({\operatorname{proj}_{\mathbb{R}^{i_\ell - 1}}}(C)\).
+Finaly, if \(\ell_1 > 1\) then \(C\) is a \((0,\ldots,0,i_{\ell_1},\ldots,i_k)\)-cell. Apply the method described above to the \((i_{\ell_1 + 1},\ldots,i_k)\)-cell in the sub-cad above \({\operatorname{proj}_{\mathbb{R}^{i_\ell - 1}}}(C)\).
 
-Compute a refinement of \(\mathcal{D}\) so that it is compatible with the sets of refinement points \(\mathcal{R}_\mathbf{b}\). These are refinements of the kind described in \citet{bgv15}, Lemma 3.11, and preserve the cylindrical structure and monotone cells in \(\mathcal{D}\).
-\(\mathcal{D'}\) has been refined such that it satisfies the frontier condition, hence it is strong about each cell \(C\) such that \({\operatorname{proj}_{\mathbb{R}^{k}}}^{-1}(C) \subset V_1\cup \ldots, \cup V_k\). This completes the inductive step.
+Compute a refinement of \(\mathcal{D}\) so that it is compatible with the set of refinement points \(\mathcal{R}_\mathbf{b}\). These are refinements of the kind described in \citet{bgv15}, Lemma 3.11, and preserve the cylindrical structure and monotone cells in \(\mathcal{D}\).
+By repeating this process for each bad cell \(\mathbf{b}\), \(\mathcal{D'}\) is refined such that it satisfies the frontier condition, hence it is strong about each cell \(C\) such that \({\operatorname{proj}_{\mathbb{R}^{k}}}^{-1}(C) \subset V_1\cup \ldots, \cup V_k\). This completes the inductive step and, by induction, a cylindrical decomposition monotone with respect to each set \(V_1,\ldots,V_k\) and satisfying the frontier condition has been constructed.
 
 \hypertarget{sec:ext-lazard-algorithm}{%
 \subsection{\texorpdfstring{Algorithm for lifting above bad points, for CAD compatible with sets of dimension \(\le 2\)}{Algorithm for lifting above bad points, for CAD compatible with sets of dimension \textbackslash le 2}}\label{sec:ext-lazard-algorithm}}
@@ -4252,8 +4283,9 @@ First, prepare \(\mathcal{D}\) by marking each cell \(C' := {\operatorname{proj}
 \textbf{Output:}
 
 \[
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = ( c_1,\ldots,c_t ) \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \mathbb{R}^k \}
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\}
 \]
+where \(\mathbf{b} \in \mathbb{R}^{k-1}\) is a \((0,\ldots,0)\)-cell in the decomposition induced by \({\cal E}\) on \(\mathbb{R}^k\).
 
 A set of refinement points, as described in Section \ref{sec:monotone-algorithm}.
 
@@ -4331,7 +4363,7 @@ Apply this procedure to each decomposition, for \(3 \le k \le n\) induced by \(\
 \subsection{Correctness and Complexity}\label{correctness-and-complexity-2}}
 
 Since zero- and one-dimensional cells already satisfy the frontier condition, it suffices to consider cells of dimension two.
-Let \(\mathcal{D}\) be a CAD of \(\mathbb{R}^k\) and \(C\) be a two-dimensional section cell of \(\mathcal{D}\) such that the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^{k-1}\) is strong about \(C\). Proposition \ref{prp:ext-lazard-5-3} asserts that \(C\) is well-bordered, so its frontier consists of the closure of some one-dimensional cells of \(\mathcal{D}\). The frontier condition fails in the region of sector cells of \(\mathcal{D}\) above \(0\)-dimensional bad cells in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^{k-1}\).
+Let \(\mathcal{D}\) be a CAD of \(\mathbb{R}^k\) and \(C\) be a two-dimensional section cell of \(\mathcal{D}\) such that the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^{k-1}\) is strong about \(C\). Corollary \ref{cor:ext-lazard-5-3} asserts that \(C\) is well-bordered, so its frontier consists of the closure of some one-dimensional cells of \(\mathcal{D}\). The frontier condition fails in the region of sector cells of \(\mathcal{D}\) above \(0\)-dimensional bad cells in the decomposition induced by \(\mathcal{D}\) on \(\mathbb{R}^{k-1}\).
 The procedure described above explains how to obtain some new polynomials which allow these one-dimensional sectors to be refined such that they are compatible with the frontier of \(C\). By performing this refinement, \(C\) is made to satisfy the forntier condition.
 
 If \(C\) is a \(2\)-dimensional sector cell, then its top and bottom are \(1\)-dimensional sector cells of \(\mathcal{D}\) and the side-wall of \(C\) is contained in cylinders \(\mathbf{c} \times \mathbb{R}\), where \(\mathbf{c}\) is a zero-dimensional cell which is an endpoint of \({\operatorname{proj}_{\mathbb{R}^{k-1}}}(C)\). It follows that \(C\) satisfies the frontier condition sits its top and bottom, which are one-dimensional cells, satisfy the frontier condition.
@@ -4535,37 +4567,30 @@ F = \{ x^2 + y^2 - 1 = 0 \}.
 Below is an excerpt from QEPCAD's output.
 
 \begin{verbatim}
+=======================================================
 Enter an informal description  between '[' and ']':
-[ Unit circle ]Enter a variable list:
-(x,y)Enter the number of free variables:
+[ Unit Circle ]
+Enter a variable list:
+(x,y)
+Enter the number of free variables:
 2
-Enter a Prenex formula:
-[ x^2 - y^2 = 1 ].
+Enter a prenex formula:
+[ x^2 + y^2 = 1 ].
 
 =======================================================
 
-...
+Before Normalization >
+g
+
+Before Projection (y) >
+g
+
+Before Choice >
+g
 
 Before Solution >
-d-nqf-formula y^2 - x^2 + 1 = 0
-
-Before Solution >
-d-input # input polynomials
-A_2,1  = input
-       = y^2 - x^2 + 1
-
-
-
-Before Solution >
-d-proj-pol # projection polynomials
-J_1,1= dis(A_2,1)
-       = 4 x^2 - 4
-
-
-
-Before Solution >
-d-proj-fac # projection factors
-P_1,1= fac(J_1,1) = fac(dis(A_2,1))
+d-proj-fac
+P_1,1  = fac(J_1,1) = fac(dis(A_2,1))
        = x + 1
 
 P_1,2  = fac(J_1,1) = fac(dis(A_2,1))
@@ -4573,12 +4598,84 @@ P_1,2  = fac(J_1,1) = fac(dis(A_2,1))
 
 
 A_2,1  = input
-       = y^2 - x^2 + 1
+       = y^2 + x^2 - 1
 
 
 
 Before Solution >
-d-cell(2,2) # the cell which coincides with the unit circle
+d-true-cells
+---------- Information about the cell (4,2) ----------
+
+Level                       : 2
+Dimension                   : 0
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,2))
+Signs of Projection Factors
+Level 1  : (+,0)
+Level 2  : (0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1
+             = 1.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+---------- Information about the cell (3,4) ----------
+
+Level                       : 2
+Dimension                   : 1
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,1))
+Signs of Projection Factors
+Level 1  : (+,-)
+Level 2  : (0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 0
+             = 0.0000000000
+Coordinate 2 = 1
+             = 1.0000000000
+
+
+----------------------------------------------------
+---------- Information about the cell (3,2) ----------
+
+Level                       : 2
+Dimension                   : 1
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,1))
+Signs of Projection Factors
+Level 1  : (+,-)
+Level 2  : (0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 0
+             = 0.0000000000
+Coordinate 2 = -1
+             = -1.0000000000
+
+
+----------------------------------------------------
 ---------- Information about the cell (2,2) ----------
 
 Level                       : 2
@@ -4603,7 +4700,24 @@ Coordinate 2 = 0
 
 
 ----------------------------------------------------
-...
+
+Before Solution >
+finish
+
+An equivalent quantifier-free formula:
+
+y^2 + x^2 - 1 = 0
+
+
+=====================  The End  =======================
+
+-----------------------------------------------------------------------------
+0 Garbage collections, 0 Cells and 0 Arrays reclaimed, in 0 milliseconds.
+488853 Cells in AVAIL, 500000 Cells in SPACE.
+
+System time: 9 milliseconds.
+System time after the initialization: 3 milliseconds.
+-----------------------------------------------------------------------------
 \end{verbatim}
 
 A QEPCAD cell \(C\) includes the following information
@@ -4706,8 +4820,10 @@ The QEPCAD algorithm has been modified to include construction of quasi-affine c
     \emph{Monotone Cells}
 
     Following the algorithm described in Section \ref{sec:monotone-algorithm}, construct the family of refinement points \[
-    {\cal R} := \{ {\cal R}_{\mathbf{b}} =  (c_1,\ldots,c_t ) \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \mathbb{R}^k \}
-    \] and add new polynomials (to \(\mathcal{A}\), along with their factors to \(\mathcal{F}\)) which are equal to zero at these refinement points.
+    {\cal R} := \{ {\cal R}_{\mathbf{b}} =  (c_1,\ldots,c_t ) \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1}  \}
+    \]
+    where is a \((0,\ldots,0)\)-cell in the decomposition induced by \({\cal E}\) on \(\mathbb{R}^k\),
+    and add new polynomials (to \(\mathcal{A}\), along with their factors to \(\mathcal{F}\)) which are equal to zero at these refinement points.
 
     For each refinement point \(c \in \mathbb{A}\) in each family \(\mathcal{R}_\mathbf{b}\), refine the sub-CAD of \(\mathbb{R}^{n-k}\) \(\mathcal{D}\) above the \(0\)-cell \(\mathbf{b}\) by intersecting it with straight lines and half-planes
     \[
@@ -5361,8 +5477,10 @@ as described in Section \ref{sec:lazard-n}. To obtain a refinement polynomial in
 
 Given the CAD \(\mathcal{D}\) of \(\mathbb{R}^n\) constructed in the lifting phase, both \texttt{MONOTONE()} and \texttt{FRONTIER()} produces a set of refinement points
 \[
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal D} \text{ on } \mathbb{R}^k \}.
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \mathbb{A}\mid \mathbf{b} \in \mathbb{R}^{k-1} \}.
 \]
+where
+\(\mathbf{b} \in \mathbb{R}^{k-1}\) is a \((0,\ldots,0)\)-cell in the decomposition induced by \({\cal D}\) on \(\mathbb{R}^k\).
 The function \texttt{REFINE()} computes refinements of \(\mathcal{D}\) to be compatible with these points. Each refinement point \((b_1,\ldots,b_{k-1},c) \in \mathbb{A}^k\), such that \((b_1,\ldots,b_k)\) is a \(0\)-dimensional cell, \(\mathbf{b}\), in the CAD induced by \(\mathcal{D}\) on \(\mathbb{R}^{k-1}\) is stored separately, is stored separately as a pair
 \[
 ((b_1,\ldots,b_{k-1},c), (m_1,\ldots,m_{k-1},m_k))
@@ -6033,7 +6151,7 @@ S := \{ (x,y,z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 - 1 = 0 \}.
 
 }
 
-\caption{Plot of the sphere from Example \\ref{exm:sphere}, showing critical points of projections onto one and two-dimensional coordinate subspaces, and their projections.}\label{fig:unnamed-chunk-2}
+\caption{Plot of the sphere from Example \\ref{exm:sphere}, showing critical points of projections onto one and two-dimensional coordinate subspaces, and their projections.}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 \begin{itemize}
@@ -7288,7 +7406,7 @@ C := \{ (x,y,z) \in \mathbb{R}^3 \mid 0 < x < 1, y > 0, x + y^2 < 1, z = x^2 + y
 
 }
 
-\caption{Plot of the 2-dimensional cell from Example \\ref{exm:qanm}.}\label{fig:unnamed-chunk-4}
+\caption{Plot of the 2-dimensional cell from Example \\ref{exm:qanm}.}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 \begin{itemize}
@@ -7327,7 +7445,7 @@ C := \{ (x,y,z) \in \mathbb{R}^3 \mid 0 < x < 1, y > 0, x + y^2 < 1, z = x^2 + y
 
 }
 
-\caption{Plot of the CAD with monotone cells, compatible with the 2-dimensional cell presented in Example \\ref{exm:qanm}.}\label{fig:unnamed-chunk-5}
+\caption{Plot of the CAD with monotone cells, compatible with the 2-dimensional cell presented in Example \\ref{exm:qanm}.}\label{fig:unnamed-chunk-7}
 \end{figure}
 
 \texttt{QEPCAD} output is presented below. Note the projection factor \texttt{M\_1\_3} defines the refinement point \(x = 1/2\).
@@ -7599,7 +7717,7 @@ each of which is already monotone.
   \[
   B := B_3 \cap {\operatorname{fr} \left( ( \right)}C_1) = B_3 \cap {\operatorname{fr} \left( ( \right)}C_2)
   \] which is not a cell of the CAD.
-  According to Lemma \ref{lem:lazard-5-13} (\citet{lazard10}, Proposition 5.13), the following situation should occur:
+  According to Proposition \ref{prp:lazard-5-13} (\citet{lazard10}, Proposition 5.13), the following situation should occur:
 
   \begin{quote}
   there exists a cell \(E\) of \(\mathcal{D}\) such that \(\dim(E) < \dim(C_1) = \dim((C_2)\) and \(\emptyset \neq B_3 \cap {\operatorname{fr} \left(  E  \right)} \neq B_3\).
@@ -7621,7 +7739,8 @@ each of which is already monotone.
   where \(t\) is a new variable.
 
   The Groebner basis for \(I_2\) contains the polynomial \(z\), which defines the refinement point \((0,0,0)\), which is already a cell in the CAD.
-  The Groebner bases for \(I_4\) and \(I_6\) both contain \(z-1\), defining the refinement point \((0,0,1)\), which was identified by Lemma \ref{lem:lazard-5-13}.
+  The Groebner bases for \(I_4\) and \(I_6\) both contain \(z-1\), defining the refinement point \((0,0,1)\), which was
+  identified by Proposition \ref{prp:lazard-5-13}.
 \end{itemize}
 
 Part of the QEPCAD output is now presented. In particular the projection factors, refinement points and the collection of cells which comprises the frontier of \(C\).
@@ -8205,7 +8324,7 @@ Note that \(C_B\) does not contain all points at which \(\varphi\) vanishes.
 
 }
 
-\caption{$C$, with ${\operatorname{fr} \left( C \right)}$ superimposed, from Example \\ref{exm:top-bottom-not-cylindrical}, demonstrating that $C_B$ is not the graph of a continuous function.}\label{fig:unnamed-chunk-8}
+\caption{$C$, with ${\operatorname{fr} \left( C \right)}$ superimposed, from Example \\ref{exm:top-bottom-not-cylindrical}, demonstrating that $C_B$ is not the graph of a continuous function.}\label{fig:unnamed-chunk-10}
 \end{figure}
 
 As discussed above, in relation to Example \ref{exm:top-bottom-not-cylindrical}, the frontier of a cylindrical cell

@@ -1,0 +1,153 @@
+``` {qepcad-sample}
+=======================================================
+Enter an informal description  between '[' and ']':
+[ Unit Circle ]
+Enter a variable list:
+(x,y)
+Enter the number of free variables:
+2
+Enter a prenex formula:
+[ x^2 + y^2 = 1 ].
+
+=======================================================
+
+Before Normalization >
+g
+
+Before Projection (y) >
+g
+
+Before Choice >
+g
+
+Before Solution >
+d-proj-fac
+P_1,1  = fac(J_1,1) = fac(dis(A_2,1))
+       = x + 1
+
+P_1,2  = fac(J_1,1) = fac(dis(A_2,1))
+       = x - 1
+
+
+A_2,1  = input
+       = y^2 + x^2 - 1
+
+
+
+Before Solution >
+d-true-cells
+---------- Information about the cell (4,2) ----------
+
+Level                       : 2
+Dimension                   : 0
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,2))
+Signs of Projection Factors
+Level 1  : (+,0)
+Level 2  : (0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 1
+             = 1.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+---------- Information about the cell (3,4) ----------
+
+Level                       : 2
+Dimension                   : 1
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,1))
+Signs of Projection Factors
+Level 1  : (+,-)
+Level 2  : (0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 0
+             = 0.0000000000
+Coordinate 2 = 1
+             = 1.0000000000
+
+
+----------------------------------------------------
+---------- Information about the cell (3,2) ----------
+
+Level                       : 2
+Dimension                   : 1
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,1))
+Signs of Projection Factors
+Level 1  : (+,-)
+Level 2  : (0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = 0
+             = 0.0000000000
+Coordinate 2 = -1
+             = -1.0000000000
+
+
+----------------------------------------------------
+---------- Information about the cell (2,2) ----------
+
+Level                       : 2
+Dimension                   : 0
+Number of children          : 0
+Truth value                 : T    by trial evaluation.
+Degrees after substitution  : Not known yet or No polynomial.
+Multiplicities              : ((1,2))
+Signs of Projection Factors
+Level 1  : (0,-)
+Level 2  : (0)
+----------   Sample point  ----------
+The sample point is in a PRIMITIVE representation.
+
+alpha = the unique root of x between 0 and 0
+      = 0.0000000000
+
+Coordinate 1 = -1
+             = -1.0000000000
+Coordinate 2 = 0
+             = 0.0000000000
+
+
+----------------------------------------------------
+
+Before Solution >
+finish
+
+An equivalent quantifier-free formula:
+
+y^2 + x^2 - 1 = 0
+
+
+=====================  The End  =======================
+
+-----------------------------------------------------------------------------
+0 Garbage collections, 0 Cells and 0 Arrays reclaimed, in 0 milliseconds.
+488853 Cells in AVAIL, 500000 Cells in SPACE.
+
+System time: 9 milliseconds.
+System time after the initialization: 3 milliseconds.
+-----------------------------------------------------------------------------
+```

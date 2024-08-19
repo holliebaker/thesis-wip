@@ -216,9 +216,11 @@ where $i_k \in \{1,\ldots,n\}$ is a parameter passed from step $k$ to $k+1$ in t
 This, again, reduces to the emptiness check.
 
 The second of these is $\rm{Empty}(S)$, where $S \subset \R^n$ is a semialgebraic set represented by a quantifier-free Boolean formula which is a conjunction of polynomial equations, inequations and inequalities. Note that an inequation $\{ f(\mathbf{x}) \ne 0 \}$ can be rewritten as $\{ f(\mathbf{x}) < 0 \lor f(\mathbf{x}) > 0 \}$, so it is possible to represent $S$ by two systems of polynomial equations and inequalities, or a Boolean formula containing the conjunction above. This permits various methods for checking emptiness. We may write $\rm{Empty}(S)$ as a quantifier elimination problem
-$$
-\exists \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = \ldots = f_s(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0.
-$$
+\begin{align*}
+\exists \mathbf{x} \in \R^n \mid\ & f_1(\mathbf{x}) = \ldots = f_s(\mathbf{x}) = 0,\\
+& s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0,\\
+& g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0.
+\end{align*}
 This problem can be decided using the singly-exponential quantifier elimination algorithm from Proposition \@ref(prp:bpr-qe) (@bpr2006, Algorithm 14.21), which, with one quantifier alternation, has complexity $(sd)^{O(n)}$ where $s$ is the number of different polynomials defining the set and $d$ their maximum degree -- singly exponential in the number of variables. Alternatively, the algorithm presented by @bpr98, which produces a witness point in every cell in a decomposition of the input set, may be used to decide emptiness. This algorithm also has complexity $(sd)^{O(n)}$.
 In practice, quantifier elimination can be performed using CAD. This, of course, has complexity doubly exponential in the number of variables: $(sd)^{O(1)^n}$ (see Proposition \@ref(prp:collins)).
 
@@ -297,7 +299,7 @@ k=1,h_{1}=2x,i_{1}=1,X''&:=Y_{1},F=\left\{ f_{1}=x_{3},f_{2}=x_{1}^{2}-x_{2}^{2}
 \partial h_{2}/\partial x_{1} & \partial h_{2}/\partial x_{3}
 \end{pmatrix}&=\det\begin{pmatrix}2 & 0\\
 0 & 1
-\end{pmatrix}=2\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid2\ne0\right\} =X''\\U_{2}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,x_{3}=0\right\} \\&\text{Since }i_{2}=3\text{ it is impossible to compute further derivatives.}\\&\text{We conclude that}\\Y_{2}&\text{ is smooth and has codimension }3.
+\end{pmatrix}=2\\Y_{2}&:=\left\{ \mathbf{x}\in X''\mid2\ne0\right\} =X''\\U_{2}&:=\left\{ \mathbf{x}\in\mathbb{R}^{3}\mid2x_{1}=0,x_{3}=0\right\} \\&\text{Since }i_{2}=3\text{ it is impossible to compute}\\ & \text{further derivatives.}\\&\text{We conclude that}\\Y_{2}&\text{ is smooth and has codimension }3.
 \end{align}
 
 As expected, the algorithm outputs the set of strata
@@ -415,8 +417,8 @@ discussed in Section \@ref(sec:strat-worked-example).
 
 ```
 Enter a variable list.
+Please enter a QEPCAD formula defining a basic semialgebraic set.
 (x,y,z)
-Please enter a QEPCAD formula defining a basic semialgebraic set(i.e., conjunction of equations and inequalities).
 [ z = 0 /\ x^2 - y^2 = 0 ].
 
 Stratification computed. Please select an option.

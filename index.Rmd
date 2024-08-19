@@ -12,6 +12,11 @@ github-repo: holliebaker/thesis
 description: "Hollie Baker's thesis"
 ---
 
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+# Set so that long lines in R will be wrapped:
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
+```
+
 # Introduction {#intro}
 
 \newcommand{\R}{\mathbb{R}}

@@ -94,38 +94,42 @@ Although the cell $X$ under consideration is a $2$-dimensional cylindrical cell 
 :::{.corollary #gamma-top-bottom}
 (to Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3))
 
-Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and set of one-dimensional curves associated with $C$ by $\gamma$. Then
+Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and $\gamma$ be the set of one-dimensional curves associated with $C$. 
+Then
+
+1. $X$ is a $(1,1)$-cell.
 
 1. The projection map $\projops{x_1,x_\alpha}\vert_C$ is injective.
 
-1. $X$ is a $2$-dimensional cylindrical sector cell.
-
 1. For each $c \in X'$, the family ${\cal I}(c)$ contains a single open interval.
 
-1. $\gamma$ consists of zero, one or two disjoint curve intervals which coincide with the top and bottom of $X$. Furthermore, connected components of $\gamma$ can be defined as the graph of continuous definable functions from $X'$ to $\R$, using the functions defining the cell $C$.
+1. $\gamma$ consists of zero, one or two disjoint curve intervals which coincide with the top and bottom of $X$. Furthermore, the connected components of $\gamma$ can be defined as the graphs of continuous definable functions from $X'$ to $\R$, using the functions defining the cell $C$.
 :::
 
-The above follows from @bgv15, Lemma 3.3 and the property that $C$ is the graph of a quasi-affine map. An alternative proof is given here.
+Corollary \@ref(cor:gamma-top-bottom) follows from @bgv15, Lemma 3.3 and the property that $C$ is the graph of a quasi-affine map. 
+A proof is presented below, which explicitly defines the functions which send points in $X'$ to points in each of the connected components of $\gamma$. 
 
 ::: {.proof}
-Since $C$ is the graph of a quasi-affine map from $X \to \opspan{x_2,\ldots,x_{\alpha - 1}}$, it follows that the projection map $\projops{x_1,x_\alpha}\vert_C$ is injective. This proves the first claim. The second claim follows by iteratively applying the projection defined in @bgv15, Lemma 3.3 to obtain the $2$-dimensional cylindrical sector cell $X$.
-By definition, $$
-X := \{ (x_1,t) \in \R^2 \mid x_1 \in X', \varphi(x_1) < t < \psi(x_1) \}
+Property (1) is proved by repeatedly applying the projection defined in Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3) to $C$ to obtain $X$. Property (2) 
+follows immediately from the fact that $X$ is $2$-dimensional and $C$ is the graph of a quasi-affine map.
+
+Since $X$ is a $2$-dimensional sector cell, by definition it is the semialgebraic set $$
+\{ (x_1,t) \in \R^2 \mid x_1 \in X', \varphi(x_1) < t < \psi(x_1) \}
 $$
 where $\varphi,\psi : X' \to \R$ are continuous definable functions such that $\varphi(x_1) < \psi(x_1)$ for all $x_1 \in X'$.
-Note that $X$ may not be bounded from below (resp. above). In this case, we take $\varphi(x_1) = -\infty$ (resp. $\psi(x_1) = \infty$) for all $\mathbf{x} \in X'$. Functions $\varphi$ and $\psi$ are either infinite or finite at every point in $X'$, otherwise, new one-dimensional section cells would exist whose projections onto $\R^1$ form a proper subset of $X'$. This would contradict the cylindrical property.
-It is clear from this definition that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving the third claim. It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of one-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if finite).
+Note that $X$ may not be bounded from below (resp. above). 
+In this case, $\varphi$ (resp. $\psi$) are omitted from the definition of $X$, as in Definition \@ref(def:cells).
+It is clear that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving (3). 
+It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of one-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if they exist).
 
-The proof of the final claim is completed by defining the functions $\varphi$ and $\psi$.
-
+We now prove (4) by defining $\varphi$ and $\psi$ using the definition of cylindrical cells. 
 Since $C' := \projop{\alpha - 1}(C)$ is a $(1,\ldots,0,0)$-cell, it is the graph of a continuous definable map $\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : X' \to \R^{\alpha - 2}$ and $$
 C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\}
 $$
 where $f,g : \R^{\alpha - 1} \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
-Again, if not bounded from above (resp. below), $f$ (resp. $g$) are taken to be $-\infty$ (resp. $\infty$) at every point.
-Observe that the graph of $f$ (if finite) is the bottom of $C$ and the graph of $g$ (if finite) is the top of $C$.
+Again, if not bounded from below (resp. above), $f$ (resp. $g$) are omitted.
 
-Writing $C$ in terms of $x_1 \in X'$, $f$, $g$ and $\mathbf{h}$, we obtain the functions
+Finally, we write $C$ in terms of $x_1 \in X'$, $f$, $g$ and $\mathbf{h}$, we obtain the functions
 \begin{align}
 \varphi &:\> C'' \to \R & \psi &:\> C'' \to \R\\
 \varphi(x_1) &= f(x_1,\mathbf{h}(x_1)) & \psi(x_1) &= g(x_1,\mathbf{h}(x_1))
@@ -458,9 +462,10 @@ such that $(a,b) \subset \R$. Then $Y$ is a monotone cell.
 :::
 
 ::: {.proof}
-Consider a quasi-affine component $f_j : (a,b) \to \R$ of the map $\mathbf{f}$. By definition, $f_j$ is either strictly increasing in, strictly decreasing in, or independent of $x_i$. Assume for contradiction that $Y$ is not monotone and the intersection $Z := Y \cap \{ x_i = c \}, c \in \R$ is not connected. Since $Y$ itself is connected, $Z$ would consist of two isolated points. It is clear that the projection map $\projops{x_i}\vert_Y$ is not injective and its image would be one-dimensional (if not, $f_j$ would be constant and equal to $c$ and Z would have one connected component).
-
-The proof is completed by applying this argument to each component of the map $\mathbf{f}$.
+Assume for contradiction that $Y$ is not monotone. Then intersection $Z := Y \cap \{ x_i = c \}$, for some $1\le i \le n$ and $c \in \R$, is not connected. 
+$Z$ cannot contain an interval, since $Y$ is connected, one-dimensional and the graph of a continuous map. 
+Hence, $Z$ consists of more than one isolated point, which implies that $\projops{i}\vert_Y$ is not injective, but its image is one-dimensional.
+This contradicts the assumption that $Y$ is the graph of a quasi-affine map.  
 :::
 
 Suppose that $2 \le j \le \alpha - 1$.
@@ -593,12 +598,15 @@ $$({\cal E}, {\cal A})$$
 
 **Output:**
 $$
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^k \}
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1}  \}
 $$
+where $\mathbf{b} \in \R^{k-1}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^k$,
 such that, for each ${\cal R}_\mathbf{b}$, intersecting the sub-cad $\cal D$ above $\mathbf{b}$ with straight lines and half-planes of the kind $\{x_1 < c_i \}, \{x_1 = c_i \}, \{x_1 > c_i\}, 1 \le i \le t$ results in a refinement of $\cal D$ such that each true cell of $\cal D$ with dimension at most $2$ is monotone.
 
 First, define a subroutine
-$${\rm sub}_{\mathbf{y}} (g) \mid g \in \Z[y_1,\ldots,y_m,x_1,\ldots,x_n], \mathbf{y} \in \A^m, n > 0,$$
+$$
+{\rm sub}_{\mathbf{y}} (g) \mid g \in \Z[y_1,\ldots,y_m,x_1,\ldots,x_n], \mathbf{y} \in \A^m, n > 0,
+$$
 which computes $h := g(\mathbf{y}) \in \A[x_{1},\ldots,x_m]$ and returns the normalised polynomial of $h$, in $\Z[x_{m+1},\ldots,x_n]$ (see Section \@ref(sec:sub-cad)).
 
 It will be convenient to overload this operator and write ${\rm sub}_{\mathbf{y}} (L)$, where $L$ is a set (or list) of polynomials to mean $\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}$.
