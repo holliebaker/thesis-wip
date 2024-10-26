@@ -1,6 +1,7 @@
 # A Novel algorithm For Obtaining The Frontier Condition On A Cylindrical Decomposition Of $n$-Dimensional Space { #sec:novel-frontier }
 
-So far, we have been concerned only with cylindrical algebraic decompositions compatible with subsets of $\R^n$ having dimension at most two. We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
+So far, we have been concerned only with cylindrical algebraic decompositions compatible with subsets of $\R^n$ having
+dimension at most $2$. We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
 
 We begin by presenting some examples of cylindrical cells and their frontiers. Example \@ref(exm:top-bottom-not-cylindrical) provides motivation for this novel algorithm.
 Many cylindrical section cells are well-behaved, with their top and bottom being cylindrical section cells.
@@ -346,7 +347,8 @@ S := \{ -1 < x < 1, \vert x\vert <y <1, z=\vert x/y\vert \}
 $$
 from Example \@ref(exm:top-bottom-not-cylindrical).
 
-1. Let $F$ be a QFF defining $S$ and compute $\mathcal{E} := \mathbf{true}\ \&\ \{F\}$, a CAD of $\R^3$ compatible with $S$ (see Table \@ref(tab:cells-of-e) and Figure \@ref(fig:initial-cad)). Observe that $S$ is a single 2-dimensional cylindrical $(1,1,0)$-cell of $\mathcal{E}$.
+1. Let $F$ be a QFF defining $S$ and compute $\mathcal{E} := \mathbf{true}\ \&\ \{F\}$, a CAD of $\R^3$ compatible with
+$S$ (see Table \@ref(tab:cells-of-e) and Figure \@ref(fig:initial-cad)). Observe that $S$ is a single $2$-dimensional cylindrical $(1,1,0)$-cell of $\mathcal{E}$.
 The initial pair $$
 (\mathcal{E}_{(1,1)}, \mathcal{F}_{(1,1)}) = (\mathcal{E}, \emptyset).
 $$

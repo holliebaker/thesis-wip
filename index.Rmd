@@ -155,7 +155,8 @@ Minimising the number of polynomials produced by the projection operation means 
 A different strand of research, which is the main focus of this thesis, is to compute cylindrical decompositions in which the cells have certain desirable properties. This contrasts with the optimisations previously discussed, as these CADs often contain more cells than those constructed using the classical algorithm. However, this trade-off is worthwhile because the additional conditions make the CADs more powerful.
 Indeed, @pianomovers1983 apply cylindrical algebraic decomposition to a motion planning problem in which one wants to find a path, or prove that none exists, for a rigid (possibly hinged) body to move through a space defined by a configuration of walls. This has obvious applications in robotics. In order to solve this problem, cells are required to be arranged in a particular way: the closure of every cell must be a union of cells in the decomposition. Using classical CAD, this condition cannot always be satisfied, but @pianomovers1983 prove the classical algorithm is sufficient if a linear change of coordinates is made.
 These CADs are also useful if we wish to compute topological properties of semialgebraic sets. For example, @reif1979 gives an algorithm for computing the homology groups of an arbitrary real algebraic variety. As we alluded to earlier, over the reals, a formula cannot tell us much about the set it defines, so this is useful for deducing properties of semialgebraic sets, e.g., how many "holes" it has, or whether it is connected.
-Along similar lines, @arnon1984 present an algorithm to compute a CAD of the plane along with information about which cells "touch each other". They extend this result to 3-dimensional space in [@arnon1987]. In order to compute these cell adjacencies, we again need the property that the closure of every cell is a union of cells in the decomposition. @arnon1987 achieve this without making a change of coordinates.
+Along similar lines, @arnon1984 present an algorithm to compute a CAD of the plane along with information about which
+cells "touch each other". They extend this result to $3$-dimensional space in [@arnon1987]. In order to compute these cell adjacencies, we again need the property that the closure of every cell is a union of cells in the decomposition. @arnon1987 achieve this without making a change of coordinates.
 
 Another desirable property is that every cell in a cylindrical decomposition is a topologically regular cell. Loosely speaking, this means that each $k$-dimensional cell $C$ and its closure $\cl{C}$ is homeomorphic to the pair $(B, \cl{B})$, where $B$ is the $k$-dimensional open ball and $\cl{B}$ is its closure.
 This property can fail in the region of points where polynomials are not "well behaved".
@@ -187,9 +188,17 @@ $$
 $$
 I.e., commas represent conjunction. When not ambiguous, this convention will be used throughout.
 
-@bgv15 present a constructive proof that, given a family $V := (V_1,\ldots,V_k)$ of bounded definable sets in $\R^n$ such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, there exists a cylindrical decomposition in which each $V_i, 1 \le i \le k$ is a union of cells, such that every cell contained in $V_i$ is monotone and its closure is the union of cells in the decomposition. A monotone cell is a stronger property than topological regularity and, by @bgv13 Theorem 1, all monotone cells are topologically regular. Their proof explains how such a decomposition can be constructed and depends on classical CAD and simple tools such as refinements by linear equations and splitting two-dimensional cells by intersecting it with a given curve interval.
+@bgv15 present a constructive proof that, given a family $V := (V_1,\ldots,V_k)$ of bounded definable sets in $\R^n$
+such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, there exists a cylindrical decomposition in which each $V_i, 1 \le
+i \le k$ is a union of cells, such that every cell contained in $V_i$ is monotone and its closure is the union of cells
+in the decomposition. A monotone cell is a stronger property than topological regularity and, by @bgv13 Theorem 1, all
+monotone cells are topologically regular. Their proof explains how such a decomposition can be constructed and depends
+on classical CAD and simple tools such as refinements by linear equations and splitting $2$-dimensional cells by intersecting it with a given curve interval.
 The main goal of this thesis will be to design and implement an algorithm, based on this result, for constructing such a decomposition in the semialgebraic case.
-The constructive proof works for more general definable sets and, in contrast to e.g. @collins1975 or @lazard10, is geometric in nature. As such, the properties we need to satisfy in order to complete the construction are described in detail but not the methods used to obtain them. For example, we are asked to consider critical points of the smooth 2-dimensional locus of a union of definable sets, or consider the boundary of a 2-dimensional cylindrical cell.
+The constructive proof works for more general definable sets and, in contrast to e.g. @collins1975 or @lazard10, is
+geometric in nature. As such, the properties we need to satisfy in order to complete the construction are described in
+detail but not the methods used to obtain them. For example, we are asked to consider critical points of the smooth
+$2$-dimensional locus of a union of definable sets, or consider the boundary of a $2$-dimensional cylindrical cell.
 We will use a combination of fundamental tools in differential geometry, e.g., partial derivatives and Jacobi determinants, well-known algorithms in algebraic geometry such as smooth stratification and quantifier elimination, and ideas from optimisation, such as Lagrange multipliers.
 
 A similar idea to that presented by @bgv15 is discussed by @vdd1998 (Section 2.19), who introduces the concept of a Van-den-Dries regular cell.
@@ -199,7 +208,7 @@ A similar idea to that presented by @bgv15 is discussed by @vdd1998 (Section 2.1
 We say that a cylindrical cell $C \subset \R^n$ is Van-den-Dries regular if, for all $i \in \{1,\ldots,n\}$, if two distinct points $\mathbf{x},\mathbf{y} \in C$ are such that $x_1 = y_1, \ldots, x_{i-1} = y_{i-1}, x_{i+1}, \ldots, x_n = y_n$, but $x_i < y_i$, then for all $z_i$ such that $x_i < z_i < y_i$, $(x_1,\ldots,x_{n-1},z_i,x_{i+1},\ldots,x_n) \in C$.
 :::
 
-All two-dimensional Van-den-Dries regular cells are topologically regular, so if $\dim(V_1\cup\ldots\cup V_k) \le 2$, the
+All $2$-dimensional Van-den-Dries regular cells are topologically regular, so if $\dim(V_1\cup\ldots\cup V_k) \le 2$, the
 decomposition described by @vdd1998 will consist of topologically regular cells. The result of @bgv15 is stronger in that the monotone decomposition is obtained for a family of sets which individually have dimension at most two.
 
 Part of the result from @bgv15 will be generalised to sets of arbitrary dimension. In particular, a novel algorithm for constructing a cylindrical decomposition, compatible with a semialgebraic set and such that the boundary of every cell is the union of cells in the decomposition, will be presented. (This work was presented, in extended abstract form, at CASC 2023 and has also been submitted to the Journal of Symbolic computation).
@@ -224,7 +233,7 @@ For example, the algebraic set
 $$
 S := \{ x y = 0 \}
 $$
-has codimension one, and thus can be defined by a single polynomial. However, it is not smooth, since $S' = (0,0)$ is a singular point of $S$. $S'$ has codimension $2$ and it is clear that it can be written using two polynomials
+has codimension $1$, and thus can be defined by a single polynomial. However, it is not smooth, since $S' = (0,0)$ is a singular point of $S$. $S'$ has codimension $2$ and it is clear that it can be written using two polynomials
 $$
 S' = \{ x = 0, y = 0 \}.
 $$
@@ -333,7 +342,10 @@ which is also an upper bound on the number of cells in the CAD, number of polyno
 :::
 
 Finally, Chapter \@ref(sec:frontier) describes how to complete the construction described in @bgv15, Theorem 3.20, by refining the CAD such that it satisfies the frontier condition. Section \@ref(sec:frontier-bgv) describes how the construction given in the last part of the proof of @bgv15, Theorem 3.20 can be applied to the CAD $\mathcal{D'}$, produced by the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) to produce a refinement $\mathcal{D''}$ of $\mathcal{D'}$ such that the closure of every cell of $\mathcal{D'}$ contained in $V_1\cup \ldots \cup V_k$ is the union of some cells of $\mathcal{D''}$.
-In Section \@ref(sec:lazard-3), an algorithm, due to @lazard10, for constructing an $\mathbf{F}$-invariant CAD of $\R^n, n \le 3$ satisfying the frontier condition and containing only topologically regular cells is presented. Section \@ref(sec:lazard-n) explores how this method can be generalised to our situation. In order to do this, the results of @lazard10, Section 5.3 are generalised from $\R^3$ to the two-dimensional cells in a CAD of $\R^n, n > 3$.
+In Section \@ref(sec:lazard-3), an algorithm, due to @lazard10, for constructing an $\mathbf{F}$-invariant CAD of $\R^n,
+n \le 3$ satisfying the frontier condition and containing only topologically regular cells is presented. Section
+\@ref(sec:lazard-n) explores how this method can be generalised to our situation. In order to do this, the results of
+@lazard10, Section 5.3 are generalised from $\R^3$ to the $2$-dimensional cells in a CAD of $\R^n, n > 3$.
 The following is proved.
 
 ::: { .theorem #lazard-rn }

@@ -107,9 +107,10 @@ Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cell of $\cal
 If every cell in $\cal D$ satisfies the frontier condition, then the cylindrical decomposition $\cal D$ satisfies the frontier condition.
 :::
 
-We saw in Example \@ref(exm:top-bottom-not-cylindrical) that the top and bottom of a 2-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
-However, it is clear from the cylindrical property that, if $C$ is a 2-dimensional section cell satisfying the frontier condition in a decomposition $\cal D$, then the top and bottom of $C$ are single cylindrical cells.
-If $C$ is a 2-dimensional section cell, then it is said to satisfy the strong frontier condition if the one-dimensional components of its side-wall are 1-dimensional section cells. This condition may be impossible, even in $\R^3$, as Example \@ref(exm:side-wall) demonstrates.
+We saw in Example \@ref(exm:top-bottom-not-cylindrical) that the top and bottom of a $2$-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
+However, it is clear from the cylindrical property that, if $C$ is a $2$-dimensional section cell satisfying the frontier condition in a decomposition $\cal D$, then the top and bottom of $C$ are single cylindrical cells.
+If $C$ is a $2$-dimensional section cell, then it is said to satisfy the strong frontier condition if the
+$1$-dimensional components of its side-wall are $1$-dimensional section cells. This condition may be impossible, even in $\R^3$, as Example \@ref(exm:side-wall) demonstrates.
 
 ::: {.example #side-wall}
 Consider the two cylindrical cells
@@ -123,8 +124,14 @@ $$
 I_1 = \{ (0,0,z) \mid 0 \le z \le 1/2 \}, I_2 = \{ (0,0,z) \mid 1/2 \le z \le 1 \}
 $$
 and the point $$v = (0,0,1/2).$$
-Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only one-dimensional component of the side-wall of $V$ and $I_1$ is the only one-dimensional component of the side-wall of $W$. In order to obtain the strong frontier condition, we need to partition $V$ into (at least) three cylindrical cells $V',V'',V'''$, one of which, say $V''$, will be one-dimensional. $V''$ should have endpoint $v$ (i.e., $\cl{V''} \cap I = v$).
-The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of the projection map $W' := \projop{2}^-1\vert_{\cl{W}}(c)$ would satisfy the condition $\cl{W'} \cap I = v'$, where $v' = (0,0,1/4)$. However, $v'$ must be a zero-dimensional cell of the decomposition, which means we need to perform another refinement of $I$. An infinite sequence of refinements, introducing a new 0-dimensional cell $(0,0,1/2^k), k \in \N_{> 0}$, will take place. Thus, a decomposition in in which the side-walls of $V$ and $W$ are single 1-dimensional cells cannot exist.
+Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only $1$-dimensional component of the side-wall of $V$ and
+$I_1$ is the only $1$-dimensional component of the side-wall of $W$. In order to obtain the strong frontier condition,
+we need to partition $V$ into (at least) three cylindrical cells $V',V'',V'''$, one of which, say $V''$, will be $1$-dimensional. $V''$ should have endpoint $v$ (i.e., $\cl{V''} \cap I = v$).
+The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of the projection map $W' :=
+\projop{2}^-1\vert_{\cl{W}}(c)$ would satisfy the condition $\cl{W'} \cap I = v'$, where $v' = (0,0,1/4)$. However, $v'$
+must be a $0$-dimensional cell of the decomposition, which means we need to perform another refinement of $I$. An
+infinite sequence of refinements, introducing a new $0$-dimensional cell $(0,0,1/2^k), k \in \N_{> 0}$, will take place.
+Thus, a decomposition in in which the side-walls of $V$ and $W$ are single $1$-dimensional cells cannot exist.
 :::
 
 ::: { .proposition #delete-zero-index }
@@ -139,7 +146,7 @@ is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the g
 ::: { .proposition }
 [@bgv15, Lemma 3.4]
 
-Let $C \subset \R^n$ be a 2-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall $W \subset \fr{C}$ has exactly two connected components, each of which is either a point or a closed curve interval.
+Let $C \subset \R^n$ be a $2$-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall $W \subset \fr{C}$ has exactly two connected components, each of which is either a point or a closed curve interval.
 :::
 
 ::: {.remark}

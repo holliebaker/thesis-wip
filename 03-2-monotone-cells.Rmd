@@ -1,9 +1,10 @@
 # Monotone Cells { #sec:monotone-cells }
 
-So far, we have constructed an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$, compatible with a family of bounded semialgebraic sets $V_1,\ldots,V_k$ of dimension at most two, in which every cell $C\subset V_1\cup \ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
+So far, we have constructed an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$, compatible with a family of bounded
+semialgebraic sets $V_1,\ldots,V_k$ of dimension at most $2$, in which every cell $C\subset V_1\cup \ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
 We now return to [@bgv15 Theorem 3.20] and discuss how to obtain monotone cells, starting with this quasi-affine decomposition.
 
-We first present a motivating example, of a 2-dimensional cylindrical cell which is quasi-affine but not monotone.
+We first present a motivating example, of a $2$-dimensional cylindrical cell which is quasi-affine but not monotone.
 
 ::: {.example #monotone-cells}
 [@bgv15, Example 3.2]
@@ -19,7 +20,7 @@ Let $Y \subset \R^3$ be the graph of function $\phi$ on $\Delta$. Observe that $
 However, $y \cap \{ z = 3/4 \}$ is not connected, hence $\phi\vert_\Delta$ is not a monotone function and $Y$ is not a monotone cell.
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the 2-dimensional quasi-affine cylindrical cell $Y$ defined in Example \\ref{exm:monotone-cells}."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the $2$-dimensional quasi-affine cylindrical cell $Y$ defined in Example \\ref{exm:monotone-cells}."}
 knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 ```
 
@@ -46,7 +47,7 @@ Their proof proceeds by induction on $n$.
 
 - The base case, $n=1$ is straightforward, since $(0)$ and $(1)$-cells are already monotone.
 
-- When $n>1$, consider each two-dimensional cell $C$ of $\cal D$ and let $C'' := \projop{1}(C)$
+- When $n>1$, consider each $2$-dimensional cell $C$ of $\cal D$ and let $C'' := \projop{1}(C)$
 
   - If $\dim(C'') = 0$, apply the inductive hypothesis to the sub-decomposition of $\cal D$ above $C''$.
   - Otherwise, $C$ has index $\{1,i_2,\dots,i_n\} \in \{0,1\}^n$. Let $\alpha$ be the smallest among $\{2,\dots,n\}$ such that $i_\alpha = 1$. Since $\dim(C) = 2$, only $i_1$ and $i_\alpha$ are equal to $1$, while all other elements of the index are equal to $0$. By @bgv15, Lemma 3.3, $\projops{x_1,\ldots,x_{i-1},x_{i+1},\ldots,x_n}(C)$, for all $i \in \{2,\ldots,\alpha-1,\alpha+1,\ldots,n\}$, is a cylindrical cell and $C$ is the graph of a continuous function from this cell to $\opspan{x_i}$.
@@ -82,10 +83,11 @@ $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
-## Two-dimensional monotone sector cells {#sec:monotone-sectors}
+## 2-dimensional monotone sector cells {#sec:monotone-sectors}
 
 Let $C$ be an $(i_1,\ldots,i_n)$-cell such that $i_1 = i_\alpha = 1$ and all other elements of the index are equal to $0$.
-The proof of Proposition \@ref(prp:bgv-monotone) proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is refined such that each $Y \subset X$ is a monotone 2-dimensional sector cell.
+The proof of Proposition \@ref(prp:bgv-monotone) proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is
+refined such that each $Y \subset X$ is a monotone $2$-dimensional sector cell.
 Consider the intersection $X \cap \{x_1 = c\}$ for all $c\in \R$. This intersection is a finite union of pairwise disjoint intervals. Let ${\cal I} (c)$ be the family of these intervals associated with the point $c$. Define
 $$
 \gamma := \{ (x_1,x_\alpha) \in \opspan{x_1,x_\alpha} \mid x_\alpha \text{ is an endpoint of an interval in } {\cal I}(x_1) \}.
@@ -95,7 +97,8 @@ Although the cell $X$ under consideration is a $2$-dimensional cylindrical cell 
 :::{.corollary #gamma-top-bottom}
 (to Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3))
 
-Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and $\gamma$ be the set of one-dimensional curves associated with $C$.
+Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$.
+Suppose we have the family ${\cal I}(c), c \in X'$ and $\gamma$ be the set of $1$-dimensional curves associated with $C$.
 Then
 
 1. $X$ is a $(1,1)$-cell.
@@ -121,7 +124,7 @@ where $\varphi,\psi : X' \to \R$ are continuous definable functions such that $\
 Note that $X$ may not be bounded from below (resp. above).
 In this case, $\varphi$ (resp. $\psi$) are omitted from the definition of $X$, as in Definition \@ref(def:cells).
 It is clear that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving (3).
-It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of one-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if they exist).
+It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of $1$-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if they exist).
 
 We now prove (4) by defining $\varphi$ and $\psi$ using the definition of cylindrical cells.
 Since $C' := \projop{\alpha - 1}(C)$ is a $(1,\ldots,0,0)$-cell, it is the graph of a continuous definable map $\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : X' \to \R^{\alpha - 2}$ and $$
@@ -191,7 +194,7 @@ and, since $C'$ is a section cell, there exist polynomials
 $$
 g_2 \in {\cal A}_2,\ldots,g_{\alpha - 1} \in {\cal A}_{\alpha - 1}
 $$ such that $g_i(\mathbf{x}) = 0$ for all $1\le i \le \alpha - 1$ and $\mathbf{x} \in (C')$.
-Therefore, there exists a one-dimensional algebraic variety
+Therefore, there exists a $1$-dimensional algebraic variety
 $$
 V' := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha - 1}(\mathbf{x}) = 0 \right\}
 $$
@@ -433,14 +436,14 @@ It follows that $\mathbf{x} \in K^n$ is a common zero of the elements of $I \cap
 <!-- TODO this property came from the wiki page on resultants. does it need proving? -->
 :::
 
-## Two-dimensional monotone section cells { #sec:monotone-sections }
+## 2-dimensional monotone section cells { #sec:monotone-sections }
 
 Let $X := \projops{x_1,x_\alpha}(C)$ and $(c_1,\ldots,c_r)$ be the refinement points computed in the previous section such that
 $$
 Y := \{ c_i < x_1 < c_{x+1}\} \cap X,
 $$
-for some $1 \le i \le r$, is a two-dimensional monotone sector cell.
-Let us return to [@bgv15, Theorem 3.18] to further refine $Y$ such that every two-dimensional section cell is a monotone cell.
+for some $1 \le i \le r$, is a $2$-dimensional monotone sector cell.
+Let us return to [@bgv15, Theorem 3.18] to further refine $Y$ such that every $2$-dimensional section cell is a monotone cell.
 
 The procedure for computing the refinement of $Y$ such that $f_j$ is a monotone function, described in the proof of @bgv15, Theorem 3.18, proceeds as follows.
 Let $f_j : Y \to \opspan{x_j}$ be a component of the quasi-affine map $\mathbf{f} : X \to \R$. Since $\mathbf{f}$ is quasi-affine, each component of $\mathbf{f}$ is quasi-affine and the restriction of component $f_j$ to $Y$ is quasi-affine since $Y \subset X$.
@@ -465,8 +468,9 @@ such that $(a,b) \subset \R$. Then $Y$ is a monotone cell.
 
 ::: {.proof}
 Assume for contradiction that $Y$ is not monotone. Then intersection $Z := Y \cap \{ x_i = c \}$, for some $1\le i \le n$ and $c \in \R$, is not connected.
-$Z$ cannot contain an interval, since $Y$ is connected, one-dimensional and the graph of a continuous map.
-Hence, $Z$ consists of more than one isolated point, which implies that $\projops{i}\vert_Y$ is not injective, but its image is one-dimensional.
+$Z$ cannot contain an interval, since $Y$ is connected, $1$-dimensional and the graph of a continuous map.
+Hence, $Z$ consists of more than one isolated point, which implies that $\projops{i}\vert_Y$ is not injective, but its
+image is $1$-dimensional.
 This contradicts the assumption that $Y$ is the graph of a quasi-affine map.
 :::
 
@@ -475,7 +479,7 @@ Since
 $$
 \projops{x_j,x_\alpha}(C)
 $$
-is one-dimensional, connected and the graph of a quasi-affine map, it follows from Lemma \@ref(lem:one-dim-qa-is-monotone) that $\projops{x_j,x_\alpha}(C)$ is a monotone cell and $f_j\vert_Y$ is already a monotone function. No refinement is needed.
+is $1$-dimensional, connected and the graph of a quasi-affine map, it follows from Lemma \@ref(lem:one-dim-qa-is-monotone) that $\projops{x_j,x_\alpha}(C)$ is a monotone cell and $f_j\vert_Y$ is already a monotone function. No refinement is needed.
 
 ### Case 2: $\alpha + 1 \le j \le n$
 
@@ -493,8 +497,8 @@ $$
 If $\dim(Z) < 2$, then it is clear that $\dim(Z) = 1$, because
 $$
 Y' := \projop{1}(C)
-$$ is one-dimensional.
-It follows that $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ coincide. Since $Z$ is one-dimensional, connected and the graph of a quasi-affine map, Lemma \@ref(lem:one-dim-qa-is-monotone) implies that $f_j$ is already monotone and no refinement is needed.
+$$ is $1$-dimensional.
+It follows that $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ coincide. Since $Z$ is $1$-dimensional, connected and the graph of a quasi-affine map, Lemma \@ref(lem:one-dim-qa-is-monotone) implies that $f_j$ is already monotone and no refinement is needed.
 
 On the other hand, if $\dim(Z) = 2$, since $\mathbf{f}$ is quasi-affine, $\projops{x_1,x_j}\vert_C$ is injective.
 Let $Z_T$ be the graph of $\sup_{x_\alpha} f_j$. Despite the notation, $Z_T$ is not necesarily the top of $Z$. In particular, $Z_T$ may have non-empty intersection with $Z$.
@@ -516,7 +520,7 @@ $$\{ b_{i,1}, \ldots, b_{i,k_i} \} \subset (b_i, b_{i+1})
 $$ such that, for all $1 \le j < k_i$, $C_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}$ is the graph of a continuous map.
 In particular, $C_T \cap \{ b_{i,j} < x_i < b_{i,j+1} \}$ is the graph of $\mathbf{f}\vert_{Y_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}}$.
 
-Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$) so that, $C_T$ and $C_B$, if non-empty, are split into one-dimensional continuous curves which are graphs of continuous functions, and the intervals above $0$-dimensional blow-up points. Once this property has been satisfied, we are left with a similar construction of optimisation with constraints as in Section \@ref(sec:lagrange-refinement).
+Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$) so that, $C_T$ and $C_B$, if non-empty, are split into $1$-dimensional continuous curves which are graphs of continuous functions, and the intervals above $0$-dimensional blow-up points. Once this property has been satisfied, we are left with a similar construction of optimisation with constraints as in Section \@ref(sec:lagrange-refinement).
 
 ### Critical points of the top and bottom of C
 
@@ -533,7 +537,8 @@ Begin with $j := \alpha+1$ so that $C'$ is a cylindrical sector cell and there e
 By definition $$
 C^j_T = \cl{C^j} \cap (C'_T \times \R)
 $$ and there exists a polynomial $g_j \in {\cal A}_j$ such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} \in C^j_T$. Since $C^j_T$ is either empty or the graph of a continuous function everywhere except, possibly, over a finite number of blow-up points, we need to find $x_1$-coordinates of points in $C'_T$ such that $g_j$ vanishes over an open interval.
-Since $C^j_T$ is one-dimensional, one way to achieve this is by computing a smooth stratification of $C^j_T$. If the projection of a one-dimensional stratum onto $x_1$ is a $0$-dimensional point $b \in \R$, then $b$ is the $x_1$-coordinate of a blow-up point.
+Since $C^j_T$ is $1$-dimensional, one way to achieve this is by computing a smooth stratification of $C^j_T$. If the
+projection of a $1$-dimensional stratum onto $x_1$ is a $0$-dimensional point $b \in \R$, then $b$ is the $x_1$-coordinate of a blow-up point.
 
 Alternatively, since the refinement points form a $0$-dimensional semialgebraic subset of $\R$, this set can be represented as a first-order Boolean formula
 $$
@@ -555,7 +560,7 @@ such that each of $C^j_T$ and $C^j_B$ is either empty or the graph of a continuo
 The process is completed by induction on $j$. Suppose that the refinement has been performed for $\alpha + 1 \le j$. If $j = n$ we are done, and $C$ is now monotone. Otherwise, we proceed to $j+1$. By the induction hypothesis, we know that $C^{j}_T \cap \{b_{j-1,i} < x_1 < b_{j-1,i+1}\}, 1 \le i < r_{j}$ is either empty or the graph of a continuous (monotone) function.
 If $C^{j}_T = \emptyset$, there is nothing to do as $C^{j+1}_T$ is empty, too, and the process will terminate.
 Otherwise, the new constraint $g_{j} \in {\cal A}_{j}$ is the polynomial defining $C^{j}_T$ and $g_j \in {\cal A}_j$ can be found such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} \in C^{j+1}_T$.
-Perform the same computation described above, to refine $C^{j+1}_T$ such that one-dimensional components are graphs of continuous, monotone functions. Repeat with $C^{j+1}_B$.
+Perform the same computation described above, to refine $C^{j+1}_T$ such that $1$-dimensional components are graphs of continuous, monotone functions. Repeat with $C^{j+1}_B$.
 As before, a set of refinement points
 $$
 \{b_{j+1,1}, \ldots, b_{j+1,r_{j+1}}\}
@@ -565,7 +570,7 @@ is obtained.
 The union of sets of refinement points $$
 \{b_{\alpha + 1,1}, \ldots, b_{\alpha + 1,r_{\alpha + 1}}\} \cup \ldots \cup \{b_{n,1}, \ldots, b_{n,r_n}\}
 $$
-forms the refinement of $C$ into two-dimensional monotone cells.
+forms the refinement of $C$ into $2$-dimensional monotone cells.
 
 Altogether, we have proved the following.
 
@@ -582,7 +587,7 @@ Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, whi
 
 ::: {.Remark #monotone-sub-cad }
 Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm) can also be applied to
-two-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CAD of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
+$2$-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CAD of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
 :::
 
 ## Implementation details
@@ -709,7 +714,8 @@ by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 The correctness of the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) follows from @bgv15, Theorem 3.20 and
 Lemma 3.19, and is proved in Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm).
 The algorithm described in Section \@ref(sec:monotone-algorithm) considers each $2$-dimensional cell in a sub-CAD $\mathcal{E}$ of $\R^n$ above a $0$-dimensional cell $\mathbf{b} \in \R^{k-1}$. This is exactly the inductive step of @bgv15, Theorem 3.20, where an $(i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)$-cell, where $i_1 = i_\alpha = 1$, is considered.
-By Corollary \@ref(cor:gamma-top-bottom) to $C$, the two-dimensional subset $X \subset \opspan{x_1,x_\alpha}$ is obtained. The first part of @bgv15, Lemma 3.18 describes how $X$ should be refined into two-dimensional semi-monotone sets. The construction described in Section \@ref(sec:quasi-affine) explains how to obtain the set of refinement points $(c_1,\ldots,c_t) \subset \A$.
+By Corollary \@ref(cor:gamma-top-bottom) to $C$, the $2$-dimensional subset $X \subset \opspan{x_1,x_\alpha}$ is
+obtained. The first part of @bgv15, Lemma 3.18 describes how $X$ should be refined into $2$-dimensional semi-monotone sets. The construction described in Section \@ref(sec:quasi-affine) explains how to obtain the set of refinement points $(c_1,\ldots,c_t) \subset \A$.
 $C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})$ where each component $f_j : X \to \opspan{x_j}$ for $j \in \{1,\ldots,n\} \setminus \{1,\alpha\}$ is a quasi-affine function. The second part of @bgv15, Lemma 3.18 describes how to refine $X$ such that each function $f_j$ is monotone. By @bgv15, Lemma 3.16, if every component $f_i$ is monotone on a subset in the refinement of $X$, then the map $\mathbf{f}$ itself is monotone on that subset of $X$.
 The construction described in Section \@ref(sec:monotone-sections) describes how to find the refinement points to ensure that $\mathbf{f}$ is a monotone map.
 Thus, the construction in this section satisfies the properties required in the proof of @bgv15, Lemma 3.18 for $C$ to be monotone.

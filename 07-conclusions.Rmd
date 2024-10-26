@@ -22,7 +22,8 @@ Complexity bounds, based on @gv1995 and a singly exponential algorithm for decid
 First, a CAD, compatible with each of $V_1,\ldots,V_k$ and such that each cell $C \subset V_1 \cup \ldots \cup V_k$ is the graph of a quasi-affine map, following @bgv15 Lemma 3.19, is constructed. This lemma first instructs us to consider $W$, the smooth $2$-dimensional locus of $V_1 \cup \ldots \cup V_k$.
 This can be done by applying the smooth stratification algorithm, as presented in Section \@ref(sec:smooth-strat), and collecting the strata of codimension $n-2$.
 It was then observed that, according to @mccallum1998 Theorems 2.2.3 and 2.2.4, if McCallum's projection operator is used and there is only a finite number of blow-up points, smooth cells are obtained automatically.
-@bgv15, Lemma 3.19 then tells us to construct a CAD which is compatible with all $V_1,\ldots,V_k$ and the critical points of the projections of $W$ onto one- and two-dimensional coordinate subspaces. This can be done by ensuring that the CAD has constant sign on all polynomials defining the sets $V_1,\ldots,V_k$, along with some additional polynomials which arise from computing the determinants of Jacobi matrices defining either the (smooth) $2$-dimensional cells, or $2$-dimensional strata.
+@bgv15, Lemma 3.19 then tells us to construct a CAD which is compatible with all $V_1,\ldots,V_k$ and the critical
+points of the projections of $W$ onto one- and $2$-dimensional coordinate subspaces. This can be done by ensuring that the CAD has constant sign on all polynomials defining the sets $V_1,\ldots,V_k$, along with some additional polynomials which arise from computing the determinants of Jacobi matrices defining either the (smooth) $2$-dimensional cells, or $2$-dimensional strata.
 This completes the construction described in @bgv15, Lemma 3.19. Pseudo-code is presented and a complexity bound of $\left(s (d+1)\right)^{O(1)^{n}}$, which is slightly worse than classical CAD, is obtained.
 
 Next, Chapter \@ref(sec:monotone-cells) describes how some simple refinements of the quasi-affine CAD can be performed such that each cell $C \subset V_1 \cup \ldots \cup V_k$ is monotone. These refinements, described in @bgv15, Lemma 3.11, are of the kind $\{ x_1 = c \}, \{ x_1 > c \}, \{ x_1 < c \}$, where $c \in \R$. Since the real roots of polynomials are always algebraic numbers, in the semialgebraic case, $c$ is always an element of $\A$. These refinements are easy to perform, as they simply split $(1)$-cells, and, by @bgv15 Lemma 3.11, this type of refinement preserves the cylindrical structure along with existing monotone cells.
@@ -32,7 +33,7 @@ Again, pseudo-code is presented and a complexity result, which is the same as th
 Finally, Chapter \@ref(sec:frontier) explains how to refine the CAD such that it satisfies the frontier condition. The
 first approach is a direct translation of the last part of @bgv15, Theorem 3.20. I.e., the frontiers of $2$-dimensional
 cells are computed and then partitioned into points and monotone curve intervals. The latter part of this construction,
-partitioning a one-dimensional curve into monotone pieces -- is straightforward, as it has already been done when constructing monotone cells in the previous chapter.
+partitioning a $1$-dimensional curve into monotone pieces -- is straightforward, as it has already been done when constructing monotone cells in the previous chapter.
 However, the task of computing the frontier of a semialgebraic set is not as easy. Lemma \@ref(lem:frontier) describes how to do this using quantifier elimination, and asserts that it has complexity singly exponential in the number of variables. However, the algorithm presented in [@bpr2006, Algorithm 14.21] is theoretical in nature and, in practice, we would have to resort to doubly exponential CAD to solve the QE problem.
 Endeavouring to avoid this, we turned to @lazard10, who presents an algorithm for computing a CAD of $\R^3$ with
 frontier condition. This algorithm relies on a CAD, containing only topologically regular cells, and having constant
@@ -61,7 +62,7 @@ The main result of @bgv15 relates to definable monotone families.
 A family $\{ S_\delta \}_{\delta >0}$ is called monotone if sets $S_\delta$ are monotone
 increasing as $\delta \to 0$, i.e., $S_\delta \subset S_\eta$ for all sufficiently small $\delta > \eta >0$.
 It is often useful to approximate definable sets $K \subset \R^n$ by definable monotone families $S_{\delta}$. However, when blow-up points are present, these families can exibit a complex behaviour.
-@bgv15 prove that there exists a triangulation of every definable set $K \subset \R^n$, having dimension at most two, such that in each $2$-simplex, the family belongs to one of five types, corresponding to one of five possible lexicographically monotone Boolean functions in two variables.
+@bgv15 prove that there exists a triangulation of every definable set $K \subset \R^n$, having dimension at most $2$, such that in each $2$-simplex, the family belongs to one of five types, corresponding to one of five possible lexicographically monotone Boolean functions in two variables.
 The proof of the classification in @bgv15 is non-constructive.
 A natural progression of this project would be to design and implement an efficient
 algorithm computing a triangulation for the input $(K, \{ S_\delta \})$.
@@ -71,7 +72,7 @@ It is conjectured that this classification can be extended to $n$-dimensional se
 Another direction of research would be to prove this conjecture by generalising the results of @bgv15, and design an algorithm for computing such a triangulation in the case of sets with arbitrary dimension.
 The first step would be to generalise the monotone CAD algorithm to sets with higher dimension.
 It is not currently clear how this can be done, but one might want to start with sets of dimension $3$.
-In @bgvII an algorithm-like procedure was proposed for constructing a decomposition of a 3-dimensional set $K$
+In @bgvII an algorithm-like procedure was proposed for constructing a decomposition of a $3$-dimensional set $K$
 into topologically regular cylindrical cells which may not form an overall cylindrical decomposition, as cells may be cylindrical with respect to different orderings of variables.
 The first step in solving this problem may be to implement this procedure or, possibly, strengthen it to obtain a decomposition which is cylindrical with respect to the given coordinate ordering.
 The results in Section \@ref(sec:novel-frontier) make some strides towards the generalisation, allowing us to obtain the frontier condition in CADs compatible with sets of any dimension.

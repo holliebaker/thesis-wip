@@ -5,7 +5,7 @@
 ### Sets definable over O-minimal structures
 
 We will be working mostly in the category *Semialgebraic Set* and sometimes in the more general category of sets definable over an O-minimal structure.
-As such, we will be working with multivariate polynomials $f$ in variables $x_1,\ldots,x_n$ with coefficients in a field $Z$. These will be denoted as elements of $Z[x_1,\ldots,x_n]$. 
+As such, we will be working with multivariate polynomials $f$ in variables $x_1,\ldots,x_n$ with coefficients in a field $Z$. These will be denoted as elements of $Z[x_1,\ldots,x_n]$.
 
 We first define the O-minimal structures over the reals.
 
@@ -47,7 +47,7 @@ $$
 Sometimes, the domain of $f$ is $\R^n$. In this case, we often use the restriction $f\vert_X$ so that only images of $f$ at points in $X$ are considered,
 :::
 
-We now define the semialgebraic sets. 
+We now define the semialgebraic sets.
 
 ::: { .definition #semialgebraic-set }
 The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets of $\R^n$ satisfying the following properties.
@@ -233,7 +233,7 @@ We write $\opspan{x_{j_1},\ldots, x_{j_m}}$ to mean the
 quotient space $\R^n / W$.
 Similarly, for any affine coordinate subspace $L \subset \R^n$ on which all the
 functions $x_j \in I$ are constant, we will identify $L$ with its image under the canonical surjection
-to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$. $\projop{x_{i_1},\ldots,x_{i_k}} : \R^n \to \opspan{x_{i_1},\ldots,x_{i_k}}$ denotes the projection map from $\R^n$ to $\opspan{x_{i_1},\ldots,x_{i_k}}$, where $\{i_1,\ldots,i_k\} \subset \{1,\ldots,n\}$. 
+to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$. $\projop{x_{i_1},\ldots,x_{i_k}} : \R^n \to \opspan{x_{i_1},\ldots,x_{i_k}}$ denotes the projection map from $\R^n$ to $\opspan{x_{i_1},\ldots,x_{i_k}}$, where $\{i_1,\ldots,i_k\} \subset \{1,\ldots,n\}$.
 :::
 
 ::: { .definition #monotone-map-on }

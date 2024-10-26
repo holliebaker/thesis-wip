@@ -160,7 +160,8 @@ The `QEPCAD-B` algorithm has been modified to include construction of quasi-affi
 
 3. **Projection and Quasi-affine cells**
 
-    If `mct` is enabled, proceed as described in Section \@ref(sec:quasi-affine). Every one- and two- dimensional cell will be smooth and polynomials which are zero at the critical points of projections to two- and one-dimensional coordinate subspaces will be added to $\mathcal{A}$. As the projections of polynomials in $\mathcal{A}$ are computed as part of the algorithm in Section \@ref(sec:quasiaffine-algorithm), this stage also constructs the projection polynomials $\mathcal{P}$ and projection factor set $\mathcal{F}$. In order to ensure smooth and quasi-affine cells, new polynomials and their projections are included in the projection factor set $\mathcal{F}$.
+    If `mct` is enabled, proceed as described in Section \@ref(sec:quasi-affine). Every $1$- and $2$- dimensional cell
+    will be smooth and polynomials which are zero at the critical points of projections to $2$- and $1$-dimensional coordinate subspaces will be added to $\mathcal{A}$. As the projections of polynomials in $\mathcal{A}$ are computed as part of the algorithm in Section \@ref(sec:quasiaffine-algorithm), this stage also constructs the projection polynomials $\mathcal{P}$ and projection factor set $\mathcal{F}$. In order to ensure smooth and quasi-affine cells, new polynomials and their projections are included in the projection factor set $\mathcal{F}$.
 
      ~~Projection~~ (has already been completed)
 
@@ -209,7 +210,8 @@ The function responsible for constructing a CAD containing quasi-affine cells is
   - `Word* P_`: set of projection polynomials
   - `Word* J_`: set of projection factors
 
-Given the normalised input formula, this function implements a modified version of the projection phase. It returns the polynomials sufficient to construct a CAD such that each one- and two-dimensional cell contained in the set defined by the formula $F$ is smooth and the graph of a quasi-affine map.
+Given the normalised input formula, this function implements a modified version of the projection phase. It returns the
+polynomials sufficient to construct a CAD such that each one- and $2$-dimensional cell contained in the set defined by the formula $F$ is smooth and the graph of a quasi-affine map.
 
 ``` {c, code-quasi-affine, eval=FALSE, attr.source='.numberLines' }
 void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_)
@@ -218,8 +220,8 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
     SmoothOneTwoDim(r, V, F, &C1s, &C2s, &PIs, &PPs, &PFs);
     Word PF1 = CINV(PFs); // reverse order of proj factors to match cells
 
-    // one-dimensional cells
-    // i represents the projection onto one-dimensional coordinate subspace proj(i)
+    // 2-dimensional cells
+    // i represents the projection onto 1-dimensional coordinate subspace proj(i)
     // i.j represents proj(i,j), but we consider all minors with n-2 polynomials
     while (C1s != NIL) {
         ADV(C1s, &C, &C1s);
@@ -236,7 +238,7 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
         }
     }
 
-    // two-dimensional cells
+    // 2-dimensional cells
     // i.j represent 2-dimensional coordinate subspace proj(i,j), and all minors for proj(i)
     while (C2s != NIL) {
         ADV(C2s, &C, &C2s);
@@ -283,14 +285,16 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
 }
 ```
 
-- On line 4, the function `SmoothOneTwoDim` is called. It constructs a CAD $\mathcal{E}$ of $\R^r$, compatible with the set $V = V_1\cup\ldots\cup V_K \subset \R^r$ defined by the input formula $F$ using the McCallum projection operator so that every one- and two-dimensional cell of $\mathcal{E}$ contained in $V$ is a smooth manifold. In fact, $\mathcal{E}$ is sign-invariant on the polynomials in $F$, so $\mathcal{E}$ is compatible with each $V_1,\ldots,V_k$. It returns
-  - `C1s`: set of one-dimensional cells of $\mathcal{E}$ contained in $V$,
-  - `C2s`: set of two-dimensional cells of $\mathcal{E}$ contained in $V$,
+- On line 4, the function `SmoothOneTwoDim` is called. It constructs a CAD $\mathcal{E}$ of $\R^r$, compatible with the
+  set $V = V_1\cup\ldots\cup V_K \subset \R^r$ defined by the input formula $F$ using the McCallum projection operator
+  so that every $1$- and $2$-dimensional cell of $\mathcal{E}$ contained in $V$ is a smooth manifold. In fact, $\mathcal{E}$ is sign-invariant on the polynomials in $F$, so $\mathcal{E}$ is compatible with each $V_1,\ldots,V_k$. It returns
+  - `C1s`: set of $1$-dimensional cells of $\mathcal{E}$ contained in $V$,
+  - `C2s`: set of $2$-dimensional cells of $\mathcal{E}$ contained in $V$,
   - `PIs`: set of input polynomials defining $\mathcal{E}$ (the polynomials in $F$),
   - `Pps`: set of projection polynomials defining $\mathcal{E}$,
   - `Pfs`: set of projection factors (factorised projection polynomials) defining $\mathcal{E}$.
-- Lines 10-23 compute the critical points of projections of $1$-dimensional cells in `C1s` onto one-dimensional coordinate subspaces $\opspan{x_i}, 1 \le i \le r$.
-- Lines 37-42 compute the critical points of projections of $2$-dimensional cells an `C2s` onto two-dimensional coordinate subspaces $\opspan{x_i,x_j}, 1 \le i < j \le n$.
+- Lines 10-23 compute the critical points of projections of $1$-dimensional cells in `C1s` onto $1$-dimensional coordinate subspaces $\opspan{x_i}, 1 \le i \le r$.
+- Lines 37-42 compute the critical points of projections of $2$-dimensional cells an `C2s` onto $2$-dimensional coordinate subspaces $\opspan{x_i,x_j}, 1 \le i < j \le n$.
 - The `JACOBI(r, f, j, Hs, Is)` function computes a Jacobi determinant $$
   \det \begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} & \ldots & \dfrac{\partial h_{1}}{\partial x_{i_{k}}} & \dfrac{\partial h_{1}}{\partial x_{j}}\\
 \vdots & \vdots & \vdots & \vdots\\
@@ -307,7 +311,9 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
 
   This is similar to the partial differential operator from Definition \@ref(def:pdo), except that if $j = 0$, the last row and column is omitted from the matrix.
 
-- The rest of the function sets up the input polynomials, projection polynomials and projection factors necessary to define a sign-invariant CAD compatible with $V$ and critical points of projections of one- and two-dimensional cells onto one- and two-dimensional coordinate subspaces. Projections of the new polynomials computed in the previous two steps are computed and added to the projection polynomial and projection factor sets.
+- The rest of the function sets up the input polynomials, projection polynomials and projection factors necessary to
+  define a sign-invariant CAD compatible with $V$ and critical points of projections of one- and $2$-dimensional cells
+  onto one- and $2$-dimensional coordinate subspaces. Projections of the new polynomials computed in the previous two steps are computed and added to the projection polynomial and projection factor sets.
 The lifting phase proceeds, using these polynomials, us usual.
 
 ### Monotone
@@ -342,7 +348,7 @@ Word QepcadCls::MONOTONE(Word* A_, Word* J_, Word D, Word r)
         Word C;
         ADV(TrueCells, &C, &TrueCells);
 
-        // C has dimension two, then IJ < Ik are the positions in I where the component is equal to 1. otherwise skip
+        // C has dimension 2, then IJ < Ik are the positions in I where the component is equal to 1. otherwise skip
         Word I = LELTI(C, INDX);
         Word Ij, Ik;
         Word d = TwoDimIndex(I, &Ij, &Ik);
@@ -370,7 +376,7 @@ Word QepcadCls::MONOTONE(Word* A_, Word* J_, Word D, Word r)
             I0 = LELTI(C0, INDX);
         }
 
-        // top and bottom of proj_k(C) are one-dimensional sections by definition.
+        // top and bottom of proj_k(C) are 1-dimensional sections by definition.
         Word I1 = LCOPY(I);
 
         // top: (i_1,...,i_k + 1)
@@ -533,13 +539,15 @@ Once the set of refinement points has been computed, the CAD is refined using th
 
 ### Frontier condition
 
-The frontier condition is obtained by using the generalisation of Lazard's method for lifting with bad points, as described in section \@ref(sec:lazard-n), the entry point for computing a CAD with frontier condition is `FRONTIER`. This function identifies bad zero-dimensional cells and adds refinement points, in the same format as that used in the construction of monotone cells.
+The frontier condition is obtained by using the generalisation of Lazard's method for lifting with bad points, as
+described in section \@ref(sec:lazard-n), the entry point for computing a CAD with frontier condition is `FRONTIER`.
+This function identifies bad $0$-dimensional cells and adds refinement points, in the same format as that used in the construction of monotone cells.
 
 **Input:**
 
 - `Word r` $\in \N$,
 - `Word k` $\in \N, k \le r$ the level of the cell `D` $+ 1$,
-- `Word D`: $0$0-dimensional level-$(k-1)$ `QEPCAD-B` cell,
+- `Word D`: $0$-dimensional level-$(k-1)$ `QEPCAD-B` cell,
 - `Word As` $= (\mathcal{A}_k,\ldots,\mathcal{A}_r)$: the projection factor set,
 
 **Output:**
@@ -604,7 +612,7 @@ Word QepcadCls::FRONTIER(Word r, Word k, Word D, Word As, Word* A_, Word* J_, Wo
 - `Word r` $\in \N$,
 - `Word C`: $0$-dimensional level-$k$ `QEPCAD-B` cell,
 - `Word As` $= (\mathcal{A}_1,\ldots,\mathcal{A}_r)$ is the (entire) projection factor set.
-- `Word i`, `Word j` $\in \N$: elements of $(i_1,\ldots,i_r)$, the index of a two-dimensional section cell $C$, which are equal to $1$.
+- `Word i`, `Word j` $\in \N$: elements of $(i_1,\ldots,i_r)$, the index of a $2$-dimensional section cell $C$, which are equal to $1$.
 - `Word S` $= (j_1,\ldots,j_r)$, indices of projection factors which are equal to zero an $C$.
 
 **Output:**
@@ -680,7 +688,8 @@ void ProcessBadCells(Word r, Word C, Word As, Word i, Word j, Word S, Word *Refi
 }
 ```
 
-This function proceeds by induction, recursing on zero-dimensional cells above `C` whose signature (indices of projection factors which are equal to zero) matches `S`. Note that coordinates $i$ and $j$ of `S` are equal to $-1$, so any zero-dimensional cells at those levels are candidates for being bad cells. Lines 45-59 process possible bad cells. A bad cell is a $(0,...,0,1)$-cell of level greater than $j$, which has not yet been refined, and such that a polynomial vanishes identically on it.
+This function proceeds by induction, recursing on $0$-dimensional cells above `C` whose signature (indices of projection
+factors which are equal to zero) matches `S`. Note that coordinates $i$ and $j$ of `S` are equal to $-1$, so any $0$-dimensional cells at those levels are candidates for being bad cells. Lines 45-59 process possible bad cells. A bad cell is a $(0,...,0,1)$-cell of level greater than $j$, which has not yet been refined, and such that a polynomial vanishes identically on it.
 The function `LazardLifting` uses `Singular` to compute the Groebner basis for the saturations of two ideals
 $$
 I_1 := \langle f, g_{j_1}, \ldots, g_{j_{k-3}}, g_{\ell_2}, 1 - z g_{\ell_1} \rangle \cap \Z[x_1,\ldots,x_k]
@@ -1257,7 +1266,8 @@ S := \{ (x,y,z) \in \R^3 \mid x^2 + y^2 + z^2 - 1 = 0 \}.
 $$
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the sphere from Example \\ref{exm:sphere}, showing critical points of projections onto one and two-dimensional coordinate subspaces, and their projections."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the sphere from Example \\ref{exm:sphere},
+showing critical points of projections onto one and $2$-dimensional coordinate subspaces, and their projections."}
 knitr::include_graphics(rep("gnuplot/sphere.svg"))
 ```
 
@@ -1280,18 +1290,18 @@ Below is the set of projection factors and true cells produced by `QEPCAD-B`. In
 
 ```
 
-The sphere is decomposed into 26 cylindrical cells: 8 2-dimensional cells, 12 1-dimensional cells and 6 0-dimensional cells.
+The sphere is decomposed into 26 cylindrical cells: 8 $2$-dimensional cells, 12 $1$-dimensional cells and 6 $0$-dimensional cells.
 
 In Example \@ref(exm:qanm), we present a $2$-dimensional section cell which is the graph of a quasi-affine map, but is not a monotone cell.
 
 ::: {.example #qanm}
-Let $n = 3$ and consider the 2-dimensional section cell
+Let $n = 3$ and consider the $2$-dimensional section cell
 $$
 C := \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y > 0, x + y^2 < 1, z = x^2 + y^2 \}.
 $$
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the 2-dimensional cell from Example \\ref{exm:qanm}."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the $2$-dimensional cell from Example \\ref{exm:qanm}."}
 knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 ```
 
@@ -1319,7 +1329,8 @@ knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 
   No blow-up points, already satisfied.
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the CAD with monotone cells, compatible with the 2-dimensional cell presented in Example \\ref{exm:qanm}."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the CAD with monotone cells, compatible with
+the $2$-dimensional cell presented in Example \\ref{exm:qanm}."}
 knitr::include_graphics(rep("gnuplot/qanm.svg"))
 ```
 
