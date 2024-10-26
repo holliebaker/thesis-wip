@@ -1,12 +1,12 @@
 ---
 title: "Cylindrical Algebraic Decompositions With Monotone Cells"
-author: | 
+author: |
   | \medskip
   | Hollie Baker
   | \smallskip
   | A thesis submitted for the degree of Doctor of Philosophy
   | \smallskip
-  | University of Bath 
+  | University of Bath
   | \smallskip
   | Department of Computer Science
 date: "August 2024"
@@ -47,11 +47,11 @@ I am the author of this thesis, and the work described therein was carried out b
 
 ## Acknowledgements { .unlisted .unnumbered }
 
-I wish to thank my supervisor, Prof Nicolai Vorobjov, for all his help, guidance and advice throughout my studies and for encouraging me to pursue a PhD. 
-I would also like to thank Prof James H. Davenport for his help and for being my lead examiner at my PhD Confirmation where he provided excellent guidance and feedback. 
-Thanks also to Dr Thomas Powell, my second Confirmation examiner, for his great advice and feedback, and for providing a perspective from a different area of theoretical computer science. 
-Thanks to all members of the Mathematical Foundations of Computer Science group, both staff and students, for listening to my talks and generally supporting me throughout my PhD. 
-In addition, I would like to thank Dr Matthew England, Tereso del Rio Almajano and the "Pushing Back the Doubly Exponential Wall" research group at the Universities of Bath and Coventry for insightful informal discussions in relation to the novel algorithm for computing a CAD with frontier condition. 
+I wish to thank my supervisor, Prof Nicolai Vorobjov, for all his help, guidance and advice throughout my studies and for encouraging me to pursue a PhD.
+I would also like to thank Prof James H. Davenport for his help and for being my lead examiner at my PhD Confirmation where he provided excellent guidance and feedback.
+Thanks also to Dr Thomas Powell, my second Confirmation examiner, for his great advice and feedback, and for providing a perspective from a different area of theoretical computer science.
+Thanks to all members of the Mathematical Foundations of Computer Science group, both staff and students, for listening to my talks and generally supporting me throughout my PhD.
+In addition, I would like to thank Dr Matthew England, Tereso del Rio Almajano and the "Pushing Back the Doubly Exponential Wall" research group at the Universities of Bath and Coventry for insightful informal discussions in relation to the novel algorithm for computing a CAD with frontier condition.
 This PhD research was funded by an EPSRC DTP grant, without which I would not have been able to complete my studies.
 <!-- Finally, I would like to thank (in advance) my viva examiners, Dr Gregory Sankaran and Dr Matthew England. -->
 
@@ -61,10 +61,16 @@ This PhD research was funded by an EPSRC DTP grant, without which I would not ha
 
 ## Abstract { .unlisted .unnumbered }
 
-A fundamental algorithm in real algebraic geometry is the Cylindrical Algebraic Decomposition (CAD). 
-This algorithm partitions a semialgebraic set into cells which are arranged in a particular way. However, these cells can sometimes exibit undesirable properties when blow-up points are present. This can make it more difficult to reason about the input set -- e.g., to deduce its topological properties. The main result of this thesis is an algorithm, building on the work of @bgv15 and utilising some of the tools employed by @lazard10, which constructs a CAD compatible with a family of semialgebraic sets, each having dimension at most two, and such that each cylinddrical cell is topologically regular and the closure of each cell is a union of cells in the decomposition. Both pseudo-code and an implementation on top of the well-known program QEPCAD, are presented. This algorithm has complexity only slightly worse than the "classical" CAD algorithm. 
+A fundamental algorithm in real algebraic geometry is the Cylindrical Algebraic Decomposition (CAD).
+This algorithm partitions a semialgebraic set into cells which are arranged in a particular way. However, these cells
+can sometimes exibit undesirable properties when blow-up points are present. This can make it more difficult to reason
+about the input set -- e.g., to deduce its topological properties. The main result of this thesis is an algorithm,
+building on the work of @bgv15 and utilising some of the tools employed by @lazard10, which constructs a CAD compatible
+with a family of semialgebraic sets, each having dimension at most two, and such that each cylinddrical cell is
+topologically regular and the closure of each cell is a union of cells in the decomposition. Both pseudo-code and an
+implementation on top of the well-known program `QEPCAD-B`, are presented. This algorithm has complexity only slightly worse than the "classical" CAD algorithm.
 In addition, a novel algorithm for computing a CAD, compatible with a semialgebraic set of arbitrary dimension and such that the closure of each cell is the union of some cells in the decomposition, is presented.
-For both algorithms, blow-up points may be present and no rotation of coordinates is required. 
+For both algorithms, blow-up points may be present and no rotation of coordinates is required.
 A concrete description and implementation of an algorithm, presented by @gv1995, for computing a smooth stratification -- a partition into nonsingular manifolds -- of a semialgebraic set, is also given.
 
 ```{=latex}
@@ -203,13 +209,13 @@ We present the proof in the form of an algorithm which constructs a CAD compatib
 An upper bound on complexity is obtained. This is also an upper bound on the number of cells, number of polynomials and degree of polynomials in the CAD. The algorithm has *elementary* complexity (in the sense of L. Kalmar, see e.g.,
 [@kleene1952, $\S 57$]). This means that the complexity can be expressed as a power tower of finite height.
 
-As mentioned previously, the frontier condition is useful in computing topological properties of semialgebraic sets defined by first-order Boolean formulas. For example, these decompositions can be viewed as closure-finite weak cell complexes (CW-complexes) and their homologies can be computed. In addition, cell adjacencies can be computed and motion-planning problems, for instance the well-known "piano-mover's problem" mentioned earlier, having applications in robotics, can be solved. 
-As with the result for monotone cylindrical decompositions due to @bgv15, this result is useful because sometimes blow-up points are unavoidable and a change of coordinates is not allowed. Indeed, this result provides a step towards generalising the algorithm for computing monotone cylindrical decompositions with frontier condition from a family of sets of dimension at most two to a family of sets having arbitrary dimension.  
+As mentioned previously, the frontier condition is useful in computing topological properties of semialgebraic sets defined by first-order Boolean formulas. For example, these decompositions can be viewed as closure-finite weak cell complexes (CW-complexes) and their homologies can be computed. In addition, cell adjacencies can be computed and motion-planning problems, for instance the well-known "piano-mover's problem" mentioned earlier, having applications in robotics, can be solved.
+As with the result for monotone cylindrical decompositions due to @bgv15, this result is useful because sometimes blow-up points are unavoidable and a change of coordinates is not allowed. Indeed, this result provides a step towards generalising the algorithm for computing monotone cylindrical decompositions with frontier condition from a family of sets of dimension at most two to a family of sets having arbitrary dimension.
 In addition, the result can be applied to other categories, e.g., semialgebraic sets defined by *fewnomials* (see Section \@ref(sec:pfaffian)), whose structure is destroyed by a change of coordinates.
 The result can also be easily extended to semialgebraic sets defined by first-order Boolean formulas with quantifiers.
 Indeed, by Theorem \@ref(thm:proj), the projection of a CAD with frontier condition to any dimension also satisfies the frontier condition, and quantifier elimination requires considering projections of the CAD.
 
-This result partially extends the work of @arnon1984, @arnon1987 and @lazard10, from ambient dimension at most three to arbitrary dimension. 
+This result partially extends the work of @arnon1984, @arnon1987 and @lazard10, from ambient dimension at most three to arbitrary dimension.
 Our construction uses a recursion on the lexicographical order of cell indices. A novel approach was needed because it is not clear how the above results could be extended to dimension greater than $3$.
 
 Finally, we will also describe an algorithm for computing a smooth stratification of a semialgebraic set. A smooth stratification is a finite partition of a set into smooth manifolds called "strata". We present an algorithm, based on the work of @gv1995 for computing a smooth stratification of a semialgebraic set such that each stratum is nicely defined, meaning that each stratum of codimension $k$ is defined by $k$ different polynomials.
@@ -342,7 +348,8 @@ $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
-All of these algorithms are presented as psuedo-code. Chapter \@ref(sec:implementation-and-testing) discusses the implementation of this algorithm on top of Brown's QEPCAD [@brownQepcad] and presents some test cases.
+All of these algorithms are presented as psuedo-code. Chapter \@ref(sec:implementation-and-testing) discusses the
+implementation of this algorithm on top of Brown's `QEPCAD-B` [@brownQepcad] and presents some test cases.
 
 The final contribution, in Chapter \@ref(sec:novel-frontier), is a novel algorithm for constructing a CAD of $\R^n$, compatible with a semialgebraic set of arbitrary dimension and satisfying the frontier condition. This algorithm relies on a recursion on the lexicographical order of indices $(i_1,\ldots,i_n) \in \{ 0,1 \}^n$ associated with each cell in a cylindrical decomposition. The following is proved.
 

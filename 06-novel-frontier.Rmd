@@ -381,7 +381,7 @@ $X_{(0,0)}$ contains $\fr{S'}$.
 
 5. $X_{(0,0)}$ is already a union of cells of $\mathcal{E}_{(0,0)}$, so no further refinement of $\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}$ is needed. The algorithm terminates and returns $\mathcal{D} := \mathcal{E}_{(0,1)}$.
 
-Well-known implementations of cylindrical algebraic decomposition such as `QEPCAD B` [@brownQepcad] and Maple's `CylindricalAlgebraicDecompose` [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example \@ref(exm:top-bottom-not-cylindrical), both 'CylindricalAlgebraicDecompose' and 'QEPCAD B' create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr{S} \ne \emptyset$, but $B''' \not \subset \fr{S}$ so the frontier of $S$ is not a union of cells in the decomposition.
+Well-known implementations of cylindrical algebraic decomposition such as `QEPCAD-B` [@brownQepcad] and Maple's `CylindricalAlgebraicDecompose` [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example \@ref(exm:top-bottom-not-cylindrical), both 'CylindricalAlgebraicDecompose' and 'QEPCAD-B' create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr{S} \ne \emptyset$, but $B''' \not \subset \fr{S}$ so the frontier of $S$ is not a union of cells in the decomposition.
 
 ### Mathematical description
 

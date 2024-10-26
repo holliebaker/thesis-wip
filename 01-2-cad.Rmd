@@ -416,7 +416,8 @@ where $g_1,\ldots,g_k$ are derivatives of the polynomial $f$.
 
 ### CAD cells and their defining formulas { #sec:cell-formula }
 
-Although it is possible to construct a "full" (sign-invariant) CAD, `QEPCAD-B` provides an implementation of the "truth-invariant" CAD described in Corollary \@ref(cor:collins-sets). Indeed, QEPCAD-B, being designed primarily to perform quantifier elimination, frequently constructs a "partial" CAD of $\R^n$ [@brownQepcad].
+Although it is possible to construct a "full" (sign-invariant) CAD, `QEPCAD-B` provides an implementation of the
+"truth-invariant" CAD described in Corollary \@ref(cor:collins-sets). Indeed, `QEPCAD-B`, being designed primarily to perform quantifier elimination, frequently constructs a "partial" CAD of $\R^n$ [@brownQepcad].
 We will force the construction of the sign-invariant CAD and use McCallum's projection operator so as to obtain smooth
 cells (see Corollary \@ref(cor:mc-smooth)).
 
@@ -424,7 +425,8 @@ Once constructed, one may want to examine individual cells of the CAD.
 In order to do this, we will need a convenient representation for each cell.
 Depending on the purpose for which the CAD has been constructed, a particular representation may be chosen. For example, if we only need a witness, i.e., some point in the cell, only the sample points are needed. Indeed, this is a common requirement and Maple's `RegularChains::CylindricalAlgebraicDecompose` function provides output in this representation [@chen2014].
 On the other hand, one might want to view each cell as a semialgebraic set. In this case, a defining formula will be necessary.
-Such a representation using only the input and projection polynomials may be impossible and, as such, an "extended language" has been introduced in both Maple and `QEPCAD` [@chen2014, @brownQepcad]. The extended language includes the rules of first-order Boolean formulas (see Definition \@ref(def:qff)) along with a means of representing "the $i$-th root of polynomial $f$". We find this representation a little inconvenient and would prefer each cell to be representable by an ordinary first-order Boolean formula.
+Such a representation using only the input and projection polynomials may be impossible and, as such, an "extended
+language" has been introduced in both Maple and `QEPCAD-B` [@chen2014, @brownQepcad]. The extended language includes the rules of first-order Boolean formulas (see Definition \@ref(def:qff)) along with a means of representing "the $i$-th root of polynomial $f$". We find this representation a little inconvenient and would prefer each cell to be representable by an ordinary first-order Boolean formula.
 
 To see how the signs of projection factors may be insufficient to represent a cylindrical cell, consider the following simple example in $\R^2$.
 Let $f = x - y^2$ and construct an $\{f\}$-invariant CAD. The projection polynomials
@@ -434,7 +436,7 @@ $$
 The two distinct cells $C_1$ and $C_2$ have signs $x > 0, x - y^2 = 0$. By Thom's Lemma, it is possible to represent these cells by sign conditions on derivatives of $f$.
 In this example, it is clear that another polynomial, $y$, is needed to distinguish between these cells. @brown99 proposed an algorithm for constructing a solution formula if the projection polynomials are not sufficient. The basic idea is that "conflicting pairs", distinct cells having the same signature (signs of projection factors), are identified, then additional derivatives of projection factors are added so that the conflicting pairs can be distinguished.
 
-The algorithm proposed by @brown99 is implemented as the "solution formula construction phase" in QEPCAD. A small modification has been made such that this algorithm may be used to construct formulas for individual cells as opposed to the set of points satisfying the input formula. More precisely, the definition of a conflicting pair was slightly modified.
+The algorithm proposed by @brown99 is implemented as the "solution formula construction phase" in `QEPCAD-B`. A small modification has been made such that this algorithm may be used to construct formulas for individual cells as opposed to the set of points satisfying the input formula. More precisely, the definition of a conflicting pair was slightly modified.
 
 ::: {.definition}
 Let $C_1$ and $C_2$ be distinct cells in a CAD $\cal D$ of $\R^n$. Each cell $C$ is assigned a truth value $T_C \in \{\tt{True}, \tt{False}, \tt{undet}\}$ and a list $S_C = (S_1,\ldots,S_k)$ where $S_i = (s_{i,1},\ldots,s_{i,s_i}, 1\le i \le k$ is the list of signs of level-$i$ (factorised) projection polynomials $f_1,\ldots,f_{i_s} \in \Z[x_1,\ldots,x_i]$, with $s_{i,j} \in \{-1,0,1\}$.

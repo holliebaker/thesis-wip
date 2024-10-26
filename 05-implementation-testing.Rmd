@@ -1,22 +1,22 @@
 # Implementation And Testing {#sec:implementation-and-testing}
 
-## Implementation on top of QEPCAD
+## Implementation on top of `QEPCAD-B`
 
 There are several well-known implementations of CAD. For example, Maple's `CylindricalAlgebraicDecompose`, which uses regular chains instead of the classical projection and lifting algorithm of @collins1975, is reported to work very efficiently [@chen2014]. Another efficient implementation of CAD is available in Mathematica. However, `QEPCAD-B`, a quantifier elimination and cylindrical algebraic decomposition program written in C++ and built on top of the polynomial library SACLIB, was chosen as the starting point for the monotone CAD algorithm.
 
-`QEPCAD` stands for Quantifier Elimination by Partial Cylindrical Algebraic Decomposition. It takes as input a first-order Boolean formula $F$, containing $k$ free variables and $n-k$ variables bound by quantifiers, along with a variable ordering $x_1 < \cdots < x_n$. It then constructs a CAD compatible with the set $S \subset \R^k$ defined by $F$ and returns a quantifier-free Boolean formula defining $S$. As well as the output formula, the user is able to examine the polynomials generated in the projection phase and view information about each cell of the CAD, including their dimension, signs of projection factors, multiplicities of roots of polynomials and the sample point associated with the cell. `QEPCAD B` is an extended version of `QEPCAD` developed by @brownQepcad.
-As well as $\forall$ and $\exists$, `QEPCAD B` introduces some special quantifiers which allow the user to specify "exists exactly $k$", "exists infinitely many" and "for all but finitely many", allowing the problem to be solved in a more efficient way. `QEPCAD B` is also able to plot and determine cell adjacencies for decompositions of $\R^2$. An extended language for output formulas, which uses "$i$-th root of polynomial $f$", somewhat similar to the output given by Maple's `CylindricalAlgebraicDecompose`, is also included.
+`QEPCAD` stands for Quantifier Elimination by Partial Cylindrical Algebraic Decomposition. It takes as input a first-order Boolean formula $F$, containing $k$ free variables and $n-k$ variables bound by quantifiers, along with a variable ordering $x_1 < \cdots < x_n$. It then constructs a CAD compatible with the set $S \subset \R^k$ defined by $F$ and returns a quantifier-free Boolean formula defining $S$. As well as the output formula, the user is able to examine the polynomials generated in the projection phase and view information about each cell of the CAD, including their dimension, signs of projection factors, multiplicities of roots of polynomials and the sample point associated with the cell. `QEPCAD-B` is an extended version of `QEPCAD` developed by @brownQepcad.
+As well as $\forall$ and $\exists$, `QEPCAD-B` introduces some special quantifiers which allow the user to specify "exists exactly $k$", "exists infinitely many" and "for all but finitely many", allowing the problem to be solved in a more efficient way. `QEPCAD-B` is also able to plot and determine cell adjacencies for decompositions of $\R^2$. An extended language for output formulas, which uses "$i$-th root of polynomial $f$", somewhat similar to the output given by Maple's `CylindricalAlgebraicDecompose`, is also included.
 
-`QEPCAD B` and `SACLIB` are open-source, meaning it is easy to extend their functionality. The computer algebra library
+`QEPCAD-B` and `SACLIB` are open-source, meaning it is easy to extend their functionality. The computer algebra library
 `Singular` is also integrated, which gives the developer access to more efficient algorithms, e.g., for polynomial factorisation. Integration with `Singular` also gives the developer access to additional computer algebra tools, such as Groebner bases, which are leveraged for the first time in the implementation of Lazard Lifting algorithm.
-`QEPCAD B` by default provides the output as a
+`QEPCAD-B` by default provides the output as a
 quantifier-free (Tarski) formula, which is the most convenient representation for our purposes. As shown by @collins1975, it is not always possible to obtain such formulas using only the polynomials produced in the projection phase.
-For this reason, Maple's `CylindricalAlgebraicDecompose` is only able to produce formulas in the extended language. `QEPCAD B` implements an algorithm to add additional defining polynomials [@brown99]. A small modification to this algorithm allows every cell in the CAD to be defined by a quantifier-free Boolean formula (see Section \@ref(sec:cell-formula)).
-This was the main realon for choosing `QEPCAD B`, along with the fact that `QEPCAD B` is open-source which allows the algorithm to easily be modified.
+For this reason, Maple's `CylindricalAlgebraicDecompose` is only able to produce formulas in the extended language. `QEPCAD-B` implements an algorithm to add additional defining polynomials [@brown99]. A small modification to this algorithm allows every cell in the CAD to be defined by a quantifier-free Boolean formula (see Section \@ref(sec:cell-formula)).
+This was the main realon for choosing `QEPCAD-B`, along with the fact that `QEPCAD-B` is open-source which allows the algorithm to easily be modified.
 
-### Description of QEPCAD B {#sec:qepcad}
+### Description of `QEPCAD-B` {#sec:qepcad}
 
-The `QEPCAD B` algorithm proceeds in five stages:
+The `QEPCAD-B` algorithm proceeds in five stages:
 
 1. **Input**
 
@@ -73,7 +73,7 @@ The `QEPCAD B` algorithm proceeds in five stages:
 
 1. **Lifting** (stack construction)
 
-    By default, `QEPCAD B` constructs a CAD which is compatible with the set defined by the input formula,
+    By default, `QEPCAD-B` constructs a CAD which is compatible with the set defined by the input formula,
     Before the lifting phase is started, the user may specify `full-cad`, which constructs a CAD with constant sign on all projection factors.
 
     A CAD $\mathcal{D}$ of $\R^{n-k}$ (free variable space) is constructed such that the union of true cells is the set defined by the input formula.
@@ -81,24 +81,25 @@ The `QEPCAD B` algorithm proceeds in five stages:
 
 1. **Solution formula construction**
 
-    Given the CAD $\mathcal{D}$, whose union of true cells coincides with the set defined by the input formula, a quantifier-free Boolean formula defining this set is produced. `QEPCAD B` attempts to use the projection factors in this formula, but sometimes additional polynomials (derivatives of projection factors) must be added in order to define the required set.
+    Given the CAD $\mathcal{D}$, whose union of true cells coincides with the set defined by the input formula, a quantifier-free Boolean formula defining this set is produced. `QEPCAD-B` attempts to use the projection factors in this formula, but sometimes additional polynomials (derivatives of projection factors) must be added in order to define the required set.
 
-### QEPCAD cells and sample points
+### `QEPCAD-B` cells and sample points
 
-Since the main advantage of the monotone CAD algorithm is to produce a CAD with cells having desirable topological properties, we are mostly interested in examining individual CAD cells rather than QEPCAD's output formula.
+Since the main advantage of the monotone CAD algorithm is to produce a CAD with cells having desirable topological
+properties, we are mostly interested in examining individual CAD cells rather than `QEPCAD-B`'s output formula.
 
 Consider a simple example of a CAD compatible with the unit circle in $\R^2$, defined by the quantifier-free Boolean formula
 $$
 F = \{ x^2 + y^2 - 1 = 0 \}.
 $$
 
-Below is an excerpt from QEPCAD's output.
+Below is an excerpt from `QEPCAD-B`'s output.
 
 ``` {r, child="test-cases/sample.Rmd"}
 
 ```
 
-A QEPCAD cell $C$ includes the following information
+A `QEPCAD-B` cell $C$ includes the following information
 
 - **Positional index** $(j_1,\ldots,j_{n-k}), j_i \in \N, 1 \le i \le n-k$, indicates the position of this cell in the CAD;
 - **Level** $k \in \N$, the level of the cell;
@@ -110,7 +111,8 @@ A QEPCAD cell $C$ includes the following information
 - **Signs of Projection Factors** (for each level) $(S_1,\ldots,S_k)$, where each $S_i = (s_1,\ldots,s_{m_k}) \in \{ 1,-1,0 \}^m$ indicates the signs of level-$(k-i+1)$  projection factors
 - **Sample Point** $\mathbf{x} \in \A^k$.
 
-A sample point of a cell $C$ is an algebraic number $\mathbf{x} = (x_1,\ldots,x_k) \in C$. This may be represented in one of two forms in QEPCAD.
+A sample point of a cell $C$ is an algebraic number $\mathbf{x} = (x_1,\ldots,x_k) \in C$. This may be represented in
+one of two forms in `QEPCAD-B`.
 A primitive sample point $\mathbf{x}$ is an element of the algebraic extension field $\Q(\alpha)$ and is represented by the triple
 $$
 (M, I, \mathbf{c})
@@ -134,13 +136,14 @@ where
 - $M_\beta \in \Q(\alpha)[y]$ is a primitive, irreducible polynomial having $\beta \in \A$ as a root,
 - $I_\beta \subset \Q$ is an isolating interval for $\beta$ as a root of $M_\beta$,
 
-Since any finite set of algebraic numbers belongs to a single algebraic extension field $\Q(\gamma)$, it is always possible to convert a sample point in extended form to primitive form. The QEPCAD function ${\mathrm{CONVERT}}(\mathbf{c}, k)$ converts a non-primitive sample point $\mathbf{c} \in \A^k$ into primitive representation by computing an appropriate $(M_\gamma, I_\gamma)$ so that $\mathbf{c} \in \Q(\gamma)$.
+Since any finite set of algebraic numbers belongs to a single algebraic extension field $\Q(\gamma)$, it is always
+possible to convert a sample point in extended form to primitive form. The `QEPCAD-B` function ${\mathrm{CONVERT}}(\mathbf{c}, k)$ converts a non-primitive sample point $\mathbf{c} \in \A^k$ into primitive representation by computing an appropriate $(M_\gamma, I_\gamma)$ so that $\mathbf{c} \in \Q(\gamma)$.
 
-### Modifications to QEPCAD
+### Modifications to `QEPCAD-B`
 
 Full source code can be found here: https://github.com/monotone-cad/qepcad-monotone.
 
-The QEPCAD algorithm has been modified to include construction of quasi-affine cells, refinement of the CAD to produce monotone cells, and refinement of sectors above "bad cells" to obtain the frontier condition. A new option, `mct <y / n>` has been added, to enable or disable (respectively) the construction of a monotone CAD. The algorithm now proceeds as follows.
+The `QEPCAD-B` algorithm has been modified to include construction of quasi-affine cells, refinement of the CAD to produce monotone cells, and refinement of sectors above "bad cells" to obtain the frontier condition. A new option, `mct <y / n>` has been added, to enable or disable (respectively) the construction of a monotone CAD. The algorithm now proceeds as follows.
 
 1. Input
 
@@ -183,7 +186,7 @@ The QEPCAD algorithm has been modified to include construction of quasi-affine c
 
     - *Frontier Condition*
 
-      Applies the method, similar to that described in @lazard10, to $0$-dimensional "bad cells" (see Section \@ref(sec:ext-lazard-algorithm)). Groebner bases are constructed using `Singular`, which is already used for faster polynomial factorisation in `QEPCAD B`.
+      Applies the method, similar to that described in @lazard10, to $0$-dimensional "bad cells" (see Section \@ref(sec:ext-lazard-algorithm)). Groebner bases are constructed using `Singular`, which is already used for faster polynomial factorisation in `QEPCAD-B`.
 
 5. Solution formula construction
 
@@ -191,7 +194,7 @@ The QEPCAD algorithm has been modified to include construction of quasi-affine c
 
     The user may pause here to examine the cells in the refined CAD.
 
-In the forthcoming sections, the new code added to `QEPCAD B` is presented and discussed.
+In the forthcoming sections, the new code added to `QEPCAD-B` is presented and discussed.
 
 ### Quasi-affine
 
@@ -536,7 +539,7 @@ The frontier condition is obtained by using the generalisation of Lazard's metho
 
 - `Word r` $\in \N$,
 - `Word k` $\in \N, k \le r$ the level of the cell `D` $+ 1$,
-- `Word D`: $0$0-dimensional level-$(k-1)$ QEPCAD cell,
+- `Word D`: $0$0-dimensional level-$(k-1)$ `QEPCAD-B` cell,
 - `Word As` $= (\mathcal{A}_k,\ldots,\mathcal{A}_r)$: the projection factor set,
 
 **Output:**
@@ -599,7 +602,7 @@ Word QepcadCls::FRONTIER(Word r, Word k, Word D, Word As, Word* A_, Word* J_, Wo
 **Input:**
 
 - `Word r` $\in \N$,
-- `Word C`: $0$-dimensional level-$k$ QEPCAD cell,
+- `Word C`: $0$-dimensional level-$k$ `QEPCAD-B` cell,
 - `Word As` $= (\mathcal{A}_1,\ldots,\mathcal{A}_r)$ is the (entire) projection factor set.
 - `Word i`, `Word j` $\in \N$: elements of $(i_1,\ldots,i_r)$, the index of a two-dimensional section cell $C$, which are equal to $1$.
 - `Word S` $= (j_1,\ldots,j_r)$, indices of projection factors which are equal to zero an $C$.
@@ -702,8 +705,11 @@ $$
 ((b_1,\ldots,b_{k-1},c), (m_1,\ldots,m_{k-1},m_k))
 $$
 where $(b_1,\ldots,b_{k-1})$ is the sample point, and $(m_1,\ldots,m_{k-1})$ is the positional index of the $0$-cell $\mathbf{b}$ and $c$ refines the $(1)$-cell in the sub-CAD of $\mathcal{D}$ above $\mathcal{b}$ with positional index $(m_k)$.
-$(b_1,\ldots,b_{k-1},c)$ is stored as a QEPCAD sample point.
-If all of $(b_1,\ldots,b_{k-1})$ are rational, or are elements of the same algebraic extension, $\Q(\alpha)$, as the sample point of the cell $\mathbf{b}$, as $c$, then $(b_1,\ldots,b_{k-1},c)$ is a QEPCAD sample point in the primitive representation. If $(b_1,\ldots,b_{k-1}) \in \Q(\alpha)$ and $c \not \in \Q(\alpha)$ then $(c_1,\ldots,b_{k-1},c)$ is a QEPCAD sample point stored in extended representation.
+$(b_1,\ldots,b_{k-1},c)$ is stored as a `QEPCAD-B` sample point.
+If all of $(b_1,\ldots,b_{k-1})$ are rational, or are elements of the same algebraic extension, $\Q(\alpha)$, as the
+sample point of the cell $\mathbf{b}$, as $c$, then $(b_1,\ldots,b_{k-1},c)$ is a `QEPCAD-B` sample point in the
+primitive representation. If $(b_1,\ldots,b_{k-1}) \in \Q(\alpha)$ and $c \not \in \Q(\alpha)$ then
+$(c_1,\ldots,b_{k-1},c)$ is a `QEPCAD-B` sample point stored in extended representation.
 The refinement point $c$ is a root of a polynomial $f \in \Q[x_k]$, computed by `MONOTONE()` or `FRONTIER()`. This polynomial is stored in the projection polynomial set, and its factors in the projection factor set.
 
 The function `REFINE` computes the refinements.
@@ -719,7 +725,10 @@ The function `REFINE` computes the refinements.
 
 - `Word D'`, a refinement of $\rm{D}$ compatible with the refinement points in $\mathcal{A}_k$.
 
-QEPCAD represents a CAD $\mathcal{D}$ of $\R^n$ as a tree of cells. The root is the unique cell $\mathbf{0}$ in the CAD of $\R^0$ and its children are the cells of the CAD induced by $\mathcal{D}$ on $\R^1$. As one might expect, given a QEPCAD cell $C$ in the decomposition induced by $\mathcal{D}$ on $\R^k$, its children are the cells of the decomposition induced by $\mathcal{D}$ on $\R^{k+1}$ which project on $C$. QEPCAD constructs a "partial CAD". This means that there may be cells of level $k < n$ with no children.
+`QEPCAD-B` represents a CAD $\mathcal{D}$ of $\R^n$ as a tree of cells. The root is the unique cell $\mathbf{0}$ in the
+CAD of $\R^0$ and its children are the cells of the CAD induced by $\mathcal{D}$ on $\R^1$. As one might expect, given a
+`QEPCAD-B` cell $C$ in the decomposition induced by $\mathcal{D}$ on $\R^k$, its children are the cells of the
+decomposition induced by $\mathcal{D}$ on $\R^{k+1}$ which project on $C$. `QEPCAD-B` constructs a "partial CAD". This means that there may be cells of level $k < n$ with no children.
 In other words, if $C$ is an $(i_1,\ldots,i_k)$-cell in the decomposition induced by $\mathcal{D}$ on $\R^k$ with no
 children, then $\projopinv{k}(C)$ is an $(i_1,\ldots,i_k,1,\ldots,1)$-cell of $\mathcal{D}$.
 
@@ -787,7 +796,8 @@ The function `RefineSubcad` does all the heavy lifting.
 **Input:**
 
 - `Word k` $\in \N$
-- `Word Ch`: list of children -- level-$k$ QEPCAD cells, in ascending order of sample points, which project on a single level-$k-1$ QEPCAD cell,
+- `Word Ch`: list of children -- level-$k$ `QEPCAD-B` cells, in ascending order of sample points, which project on a
+  single level-$k-1$ `QEPCAD-B` cell,
 - `Word Ps`: list of refinement points (in ascending order) of the children,
 - `Word PFs`: projection factor set $(\mathcal{A}_{k+1},\ldots,\mathcal{A_n})$, used for recomputing sample points.
 
@@ -864,7 +874,7 @@ Word RefineSubcad(Word k, Word Ch, Word Ps, Word PFs)
 ```
 
 - `NextPolynomial()`, called on, e.g., Line 9, is a helper function for retrieving the next refinement point.
-Recall that $\mathbf{b} = (b_1,\ldots,b_{k-1},c)$ is a QEPCAD sample point such that `PI` is its isolating interval and `PM` the minimal polynomial for $c$. If $c$ is rational, $I = (c,c)$. `J` is the isolating interval containing $c \in \A$. `j` is the index of the child cell which requires refinement.
+Recall that $\mathbf{b} = (b_1,\ldots,b_{k-1},c)$ is a `QEPCAD-B` sample point such that `PI` is its isolating interval and `PM` the minimal polynomial for $c$. If $c$ is rational, $I = (c,c)$. `J` is the isolating interval containing $c \in \A$. `j` is the index of the child cell which requires refinement.
 - Suppose that $C$ is the cell with index $j$. Then `S0M` and `S0I`, set on line 24, are the minimal polynomial and isolating interval, respectively, for the sample point of $C_B$. The function `GETSAMPLEK` is a helper function responsible for retrieving this information. The first argument indicates the coordinate to retrieve, with $-1$ being shorthand for last coordinate.
 - `RefineCell`, called on line 32, takes a list of cells, $(C,C_T, \ldots,C_\ell)$, where $C$ is the cell to be refined and returns a list $(C_1,C_2,C_3,C_T,\ldots,C_\ell)$. The sample points are updated for $C_1$ and $C_2$. The flag `refine_after` is set to `true` if the sample point of $C_3$, which is still equal to the sample point of $C$ at this point, is incorrect.
 - Some new projection factors, whose roots are the refinement points, were added to the projection factor set, but cell signatures have not yet been updated to reflect this. `ADDSIGNPF` (called on lines 40 and 54) is responsible for ensuring that the signs of these polynomials are attached to refined cells. If a cell is not refined, this information will not be needed.
@@ -957,12 +967,14 @@ $$
 F_1 \lor \ldots \lor F_k
 $$
 where $F_1,\ldots,F_k$ are conjunctions of polynomial equations and inequalities defining the cells $C_1,\ldots,C_k$ of $\mathcal{D}_R$ such that $C = C_1\cup\ldots\cup C_k$.
-The RCad is constructed when `d-cell-tarski` is used and then it is cached. If refinements to the original CAD are performed, e.g., because of `MONOTONE` or `FRONTIER`, the RCad is invalidated and must be reconstructed (see Line 77 of the `QEPCAD` function).
+The RCad is constructed when `d-cell-tarski` is used and then it is cached. If refinements to the original CAD are
+performed, e.g., because of `MONOTONE` or `FRONTIER`, the RCad is invalidated and must be reconstructed (see Line 77 of
+the `QEPCAD-B` function).
 
 To demonstrate `d-cell-tarski`, construct a CAD compatible with $$
 V := \{ x = y^2 - 2y \}.
 $$
-QEPCAD produces the following projection factors
+`QEPCAD-B` produces the following projection factors
 
 ```
 d-proj-fac
@@ -1052,7 +1064,7 @@ where $g := 27 x^2 - 32$ and $f := y^3 - 2 y - x$. Note that the polynomial $3 y
 
 ### The overall algorithm
 
-The function `QEPCAD` is responsible for running the QEPCAD algorithm. The modified version of the function is presented below.
+The function `QEPCAD` is responsible for running the `QEPCAD-B` algorithm. The modified version of the function is presented below.
 
 ``` {c, code-qepcad-main, eval=FALSE, attr.source='.numberLines' }
 void QepcadCls::QEPCAD(Word Fs, Word *t_, Word *F_e_, Word *F_n_, Word *F_s_)
@@ -1262,7 +1274,7 @@ knitr::include_graphics(rep("gnuplot/sphere.svg"))
 
   No blow-up points, already satisfied.
 
-Below is the set of projection factors and true cells produced by QEPCAD. In the projection factor set, factors of input polynomials are labelled by `A`, factorised polynomials output by CAD projection are labelled by `P` and polynomials which ensure the CAD contains quasi-affine cells are labelled by `Q`.
+Below is the set of projection factors and true cells produced by `QEPCAD-B`. In the projection factor set, factors of input polynomials are labelled by `A`, factorised polynomials output by CAD projection are labelled by `P` and polynomials which ensure the CAD contains quasi-affine cells are labelled by `Q`.
 
 ``` {r, child="test-cases/sphere.Rmd"}
 
@@ -1311,7 +1323,7 @@ knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 knitr::include_graphics(rep("gnuplot/qanm.svg"))
 ```
 
-`QEPCAD` output is presented below. Note the projection factor `M_1_3` defines the refinement point $x = 1/2$.
+`QEPCAD-B` output is presented below. Note the projection factor `M_1_3` defines the refinement point $x = 1/2$.
 
 ``` {r, child="test-cases/qanm.Rmd"}
 
@@ -1384,7 +1396,7 @@ Quasi-affine**:
   The Groebner bases for $I_4$ and $I_6$ both contain $z-1$, defining the refinement point $(0,0,1)$, which was
   identified by Proposition \@ref(prp:lazard-5-13).
 
-Part of the QEPCAD output is now presented. In particular the projection factors, refinement points and the collection of cells which comprises the frontier of $C$.
+Part of the `QEPCAD-B` output is now presented. In particular the projection factors, refinement points and the collection of cells which comprises the frontier of $C$.
 
 ``` {r, child="test-cases/fr-3-whitney-jhd.Rmd"}
 

@@ -413,7 +413,7 @@ If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_
 
 Full source code can be found here: https://github.com/monotone-cad/smooth-stratification.
 
-This algorithm has been implemented in `C`, using the computer algebra library `SACLIB`. `QEPCAD` is used to perform emptyness checks using cylindrical algebraic decomposition. Below is an example of the program's output, given the basic semialgebraic set
+This algorithm has been implemented in `C`, using the computer algebra library `SACLIB`. `QEPCAD-B` is used to perform emptyness checks using cylindrical algebraic decomposition. Below is an example of the program's output, given the basic semialgebraic set
 $$
 \{ z = 0, x^2 - y^2 = 0 \} \subset \R^3,
 $$
@@ -465,7 +465,9 @@ X_(3,1):
 
 ```
 
-The program works in a similar way to `QEPCAD` (see Section \@ref(sec:qepcad)), taking as input the variable list (which specifies the order) and a conjunction of polynomial equations, inequations and inequalities (written as a QEPCAD "prenex" formula). The stratification is then computed and there is a basic REPL which allows the user to see information about the polynomials and strata produced.
+The program works in a similar way to `QEPCAD-B` (see Section \@ref(sec:qepcad)), taking as input the variable list
+(which specifies the order) and a conjunction of polynomial equations, inequations and inequalities (written as a
+`QEPCAD-B` "prenex" formula). The stratification is then computed and there is a basic REPL which allows the user to see information about the polynomials and strata produced.
 
 Exerpts of the code are now presented and discussed. The entrypoint for the algorithm is `stratify`.
 
@@ -529,7 +531,7 @@ This function sets up the data structures required by `stratify_helper`, the rec
 
 **Input:**
 
-- `Word r` $\in \N$, `Word V`: variable list, Word Ineqs`: qepcad formula of inequalities $\{ g_1 > 0, \ldots, g_\ell >0 \}$,
+- `Word r` $\in \N$, `Word V`: variable list, Word Ineqs`: *prenex* (`QEPCAD-B`) formula of inequalities $\{ g_1 > 0, \ldots, g_\ell >0 \}$,
 - `Word k` $1\le k \le r$ is the codimension currently beind worked with,
 - `Word np`: number of polynomials,
 - `Word Fs` $((f_1,\deg(f_1)), \ldots, (f_{\rm{np}}, \deg(f_{\rm{np}})))$ is the list of imput polynomials,
@@ -727,7 +729,7 @@ The function `construct_stratum_basic` is responsible for representing a candida
 - `Word Q` $\in \Z[x_1,\ldots,x_r]$,
 - `Word Qs` $\subset \Z[x_1,\ldots,x_r]$,
 - `Word Gs` $\subset \Z[x_1,\ldots,x_r]$,
-- `Word Ineqs`: a QEPCAD formula of inequalities,
+- `Word Ineqs`: a *prenex* (`QEPCAD-B`) formula of inequalities,
 
 such that `Hs`, `Qs`, `Q`, `Gs` and `Ineqs` define a candidate stratum $Y_k$. All of `Hs` and `Gs` are equal to zero on $Y$, all of `Q` and `Qs` are not equal to zero on $Y$ and the formula `Ineqs` defines a semialgebraic set containing $Y$.
 
@@ -796,7 +798,7 @@ The function `ISEMPTY` performs emptiness checking.
 - `Word V`: variable list $(x_1,\ldots,x_r)$,
 - `Word Fs` $= (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_r]$,
 - `Word Gs` $= (h_1,\ldots,h_t) \subset \Z[x_1,\ldots,x_r]$,
-- `Word Ineqs`: list of atomic QEPCAD formulas $\{ g_1 > 0 \},\ldots,\{ g_\ell > 0 \}$
+- `Word Ineqs`: list of atomic `QEPCAD-B` formulas $\{ g_1 > 0 \},\ldots,\{ g_\ell > 0 \}$
 
 such that the input set $S \subset \R^r$ can be defined by the QFF
 $$
@@ -832,7 +834,7 @@ Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
     // complete formula by adding the inequation and conujnction
     F = COMP(ANDOP, F);
 
-    // re-initialise qepcad before each run
+    // re-initialise QEPCAD before each run
     QepcadCls Q;
 	INITSYS();
 
@@ -854,7 +856,7 @@ Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
 
 ```
 
-The function constructs $F$, the defining formula for $S$ and uses QEPCAD to construct a CAD of $\R^r$ compatible with $S$. If $S$ is empty, then this CAD will contain no true cells, so the function checks this condition.
+The function constructs $F$, the defining formula for $S$ and uses `QEPCAD-B` to construct a CAD of $\R^r$ compatible with $S$. If $S$ is empty, then this CAD will contain no true cells, so the function checks this condition.
 
 ## Complexity analysis {#sec:strat-complexity}
 
