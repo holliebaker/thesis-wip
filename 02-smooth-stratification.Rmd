@@ -848,7 +848,7 @@ Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
 
     LISTOFCWTV(Q.GVPC, &Ct, &Cf);
 
-    /* compute cad */
+    /* compute CAD */
     return Ct == NIL;
 }
 

@@ -63,7 +63,8 @@ Their proof proceeds by induction on $n$.
     By [@bgv15 Lemma 3.11], refinements of this kind preserve the cylindrical structure of $\cal D$ and do not destroy existing monotone cells.
     In the semialgebraic case, we will see that the refinement points $c$ will always be algebraic numbers, which makes implementation using computer algebra systems possible.
 
-In the following sections, we will apply the construction given in the proof of @bgv15, Theorems 3.20 and 3.18 to develop an algorithm for finding the set of refinement points in the semialgebraic case, starting with the cad $\mathcal{D}$ and its set of input polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. The following will be proved.
+In the following sections, we will apply the construction given in the proof of @bgv15, Theorems 3.20 and 3.18 to
+develop an algorithm for finding the set of refinement points in the semialgebraic case, starting with the CAD $\mathcal{D}$ and its set of input polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. The following will be proved.
 
 ::: { .theorem #bgv-monotone-algorithm }
 Let
@@ -375,7 +376,8 @@ Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, whi
 
 In the previous section, we considered $(1,0,\ldots,0,1,0,\ldots,0)$-cells
 However, we will actually be working in a sub-decomposition $\cal D$ (of $\R^{k+n}$) above a $0$-cell $\mathbf{c}$ of $\R^k$ ($k \ge 0$). Therefore the polynomials appearing in Equation \@ref(eq:variety-v) are elements of $\Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$.
-From a polynomial $f \in \Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$, a polynomial $g := f(\mathbf{c}) \in \A[x_1,\ldots,x_n]$ can be obtained by evaluating $f$ at $\mathbf{c}$. Evaluated polynomials $g$ define the sub-cad of $\R^n$ above $\mathbf{c}$ because $\mathbf{c}$ is a $0$-cell.
+From a polynomial $f \in \Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$, a polynomial $g := f(\mathbf{c}) \in \A[x_1,\ldots,x_n]$
+can be obtained by evaluating $f$ at $\mathbf{c}$. Evaluated polynomials $g$ define the sub-CAD of $\R^n$ above $\mathbf{c}$ because $\mathbf{c}$ is a $0$-cell.
 
 Note that, since $\mathbf{c}$ is an algebraic number, $g$ has algebraic coefficients. Since roots of $g$ are algebraic numbers, there exists a polynomial $h \in \Z[x_1,\ldots,x_n]$ such that $g(\mathbf{x}) = 0$ if and only if $h(\mathbf{x}) = 0$ for all $\mathbf{x} \in \R^n$. A method for obtaining the polynomial $h$ with integer coefficients is now described.
 
@@ -579,7 +581,8 @@ Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, whi
 :::
 
 ::: {.Remark #monotone-sub-cad }
-Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm) can also be applied to two-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-cad of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
+Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm) can also be applied to
+two-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CAD of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
 :::
 
 ## Implementation details
@@ -601,13 +604,14 @@ $$
 {\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1}  \}
 $$
 where $\mathbf{b} \in \R^{k-1}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^k$,
-such that, for each ${\cal R}_\mathbf{b}$, intersecting the sub-cad $\cal D$ above $\mathbf{b}$ with straight lines and half-planes of the kind $\{x_1 < c_i \}, \{x_1 = c_i \}, \{x_1 > c_i\}, 1 \le i \le t$ results in a refinement of $\cal D$ such that each true cell of $\cal D$ with dimension at most $2$ is monotone.
+such that, for each ${\cal R}_\mathbf{b}$, intersecting the sub-CAD $\cal D$ above $\mathbf{b}$ with straight lines and half-planes of the kind $\{x_1 < c_i \}, \{x_1 = c_i \}, \{x_1 > c_i\}, 1 \le i \le t$ results in a refinement of $\cal D$ such that each true cell of $\cal D$ with dimension at most $2$ is monotone.
 
 First, define a subroutine
 $$
 {\rm sub}_{\mathbf{y}} (g) \mid g \in \Z[y_1,\ldots,y_m,x_1,\ldots,x_n], \mathbf{y} \in \A^m, n > 0,
 $$
-which computes $h := g(\mathbf{y}) \in \A[x_{1},\ldots,x_m]$ and returns the normalised polynomial of $h$, in $\Z[x_{m+1},\ldots,x_n]$ (see Section \@ref(sec:sub-cad)).
+which computes $h := g(\mathbf{y}) \in \A[x_{1},\ldots,x_m]$ and returns the normalised polynomial of $h$, in
+$\Z[x_{m+1},\ldots,x_n]$ (see Section \@ref(sec:sub-cad)).
 
 It will be convenient to overload this operator and write ${\rm sub}_{\mathbf{y}} (L)$, where $L$ is a set (or list) of polynomials to mean $\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}$.
 
@@ -704,7 +708,7 @@ by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 
 The correctness of the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) follows from @bgv15, Theorem 3.20 and
 Lemma 3.19, and is proved in Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm).
-The algorithm described in Section \@ref(sec:monotone-algorithm) considers each $2$-dimensional cell in a sub-cad $\mathcal{E}$ of $\R^n$ above a $0$-dimensional cell $\mathbf{b} \in \R^{k-1}$. This is exactly the inductive step of @bgv15, Theorem 3.20, where an $(i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)$-cell, where $i_1 = i_\alpha = 1$, is considered.
+The algorithm described in Section \@ref(sec:monotone-algorithm) considers each $2$-dimensional cell in a sub-CAD $\mathcal{E}$ of $\R^n$ above a $0$-dimensional cell $\mathbf{b} \in \R^{k-1}$. This is exactly the inductive step of @bgv15, Theorem 3.20, where an $(i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)$-cell, where $i_1 = i_\alpha = 1$, is considered.
 By Corollary \@ref(cor:gamma-top-bottom) to $C$, the two-dimensional subset $X \subset \opspan{x_1,x_\alpha}$ is obtained. The first part of @bgv15, Lemma 3.18 describes how $X$ should be refined into two-dimensional semi-monotone sets. The construction described in Section \@ref(sec:quasi-affine) explains how to obtain the set of refinement points $(c_1,\ldots,c_t) \subset \A$.
 $C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})$ where each component $f_j : X \to \opspan{x_j}$ for $j \in \{1,\ldots,n\} \setminus \{1,\alpha\}$ is a quasi-affine function. The second part of @bgv15, Lemma 3.18 describes how to refine $X$ such that each function $f_j$ is monotone. By @bgv15, Lemma 3.16, if every component $f_i$ is monotone on a subset in the refinement of $X$, then the map $\mathbf{f}$ itself is monotone on that subset of $X$.
 The construction described in Section \@ref(sec:monotone-sections) describes how to find the refinement points to ensure that $\mathbf{f}$ is a monotone map.
@@ -761,7 +765,7 @@ Thus, we obtain a bound on the total number of refinement points, which is asymp
 We now describe how to refine the CAD $\cal D$ to be compatible with the refinement points in $\cal R$.
 
 For $0 \le k \le n$, consider each refinement point $\mathbf{c} = (c_1,\ldots,c_{k-1}, c_k) \in {\cal R}_k$. It is important to note that refinement points appear in ascending order.
-Let ${\cal D}'$ be the sub-cad of $\R^{n-k}$ above $(c_1,\ldots,c_k)$, which is a $(0,\ldots,0)$-cell of the CAD induced by $\cal D$ on $\R^k$ and let ${\cal D}''$ be the CAD induced by ${\cal D}'$ on $\R^{k+1}$. We want to refine ${\cal D}''$ such that $\mathbf{c}$ is a new $(0)$-cell.
+Let ${\cal D}'$ be the sub-CAD of $\R^{n-k}$ above $(c_1,\ldots,c_k)$, which is a $(0,\ldots,0)$-cell of the CAD induced by $\cal D$ on $\R^k$ and let ${\cal D}''$ be the CAD induced by ${\cal D}'$ on $\R^{k+1}$. We want to refine ${\cal D}''$ such that $\mathbf{c}$ is a new $(0)$-cell.
 We need only to consider coordinate $k+1$ of $\mathbf{c}$. Denote it by $c_{k+1}$.
 For each $(0)$-cell $b_{k+1}$ of ${\cal D}''$, compute $s := \sign(b_{k+1} - c_{k+1})$. If $s \le 0$, consider the next $(0)$-cell in ${\cal D}''$. Otherwise, $s > 0$ and there is a $(1)$-cell $C$ in ${\cal D}''$ such that $c_{k+1} \in C$. This is the cell we need to refine.
 Make two new copies of $C$, so that we have three identical cells $C_1,C_2,C_3$. Recall that, to each cell belongs a sample point and possibly some other information. E.g., in QEPCAD, each cell has a set of signs of projection factors, which should remain unchanged, and a positional index which describes where in the CAD the cell can be found. Let $C_1$ have positional index $(j_1,\ldots,j_k,j_{k+1})$. New cells $C_2$ and $C_3$ should have positional indices $(j_1,\ldots,j_k,j_{k+1} + 1$ and $(j_1,\ldots,j_k,j_{k+1}+2)$ respectively. For each existing cell with positional index $(l_1,\ldots,l_k,l_{k+1})$ with $l_k+1 > j_{k+1}$, the index should be updated to $(l_1,\ldots,l_k,l_{k+1} + 2)$. We now need to update the sample points. The sample point of the section cell $C_2$ should be $\mathbf{c}$. This might turn out to be the case by chance. In this case, there is nothing to be done with $C_2$ and the sample points of sector cells $C_1$ and $C_3$ are incorrect. Otherwise, $\mathbf{c}$ is either greater than the sample point of $C_1$, in which case the sample point of $C_1$ is already correct, or $\mathbf{c}$ is less than $C_3$, in which case the sample point of $C_3$ is already correct. I.e., in every case, exactly two of the sample points of the cells $C_1$, $C_2$ and $C_3$ must be updated.

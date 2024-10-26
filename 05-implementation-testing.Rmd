@@ -711,7 +711,7 @@ The function `REFINE` computes the refinements.
 **Input:**
 
 - `Word k` $\in \N$,
-- `Word D` a cad of $\R^{k-1}$,
+- `Word D` a CAD of $\R^{k-1}$,
 - `Word A` $= (\mathcal{A}_k, \ldots, \mathcal{A}_n)$: set of refinement points,
 - `Word PF` $= (\mathcal{F}_k, \ldots, \mathcal{F}_n)$: set of projection factors.
 
@@ -1123,7 +1123,7 @@ Step5: /* Monotone cells, if needed */
         /*Int*/ if (PCCONTINUE == TRUE) { goto Return; }
         /*Int*/ Ths = ACLOCK();
 
-        // add extra polynomials for [semi]-monotone cells and recompute the cad if needed
+        // add extra polynomials for [semi]-monotone cells and recompute the CAD if needed
         Word RPs = MONOTONE(&P, &J, D, r);
         GVREFL = RPs;
 
