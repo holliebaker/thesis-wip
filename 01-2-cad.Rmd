@@ -53,7 +53,7 @@ There is no requirement that $C_W$ will be (a union of) cylindrical cells.
 
 Let $\varphi : W \to \R$ be a continuous function on a semialgebraic set $W \subset \R^n$, and let $\Phi \subset \R^{n+1}$ be its graph.
 
-A point $\mathbf{x} \in \overline{W} \setminus W$ is called a blow-up point of $\Phi$ if $$\proj^{-1}_{\R^n} (\mathbf{x}) \cap \overline{\Phi}$$ contains an open interval.
+A point $\mathbf{x} \in \overline{W} \setminus W$ is called a blow-up point of $\Phi$ if $$\projopinv{n} (\mathbf{x}) \cap \overline{\Phi}$$ contains an open interval.
 :::
 
 ::: {.remark #blow-up-codimension }

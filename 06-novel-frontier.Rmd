@@ -1,4 +1,4 @@
-# A novel algorithm for obtaining the frontier condition on a cylindrical decomposition of n-dimensional space { #sec:novel-frontier }
+# A Novel algorithm For Obtaining The Frontier Condition On A Cylindrical Decomposition Of $n$-Dimensional Space { #sec:novel-frontier }
 
 So far, we have been concerned only with cylindrical algebraic decompositions compatible with subsets of $\R^n$ having dimension at most two. We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
 
@@ -38,14 +38,14 @@ Due to the blow-up of $\varphi$ at the origin, $C_B$ is not a cylindrical cell.
 Note that $C_B$ does not contain all points at which $\varphi$ vanishes.
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="$C$, with $\\fr{C}$ superimposed, from Example \\@ref(exm:top-bottom-not-cylindrical), demonstrating that $C_B$ is not the graph of a continuous function."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="$C$, with $\\fr{C}$ superimposed, from Example \ref{exm:top-bottom-not-cylindrical}, demonstrating that $C_B$ is not the graph of a continuous function."}
 knitr::include_graphics(rep("gnuplot/frontier.svg"))
 ```
 
 As discussed above, in relation to Example \@ref(exm:top-bottom-not-cylindrical), the frontier of a cylindrical cell
 can be geometrically nontrivial, e.g., it may contain a blow-up.
 
-## Statement of the Problem
+## Statement of the problem
 
 Semialgebraic sets will usually be represented by Quantifier-Free Boolean formulas (QFFs) (see Definition \@ref(def:qff)).
 Occasionally, First-Order formulas, a wider class of formulas in which some variables may be bound by quantifiers $\forall$ and $\exists$ (see Definition \@ref(def:first-order-formula)).
@@ -106,7 +106,7 @@ Using singly-exponential quantifier elimination algorithm [@bpr2006, Algorithm 1
 as a QFF $F'$ with the bounds required in the lemma.
 :::
 
-### Intermediate Results
+### Intermediate results
 
 Recall that, according to Definition \@ref(def:cells), to each cylindrical cell in a CAD of $\R^n$ a (multi-)index
 $(i_1, \ldots ,i_n) \in \{ 0,1 \}^n$ is assigned.
@@ -216,9 +216,9 @@ It is clear that, if $(\mathbf{x'}, x_n) \in \cl{C' \times \R}$, then $\proj_{\R
 The proof is completed, for decompositions induced by $\mathcal{D}$ on $\R^k, 1 \le k \le n-1$, by iterating this argument for successive projections.
 :::
 
-## Main Result
+## Main result
 
-### Algorithm Psuedo-Code
+### Algorithm psuedo-code
 
 We are now ready to prove the main result. We begin by presenting pseudo-code for the algorithm described in Theorem \@ref(thm:main).
 First some basic subroutines are defined.
@@ -291,7 +291,7 @@ where $F_{1,B}$ (resp. $F_{1,T}$) is a QFF defining the bottom (resp. top) of th
 - Return ${\mathcal E}_{(0,\ldots,0)}$.
 :::
 
-### Worked Example { #sec:worked-example }
+### Worked example { #sec:worked-example }
 
 ```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Illustrates the initial decomposition constructed in Step 1 (projection onto the $(x,y)$-plane).", label="initial-cad" }
 knitr::include_graphics(rep("gnuplot/r3-initial.png"))
@@ -383,9 +383,7 @@ $X_{(0,0)}$ contains $\fr{S'}$.
 
 Well-known implementations of cylindrical algebraic decomposition such as `QEPCAD B` [@brownQepcad] and Maple's `CylindricalAlgebraicDecompose` [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example \@ref(exm:top-bottom-not-cylindrical), both 'CylindricalAlgebraicDecompose' and 'QEPCAD B' create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr{S} \ne \emptyset$, but $B''' \not \subset \fr{S}$ so the frontier of $S$ is not a union of cells in the decomposition.
 
-TODO!! insert the tables.
-
-### Mathematical Description
+### Mathematical description
 
 The algorithm takes as input a quantifier-free Boolean formula $F$ representing a semialgebraic set $S \subset \R^n$. Begin by computing a CAD $\mathcal{E}$ compatible with $S$, by applying the algorithm from Proposition \@ref(prp:collins) to $\{ F \}$.
 
@@ -504,7 +502,7 @@ $$
 $$
 According to Proposition \@ref(prp:collins) and Lemma \@ref(lem:frontier), this is also an upper bound on the number of cells in $\mathcal D={\mathcal E}_{\mathbf{0}}$, the number of polynomials defining cells and their degrees.
 
-### A Note on Constructing the Intermediate Decompositions
+### A note on constructing the intermediate decompositions
 
 In the algorithm described in Theorem \@ref(thm:main), we construct, for each index $M \in \{0,1\}^{n-1}$, a CAD compatible with $\mathcal{F}_M = \{F_1,\ldots,F_k\}$ and all cells of $\mathcal{E}_M$.
 This can be achieved by constructing a CAD, using Proposition \@ref(prp:collins), such that each cell has constant sign on the polynomials in formulas $\mathcal{F}_M$ and all cells of $\mathcal{E}_M$. Such a CAD is clearly compatible with sets defined by formulas in $\mathcal{F}_M$ and all cells of $\mathcal{E}_M$. However, it may include some cells, outside $\cl{S}$, which we are not interested in.
@@ -520,7 +518,7 @@ This is clearly possible by Thom's Lemma. However, the signs of polynomials on w
 
 ## Generalisations and further work
 
-### Pfaffian Functions { #sec:pfaffian }
+### Pfaffian functions { #sec:pfaffian }
 
 Theorem \@ref(thm:main) can be extended to restricted sub-Pfaffian sets as described by @gv04.
 In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by *fewnomials* [@gv04, Section 2.6], whose structure is destroyed by a change of coordinates, and obtain a bound on the number of cells in these decompositions.
@@ -531,7 +529,7 @@ In fact, basic sets can be defined using any functions definable in $\R^n$ and i
 
 Note that it is not currently clear how this result can be implemented since in the algorithm for cylindrical decomposition by @gv01 the oracle is needed to decide whether a sub-Pfaffian set is empty or not.
 
-### Further Wrok { #sec:novel-frontier-fw }
+### Further wrok { #sec:novel-frontier-fw }
 
 The complexity upper bound of the algorithm from Theorem \@ref(thm:main) is significantly worse than the bound
 for classical CAD algorithm due to @collins1975 (and @wuthrich1976).

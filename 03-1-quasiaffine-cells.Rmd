@@ -1,4 +1,4 @@
-# Quasi-affine cells { #sec:quasi-affine }
+# Quasi-Affine Cells { #sec:quasi-affine }
 
 In this section, we develop an algorithm, based on @bgv15, Theorem 3.19, for constructing a CAD whose two-, one-, and zero-dimensional cells are the graphs of quasi-affine maps. This is the first step to constructing a monotone cylindrical decomposition, as described in @bgv15, Theorem 3.20.
 
@@ -19,7 +19,7 @@ F_1,\ldots,F_k
 $$
 be quantifier-free Boolean formulas containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \subset \Z[x_1,\ldots,x_n]$, having maximum degree $d$, such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
 
-Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map. $\mathcal{D}$ is obviously compatible with each $V_1,\ldots,V_K$. 
+Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map. $\mathcal{D}$ is obviously compatible with each $V_1,\ldots,V_K$.
 This algorithm has complexity
 $$
 \left(s\left(d+1\right)\right)^{2^{O(n)}},
@@ -27,7 +27,7 @@ $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
-## Computing the smooth two-dimensional locus of V
+## Computing the smooth two-dimensional locus of the input set
 
 The proof of @bgv15, Theorem 3.19 begins by introducing $W$, the smooth $2$-dimensional locus of $V = V_1 \cup \ldots \cup V_k$.
 Since $V$ is a semialgebraic set, it can be represented by a quantifier-free Boolean formula $F$.
@@ -37,12 +37,12 @@ For each $S_i \subset V$, apply the smooth stratification algorithm to obtain a 
 We have $\dim(S_i) \le 2$, since each of the sets in the union $V$ has dimension at most 2. Hence, every stratum $X_{i,j}$ of codimension $j < n-2$ will be empty.
 We obtain the smooth two-dimensional locus of $V$ by taking the union of strata of codimension $n-2$. For each stratum, it is important to keep the set of $n-2$ polynomials defining it, as these will be needed in the next step. We will need the strata of codimension $n-1$, as each one-dimensional cell must also be the graph of a quasi-affine map.
 
-### An alternative method for computing the smooth two-dimensional locus
+### An alternative approach
 
 Recall from Section \@ref(sec:cad-construction)) that smooth cells can be guaranteed by choosing a certain projection operator.
 More precisely, according to @mccallum1988, Theorems 2.2.3 and 2.2.4, if there is a finite number of blow-up points, then the McCallum projection operator will result in a CAD where all cells are analytic submanifolds.
-Since $\dim(V_i) \le 2$ for all $1 \le i \le k$, blow-up points in $\cl(V_i)$ have dimension at most $0$ (see the Remark after Definition \@ref(def:blow-up-point)). 
-Hence, the McCallum projection operator is sufficient to produce smooth cells. 
+Since $\dim(V_i) \le 2$ for all $1 \le i \le k$, blow-up points in $\cl(V_i)$ have dimension at most $0$ (see the Remark after Definition \@ref(def:blow-up-point)).
+Hence, the McCallum projection operator is sufficient to produce smooth cells.
 
 Let $\mathbf{F} \subset \R^n$ be the set of different polynomials appearing in the quantifier-free Boolean formulas defining $V$ and use the McCallum projection operator to construct an $F$-invariant CAD, $\cal E$, of $\R^n$. Since cells of a CAD are disjoint by construction and smooth by the use of the McCallum projection operator, $\cal E$ forms a smooth stratification of $V$.
 Thus, we can take as $W$ the (separate) sets of $2$- and $1$-dimensional cells of $\cal E$ which are contained in $V$.
@@ -51,7 +51,7 @@ Let $C \subset V$ be a $2$-dimensional be a cell of $\mathcal{E}$, and suppose i
 The polynomials can be determined by using the set of signs of projection factors and used to define an algebraic variety $Y \supset C$. Note that we need some additional inequalities to define $C$ properly, but these are not needed to compute the critical points of projections in the next section.
 Similarly for $1$-dimensional cells, only one element of the index will be equal to $1$, while all other elements are equal to $0$. It follows that we can find $n-1$ polynomials, in a similar way, which are equal to zero on each one-dimensional cell.
 
-It is possible to compute $W$ using either technique. Theoretically speaking, using the smooth stratification algorithm seems cleaner, as it is the correct tool for the job. In addition, the bound on number of strata is singly exponential, while the bound on number of CAD cells is doubly exponential. An estimate for the number of cells of strata having a certain dimension is not currently known, but it seems likely that the number of strata will be less than the number of CAD cells. 
+It is possible to compute $W$ using either technique. Theoretically speaking, using the smooth stratification algorithm seems cleaner, as it is the correct tool for the job. In addition, the bound on number of strata is singly exponential, while the bound on number of CAD cells is doubly exponential. An estimate for the number of cells of strata having a certain dimension is not currently known, but it seems likely that the number of strata will be less than the number of CAD cells.
 @gv04, Theorem 3.7 gives a method (which can be turned into an algorithm) for efficiently listing all sign sets associated with a set of polynomials and @bpr2006, Algorithm 14.21 describes how quantifier elimination can be performed in singly exponential time.
 However, in the implementation
 CAD is used to perform the emptiness check. Thus, the second option seems more appealing because a single recomputation of the CAD is preferrable to many calls to the CAD algorithm, which would be required for the stratification-based approach in the form that it has been implemented.
@@ -158,7 +158,7 @@ be the set of polynomials appearing in the formulas $F_1,\ldots,F_k$.
 
   $\det(J_{C_1,\mathbf{m}}) = 0$ at the critical points of $\projops{i}$.
 
-  - Return the CAD $\cal D$, which is sign invariant on
+  - Construct $\cal D$, an $\mathcal{F'}$-invariant CAD of $\R^n$, where
     \begin{align*}
     \mathbf{F}' =\ & & \mathbf{F}\\
     \cup\ & \bigcup_{C_2 \subset V,\dim(C_2) = 2,\mathbf{m} = \{1,\ldots,n\} \setminus \{i_1,i_2\}, 1 \le i_1 < i_2 \le n} & \det\left(J_{C_2,\mathbf{m}}\right)\\
@@ -166,13 +166,13 @@ be the set of polynomials appearing in the formulas $F_1,\ldots,F_k$.
     \end{align*}
 :::
 
-## Correctness and Complexity
+## Correctness and complexity
 
 Correctness of Theorem \@ref(thm:bgv-quasi-algorithm) follows from the proof of @bgv15, Lemma 3.19. Let $\mathcal{E}$ be the CAD computed by the algorithm from Section \@ref(sec:quasiaffine-algorithm), using the McCallum projection operator, in which each cell has constant sign on the polynomials defining sets $V_1,\ldots,V_k$.
 By @mccallum1988, Theorems 2.2.3 and 2.2.4, each cell $C \subset V$ of $\cal E$ will be an analytic submanifold, since $\dim(V_i) \le 2, 1\le i \le k$.
 The algorithm then makes the CAD compatible with the determinants of matrices $J_{C_2,\mathbf{m}}$ and $J_{C_1,\mathbf{m}}$, defined in Equations \@ref(eq:jacobi-two) and \@ref(eq:jacobi-one) respectively. These are the critical points of projections of two- and one- dimensional smooth cylindrical cells $C \subset V_1,\ldots,V_k$. Thus, $\mathcal{D}$, the CAD output by the algorithm from Section \@ref(sec:quasiaffine-algorithm) is compatible with the critical points of projections of the smooth two-dimensional locus of $V_1\cup \ldots \cup V_k$ onte one- and two-dimensional coordinate subspaces, as required in the proof of @bgv15, Lemma 3.19.
 
-### Complexity Analysis { #sec:quasi-complexity }
+### Complexity analysis { #sec:quasi-complexity }
 
 Let us examine the complexity by supposing that the smooth stratification algorithm is used to find the smooth two-dimensional locus of $V = V_1\cup \ldots \cup V_k \subset \R^n$, defined by $s$ polynomials having maximum degree $d$.
 By the result from Section \@ref(sec:strat-complexity), the smooth stratification step with emptiness checking has complexity
@@ -188,7 +188,7 @@ n (d + 1)^{2},
 $$
 
 For the critical points of $\projops{x_i}, 1 \le i \le n$, there will be $n$ Jacobi determinants, and for $\projops{x_i,x_j}, 1 \le i < j \le n$, there will be $(n-1) + (n-2) + \cdots + 1 = \tfrac{1}{2} (n-1)n$, which is asymptotically the same as $n^2$.
-Accordirg to Section \@ref(sec:strat-complexity), the smooth stratification algorithm will produce at most $s^n (d+1)^2$. The bound on the number of strata of each codimension is not known, but the total number of strata is, of course, an upper bound. Therefore, there will be at most $n \left(s^n (d+1)^2\right)$ additional polynomials. 
+Accordirg to Section \@ref(sec:strat-complexity), the smooth stratification algorithm will produce at most $s^n (d+1)^2$. The bound on the number of strata of each codimension is not known, but the total number of strata is, of course, an upper bound. Therefore, there will be at most $n \left(s^n (d+1)^2\right)$ additional polynomials.
 
 A classical CAD, having constant sign on the $s$ input polynomials along with the $n \left(s^n (d+1)^2\right)$ Jacobi determinants, which have maximum degree $n(d + 1)^{2}$, is then constructed.
 According to Proposition \@ref(prp:collins) (@bpr2006, Algorithm 11.2), classical CAD has complexity

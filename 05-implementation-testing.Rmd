@@ -83,7 +83,7 @@ The `QEPCAD B` algorithm proceeds in five stages:
 
     Given the CAD $\mathcal{D}$, whose union of true cells coincides with the set defined by the input formula, a quantifier-free Boolean formula defining this set is produced. `QEPCAD B` attempts to use the projection factors in this formula, but sometimes additional polynomials (derivatives of projection factors) must be added in order to define the required set.
 
-### QEPCAD Cells and Sample Points
+### QEPCAD cells and sample points
 
 Since the main advantage of the monotone CAD algorithm is to produce a CAD with cells having desirable topological properties, we are mostly interested in examining individual CAD cells rather than QEPCAD's output formula.
 
@@ -138,6 +138,8 @@ Since any finite set of algebraic numbers belongs to a single algebraic extensio
 
 ### Modifications to QEPCAD
 
+Full source code can be found here: https://github.com/monotone-cad/qepcad-monotone.
+
 The QEPCAD algorithm has been modified to include construction of quasi-affine cells, refinement of the CAD to produce monotone cells, and refinement of sectors above "bad cells" to obtain the frontier condition. A new option, `mct <y / n>` has been added, to enable or disable (respectively) the construction of a monotone CAD. The algorithm now proceeds as follows.
 
 1. Input
@@ -169,7 +171,7 @@ The QEPCAD algorithm has been modified to include construction of quasi-affine c
 
       Following the algorithm described in Section \@ref(sec:monotone-algorithm), construct the family of refinement points $$
       {\cal R} := \{ {\cal R}_{\mathbf{b}} =  (c_1,\ldots,c_t ) \subset \A \mid \mathbf{b} \in \R^{k-1}  \}
-      $$ 
+      $$
       where is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^k$,
       and add new polynomials (to $\mathcal{A}$, along with their factors to $\mathcal{F}$) which are equal to zero at these refinement points.
 
@@ -526,7 +528,7 @@ Word LagrangeRefinement(Word r, Word f, Word i, Word Gs, Word Is)
 
 Once the set of refinement points has been computed, the CAD is refined using the method described in Section \@ref(sec:implementation-refinement).
 
-### Frontier Condition
+### Frontier condition
 
 The frontier condition is obtained by using the generalisation of Lazard's method for lifting with bad points, as described in section \@ref(sec:lazard-n), the entry point for computing a CAD with frontier condition is `FRONTIER`. This function identifies bad zero-dimensional cells and adds refinement points, in the same format as that used in the construction of monotone cells.
 
@@ -693,7 +695,7 @@ Given the CAD $\mathcal{D}$ of $\R^n$ constructed in the lifting phase, both `MO
 $$
 {\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \}.
 $$
-where 
+where
 $\mathbf{b} \in \R^{k-1}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal D}$ on $\R^k$.
 The function `REFINE()` computes refinements of $\mathcal{D}$ to be compatible with these points. Each refinement point $(b_1,\ldots,b_{k-1},c) \in \A^k$, such that $(b_1,\ldots,b_k)$ is a $0$-dimensional cell, $\mathbf{b}$, in the CAD induced by $\mathcal{D}$ on $\R^{k-1}$ is stored separately, is stored separately as a pair
 $$
@@ -718,7 +720,8 @@ The function `REFINE` computes the refinements.
 - `Word D'`, a refinement of $\rm{D}$ compatible with the refinement points in $\mathcal{A}_k$.
 
 QEPCAD represents a CAD $\mathcal{D}$ of $\R^n$ as a tree of cells. The root is the unique cell $\mathbf{0}$ in the CAD of $\R^0$ and its children are the cells of the CAD induced by $\mathcal{D}$ on $\R^1$. As one might expect, given a QEPCAD cell $C$ in the decomposition induced by $\mathcal{D}$ on $\R^k$, its children are the cells of the decomposition induced by $\mathcal{D}$ on $\R^{k+1}$ which project on $C$. QEPCAD constructs a "partial CAD". This means that there may be cells of level $k < n$ with no children.
-In other words, if $C$ is an $(i_1,\ldots,i_k)$-cell in the decomposition induced by $\mathcal{D}$ on $\R^k$ with no children, then $\projop{k}^{-1}(C)$ is an $(i_1,\ldots,i_k,1,\ldots,1)$-cell of $\mathcal{D}$.
+In other words, if $C$ is an $(i_1,\ldots,i_k)$-cell in the decomposition induced by $\mathcal{D}$ on $\R^k$ with no
+children, then $\projopinv{k}(C)$ is an $(i_1,\ldots,i_k,1,\ldots,1)$-cell of $\mathcal{D}$.
 
 Refine proceeds by induction on CAD cells by "walking" the CAD (in the same way as a depth-first-search), identifying cells which need refinement by checking the level-$k$ refinement points, computing this refinement and returning the refined CAD.
 
@@ -1168,7 +1171,7 @@ Return: /* Prepare for return. */
 - Lines 55-61 remain unchanged, and construct a truth-invariant CAD. If monotone cells are to be produced, the CAD will have constant sign on the projection factors, as the option `full-cad` will be enabled.
 - Lines 61-88 define a new step, where refinements for monotone cells and frontier condition are performed. Lines 70-71 compute the refinement points for monotone cells, by calling `MONOTONE` and Line 74 calls `REFINE` to compute the refinement. Line 84 calls `FRONTIER` to complete the refinement points above bad cells and Line 85 calls computes the refinement.
 
-### Additional modifications and Utility Functions
+### Additional modifications and utility functions
 
 A brief summary of new and modified functions is now presented.
 
@@ -1233,7 +1236,7 @@ A brief summary of new and modified functions is now presented.
 
 Note that some other files show changes, when using git diff, but these are just formatting and whitespace changes which made the code more readable.
 
-## Test Cases
+## Test cases
 
 ::: {.example #sphere}
 Let $n = 3$ and consider the unit sphere
@@ -1242,7 +1245,7 @@ S := \{ (x,y,z) \in \R^3 \mid x^2 + y^2 + z^2 - 1 = 0 \}.
 $$
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the sphere from Example \\@ref(exm:sphere), showing critical points of projections onto one and two-dimensional coordinate subspaces, and their projections."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the sphere from Example \\ref{exm:sphere}, showing critical points of projections onto one and two-dimensional coordinate subspaces, and their projections."}
 knitr::include_graphics(rep("gnuplot/sphere.svg"))
 ```
 
@@ -1276,7 +1279,7 @@ C := \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y > 0, x + y^2 < 1, z = x^2 + y^2 \}.
 $$
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the 2-dimensional cell from Example \\@ref(exm:qanm)."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the 2-dimensional cell from Example \\ref{exm:qanm}."}
 knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 ```
 
@@ -1304,7 +1307,7 @@ knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 
   No blow-up points, already satisfied.
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the CAD with monotone cells, compatible with the 2-dimensional cell presented in Example \\@ref(exm:qanm)."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the CAD with monotone cells, compatible with the 2-dimensional cell presented in Example \\ref{exm:qanm}."}
 knitr::include_graphics(rep("gnuplot/qanm.svg"))
 ```
 

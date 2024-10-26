@@ -4,10 +4,50 @@
 
 ### Sets definable over O-minimal structures
 
-<!-- TODO why semialgebrai set -->
 We will be working mostly in the category *Semialgebraic Set* and sometimes in the more general category of sets definable over an O-minimal structure.
-A semialgebraic subset of $\R^n$ is the set of points in $\R^n$ satisfying a Boolean combination of polynomial equations and inequalities with coefficients in $\R$.
-A polynomial with coefficients in a field $K$ and variables $x_1,\ldots,x_n$ will be denoted as an element of $K[x_1,\ldots,x_n]$.
+As such, we will be working with multivariate polynomials $f$ in variables $x_1,\ldots,x_n$ with coefficients in a field $Z$. These will be denoted as elements of $Z[x_1,\ldots,x_n]$. 
+
+We first define the O-minimal structures over the reals.
+
+::: {.definition #definable-set}
+A structure expanding the real closed field $R$ is a collection $$
+S := (S^n)_{n \in \N}
+$$
+where each $S^n$ is a set of subsets of the affine space $R^n$ satisfying the following conditions.
+
+1. All algebraic subsets of $R^n$ are in $S^n$.
+2. $S^n$ is a Boolean subalgebra of the powerset of $R^n$.
+3. If $A \in S^n$ and $B \in S^m$, then $A \times B \in S^{n+m}$.
+4. Let $\proj : R^{n+1} \to R^n$ be the projection onto the first $n$ coordinates. If $X\in R^{n+1}$, then $\proj(X) \in R^n$.
+
+Elements of $S^n$ (satisfying properties 1-4) are called the definable subsets of $R^n$.
+If the structure $S$ satisfies properties 1-4 and the following property, it is called an O-minimal structure.
+
+5. The elements of $S^1$ consist of the finite unions of points and open intervals of $R$.
+:::
+
+::: {.definition #definable-function}
+A map $f : A \to R^m$, where $A \subset R^n$, is called *definable* if its graph $G \subset R^{n+m}$ is a definable set.
+:::
+
+::: {.remark}
+Since definable sets are closed under projection, it can be easily deduced that $A$ is a definable set.
+:::
+
+::: {.remark}
+For convenience, we will call a definable map $f : R^n \to R$ a definable function.
+:::
+
+::: {.definition #graph-def-map }
+Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets (see Definition \@ref(def:definable-set).
+Let $f : X \to Y$ be a mapping from $X$ to $Y$. The graph of $f$ is the definable set
+$$
+\{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}.
+$$
+Sometimes, the domain of $f$ is $\R^n$. In this case, we often use the restriction $f\vert_X$ so that only images of $f$ at points in $X$ are considered,
+:::
+
+We now define the semialgebraic sets. 
 
 ::: { .definition #semialgebraic-set }
 The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets of $\R^n$ satisfying the following properties.
@@ -16,18 +56,10 @@ The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets o
 1. If $A, B \in {SA}_n$, then $A \cup B$, $A \cap B$ and $\R^n \setminus A$ are elements of ${SA}_n$.
 :::
 
-::: {.definition #graph-def-map }
-Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets.
-Let $f : X \to Y$ be a mapping from $X$ to $Y$. The graph of $f$ is the definable set
-$$
-\{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}.
-$$
-Sometimes, the domain of $f$ is $\R^n$. In this case, we often use the restriction $f\vert_X$ so that only images of $f$ at points in $X$ are considered,
-The graph of $f$ on $X$ may be denoted by $f(X)$.
-:::
+It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structure over the reals. Another example is the sub-pfaffian sets.
 
 ::: {.definition}
-Let $X \subset \R^n$ and $Y \subset \R^m$. A mapping $f : X \to Y$ is called semialgebraic if its graph (see Definition \@ref(def:graph-def-map))
+Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets. A mapping $f : X \to Y$ is called semialgebraic if its graph (see Definition \@ref(def:graph-def-map))
 $$
 \{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}
 $$
@@ -51,10 +83,9 @@ A first-order Boolean formula is obtained by rules 1 and 2 from Definition \@ref
 
 Semialgebraic sets are closed under taking finite unions and intersections and the difference of two semialgebraic sets is semialgebraic.
 A fundamental result in semialgebraic geometry is the Tarski--Seidenberg Theorem, which asserts that semialgebraic sets are also closed under taking projection.
-The proof of Tarski's theorem was published in [@tarski1998], whose release was delayed due to the war. It is very likely that Tarski actually proved the theorem much earlier, since Tarski mentioned this result in @sierpinski1930. The following statement of the theorem comes from [@vdd1988tarski], but the theorem should obviously be attributed to Tarski.
 
 ::: { .theorem #tarski-seinedberg }
-[@vdd1988tarski]
+[@tarski1951]
 Let $S \subset \R^{n+1}$ and $\projop{n} : \R^{n+1} \to \R^n$ be the projection map onto the first $n$ co-ordinates. Then $\projop{n}(S) \subset \R^n$ is a semialgebraic set.
 :::
 
@@ -104,42 +135,6 @@ where $k \in \N$ and $f,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
 :::
 
 This follows from the fact that the class of finite unions of this kind satisfy properties listed in Definition \@ref(def:semialgebraic-set).
-
-We now define the O-minimal structures over the reals.
-
-::: {.definition #definable-set}
-A structure expanding the real closed field $R$ is a collection $$
-S := (S^n)_{n \in \N}
-$$
-where each $S^n$ is a set of subsets of the affine space $R^n$ satisfying the following conditions.
-
-1. All algebraic subsets of $R^n$ are in $S^n$.
-2. $S^n$ is a Boolean subalgebra of the powerset of $R^n$.
-3. If $A \in S^n$ and $B \in S^m$, then $A \times B \in S^{n+m}$.
-4. Let $\proj : R^{n+1} \to R^n$ be the projection onto the first $n$ coordinates. If $X\in R^{n+1}$, then $\proj(X) \in R^n$.
-
-Elements of $S^n$ (satisfying properties 1-4) are called the definable subsets of $R^n$.
-If the structure $S$ satisfies properties 1-4 and the following property, it is called an O-minimal structure.
-
-
-5. The elements of $S^1$ consist of the finite unions of points and open intervals of $R$.
-
-
-:::
-
-::: {.definition #definable-function}
-A map $f : A \to R^m$, where $A \subset R^n$, is called *definable* if its graph $G \subset R^{n+m}$ is a definable set.
-:::
-
-::: {.remark}
-Since definable sets are closed under projection, it can be easily deduced that $A$ is a definable set.
-:::
-
-::: {.remark}
-For convenience, we will call a definable map $f : R^n \to R$ a definable function.
-:::
-
-It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structure over the reals. Another example is the sub-pfaffian sets.
 
 ::: {.definition}
 [@gv04, Definition 2.1]
@@ -236,9 +231,9 @@ I = \{x_{j_1}, \ldots, x_{j_m} \} \subset \{x_1 ,\ldots, x_n \},
 $$ let $W$ be the linear subspace of $\R^n$ where all coordinates in $I$ are equal to zero.
 We write $\opspan{x_{j_1},\ldots, x_{j_m}}$ to mean the
 quotient space $\R^n / W$.
-Similarly, for any aﬃne coordinate subspace $L \subset \R^n$ on which all the
+Similarly, for any affine coordinate subspace $L \subset \R^n$ on which all the
 functions $x_j \in I$ are constant, we will identify $L$ with its image under the canonical surjection
-to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$.
+to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$. $\projop{x_{i_1},\ldots,x_{i_k}} : \R^n \to \opspan{x_{i_1},\ldots,x_{i_k}}$ denotes the projection map from $\R^n$ to $\opspan{x_{i_1},\ldots,x_{i_k}}$, where $\{i_1,\ldots,i_k\} \subset \{1,\ldots,n\}$. 
 :::
 
 ::: { .definition #monotone-map-on }

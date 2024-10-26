@@ -20,7 +20,7 @@ Complexity bounds, based on @gv1995 and a singly exponential algorithm for decid
 @bgv15, Theorem 3.20 gives a constructive proof that there exists a CAD, monotone with respect to a collection of bounded definable sets $V_1,\ldots,V_k$, each of which has dimension at most $2$, and satisfying the frontier condition. The main contribution of Chapters \@ref(sec:quasi-affine), \@ref(sec:monotone-cells) and \@ref(sec:frontier) is the design and implementation of an algorithm, based on @bgv15, Theorem 3.20, for constructing such a CAD. Following the construction due to @bgv15, the algorithm proceeds in three steps.
 
 First, a CAD, compatible with each of $V_1,\ldots,V_k$ and such that each cell $C \subset V_1 \cup \ldots \cup V_k$ is the graph of a quasi-affine map, following @bgv15 Lemma 3.19, is constructed. This lemma first instructs us to consider $W$, the smooth $2$-dimensional locus of $V_1 \cup \ldots \cup V_k$.
-This can be done by applying the smooth stratification algorithm, as presented in Section \@ref(sec:smooth-strat), and collecting the strata of codimension $n-2$. 
+This can be done by applying the smooth stratification algorithm, as presented in Section \@ref(sec:smooth-strat), and collecting the strata of codimension $n-2$.
 It was then observed that, according to @mccallum1998 Theorems 2.2.3 and 2.2.4, if McCallum's projection operator is used and there is only a finite number of blow-up points, smooth cells are obtained automatically.
 @bgv15, Lemma 3.19 then tells us to construct a CAD which is compatible with all $V_1,\ldots,V_k$ and the critical points of the projections of $W$ onto one- and two-dimensional coordinate subspaces. This can be done by ensuring that the CAD has constant sign on all polynomials defining the sets $V_1,\ldots,V_k$, along with some additional polynomials which arise from computing the determinants of Jacobi matrices defining either the (smooth) $2$-dimensional cells, or $2$-dimensional strata.
 This completes the construction described in @bgv15, Lemma 3.19. Pseudo-code is presented and a complexity bound of $\left(s (d+1)\right)^{O(1)^{n}}$, which is slightly worse than classical CAD, is obtained.
@@ -34,23 +34,27 @@ first approach is a direct translation of the last part of @bgv15, Theorem 3.20.
 cells are computed and then partitioned into points and monotone curve intervals. The latter part of this construction,
 partitioning a one-dimensional curve into monotone pieces -- is straightforward, as it has already been done when constructing monotone cells in the previous chapter.
 However, the task of computing the frontier of a semialgebraic set is not as easy. Lemma \@ref(lem:frontier) describes how to do this using quantifier elimination, and asserts that it has complexity singly exponential in the number of variables. However, the algorithm presented in [@bpr2006, Algorithm 14.21] is theoretical in nature and, in practice, we would have to resort to doubly exponential CAD to solve the QE problem.
-Endeavouring to avoid this, we turned to @lazard10, who presents an algorithm for computing a CAD of $\R^3$ with frontier condition. This algorithm relies on a CAD, containing only topologically regular cells, and having constant sign on a set of polynomials to be given. Since this has already been done (in Chapters \@ref(sec:quasi-affine) and \@ref(sec:monotone-cells)), Lazard's algorithm can be applied directly in dimension $3$. Furthermore, if $2$-dimensional cells are contained in a sub-CAD of $\R^3$ above a $0$-dimensional cell, hen Lazard's algorithm can, again, be applied directly to the sub-CAD.
+Endeavouring to avoid this, we turned to @lazard10, who presents an algorithm for computing a CAD of $\R^3$ with
+frontier condition. This algorithm relies on a CAD, containing only topologically regular cells, and having constant
+sign on a set of polynomials to be given. Since this has already been done (in Chapters \@ref(sec:quasi-affine) and
+\@ref(sec:monotone-cells)), Lazard's algorithm can be applied directly in dimension $3$. Furthermore, if $2$-dimensional
+cells are contained in a sub-CAD of $\R^3$ above a $0$-dimensional cell, then Lazard's algorithm can, again, be applied directly to the sub-CAD.
 The main contribution of Chapter \@ref(sec:frontier) is the observation that a similar situation to that described by Lazard exists in the special case of $2$-dimensional cells in a CAD of $\R^n$ and the suggestion of an extension of Lazard's method to this situation.
 This is the approach taken in the implementation, since it is more tractable than computing the frontier of every cell.
-Pseudo-code for the extension of Lazard's algorithm and a complexity analysis for both Gabrielov and Vorobjov's approach and Lazard's approach is performed. The complexity, for both approaches, is $\left(s (d+1)\right)^{O(1)^{n}}$, which is the overall complexity of constructing the CAD with the properties from @bgv15, Theorem 3.20. 
+Pseudo-code for the extension of Lazard's algorithm and a complexity analysis for both Gabrielov and Vorobjov's approach and Lazard's approach is performed. The complexity, for both approaches, is $\left(s (d+1)\right)^{O(1)^{n}}$, which is the overall complexity of constructing the CAD with the properties from @bgv15, Theorem 3.20.
 
-Thus, a concrete description of an algorithm to construct the cylindrical decomposition, in the semialgebraic case, described in @bgv15, Theorem 3.20 is given, which has complexity only slightly worse than classical CAD. 
-Chapter \@ref(sec:implementation-and-testing) is concerned with the implementation details of the this algorithm, along with presenting some test cases which give an exposition of its three stages: quasi-affine, monotone and frontier condition.
+Thus, a concrete description of an algorithm to construct the cylindrical decomposition, in the semialgebraic case, described in @bgv15, Theorem 3.20 is given, which has complexity only slightly worse than classical CAD.
+Chapter \@ref(sec:implementation-and-testing) is concerned with the implementation details of this algorithm, along with presenting some test cases which give an exposition of its three stages: quasi-affine, monotone and frontier condition.
 
-### A Novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension
+### A novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension
 
-The final contribution is an algorithm, having ELEMENTARY complexity, for constructing a CAD, compatible with a semialgebraic set of arbitrary dimension and satisfying the frontier condition. 
+The final contribution is an algorithm, having ELEMENTARY complexity, for constructing a CAD, compatible with a semialgebraic set of arbitrary dimension and satisfying the frontier condition.
 This algorithm removes the restriction imposed by @jhd20, as blow-ups are permitted, and does not require the rotation of coordinates proposed by @pianomovers1983.
-It was not clear how this could be achieved using the usual induction -- on the ambient dimension -- so a novel approach was needed. The algorithm relies on a recursion on the lexicographical order of cell index $(i_1,\ldots,i_n) \in \{0,1\}^n$. A mathematical description, proof of correctness, complexity analysis and pseudo-code are presented for this algorithm, which has complexity doubly exponential in the number of variables. 
+It was not clear how this could be achieved using the usual induction -- on the ambient dimension -- so a novel approach was needed. The algorithm relies on a recursion on the lexicographical order of cell index $(i_1,\ldots,i_n) \in \{0,1\}^n$. A mathematical description, proof of correctness, complexity analysis and pseudo-code are presented for this algorithm, which has complexity doubly exponential in the number of variables.
 This work was presented in extended abstract form at CASC 2023 and is currently under review for publication in the Journal of Symbolic Computation.
 This algorithm has not yet been implemented due to time constraints, but it is clear from the pseudo-code that it could be done using the tools we have been using throughout this thesis.
 
-## Further Work
+## Further work
 
 Another fundamental construction in real algebraic geometry is triangulation -- which partitions a set into a collection of simplices (a simplicial complex).
 The main result of @bgv15 relates to definable monotone families.
@@ -67,13 +71,13 @@ It is conjectured that this classification can be extended to $n$-dimensional se
 Another direction of research would be to prove this conjecture by generalising the results of @bgv15, and design an algorithm for computing such a triangulation in the case of sets with arbitrary dimension.
 The first step would be to generalise the monotone CAD algorithm to sets with higher dimension.
 It is not currently clear how this can be done, but one might want to start with sets of dimension $3$.
-In @bgvII an algorithm-like procedure was proposed for constructing a decomposition of a 3-dimensional $K$
+In @bgvII an algorithm-like procedure was proposed for constructing a decomposition of a 3-dimensional set $K$
 into topologically regular cylindrical cells which may not form an overall cylindrical decomposition, as cells may be cylindrical with respect to different orderings of variables.
 The first step in solving this problem may be to implement this procedure or, possibly, strengthen it to obtain a decomposition which is cylindrical with respect to the given coordinate ordering.
 The results in Section \@ref(sec:novel-frontier) make some strides towards the generalisation, allowing us to obtain the frontier condition in CADs compatible with sets of any dimension.
 
 In addition, there are open questions, both theoretical and practical, relating to the novel algorithm for obtaining the frontier condition, presented in Section \@ref(sec:novel-frontier). For example, one might try to tighten the triply exponential complexity bound, by exploring whether it could be lowered, or by proving that the bound on CAD with frontier condition is higher than the doubly exponential bound obtained by @davenportHeintz1988. Practically speaking, the algorithm presented in Section \@ref(sec:novel-frontier) should be implemented, following the suggestions made in Section \@ref(sec:novel-frontier-fw), and tested with some examples of small dimension.
 
-Finally, the implementation of the monotone CAD algorithm is a proof of concept and, as such, there is plenty of room for improvement where efficiency is concerned. For example, in order to compute the $x_1$-coordinates of the solutions to a system of multivariate polynomial equations. CAD projection is used. It is well-known that a doubly exponential number of polynomials may result. It may be more efficient to use other tools, e.g., Groebner bases, to compute these $x_1$-coordinates.
+Finally, the implementation of the monotone CAD algorithm is a proof of concept and, as such, there is plenty of room for improvement where efficiency is concerned. For example, in order to compute the $x_1$-coordinates of the solutions to a system of multivariate polynomial equations, CAD projection is used. It is well-known that a doubly exponential number of polynomials may result. It may be more efficient to use other tools, e.g., Groebner bases, to compute these $x_1$-coordinates.
 
 

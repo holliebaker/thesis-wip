@@ -11,10 +11,12 @@ bookdown::gitbook:
     edit: https://github.bath.ac.uk/hb581/thesis/edit/master/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
+  toc: False
   includes:
     in_header: preamble.tex
   latex_engine: pdflatex
   citation_package: natbib
   keep_tex: yes
+  fig_caption: true
 bookdown::epub_book: default
 bookdown::bs4_book: default

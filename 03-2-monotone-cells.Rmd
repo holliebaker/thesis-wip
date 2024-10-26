@@ -19,7 +19,7 @@ Let $Y \subset \R^3$ be the graph of function $\phi$ on $\Delta$. Observe that $
 However, $y \cap \{ z = 3/4 \}$ is not connected, hence $\phi\vert_\Delta$ is not a monotone function and $Y$ is not a monotone cell.
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the 2-dimensional quasi-affine cylindrical cell $Y$ defined in Example \\@ref(exm:monotone-cells),"}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the 2-dimensional quasi-affine cylindrical cell $Y$ defined in Example \\ref{exm:monotone-cells}."}
 knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 ```
 
@@ -94,7 +94,7 @@ Although the cell $X$ under consideration is a $2$-dimensional cylindrical cell 
 :::{.corollary #gamma-top-bottom}
 (to Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3))
 
-Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and $\gamma$ be the set of one-dimensional curves associated with $C$. 
+Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$. Suppose we have the family ${\cal I}(c), c \in X'$ and $\gamma$ be the set of one-dimensional curves associated with $C$.
 Then
 
 1. $X$ is a $(1,1)$-cell.
@@ -106,23 +106,23 @@ Then
 1. $\gamma$ consists of zero, one or two disjoint curve intervals which coincide with the top and bottom of $X$. Furthermore, the connected components of $\gamma$ can be defined as the graphs of continuous definable functions from $X'$ to $\R$, using the functions defining the cell $C$.
 :::
 
-Corollary \@ref(cor:gamma-top-bottom) follows from @bgv15, Lemma 3.3 and the property that $C$ is the graph of a quasi-affine map. 
-A proof is presented below, which explicitly defines the functions which send points in $X'$ to points in each of the connected components of $\gamma$. 
+Corollary \@ref(cor:gamma-top-bottom) follows from @bgv15, Lemma 3.3 and the property that $C$ is the graph of a quasi-affine map.
+A proof is presented below, which explicitly defines the functions which send points in $X'$ to points in each of the connected components of $\gamma$.
 
 ::: {.proof}
-Property (1) is proved by repeatedly applying the projection defined in Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3) to $C$ to obtain $X$. Property (2) 
+Property (1) is proved by repeatedly applying the projection defined in Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3) to $C$ to obtain $X$. Property (2)
 follows immediately from the fact that $X$ is $2$-dimensional and $C$ is the graph of a quasi-affine map.
 
 Since $X$ is a $2$-dimensional sector cell, by definition it is the semialgebraic set $$
 \{ (x_1,t) \in \R^2 \mid x_1 \in X', \varphi(x_1) < t < \psi(x_1) \}
 $$
 where $\varphi,\psi : X' \to \R$ are continuous definable functions such that $\varphi(x_1) < \psi(x_1)$ for all $x_1 \in X'$.
-Note that $X$ may not be bounded from below (resp. above). 
+Note that $X$ may not be bounded from below (resp. above).
 In this case, $\varphi$ (resp. $\psi$) are omitted from the definition of $X$, as in Definition \@ref(def:cells).
-It is clear that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving (3). 
+It is clear that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving (3).
 It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of one-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if they exist).
 
-We now prove (4) by defining $\varphi$ and $\psi$ using the definition of cylindrical cells. 
+We now prove (4) by defining $\varphi$ and $\psi$ using the definition of cylindrical cells.
 Since $C' := \projop{\alpha - 1}(C)$ is a $(1,\ldots,0,0)$-cell, it is the graph of a continuous definable map $\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : X' \to \R^{\alpha - 2}$ and $$
 C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\}
 $$
@@ -172,7 +172,7 @@ Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \s
 where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
 I.e., polynomials in $\mathcal{A}_k$ have constant sign on every cell in the decomposition induced by $\mathcal{D}$ on $\R^k$.
 
-Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projop{\alpha}^{-1}(C)$ is a $2$-dimensional cell of $\mathcal{D}$ contained in $V$.
+Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projopinv{\alpha}(C)$ is a $2$-dimensional cell of $\mathcal{D}$ contained in $V$.
 We now describe how to find the numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone.
 
 For convenience, we write $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
@@ -366,12 +366,12 @@ $$
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
 $$
 where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
-Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projop{\alpha}^{-1}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$.
+Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projopinv{\alpha}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$.
 
 Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i < t$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
 :::
 
-### Working with sub-decompositions above a 0-cell { #sec:sub-cad }
+### Working in the sub-decomposition above a 0-cell { #sec:sub-cad }
 
 In the previous section, we considered $(1,0,\ldots,0,1,0,\ldots,0)$-cells
 However, we will actually be working in a sub-decomposition $\cal D$ (of $\R^{k+n}$) above a $0$-cell $\mathbf{c}$ of $\R^k$ ($k \ge 0$). Therefore the polynomials appearing in Equation \@ref(eq:variety-v) are elements of $\Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$.
@@ -431,7 +431,7 @@ It follows that $\mathbf{x} \in K^n$ is a common zero of the elements of $I \cap
 <!-- TODO this property came from the wiki page on resultants. does it need proving? -->
 :::
 
-## Two-dimensional monotone sections { #sec:monotone-sections }
+## Two-dimensional monotone section cells { #sec:monotone-sections }
 
 Let $X := \projops{x_1,x_\alpha}(C)$ and $(c_1,\ldots,c_r)$ be the refinement points computed in the previous section such that
 $$
@@ -462,10 +462,10 @@ such that $(a,b) \subset \R$. Then $Y$ is a monotone cell.
 :::
 
 ::: {.proof}
-Assume for contradiction that $Y$ is not monotone. Then intersection $Z := Y \cap \{ x_i = c \}$, for some $1\le i \le n$ and $c \in \R$, is not connected. 
-$Z$ cannot contain an interval, since $Y$ is connected, one-dimensional and the graph of a continuous map. 
+Assume for contradiction that $Y$ is not monotone. Then intersection $Z := Y \cap \{ x_i = c \}$, for some $1\le i \le n$ and $c \in \R$, is not connected.
+$Z$ cannot contain an interval, since $Y$ is connected, one-dimensional and the graph of a continuous map.
 Hence, $Z$ consists of more than one isolated point, which implies that $\projops{i}\vert_Y$ is not injective, but its image is one-dimensional.
-This contradicts the assumption that $Y$ is the graph of a quasi-affine map.  
+This contradicts the assumption that $Y$ is the graph of a quasi-affine map.
 :::
 
 Suppose that $2 \le j \le \alpha - 1$.
@@ -573,7 +573,7 @@ $$
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
 $$
 where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
-Let $C$ be a $2$-dimensional section cell of the decomposition induced by $\cal D$ on $\R^{j}$ such that $\projop{j}^{-1}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$ and $\projop{j-1}(C)$ is monotone.
+Let $C$ be a $2$-dimensional section cell of the decomposition induced by $\cal D$ on $\R^{j}$ such that $\projopinv{j}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$ and $\projop{j-1}(C)$ is monotone.
 
 Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_r)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i \le r$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
 :::
@@ -582,7 +582,7 @@ Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, whi
 Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm) can also be applied to two-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-cad of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
 :::
 
-## Implementation Details
+## Implementation details
 
 We now present psuedocode for the monotone part of the algorithm.
 
@@ -613,12 +613,14 @@ It will be convenient to overload this operator and write ${\rm sub}_{\mathbf{y}
 
 Now define a structure to store refinement polynomials
 $$
-{\cal F} := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^{k-1} \}
+{\cal F} := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \},
 $$
+$\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k-1}$.
 and a similar structure to store refinement points
 $$
-{\cal R} := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \text{ is a } (0,\ldots,0) \text{-cell in the decomposition induced by } {\cal E} \text{ on } \R^{k-1} \}
+{\cal R} := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \}
 $$
+$\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k-1}$.
 *(Note: for each $(0,\ldots,0)$-cell $\mathbf{b}$, ${\cal F}_\mathbf{b}$ is a set of univariate polynomials, ${\cal R}_{\mathbf{b}}$ is the set of roots of polynomials ${\cal F}_\mathbf{b}$. When $k=1$, then the CAD of $\R^0$ consisting of the unique point of $\R^0$ is used -- practically speaking, we work directly with the CAD $\cal E$.)*
 
 Let $\mathbf{b}$ be a $(0,\ldots,0)$-cell of the decomposition induced by $\cal E$ on $\R^{k-1}, k > 0$. Let $\cal D$ be the sub-decomposition of $\R^n$ of $\cal E$ above $\mathbf{b}$.
@@ -698,7 +700,7 @@ by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
 - Return the family ${\cal R}$ of refinement points.
 :::
 
-## Correctness and Complexity
+## Correctness and complexity
 
 The correctness of the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) follows from @bgv15, Theorem 3.20 and
 Lemma 3.19, and is proved in Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm).
@@ -708,7 +710,7 @@ $C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}}
 The construction described in Section \@ref(sec:monotone-sections) describes how to find the refinement points to ensure that $\mathbf{f}$ is a monotone map.
 Thus, the construction in this section satisfies the properties required in the proof of @bgv15, Lemma 3.18 for $C$ to be monotone.
 
-### Complexity Analysis { #sec:monotone-complexity }
+### Complexity analysis { #sec:monotone-complexity }
 
 Let $C$ be a $(0,\ldots,0,i_j,0,\ldots,0,i_k,0\ldots,0)$-cell, with $i_j = i_k = 1$.
 The Jacobi determinant, defined in Equation \@ref(eq:jacobi-det-2), is computed for all $k \le \ell \le n$.

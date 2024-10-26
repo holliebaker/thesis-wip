@@ -4,7 +4,7 @@ Before turning our attention to cylindrical decompositions, we will present anot
 A smooth stratification is a finite partition of a set into smooth manifolds.
 This algorithm will form part of the later work in constructing a CAD with monotone cells, which requires the input sets to first be partitioned into smooth smooth manifolds (see Section \@ref(sec:quasi-affine). However, the algorithm and implementation described in this section are useful in their own right.
 
-In 1957, @whitney1992 proved that every algebraic variety can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set.
+In 1957, @whitney1992 proved that every algebraic variety -- the set of real solutions to a system of multivariate polynomial equations -- can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set.
 Lojasiewicz extended this result by proving that every real semianalytic set admits a smooth stratification, such that every stratum is a semianalytic set [@lojasiewicz1964]. However, the proof was non-constructive and did not provide any information on the class of functions defining the strata.
 As part of his Complement Theorem, @gabrielov1996 proved that the strata of a semianalytic set can be defined by functions belonging to the smallest extensions of a family of functions defining the set which is closed under addition, multiplication and taking partial derivatives. One such class of functions is the Pfaffian functions.
 @gv1995 present an algorithm for computing a smooth stratification of a semi-pfaffian set, along with an estimate of its complexity and bounds on the formats of the strata it produces. This algorithm (also summarised in @gv04, Section 6) will be presented.
@@ -199,7 +199,7 @@ If all $X_i = \emptyset, 1 \le i \le k$, then we can conclude that every partial
 Otherwise, let $X_0 = \emptyset$ so that ${\cal X} = (\emptyset, X_1,\ldots,x_n)$ where each $X_i,1\le i \le n$ is a smooth subset of $X$ of codimension $i$, such that each $X_i,X_j,i\ne j$ is pairwise disjoint and $X_1\cup \ldots \cup X_n = X$.
 Note, in the case that $X_0 = X$, the smooth stratification algorithm provides no information about the dimension of $X$.
 
-### Subroutines and Algorithm Details { #sec:strat-algorithm-details }
+### Subroutines and algorithm details { #sec:strat-algorithm-details }
 
 The algorithm employs two subroutines, which were presented in the description as "black-box functions".
 The first of these is a subroutine which determines whether $Y_k$ is an open subset of $U_k$.
@@ -246,8 +246,8 @@ There is a convenient way to find this derivative.
 Let us first illustrate the process with an example. Let $f_j \in \Z[x_1,x_2,x_3]$ with $M_j = (1,2,2)$ and consider the lexicographically ordered list of indices
 $$
 \begin{matrix}
-L_1 :=\ &  (0,0,0),&(0,0,1),&(0,0,2),&(0,1,0),&(0,1,1),&(0,1,2),&(1,0,0),&(1,0,1)&\ldots\\
-L_2 := \ & & (0,0,0),&(0,0,1),&(0,0,0),&(0,0,1),&(0,0,2),&(0,0,0),&(0,0,1)&\ldots.\\
+L_1 :=&\ (0,0,1),&(0,0,2),&(0,1,0),&(0,1,1),&(0,1,2),&(1,0,0),&(1,0,1)\ldots\\
+L_2 :=&\ (0,0,0),&(0,0,1),&(0,0,0),&(0,0,1),&(0,0,2),&(0,0,0),&(0,0,1)\ldots\\
 \end{matrix}
 $$
 Observe that for indices of the kind $(0,\ldots,0,1,0,\ldots,0)$ in $L_1$, the corresponding element of $L_2$ is $(0,\ldots,0)$. For an arbitrary index $(0,\ldots,0,i_\ell,\ldots,i_1)$ in $L_1$ which appears $k$ elements after $(0,\ldots,0,i_\ell = 1,0,\ldots,0)$, the corresponding element in $L_2$ appears $k$ elements after $(0,\ldots,0)$.
@@ -307,7 +307,7 @@ As expected, the algorithm outputs the set of strata
 \mathcal{X}_{1}:=&\emptyset\\\mathcal{X}_{2}:=&\left\{ x_{1}^{2} - x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\mathcal{X}_{3}:=&\left\{ (0,0,0)\right\}
 \end{align*}
 
-## Optimisation of the Output
+## Optimisation of the output
 
 ### Determining the codimension and basic formula for each stratum
 
@@ -370,14 +370,16 @@ $$
 be the partial derivative computed at index $\mathbf{m}$, where $f \in F$ has index $(m_1,\ldots,m_1,j)$ be one of the partial derivatives computed during the algorithm.
 Denote by $G$ the set of derivatives with index lexicographically less than $\mathbf{m}$. $Y_k \subset Y_{k-1}$ is defined such that every function in $G$ is equal to zero while the function $h^{\mathbf{m}}_k$ is not.
 Define the smooth manifold
-$$
-U_k := \{ \mathbf{x} \in \R^n \mid h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0, h_k(\mathbf{x}) = 0, s^{\mathbf{m}}_k(\mathbf{x}) \ne 0 \}.
-$$
+\begin{align*}
+U_k := \{ \mathbf{x} \in \R^n \mid &\ h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0,\\
+&\ h_k(\mathbf{x}) = 0, s^{\mathbf{m}}_k(\mathbf{x}) \ne 0 \}.
+\end{align*}
 of codimension $k$, where the function $h_k := s^{(0,\ldots,0,m_\ell - 1,m_{\ell - 1},\ldots,m_1,j)}_k$. According to @gv1995, Theorem 2, $Y_k$ is smooth and has codimension $k$ if it is an open subset of $U_k$. In this case, only $k$ of the polynomials will be needed to define $Y_k$. Note that inequations $s_1,\ldots,s_{k-1}$ which appear in the definition of $Y_{k-1} \supset Y_k$ should also be taken into account.
 Begin with a set
-$$
-Y' := \{ \mathbf{x} \in \R^n \mid h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0, s_1(\mathbf{x}) \ne 0, \ldots, s_(\mathbf{x}) \ne 0, s_k(\mathbf{x}) \ne 0 \} \subset Y_k.
-$$
+\begin{align*}
+Y' := \{ \mathbf{x} \in \R^n \mid &\ h_1(\mathbf{x}) = 0, \ldots, h_{k-1}(\mathbf{x}) = 0,\\
+&\ s_1(\mathbf{x}) \ne 0, \ldots, s_(\mathbf{x}) \ne 0, s_k(\mathbf{x}) \ne 0 \} \subset Y_k.
+\end{align*}
 Consider each function $g \in G$ in reverse lexicographical order. If $g(\mathbf{x}) = 0$ at every point $\mathbf{x} \in Y'$ then it is redundant and should be discarded. Otherwise, $g$ should be included in the defining equations for $Y_k$. Since $Y_k$ has codimension $k$, and $Y'$ is already an open, basic set of codimension $k-1$, only one more polynomial should be needed.
 If $Y_k$ is not an open subset of $U_k$, then more polynomials will be required to define it, and the number of polynomials gives the codimension.
 
@@ -393,7 +395,7 @@ is non-empty.
 
 <!-- TODO do we also need to check that the determinant of the matrix (minors?) is nonzero. -->
 
-### From Basic Algebraic sets to Arbitrary Semialgebraic sets {#sec:strat-semialgebraic}
+### From basic algebraic sets to arbitrary semialgebraic sets {#sec:strat-semialgebraic}
 
 @gv1995, Corollary 1 asserts that the algorithm can be applied to arbitrary semi-pfaffian sets and, therefore, without modification, to arbitrary semialgebraic sets.
 Let $S \subset \R^n$ be a semialgebraic set represented by a quantifier-free Boolean formula containing polynomials
@@ -408,6 +410,8 @@ where $\ast_i, 1 \le i \le s \in \{<, >, =\}$. $S$ can be partitioned into a fin
 If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_s)} \subset S$, and take the union of strata, we will obtain a smooth stratification of the set $S$. Indeed, since no two sign sets have non-empty intersection, it is clear that no two strata intersect, and since a finite number of the sign-sets form a partition of $S$, the smooth strata of these sign-sets also forms a partition of $S$.
 
 ### Implementation in C
+
+Full source code can be found here: https://github.com/monotone-cad/smooth-stratification.
 
 This algorithm has been implemented in `C`, using the computer algebra library `SACLIB`. `QEPCAD` is used to perform emptyness checks using cylindrical algebraic decomposition. Below is an example of the program's output, given the basic semialgebraic set
 $$
@@ -852,7 +856,7 @@ Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
 
 The function constructs $F$, the defining formula for $S$ and uses QEPCAD to construct a CAD of $\R^r$ compatible with $S$. If $S$ is empty, then this CAD will contain no true cells, so the function checks this condition.
 
-## Complexity Analysis {#sec:strat-complexity}
+## Complexity analysis {#sec:strat-complexity}
 
 We first briefly summarise the semi-Pfaffian case, as presented by @gv1995.
 The algorithm from @gv1995, Theorem 2 takes as input a semi-Pfaffian set with the format $(r, N, \alpha, \beta, n)$ (see Definition \@ref(def:pfaff-format)) and has a complexity upper bound of
@@ -915,7 +919,7 @@ $$
 3^{s}\left(s(d+1)\right)^{O(n)^{2}}.
 $$
 
-## Test Cases
+## Test cases
 
 Some test cases are now presented
 

@@ -225,11 +225,6 @@ Kleene, S.~C. (1952).
 \newblock {\em Introduction to Metamathematics}.
 \newblock P. Noordhoff N.V., Groningen.
 
-\bibitem[Koiran, 1999]{koiran1999}
-Koiran, P. (1999).
-\newblock The real dimension problem is npr-complete.
-\newblock {\em Journal of Complexity}, 15(2):227--238.
-
 \bibitem[Kremer and Ábrahám, 2020]{kremer2020}
 Kremer, G. and Ábrahám, E. (2020).
 \newblock Fully incremental cylindrical algebraic decomposition.
@@ -326,11 +321,10 @@ Sierpi{\'n}ski, W. and Tarski, A. (1930).
   inaccessibles.
 \newblock {\em Fundamenta Mathematicae}, 1(15):292--300.
 
-\bibitem[Tarski, 1998]{tarski1998}
-Tarski, A. (1998).
+\bibitem[Tarski, 1951]{tarski1951}
+Tarski, A. (1951).
 \newblock A decision method for elementary algebra and geometry.
-\newblock In {\em Quantifier elimination and cylindrical algebraic
-  decomposition}, pages 24--84. Springer.
+\newblock Univ. of California Press.
 
 \bibitem[Van~den Dries, 1998]{vdd1998}
 Van~den Dries, L. (1998).
