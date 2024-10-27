@@ -157,7 +157,7 @@ in $G$ satisfying the differential equations
 $$
 {df}_j(\mathbf{x}) = \sum^n_{i=1} g_{ij}(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_j(\mathbf{x})) dx_i
 $$
-for $1 \le j \le r$, where $g_{ij}(x_1,\ldots,x_n),y_1,\ldots,y_j)$ are polynomials of degree not greater than $\alpha$.
+for $1 \le j \le r$, where $g_{ij}(x_1,\ldots,x_n),y_1,\ldots,y_j$ are polynomials of degree not greater than $\alpha$.
 
 A function $f(\mathbf{x}) = P(\mathbf{x},f_1(\mathbf{x}),\ldots,f_r(\mathbf{x}))$, where $P(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_r(\mathbf{x}))$ is a polynomial of degree not greater than $\beta \ge 1$ is called a Pfaffian function of order $r$ and degree $(\alpha, \beta)$. Note that $f$ is only defined in the domain $G$, where all functions $f_1,\ldots,f_r$ are analytic, even if $f$ itself can be extended as an analytic function in a larger domain.
 :::
