@@ -22,7 +22,7 @@ $$ such that the restriction $h_{i_j}\vert_{X_i} = 0$ and $d h_{i_j} \ne 0$ at e
 
 Note that this definition does not guarantee any other desirable properties of the manifolds $X_k$. E.g., the closure of a stratum may not be a union of strata.
 
-## Description of the algorithm { #sec:strat-alg-description }
+## Algorithm desccription { #sec:strat-alg-description }
 
 Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets with almost no modifications.
 Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too.  Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an Oracle will not be needed in this variation of the algorithm.
@@ -199,7 +199,7 @@ If all $X_i = \emptyset, 1 \le i \le k$, then we can conclude that every partial
 Otherwise, let $X_0 = \emptyset$ so that ${\cal X} = (\emptyset, X_1,\ldots,x_n)$ where each $X_i,1\le i \le n$ is a smooth subset of $X$ of codimension $i$, such that each $X_i,X_j,i\ne j$ is pairwise disjoint and $X_1\cup \ldots \cup X_n = X$.
 Note, in the case that $X_0 = X$, the smooth stratification algorithm provides no information about the dimension of $X$.
 
-### Subroutines and algorithm details { #sec:strat-algorithm-details }
+### Subroutines and further details { #sec:strat-algorithm-details }
 
 The algorithm employs two subroutines, which were presented in the description as "black-box functions".
 The first of these is a subroutine which determines whether $Y_k$ is an open subset of $U_k$.
@@ -307,9 +307,9 @@ As expected, the algorithm outputs the set of strata
 \mathcal{X}_{1}:=&\emptyset\\\mathcal{X}_{2}:=&\left\{ x_{1}^{2} - x_{2}^{2}=0,x_{3}=0,2x_{1}\ne0\right\} \\\mathcal{X}_{3}:=&\left\{ (0,0,0)\right\}
 \end{align*}
 
-## Optimisation of the output
+## Optimising the output
 
-### Determining the codimension and basic formula for each stratum
+### Codimension and basic formula
 
 @gv1995, Theorem 2 assert that each stratum of codimension $k$ can be represented by a conjunction containing $k$ equations. I.e., each stratum is basic. A naive implementation of the procedure leads to a non-basic representation as shown in the following example
 
@@ -395,7 +395,7 @@ is non-empty.
 
 <!-- TODO do we also need to check that the determinant of the matrix (minors?) is nonzero. -->
 
-### From basic algebraic sets to arbitrary semialgebraic sets {#sec:strat-semialgebraic}
+### The semialgebraic case {#sec:strat-semialgebraic}
 
 @gv1995, Corollary 1 asserts that the algorithm can be applied to arbitrary semi-pfaffian sets and, therefore, without modification, to arbitrary semialgebraic sets.
 Let $S \subset \R^n$ be a semialgebraic set represented by a quantifier-free Boolean formula containing polynomials
@@ -409,7 +409,7 @@ $$
 where $\ast_i, 1 \le i \le s \in \{<, >, =\}$. $S$ can be partitioned into a finite union of some of the $s^3$ sign sets.
 If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_s)} \subset S$, and take the union of strata, we will obtain a smooth stratification of the set $S$. Indeed, since no two sign sets have non-empty intersection, it is clear that no two strata intersect, and since a finite number of the sign-sets form a partition of $S$, the smooth strata of these sign-sets also forms a partition of $S$.
 
-### Implementation in C
+### Implementation with SACLIB
 
 Full source code can be found here: https://github.com/monotone-cad/smooth-stratification.
 
@@ -858,7 +858,7 @@ Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
 
 The function constructs $F$, the defining formula for $S$ and uses `QEPCAD-B` to construct a CAD of $\R^r$ compatible with $S$. If $S$ is empty, then this CAD will contain no true cells, so the function checks this condition.
 
-## Complexity analysis {#sec:strat-complexity}
+## Complexity {#sec:strat-complexity}
 
 We first briefly summarise the semi-Pfaffian case, as presented by @gv1995.
 The algorithm from @gv1995, Theorem 2 takes as input a semi-Pfaffian set with the format $(r, N, \alpha, \beta, n)$ (see Definition \@ref(def:pfaff-format)) and has a complexity upper bound of
