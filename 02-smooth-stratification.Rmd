@@ -7,7 +7,7 @@ This algorithm will form part of the later work in constructing a CAD with monot
 In 1957, @whitney1992 proved that every algebraic variety -- the set of real solutions to a system of multivariate polynomial equations -- can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set.
 Lojasiewicz extended this result by proving that every real semianalytic set admits a smooth stratification, such that every stratum is a semianalytic set [@lojasiewicz1964]. However, the proof was non-constructive and did not provide any information on the class of functions defining the strata.
 As part of his Complement Theorem, @gabrielov1996 proved that the strata of a semianalytic set can be defined by functions belonging to the smallest extensions of a family of functions defining the set which is closed under addition, multiplication and taking partial derivatives. One such class of functions is the Pfaffian functions.
-@gv1995 present an algorithm for computing a smooth stratification of a semi-pfaffian set, along with an estimate of its complexity and bounds on the formats of the strata it produces. This algorithm (also summarised in @gv04, Section 6) will be presented.
+@gv1995 present an algorithm for computing a smooth stratification of a semi-Pfaffian set, along with an estimate of its complexity and bounds on the formats of the strata it produces. This algorithm (also summarised in @gv04, Section 6) will be presented.
 
 ::: {.definition}
 [@gv04, Definition 6.2]
@@ -397,7 +397,7 @@ is non-empty.
 
 ### The semialgebraic case {#sec:strat-semialgebraic}
 
-@gv1995, Corollary 1 asserts that the algorithm can be applied to arbitrary semi-pfaffian sets and, therefore, without modification, to arbitrary semialgebraic sets.
+@gv1995, Corollary 1 asserts that the algorithm can be applied to arbitrary semi-Pfaffian sets and, therefore, without modification, to arbitrary semialgebraic sets.
 Let $S \subset \R^n$ be a semialgebraic set represented by a quantifier-free Boolean formula containing polynomials
 $$
 f_1,\ldots,f_s.

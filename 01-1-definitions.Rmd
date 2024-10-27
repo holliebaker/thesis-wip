@@ -57,7 +57,10 @@ The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets o
 1. If $A, B \in {SA}_n$, then $A \cup B$, $A \cap B$ and $\R^n \setminus A$ are elements of ${SA}_n$.
 :::
 
-It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structure over the reals. Another example is the sub-pfaffian sets.
+::: {.remark}
+It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structure over the
+reals. Another example is the sub-Pfaffian sets (see Definition \@ref(def:pfaff).
+:::
 
 ::: {.definition}
 Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets. A mapping $f : X \to Y$ is called semialgebraic if its graph (see Definition \@ref(def:graph-def-map))
@@ -137,7 +140,7 @@ where $k \in \N$ and $f,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
 
 This follows from the fact that the class of finite unions of this kind satisfy properties listed in Definition \@ref(def:semialgebraic-set).
 
-::: {.definition}
+::: {.definition #pfaff}
 [@gv04, Definition 2.1]
 A Pfaffian chain of order $r \ge 0$ and degree $\alpha \ge 1$ in an open domain $G \subset \R^n$ is a sequence of analytic functions
 $$
@@ -179,7 +182,7 @@ Let ${\cal I}^k := [-1,1]^k$ be the closed cube in an open domain $G \subset \R^
 $X \subset {\cal I}^n$ is called restricted sub-Pfaffian if $X := \projop{n}(Y)$, where $Y \subset {\cal I}^{n+m}$ is a restricted semi-Pfaffian set.
 :::
 
-The restricted sub-pfaffian sets form a Boolean subalgebra. Restricted sub-pfaffian sets are clearly closed under taking finite unions and intersections. The property that the compliment of restricted sub-pfaffian set is restricted sub-pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results may not be applied to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of sub-Pfaffian sets and, due to the Tarski--Seidenberg Theorem, semialgebraics sets satisfy the compliment theorem.
+The restricted sub-Pfaffian sets form a Boolean subalgebra. Restricted sub-Pfaffian sets are clearly closed under taking finite unions and intersections. The property that the compliment of restricted sub-Pfaffian set is restricted sub-Pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results may not be applied to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of sub-Pfaffian sets and, due to the Tarski--Seidenberg Theorem, semialgebraics sets satisfy the compliment theorem.
 
 ::: {.definition #pfaff-format}
 [@gv04, Definition 2.11]
