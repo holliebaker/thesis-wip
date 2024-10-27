@@ -258,7 +258,7 @@ From this, we can introduce an "index chasing" method as follows. Let ${\cal G}_
   - If $\mathbf{m} = (0,\ldots,0,1,0,\ldots,0)$, then $\mathbf{j} = (0,\ldots,0)$ and we set ${\cal G}'_j$ to the head of ${\cal G}_j$.
   - Otherwise, let ${\cal G}'_j$ be the tail of ${\cal G}'_j$.
 
-The "index chasing" method works efficiently in SACLIB, which uses linked lists. However, we do need to append new derivatives to the end of ${\cal G}_j$, which takes $O(n)$ steps.
+The "index chasing" method works efficiently in `SACLIB`, which uses linked lists. However, we do need to append new derivatives to the end of ${\cal G}_j$, which takes $O(n)$ steps.
 To avoid this, we keep a pointer to the last-but-one element in the list, i.e., suppose $G_j = (a_1,(\ldots,(a_{r-1},(a_r,(\rm{NIL})))\ldots)$ then $G_{j,\rm{append}} = (a_{r-1},(a_r,(\rm{NIL})))$. Then, if we wish to append $b$ to the end of $G_j$, we simply need to set the tail of $G_{j,\rm{append}}$ to $(a_r,(b,(NIL)))$.
 
 We can also optimise the construction of the matrix associated to the partial differential operator $\partial_{\mathbf{h},\mathbf{i},j} f$. In this matrix,
@@ -409,7 +409,7 @@ $$
 where $\ast_i, 1 \le i \le s \in \{<, >, =\}$. $S$ can be partitioned into a finite union of some of the $s^3$ sign sets.
 If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_s)} \subset S$, and take the union of strata, we will obtain a smooth stratification of the set $S$. Indeed, since no two sign sets have non-empty intersection, it is clear that no two strata intersect, and since a finite number of the sign-sets form a partition of $S$, the smooth strata of these sign-sets also forms a partition of $S$.
 
-### Implementation with SACLIB
+### Implementation with `SACLIB`
 
 Full source code can be found here: https://github.com/monotone-cad/smooth-stratification.
 

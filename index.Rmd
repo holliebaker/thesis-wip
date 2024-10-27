@@ -253,7 +253,8 @@ The algorithm also ensures that only the $k$ functions required to define a stra
 Chapter \@ref(sec:background) gives some necessary definitions, then presents some useful results from @bgv15. The CAD
 is then formally defined, and the flow of the algorithm, following the description given by @coste2000 is outlined.
 Chapter \@ref(sec:smooth-strat) presents the smooth stratification algorithm from @gv1995, Theorem 2.
-The construction is made concrete, leading to an algorithm, presented as psuedo-code, for the semialgebraic case. This algorithm has been implemented in C on top of SACLIB. Saclib is an open-source C/C++ library for manipulating real polynomials and real algebraic numbers and working with their solutions as real algebraic numbers (see @saclib).
+The construction is made concrete, leading to an algorithm, presented as psuedo-code, for the semialgebraic case. This
+algorithm has been implemented in C on top of `SACLIB`. Saclib is an open-source C/C++ library for manipulating real polynomials and real algebraic numbers and working with their solutions as real algebraic numbers (see @saclib).
 The following is proved, the main contribution being the complexity result for the semialgebraic case.
 
 ::: {.theorem #strat }

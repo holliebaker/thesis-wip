@@ -2,7 +2,11 @@
 
 ## Implementation on top of `QEPCAD-B`
 
-There are several well-known implementations of CAD. For example, Maple's `CylindricalAlgebraicDecompose`, which uses regular chains instead of the classical projection and lifting algorithm of @collins1975, is reported to work very efficiently [@chen2014]. Another efficient implementation of CAD is available in Mathematica. However, `QEPCAD-B`, a quantifier elimination and cylindrical algebraic decomposition program written in C++ and built on top of the polynomial library SACLIB, was chosen as the starting point for the monotone CAD algorithm.
+There are several well-known implementations of CAD. For example, Maple's `CylindricalAlgebraicDecompose`, which uses
+regular chains instead of the classical projection and lifting algorithm of @collins1975, is reported to work very
+efficiently [@chen2014]. Another efficient implementation of CAD is available in Mathematica. However, `QEPCAD-B`, a
+quantifier elimination and cylindrical algebraic decomposition program written in C++ and built on top of the polynomial
+library `SACLIB`, was chosen as the starting point for the monotone CAD algorithm.
 
 `QEPCAD` stands for Quantifier Elimination by Partial Cylindrical Algebraic Decomposition. It takes as input a first-order Boolean formula $F$, containing $k$ free variables and $n-k$ variables bound by quantifiers, along with a variable ordering $x_1 < \cdots < x_n$. It then constructs a CAD compatible with the set $S \subset \R^k$ defined by $F$ and returns a quantifier-free Boolean formula defining $S$. As well as the output formula, the user is able to examine the polynomials generated in the projection phase and view information about each cell of the CAD, including their dimension, signs of projection factors, multiplicities of roots of polynomials and the sample point associated with the cell. `QEPCAD-B` is an extended version of `QEPCAD` developed by @brownQepcad.
 As well as $\forall$ and $\exists$, `QEPCAD-B` introduces some special quantifiers which allow the user to specify "exists exactly $k$", "exists infinitely many" and "for all but finitely many", allowing the problem to be solved in a more efficient way. `QEPCAD-B` is also able to plot and determine cell adjacencies for decompositions of $\R^2$. An extended language for output formulas, which uses "$i$-th root of polynomial $f$", somewhat similar to the output given by Maple's `CylindricalAlgebraicDecompose`, is also included.
