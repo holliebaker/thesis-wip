@@ -83,7 +83,7 @@ $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
-## 2-dimensional monotone sector cells {#sec:monotone-sectors}
+## Sector cells {#sec:monotone-sectors}
 
 Let $C$ be an $(i_1,\ldots,i_n)$-cell such that $i_1 = i_\alpha = 1$ and all other elements of the index are equal to $0$.
 The proof of Proposition \@ref(prp:bgv-monotone) proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is
@@ -164,7 +164,7 @@ For the graphs of $\varphi$ and $\psi$ to be monotone curve intervals, we requir
 Note that if $X$ is not bounded from below, then $\varphi$ does not exist and does not have a graph.
 In this case, it is clear that no refinement of $X_B$ is required.
 
-### Finding the critical points of functions phi and psi {#sec:lagrange-refinement}
+### Finding the critical points {#sec:lagrange-refinement}
 
 We now discuss how to find these critical points starting with the polynomials defining cells in $\cal D$.
 
@@ -375,7 +375,7 @@ Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on
 Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i < t$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
 :::
 
-### Working in the sub-decomposition above a 0-cell { #sec:sub-cad }
+### Working in sub-decompositions { #sec:sub-cad }
 
 In the previous section, we considered $(1,0,\ldots,0,1,0,\ldots,0)$-cells
 However, we will actually be working in a sub-decomposition $\cal D$ (of $\R^{k+n}$) above a $0$-cell $\mathbf{c}$ of $\R^k$ ($k \ge 0$). Therefore the polynomials appearing in Equation \@ref(eq:variety-v) are elements of $\Z[y_1,\ldots,y_k][x_1,\ldots,x_n]$.
@@ -436,7 +436,7 @@ It follows that $\mathbf{x} \in K^n$ is a common zero of the elements of $I \cap
 <!-- TODO this property came from the wiki page on resultants. does it need proving? -->
 :::
 
-## 2-dimensional monotone section cells { #sec:monotone-sections }
+## Section cells { #sec:monotone-sections }
 
 Let $X := \projops{x_1,x_\alpha}(C)$ and $(c_1,\ldots,c_r)$ be the refinement points computed in the previous section such that
 $$
@@ -522,7 +522,7 @@ In particular, $C_T \cap \{ b_{i,j} < x_i < b_{i,j+1} \}$ is the graph of $\math
 
 Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$) so that, $C_T$ and $C_B$, if non-empty, are split into $1$-dimensional continuous curves which are graphs of continuous functions, and the intervals above $0$-dimensional blow-up points. Once this property has been satisfied, we are left with a similar construction of optimisation with constraints as in Section \@ref(sec:lagrange-refinement).
 
-### Critical points of the top and bottom of C
+### Critical points of the top and bottom
 
 We now discuss how to perform this refinement on the CAD structure. Let us assume that $C_T\ne \emptyset$, otherwise no refinement is needed. We must construct subsets $W \subset Y$ such that $f_j\vert_{W_T}$ is a smooth, continuous function.
 Let
@@ -590,11 +590,9 @@ Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algor
 $2$-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CAD of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
 :::
 
-## Implementation details
+## Pseudo-code
 
-We now present psuedocode for the monotone part of the algorithm.
-
-### Algorithm { #sec:monotone-algorithm }
+We now present psuedo-code for the monotone part of the algorithm.
 
 ::: {.algorithm data-latex="Monotone CAD"}
 **Input:**
@@ -720,7 +718,7 @@ $C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}}
 The construction described in Section \@ref(sec:monotone-sections) describes how to find the refinement points to ensure that $\mathbf{f}$ is a monotone map.
 Thus, the construction in this section satisfies the properties required in the proof of @bgv15, Lemma 3.18 for $C$ to be monotone.
 
-### Complexity analysis { #sec:monotone-complexity }
+### Complexity { #sec:monotone-complexity }
 
 Let $C$ be a $(0,\ldots,0,i_j,0,\ldots,0,i_k,0\ldots,0)$-cell, with $i_j = i_k = 1$.
 The Jacobi determinant, defined in Equation \@ref(eq:jacobi-det-2), is computed for all $k \le \ell \le n$.

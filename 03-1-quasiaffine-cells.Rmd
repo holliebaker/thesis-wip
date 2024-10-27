@@ -28,7 +28,7 @@ $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
-## Computing the smooth $2$-dimensional locus of the input set
+## The $2$-dimensional locus
 
 The proof of @bgv15, Theorem 3.19 begins by introducing $W$, the smooth $2$-dimensional locus of $V = V_1 \cup \ldots \cup V_k$.
 Since $V$ is a semialgebraic set, it can be represented by a quantifier-free Boolean formula $F$.
@@ -61,7 +61,7 @@ However, in the implementation
 CAD is used to perform the emptiness check. Thus, the second option seems more appealing because a single recomputation of the CAD is preferrable to many calls to the CAD algorithm, which would be required for the stratification-based approach in the form that it has been implemented.
 In addition, @kremer2020 propose an algorithm, along with its implementation, for refining a CAD to be compatible with new polynomials. This gives us hope that we may be able to avoid a full re-computation. In conclusion, the second option, where we compute an initial CAD consisting of smooth cells, is more tractable in practice.
 
-## Ensuring that every cell is the graph of a quasi-affine map
+## Cells as graphs of quasi-affine maps
 
 We now discuss how to obtain quasi-affine cells. A $k$-dimensional cell $C$ is the graph of a quasi-affine map if, for each affine coordinate subspace $L \subset \R^n$, the image of the projection map $\proj_{L}(C)$ is $k$-dimensional if and only if the map $\proj_{L}\vert_C$ is injective (see Definition \@ref(def:quasi-affine)).
 In order to satisfy this property, @bgv15, Lemma 3.19 states that the CAD $\cal D$ also needs to be compatible with the
@@ -94,7 +94,7 @@ $\projops{x_i}(W'_1)$ and $c_j$ is also a critical point of $\projops{x_j}(W'_1)
 consider only critical points of projections onto $1$-dimensional coordinate subspaces. Hence, we only consider Jacobi matrices
 $J_{\{1,\ldots,n\} \setminus \{i\}}$ for all $1\le i \le n$, for the $n-1$ polynomials defining $W'_1$. Critical points are those at which their determinants are equal to zero.
 
-### Computing the quasi-affine CAD { #sec:quasiaffine-algorithm }
+### Pseudo-code { #sec:quasiaffine-algorithm }
 
 We now present pseudo-code for the quasi-affine part of the algorithm.
 
@@ -189,7 +189,7 @@ critical points of projections of $2$- and $1$- dimensional smooth cylindrical c
 $\mathcal{D}$, the CAD output by the algorithm from Section \@ref(sec:quasiaffine-algorithm) is compatible with the
 critical points of projections of the smooth $2$-dimensional locus of $V_1\cup \ldots \cup V_k$ onte one- and $2$-dimensional coordinate subspaces, as required in the proof of @bgv15, Lemma 3.19.
 
-### Complexity analysis { #sec:quasi-complexity }
+### Complexity { #sec:quasi-complexity }
 
 Let us examine the complexity by supposing that the smooth stratification algorithm is used to find the smooth $2$-dimensional locus of $V = V_1\cup \ldots \cup V_k \subset \R^n$, defined by $s$ polynomials having maximum degree $d$.
 By the result from Section \@ref(sec:strat-complexity), the smooth stratification step with emptiness checking has complexity
