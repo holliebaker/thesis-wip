@@ -94,7 +94,7 @@ A fundamental result in semialgebraic geometry is the Tarski--Seidenberg Theorem
 
 ::: { .theorem #tarski-seinedberg }
 [@tarski1951]
-Let $S \subset \R^{n+1}$ and $\projop{n} : \R^{n+1} \to \R^n$ be the projection map onto the first $n$ co-ordinates. Then $\projop{n}(S) \subset \R^n$ is a semialgebraic set.
+Let $S \subset \R^{n+1}$ and $\projop{n} : \R^{n+1} \to \R^n$ be the projection map onto the first $n$ coordinates. Then $\projop{n}(S) \subset \R^n$ is a semialgebraic set.
 :::
 
 One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formula.
