@@ -5,26 +5,27 @@
 ### Sets definable over O-minimal structures
 
 We will be working mostly in the category *Semialgebraic Set* and sometimes in the more general category of sets definable over an O-minimal structure.
-As such, we will be working with multivariate polynomials $f$ in variables $x_1,\ldots,x_n$ with coefficients in a field $Z$. These will be denoted as elements of $Z[x_1,\ldots,x_n]$.
 
 We first define the O-minimal structures over the reals.
 
 ::: {.definition #definable-set}
-A structure expanding the real closed field $R$ is a collection $$
+A structure expanding the real numbers $\R$ is a collection $$
 S := (S^n)_{n \in \N}
 $$
-where each $S^n$ is a set of subsets of the affine space $R^n$ satisfying the following conditions.
+where each $S^n$ is a set of subsets of the affine space $\R^n$ satisfying the following conditions.
 
-1. All algebraic subsets of $R^n$ are in $S^n$.
-2. $S^n$ is a Boolean subalgebra of the powerset of $R^n$.
+1. All algebraic subsets of $\R^n$ are in $S^n$.
+2. $S^n$ is a Boolean subalgebra of the powerset of $\R^n$.
 3. If $A \in S^n$ and $B \in S^m$, then $A \times B \in S^{n+m}$.
-4. Let $\proj : R^{n+1} \to R^n$ be the projection onto the first $n$ coordinates. If $X\in R^{n+1}$, then $\proj(X) \in R^n$.
+4. Let $\proj : \R^{n+1} \to \R^n$ be the projection onto the first $n$ coordinates. If $X\in S^{n+1}$, then $\proj(X) \in S^n$.
 
-Elements of $S^n$ (satisfying properties 1-4) are called the definable subsets of $R^n$.
+Elements of $S^n$ are called the definable subsets of $\R^n$ and a definable subset of $\R^n$ may also be referred to as a definable set. 
 If the structure $S$ satisfies properties 1-4 and the following property, it is called an O-minimal structure.
 
-5. The elements of $S^1$ consist of the finite unions of points and open intervals of $R$.
+5. The elements of $S^1$ consist of the finite unions of points and open intervals of $\R$.
 :::
+
+The "O" in O-minimal stands for order, as every O-minimal structure requires the underlying set to be ordered. 
 
 ::: {.definition #definable-function}
 A map $f : A \to R^m$, where $A \subset R^n$, is called *definable* if its graph $G \subset R^{n+m}$ is a definable set.
