@@ -28,7 +28,7 @@ If the structure $S$ satisfies properties 1-4 and the following property, it is 
 The "O" in O-minimal stands for order, as every O-minimal structure requires the underlying set to be ordered.
 
 ::: {.definition #definable-function}
-A map $f : A \to R^m$, where $A \subset R^n$, is called definable if its graph $G \subset R^{n+m}$ is a definable set.
+A map $f : A \to \R^m$, where $A \subset \R^n$, is called definable if its graph $G \subset \R^{n+m}$ is a definable set.
 :::
 
 ::: {.remark}
@@ -36,16 +36,16 @@ Since definable sets are closed under projection, it can be easily deduced that 
 :::
 
 ::: {.remark}
-For convenience, we will call a definable map $f : R^n \to R$ a definable function.
+For convenience, we will call a definable map $f : \R^n \to \R$ a definable function.
 :::
 
 ::: {.definition #graph-def-map }
-Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets (see Definition \@ref(def:definable-set).
-Let $f : X \to Y$ be a mapping from $X$ to $Y$. The graph of $f$ is the definable set
+Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets (see Definition \@ref(def:definable-set)).
+Let $f : X \to Y$ be a definable map from $X$ to $Y$. The graph of $f$ is the definable set
 $$
 \{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}.
 $$
-Sometimes, the domain of $f$ is $\R^n$. In this case, we often use the restriction $f\vert_X$ so that only images of $f$ at points in $X$ are considered,
+Sometimes, the domain of $f$ is $\R^n$. In this case, we often use the restriction $f\vert_X$ so that only images of $f$ at points in $X$ are considered.
 :::
 
 We now define the semialgebraic sets.
