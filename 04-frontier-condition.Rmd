@@ -404,9 +404,9 @@ Compute the refinements, given by $\mathcal{R}$, of sections above bad cells usi
 ## Extension of Lazard { #sec:lazard-n }
 
 Every $2$-dimensional cylindrical cell in a CAD of $\R^n$ is the graph of a continuous definable map $\mathbf{f} =
-(f_1,\ldots,f_{n-2}) : X \to \R^{n-2}$ where $X \subset \opspan{x_i,x_j}, 1 \le i < j \le n$ is a cylindrical
+(f_1,\ldots,f_{n-2}) \colon X \to \R^{n-2}$ where $X \subset \opspan{x_i,x_j}, 1 \le i < j \le n$ is a cylindrical
 $(1,1)$-cell by Proposition \@ref(prp:delete-zero-index) (@bgv13, Lemma 3.3). According to the remark following
-Definition \@ref(def:blow-up-point), each component $f_j : X \to \opspan{x_j}$ of $\mathbf{f}$ is a continuous definable map at every point in $\cl{X}$ except, perhaps, for a finite set of isolated points in $\fr{X} = \cl{X} \setminus X$.
+Definition \@ref(def:blow-up-point), each component $f_j \colon X \to \opspan{x_j}$ of $\mathbf{f}$ is a continuous definable map at every point in $\cl{X}$ except, perhaps, for a finite set of isolated points in $\fr{X} = \cl{X} \setminus X$.
 Therefore, it might be natural to ask whether the result from @lazard10 for lifting with bad points can be generalised to cylindrical decompositions of $\R^n, n > 3$ compatible with semialgebraic sets of dimension at most $2$.
 Our goal is to construct a CAD $\mathcal{D}$ of $\R^n$, monotone with respect to each set $V_1, \ldots, V_k$ such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, such that $\cl{C}$, for each cell $C \subset V_1 \cup \ldots \cup V_k$ of $\mathcal{D}$ is a union of some cells of $\mathcal{D}$.
 Note that this method is not claimed to work for all cells of $\mathcal{D}$, in particular, those of dimension $> 2$.
@@ -569,7 +569,8 @@ If $\dim(C) < 2$, $C$ already satisfies the frontier condition since it is well-
 If $\dim(C') = 2$, then $C$ is an $(i_1,\ldots,i_k)$-cell such that $i_{\ell_1} = i_{\ell_2} = 1$ and all other elements of the index are equal to zero.
 
 First suppose that $\ell_1 = 1$. If $\ell_2 < k$ then $C$ is a section cell.
-Let $C' = \projop{k-1}(C)$. $C'$ satisfies the frontier condition by the induction hypothesis and $C$ is the graph of a continuous definable function $\varphi : C' \to \R$.
+Let $C' = \projop{k-1}(C)$. $C'$ satisfies the frontier condition by the induction hypothesis and $C$ is the graph of a
+continuous definable function $\varphi \colon C' \to \R$.
 $\cl{C}$ is the graph of $\varphi$ for all but, possibly, a finite number of isolated blow-up points in $\cl{C'}$ (see Remark after Definition \@ref(def:blow-up-point)).
 Let $\mathcal{A}_1,\ldots,\mathcal{A}_k$ be the set of projection polynomials defining $\mathcal{D'}$. By the construction of CAD, these polynomials are irreducible. Let
 $$

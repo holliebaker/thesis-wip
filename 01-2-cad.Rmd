@@ -16,7 +16,7 @@ $$
 - When $n = 1$, a $(0)$-cell (section cell) is a point $c \in \R$ and a $(1)$-cell (sector cell) is an open interval: $(a,b)$, $(-\infty,b)$, $(a,\infty)$, $(-\infty,\infty)$ where $a,b\in \R$.
 
 - When $n > 1$, suppose that $(i_1,\ldots,i_{n-1})$-cells are already defined and let $C'$ be one of these cells.
-An $(i_1,\ldots,i_{n-1},0)$-cell (section cell) is the graph of a continuous definable function $f : C' \to \R$.
+An $(i_1,\ldots,i_{n-1},0)$-cell (section cell) is the graph of a continuous definable function $f \colon C' \to \R$.
 An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C' \times \R$, either
   $$
 \begin{aligned}
@@ -26,7 +26,7 @@ An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C'
 \{ (\mathbf{x},t) &\mid \mathbf{x} \in C', t \in \R \}
 \end{aligned}
   $$
-  where $f,g : C' \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+  where $f,g \colon C' \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
 :::
 
 ::: {.definition}
@@ -39,7 +39,9 @@ where $\cl{S}$ is the closure of $S$ in the Euclidean topology.
 
 If $C \subset \R^n$ is a cylindrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top ($C_T$), bottom ($C_B$) and side-wall ($C_W$).
 
-First let $C$ be a sector $(i_1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by a continuous function $f : C' \to \R$, then $C_B$ is the graph of $f$. Similarly, if $C$ is bounded from above by the graph of a continuous function $g : C' \to \R$, then $C_T$ is the graph of $g$. It is clear that the top and bottom of every cylindrical sector cell (if non-empty) are always cylindrical section cells.
+First let $C$ be a sector $(i_1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by
+a continuous function $f \colon C' \to \R$, then $C_B$ is the graph of $f$. Similarly, if $C$ is bounded from above by
+the graph of a continuous function $g \colon C' \to \R$, then $C_T$ is the graph of $g$. It is clear that the top and bottom of every cylindrical sector cell (if non-empty) are always cylindrical section cells.
 
 Now let $C$ be an $(i_1,\ldots,i_{k},0,\ldots,0)$-cell, where $i_{k}=1$, and $C' := \projop{k}(C)$. Since $C'$ is a sector cell, $C'_B$ and $C'_T$ are cylindrical section cells. The bottom $C_B$ of $C$ is the pre-image of $C'_B$ by the projection map $\projop{k}\vert_{\cl{C}}$ and the top $C_T$ of $C$ is the pre-image of $C'_T$ by the projection map $\projop{k}\vert_{\cl{C}}$.
 It may be simpler to think of $C_B$ as the definable set $\cl{C} \cap (C'_B \times \R^{n - k + 1})$ and $C_T$ as the definable set $\cl{C} \cap (C'_T \times \R^{n - k + 1})$.
@@ -51,7 +53,7 @@ There is no requirement that $C_W$ will be (a union of) cylindrical cells.
 ::: {.definition #blow-up-point }
 [@bgv15, Definition 9.2]
 
-Let $\varphi : W \to \R$ be a continuous function on a semialgebraic set $W \subset \R^n$, and let $\Phi \subset \R^{n+1}$ be its graph.
+Let $\varphi \colon W \to \R$ be a continuous function on a semialgebraic set $W \subset \R^n$, and let $\Phi \subset \R^{n+1}$ be its graph.
 
 A point $\mathbf{x} \in \overline{W} \setminus W$ is called a blow-up point of $\Phi$ if $$\projopinv{n} (\mathbf{x}) \cap \overline{\Phi}$$ contains an open interval.
 :::
@@ -140,7 +142,7 @@ Thus, a decomposition in in which the side-walls of $V$ and $W$ are single $1$-d
 Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then
 $$C' := \projops{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n}(C)
 $$
-is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a monotone map $f : C' \to \opspan{x_k}$.
+is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a monotone map $f \colon C' \to \opspan{x_k}$.
 :::
 
 ::: { .proposition }
@@ -182,7 +184,7 @@ We want to partition $\R^{n-1}$ into connected semialgebraic sets $C'$ such that
 
 Let $f \in \Z[x_1,\ldots,x_n]$ and, $C' \subset \R^{n-1}$ be a connected semialgebraic set and $k \le d \in \N$ such that, for every point $\mathbf{x} \in C'$, the univariate polynomial $f(\mathbf{x},x_n) \in \A[x_n]$ has degree $d$ and exactly $k$ distinct (complex) roots in $C'$.
 Then there are $\ell \le k$ distinct semialgebraic functions
-$$\psi_1,\ldots,\psi_\ell : C' \to \R
+$$\psi_1,\ldots,\psi_\ell \colon C' \to \R
 $$
 such that, for every $\mathbf{x} \in C'$, the set of real roots of $f(\mathbf{x},x_n)$ is exactly
 $$\{ \psi_1(\mathbf{x}, \ldots, \psi_\ell(\mathbf{x}) \}.$$
@@ -199,7 +201,7 @@ Since $f(\mathbf{b},x_n)$ has $k$ distinct complex roots, and $d = m_1+ \ldots +
 If $z_i$ is real, then $\zeta_i$ is real, otherwise the complex conjugate of $\zeta_i$ would be another root of $f(\mathbf{b},x_n)$ in the disc $D(z_i,\varepsilon)$.
 If $z_i$ is complex then $\zeta_i$ is also complex, since the conjugation of every point in $D(z_i, \varepsilon)$ lies outside $D(z_i, \varepsilon)$, forming another disc $D(\overline{z_i}, \varepsilon)$.
 It follows that, if $\mathbf{b} \in C'$ is close enough to $\mathbf{c}$, then $f(\mathbf{c},x_n)$ has the same number of real roots as $f(\mathbf{b},x_n)$. Since $C'$ is connected, $f(\mathbf{x},x_n)$ has the same number of real roots at every point $\mathbf{x} \in C'$, say $\ell$.
-Define $\psi_i(\mathbf{x}) : C' \to \R$ to be the continuous (by making $\varepsilon$ small enough) semialgebraic function sending $\mathbf{x} \in C'$ to the $i$-th (in ascending order) real root of $f(\mathbf{x},x_n)$. It follows from the connectedness of $C'$ that each $\psi_i$ has constant multiplicity.
+Define $\psi_i(\mathbf{x}) \colon C' \to \R$ to be the continuous (by making $\varepsilon$ small enough) semialgebraic function sending $\mathbf{x} \in C'$ to the $i$-th (in ascending order) real root of $f(\mathbf{x},x_n)$. It follows from the connectedness of $C'$ that each $\psi_i$ has constant multiplicity.
 Observe that the graph of each $\psi_i$ can be expressed by a first-order Boolean formula, using existential quantifiers to express each of the $\ell$ roots of $f(\mathbf{x},x_n)$ and an equality condition to pick out the $i$-th root.
 It follows that the graph of each functin $\psi_i$ is a semialgebraic set.
 :::
@@ -210,7 +212,7 @@ To extend this result to more than one polynomial, we also need to ensure that t
 [@coste2000, Proposition 2.18]
 
 Let $f,g \in \Z[x_1,\ldots,x_n]$, $C' \subset \R^{n-1}$ such that, for all $\mathbf{x} \in C'$, the degree and number of roots of $f(\mathbf{x},x_n)$ and $g(\mathbf{x},x_n)$ is constant and the degree of the GCD of $f(\mathbf{x},x_n)$ and $g(\mathbf{x},x_n)$ is constant.
-Let $\varphi,\psi : C' \to \R$ be continuous semialgebraic functions such that $f(\mathbf{x},\varphi(\mathbf{x})) = 0$ and $g(\mathbf{x},\psi(\mathbf{x})) = 0$ for all $\mathbf{x} \in C'$.
+Let $\varphi,\psi \colon C' \to \R$ be continuous semialgebraic functions such that $f(\mathbf{x},\varphi(\mathbf{x})) = 0$ and $g(\mathbf{x},\psi(\mathbf{x})) = 0$ for all $\mathbf{x} \in C'$.
 If there exists $\mathbf{c} \in C'$ such that $\varphi(\mathbf{c}) = \psi(\mathbf{c})$, then $\varphi(\mathbf{x}) = \psi(\mathbf{x})$ for all $\mathbf{x} \in C'$.
 :::
 
@@ -303,7 +305,7 @@ $$
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a family of polynomials and let $C'$ be a connected $\proj(\mathbf{F})$-invariant semialgebraic subset of $\R^{n-1}$ -- an $(i_1,\ldots,i_{n-1})$-cell.
 Then there exist continuous definable functions
 $$
-\psi_1,\ldots, psi_\ell : C' \to \R
+\psi_1,\ldots, psi_\ell \colon C' \to \R
 $$
 such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) \}$ coincides with the real roots of polynomials in $\mathbf{F}$, defining the $(i_1,\ldots,i_{n-1},0)$-cells in the cylinder $C' \times \R$ and $\{ -\infty < t < \psi_1(\mathbf{x}), \ldots, \psi_i(\mathbf{x}) < t < \psi_{i+1}(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) < t < \infty \}$ are the $(i_1,\ldots, i_{n-1},1)$-cells in the cylinder $C' \times \R$.
 :::
@@ -399,9 +401,11 @@ Then a CAD $\cal D$ of $\R^n$ compatible with $S$ and such that every cell $C$ o
 
 ### Projection polynomials vs semialgebraic functions
 
-Recall that Proposition \@ref(prp:coste-polynomial-to-cell) allows us to pass from a projection polynomial $f \in \Z[x_1,\ldots,x_k]$ to the continuous semialgebraic functions $\varphi : C' \to \R$, where $C' \subset \R^{n-1}$ is a cylindrical cell, from Definition \@ref(def:cells) which define some of the section cells in the cylinder $C' \times \R$. The construction described in @bgv15, Theorem 3.20 (and related lemmas) works with these continuous semialgebraic functions. However, we are given only the projection polynomials $f$ of which $\varphi$ defines one of the roots.
+Recall that Proposition \@ref(prp:coste-polynomial-to-cell) allows us to pass from a projection polynomial $f \in
+\Z[x_1,\ldots,x_k]$ to the continuous semialgebraic functions $\varphi \colon C' \to \R$, where $C' \subset \R^{n-1}$ is a cylindrical cell, from Definition \@ref(def:cells) which define some of the section cells in the cylinder $C' \times \R$. The construction described in @bgv15, Theorem 3.20 (and related lemmas) works with these continuous semialgebraic functions. However, we are given only the projection polynomials $f$ of which $\varphi$ defines one of the roots.
 
-Let $C$ be a section cell in $\R^n$: a semialgebraic set which is the graph of a continuous semialgebraic function $\varphi : C' \to \R$, where $C' \subset \R^{n-1}$ is a cylindrical cell. A simple example in $\R^2$ demonstrates that, although $C$ is a semialgebraic set, $\varphi$ may not be a polynomial. Indeed, let
+Let $C$ be a section cell in $\R^n$: a semialgebraic set which is the graph of a continuous semialgebraic function
+$\varphi \colon C' \to \R$, where $C' \subset \R^{n-1}$ is a cylindrical cell. A simple example in $\R^2$ demonstrates that, although $C$ is a semialgebraic set, $\varphi$ may not be a polynomial. Indeed, let
 $$ C := \{ (x,y) \in \R^2 \mid x > 0, y > 0, y = x^2 \} $$
 be a cylindrical cell in $\R^2$ such that $C' := \projop{1}(C) = \{ x \in \R \mid x > 0 \}$. We can write
 $$

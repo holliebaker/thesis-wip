@@ -153,7 +153,7 @@ All of these indices are lexicographically less than $M$.
 In the proof of Theorem \@ref(thm:main), we will need the following technical statement.
 
 ::: {.lemma #section-split}
-Let $f: X \to \R$ be a continuous definable function on a set
+Let $f \colon X \to \R$ be a continuous definable function on a set
 $X \subset \R^n$ having the graph $F \subset \R^{n+1}$, such that $F$ is a semialgebraic set.
 Let $G$ be a semialgebraic subset, closed in $F$, of dimension less than $\dim (F)=n$.
 Then $\frt_{F}(F \setminus G) = G$, where $\frt_F$ denotes the frontier in $F$.

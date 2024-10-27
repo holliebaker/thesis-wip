@@ -17,7 +17,7 @@ where each $S^n$ is a set of subsets of the affine space $\R^n$ satisfying the f
 1. All algebraic subsets of $\R^n$ are in $S^n$;
 2. $S^n$ is a Boolean subalgebra of the powerset of $\R^n$;
 3. If $A \in S^n$ and $B \in S^m$, then $A \times B \in S^{n+m}$;
-4. Let $\proj : \R^{n+1} \to \R^n$ be the projection onto the first $n$ coordinates. If $X\in S^{n+1}$, then $\proj(X)
+4. Let $\proj \colon \R^{n+1} \to \R^n$ be the projection onto the first $n$ coordinates. If $X\in S^{n+1}$, then $\proj(X)
 \in S^n$.
 
 Elements of $S^n$ are called the definable subsets of $\R^n$ and a definable subset of $\R^n$ may also be referred to as a definable set.
@@ -29,7 +29,7 @@ If the structure $S$ satisfies properties 1-4 and the following property, it is 
 The "O" in O-minimal stands for order, as every O-minimal structure requires the underlying set to be ordered.
 
 ::: {.definition #definable-function}
-A map $f : A \to \R^m$, where $A \subset \R^n$, is called definable if its graph $G \subset \R^{n+m}$ is a definable set.
+A map $f \colon A \to \R^m$, where $A \subset \R^n$, is called definable if its graph $G \subset \R^{n+m}$ is a definable set.
 :::
 
 ::: {.remark}
@@ -37,12 +37,12 @@ Since definable sets are closed under projection, it can be easily deduced that 
 :::
 
 ::: {.remark}
-For convenience, we will call a definable map $f : \R^n \to \R$ a definable function.
+For convenience, we will call a definable map $f \colon \R^n \to \R$ a definable function.
 :::
 
 ::: {.definition #graph-def-map }
 Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets (see Definition \@ref(def:definable-set)).
-Let $f : X \to Y$ be a definable map from $X$ to $Y$. The graph of $f$ is the definable set
+Let $f \colon X \to Y$ be a definable map from $X$ to $Y$. The graph of $f$ is the definable set
 $$
 \{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}.
 $$
@@ -65,7 +65,7 @@ reals. Another example is the sub-Pfaffian sets (see Definition \@ref(def:pfaff)
 :::
 
 ::: {.definition}
-Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets. A definable map $f : X \to Y$ is called semialgebraic if its graph (see Definition \@ref(def:graph-def-map))
+Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets. A definable map $f \colon X \to Y$ is called semialgebraic if its graph (see Definition \@ref(def:graph-def-map))
 $$
 \{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}
 $$
@@ -94,7 +94,7 @@ A fundamental result in semialgebraic geometry is the Tarski--Seidenberg Theorem
 
 ::: { .theorem #tarski-seinedberg }
 [@tarski1951]
-Let $S \subset \R^{n+1}$ and $\projop{n} : \R^{n+1} \to \R^n$ be the projection map onto the first $n$ coordinates. Then $\projop{n}(S) \subset \R^n$ is a semialgebraic set.
+Let $S \subset \R^{n+1}$ and $\projop{n} \colon \R^{n+1} \to \R^n$ be the projection map onto the first $n$ coordinates. Then $\projop{n}(S) \subset \R^n$ is a semialgebraic set.
 :::
 
 One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formula.
@@ -219,14 +219,14 @@ where $0 \le j \le m$, $1 \le j_1 < \cdots < j_m \le n$ and $c_1,\ldots,c_m \in 
 
 ::: { .definition #quasi-affine }
 [@bgv15, Definition 2.2]
-Let $\mathbf{f} = (f_1,\ldots,f_k) : X \to \R^k$ be a bounded continuous map defined on an open, bounded, non-empty subset $X \subset \R^n$ having the graph $Y \subset \R^{n+k}$.
+Let $\mathbf{f} = (f_1,\ldots,f_k) \colon X \to \R^k$ be a bounded continuous map defined on an open, bounded, non-empty subset $X \subset \R^n$ having the graph $Y \subset \R^{n+k}$.
 
 $\mathbf{f}$ is called quasi-affine if, for any coordinate subspace $L \subset \R^{n+k}$, the restriction $\proj_{L}\vert_Y$ is injective if and only if $\proj_{L}(Y)$ is $n$-dimensional.
 :::
 
 ::: { .definition #monotone-map }
 [@bgv15, Definition 2.3]
-Let $\mathbf{f} : X \to \R^k$ be a bounded, continuous, quasi-affne map defined on an open, bounded, non-empty subset $X\subset \R^n$ having the graph $Y \subset \R^{n+k}$. $\mathbf{f}$ is called monotone if, for each affine coordinate subspace $S \subset \R^{n+k}$, the intersection $Y \cap S$ is connected.
+Let $\mathbf{f} \colon X \to \R^k$ be a bounded, continuous, quasi-affne map defined on an open, bounded, non-empty subset $X\subset \R^n$ having the graph $Y \subset \R^{n+k}$. $\mathbf{f}$ is called monotone if, for each affine coordinate subspace $S \subset \R^{n+k}$, the intersection $Y \cap S$ is connected.
 :::
 
 ::: {.definition}
@@ -241,17 +241,18 @@ We write $\opspan{x_{j_1},\ldots, x_{j_m}}$ to mean the
 quotient space $\R^n / W$.
 Similarly, for any affine coordinate subspace $L \subset \R^n$ on which all the
 functions $x_j \in I$ are constant, we will identify $L$ with its image under the canonical surjection
-to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$. $\projop{x_{i_1},\ldots,x_{i_k}} : \R^n \to \opspan{x_{i_1},\ldots,x_{i_k}}$ denotes the projection map from $\R^n$ to $\opspan{x_{i_1},\ldots,x_{i_k}}$, where $\{i_1,\ldots,i_k\} \subset \{1,\ldots,n\}$.
+to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$. $\projop{x_{i_1},\ldots,x_{i_k}}
+\colon \R^n \to \opspan{x_{i_1},\ldots,x_{i_k}}$ denotes the projection map from $\R^n$ to $\opspan{x_{i_1},\ldots,x_{i_k}}$, where $\{i_1,\ldots,i_k\} \subset \{1,\ldots,n\}$.
 :::
 
 ::: { .definition #monotone-map-on }
 [@bgv15, Definition 2.10]
-Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} : X \to \opspan{y_1,\ldots,y_k}$ be a continuous map having graph $Y \subset \opspan{x_1,\ldots,x_n,y_1,\ldots,y_k}$. If $Y$ is a monotone cell, then $\mathbf{f}$ is called monotone on $X$.
+Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} \colon X \to \opspan{y_1,\ldots,y_k}$ be a continuous map having graph $Y \subset \opspan{x_1,\ldots,x_n,y_1,\ldots,y_k}$. If $Y$ is a monotone cell, then $\mathbf{f}$ is called monotone on $X$.
 :::
 
 ::: { .definition #monotone-cell }
 [@bgv15, Definition 2.5]
-$Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph of a monotone map $\mathbf{f} : X \to H$ where $H \subset \opspan{x_1,\ldots,x_n}$ and $X \subset \opspan{x_1,\ldots,x_n} \setminus H$.
+$Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph of a monotone map $\mathbf{f} \colon X \to H$ where $H \subset \opspan{x_1,\ldots,x_n}$ and $X \subset \opspan{x_1,\ldots,x_n} \setminus H$.
 :::
 
 ::: { .example #monotone-cells }
@@ -292,7 +293,7 @@ We finally revise the definition of Big O notation, following @gv2009, Definitio
 
 ::: {.definition #big-o }
 [@gv2009, Definition 6.1]
-Let $f,g,h : \N^\ell \to \N$ be functions and $n \in \N$.
+Let $f,g,h \colon \N^\ell \to \N$ be functions and $n \in \N$.
 
 - The expression $f \le O(g)^n$ means that there exists $c \in \N$ such that $f < (cg)^n$ at every point in $\N^\ell$.
 - The expression $f \le g^{O(h)}$ means that there exists a $c \in \N$ such that $f \le g^{ch}$ at every point in $\N^\ell$.

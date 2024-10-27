@@ -38,7 +38,7 @@ The construction of monotone cells is based on the following result due to @bgv1
 ::: {.proposition #bgv-monotone}
 [@bgv15, Lemma 3.18]
 
-Let $X \subset \R^2$ be an open, bounded set and $f : X \to \R$ be a quasi-affine function.
+Let $X \subset \R^2$ be an open, bounded set and $f \colon X \to \R$ be a quasi-affine function.
 Then there is a cylindrical decomposition of $\R^2$ compatible with $X$, obtained by intersecting $X$ with straight lines $$\{x_1 = c\}$$ and half-planes $$\{x_1 < c\},\{x_1 > c\}$$ such that the restriction $f\vert_B$ for every cell $B \subset X$ is a monotone function.
 :::
 
@@ -54,7 +54,7 @@ Their proof proceeds by induction on $n$.
 
     @bgv15, Lemma 3.19, which provides the construction of $\cal D$ in the previous section, gives us a more useful representation of $C$. Let $X := \projops{x_1,x_\alpha}(C)$ be a $2$-dimensional sector cell. $C$ can be viewed as the graph of a quasi-affine map
     $$
-    \mathbf{f} = (f_1,\dots,f_{n-2}) : X \to \opspan{x_2,\ldots,x_{\alpha - 1}, x_{\alpha+1},\ldots,x_n}.
+    \mathbf{f} = (f_1,\dots,f_{n-2}) \colon X \to \opspan{x_2,\ldots,x_{\alpha - 1}, x_{\alpha+1},\ldots,x_n}.
     $$
     By [@bgv15, Lemma 3.18], there exists a refinement of the CAD of $\opspan{x_1,x_\alpha}$, obtained by intersecting $X$ with straight lines and half-planes of the kind
     $$
@@ -120,22 +120,23 @@ follows immediately from the fact that $X$ is $2$-dimensional and $C$ is the gra
 Since $X$ is a $2$-dimensional sector cell, by definition it is the semialgebraic set $$
 \{ (x_1,t) \in \R^2 \mid x_1 \in X', \varphi(x_1) < t < \psi(x_1) \}
 $$
-where $\varphi,\psi : X' \to \R$ are continuous definable functions such that $\varphi(x_1) < \psi(x_1)$ for all $x_1 \in X'$.
+where $\varphi,\psi \colon X' \to \R$ are continuous definable functions such that $\varphi(x_1) < \psi(x_1)$ for all $x_1 \in X'$.
 Note that $X$ may not be bounded from below (resp. above).
 In this case, $\varphi$ (resp. $\psi$) are omitted from the definition of $X$, as in Definition \@ref(def:cells).
 It is clear that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving (3).
 It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of $1$-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if they exist).
 
 We now prove (4) by defining $\varphi$ and $\psi$ using the definition of cylindrical cells.
-Since $C' := \projop{\alpha - 1}(C)$ is a $(1,\ldots,0,0)$-cell, it is the graph of a continuous definable map $\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) : X' \to \R^{\alpha - 2}$ and $$
+Since $C' := \projop{\alpha - 1}(C)$ is a $(1,\ldots,0,0)$-cell, it is the graph of a continuous definable map
+$\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) \colon X' \to \R^{\alpha - 2}$ and $$
 C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\}
 $$
-where $f,g : \R^{\alpha - 1} \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+where $f,g \colon \R^{\alpha - 1} \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
 Again, if not bounded from below (resp. above), $f$ (resp. $g$) are omitted.
 
 Finally, we write $C$ in terms of $x_1 \in X'$, $f$, $g$ and $\mathbf{h}$, we obtain the functions
 \begin{align}
-\varphi &:\> C'' \to \R & \psi &:\> C'' \to \R\\
+\varphi &\colon C'' \to \R & \psi &:\colon C'' \to \R\\
 \varphi(x_1) &= f(x_1,\mathbf{h}(x_1)) & \psi(x_1) &= g(x_1,\mathbf{h}(x_1))
 (\#eq:phi-psi)
 \end{align}
@@ -155,7 +156,7 @@ $$
 $$
 contains only monotone curve intervals. [@bgv15 [Theorem 3.18].
 
-Applying Corollary \@ref(cor:gamma-top-bottom) to $C$, we obtain continuous definable functions $\varphi,\psi : X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively.
+Applying Corollary \@ref(cor:gamma-top-bottom) to $C$, we obtain continuous definable functions $\varphi,\psi \colon X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively.
 Let $$
 (c_1,\ldots,c_t)
 $$
@@ -201,7 +202,8 @@ $$
 such that $C' \subset V'$.
 
 Now consider the top of $C$, denoted by $C_T$.
-By definition, if $C$ is not bounded from above, then $C_T$ does not exist. Otherwise, $C_T$ is the graph of a continuous definable function $h : C' \to \R$.
+By definition, if $C$ is not bounded from above, then $C_T$ does not exist. Otherwise, $C_T$ is the graph of a
+continuous definable function $h \colon C' \to \R$.
 In the first case, there is nothing to do.
 In the second case, $C_T$ can be written as
 \begin{equation}
@@ -214,7 +216,7 @@ By the construction of $\cal D$ (e.g., using Corollary \@ref(cor:mc-smooth)) $C_
 This representation lends itself naturally to the problem of optimisation with constraints -- Lagrange multipliers.
 
 ::: {.proposition #lagrange-multipliers}
-Let $f : \R^n \to \R$ and $g_1,\ldots,g_k : \R^n \to \R$ be continuous functions with continuous first partial derivatives.
+Let $f \colon \R^n \to \R$ and $g_1,\ldots,g_k \colon \R^n \to \R$ be continuous functions with continuous first partial derivatives.
 Local maxima and minima of $f$, subject to the constraints $g_1=0,\ldots,g_k=0$ can be found by computing the critical points of the function
 $$
 \mathcal{L}(\mathbf{x}, \lambda_1,\ldots,\lambda_k) = f(\mathbf{x}) - \lambda_1 g_1(\mathbf{x}) - \cdots - \lambda_k g_k(\mathbf{x}),
@@ -270,7 +272,7 @@ V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0, g_\alpha
 \end{equation}
 such that $C_T \subset V$, where $g_2,\ldots,g_{\alpha - 1}$ are the same polynomials appearing in Equation \@ref(eq:c-alpha-top).
 
-Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$ -- it is multivariate a polynomial -- while $h$ from Equation \@ref(eq:jacobi-det) is expected to be a continuous differentiable function from $\R^{\alpha - 1} \to \R$. In order to use the above construction, we have to be careful only to consider points at which $g_\alpha$ is differentiable.
+Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$ -- it is a multivariate polynomial -- while $h$ from Equation \@ref(eq:jacobi-det) is expected to be a continuous differentiable function from $\R^{\alpha - 1} \to \R$. In order to use the above construction, we have to be careful only to consider points at which $g_\alpha$ is differentiable.
 In other words, we need to compute derivatives of the implicit function $g_\alpha$:
 \begin{equation}
 \dfrac{d x_\alpha}{d x_i} = \dfrac{\partial g_\alpha / \partial x_i}{\partial g_\alpha / \partial x_\alpha}
@@ -446,7 +448,7 @@ for some $1 \le i \le r$, is a $2$-dimensional monotone sector cell.
 Let us return to [@bgv15, Theorem 3.18] to further refine $Y$ such that every $2$-dimensional section cell is a monotone cell.
 
 The procedure for computing the refinement of $Y$ such that $f_j$ is a monotone function, described in the proof of @bgv15, Theorem 3.18, proceeds as follows.
-Let $f_j : Y \to \opspan{x_j}$ be a component of the quasi-affine map $\mathbf{f} : X \to \R$. Since $\mathbf{f}$ is quasi-affine, each component of $\mathbf{f}$ is quasi-affine and the restriction of component $f_j$ to $Y$ is quasi-affine since $Y \subset X$.
+Let $f_j \colon Y \to \opspan{x_j}$ be a component of the quasi-affine map $\mathbf{f} \colon X \to \R$. Since $\mathbf{f}$ is quasi-affine, each component of $\mathbf{f}$ is quasi-affine and the restriction of component $f_j$ to $Y$ is quasi-affine since $Y \subset X$.
 Hence, $f_j$ is either strictly increasing in, strictly decreasing in, or independent of each variable $x_1, x_\alpha$.
 In addition, the restriction $f\vert_{Y \cap \{x_\alpha = c\}}$ for any $c \in \R$ is either strictly increasing in, strictly decreasing in, or independent of $x_\alpha$.
 We will compute a refinement of $Y$ such that $f_j\vert_Y$ is monotone, each $B \subset Y$ in the refinement.
@@ -461,7 +463,7 @@ $c \in \R$, which preserves both the cylindrical structure and existing monotone
 ::: {.lemma #one-dim-qa-is-monotone}
 Let $Y \subset \R^n$ be the graph of a quasi-affine map
 $$
-\mathbf{f} : (a,b) \to \R^{n-1}
+\mathbf{f} \colon (a,b) \to \R^{n-1}
 $$
 such that $(a,b) \subset \R$. Then $Y$ is a monotone cell.
 :::
@@ -484,7 +486,8 @@ is $1$-dimensional, connected and the graph of a quasi-affine map, it follows fr
 ### Case 2: $\alpha + 1 \le j \le n$
 
 Now suppose that $\alpha + 1 \le j \le n$.
-By [@bgv13, Theorem 3], if functions $$\inf_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j} \text{ and } \sup_{x_\alpha} f_j : \opspan{x_1} \to \opspan{x_j}$$ are monotone, then $f_j$ itself is monotone.
+By [@bgv13, Theorem 3], if functions $$\inf_{x_\alpha} f_j \colon \opspan{x_1} \to \opspan{x_j} \text{ and }
+\sup_{x_\alpha} f_j \colon \opspan{x_1} \to \opspan{x_j}$$ are monotone, then $f_j$ itself is monotone.
 Hence, we need to find refinement points
 $$
 \{ b_1,\ldots,b_r \} \subset (c_i,c_{i+1})
@@ -714,7 +717,7 @@ Lemma 3.19, and is proved in Lemmas \@ref(lem:monotone-sector-algorithm) and \@r
 The algorithm described in Section \@ref(sec:monotone-algorithm) considers each $2$-dimensional cell in a sub-CAD $\mathcal{E}$ of $\R^n$ above a $0$-dimensional cell $\mathbf{b} \in \R^{k-1}$. This is exactly the inductive step of @bgv15, Theorem 3.20, where an $(i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)$-cell, where $i_1 = i_\alpha = 1$, is considered.
 By Corollary \@ref(cor:gamma-top-bottom) to $C$, the $2$-dimensional subset $X \subset \opspan{x_1,x_\alpha}$ is
 obtained. The first part of @bgv15, Lemma 3.18 describes how $X$ should be refined into $2$-dimensional semi-monotone sets. The construction described in Section \@ref(sec:quasi-affine) explains how to obtain the set of refinement points $(c_1,\ldots,c_t) \subset \A$.
-$C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})$ where each component $f_j : X \to \opspan{x_j}$ for $j \in \{1,\ldots,n\} \setminus \{1,\alpha\}$ is a quasi-affine function. The second part of @bgv15, Lemma 3.18 describes how to refine $X$ such that each function $f_j$ is monotone. By @bgv15, Lemma 3.16, if every component $f_i$ is monotone on a subset in the refinement of $X$, then the map $\mathbf{f}$ itself is monotone on that subset of $X$.
+$C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})$ where each component $f_j \colon X \to \opspan{x_j}$ for $j \in \{1,\ldots,n\} \setminus \{1,\alpha\}$ is a quasi-affine function. The second part of @bgv15, Lemma 3.18 describes how to refine $X$ such that each function $f_j$ is monotone. By @bgv15, Lemma 3.16, if every component $f_i$ is monotone on a subset in the refinement of $X$, then the map $\mathbf{f}$ itself is monotone on that subset of $X$.
 The construction described in Section \@ref(sec:monotone-sections) describes how to find the refinement points to ensure that $\mathbf{f}$ is a monotone map.
 Thus, the construction in this section satisfies the properties required in the proof of @bgv15, Lemma 3.18 for $C$ to be monotone.
 
