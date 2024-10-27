@@ -59,7 +59,7 @@ The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets o
 
 ::: {.remark}
 It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structure over the
-reals. Another example is the sub-Pfaffian sets (see Definition \@ref(def:pfaff).
+reals. Another example is the sub-Pfaffian sets (see Definition \@ref(def:pfaff)).
 :::
 
 ::: {.definition}
