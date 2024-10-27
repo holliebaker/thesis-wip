@@ -100,7 +100,7 @@ Let $S \subset \R^{n+1}$ and $\projop{n} : \R^{n+1} \to \R^n$ be the projection 
 One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formula.
 Since the closure of a semialgebraic set may be represented by a first-order Boolean formula with quantifiers, it follows from the Tarski--Seidenberg Theorem that the closure of a semialgebraic set is a semialgebraic set.
 
-We present an algorithm for performing quantifier elimination over real numbers. This algorithm will be used to provide theoretical complexity bounds for solving quantifier elimination problems later.
+We note the existence of an algorithm for performing quantifier elimination over real numbers. This algorithm will be used to provide theoretical complexity bounds for solving quantifier elimination problems later.
 
 ::: { .proposition #bpr-qe }
 [@bpr2006, Algorithm 14.21]
