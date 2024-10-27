@@ -475,7 +475,7 @@ It follows that every cell of $\mathcal{D}$ satisfies the frontier condition.
 ### Complexity
 
 The number of different indices $(i_1, \ldots, i_n)$, where each $i_k \in \{ 0,1 \}$, is $2^n$.
-Therefore, the algorithm makes $O(2^n)$ ``steps'': computing successive pairs $({\mathcal E}_M, \mathcal{F}_M)$ in the sequence (\ref{eq:sequence}).
+Therefore, the algorithm makes $O(2^n)$ "steps": computing successive pairs $({\mathcal E}_M, \mathcal{F}_M)$ in the sequence (\ref{eq:sequence}).
 In each step, we compute the next pair $(\mathcal{E}_N,\ \mathcal{F}_N)$ from $(\mathcal{E}_M,\ \mathcal{F}_M)$, using Proposition \@ref(prp:collins) and Lemma \@ref(lem:frontier).
 
 First, Proposition \@ref(prp:collins) is applied to compute $\mathcal{E}_N$, the CAD of $\R^n$ compatible with all cells of $\mathcal{E}_M$ and the sets defined by formulas in $\mathcal{F}_M$. The complexity of this operation depends on the number of polynomials, $s_M$, and their maximum degree, $d_M$, defining $(\mathcal{E}_M,\ \mathcal{F}_M)$.

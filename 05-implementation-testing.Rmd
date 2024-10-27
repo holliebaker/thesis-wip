@@ -1,6 +1,6 @@
 # Implementation and Testing {#sec:implementation-and-testing}
 
-## Extension of `QEPCAD-B`
+## Extension of QEPCAD-B
 
 There are several well-known implementations of CAD. For example, Maple's `CylindricalAlgebraicDecompose`, which uses
 regular chains instead of the classical projection and lifting algorithm of @collins1975, is reported to work very
@@ -99,7 +99,7 @@ $$
 
 Below is an excerpt from `QEPCAD-B`'s output.
 
-``` {r, child="test-cases/sample.Rmd"}
+```{r, child="test-cases/sample.Rmd"}
 
 ```
 
@@ -127,7 +127,7 @@ where
 - $I \subset \Q$ is an isolating interval for $\alpha$ as a root of $M$,
 - $\mathbf{c} = (x_1,\ldots,x_n) \in \Q(\alpha)^n$.
 
-The `SACLIB` representation for rational and algebraic numbers is used. A rational number $x = a/b$ is stored as a two-element list $(a,b)$. An element $x \in \Q(\alpha)$ is stored as a two-element list $(q, g) \in \Q \times \Z[\alpha]$, where $x = q \cdot g(\alpha)$. If $x \in \Q(\alpha)$ is rational, then it is stored as $x = x \cdot \alpha^0 = x \cdot 1$. Likewise, if the sample point $\mathbf{x} \in \Q^k$, i.e., it only contains rational numbers, the minimal polynomial $M := x$ and isolating interval $I = (0,0)$.
+The `SACLIB` representation for rational and algebraic numbers is used. A rational number $x = a/b$ is stored as a $2$-element list $(a,b)$. An element $x \in \Q(\alpha)$ is stored as a two-element list $(q, g) \in \Q \times \Z[\alpha]$, where $x = q \cdot g(\alpha)$. If $x \in \Q(\alpha)$ is rational, then it is stored as $x = x \cdot \alpha^0 = x \cdot 1$. Likewise, if the sample point $\mathbf{x} \in \Q^k$, i.e., it only contains rational numbers, the minimal polynomial $M := x$ and isolating interval $I = (0,0)$.
 
 For a sample point $\mathbf{x} = (x_1,\ldots,x_{k-1},x_k) \in \A^k$ with coordinates $(x_1,\ldots,x_{k-1}) \in \Q(\alpha)$ (where at least one of $x_1,\ldots,x_{k-1}$ is irrational) and irrational $x_k \not \in \Q(\alpha)$, the sample point is stored in extended (non-primitive) form.
 This representation splits $\mathbf{x}$ into $\mathbf{y} = (x_1,\ldots,x_{k-1}) \in \Q(\alpha)$ and $x_k = \beta$ and is stored as the quintuple
@@ -143,7 +143,7 @@ where
 Since any finite set of algebraic numbers belongs to a single algebraic extension field $\Q(\gamma)$, it is always
 possible to convert a sample point in extended form to primitive form. The `QEPCAD-B` function ${\mathrm{CONVERT}}(\mathbf{c}, k)$ converts a non-primitive sample point $\mathbf{c} \in \A^k$ into primitive representation by computing an appropriate $(M_\gamma, I_\gamma)$ so that $\mathbf{c} \in \Q(\gamma)$.
 
-### Modifications to `QEPCAD-B`
+### Modifications to QEPCAD-B
 
 Full source code can be found here: https://github.com/monotone-cad/qepcad-monotone.
 
@@ -215,7 +215,7 @@ The function responsible for constructing a CAD containing quasi-affine cells is
   - `Word* J_`: set of projection factors
 
 Given the normalised input formula, this function implements a modified version of the projection phase. It returns the
-polynomials sufficient to construct a CAD such that each one- and $2$-dimensional cell contained in the set defined by the formula $F$ is smooth and the graph of a quasi-affine map.
+polynomials sufficient to construct a CAD such that each $1$- and $2$-dimensional cell contained in the set defined by the formula $F$ is smooth and the graph of a quasi-affine map.
 
 ``` {c, code-quasi-affine, eval=FALSE, attr.source='.numberLines' }
 void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_)
@@ -316,8 +316,8 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
   This is similar to the partial differential operator from Definition \@ref(def:pdo), except that if $j = 0$, the last row and column is omitted from the matrix.
 
 - The rest of the function sets up the input polynomials, projection polynomials and projection factors necessary to
-  define a sign-invariant CAD compatible with $V$ and critical points of projections of one- and $2$-dimensional cells
-  onto one- and $2$-dimensional coordinate subspaces. Projections of the new polynomials computed in the previous two steps are computed and added to the projection polynomial and projection factor sets.
+  define a sign-invariant CAD compatible with $V$ and critical points of projections of $1$- and $2$-dimensional cells
+  onto $1$- and $2$-dimensional coordinate subspaces. Projections of the new polynomials computed in the previous two steps are computed and added to the projection polynomial and projection factor sets.
 The lifting phase proceeds, using these polynomials, us usual.
 
 ### Monotone
@@ -1270,7 +1270,7 @@ S := \{ (x,y,z) \in \R^3 \mid x^2 + y^2 + z^2 - 1 = 0 \}.
 $$
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the sphere from Example \\ref{exm:sphere},
+``` {r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the sphere from Example \\ref{exm:sphere},
 showing critical points of projections onto one and $2$-dimensional coordinate subspaces, and their projections."}
 knitr::include_graphics(rep("gnuplot/sphere.svg"))
 ```

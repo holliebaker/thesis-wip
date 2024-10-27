@@ -409,11 +409,11 @@ $$
 where $\ast_i, 1 \le i \le s \in \{<, >, =\}$. $S$ can be partitioned into a finite union of some of the $s^3$ sign sets.
 If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_s)} \subset S$, and take the union of strata, we will obtain a smooth stratification of the set $S$. Indeed, since no two sign sets have non-empty intersection, it is clear that no two strata intersect, and since a finite number of the sign-sets form a partition of $S$, the smooth strata of these sign-sets also forms a partition of $S$.
 
-### Implementation with `SACLIB`
+### Implementation with SACLIB
 
 Full source code can be found here: https://github.com/monotone-cad/smooth-stratification.
 
-This algorithm has been implemented in `C`, using the computer algebra library `SACLIB`. `QEPCAD-B` is used to perform emptyness checks using cylindrical algebraic decomposition. Below is an example of the program's output, given the basic semialgebraic set
+This algorithm has been implemented in C, using the computer algebra library `SACLIB`. `QEPCAD-B` is used to perform emptyness checks using cylindrical algebraic decomposition. Below is an example of the program's output, given the basic semialgebraic set
 $$
 \{ z = 0, x^2 - y^2 = 0 \} \subset \R^3,
 $$
@@ -531,7 +531,8 @@ This function sets up the data structures required by `stratify_helper`, the rec
 
 **Input:**
 
-- `Word r` $\in \N$, `Word V`: variable list, Word Ineqs`: *prenex* (`QEPCAD-B`) formula of inequalities $\{ g_1 > 0, \ldots, g_\ell >0 \}$,
+- `Word r` $\in \N$,
+- `Word V`: variable list, `Word Ineqs`: *prenex* (`QEPCAD-B`) formula of inequalities $\{ g_1 > 0, \ldots, g_\ell >0 \}$,
 - `Word k` $1\le k \le r$ is the codimension currently beind worked with,
 - `Word np`: number of polynomials,
 - `Word Fs` $((f_1,\deg(f_1)), \ldots, (f_{\rm{np}}, \deg(f_{\rm{np}})))$ is the list of imput polynomials,

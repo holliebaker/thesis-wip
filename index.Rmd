@@ -19,6 +19,7 @@ link-citations: yes
 github-repo: holliebaker/thesis
 description: "Hollie Baker's thesis"
 ---
+#
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 # Set so that long lines in R will be wrapped:

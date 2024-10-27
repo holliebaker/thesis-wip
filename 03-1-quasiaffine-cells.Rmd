@@ -1,6 +1,6 @@
 # Quasi-Affine Cells { #sec:quasi-affine }
 
-In this section, we develop an algorithm, based on @bgv15, Theorem 3.19, for constructing a CAD whose two-, one-, and
+In this section, we develop an algorithm, based on @bgv15, Theorem 3.19, for constructing a CAD whose $2$, $1$, and
 $0$-dimensional cells are the graphs of quasi-affine maps. This is the first step to constructing a monotone cylindrical decomposition, as described in @bgv15, Theorem 3.20.
 
 ::: {.proposition #bgv-quasi }

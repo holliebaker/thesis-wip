@@ -590,7 +590,7 @@ Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algor
 $2$-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CAD of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
 :::
 
-## Pseudo-code
+## Pseudo-code {#sec:monotone-algorithm}
 
 We now present psuedo-code for the monotone part of the algorithm.
 
