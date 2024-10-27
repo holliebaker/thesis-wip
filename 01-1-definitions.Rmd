@@ -135,6 +135,7 @@ In many quantifier elimination problems, there is only a small number of quantif
 
 Another useful property of semialgebraic sets is that they admit a basic representation, as stated below.
 
+::: {.proposition}
 Every semialgebraic subset of $\R^n$ is the (not necessarily disjoint) union of finitely many semialgebraic subsets of the kind
 $$
 \{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \cdots, g_k(\mathbf{x}) > 0 \}
@@ -142,7 +143,9 @@ $$
 where $k \in \N$ and $f,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
 :::
 
+::: {.proof}
 This follows from the fact that the class of finite unions of this kind satisfy properties listed in Definition \@ref(def:semialgebraic-set).
+:::
 
 ::: {.definition #pfaff}
 [@gv04, Definition 2.1]
