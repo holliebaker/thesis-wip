@@ -1255,7 +1255,7 @@ A brief summary of new and modified functions is now presented.
 - `source/util/LEVELIDX.c`: helper function. Given a positional index for a cell $C$ with index $(i_1,\ldots,i_n)$, return $(j_1,\ldots,j_k)$, where $j\le n$ such that $i_{j_\ell} = 1, 1 \le \ell \le k$.
 - `source/util/PADDVS.c`: append variables. Given $f \in \Z[x_1,\ldots,x_k]$, output $f$ as a polynomial in $\Z[x_1,\ldots,x_k,y_1,\ldots,y_\ell]$.
 - `source/util/PPREPVS.c`: prepend variables. Given $f \in \Z[x_1,\ldots,x_k]$, output $f$ as a polynomial in $\Z[y_1,\ldots,y_\ell,x_1,\ldots,x_k]$.
-- `source/util/ROOTS.c`: convenience function for univariate root fonding. Uses `saclib`'s `IPFSFB`, which computes a squaref-free basis.
+- `source/util/ROOTS.c`: convenience function for univariate root finding. Uses `SACLIB`'s `IPFSFB`, which computes a square-free basis.
 - `source/util/SUBSTITUTE.c`: takes a polynomial $f \in \Z[x_1,\ldots,x_n]$ and a sample point $\mathbf{b} \in \A^k$, compute $f(\mathbf{b}) \in \Z[x_{k+1},\ldots,x_n]$.
 - `source/util/TwoDimensionalIndex.c`: Given a cell's positional index, which corresponds to the $(i_1,\ldots,i_k) \in \{0,1\}^n$, return $j,k$ such that $i_j = i_k = 1$. If $(i_1,\ldots,i_n)$ does not have exactly two elements equal to $1$, the function returns an error.
 
