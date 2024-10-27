@@ -1,4 +1,4 @@
-# A Novel algorithm For Obtaining The Frontier Condition On A Cylindrical Decomposition Of $n$-Dimensional Space { #sec:novel-frontier }
+# Novel Algorithm for Frontier Condition { #sec:novel-frontier }
 
 So far, we have been concerned only with cylindrical algebraic decompositions compatible with subsets of $\R^n$ having
 dimension at most $2$. We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
@@ -76,7 +76,7 @@ This will allow us to apply Theorem \@ref(thm:main) to semialgebraic sets repres
 
 ## Theory
 
-### Computing the frontier of a semialgebraic set {#sec:novel-frontier-fr}
+### Frontiers of semialgebraic sets {#sec:novel-frontier-fr}
 
 We presentd the classical CAD algorithm due to @collins1975, as formulated in @bpr2006, Algorithm 11.2, in \@ref(prp:collins).
 Given a set of $s$ different polynomials with maximum degree $d$ in $\Z[x_1,\ldots,x_n$, this algorithm has complexity
@@ -219,7 +219,7 @@ The proof is completed, for decompositions induced by $\mathcal{D}$ on $\R^k, 1 
 
 ## Main result
 
-### Algorithm psuedo-code
+### Psuedo-code
 
 We are now ready to prove the main result. We begin by presenting pseudo-code for the algorithm described in Theorem \@ref(thm:main).
 First some basic subroutines are defined.
@@ -504,7 +504,7 @@ $$
 $$
 According to Proposition \@ref(prp:collins) and Lemma \@ref(lem:frontier), this is also an upper bound on the number of cells in $\mathcal D={\mathcal E}_{\mathbf{0}}$, the number of polynomials defining cells and their degrees.
 
-### A note on constructing the intermediate decompositions
+### Constructing intermediate decompositions
 
 In the algorithm described in Theorem \@ref(thm:main), we construct, for each index $M \in \{0,1\}^{n-1}$, a CAD compatible with $\mathcal{F}_M = \{F_1,\ldots,F_k\}$ and all cells of $\mathcal{E}_M$.
 This can be achieved by constructing a CAD, using Proposition \@ref(prp:collins), such that each cell has constant sign on the polynomials in formulas $\mathcal{F}_M$ and all cells of $\mathcal{E}_M$. Such a CAD is clearly compatible with sets defined by formulas in $\mathcal{F}_M$ and all cells of $\mathcal{E}_M$. However, it may include some cells, outside $\cl{S}$, which we are not interested in.
@@ -531,7 +531,7 @@ In fact, basic sets can be defined using any functions definable in $\R^n$ and i
 
 Note that it is not currently clear how this result can be implemented since in the algorithm for cylindrical decomposition by @gv01 the oracle is needed to decide whether a sub-Pfaffian set is empty or not.
 
-### Further wrok { #sec:novel-frontier-fw }
+### Further work { #sec:novel-frontier-fw }
 
 The complexity upper bound of the algorithm from Theorem \@ref(thm:main) is significantly worse than the bound
 for classical CAD algorithm due to @collins1975 (and @wuthrich1976).

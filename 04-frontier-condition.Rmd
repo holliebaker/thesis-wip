@@ -38,7 +38,7 @@ Note that $W$, from Example \@ref(exm:whitney-jhd), is a $(1,1,0)$-cell, but it 
 even the graph of a quasi-affine map, since $\projops{x,z}(W)$ is $2$-dimensional, but the projection map $\projops{x,z}\vert_W$ is not injective. The blow-up subset $B$, contained in $\fr{W}$ means that $W$ is not a topologically regular cell, since $\fr(W)$ is not homeomorphic to a circle.
 In the procedures described in the following sections, due to @bgv15 and @lazard10, the cells on which the frontier condition is to be satisfied must be topologically regular cells.
 
-## Construction of a CAD with frontier condition due to Basu, Gabrielov and Vorobjov { #sec:frontier-bgv }
+## Frontier condition construction { #sec:frontier-bgv }
 
 Given the monotone CAD $\mathcal{D'}$ computed in the algorithm from Section \@ref(sec:monotone-algorithm), our final step, according to [@bgv15, Theorem 3.20] is to compute a refinement $\mathcal{D''}$ of $\mathcal{D'}$ such that the frontier $\fr{C} = \cl{C} \setminus C$ of every cell $C \subset V = V_1\cup \ldots, \cup V_k$ is a union of cells of $\cal D''$.
 
@@ -104,7 +104,7 @@ $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
 
-## Lazard's method for dimension not greater than 3 { #sec:lazard-3 }
+## Lazard's method { #sec:lazard-3 }
 
 The method described in Section \@ref(sec:frontier-bgv) is relatively straightforward as it relies on techniques we have used before (obtaining quasi-affine subsets and performing refinements). However, we may want to find an alternative method, so as to avoid the QE required to compute the frontiers of $2$-dimensional cylindrical cells.
 In the following section, we will explore an alternative method to obtain the frontier condition, based on an algebraic construction described by @lazard10.
@@ -328,7 +328,7 @@ $$
 
 Note that this procedure only works if the blow-up points have dimension $0$. Otherwise, the endpoints of $1$-dimensional cells in the frontier of $C$ will not be sufficient to satisfy the frontier condition.
 
-### Lazard's algorithm for lifting with bad points in $\R^3$
+### Lazard's "lifting above bad points"
 
 Let $\cal D$ be an $\mathbf{F}$-invariant CAD of $\R^n, n \le 3$. If $n \le 2$, $\cal D$ is already strong -- well-bordered, boundary smooth and satisfies the frontier condition. In particular, by Proposition \@ref(prp:only-bad-zero-cells), the frontier condition is already satisfied since there are no bad cells in the decomposition induced by $\mathcal{D}$ on $\R^2$ [@lazard10, Lemma 4.3].
 Also by Proposition \@ref(prp:only-bad-zero-cells), any bad cells in the decomposition induced by $\mathcal{D}$ on $\R^2$ are $0$-dimensional [@lazard10, Lemma 4.3].
@@ -401,7 +401,7 @@ A set of refinement points, as described in Section \@ref(sec:monotone-algorithm
 
 Compute the refinements, given by $\mathcal{R}$, of sections above bad cells using the method described in Section \@ref(sec:compute-refinement).
 
-## Generalisation of Lazard's method { #sec:lazard-n }
+## Extension of Lazard { #sec:lazard-n }
 
 Every $2$-dimensional cylindrical cell in a CAD of $\R^n$ is the graph of a continuous definable map $\mathbf{f} =
 (f_1,\ldots,f_{n-2}) : X \to \R^{n-2}$ where $X \subset \opspan{x_i,x_j}, 1 \le i < j \le n$ is a cylindrical
@@ -600,7 +600,7 @@ Compute a refinement of $\mathcal{D}$ so that it is compatible with the set of r
 By repeating this process for each bad cell $\mathbf{b}$, $\mathcal{D'}$ is refined such that it satisfies the frontier
 condition, hence it is strong about each cell $C$ such that $\projopinv{k}(C) \subset V_1\cup \ldots, \cup V_k$. This completes the inductive step and, by induction, a cylindrical decomposition monotone with respect to each set $V_1,\ldots,V_k$ and satisfying the frontier condition has been constructed.
 
-### Algorithm for lifting above bad points, for CAD compatible with sets of dimension $\le 2$ { #sec:ext-lazard-algorithm }
+### Pseudo-code { #sec:ext-lazard-algorithm }
 
 Let $\cal D$ be an $\mathbf{F}$-invariant cylindrical algebraic decomposition of $\R^n$ monotone with respect to each bounded semialgebraic set $V_1,\ldots, V_k$ such that $\dim(V_i) \le 2, 1,\le i \le k$ (e.g., the output produced by the algorithm from Section \@ref(sec:monotone-algorithm)).
 We now extend @lazard10, Algorithm 5.15 to CAD of this kind.
@@ -699,7 +699,7 @@ the side-wall of $C$ is contained in cylinders $\mathbf{c} \times \R$, where $\m
 which is an endpoint of $\projop{k-1}(C)$. It follows that $C$ satisfies the frontier condition since its top and
 bottom, which are $1$-dimensional cells, satisfy the frontier condition.
 
-#### Complexity analysis
+#### Complexity
 
 We will see, in Section \@ref(sec:novel-frontier), that there is an algorithm for obtaining the frontier condition on a
 CAD compatible with a semialgebraic set of arbitrary dimension. This algorithm has complexity $(sd)^{O(1)^{n2^n}}$ --

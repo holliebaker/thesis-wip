@@ -10,12 +10,12 @@ This thesis makes three main contributions:
 
 Complexity results for each of the algorithms are presented, and the first two algorithms have been implemented in C, on top of `saclib`.
 
-### Smooth stratification of a semialgebraic set
+### Smooth stratification
 
 Chapter \@ref(sec:smooth-strat) presents the algorithm from @gv1995, Theorem 1 which computes a smooth stratification of a semi-Pfaffian set $X \subset \R^n$ and then specialises it to the semialgebraic case, where the Oracle is not required, since it is always possible to check whether a semialgebraic set is empty. The main contribution of this section is a concrete algorithm and its implementation on top of `saclib`, which uses `QEPCAD-B` to determine whether candidate strata are empty. The implementation also ensures that each strata is defined "nicely", i.e., every stratum of codimension $k$ is defined by exactly $k$ polynomial equations and, possibly, some inequalities.
 Complexity bounds, based on @gv1995 and a singly exponential algorithm for deciding emptiness due to @bpr98 are presented, including the bound on the number of strata, along with the maximum degree and number of polynomials required to define each stratum.
 
-### An algorithm to construct monotone CAD compatible with a family of semialgebraic sets of dimension at most 2
+### Monotone CAD Algorithm
 
 @bgv15, Theorem 3.20 gives a constructive proof that there exists a CAD, monotone with respect to a collection of bounded definable sets $V_1,\ldots,V_k$, each of which has dimension at most $2$, and satisfying the frontier condition. The main contribution of Chapters \@ref(sec:quasi-affine), \@ref(sec:monotone-cells) and \@ref(sec:frontier) is the design and implementation of an algorithm, based on @bgv15, Theorem 3.20, for constructing such a CAD. Following the construction due to @bgv15, the algorithm proceeds in three steps.
 
@@ -47,7 +47,7 @@ Pseudo-code for the extension of Lazard's algorithm and a complexity analysis fo
 Thus, a concrete description of an algorithm to construct the cylindrical decomposition, in the semialgebraic case, described in @bgv15, Theorem 3.20 is given, which has complexity only slightly worse than classical CAD.
 Chapter \@ref(sec:implementation-and-testing) is concerned with the implementation details of this algorithm, along with presenting some test cases which give an exposition of its three stages: quasi-affine, monotone and frontier condition.
 
-### A novel algorithm for computing a CAD with frontier condition, compatible with a semialgebraic set of arbitrary dimension
+### Novel algorithm for frontier condition
 
 The final contribution is an algorithm, having ELEMENTARY complexity, for constructing a CAD, compatible with a semialgebraic set of arbitrary dimension and satisfying the frontier condition.
 This algorithm removes the restriction imposed by @jhd20, as blow-ups are permitted, and does not require the rotation of coordinates proposed by @pianomovers1983.

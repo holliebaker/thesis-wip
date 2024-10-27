@@ -1,6 +1,6 @@
-# Implementation And Testing {#sec:implementation-and-testing}
+# Implementation and Testing {#sec:implementation-and-testing}
 
-## Implementation on top of `QEPCAD-B`
+## Extension of `QEPCAD-B`
 
 There are several well-known implementations of CAD. For example, Maple's `CylindricalAlgebraicDecompose`, which uses
 regular chains instead of the classical projection and lifting algorithm of @collins1975, is reported to work very
@@ -18,7 +18,7 @@ quantifier-free (Tarski) formula, which is the most convenient representation fo
 For this reason, Maple's `CylindricalAlgebraicDecompose` is only able to produce formulas in the extended language. `QEPCAD-B` implements an algorithm to add additional defining polynomials [@brown99]. A small modification to this algorithm allows every cell in the CAD to be defined by a quantifier-free Boolean formula (see Section \@ref(sec:cell-formula)).
 This was the main realon for choosing `QEPCAD-B`, along with the fact that `QEPCAD-B` is open-source which allows the algorithm to easily be modified.
 
-### Description of `QEPCAD-B` {#sec:qepcad}
+### Background {#sec:qepcad}
 
 The `QEPCAD-B` algorithm proceeds in five stages:
 
@@ -87,7 +87,7 @@ The `QEPCAD-B` algorithm proceeds in five stages:
 
     Given the CAD $\mathcal{D}$, whose union of true cells coincides with the set defined by the input formula, a quantifier-free Boolean formula defining this set is produced. `QEPCAD-B` attempts to use the projection factors in this formula, but sometimes additional polynomials (derivatives of projection factors) must be added in order to define the required set.
 
-### `QEPCAD-B` cells and sample points
+### Cells and sample points
 
 Since the main advantage of the monotone CAD algorithm is to produce a CAD with cells having desirable topological
 properties, we are mostly interested in examining individual CAD cells rather than `QEPCAD-B`'s output formula.
@@ -968,7 +968,7 @@ Word RefineCell(Word k, Word Cs, Word PM, Word PI, Word c, Word PFs, bool* rc)
 This function lets $C = C_1$ and inserts two copies $C_1,C_2$ of $C$ into the list of children. It then updates sample points, if needed (the sample point of $C$ is correct for exactly one of $C_1$, $C_2$ or $C_3$), and adds missing signs of projection factors whose roots are the refinement points.
 The comments explain how the function works. The helper function `LDCOPY` (list "deep" copy) makes a copy of each element in a list, proceeding by induction if the element is a list. This is required as $C_2,C_3$ should not contain any pointers to data in $C$. The functions `SETINDEXK`, `GETSAMPLEK` and `SETSAMPLEK` were discussed in relation to `RefineSubcad`.
 
-### Obtaining defining formulas for every cell
+### Defining formulas for cells
 
 As discussed in Section \@ref(sec:cell-formula), the projection factors may not be sufficient to produce a quantifier-free Boolean formula for every cell $C$ in a CAD.
 We would like to be able to examine every cell $C \subset V_1,\ldots,V_k$ using its defining formula.
@@ -1196,11 +1196,11 @@ Return: /* Prepare for return. */
 - Lines 55-61 remain unchanged, and construct a truth-invariant CAD. If monotone cells are to be produced, the CAD will have constant sign on the projection factors, as the option `full-cad` will be enabled.
 - Lines 61-88 define a new step, where refinements for monotone cells and frontier condition are performed. Lines 70-71 compute the refinement points for monotone cells, by calling `MONOTONE` and Line 74 calls `REFINE` to compute the refinement. Line 84 calls `FRONTIER` to complete the refinement points above bad cells and Line 85 calls computes the refinement.
 
-### Additional modifications and utility functions
+### Additional modifications and additions
 
 A brief summary of new and modified functions is now presented.
 
-#### Modifications
+#### Modified functions
 
 - `extensions/sfext/addpol/CFLCELLLIST.c`: the function which identifies conflicting pairs of cells for solution formula construction. This function is now used to ensure that every cell can be defined by a Tarski formula. As such, it takes a `flag` which indicates that a conflicting pair of cells should not depend on their truth value.
 - `extensions/sfext/addpol/CLEAN_BIGLOOP.c`: modified to pass the `flag` to `CFLCELLLIST()`.
@@ -1224,7 +1224,7 @@ A brief summary of new and modified functions is now presented.
 - `source/qepcad.help`: documents new commands, such as `d-cell-*-t` and `pcmct <y/n>`.
 
 
-#### New files
+#### New functions
 
 - `source/io/CELLWRT.c`: writes a cell as a Tarski formula, implementing the command `d-cell-t`.
 - `extensions/sfext/crcads/ALLCELLWRITET.c`: writes all cells as Tarski formulas, implementing the command `d-all-cells-t`.
