@@ -14,10 +14,11 @@ S := (S^n)_{n \in \N}
 $$
 where each $S^n$ is a set of subsets of the affine space $\R^n$ satisfying the following conditions.
 
-1. All algebraic subsets of $\R^n$ are in $S^n$.
-2. $S^n$ is a Boolean subalgebra of the powerset of $\R^n$.
-3. If $A \in S^n$ and $B \in S^m$, then $A \times B \in S^{n+m}$.
-4. Let $\proj : \R^{n+1} \to \R^n$ be the projection onto the first $n$ coordinates. If $X\in S^{n+1}$, then $\proj(X) \in S^n$.
+1. All algebraic subsets of $\R^n$ are in $S^n$;
+2. $S^n$ is a Boolean subalgebra of the powerset of $\R^n$;
+3. If $A \in S^n$ and $B \in S^m$, then $A \times B \in S^{n+m}$;
+4. Let $\proj : \R^{n+1} \to \R^n$ be the projection onto the first $n$ coordinates. If $X\in S^{n+1}$, then $\proj(X)
+\in S^n$.
 
 Elements of $S^n$ are called the definable subsets of $\R^n$ and a definable subset of $\R^n$ may also be referred to as a definable set.
 If the structure $S$ satisfies properties 1-4 and the following property, it is called an O-minimal structure.
@@ -53,7 +54,8 @@ We now define the semialgebraic sets.
 ::: { .definition #semialgebraic-set }
 The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets of $\R^n$ satisfying the following properties.
 
-1. If $f \in \R[x_1,\ldots,x_n]$, then $\{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0 \}$ and $\{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) > 0 \}$ are elements of ${SA}_n$.
+1. If $f \in \R[x_1,\ldots,x_n]$, then $\{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0 \}$ and $\{ \mathbf{x} \in \R^n
+\mid f(\mathbf{x}) > 0 \}$ are elements of ${SA}_n$;
 1. If $A, B \in {SA}_n$, then $A \cup B$, $A \cap B$ and $\R^n \setminus A$ are elements of ${SA}_n$.
 :::
 
@@ -73,16 +75,18 @@ is a semialgebraic set.
 A semialgebraic set can be represented as a first-order Boolean formula with or without quantifiers. A first-order formula which does not contain quantifiers will be called a quantifier-free Boolean formula.
 
 ::: { .definition #qff }
-A quantifier-free Boolean formula is obtained by the following rules:
+A quantifier-free Boolean formula $F$ is constructed using the following rules:
 
-1. If $f \in \R[x_1\ldots,x_n]$ then $f=0$ and $f>0$ are quantifier-free Boolean formulas,
-2. if $F$ and $G$ are quantifier-free Boolean formulas then $F \land G$, $F \lor G$ and $\neg F$ are quantifier-free Boolean formulas.
+1. If $f \in \R[x_1\ldots,x_n]$ then $f=0$ and $f>0$ are quantifier-free Boolean formulas;
+2. if $F_1$ and $F_2$ are quantifier-free Boolean formulas, then $F_1 \land F_2$, $F_1 \lor F_2$ and $\neg F_1$ are quantifier-free Boolean formulas.
 :::
 
 ::: { .definition #first-order-formula }
-A first-order Boolean formula is obtained by rules 1 and 2 from Definition \@ref(def:qff) and
+A first-order Boolean formula $F$ is constructed using rules 1 and 2 from Definition \@ref(def:qff) and the following
+rule.
 
-3. If $F$ is a first-order Boolean formula and $y$ is a variable ranging over $\R$, then $\exists y\ F$ and $\forall y\ F$ are first-order Boolean formulas.
+3. If $F'$ is a first-order Boolean formula and $y$ is a variable ranging over $\R$, then $\exists y\ F'$ and $\forall
+y\ F'$ are first-order Boolean formulas.
 :::
 
 Semialgebraic sets are closed under taking finite unions and intersections and the difference of two semialgebraic sets is semialgebraic.
