@@ -6,7 +6,7 @@ We now give some background on Cylindrical Algebraic Decomposition (CAD).
 Before describing Collins' algorithm, we will first define, closely following @bgv15, a cylindrical cell and cylindrical decomposition. Note that @bgv15 work in the broader class of definable sets.
 
 ::: { .definition #cells }
-Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C$ is a connected definable subset of $\R^n$ with an *index*
+Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C$ is a connected definable subset of $\R^n$ with an index
 $$
 (i_1,\ldots,i_n) \in \{0,1\}^n.
 $$
@@ -30,7 +30,7 @@ An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C'
 :::
 
 ::: {.definition}
-Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the *frontier of $S$*
+Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the frontier of $S$
 $$
 \fr{S} := \cl{S} \setminus S,
 $$

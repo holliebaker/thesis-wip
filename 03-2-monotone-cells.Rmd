@@ -30,7 +30,7 @@ By [@bgv15 Remark 3.8], the set of all cells of $\cal D$ contained in the affine
 $$
 \{ x_1=c_1,\dots,x_k=c_k \}
 $$
-forms a cylindrical decomposition of $\R^{n-k}$. This decomposition will be called the *sub-decomposition* of $\cal D$ above $c$, and $\mathbf{c}$ the *base cell* of the sub-decomposition (or sub-CAD).
+forms a cylindrical decomposition of $\R^{n-k}$. This decomposition will be called the sub-decomposition of $\cal D$ above $c$, and $\mathbf{c}$ the base cell of the sub-decomposition (or sub-CAD).
 :::
 
 The construction of monotone cells is based on the following result due to @bgv15.

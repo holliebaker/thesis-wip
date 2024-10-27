@@ -216,7 +216,8 @@ Part of the result from @bgv15 will be generalised to sets of arbitrary dimensio
 It will be proved that such a decomposition can be constructed in any dimension and without a preliminary change of coordinates even in the presence of blow-ups. A CAD is compatible with a set $S$ if $S$ is the union of some cells of the CAD. Frontier condition means that the closure of every cell is a union of some cells in the decomposition.
 To our knowledge, this is the first proof that such a CAD exists without the change of coordinates.
 We present the proof in the form of an algorithm which constructs a CAD compatible with a semialgebraic set $S \subset \R^n$ and satisfying the frontier condition.
-An upper bound on complexity is obtained. This is also an upper bound on the number of cells, number of polynomials and degree of polynomials in the CAD. The algorithm has *elementary* complexity (in the sense of L. Kalmar, see e.g.,
+An upper bound on complexity is obtained. This is also an upper bound on the number of cells, number of polynomials and
+degree of polynomials in the CAD. The algorithm has ELEMENTARY complexity (in the sense of L. Kalmar, see e.g.,
 [@kleene1952, $\S 57$]). This means that the complexity can be expressed as a power tower of finite height.
 
 As mentioned previously, the frontier condition is useful in computing topological properties of semialgebraic sets defined by first-order Boolean formulas. For example, these decompositions can be viewed as closure-finite weak cell complexes (CW-complexes) and their homologies can be computed. In addition, cell adjacencies can be computed and motion-planning problems, for instance the well-known "piano-mover's problem" mentioned earlier, having applications in robotics, can be solved.
@@ -305,7 +306,7 @@ which is also an upper bound on the number of cells in the CAD, number of polyno
 :::
 
 Informally, an algorithm, which takes a family of quantifier-free Boolean formulas representing some semialgebraic sets of dimension at most two as input and produces a cylindrical decomposition in which each of the input sets is a union of its cells.
-This decomposition has the property that each cylindrical cell contained in one of the input sets is *monotone* (see Definition \@ref(def:monotone-cell)) and its closure is a union of cells in the decomposition. A complexity bound, only slightly higher than the "classical" CAD is obtained.
+This decomposition has the property that each cylindrical cell contained in one of the input sets is monotone (see Definition \@ref(def:monotone-cell)) and its closure is a union of cells in the decomposition. A complexity bound, only slightly higher than the "classical" CAD is obtained.
 
 This algorithm follows the construction given in the proof of @bgv15, Theorem 3.20, which proceeds in three stages.
 First, a cylindrical cell decomposition of $\R^n$, compatible with each $V_1,\ldots,V_k$ and such that each cell $C \subset V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map. In Chapter \@ref(sec:quasi-affine), an algorithm, following @bgv15, Lemma 3.19 is presented for the semialgebraic case. The following is proved.
