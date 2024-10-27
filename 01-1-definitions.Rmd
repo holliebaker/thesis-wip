@@ -138,9 +138,9 @@ Another useful property of semialgebraic sets is that they admit a basic represe
 ::: {.proposition}
 Every semialgebraic subset of $\R^n$ is the (not necessarily disjoint) union of finitely many semialgebraic subsets of the kind
 $$
-\{ \mathbf{x} \in \R^n \mid f(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \cdots, g_k(\mathbf{x}) > 0 \}
+\{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = 0, \cdots f_s(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \cdots, g_k(\mathbf{x}) > 0 \}
 $$
-where $k \in \N$ and $f,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
+where $s,k \in \N$ and $f_1,\ldots,f_s,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
 :::
 
 ::: {.proof}
