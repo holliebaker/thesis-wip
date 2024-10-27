@@ -1,4 +1,4 @@
-``` {test-qanm-5-101}
+``` {label="test-qanm-5-101"}
 Before Solution >
 d-proj-fac
 A_1,1  = input

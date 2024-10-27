@@ -1,4 +1,4 @@
-``` {fr-3-whitney-jhd}
+``` {label="fr-3-whitney-jhd"}
 Before Solution >
 d-proj-fac
 A_1,1  = fac2(J_2,1) = fac2(ldcf(A_3,1))

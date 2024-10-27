@@ -1,4 +1,4 @@
-``` {test-qanm-4-multi}
+``` {label="test-qanm-4-multi"}
 Before Refinement For Monotone Cells >
 d-true-cells-t
 ---------- Information about the cell (3,3,2,2) (Dimension (1,1,0,0) (2))

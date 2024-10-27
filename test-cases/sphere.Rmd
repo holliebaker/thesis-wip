@@ -1,4 +1,4 @@
-``` {test-quasi}
+``` {label="test-quasi"}
 Before Solution >
 d-proj-fac
 P_1,1  = fac(J_1,1) = fac(dis(P_2,1))

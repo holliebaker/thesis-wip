@@ -1270,8 +1270,7 @@ S := \{ (x,y,z) \in \R^3 \mid x^2 + y^2 + z^2 - 1 = 0 \}.
 $$
 :::
 
-``` {r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the sphere from Example \\ref{exm:sphere},
-showing critical points of projections onto one and $2$-dimensional coordinate subspaces, and their projections."}
+``` {r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the sphere from Example \\ref{exm:sphere}, showing critical points of projections onto $1$- and $2$-dimensional coordinate subspaces, and their projections."}
 knitr::include_graphics(rep("gnuplot/sphere.svg"))
 ```
 

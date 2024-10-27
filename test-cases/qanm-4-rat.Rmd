@@ -1,4 +1,4 @@
-``` {test-qanm-4-rat}
+``` {label="test-qanm-4-rat"}
 Before Solution >
 d-proj-fac
 A_1,1  = input

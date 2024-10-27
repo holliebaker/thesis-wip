@@ -1,7 +1,4 @@
-
-testing here
-
-``` {qepcad-sample}
+``` {label="qepcad-sample"}
 =======================================================
 Enter an informal description  between '[' and ']':
 [ Unit Circle ]
@@ -34,9 +31,6 @@ P_1,2  = fac(J_1,1) = fac(dis(A_2,1))
 
 A_2,1  = input
        = y^2 + x^2 - 1
-
-
-
 Before Solution >
 d-true-cells
 ---------- Information about the cell (4,2) ----------
