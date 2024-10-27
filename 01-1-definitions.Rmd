@@ -63,7 +63,7 @@ reals. Another example is the sub-Pfaffian sets (see Definition \@ref(def:pfaff)
 :::
 
 ::: {.definition}
-Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets. A mapping $f : X \to Y$ is called semialgebraic if its graph (see Definition \@ref(def:graph-def-map))
+Let $X \subset \R^n$ and $Y \subset \R^m$ be definable sets. A definable map $f : X \to Y$ is called semialgebraic if its graph (see Definition \@ref(def:graph-def-map))
 $$
 \{ (\mathbf{x},f(\mathbf{x})) \in \R^{n+m} \mid \mathbf{x} \in X \}
 $$
