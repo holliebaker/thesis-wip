@@ -151,6 +151,14 @@ where $s,k \in \N$ and $f_1,\ldots,f_s,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
 This follows from the fact that the class of finite unions of this kind satisfy properties listed in Definition \@ref(def:semialgebraic-set).
 :::
 
+::: {.definition #fr }
+Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the frontier of $S$
+$$
+\fr{S} := \cl{S} \setminus S,
+$$
+where $\cl{S}$ is the closure of $S$ in the Euclidean topology.
+:::
+
 ::: {.definition #pfaff-chain }
 [@gv04, Definition 2.1]
 
@@ -278,7 +286,9 @@ Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} \colo
 ::: { .example #monotone-cells }
 1. Observe that any quasi-affine map defined on a connected subset and having the graph in $\R^2$ is also monotone. This quasi-affine map will fail to be monotone if the set it is defined on is not connected.
 
-2. Let $\Delta := \{ 0 < x < 1, y > 0, x + y < 1 \} \subset \R^2$ and $\varphi(x,y) = x^2 + y^2$. Let $Y \subset \R^3$ be the graph of function $\phi$ on $\Delta$. Observe that $\phi\vert_Delta$ is a quasi-affine map. However, $y \cap \{ z = 3/4 \}$ is not connected, hence $\phi\vert_\Delta$ is not a monotone function [@bgv15, Example 4.3].
+2. Let $\Delta := \{ 0 < x < 1, y > 0, x + y < 1 \} \subset \R^2$ and $\varphi(x,y) = x^2 + y^2$. Let $Y \subset \R^3$
+be the graph of the function $\varphi$ on $\Delta$. Observe that $\varphi\vert_\Delta$ is a quasi-affine map. However, $Y
+\cap \{ z = 3/4 \}$ is not connected, hence $\varphi\vert_\Delta$ is not a monotone function [@bgv15, Example 4.3].
 :::
 
 ::: { .proposition #monotone-topologically-regular }
@@ -291,9 +301,11 @@ The following properties of monotone cells are used in the proof of @bgv15, Theo
 
 ::: { .corollary }
 [@bgv13, Corollary 7, Theorem 11]
-Let $X \subset \R^n$ be a monotone cell, then
 
-1. $X \cap \{ x_i < c \}$, $X \cap \{ x_i = c \}$ and $X \cap \{ x_i > c \}$, for every $1 \le i \le n$ and $c \in \R$, are either empty or monotone cells.
+Let $X \subset \R^n$ be a monotone cell, then:
+
+1. $X \cap \{ x_i < c \}$, $X \cap \{ x_i = c \}$ and $X \cap \{ x_i > c \}$, for every $1 \le i \le n$ and $c \in \R$,
+are either empty or monotone cells,
 1. Let $Y \subset X$ be a monotone cell such that $\dim(Y) = \dim(X) - 1$ and $\fr{Y} \subset \fr{X}$. Then $X \setminus Y$ is a disjoint union of two monotone cells.
 :::
 

@@ -29,14 +29,6 @@ An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C'
   where $f,g \colon C' \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
 :::
 
-::: {.definition}
-Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the frontier of $S$
-$$
-\fr{S} := \cl{S} \setminus S,
-$$
-where $\cl{S}$ is the closure of $S$ in the Euclidean topology.
-:::
-
 If $C \subset \R^n$ is a cylindrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top ($C_T$), bottom ($C_B$) and side-wall ($C_W$).
 
 First let $C$ be a sector $(i_1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by
