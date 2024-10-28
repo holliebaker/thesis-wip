@@ -28,6 +28,14 @@ If the structure $S$ satisfies properties 1-4 and the following property, it is 
 
 The "O" in O-minimal stands for order, as every O-minimal structure requires the underlying set to be ordered.
 
+::: {.definition #fr }
+Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the frontier of $S$
+$$
+\fr{S} := \cl{S} \setminus S,
+$$
+where $\cl{S}$ is the closure of $S$ in the Euclidean topology.
+:::
+
 ::: {.definition #definable-function}
 A map $f \colon A \to \R^m$, where $A \subset \R^n$, is called definable if its graph $G \subset \R^{n+m}$ is a definable set.
 :::
@@ -149,14 +157,6 @@ where $s,k \in \N$ and $f_1,\ldots,f_s,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
 
 ::: {.proof}
 This follows from the fact that the class of finite unions of this kind satisfy properties listed in Definition \@ref(def:semialgebraic-set).
-:::
-
-::: {.definition #fr }
-Let $S \subset \R^n$ be a definable subset of $\R^n$ and define the frontier of $S$
-$$
-\fr{S} := \cl{S} \setminus S,
-$$
-where $\cl{S}$ is the closure of $S$ in the Euclidean topology.
 :::
 
 ::: {.definition #pfaff-chain }
