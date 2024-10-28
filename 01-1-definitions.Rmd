@@ -259,19 +259,20 @@ We write $\opspan{x_{j_1},\ldots, x_{j_m}}$ to mean the
 quotient space $\R^n / W$.
 Similarly, for any affine coordinate subspace $L \subset \R^n$ on which all the
 functions $x_j \in I$ are constant, we will identify $L$ with its image under the canonical surjection
-to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$. The projection map $\projop{x_{i_1},\ldots,x_{i_k}}
+to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$, and $\projops{x_{i_1},\ldots,x_{i_k}}
 \colon \R^n \to \opspan{x_{i_1},\ldots,x_{i_k}}$ denotes the projection map from $\R^n$ to $\opspan{x_{i_1},\ldots,x_{i_k}}$, where $\{i_1,\ldots,i_k\} \subset \{1,\ldots,n\}$.
-:::
-
-::: { .definition #monotone-map-on }
-[@bgv15, Definition 2.10]
-Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} \colon X \to \opspan{y_1,\ldots,y_k}$ be a continuous map having graph $Y \subset \opspan{x_1,\ldots,x_n,y_1,\ldots,y_k}$. If $Y$ is a monotone cell, then $\mathbf{f}$ is called monotone on $X$.
 :::
 
 ::: { .definition #monotone-cell }
 [@bgv15, Definition 2.5]
 
 The set $Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph of a monotone map $\mathbf{f} \colon X \to H$ where $H \subset \opspan{x_1,\ldots,x_n}$ and $X \subset \opspan{x_1,\ldots,x_n} \setminus H$.
+:::
+
+::: { .definition #monotone-map-on }
+[@bgv15, Definition 2.10]
+
+Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} \colon X \to \opspan{y_1,\ldots,y_k}$ be a continuous map having graph $Y \subset \opspan{x_1,\ldots,x_n,y_1,\ldots,y_k}$. If $Y$ is a monotone cell, then $\mathbf{f}$ is called monotone on $X$.
 :::
 
 ::: { .example #monotone-cells }
