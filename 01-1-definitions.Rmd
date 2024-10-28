@@ -100,34 +100,38 @@ Let $S \subset \R^{n+1}$ and $\projop{n} \colon \R^{n+1} \to \R^n$ be the projec
 One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formula.
 Since the closure of a semialgebraic set may be represented by a first-order Boolean formula with quantifiers, it follows from the Tarski--Seidenberg Theorem that the closure of a semialgebraic set is a semialgebraic set.
 
-We note the existence of an algorithm for performing quantifier elimination over real numbers. This algorithm will be used to provide theoretical complexity bounds for solving quantifier elimination problems later.
+We note the existence of an algorithm for performing quantifier elimination over real numbers. This algorithm will be used to provide theoretical complexity bounds for solving quantifier elimination problems later. For simplicity, in the formulation below polynomials have coefficients in $\mathbb{R}$, but the algorithm presented by @bpr2006 works for an arbitrary real closed field. 
 
 ::: { .proposition #bpr-qe }
 [@bpr2006, Algorithm 14.21]
 
-Let $y_1 < \ldots < y_k < x_1 < \ldots < x_k$ be an ordered list of variables and $K$ a real closed field. Define a first-order Boolean formula
+Let $y_1 < \ldots < y_k < x_1 < \ldots < x_n$ be an ordered list of variables such that
+the list $y_1,\ldots,y_k$ is partitioned into blocks $Y_{[1]}, \ldots, Y_{[w]}$, where each block $Y_{[i]}, 1 \le i \le w$ contains $k_i$ variables. 
+Let
 $$
-F := Q_1 (y_1,\ldots,y_{k_1}), Q_2 (y_{k_1 + 1},\ldots,y_{k_1 + k_2}) \ldots Q_\omega (y_{y_1 + \ldots + y_{\omega-1} + 1},\ldots, y_k) G
+F := Q_1 Y_{[1]}, \ldots \ldots Q_w Y_{[w]} \> G
 $$
-where $Q_i, 1\le i \le \omega$, is a quantifier $\forall$ or $\exists$, such that $Q_i$ and $Q_{i+1}$ are different and $G$ is a quantifier-free Boolean formula containing $s$ different polynomials of maximum degree $d$ in $K[y_1,\ldots,y_k,x_1,\ldots,x_n]$.
-Note that variables $y_1,\ldots,y_k$ are partitioned into $\omega$ "blocks" $Y_1,\ldots,Y_\omega$ such that $Y_i, 1 \le i \le \omega$ contains $k_i$ variables, each of which is bound by the same quantifier $Q_i$.
-We say that the formula $F$ contains $\omega$ quantifier alternations.
+be a first-order Boolean formula,
+where each $Q_1,\ldots,Q_w$ is a quantifier $\forall$ or $\exists$ such that each $Q_i$ and $Q_{i+1}$ are different and $G$ is a quantifier-free Boolean formula containing $s$ different polynomials of maximum degree $d$ in $\R[y_1,\ldots,y_k,x_1,\ldots,x_n]$. 
+$F$ is said to have $w$ quantifier alternations. 
+$s$, the number of different polynomials appearing in $G$, is not related to the number of variables $n$ or $k$ and is $\le$ to the number of atoms in $G$.
 
-Let $S \subset \R^n$ be a semialgebraic set defined by $F$. There is a quantifier-free Boolean formula defining $s$ of the form
+Then there is an algorithm, taking $F$ as input, which produces an equivalent quantifier-free Boolean formula $$
+F' := \bigvee_{1 \le i \le I} \bigwedge_{1 \le j \le J_i} \left( \bigvee_{1 \le \ell \le L_{i,j}} f_{i,j,\ell}(x_1,\ldots,x_n) \ast_{i,j,\ell} 0 \right)
 $$
-F' := \lor_{1 \le i \le I} \land_{1 \le j \le J_i} \left( \lor_{1 \le \ell \le L_{i,j}} f_{i,j,\ell}(x_1,\ldots,x_n) \ast_{i,j,\ell} 0 \right)
-$$
-where each $f_{i,j,n}$ is a polynomial in $K[x_1,\ldots,x_n]$ and $\ast_{i,j,\ell} \in \{<, =, >\}$ determines its sign.
-Bounds on this formula are as follows
+where each $f_{i,j,\ell}$ is a polynomial in $\R[x_1,\ldots,x_n]$ and $\ast_{i,j,\ell} \in \{<, =, >\}$ determines its sign.
 
-- $I \le s^{(k_1 + 1)(k_2 + 1) \ldots (k_\omega + 1)(n+1)}d^{O(k_1) O(k_2) \ldots O(k_\omega)}$,
-- $J_i \le s^{(k_1 + 1)(k_2 + 1) \ldots (k_\omega + 1)}d^{O(k_1) O(k_2) \ldots O(k_\omega)}$,
-- $L_{i,j} \le d^{O(k_1) O(k_2) \ldots O(k_\omega)}$,
-- polynomials $f_{i,j,\ell}$ have maximum degree $d^{O(k_1) O(k_2) \ldots O(k_\omega)}$.
+$F'$ has the following bounds:
+\begin{align*}
+I &\le s^{(k_w + 1) \ldots (k_1 + 1)(n+1)}d^{O(k_w) \ldots O(k_1)O(n)}, \\
+J_i &\le s^{(k_w + 1) \ldots (k_1 + 1)}d^{O(k_w) \ldots O(k_1)}, \\
+L_{i,j} &\le d^{O(k_w) \ldots O(k_1)}, \\
+\text{Each polynomial } f_{i,j,\ell} &\text{ has maximum degree } d^{O(k_w) \ldots O(k_1)}.
+\end{align*}
 
-There is an algorithm, taking $F$ as input, which computes $F'$ with complexity
+This algorithm has complexity
 $$
-s^{(k_1 + 1)(k_2 + 1) \ldots (k_\omega + 1)(n+1)}d^{O(k_1) O(k_2) \ldots O(k_\omega)O(n)}.
+s^{(k_w + 1) \ldots (k_1 + 1)(n+1)}d^{O(k_w) \ldots O(k_1)O(n)}.
 $$
 :::
 
