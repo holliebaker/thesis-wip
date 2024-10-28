@@ -113,15 +113,15 @@ F := Q_1 Y_{[1]}, \ldots \ldots Q_w Y_{[w]} \> G
 $$
 be a first-order Boolean formula,
 where each $Q_1,\ldots,Q_w$ is a quantifier $\forall$ or $\exists$ such that each $Q_i$ and $Q_{i+1}$ are different and $G$ is a quantifier-free Boolean formula containing $s$ different polynomials of maximum degree $d$ in $\R[y_1,\ldots,y_k,x_1,\ldots,x_n]$.
-$F$ is said to have $w$ quantifier alternations.
-$s$, the number of different polynomials appearing in $G$, is not related to the number of variables $n$ or $k$ and is $\le$ to the number of atoms in $G$.
+The formula $F$ is said to have $w$ quantifier alternations.
+The number of different polynomials $s$, is not related to the number of variables $n$ or $k$ and is $\le$ to the number of atoms in $G$.
 
 Then there is an algorithm, taking $F$ as input, which produces an equivalent quantifier-free Boolean formula $$
 F' := \bigvee_{1 \le i \le I} \bigwedge_{1 \le j \le J_i} \left( \bigvee_{1 \le \ell \le L_{i,j}} f_{i,j,\ell}(x_1,\ldots,x_n) \ast_{i,j,\ell} 0 \right)
 $$
 where each $f_{i,j,\ell}$ is a polynomial in $\R[x_1,\ldots,x_n]$ and $\ast_{i,j,\ell} \in \{<, =, >\}$ determines its sign.
 
-$F'$ has the following bounds:
+The quantifier-free Boolean formula $F'$ has the following bounds:
 \begin{align*}
 I &\le s^{(k_w + 1) \ldots (k_1 + 1)(n+1)}d^{O(k_w) \ldots O(k_1)O(n)}, \\
 J_i &\le s^{(k_w + 1) \ldots (k_1 + 1)}d^{O(k_w) \ldots O(k_1)}, \\
@@ -179,9 +179,9 @@ Examples of Pfaffian functions include the exponential, logarithmic, reciprocal 
 A set $X \subset \R^n$ is called semi-Pfaffian in an open domain
 $G \subset \R^n$ if it consists of points in $G$ satisfying a Boolean combination $F$ of some atomic equations and inequalities $f = 0$, $g > 0$, where $f, g$ are Pfaffian functions having a common Pfaffian chain defined in $G$.
 
-$X$ is called restricted in $G$ if $\cl{X}$ is contained in $G$.
+The set $X$ is called restricted in $G$ if $\cl{X}$ is contained in $G$.
 
-$X$ is called basic if the Boolean combination $F$ is a conjunction.
+The set $X$ is called basic if the Boolean combination $F$ is a conjunction.
 :::
 
 ::: {.definition #sub-pfaff}
@@ -198,7 +198,7 @@ where $Y \subset \R^m$ is a semi-Pfaffian set and $\R^n$ is a subspace of $\R^m$
 [@gv04, Definition 2.9]
 
 Let ${\cal I}^k := [-1,1]^k$ be the closed cube in an open domain $G \subset \R^k$.
-$X \subset {\cal I}^n$ is called restricted sub-Pfaffian if $X := \projop{n}(Y)$, where $Y \subset {\cal I}^{n+m}$ is a restricted semi-Pfaffian set.
+The set $X \subset {\cal I}^n$ is called restricted sub-Pfaffian if $X := \projop{n}(Y)$, where $Y \subset {\cal I}^{n+m}$ is a restricted semi-Pfaffian set.
 :::
 
 The restricted sub-Pfaffian sets form a Boolean subalgebra. Restricted sub-Pfaffian sets are clearly closed under taking finite unions and intersections. The property that the complement of a restricted sub-Pfaffian set is restricted sub-Pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results do not apply to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of sub-Pfaffian sets and, due to the Tarski--Seidenberg Theorem, semialgebraic sets satisfy the compliment theorem.
@@ -221,10 +221,11 @@ where $N \ge (I_1 + J_1) + \cdots + (I_M + J_M)$.
 
 ### Monotone cells
 
-We now present, closely following @bgv15, some useful properties of definable sets. These properties can also be applied to semialgebraic sets, being a particular case of definable sets.
+We now present, closely following @bgv15, some useful properties of definable sets. These properties also apply to semialgebraic sets and are fundamental to the work presented in this thesis.
 
 ::: { .definition #affine-coordinate-subspace }
 [@bgv15, Definition 2.1]
+
 Let $L_{j,c} := \{ (x_1,\ldots,x_n) \mid x_j = c \}$ for some $1 \le j \le n$ and $c \in \R$.
 Each intersection of the kind
 $$
@@ -235,14 +236,15 @@ where $0 \le j \le m$, $1 \le j_1 < \cdots < j_m \le n$ and $c_1,\ldots,c_m \in 
 
 ::: { .definition #quasi-affine }
 [@bgv15, Definition 2.2]
-Let $\mathbf{f} = (f_1,\ldots,f_k) \colon X \to \R^k$ be a bounded continuous map defined on an open, bounded, non-empty subset $X \subset \R^n$ having the graph $Y \subset \R^{n+k}$.
-
-$\mathbf{f}$ is called quasi-affine if, for any coordinate subspace $L \subset \R^{n+k}$, the restriction $\proj_{L}\vert_Y$ is injective if and only if $\proj_{L}(Y)$ is $n$-dimensional.
+Let $\mathbf{f} = (f_1,\ldots,f_k) \colon X \to \R^k$ be a bounded continuous map defined on an open, bounded, non-empty
+subset $X \subset \R^n$ having the graph $Y \subset \R^{n+k}$. Then $\mathbf{f}$ is called quasi-affine if, for any coordinate subspace $L \subset \R^{n+k}$, the restriction $\proj_{L}\vert_Y$ is injective if and only if $\proj_{L}(Y)$ is $n$-dimensional.
 :::
 
 ::: { .definition #monotone-map }
 [@bgv15, Definition 2.3]
-Let $\mathbf{f} \colon X \to \R^k$ be a bounded, continuous, quasi-affne map defined on an open, bounded, non-empty subset $X\subset \R^n$ having the graph $Y \subset \R^{n+k}$. $\mathbf{f}$ is called monotone if, for each affine coordinate subspace $S \subset \R^{n+k}$, the intersection $Y \cap S$ is connected.
+
+Let $\mathbf{f} \colon X \to \R^k$ be a bounded, continuous, quasi-affine map defined on an open, bounded, non-empty
+subset $X\subset \R^n$ having the graph $Y \subset \R^{n+k}$. Then $\mathbf{f}$ is called monotone if, for each affine coordinate subspace $S \subset \R^{n+k}$, the intersection $Y \cap S$ is connected.
 :::
 
 ::: {.definition}
@@ -257,7 +259,7 @@ We write $\opspan{x_{j_1},\ldots, x_{j_m}}$ to mean the
 quotient space $\R^n / W$.
 Similarly, for any affine coordinate subspace $L \subset \R^n$ on which all the
 functions $x_j \in I$ are constant, we will identify $L$ with its image under the canonical surjection
-to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$. $\projop{x_{i_1},\ldots,x_{i_k}}
+to $\R^n / W$. We write $\R^k$, where $k \le n$, to mean $\opspan{x_1, \ldots, x_k }$. The projection map $\projop{x_{i_1},\ldots,x_{i_k}}
 \colon \R^n \to \opspan{x_{i_1},\ldots,x_{i_k}}$ denotes the projection map from $\R^n$ to $\opspan{x_{i_1},\ldots,x_{i_k}}$, where $\{i_1,\ldots,i_k\} \subset \{1,\ldots,n\}$.
 :::
 
@@ -268,7 +270,8 @@ Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} \colo
 
 ::: { .definition #monotone-cell }
 [@bgv15, Definition 2.5]
-$Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph of a monotone map $\mathbf{f} \colon X \to H$ where $H \subset \opspan{x_1,\ldots,x_n}$ and $X \subset \opspan{x_1,\ldots,x_n} \setminus H$.
+
+The set $Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is the graph of a monotone map $\mathbf{f} \colon X \to H$ where $H \subset \opspan{x_1,\ldots,x_n}$ and $X \subset \opspan{x_1,\ldots,x_n} \setminus H$.
 :::
 
 ::: { .example #monotone-cells }
