@@ -61,7 +61,7 @@ The semialgebraic subsets of $\R^n$ are the smallest class ${SA}_n$ of subsets o
 
 ::: {.remark}
 It is easy to see that semialgebraic sets satisfy the properties of sets definable in an O-minimal structure over the
-reals. Another example is the sub-Pfaffian sets (see Definition \@ref(def:pfaff)).
+reals. Another example is the sub-Pfaffian sets (see Definition \@ref(def:sub-pfaff)).
 :::
 
 ::: {.definition}
@@ -100,20 +100,20 @@ Let $S \subset \R^{n+1}$ and $\projop{n} \colon \R^{n+1} \to \R^n$ be the projec
 One important consequence of this theorem is that quantifier elimination is possible over real numbers. In other words, a subset of $\R^n$ defined by a first-order formula with quantifiers is semialgebraic and can be represented by a quantifier-free Boolean formula.
 Since the closure of a semialgebraic set may be represented by a first-order Boolean formula with quantifiers, it follows from the Tarski--Seidenberg Theorem that the closure of a semialgebraic set is a semialgebraic set.
 
-We note the existence of an algorithm for performing quantifier elimination over real numbers. This algorithm will be used to provide theoretical complexity bounds for solving quantifier elimination problems later. For simplicity, in the formulation below polynomials have coefficients in $\mathbb{R}$, but the algorithm presented by @bpr2006 works for an arbitrary real closed field. 
+We note the existence of an algorithm for performing quantifier elimination over real numbers. This algorithm will be used to provide theoretical complexity bounds for solving quantifier elimination problems later. For simplicity, in the formulation below polynomials have coefficients in $\mathbb{R}$, but the algorithm presented by @bpr2006 works for an arbitrary real closed field.
 
 ::: { .proposition #bpr-qe }
 [@bpr2006, Algorithm 14.21]
 
 Let $y_1 < \ldots < y_k < x_1 < \ldots < x_n$ be an ordered list of variables such that
-the list $y_1,\ldots,y_k$ is partitioned into blocks $Y_{[1]}, \ldots, Y_{[w]}$, where each block $Y_{[i]}, 1 \le i \le w$ contains $k_i$ variables. 
+the list $y_1,\ldots,y_k$ is partitioned into blocks $Y_{[1]}, \ldots, Y_{[w]}$, where each block $Y_{[i]}, 1 \le i \le w$ contains $k_i$ variables.
 Let
 $$
 F := Q_1 Y_{[1]}, \ldots \ldots Q_w Y_{[w]} \> G
 $$
 be a first-order Boolean formula,
-where each $Q_1,\ldots,Q_w$ is a quantifier $\forall$ or $\exists$ such that each $Q_i$ and $Q_{i+1}$ are different and $G$ is a quantifier-free Boolean formula containing $s$ different polynomials of maximum degree $d$ in $\R[y_1,\ldots,y_k,x_1,\ldots,x_n]$. 
-$F$ is said to have $w$ quantifier alternations. 
+where each $Q_1,\ldots,Q_w$ is a quantifier $\forall$ or $\exists$ such that each $Q_i$ and $Q_{i+1}$ are different and $G$ is a quantifier-free Boolean formula containing $s$ different polynomials of maximum degree $d$ in $\R[y_1,\ldots,y_k,x_1,\ldots,x_n]$.
+$F$ is said to have $w$ quantifier alternations.
 $s$, the number of different polynomials appearing in $G$, is not related to the number of variables $n$ or $k$ and is $\le$ to the number of atoms in $G$.
 
 Then there is an algorithm, taking $F$ as input, which produces an equivalent quantifier-free Boolean formula $$
@@ -151,8 +151,9 @@ where $s,k \in \N$ and $f_1,\ldots,f_s,g_1,\ldots,g_k \in \R[x_1,\ldots,x_n]$.
 This follows from the fact that the class of finite unions of this kind satisfy properties listed in Definition \@ref(def:semialgebraic-set).
 :::
 
-::: {.definition #pfaff}
+::: {.definition #pfaff-chain }
 [@gv04, Definition 2.1]
+
 A Pfaffian chain of order $r \ge 0$ and degree $\alpha \ge 1$ in an open domain $G \subset \R^n$ is a sequence of analytic functions
 $$
 f_1, \ldots , f_r
@@ -162,6 +163,10 @@ $$
 {df}_j(\mathbf{x}) = \sum^n_{i=1} g_{ij}(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_j(\mathbf{x})) dx_i
 $$
 for $1 \le j \le r$, where $g_{ij}(x_1,\ldots,x_n),y_1,\ldots,y_j$ are polynomials of degree not greater than $\alpha$.
+:::
+
+::: {.definition #pfaff-function }
+[@gv04, Definition 2.1]
 
 A function $f(\mathbf{x}) = P(\mathbf{x},f_1(\mathbf{x}),\ldots,f_r(\mathbf{x}))$, where $P(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_r(\mathbf{x}))$ is a polynomial of degree not greater than $\beta \ge 1$ is called a Pfaffian function of order $r$ and degree $(\alpha, \beta)$. Note that $f$ is only defined in the domain $G$, where all functions $f_1,\ldots,f_r$ are analytic, even if $f$ itself can be extended as an analytic function in a larger domain.
 :::
@@ -170,6 +175,7 @@ Examples of Pfaffian functions include the exponential, logarithmic, reciprocal 
 
 ::: {.definition}
 [@gv04, Definition 2.7]
+
 A set $X \subset \R^n$ is called semi-Pfaffian in an open domain
 $G \subset \R^n$ if it consists of points in $G$ satisfying a Boolean combination $F$ of some atomic equations and inequalities $f = 0$, $g > 0$, where $f, g$ are Pfaffian functions having a common Pfaffian chain defined in $G$.
 
@@ -178,8 +184,9 @@ $X$ is called restricted in $G$ if $\cl{X}$ is contained in $G$.
 $X$ is called basic if the Boolean combination $F$ is a conjunction.
 :::
 
-::: {.definition}
+::: {.definition #sub-pfaff}
 [@gv04, Definition 2.8]
+
 A set $X \subset \R^n$ is called sub-Pfaffian in an open domain $G \subset \R^n$ if
 $$
 X := \projop{n}(Y),
@@ -188,12 +195,13 @@ where $Y \subset \R^m$ is a semi-Pfaffian set and $\R^n$ is a subspace of $\R^m$
 :::
 
 ::: {.definition}
-[@gv04, 2.9]
+[@gv04, Definition 2.9]
+
 Let ${\cal I}^k := [-1,1]^k$ be the closed cube in an open domain $G \subset \R^k$.
 $X \subset {\cal I}^n$ is called restricted sub-Pfaffian if $X := \projop{n}(Y)$, where $Y \subset {\cal I}^{n+m}$ is a restricted semi-Pfaffian set.
 :::
 
-The restricted sub-Pfaffian sets form a Boolean subalgebra. Restricted sub-Pfaffian sets are clearly closed under taking finite unions and intersections. The property that the compliment of restricted sub-Pfaffian set is restricted sub-Pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results may not be applied to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of sub-Pfaffian sets and, due to the Tarski--Seidenberg Theorem, semialgebraics sets satisfy the compliment theorem.
+The restricted sub-Pfaffian sets form a Boolean subalgebra. Restricted sub-Pfaffian sets are clearly closed under taking finite unions and intersections. The property that the complement of a restricted sub-Pfaffian set is restricted sub-Pfaffian is a particular case of Gabrielov's compliment theorem [@gabrielov1996]. The restriction to the closed cube ensures that the restricted sub-Pfaffian sets are definable in an O-minimal structure. Furthermore, @gv01 present an algorithm for constructing a cylindrical decomposition compatible with a restricted sub-Pfaffian set. Note that these properties and results do not apply to (restricted) semi-Pfaffian sets. Since polynomials are a type of Pfaffian function, semialgebraic sets are a particular case of sub-Pfaffian sets and, due to the Tarski--Seidenberg Theorem, semialgebraic sets satisfy the compliment theorem.
 
 ::: {.definition #pfaff-format}
 [@gv04, Definition 2.11]
@@ -202,7 +210,8 @@ Consider a semi-Pfaffian set
 $$
 X := \bigcup_{1 \le i \le M} \{ \mathbf{x} \in \R^s \mid f_{i,1} = 0, \ldots, f_{i,I_i} = 0, g_{i,1} > 0, \ldots, g_{i,J_i} > 0 \} \subset G
 $$
-where $f_{ij}$ and $g_{ij}$ are Pfaffian functions of order $r$ and degree $(\alpha, \beta)$ defined in an open domain $G$
+where $f_{ij}$ and $g_{ij}$ are Pfaffian functions of order $r$ and degree $(\alpha, \beta)$ defined in an open domain
+$G$.
 The format of $X$ is a tuple
 $$
 (r, N, \alpha, \beta, s)
