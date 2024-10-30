@@ -1,7 +1,7 @@
 ## Cylindrical algebraic decomposition
 
 We now give some background on Cylindrical Algebraic Decomposition (CAD).
-@collins1975 introduced both the concept of Cylindrical Algebraic Decomposition along with an algorithm to construct a CAD, which is a finite partition of $\R^n$ into so-called Cylindrical Cells, such that each polynomial in $\mathbf{F} \subset \R[x_1,\ldots,x_n]$ has a constant sign on every cylindrical cell in the decomposition.
+@collins1975 introduced both the concept of Cylindrical Algebraic Decomposition along with an algorithm to construct a CAD, which is a finite partition of $\R^n$ into so-called cylindrical cells, such that each polynomial in $\mathbf{F} \subset \R[x_1,\ldots,x_n]$ has a constant sign on every cylindrical cell in the decomposition.
 
 Before describing Collins' algorithm, we will first define, closely following @bgv15, a cylindrical cell and cylindrical decomposition. Note that @bgv15 work in the broader class of definable sets.
 
