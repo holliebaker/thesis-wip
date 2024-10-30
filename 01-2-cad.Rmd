@@ -49,7 +49,7 @@ the graph of a continuous function $g \colon C' \to \R$, then $C_T$ is the graph
 Now let $C$ be an $(i_1,\ldots,i_{k},0,\ldots,0)$-cell, where $i_{k}=1$, and $C' := \projop{k}(C)$. Since $C'$ is a sector cell, $C'_B$ and $C'_T$ are cylindrical section cells. The bottom $C_B$ of $C$ is the pre-image of $C'_B$ by the projection map $\projop{k}\vert_{\cl{C}}$ and the top $C_T$ of $C$ is the pre-image of $C'_T$ by the projection map $\projop{k}\vert_{\cl{C}}$.
 It may be simpler to think of $C_B$ as the definable set $\cl{C} \cap (C'_B \times \R^{n - k + 1})$ and $C_T$ as the definable set $\cl{C} \cap (C'_T \times \R^{n - k + 1})$.
 It is important to note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of
-continuous functions (see Definition \@ref(def:blow-up-point) and Example \@ref(exm:top-bottom-not-cylindrical)).
+continuous functions (see Definition \@ref(def:blow-up-point) and Example \@ref(exm:top-bottom-not-cylindrical-def)).
 
 For both section and sector cells, let the side-walls, $C_W$, be $\fr{C} \setminus (C_B \cup C_T)$.
 There is no requirement that $C_W$ will be (a union of) cylindrical cells.
@@ -67,7 +67,7 @@ The closure of the graph of a continuous definable function is the graph of a co
 except, possibly, over a subset of codimension at least $2$ (see the proof of @bgv15, Lemma 3.14).
 :::
 
-::: { .example #top-bottom-not-cylindrical }
+::: { .example #top-bottom-not-cylindrical-def }
 In $\R^3$, let $C' := \{ -1 < x < 1, \vert x \vert < y < 1 \}$ and $\varphi(x,y) = \vert x / y \vert$ so that $C$ is the graph of $\varphi\vert_{C'}$.
 Consider $$
 C_B := \{ -1 < x < 1, y = \vert x \vert, z = 1 \} \cup \{ (0,0,z) \mid 0 \le x \le 1 \}.
@@ -110,14 +110,14 @@ Let $S \subset \R^n$ be a definable set. A cylindrical decomposition $\mathcal{D
 :::
 
 ::: {.definition #frontier-condition}
-Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cell of $\cal D$. $C$ satisfies the frontier condition in $\cal D$ is $\fr{C}$ is a union of cells of $\cal D$ of smaller dimension. If it is unambiguous that $C$ is a cell of $\cal D$, then we just say that $C$ satisfies the frontier condition.
+Let $\cal D$ be a cylindrical decomposition of $\R^n$ and $C$ be a cell of $\cal D$. $C$ satisfies the frontier condition in $\cal D$ if $\fr{C}$ is a union of cells of $\cal D$ of smaller dimension. If it is unambiguous that $C$ is a cell of $\cal D$, then we just say that $C$ satisfies the frontier condition.
 If every cell in $\cal D$ satisfies the frontier condition, then the cylindrical decomposition $\cal D$ satisfies the frontier condition.
 :::
 
-We saw in Example \@ref(exm:top-bottom-not-cylindrical) that the top and bottom of a $2$-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
+We saw in Example \@ref(exm:top-bottom-not-cylindrical-def) that the top and bottom of a $2$-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
 However, it is clear from the cylindrical property that, if $C$ is a $2$-dimensional section cell satisfying the frontier condition in a decomposition $\cal D$, then the top and bottom of $C$ are single cylindrical cells.
 If $C$ is a $2$-dimensional section cell, then it is said to satisfy the strong frontier condition if the
-$1$-dimensional components of its side-walls are $1$-dimensional section cells. This condition may be impossible, even
+$1$-dimensional components of its side-walls are $1$-dimensional section cells. This condition may not hold, even
 in $\R^3$, as Example \@ref(exm:side-walls) demonstrates.
 
 ::: {.example #side-walls}
@@ -136,7 +136,7 @@ Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only $1$-dimensional 
 $I_1$ is the only $1$-dimensional component of the side-walls of $W$. In order to obtain the strong frontier condition,
 we need to partition $V$ into (at least) three cylindrical cells $V',V'',V'''$, one of which, say $V''$, will be $1$-dimensional. $V''$ should have endpoint $v$ (i.e., $\cl{V''} \cap I = v$).
 The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of the projection map $W' :=
-\projop{2}^-1\vert_{\cl{W}}(c)$ would satisfy the condition $\cl{W'} \cap I = v'$, where $v' = (0,0,1/4)$. However, $v'$
+\projop{2}^{-1}\vert_{\cl{W}}(c)$ would satisfy the condition $\cl{W'} \cap I = v'$, where $v' = (0,0,1/4)$. However, $v'$
 must be a $0$-dimensional cell of the decomposition, which means we need to perform another refinement of $I$. An
 infinite sequence of refinements, introducing a new $0$-dimensional cell $(0,0,1/2^k), k \in \N_{> 0}$, will take place.
 Thus, a decomposition in in which the side-walls of $V$ and $W$ are single $1$-dimensional cells cannot exist.
@@ -159,7 +159,7 @@ Let $C \subset \R^n$ be a $2$-dimensional cylindrical cell which is the graph of
 
 ::: {.remark}
 It was proved by @pianomovers1983 that a cylindrical decomposition, compatible with a semialgebraic set and satisfying the frontier condition, can be obtained following a linear rotation of coordinates.
-@jhd20 prove that a cylindrical decomposition having constant sign on a set of input polynomials will contain topologically regular cells and satisfy the frontier condition, regardless of the method used to construct it, as long as the input polynomials do not blow up anywhere.
+@jhd20 prove that a cylindrical decomposition having constant sign on a set of input polynomials will contain topologically regular cells and satisfy the frontier condition, regardless of the method used to construct it, as long as the input polynomials do not blow-up anywhere.
 Proposition \@ref(prp:monotone-topologically-regular) (@bgv13, Theorem 1) asserts that every monotone cell is topologically regular, so @bgv15, Theorem 3.20 describes the construction of a CAD, compatible with a family $V_1,\ldots,V_k$ of definable subsets of $\R^n$, each having dimension at most $2$, in the potential presence of blow-up points and without the need to make a change of coordinates.
 :::
 
