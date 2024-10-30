@@ -53,7 +53,8 @@ Chapter \@ref(sec:implementation-and-testing) is concerned with the implementati
 
 The final contribution is an algorithm, having ELEMENTARY complexity, for constructing a CAD, compatible with a semialgebraic set of arbitrary dimension and satisfying the frontier condition.
 This algorithm removes the restriction imposed by @jhd20, as blow-ups are permitted, and does not require the rotation of coordinates proposed by @pianomovers1983.
-It was not clear how this could be achieved using the usual induction -- on the ambient dimension -- so a novel approach was needed. The algorithm relies on a recursion on the lexicographical order of cell index $(i_1,\ldots,i_n) \in \{0,1\}^n$. A mathematical description, proof of correctness, complexity analysis and pseudo-code are presented for this algorithm, which has complexity doubly exponential in the number of variables.
+It was not clear how this could be achieved using the usual induction -- on the ambient dimension -- so a novel approach
+was needed. The algorithm relies on a recursion on the lexicographical order of the cell's binary index $(i_1,\ldots,i_n) \in \{0,1\}^n$. A mathematical description, proof of correctness, complexity analysis and pseudo-code are presented for this algorithm, which has complexity doubly exponential in the number of variables.
 This work was presented in extended abstract form at CASC 2023 and is currently under review for publication in the Journal of Symbolic Computation.
 This algorithm has not yet been implemented due to time constraints, but it is clear from the pseudo-code that it could be done using the tools we have been using throughout this thesis.
 

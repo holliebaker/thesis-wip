@@ -50,7 +50,9 @@ Their proof proceeds by induction on $n$.
 - When $n>1$, consider each $2$-dimensional cell $C$ of $\cal D$ and let $C'' := \projop{1}(C)$
 
   - If $\dim(C'') = 0$, apply the inductive hypothesis to the sub-decomposition of $\cal D$ above $C''$.
-  - Otherwise, $C$ has index $\{1,i_2,\dots,i_n\} \in \{0,1\}^n$. Let $\alpha$ be the smallest among $\{2,\dots,n\}$ such that $i_\alpha = 1$. Since $\dim(C) = 2$, only $i_1$ and $i_\alpha$ are equal to $1$, while all other elements of the index are equal to $0$. By @bgv15, Lemma 3.3, $\projops{x_1,\ldots,x_{i-1},x_{i+1},\ldots,x_n}(C)$, for all $i \in \{2,\ldots,\alpha-1,\alpha+1,\ldots,n\}$, is a cylindrical cell and $C$ is the graph of a continuous function from this cell to $\opspan{x_i}$.
+  - Otherwise, $C$ has binary index $\{1,i_2,\dots,i_n\} \in \{0,1\}^n$. Let $\alpha$ be the smallest among
+    $\{2,\dots,n\}$ such that $i_\alpha = 1$. Since $\dim(C) = 2$, only $i_1$ and $i_\alpha$ are equal to $1$, while all
+    other elements of the binary index are equal to $0$. By @bgv15, Lemma 3.3, $\projops{x_1,\ldots,x_{i-1},x_{i+1},\ldots,x_n}(C)$, for all $i \in \{2,\ldots,\alpha-1,\alpha+1,\ldots,n\}$, is a cylindrical cell and $C$ is the graph of a continuous function from this cell to $\opspan{x_i}$.
 
     @bgv15, Lemma 3.19, which provides the construction of $\cal D$ in the previous section, gives us a more useful representation of $C$. Let $X := \projops{x_1,x_\alpha}(C)$ be a $2$-dimensional sector cell. $C$ can be viewed as the graph of a quasi-affine map
     $$
@@ -85,7 +87,7 @@ which is also an upper bound on the number of cells in the CAD, number of polyno
 
 ## Sector cells {#sec:monotone-sectors}
 
-Let $C$ be an $(i_1,\ldots,i_n)$-cell such that $i_1 = i_\alpha = 1$ and all other elements of the index are equal to $0$.
+Let $C$ be an $(i_1,\ldots,i_n)$-cell such that $i_1 = i_\alpha = 1$ and all other elements of the binary index are equal to $0$.
 The proof of Proposition \@ref(prp:bgv-monotone) proceeds in two stages: first, $X \subset \opspan{x_1,x_\alpha}$ is
 refined such that each $Y \subset X$ is a monotone $2$-dimensional sector cell.
 Consider the intersection $X \cap \{x_1 = c\}$ for all $c\in \R$. This intersection is a finite union of pairwise disjoint intervals. Let ${\cal I} (c)$ be the family of these intervals associated with the point $c$. Define
@@ -635,7 +637,7 @@ $\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$
 
 Let $\mathbf{b}$ be a $(0,\ldots,0)$-cell of the decomposition induced by $\cal E$ on $\R^{k-1}, k > 0$. Let $\cal D$ be the sub-decomposition of $\R^n$ of $\cal E$ above $\mathbf{b}$.
 
-Consider each cell $C$ of $\cal D$ with truth value *true*. Let $C$ have index
+Consider each cell $C$ of $\cal D$ with truth value *true*. Let $C$ have binary index
 $$
 (0,\ldots,0,1,i_{k+1},\ldots,i_{k+n})
 $$
@@ -776,7 +778,11 @@ Let ${\cal D}'$ be the sub-CAD of $\R^{n-k}$ above $(c_1,\ldots,c_k)$, which is 
 We need only to consider coordinate $k+1$ of $\mathbf{c}$. Denote it by $c_{k+1}$.
 For each $(0)$-cell $b_{k+1}$ of ${\cal D}''$, compute $s := \sign(b_{k+1} - c_{k+1})$. If $s \le 0$, consider the next $(0)$-cell in ${\cal D}''$. Otherwise, $s > 0$ and there is a $(1)$-cell $C$ in ${\cal D}''$ such that $c_{k+1} \in C$. This is the cell we need to refine.
 Make two new copies of $C$, so that we have three identical cells $C_1,C_2,C_3$. Recall that, to each cell belongs a
-sample point and possibly some other information. E.g., in `QEPCAD-B`, each cell has a set of signs of projection factors, which should remain unchanged, and a positional index which describes where in the CAD the cell can be found. Let $C_1$ have positional index $(j_1,\ldots,j_k,j_{k+1})$. New cells $C_2$ and $C_3$ should have positional indices $(j_1,\ldots,j_k,j_{k+1} + 1$ and $(j_1,\ldots,j_k,j_{k+1}+2)$ respectively. For each existing cell with positional index $(l_1,\ldots,l_k,l_{k+1})$ with $l_k+1 > j_{k+1}$, the index should be updated to $(l_1,\ldots,l_k,l_{k+1} + 2)$. We now need to update the sample points. The sample point of the section cell $C_2$ should be $\mathbf{c}$. This might turn out to be the case by chance. In this case, there is nothing to be done with $C_2$ and the sample points of sector cells $C_1$ and $C_3$ are incorrect. Otherwise, $\mathbf{c}$ is either greater than the sample point of $C_1$, in which case the sample point of $C_1$ is already correct, or $\mathbf{c}$ is less than $C_3$, in which case the sample point of $C_3$ is already correct. I.e., in every case, exactly two of the sample points of the cells $C_1$, $C_2$ and $C_3$ must be updated.
+sample point and possibly some other information. E.g., in `QEPCAD-B`, each cell has a set of signs of projection
+factors, which should remain unchanged, and a positional index which describes where in the CAD the cell can be found.
+Let $C_1$ have positional index $(j_1,\ldots,j_k,j_{k+1})$. New cells $C_2$ and $C_3$ should have positional indices
+$(j_1,\ldots,j_k,j_{k+1} + 1$ and $(j_1,\ldots,j_k,j_{k+1}+2)$ respectively. For each existing cell with positional
+index $(l_1,\ldots,l_k,l_{k+1})$ with $l_k+1 > j_{k+1}$, the positional index should be updated to $(l_1,\ldots,l_k,l_{k+1} + 2)$. We now need to update the sample points. The sample point of the section cell $C_2$ should be $\mathbf{c}$. This might turn out to be the case by chance. In this case, there is nothing to be done with $C_2$ and the sample points of sector cells $C_1$ and $C_3$ are incorrect. Otherwise, $\mathbf{c}$ is either greater than the sample point of $C_1$, in which case the sample point of $C_1$ is already correct, or $\mathbf{c}$ is less than $C_3$, in which case the sample point of $C_3$ is already correct. I.e., in every case, exactly two of the sample points of the cells $C_1$, $C_2$ and $C_3$ must be updated.
 Let $C$ be the open interval $(a_1,a_2)$. If the sample point of $C_1$ needs to be updated, then set it to $(a_1 + c_{k+1}) / 2$ and if the sample point of $C_3$ needs updating, then set it to $(c_{k+1} + a_2) / 2$. Observe that, if we have updated the sample point of a cell $C$, then the sample points of every cell which projects on $C$ are now incorrect.
 Since polynomials are delineable over the original cell, then they will be delineable over the smaller cells in the refinement, so we simply need to run the sample point computation part of the lifting phase recursively on the stack above $C$. This involves evaluating each level $k+1$ projection factor $f$ at the new sample point $\mathbf{b}$ and finding the roots of the (possibly algebraic) univariate polynomial $f(\mathbf{b},x_n)$.
 

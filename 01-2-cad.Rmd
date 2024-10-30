@@ -6,7 +6,8 @@ We now give some background on Cylindrical Algebraic Decomposition (CAD).
 Before describing Collins' algorithm, we will first define, closely following @bgv15, a cylindrical cell and cylindrical decomposition. Note that @bgv15 work in the broader class of definable sets.
 
 ::: { .definition #cells }
-Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C$ is a connected definable subset of $\R^n$ with an index
+Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C$ is a connected definable subset of
+$\R^n$ with a binary index
 $$
 (i_1,\ldots,i_n) \in \{0,1\}^n.
 $$
@@ -27,6 +28,15 @@ An $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C' \
 \end{aligned}
   $$
   where $f,g \colon C' \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+:::
+
+::: {.remark}
+In the literature, following @collins1975, most authors use the term "index" applied to a cylindrical cell to indicate
+its position in the CAD.
+On the other hand, @bgv15 use the term "index" to refer to the cell's binary index, as described in Definition \@ref(def:cells), without
+reference to a CAD.
+In this work, in an attempt to avoid confusion, we will refer to the concept described by @collins1975 as the
+"positional index" and the concept described by @bgv15 as the "binary index".
 :::
 
 If $C \subset \R^n$ is a cylindrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top

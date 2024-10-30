@@ -110,7 +110,7 @@ as a QFF $F'$ with the bounds required in the lemma.
 
 ### Intermediate results
 
-Recall that, according to Definition \@ref(def:cells), to each cylindrical cell in a CAD of $\R^n$ a (multi-)index
+Recall that, according to Definition \@ref(def:cells), to each cylindrical cell in a CAD of $\R^n$ a binary index
 $(i_1, \ldots ,i_n) \in \{ 0,1 \}^n$ is assigned.
 Introduce a lexicographic order $\lex$ on the set of all cell indices as follows.
 For any two indices, $M:=(i_1,\ldots,i_n)$ and $N:=(j_1,\ldots,j_n)$, we set $M \lex N$
@@ -118,20 +118,20 @@ iff for the maximal $k,\ 0 \le k <n$, such that $i_1=j_1, \ldots, i_k=j_k$ we ha
 If $M \lex N$ or $M = N$, we write $M \lexeq N$.
 
 ::: {.lemma #fr-lex-less}
-Let $\mathcal{D}$ be a CAD of $\R^n$ and let $C$ be a cell of $\mathcal{D}$ with index $M$.
+Let $\mathcal{D}$ be a CAD of $\R^n$ and let $C$ be a cell of $\mathcal{D}$ with binary index $M$.
 Then $\fr{C}$ is contained in a union of cells of $\mathcal{D}$ with indices lexicographically less than $M$.
 :::
 
 ::: {.proof}
 Proceed by induction on $n$.
 
-When $n=1$, the cell $C$ either has index $M=(0)$ or $M=(1)$.
+When $n=1$, the cell $C$ either has binary index $M=(0)$ or $M=(1)$.
 If $M=(0)$ then $C$ is a single point and its frontier is empty.
 If $M=(1)$, $C$ is an open interval. By the definition of CAD, endpoints of $C$ are $(0)$-cells.
 
-Now let $n>1$ and let $C$ have index $M=(i_1,\ldots,i_n)$.
+Now let $n>1$ and let $C$ have binary index $M=(i_1,\ldots,i_n)$.
 The projection $C'=\proj_{\R^{n-1}}(C)$ is a cell in the induced decomposition $\mathcal{D'}$ of $\R^{n-1}$
-with index $(i_1,\ldots,i_{n-1})$.
+with binary index $(i_1,\ldots,i_{n-1})$.
 By the induction hypothesis, $\fr{C'}$ is contained in a union of cells of $\mathcal{D'}$ with indices
 $(j_1,\ldots,j_{n-1}) \lex (i_1,\ldots,i_{n-1})$. I.e., by definition we have
 \begin{equation}
@@ -147,7 +147,7 @@ Since the property in Equation \@ref(eq:fr-lex-less-hyp) still holds, we have sh
 If $i_n=1$, then $C$ is a sector cell.
 In this case, $\fr{C}$ is contained in $(\fr{C'} \times \R) \cup C_T \cup C_B$, hence in the
 union of cells of $\mathcal D$ with indices $(j_1,\ldots,j_{n-1}, j_n)$ for some $j_n \in \{0,1\}$,
-and two cells, $C_T$ and $C_B$, having the same index $(i_1,\ldots,i_{n-1},0) \lex (i_1,\ldots,i_{n-1},1)$.
+and two cells, $C_T$ and $C_B$, having the same binary index $(i_1,\ldots,i_{n-1},0) \lex (i_1,\ldots,i_{n-1},1)$.
 All of these indices are lexicographically less than $M$.
 :::
 
@@ -239,7 +239,7 @@ First some basic subroutines are defined.
 
 - $N := \rm{Decrement}(M)$
   - **Input:** $M \in \{0,1\}^k, k > 0$.
-  - **Output:** $N \in \{0,1\}^k$ is the index immediately prior to $M$ with respect to $\lex$.
+  - **Output:** $N \in \{0,1\}^k$ is the binary index immediately prior to $M$ with respect to $\lex$.
   - **Description:** Straightforward. E.g., view $M$ as an unsigned integer in binary and subtract 1.
   - **Complexity:** $\O(1)$.
 
@@ -267,7 +267,8 @@ where $F$ contains $s$ different polynomials of maximum degree $d$ in $\Z[x_1,\l
 - Define the initial pair
 $({\mathcal E}_M, \mathcal{F}_M):=({\mathcal E}, \emptyset)$.
 
-  $\mathcal{E}_M$ is a refinement of $\mathcal{E}$ and $\mathcal{F}_M$ is a set of QFFs, each defining a semialgebraic set contained in a union of cells of $\mathcal{E}_M$ with index $\lexeq (i_1,\ldots,i_{n-1},1)$.
+  $\mathcal{E}_M$ is a refinement of $\mathcal{E}$ and $\mathcal{F}_M$ is a set of QFFs, each defining a semialgebraic
+  set contained in a union of cells of $\mathcal{E}_M$ with binary index $\lexeq (i_1,\ldots,i_{n-1},1)$.
 
 - While $(0,\ldots,0) \lex M$, do
 
@@ -276,9 +277,9 @@ $({\mathcal E}_M, \mathcal{F}_M):=({\mathcal E}, \emptyset)$.
 
   - Compute $\mathcal{E}_N := \mathcal{E}_M\ \&\ {\mathcal F}_M$.
 
-  - Let $\mathcal{A}_0$ be the family of QFFs defining all cells of $\mathcal{E}_N$ with index $(i_1,\ldots,i_{n-1},0)$
+  - Let $\mathcal{A}_0$ be the family of QFFs defining all cells of $\mathcal{E}_N$ with binary index $(i_1,\ldots,i_{n-1},0)$
 
-  - and $\mathcal{A}_1$ be the family of QFFs defining all cells of $\mathcal{E}_N$ with index $(i_1,\ldots,i_{n-1},1)$.
+  - and $\mathcal{A}_1$ be the family of QFFs defining all cells of $\mathcal{E}_N$ with binary index $(i_1,\ldots,i_{n-1},1)$.
 
   - Compute the set of frontiers
 \begin{align*}
@@ -376,7 +377,10 @@ $$
 \mathcal{E}_{(0,1)} := \mathcal{E}_{(1,0)}\ \&\ \mathcal{F}_{(1,0)}.
 $$
 The blow-up subset $\{ x = y = 0, 0 \le z \le 1 \}$ in $X_{(1,0)}$ results in a refinement of the decomposition induced by $\mathcal{E}_{(1,0)}$ on $\R^1$ such that it includes the cells $\{-1 < x < 0\}, (0), \{ 0 < x < 1 \}$. Thus $\mathcal{E}_{(0,1)}$ includes a cell $S'' = \{ x = 0, 0 < y < 1, z = 0 \}$ and $S$ is split into three cells $S', S'', S'''$ with indices $(1,1,0),(1,0,0)$ and $(1,1,0)$ respectively.
-Cells $C_1,C_2,C_3$ and $C_4$ of $\mathcal{E}_{(1,0)} = \mathcal{E}$ are also refined in this step so that they are compatible with $\fr{S}$ (see Table \@ref(tab:cells-of-e-refined) and Figure \@ref(fig:final-cad)). As we will argue in the Correctness section, frontiers $\frt_S(S')$ and $\frt_S(S''')$ coincide with $S''$, so no further refinements of cells with index $(1,1,1)$ and $(1,1,0)$ are needed.
+Cells $C_1,C_2,C_3$ and $C_4$ of $\mathcal{E}_{(1,0)} = \mathcal{E}$ are also refined in this step so that they are
+compatible with $\fr{S}$ (see Table \@ref(tab:cells-of-e-refined) and Figure \@ref(fig:final-cad)). As we will argue in
+the Correctness section, frontiers $\frt_S(S')$ and $\frt_S(S''')$ coincide with $S''$, so no further refinements of
+cells with binary index $(1,1,1)$ and $(1,1,0)$ are needed.
 $X_{(0,1)}$ contains $\fr{C'_2}, \fr{C'''_2}, \fr{C'_3}$ and $\fr{C'''_3}$. Thus, $\mathcal{F}_{(0,1)}$ contains QFFs defining $X_{(0,1)}$.
 
 4. In this particular case, $X_{(0,1)}$ is already a union of cells of $\mathcal{E}_{(0,1)}$, so $\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}$ as no refinement is needed.
@@ -395,10 +399,10 @@ The algorithm computes a sequence of pairs
 ({\mathcal E}_M,\ \mathcal{F}_M),
 (\#eq:pair)
 \end{equation}
-where $M = (i_1,\ldots,i_{n-1}) \in \{0,1\}^{n-1}$ is an index, $\mathcal{E}_M$ is a CAD of $\R^n$ which is a refinement of $\mathcal{E}$ and $\mathcal{F}_M$ is a family of quantifier-free Boolean formulas, each defining a semialgebraic set which is contained in the union of all cells of ${\mathcal E}_M$ with indices $\lexeq (i_1,\ldots,i_{n-1},1)$. We will denote this family of cells by $\mathcal{U}_M$.
-In equation \@ref(eq:pair), index $M$ refers to the pair rather than its elements.
+where $M = (i_1,\ldots,i_{n-1}) \in \{0,1\}^{n-1}$ is a binary index, $\mathcal{E}_M$ is a CAD of $\R^n$ which is a refinement of $\mathcal{E}$ and $\mathcal{F}_M$ is a family of quantifier-free Boolean formulas, each defining a semialgebraic set which is contained in the union of all cells of ${\mathcal E}_M$ with indices $\lexeq (i_1,\ldots,i_{n-1},1)$. We will denote this family of cells by $\mathcal{U}_M$.
+In equation \@ref(eq:pair), the binary index $M$ refers to the pair rather than its elements.
 
-The sequence of pairs is computed recursively, starting with index $M=(1,1, \ldots ,1)$,
+The sequence of pairs is computed recursively, starting with binary index $M=(1,1, \ldots ,1)$,
 in descending order of indices $M=(i_1, \ldots, i_{n-1})$ with respect to $\lex$.
 Let the initial pair
 $$({\mathcal E}_{(1, \ldots, 1)},\ \mathcal{F}_{(1, \ldots, 1)}) = ({\mathcal E},\ \emptyset).$$
@@ -412,8 +416,8 @@ The algorithm will construct the sequence (from right to left):
 \end{equation}
 where $\mathbf{0} = (0,\ldots,0)$ and $\mathcal{F}_{\mathbf{0}} := \{ F \mid F \text{ is a QFF defining } C \in{\mathcal U}_{(0, \ldots ,0)} \}$. Note that the $\lex$ notation is naturally extended to elements of the sequence defined in Equation \@ref(eq:sequence).
 
-For a given index $M=(i_1,\ldots,i_{n-1})$, assume that the algorithm has computed the pair $(\mathcal{E}_M,\ \mathbf{F}_M)$.
-Now we describe how the next pair, $({\mathcal E}_N,\ \mathcal{F}_N)$, where $N=(j_1, \ldots ,j_{n-1})$ is the index immediately prior to $M$ with respect to $\lex$, is computed.
+For a given binary index $M=(i_1,\ldots,i_{n-1})$, assume that the algorithm has computed the pair $(\mathcal{E}_M,\ \mathbf{F}_M)$.
+Now we describe how the next pair, $({\mathcal E}_N,\ \mathcal{F}_N)$, where $N=(j_1, \ldots ,j_{n-1})$ is the binary index immediately prior to $M$ with respect to $\lex$, is computed.
 Applying algorithm from Proposition \@ref(prp:collins) to ${\mathcal E}_M$ and $\mathcal{F}_M$, we obtain a CAD
 ${\mathcal E}_{N}$ of $\R^n$ compatible with every cell of ${\mathcal E}_M$ and each set defined by QFFs in $\mathcal{F}_M$
 (see construction of $\mathcal{E}_{(0,1)}$ in Step 2 of the worked example).
@@ -439,34 +443,37 @@ with $\mathcal{F}_{\mathbf{0}}$ and every cell of ${\mathcal E}_{\mathbf{0}}$. T
 ::: {.proof}
 (of Theorem \@ref(thm:main))
 
-Let $L=(k_1, \ldots ,k_{n-1})$ be the index immediately prior to $N=(j_1, \ldots ,j_{n-1} )$ with respect to $\lex$.
+Let $L=(k_1, \ldots ,k_{n-1})$ be the binary index immediately prior to $N=(j_1, \ldots ,j_{n-1} )$ with respect to $\lex$.
 The algorithm computes ${\mathcal E}_L$ as the refinement of ${\mathcal E}_N$ compatible with each set represented by a formula in $\mathcal{F}_N$. This is the set $X_N$ defined in Equation \@ref(eq:front).
 Suppose that the algorithm has computed the final decomposition $\mathcal{D}$, as the refinement of $\mathcal{E}_{\mathbf{0}}$ compatible with $\mathcal{F}_{\mathbf{0}}$ in the sequence \ref{eq:sequence}. Now construct a new sequence of decompositions (from left to right)
 \begin{equation}
 \mathcal{E}'_{\mathbf{0}} \lex \cdots \lex \mathcal{E}'_L \lex \mathcal{E}'_N \lex \mathcal{E}'_M \lex \cdots \lex \mathcal{E}'_{(1,\ldots,1)}
 (\#eq:seq-ind-hyp)
 \end{equation}
-where the initial element $\mathcal{E}'_{\mathbf{0}}$ is the refinement of $\mathcal{E}_{\mathbf{0}}$ compatible with each cell of $\mathcal{D}$ and each $\mathcal{E}'_I$ is the refinement of $\mathcal{E}_I$ compatible with all cells of $\mathcal{E}'_J$, where $J$ is the index immediately prior to $I$ with respect to $\lex$.
-We want to prove that every cell in $\mathcal{E}'_L$ with index $\lexeq (i_1,\ldots,i_{n-1},1)$ satisfies the frontier condition.
+where the initial element $\mathcal{E}'_{\mathbf{0}}$ is the refinement of $\mathcal{E}_{\mathbf{0}}$ compatible with
+each cell of $\mathcal{D}$ and each $\mathcal{E}'_I$ is the refinement of $\mathcal{E}_I$ compatible with all cells of
+$\mathcal{E}'_J$, where $J$ is the binary index immediately prior to $I$ with respect to $\lex$.
+We want to prove that every cell in $\mathcal{E}'_L$ with binary index $\lexeq (i_1,\ldots,i_{n-1},1)$ satisfies the frontier condition.
 
-If $C$ is a cell in ${\mathcal E}_N$ with index $(i_1, \ldots ,i_{n-1},0)$ (section cell),
+If $C$ is a cell in ${\mathcal E}_N$ with binary index $(i_1, \ldots ,i_{n-1},0)$ (section cell),
 then $C$ is a union of cells of ${\mathcal E}_L$ and, hence, of $\mathcal{E}'_L$, with indices $\lexeq (i_1, \ldots ,i_{n-1} ,0)$.
-Let $C' \subset C$ be one of the cells in this refinement of $C$ with index $(i_1, \ldots ,i_{n-1} ,0)$ and $B$ be
+Let $C' \subset C$ be one of the cells in this refinement of $C$ with binary index $(i_1, \ldots ,i_{n-1} ,0)$ and $B$ be
 the union of cells contained in the refinement of $C$ with indices $\lex (i_1, \ldots ,i_{n-1} ,0)$.
-Let $B' \subset B$ be a cell of ${\mathcal E}_L$ with index $(m_1,\ldots,m_{n-1},0) \lex (i_1,\ldots,i_{n-1},0)$. We claim that $\dim(B') < \dim(C)$.
+Let $B' \subset B$ be a cell of ${\mathcal E}_L$ with binary index $(m_1,\ldots,m_{n-1},0) \lex (i_1,\ldots,i_{n-1},0)$. We claim that $\dim(B') < \dim(C)$.
 Indeed, on the one hand, if $i_k = 0$, for some $1\le k \le n-1$, then $m_k = 0$ as well. Otherwise, $\proj_{\R^k}(C)$ is a section cell which must contain $\proj_{\R^k}(B')$, which is a sector cell, but this is impossible.
 On the other hand, by the definition of $\lex$, there exists some $1\le \ell \le n-1$ such that $m_1 = i_1, \ldots, m_{\ell-1} = i_{\ell-1}$ and $m_\ell = 0, i_\ell = 1$. This implies that $\dim(B') = m_1 + \cdots + m_{n-1} < i_1 + \cdots + m_{n-1} = \dim(C)$ as required. It follows that $\dim(B) < \dim(C)$ and $B$ is closed in $C$.
 According to Lemma \@ref(lem:section-split), $\frt_C (C \setminus B)=B$ where $\frt_X(Y)$ denotes the frontier of $Y$ in $X$.
 Hence, $\frt_C (C') \subset B$.
-On the other hand, $\fr{C'} \setminus \frt_C (C')$ is a subset of $\fr{C}$, which is a union of cells of $\mathcal{E}_L$ (and of the refinement $\mathcal{E}'_L$) with index $\lex (i_1,\ldots,i_{n-1},0)$.
+On the other hand, $\fr{C'} \setminus \frt_C (C')$ is a subset of $\fr{C}$, which is a union of cells of $\mathcal{E}_L$
+(and of the refinement $\mathcal{E}'_L$) with binary index $\lex (i_1,\ldots,i_{n-1},0)$.
 
-By the induction hypothesis, all cells of $\mathcal{E}'_L$ with index $\lex (i_1,\ldots,i_{n-1},0)$ satisfy the frontier condition. In particular, $\fr{C}$ and $\fr{B}\subset \fr{C}$ is a union of cells of $\mathcal{E}'_L$.
+By the induction hypothesis, all cells of $\mathcal{E}'_L$ with binary index $\lex (i_1,\ldots,i_{n-1},0)$ satisfy the frontier condition. In particular, $\fr{C}$ and $\fr{B}\subset \fr{C}$ is a union of cells of $\mathcal{E}'_L$.
 It follows from the cylindrical structure of $\mathcal{E}'_L$ that $C'$ satisfies the frontier condition.
 
-If $C$ is a cell in ${\mathcal E}_N$ with index $(i_1, \ldots ,i_{n-1} ,1)$ (sector cell),
+If $C$ is a cell in ${\mathcal E}_N$ with binary index $(i_1, \ldots ,i_{n-1} ,1)$ (sector cell),
 then $C$ is a union of cells of ${\mathcal E}_L$ with indices $\lexeq (i_1, \ldots ,i_{n-1} ,1)$.
 A similar argument to that used for section cells shows that each cell $C'$ in this union,
-having index $(i_1, \ldots ,i_{n-1} ,1)$, satisfies the frontier condition in $\mathcal{E}'_L$. Note that when using
+having binary index $(i_1, \ldots ,i_{n-1} ,1)$, satisfies the frontier condition in $\mathcal{E}'_L$. Note that when using
 Lemma \@ref(lem:section-split) we consider sector cell $C$ as a graph of a constant function over itself.
 
 Finally, each decomposition $\mathcal{E}'_I$, $I \in \{0,1\}^{n-1}$, in the sequence \ref{eq:seq-ind-hyp} coincides with $\mathcal{D}$. Indeed, $\mathcal{D}$ is a refinement of $\mathcal{E}_I$ and $\mathcal{E}'_I$ is a refinement of $\mathcal{E}_I$ compatible with all cells of $\mathcal{D}$. In other words, no refinement of $\mathcal{D}$ is required to obtain $\mathcal{E}'_{(1,\ldots,1)}$.
@@ -489,13 +496,13 @@ $$
 s_N:=(s_Md_M)^{\O(1)^n} \text{ and } d_N:=(s_Md_M)^{\O(1)^n}.
 $$
 
-We now compute the set of frontiers $\mathcal{F}_N$ of cells of $\mathcal{E}_M$ with index $(i_1,\ldots,i_{n-1},i_n)$.
+We now compute the set of frontiers $\mathcal{F}_N$ of cells of $\mathcal{E}_M$ with binary index $(i_1,\ldots,i_{n-1},i_n)$.
 The complexity of applying Lemma \@ref(lem:frontier) is
 $(s_Md_M)^{n^2\O(1)^n},$
 which is asymptotically the same as $(s_Md_M)^{\O(1)^n}$.
 Thus, the overall complexity of this "step" is again $$(s_Md_M)^{\O(1)^n}.$$
 
-The overall complexity is obtained by iterating this process for each index. E.g., the complexity of passing from $(\mathcal{E}_M\, \mathcal{F}_M)$ to $(\mathcal{E}_L\, \mathcal{F}_L)$, where $M \lex N \lex L$ are subsequent indices in the lexicographical order, would be
+The overall complexity is obtained by iterating this process for each binary index. E.g., the complexity of passing from $(\mathcal{E}_M\, \mathcal{F}_M)$ to $(\mathcal{E}_L\, \mathcal{F}_L)$, where $M \lex N \lex L$ are subsequent indices in the lexicographical order, would be
 $$
 (s_Nd_N)^{\O(1)^n} = \left((s_Md_M)^{\O(1)^n}(s_Md_M)^{\O(1)^n}\right)^{\O(1)^n}
 $$
@@ -507,7 +514,7 @@ According to Proposition \@ref(prp:collins) and Lemma \@ref(lem:frontier), this 
 
 ### Constructing intermediate decompositions
 
-In the algorithm described in Theorem \@ref(thm:main), we construct, for each index $M \in \{0,1\}^{n-1}$, a CAD compatible with $\mathcal{F}_M = \{F_1,\ldots,F_k\}$ and all cells of $\mathcal{E}_M$.
+In the algorithm described in Theorem \@ref(thm:main), we construct, for each binary index $M \in \{0,1\}^{n-1}$, a CAD compatible with $\mathcal{F}_M = \{F_1,\ldots,F_k\}$ and all cells of $\mathcal{E}_M$.
 This can be achieved by constructing a CAD, using Proposition \@ref(prp:collins), such that each cell has constant sign on the polynomials in formulas $\mathcal{F}_M$ and all cells of $\mathcal{E}_M$. Such a CAD is clearly compatible with sets defined by formulas in $\mathcal{F}_M$ and all cells of $\mathcal{E}_M$. However, it may include some cells, outside $\cl{S}$, which we are not interested in.
 
 Fewer cells may be produced by computing a CAD compatible with $\{F_1,\ldots,F_k, C_1,\ldots,C_r\}$ where $C_i,1\le i \le r$ is a cell of $\mathcal{E}$ such that $\bigcup_{1\le i \le r} C_i = \R^n$. This CAD is obviously compatible with all cells of $\mathcal{E}_M$ and is compatible with the required sets.
@@ -536,7 +543,7 @@ Note that it is not currently clear how this result can be implemented since in 
 
 The complexity upper bound of the algorithm from Theorem \@ref(thm:main) is significantly worse than the bound
 for classical CAD algorithm due to @collins1975 (and @wuthrich1976).
-This is caused by the parameter of its recursive loop: the index of a cylindrical cell, which is exponential in the ambient dimension.
+This is caused by the parameter of its recursive loop: the binary index of a cylindrical cell, which is exponential in the ambient dimension.
 It is difficult to see another parameter that could make the recursion significantly shorter. Thus, if any progress is to be made towards a better asymptotic complexity, the method used may need to be based on a completely different ideas.
 On the other hand, there is a lower bound on complexity of the classical CAD algorithm due to @davenportHeintz1988. However, it is not yet known whether the lower bound for CAD with frontier condition is greater than that of the classical CAD.
 Another strand of research could be to explore this question, possibly by attempting to raise this lower bound for CAD with frontier condition.

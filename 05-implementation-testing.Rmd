@@ -448,7 +448,8 @@ Word QepcadCls::MONOTONE(Word* A_, Word* J_, Word D, Word r)
 
 ```
 
-The function considers each $2$-dimensional cell $C$ of $\mathcal{E}$ such that $C\subset V$. $C$ is an $(i_1,\ldots,i_r)$-cell such that $i_j = i_k = 1$ and all other elements of the index are equal to zero.
+The function considers each $2$-dimensional cell $C$ of $\mathcal{E}$ such that $C\subset V$. $C$ is an
+$(i_1,\ldots,i_r)$-cell such that $i_j = i_k = 1$ and all other elements of its binary index are equal to zero.
 
 - On line 32, $\mathbf{c}_0 = \projop{i_j - 1}(C)$, the zero-cell above which $C$ is a $(1,i_{j+1},\ldots,i_r)$-cell.
 - $\projop{k}(C)$ is a section cell, on lines 50 and 54, $\projop{k}(C)_T$ and $\projop{k}(C)_B$, the section cells defining the top and bottom of this sector, respectively, are retrieved from the decomposition induced by $\mathcal{E}$ on $\R^k$ by their positional indices.
@@ -607,7 +608,7 @@ Word QepcadCls::FRONTIER(Word r, Word k, Word D, Word As, Word* A_, Word* J_, Wo
 
 - Lines 6-12 determine if bad cells are possible. I.e., if the dimension of the sub-CAD above `D` is greater than $3$ and if there is more than one child cell, since bad cells can only occur above $0$-cells.
 - A note is kept of cells which were already refined (Line 14). This information is stored in the form $(j,i_1,\ldots,i_{k+1})$, where $(i_1,\ldots,i_{k+1})$ is the positional index of the cell $C$ to be refined and $j$ the index of the level-$(k+1)$ polynomial which vanishes identically over $C$. This prevents the program computing the same refinement points multiple times, as the same bad cell may lie in the projection of the boundary of multiple $2$-dimensional cells.
-- The loop (Lines 24-36) considers each $2$-dimensional section cell $C$ in this sub-CAD, with index $(0,\ldots,0,m_k,0,\ldots,0,m_\ell,0,\ldots,0)$ in the CAD of $\R^r$ (ambient space) where $m_k=m_\ell = 1$.
+- The loop (Lines 24-36) considers each $2$-dimensional section cell $C$ in this sub-CAD, with binary index $(0,\ldots,0,m_k,0,\ldots,0,m_\ell,0,\ldots,0)$ in the CAD of $\R^r$ (ambient space) where $m_k=m_\ell = 1$.
 - `SI` (Line 31) is a list $(i_{k+1},\ldots,i_r)$ where each $i_j \in \Z$ is equal to the index of the first polynomial in $\mathcal{A}_j$ which is equal to zero on $C$, or $-1$ if no such polynomial exists. In particular, $i_k = i_\ell = 1$.
 - Bad cells, in $\fr{\projop{\ell}(C)}$, may lie in the sub-CADs above the $(0,\ldots,0)$-cells $\projop{k}(C)_B$ and $\projop{k}(C)_T$. The function `ProcessBadCells` (called on Lines 34 and 35) identifies bad cells and adds refinement points. This function is described next.
 
@@ -616,7 +617,7 @@ Word QepcadCls::FRONTIER(Word r, Word k, Word D, Word As, Word* A_, Word* J_, Wo
 - `Word r` $\in \N$,
 - `Word C`: $0$-dimensional level-$k$ `QEPCAD-B` cell,
 - `Word As` $= (\mathcal{A}_1,\ldots,\mathcal{A}_r)$ is the (entire) projection factor set.
-- `Word i`, `Word j` $\in \N$: elements of $(i_1,\ldots,i_r)$, the index of a $2$-dimensional section cell $C$, which are equal to $1$.
+- `Word i`, `Word j` $\in \N$: elements of $(i_1,\ldots,i_r)$, the binary index of a $2$-dimensional section cell $C$, which are equal to $1$.
 - `Word S` $= (j_1,\ldots,j_r)$, indices of projection factors which are equal to zero an $C$.
 
 **Output:**
@@ -800,7 +801,7 @@ Word QepcadCls::REFINE(Word k, Word D, Word A, Word PF)
 }
 ```
 
-- Lines 13-26 identify the refinement polynomials. Note that $-1$ is appended to the cell index (stored in `PO_REFINEMENT`) to indicate that the refinement by that point has been completed, marking the point as "used".
+- Lines 13-26 identify the refinement polynomials. Note that $-1$ is appended to the cell's positional index (stored in `PO_REFINEMENT`) to indicate that the refinement by that point has been completed, marking the point as "used".
 - Line 31 computes the refinement of the children projecting on `D` by calling `RefineSubcad()`.
 - Line 40 onwards completes the depth-first-search walk of the (refined) children.
 
@@ -887,12 +888,15 @@ Word RefineSubcad(Word k, Word Ch, Word Ps, Word PFs)
 ```
 
 - `NextPolynomial()`, called on, e.g., Line 9, is a helper function for retrieving the next refinement point.
-Recall that $\mathbf{b} = (b_1,\ldots,b_{k-1},c)$ is a `QEPCAD-B` sample point such that `PI` is its isolating interval and `PM` the minimal polynomial for $c$. If $c$ is rational, $I = (c,c)$. `J` is the isolating interval containing $c \in \A$. `j` is the index of the child cell which requires refinement.
-- Suppose that $C$ is the cell with index $j$. Then `S0M` and `S0I`, set on line 24, are the minimal polynomial and isolating interval, respectively, for the sample point of $C_B$. The function `GETSAMPLEK` is a helper function responsible for retrieving this information. The first argument indicates the coordinate to retrieve, with $-1$ being shorthand for last coordinate.
+Recall that $\mathbf{b} = (b_1,\ldots,b_{k-1},c)$ is a `QEPCAD-B` sample point such that `PI` is its isolating interval
+and `PM` the minimal polynomial for $c$. If $c$ is rational, $I = (c,c)$. `J` is the isolating interval containing $c
+\in \A$. `j` is the positional index of the child cell which requires refinement.
+- Suppose that $C$ is the cell with positional index $j$. Then `S0M` and `S0I`, set on line 24, are the minimal polynomial and isolating interval, respectively, for the sample point of $C_B$. The function `GETSAMPLEK` is a helper function responsible for retrieving this information. The first argument indicates the coordinate to retrieve, with $-1$ being shorthand for last coordinate.
 - `RefineCell`, called on line 32, takes a list of cells, $(C,C_T, \ldots,C_\ell)$, where $C$ is the cell to be refined and returns a list $(C_1,C_2,C_3,C_T,\ldots,C_\ell)$. The sample points are updated for $C_1$ and $C_2$. The flag `refine_after` is set to `true` if the sample point of $C_3$, which is still equal to the sample point of $C$ at this point, is incorrect.
 - Some new projection factors, whose roots are the refinement points, were added to the projection factor set, but cell signatures have not yet been updated to reflect this. `ADDSIGNPF` (called on lines 40 and 54) is responsible for ensuring that the signs of these polynomials are attached to refined cells. If a cell is not refined, this information will not be needed.
 - Lines 45-53 update the sample point of $C_3$, if needed.
-- During the loop in which cells are refined (Lines 7-55), the positional indices for refined cells are not updated. This is so that the index attached to refinement points still refers to the correct positional index. Lines 57-64 updates the positional indices for all children, using the helper function `SETINDEXK`.
+- During the loop in which cells are refined (Lines 7-55), the positional indices for refined cells are not updated.
+  This is so that the positional index attached to refinement points still refers to the correct positional index. Lines 57-64 updates the positional indices for all children, using the helper function `SETINDEXK`.
 
 The function `RefineCell` is now presented.
 
@@ -1252,7 +1256,7 @@ A brief summary of new and modified functions is now presented.
 - `source/util/IPFRPmod.c`: the original "integral polynomial from rational polynomial" assumes that the input is in rational representation but always has integer coefficients. This version converts an arbitrary rational polynomial into an integral polynomial.
 - `source/util/JACOBI.c`: given a list of polynomials and variable indices, construct a Jacobi matrix.
 ` `source/util/LDCOPY.c`: list "deep" (recursive) copy.
-- `source/util/LEVELIDX.c`: helper function. Given a positional index for a cell $C$ with index $(i_1,\ldots,i_n)$, return $(j_1,\ldots,j_k)$, where $j\le n$ such that $i_{j_\ell} = 1, 1 \le \ell \le k$.
+- `source/util/LEVELIDX.c`: helper function. Given a positional index for a cell $C$ with binary index $(i_1,\ldots,i_n)$, return $(j_1,\ldots,j_k)$, where $j\le n$ such that $i_{j_\ell} = 1, 1 \le \ell \le k$.
 - `source/util/PADDVS.c`: append variables. Given $f \in \Z[x_1,\ldots,x_k]$, output $f$ as a polynomial in $\Z[x_1,\ldots,x_k,y_1,\ldots,y_\ell]$.
 - `source/util/PPREPVS.c`: prepend variables. Given $f \in \Z[x_1,\ldots,x_k]$, output $f$ as a polynomial in $\Z[y_1,\ldots,y_\ell,x_1,\ldots,x_k]$.
 - `source/util/ROOTS.c`: convenience function for univariate root finding. Uses `SACLIB`'s `IPFSFB`, which computes a square-free basis.

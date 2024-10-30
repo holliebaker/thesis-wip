@@ -249,7 +249,7 @@ Taking $C = E$, (and the same $D$) we get case $1$.
 ::: {.proof}
 By the proof of @lazard10, Theorem 4.4, $D$ will always be a $(0,0,1)$-cell in the cylinder above a bad cell $D'$.
 
-Consider each case for $C$ by cell index.
+Consider each case for $C$ by the cell's binary index.
 
 - $(1,1,1)$-cell: since $C$ is well-bordered, its boundary is the closure of some $2$-dimensional cells of $\cal D$ and
   $B$ is contained in the union of the boundaries of the 2-cells. Thus, case 2 applies and we can choose an appropriate
@@ -499,7 +499,7 @@ $2$, such that the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$ is stron
 ::: {.proof}
 By the proof of [@lazard10, Theorem 4.4], $D$ will always be a $(0,\ldots,0,1)$-cell in the cylinder above a bad cell $D'$.
 
-We consider each case by cell index.
+We consider each case by the cell's binary index.
 
 - $(i_1,\ldots,i_{n-1},1)$-cell, where $\sum_{j=1}^{n-1} i_j = 1$: observe that $C$ (if bounded) is delineated by some
   $(i_1,\ldots,i_{n-1},0)$-cells ($1$-dimensional curve intervals). Take $B$ to be the $1$-dimensional interval delineated by the endpoints of these curves. Since $B \neq C$, at least one of these endpoints is not a $(0,\ldots,0,0)$-cell of $\cal D$. Case 2 applies, taking as $E$ the delineating $(i_1,\ldots,i_{n-1},0)$-cell.
@@ -514,9 +514,10 @@ Let $V_r$ be a small neighbourhood (with radius $r > 0$) centred around $D'$ and
 :::
 
 ::: {.remark}
-Let $C$ be a $(i_1,\ldots,i_{n-1},0)$-cell as described in Lemma \@ref(lem:ext-lazard-5-13) such that $i_1=i_k = 1$ for some $1 \le k \le n$ and all other elements of the index are equal to zero.
+Let $C$ be a $(i_1,\ldots,i_{n-1},0)$-cell as described in Lemma \@ref(lem:ext-lazard-5-13) such that $i_1=i_k = 1$ for
+some $1 \le k \le n$ and all other elements of the binary index are equal to zero.
 The cell $D$, which projects on a bad-cell is necessarily a $(0,\ldots,0,1)$-cell and the cell $E$, which has dimension
-$1$, is contained in $\cl{C}$. Hence, $E$ must have index either $(i_1,0\ldots,0)$ or $(0,\ldots,0,i_k,0,\ldots,0)$.
+$1$, is contained in $\cl{C}$. Hence, $E$ must have binary index either $(i_1,0\ldots,0)$ or $(0,\ldots,0,i_k,0,\ldots,0)$.
 By Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3), the images of $C$, $D$ and $E$ under the projection map $\projops{i_1,i_k,i_n}$ are cylindrical cells and satisfy Proposition \@ref(prp:lazard-5-13) (@lazard10, Lemma 5.13).
 :::
 
@@ -567,7 +568,8 @@ $\mathcal{D'}$ such that $\projopinv{k}(C) \subset V_1 \cup \ldots \cup V_k$.
 By the induction hypothesis, the decomposition induced by $\mathcal{D'}$ on $\R^{k-1}$ is strong about $\projop{k-1}(C)$.
 $C$ is topologically regular since the projection of a monotone cell is monotone and $C$ is well-bordered by Corollary \@ref(cor:ext-lazard-5-3) since $\dim(C) \le 2$.
 If $\dim(C) < 2$, $C$ already satisfies the frontier condition since it is well-bordered.
-If $\dim(C') = 2$, then $C$ is an $(i_1,\ldots,i_k)$-cell such that $i_{\ell_1} = i_{\ell_2} = 1$ and all other elements of the index are equal to zero.
+If $\dim(C') = 2$, then $C$ is an $(i_1,\ldots,i_k)$-cell such that $i_{\ell_1} = i_{\ell_2} = 1$ and all other elements
+of the binary index are equal to zero.
 
 First suppose that $\ell_1 = 1$. If $\ell_2 < k$ then $C$ is a section cell.
 Let $C' = \projop{k-1}(C)$. $C'$ satisfies the frontier condition by the induction hypothesis and $C$ is the graph of a
@@ -630,7 +632,8 @@ A set of refinement points, as described in Section \@ref(sec:monotone-algorithm
 
 - Let $\cal D'$ be the decomposition induced by $\cal D$ on $\R^{n-1}$.
 
-- For each $(i_1,\ldots,i_{k-1},0)$-cell $E \in \cal{C}$, let $i_{\ell_1} = i_{\ell_2} = 1$, while all other elements in the index are equal to zero.
+- For each $(i_1,\ldots,i_{k-1},0)$-cell $E \in \cal{C}$, let $i_{\ell_1} = i_{\ell_2} = 1$, while all other elements in
+  the binary index are equal to zero.
 
   - Let $\mathbf{c} := \projop{\ell_1 - 1}(E)$ and compute the set of polynomials for the sub-CAD of $\mathcal{D}$ above $\mathbf{c}$.
 

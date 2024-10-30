@@ -49,10 +49,12 @@ Hence, the McCallum projection operator is sufficient to produce smooth cells.
 
 Let $\mathbf{F} \subset \R^n$ be the set of different polynomials appearing in the quantifier-free Boolean formulas defining $V$ and use the McCallum projection operator to construct an $F$-invariant CAD, $\cal E$, of $\R^n$. Since cells of a CAD are disjoint by construction and smooth by the use of the McCallum projection operator, $\cal E$ forms a smooth stratification of $V$.
 Thus, we can take as $W$ the (separate) sets of $2$- and $1$-dimensional cells of $\cal E$ which are contained in $V$.
-Recall, from Definition \@ref(def:cells), that each cylindrical cell has a corresponding multi-index $(i_1,\ldots,i_n) \in \{0,1\}^n$.
-Let $C \subset V$ be a $2$-dimensional be a cell of $\mathcal{E}$, and suppose it has index $(i_1,\ldots,i_n)$. Since $\dim(C) = 2$, $\sum_{1\le i \le n} = 2$. Let $i_{j_1}, = i_{j_2} = 1$ for $j_1 \ne j_2$ while all other elements of the index be equal to zero. Then $\projop{k}(C)$, for $k\ne j_1,k\ne j_2$, is the root of a projection polynomial $f_k \in \Z[x_1,\ldots,x_k]$. Hence, we have, $n-2$ projection polynomials at which every $\mathbf{x} \in C$ is equal to zero.
+Recall, from Definition \@ref(def:cells), that each cylindrical cell has a corresponding binary index $(i_1,\ldots,i_n) \in \{0,1\}^n$.
+Let $C \subset V$ be a $2$-dimensional be a cell of $\mathcal{E}$, and suppose it has binary index $(i_1,\ldots,i_n)$.
+Since $\dim(C) = 2$, $\sum_{1\le i \le n} = 2$. Let $i_{j_1}, = i_{j_2} = 1$ for $j_1 \ne j_2$ while all other elements
+of the binary index be equal to zero. Then $\projop{k}(C)$, for $k\ne j_1,k\ne j_2$, is the root of a projection polynomial $f_k \in \Z[x_1,\ldots,x_k]$. Hence, we have, $n-2$ projection polynomials at which every $\mathbf{x} \in C$ is equal to zero.
 The polynomials can be determined by using the set of signs of projection factors and used to define an algebraic variety $Y \supset C$. Note that we need some additional inequalities to define $C$ properly, but these are not needed to compute the critical points of projections in the next section.
-Similarly for $1$-dimensional cells, only one element of the index will be equal to $1$, while all other elements are
+Similarly for $1$-dimensional cells, only one element of the binary index will be equal to $1$, while all other elements are
 equal to $0$. It follows that we can find $n-1$ polynomials, in a similar way, which are equal to zero on each $1$-dimensional cell.
 
 It is possible to compute $W$ using either technique. Theoretically speaking, using the smooth stratification algorithm seems cleaner, as it is the correct tool for the job. In addition, the bound on number of strata is singly exponential, while the bound on number of CAD cells is doubly exponential. An estimate for the number of cells of strata having a certain dimension is not currently known, but it seems likely that the number of strata will be less than the number of CAD cells.
@@ -127,7 +129,8 @@ be the set of polynomials appearing in the formulas $F_1,\ldots,F_k$.
 
 - Let ${\cal A} = ({\cal A}_1,\ldots,{\cal A}_{n})$ be the family of projection polynomials for $\cal E$, where each ${\cal A}_k \subset \Z[x_1,\ldots,x_k]$.
 
-- For each cell $C_k \subset V$ with index $(i_1,\ldots,i_n) \in \{0,1\}^n$, such that $i_{j_1} = \ldots = i_{j_k} = 1$ while all other elements of the index are equal to $0$ (since $\dim(V) \le 2$, $k \le 2$ and $\dim(C_k) = k$):
+- For each cell $C_k \subset V$ with binary index $(i_1,\ldots,i_n) \in \{0,1\}^n$, such that $i_{j_1} = \ldots =
+  i_{j_k} = 1$ while all other elements of the binary index are equal to $0$ (since $\dim(V) \le 2$, $k \le 2$ and $\dim(C_k) = k$):
 
   - Let $f_1,\ldots,f_{n-k}$ be a set of projection polynomials, where $f_i \in \mathcal{A}_i$, which are equal to $0$ on the cell $C_k$.
 
