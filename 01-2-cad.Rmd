@@ -275,7 +275,7 @@ $$
 \psrc_k(f, g),
 $$
 for $1 \le k \le \min(\deg(f),\deg(g))$, is either zero or nonzero and $\deg(f) = \deg(g)$ everywhere in $X$.
-- If, for the leading term of $f$ (or $g$) vanishes at some points in $\Z[x_1,\ldots,x_{n-1}]$, we need to take the principal subresultant coefficients of the reductum of $f$ (or $g$).
+- If the leading term of $f$ (or $g$) vanishes at some points in $\Z[x_1,\ldots,x_{n-1}]$, we need to take the principal subresultant coefficients of the reductum of $f$ (or $g$).
 [@coste2000, pp36]
 
 From these properties of the principal subresultant coefficient, we can define a projection operator.
@@ -313,12 +313,12 @@ $$
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a family of polynomials and let $C'$ be a connected $\proj(\mathbf{F})$-invariant semialgebraic subset of $\R^{n-1}$ -- an $(i_1,\ldots,i_{n-1})$-cell.
 Then there exist continuous definable functions
 $$
-\psi_1,\ldots, psi_\ell \colon C' \to \R
+\psi_1,\ldots, \psi_\ell \colon C' \to \R
 $$
 such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) \}$ coincides with the real roots of polynomials in $\mathbf{F}$, defining the $(i_1,\ldots,i_{n-1},0)$-cells in the cylinder $C' \times \R$ and $\{ -\infty < t < \psi_1(\mathbf{x}), \ldots, \psi_i(\mathbf{x}) < t < \psi_{i+1}(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) < t < \infty \}$ are the $(i_1,\ldots, i_{n-1},1)$-cells in the cylinder $C' \times \R$.
 :::
 
-This follows from the results previously proved. Applying Theorem \@ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtain a set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift)$, we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
+This follows from the results previously proved. Applying Theorem \@ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtain a set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift), we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
 
 ### Bounds and variations
 
