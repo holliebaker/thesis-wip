@@ -440,7 +440,8 @@ tend to $C'_1$, tend to $-\infty$ or $\infty$. Therefore $\mathbf{p}$ is either 
 of the interval $I$ associated to $C$ by Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2). This
 contradicts the assumption that $\projopinv{2}(\mathbf{c}) \cap \fr{C}$ contains only $\mathbf{p}$.
 
-If $\dim(C) = 2$ and it is a sector ($(i_1,i_2,1)$-cell), then $\fr{C}$ consists of the two $(i_1,i_2,0)$-cells $C_B$ and $C_T$ which project on $C'$ the side-wall $W = \fr{C} \setminus (C_B \cup C_T)$ which consists of points or intervals projecting on the endpoints of $C'$.
+If $\dim(C) = 2$ and it is a sector ($(i_1,i_2,1)$-cell), then $\fr{C}$ consists of the two $(i_1,i_2,0)$-cells $C_B$
+and $C_T$ which project on $C'$ the side-walls $W = \fr{C} \setminus (C_B \cup C_T)$ which consists of points or intervals projecting on the endpoints of $C'$.
 If $W$ contains an isolated point above an endpoint $\mathbf{c}$ of $C'$. Then Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2) asserts that it belongs to the boundary of a section bounding $C$ from below or above (i.e., $C_B$ or $C_T$), and we are done.
 
 Finally, suppose that $C$ is a $(1,1,1)$-cell.
@@ -468,7 +469,7 @@ Since $\mathcal{D'}$ is strong about $C'$, Proposition \@ref(prp:lazard-5-2) (@l
 applied. Suppose that $\dim(C) = 2$ and $C$ is an $(i_1,\ldots,i_{n-1},1)$-cell. $C'$ is a $1$-dimensional $(i_1,\ldots,i_{n-1})$-cell whose endpoints are $(0,\ldots,0)$-cells of $\mathcal{D'}$.
 If $C$ is bounded from below (resp. above), then $C_B$ (resp. $C_T$) is an $(i_1,\ldots,i_{n-1},0)$-cell and the points
 or closed intervals associated with $C$ by Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2) are the
-side-wall of $C$. Since $C_B$ and $C_T$ are $1$-dimensional cells of $\mathcal{D}$, they are well-bordered, and the points of $\fr{C}$ that do not belong to $\cl{C_B} \cup \cl{C_T}$ are $(0,\ldots,0,1)$-cells of $\mathcal{D}$. This proves that $C$ is not only well-bordered, but actually satisfies the frontier condition.
+side-walls of $C$. Since $C_B$ and $C_T$ are $1$-dimensional cells of $\mathcal{D}$, they are well-bordered, and the points of $\fr{C}$ that do not belong to $\cl{C_B} \cup \cl{C_T}$ are $(0,\ldots,0,1)$-cells of $\mathcal{D}$. This proves that $C$ is not only well-bordered, but actually satisfies the frontier condition.
 
 If $\dim(C) = 2$ and it is not a sector cell, it is an $(i_1,\ldots,i_{n-1},0)$-cell and $C'$ is a well-bordered $2$-dimensional $(i_1,\ldots,i_{n-1})$-cell of $\mathcal{D'}$. Let us consider the cylinder $C' \times \R$, which is a union of $2$- and $3$-dimensional cells of $\mathcal{D}$.
 
@@ -592,7 +593,8 @@ where $z$ is a new variable.
 Let $S_1, S_2$ be Groebner bases for $I_1,I_2$ respectively. The union of $0$-dimensional solutions to $S_1,S_2$ forms the set of refinement points $\mathcal{R}_\mathbf{b}$ whiche contains the endpoints of the open interval $D \cap \fr{C}$, By considering each bad cell in $\fr(\projop{k-1}(C))$, $\mathcal{D}'$ can be refined such that $C$ satisfies the frontier condition.
 
 On the other hand, if $\ell_2 = k$, $C$ is a sector cell. In this case, $C$ already satisfies the frontier condition
-since its top and bottom, which are $1$-dimensional section cells, already satisfy the frontier condition and its side-wall consists of at most two connected components -- points or closed intervals, whose endpoints coincide with the endpoints of the top and bottom of $C$.
+since its top and bottom, which are $1$-dimensional section cells, already satisfy the frontier condition and its
+side-walls consists of at most two connected components -- points or closed intervals, whose endpoints coincide with the endpoints of the top and bottom of $C$.
 
 Finaly, if $\ell_1 > 1$ then $C$ is a $(0,\ldots,0,i_{\ell_1},\ldots,i_k)$-cell. Apply the method described above to the
 $(i_{\ell_1 + 1},\ldots,i_k)$-cell in the sub-CAD above $\projop{i_\ell - 1}(C)$.
@@ -696,7 +698,7 @@ that $C$ is well-bordered, so its frontier consists of the closure of some $1$-d
 The procedure described above explains how to obtain some new polynomials which allow these $1$-dimensional sectors to be refined such that they are compatible with the frontier of $C$. By performing this refinement, $C$ is made to satisfy the forntier condition.
 
 If $C$ is a $2$-dimensional sector cell, then its top and bottom are $1$-dimensional sector cells of $\mathcal{D}$ and
-the side-wall of $C$ is contained in cylinders $\mathbf{c} \times \R$, where $\mathbf{c}$ is a $0$-dimensional cell
+the side-walls of $C$ is contained in cylinders $\mathbf{c} \times \R$, where $\mathbf{c}$ is a $0$-dimensional cell
 which is an endpoint of $\projop{k-1}(C)$. It follows that $C$ satisfies the frontier condition since its top and
 bottom, which are $1$-dimensional cells, satisfy the frontier condition.
 

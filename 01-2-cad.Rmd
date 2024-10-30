@@ -1,7 +1,7 @@
 ## Cylindrical algebraic decomposition
 
 We now give some background on Cylindrical Algebraic Decomposition (CAD).
-@collins1975 introduced both the concept of Cylindrical Algebraic Decomposition along with an algorithm to construct a CAD, which is a finite partition of $\R^n$ into so-called cylindrical cells, such that each polynomial in $\mathbf{F} \subset \R[x_1,\ldots,x_n]$ has a constant sign on every cylindrical cell in the decomposition.
+@collins1975 introduced both the concept of Cylindrical Algebraic Decomposition along with an algorithm to construct a CAD, which is a finite partition of $\R^n$ into so-called cylindrical cells, such that each polynomial in some finite set $\mathbf{F} \subset \R[x_1,\ldots,x_n]$ has a constant sign on every cylindrical cell in the decomposition.
 
 Before describing Collins' algorithm, we will first define, closely following @bgv15, a cylindrical cell and cylindrical decomposition. Note that @bgv15 work in the broader class of definable sets.
 
@@ -17,7 +17,7 @@ $$
 
 - When $n > 1$, suppose that $(i_1,\ldots,i_{n-1})$-cells are already defined and let $C'$ be one of these cells.
 An $(i_1,\ldots,i_{n-1},0)$-cell (section cell) is the graph of a continuous definable function $f \colon C' \to \R$.
-An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C' \times \R$, either
+An $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C' \times \R$, either
   $$
 \begin{aligned}
 \{ (\mathbf{x},t) &\mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\},\\
@@ -29,7 +29,8 @@ An - $(i_1,\ldots,i_{n-1},1)$-cell (sector cell) is a subset of the cylinder $C'
   where $f,g \colon C' \to \R$ are continuous definable functions such that $f(\mathbf{x}) < g(\mathbf{x})$ for all $\mathbf{x} \in C'$.
 :::
 
-If $C \subset \R^n$ is a cylindrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top ($C_T$), bottom ($C_B$) and side-wall ($C_W$).
+If $C \subset \R^n$ is a cylindrical cell, then it will be convenient to partition $\fr{C}$ into three subsets: the top
+($C_T$), bottom ($C_B$) and side-walls ($C_W$).
 
 First let $C$ be a sector $(i_1,\ldots,i_{n-1},1)$-cell and let $C' := \projop{n-1}(C)$. If $C$ is bounded from below by
 a continuous function $f \colon C' \to \R$, then $C_B$ is the graph of $f$. Similarly, if $C$ is bounded from above by
@@ -39,7 +40,7 @@ Now let $C$ be an $(i_1,\ldots,i_{k},0,\ldots,0)$-cell, where $i_{k}=1$, and $C'
 It may be simpler to think of $C_B$ as the definable set $\cl{C} \cap (C'_B \times \R^{n - k + 1})$ and $C_T$ as the definable set $\cl{C} \cap (C'_T \times \R^{n - k + 1})$.
 It is important to note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of continuous functions (see Definition \@ref(def:blow-up-point) and Example \@ref(exm:top-bottom-not-cylindrical).
 
-For both section and sector cells, let the side wall, $C_W$, be $\fr{C} \setminus (C_B \cup C_T)$.
+For both section and sector cells, let the side-walls, $C_W$, be $\fr{C} \setminus (C_B \cup C_T)$.
 There is no requirement that $C_W$ will be (a union of) cylindrical cells.
 
 ::: {.definition #blow-up-point }
@@ -104,9 +105,10 @@ If every cell in $\cal D$ satisfies the frontier condition, then the cylindrical
 We saw in Example \@ref(exm:top-bottom-not-cylindrical) that the top and bottom of a $2$-dimensional cylindrical section cell, even in $\R^3$, need not be a union of cylindrical cells.
 However, it is clear from the cylindrical property that, if $C$ is a $2$-dimensional section cell satisfying the frontier condition in a decomposition $\cal D$, then the top and bottom of $C$ are single cylindrical cells.
 If $C$ is a $2$-dimensional section cell, then it is said to satisfy the strong frontier condition if the
-$1$-dimensional components of its side-wall are $1$-dimensional section cells. This condition may be impossible, even in $\R^3$, as Example \@ref(exm:side-wall) demonstrates.
+$1$-dimensional components of its side-walls are $1$-dimensional section cells. This condition may be impossible, even
+in $\R^3$, as Example \@ref(exm:side-walls) demonstrates.
 
-::: {.example #side-wall}
+::: {.example #side-walls}
 Consider the two cylindrical cells
 $$
 V := \{ x > y > 0, z > 0, y = xz \}
@@ -118,8 +120,8 @@ $$
 I_1 = \{ (0,0,z) \mid 0 \le z \le 1/2 \}, I_2 = \{ (0,0,z) \mid 1/2 \le z \le 1 \}
 $$
 and the point $$v = (0,0,1/2).$$
-Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only $1$-dimensional component of the side-wall of $V$ and
-$I_1$ is the only $1$-dimensional component of the side-wall of $W$. In order to obtain the strong frontier condition,
+Observe that $I = \{ (0,0,z) \mid 0 \le z \le 1 \}$ is the only $1$-dimensional component of the side-walls of $V$ and
+$I_1$ is the only $1$-dimensional component of the side-walls of $W$. In order to obtain the strong frontier condition,
 we need to partition $V$ into (at least) three cylindrical cells $V',V'',V'''$, one of which, say $V''$, will be $1$-dimensional. $V''$ should have endpoint $v$ (i.e., $\cl{V''} \cap I = v$).
 The tangent at the origin of $c := \projop{2}(V'')$ is $1/2$. The pre-image of the projection map $W' :=
 \projop{2}^-1\vert_{\cl{W}}(c)$ would satisfy the condition $\cl{W'} \cap I = v'$, where $v' = (0,0,1/4)$. However, $v'$
@@ -140,7 +142,7 @@ is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the g
 ::: { .proposition }
 [@bgv15, Lemma 3.4]
 
-Let $C \subset \R^n$ be a $2$-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-wall $W \subset \fr{C}$ has exactly two connected components, each of which is either a point or a closed curve interval.
+Let $C \subset \R^n$ be a $2$-dimensional cylindrical cell which is the graph of a quasi-affine map. Then the side-walls $W \subset \fr{C}$ has exactly two connected components, each of which is either a point or a closed curve interval.
 :::
 
 ::: {.remark}
