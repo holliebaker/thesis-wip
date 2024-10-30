@@ -179,8 +179,10 @@ The fundamental theorem of algebra implies that for the coefficients of $\mathbf
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm proposed by @collins1975, closely following @coste2000, for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
 
-Collins' algorithm uses the idea of projection and lifting. More precisely, successive projections of the set of input polynomials to smaller and smaller dimensions are taken, until a set of univariate polynomials is obtained. The CAD of $\R^1$ is constructed by isolating the roots of these univariate polynomials, with section cells being the roots and sector cells being the open intervals in between them. The lifting phase then works recursively: given a collection of cells in $\R^k$ and a set of polynomials in $\R^{k+1}$, the roots of these polynomials within each cell $C$ are isolated. The section cells in the cylinder $C \times \R$ are the roots of these polynomials, while the sector cells are the bands in between the roots. The projection operation was designed such that the cylindrical property holds. I.e., above $C$, each polynomial has a constant number of roots and the roots of no two polynomials "cross over" each other.
-The second property is called delineability.
+Collins' algorithm uses the idea of projection and lifting. More precisely, successive projections of the set of input polynomials to smaller and smaller dimensions are taken, until a set of univariate polynomials is obtained. The CAD of $\R^1$ is constructed by isolating the roots of these univariate polynomials, with section cells being the roots and sector cells being the open intervals in between them. The lifting phase then works recursively: given a collection of cells in $\R^k$ and a set of polynomials in $\R^{k+1}$, the roots of these polynomials within each cell $C$ are isolated. The section cells in the cylinder $C \times \R$ are the roots of these polynomials, while the sector cells are the bands in between the roots.
+The projection operator was designed such that, in the cylinder above $C$, each polynomial has a constant number of roots and the roots of no two polynomials "cross over" each other.
+The second property is called delineability. These properties allow us to construct the cells in the cylinder above $C$
+by lifting over its sample point.
 
 Let us begin the description of the algorithm by considering a single polynomial $f \in \Z[x_1,\ldots,x_n]$.
 We want to partition $\R^{n-1}$ into connected semialgebraic sets $C'$ such that, for all $\mathbf{x} \in C'$, $f(\mathbf{x},x_n)$ has constant degree and a constant number of roots.
@@ -201,7 +203,7 @@ Moreover, the multiplicity of each of these roots is constant.
 The argument relies on the "continuity of roots":
 
 > Fix $\mathbf{c} \in C'$ and let $z_1,\ldots,z_k$ be the distinct roots of $f(\mathbf{c},x_n)$ with multiplicities $m_1,\ldots,m_k$.
-Choose $\varepsilon > 0$ small enough that the open discs $D(z_i,\varepsilon), z_i \in \mathbb{C}$ (center $z_i$, radius $\varepsilon$) are disjoint. If $\mathbf{b} \in C'$ is sufficiently close to $\mathbf{c}$, then the polynomial $f(\mathbf{b}, x_n)$ has exactly $m_i$ roots, counted with multiplicities, in $D(z_i,\varepsilon)$ for $1\le i \le k$.
+Choose $\varepsilon > 0$ small enough that the open discs $D(z_i,\varepsilon), z_i \in \mathbb{C}$ (centre $z_i$, radius $\varepsilon$) are disjoint. If $\mathbf{b} \in C'$ is sufficiently close to $\mathbf{c}$, then the polynomial $f(\mathbf{b}, x_n)$ has exactly $m_i$ roots, counted with multiplicities, in $D(z_i,\varepsilon)$ for $1\le i \le k$.
 
 Since $f(\mathbf{b},x_n)$ has $k$ distinct complex roots, and $d = m_1+ \ldots + m_k$ complex roots counted with multiplicities, it follows that each $D(z_i,\varepsilon)$ contains exactly one root, denoted $\zeta_i$, of $f(\mathbf{b},x_n)$ with multiplicity $m_i$.
 If $z_i$ is real, then $\zeta_i$ is real, otherwise the complex conjugate of $\zeta_i$ would be another root of $f(\mathbf{b},x_n)$ in the disc $D(z_i,\varepsilon)$.
@@ -209,7 +211,7 @@ If $z_i$ is complex then $\zeta_i$ is also complex, since the conjugation of eve
 It follows that, if $\mathbf{b} \in C'$ is close enough to $\mathbf{c}$, then $f(\mathbf{c},x_n)$ has the same number of real roots as $f(\mathbf{b},x_n)$. Since $C'$ is connected, $f(\mathbf{x},x_n)$ has the same number of real roots at every point $\mathbf{x} \in C'$, say $\ell$.
 Define $\psi_i(\mathbf{x}) \colon C' \to \R$ to be the continuous (by making $\varepsilon$ small enough) semialgebraic function sending $\mathbf{x} \in C'$ to the $i$-th (in ascending order) real root of $f(\mathbf{x},x_n)$. It follows from the connectedness of $C'$ that each $\psi_i$ has constant multiplicity.
 Observe that the graph of each $\psi_i$ can be expressed by a first-order Boolean formula, using existential quantifiers to express each of the $\ell$ roots of $f(\mathbf{x},x_n)$ and an equality condition to pick out the $i$-th root.
-It follows that the graph of each functin $\psi_i$ is a semialgebraic set.
+It follows that the graph of each function $\psi_i$ is a semialgebraic set.
 :::
 
 To extend this result to more than one polynomial, we also need to ensure that the graphs corresponding to each root never intersect.
