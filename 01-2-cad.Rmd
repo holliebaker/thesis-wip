@@ -87,7 +87,8 @@ Define $\cal D'$ to be the set of all projections $C' := \projop{n-1}(C)$ for al
 $\cal D$ is a cylindrical decomposition of $\R^n$ if $\cal D'$ is a cylindrical decomposition of $\R^{n-1}$. We call $\cal D'$ the decomposition of $\R^{n-1}$ induced by $\cal D$.
 :::
 
-Less formally, a partition $\cal D$ of $\R^n$ into definable subsets is cylindrical if the projection of any two cells of $\cal D$ onto $\R^{n-1}$ is either disjoint or coincides.
+Less formally, a partition $\cal D$ of $\R^n$ into definable subsets is cylindrical if the projection of any two cells
+of $\cal D$ onto $\R^{n-1}$ is either disjoint or identical.
 
 ::: {.definition}
 Let $S \subset \R^n$ be a definable set. A cylindrical decomposition $\cal D$ is compatible with $S$ if every cell $C$ of $\cal D$ is either a subset of $S$ or disjoint from $S$.
