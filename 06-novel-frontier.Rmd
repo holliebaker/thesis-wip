@@ -85,7 +85,7 @@ $$
 $$
 This is also an upper bound on the number of polynomials, their maximum degree, and the number of cells in the CAD it produces.
 Several variants of the classical CAD algorithm exist. The most convenient version for our situation takes as input a set $\{ F_1,\ldots,F_k \}$ of QFF and returns a CAD compatible with each set $S_i \subset \R^n$ represented by the formula $F_i$, $1 \le i \le k$. The same bounds on complexity, number of cells, number of polynomials and degrees as obtained in Proposition \@ref(prp:collins) is obtained, where $s$ is the number of different polynomials appearing in formulas $F_1,\ldots,F_k$ and $d$ is their maximum degree.
-An algorithm for constructing such a CAD is presented by @collins1991, and an alternative approach is presented by @bradford2014.
+An algorithm for constructing such a CAD is presented by @collins1991, and an alternative approach is presented by @bradford2016.
 
 The following algorithm allows us to compute the frontier of $S$: $\fr{S}=\cl {S} \setminus S$
 It is a straightforward application of a singly exponential quantifier elimination algorithm.

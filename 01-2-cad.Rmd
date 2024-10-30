@@ -320,10 +320,10 @@ such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \
 
 This follows from the results previously proved. Applying Theorem \@ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtain a set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift), we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
 
-### Bounds and variations
+### Complexity bounds and variations
 
 We have described how to construct a CAD of $\R^n$ which is sign-invariant with respect to a set of polynomials. We now
-present the bounds, along with some variations, from @bpr2006.
+present the complexity bounds, along with some variations, from @bpr2006.
 
 ::: { .proposition #collins }
 [@bpr2006, Algorithm 11.2]
@@ -342,11 +342,11 @@ Indeed, @davenportHeintz1988 give an example of a CAD in which a doubly exponent
 ::: { .corollary #collins-sets}
 Let $S_1,\ldots,S_k$ be a finite collection of semialgebraic subsets of $\R^n$ defined by quantifier-free Boolean formulas $F_1,\ldots,F_k$ respectively. Together, these formulas include $s$ different polynomials in $\Z[x_1,\ldots,x_n]$ with maximum degree $d$.
 There is an algorithm, taking $\{F_1,\ldots,F_k\}$ as input, which produces a cylindrical decomposition $\mathcal E$ of $\R^n$ compatible with each set $S_i, 1 \le i \le k$.
-Complexity, number of cells, number of polynomials and degrees are the same as in Proposition \@ref(prp:collins) but, in practice, more efficient algorithms exist (see e.g., @collins1991 and @bradford2014).
+Complexity, number of cells, number of polynomials and degrees are the same as in Proposition \@ref(prp:collins) but, in practice, more efficient algorithms exist (see e.g., @collins1991 and @bradford2016).
 :::
 
 ::: { .proof }
-This construction follows immediately from Proposition \@ref(prp:collins), where truth values of $F_1,\ldots,F_k$ associated to each cell.
+This construction follows immediately from Proposition \@ref(prp:collins), where truth values of $F_1,\ldots,F_k$ are associated to each cell.
 The complexity upper bound (and bounds on number of cell, polynomials and degrees) is the same as in Proposition \@ref(prp:collins).
 :::
 
@@ -363,8 +363,8 @@ Immediate, by applying Corollary \@ref(cor:collins-set) to $\{ F \}$.
 :::
 
 The construction described in Corollary \@ref(cor:collins-sets) is somewhat naive.
-A far more efficient algorithm are presented in e.g., @collins1991. An alternative approach is presented by @bradford2014.
-While very useful in practice, these constructions are unable to lower the upper bound from Proposition \@ref(prp:collins) due to some extreme cases, e.g., when the input formulas define a sign-invariant CAD (see @bradford2014, Section 6.2.1].
+A far more efficient algorithm is presented in e.g., @collins1991. An alternative approach is presented by @bradford2016.
+While very useful in practice, these constructions are unable to lower the upper bound from Proposition \@ref(prp:collins) due to some extreme cases, e.g., when the input formulas define a sign-invariant CAD (see @bradford2016, Section 6.2.1).
 
 ### The projection operator
 
