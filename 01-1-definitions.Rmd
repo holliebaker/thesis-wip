@@ -248,6 +248,12 @@ Let $\mathbf{f} = (f_1,\ldots,f_k) \colon X \to \R^k$ be a bounded continuous ma
 subset $X \subset \R^n$ having the graph $Y \subset \R^{n+k}$. Then $\mathbf{f}$ is called quasi-affine if, for any coordinate subspace $L \subset \R^{n+k}$, the restriction $\proj_{L}\vert_Y$ is injective if and only if $\proj_{L}(Y)$ is $n$-dimensional.
 :::
 
+::: {.remark}
+The term quasi-affine map is not to be confused with quasi-affine variety.
+Rather, it is a generalisation of the concept of an affine map from linear algebra.
+Every affine map satisfies the definition of a quasi-affine map, but the definition also allows non-linear maps.
+:::
+
 ::: { .definition #monotone-map }
 [@bgv15, Definition 2.3]
 
