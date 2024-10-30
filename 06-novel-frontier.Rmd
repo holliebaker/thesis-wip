@@ -55,7 +55,7 @@ Occasionally, First-Order formulas, a wider class of formulas in which some vari
 Let $S \subset \R^n$ be a semialgebraic set defined by a QFF $F$ with $s$ different polynomials of maximum degree $d$ in $\R[x_1,\ldots,x_n]$.
 There is an algorithm, taking $F$ as input, which outputs a cylindrical decomposition $\mathcal D$ of $\R^n$ compatible with $S$ and
 satisfying the frontier condition.
-The complexity of this algorithm is $(sd)^{O(1)^{n2^n}}$.
+The complexity of this algorithm is $(sd)^{\O(1)^{n2^n}}$.
 This is also an upper bound on the number of cells in $\mathcal D$, number of polynomials defining cells and their degrees.
 :::
 
@@ -81,7 +81,7 @@ This will allow us to apply Theorem \@ref(thm:main) to semialgebraic sets repres
 We presentd the classical CAD algorithm due to @collins1975, as formulated in @bpr2006, Algorithm 11.2, in \@ref(prp:collins).
 Given a set of $s$ different polynomials with maximum degree $d$ in $\Z[x_1,\ldots,x_n$, this algorithm has complexity
 $$
-(sd)^{O(1)^{n}}.
+(sd)^{\O(1)^{n}}.
 $$
 This is also an upper bound on the number of polynomials, their maximum degree, and the number of cells in the CAD it produces.
 Several variants of the classical CAD algorithm exist. The most convenient version for our situation takes as input a set $\{ F_1,\ldots,F_k \}$ of QFF and returns a CAD compatible with each set $S_i \subset \R^n$ represented by the formula $F_i$, $1 \le i \le k$. The same bounds on complexity, number of cells, number of polynomials and degrees as obtained in Proposition \@ref(prp:collins) is obtained, where $s$ is the number of different polynomials appearing in formulas $F_1,\ldots,F_k$ and $d$ is their maximum degree.
@@ -93,7 +93,8 @@ It is a straightforward application of a singly exponential quantifier eliminati
 ::: {.lemma #frontier}
 Let $S \subset \R^n$ be a semialgebraic set defined by a QFF $F$
 containing $s$ different polynomials in $\R [x_1, \ldots ,x_n]$ having maximum degree $d$.
-There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr{S}$ by a QFF $F'$ with complexity $(sd)^{O(n^2)}$.
+There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr{S}$ by a QFF $F'$ with
+complexity $(sd)^{\O(n^2)}$.
 This is also an upper bound on the number of polynomials in $F'$ and their degrees.
 :::
 
@@ -228,19 +229,19 @@ First some basic subroutines are defined.
   - **Input:** $\mathcal{D}$ is a CAD of $\R^n$ and $\{ F_1, \ldots, F_k \}$ is a set of QFFs. Each $F_i, 1 \le i \le k$ defines a semialgebraic set $S_i \subset \R^n$. Formulas $F_i$ and those defining cells of $\mathcal{D}$ contain $s$ different polynomials of maximum degree $d$ in $\Z[x_1,\ldots,x_n]$.
   - **Output:** $\mathcal{E}$ is a refinement of $\mathcal{D}$ compatible with each of the sets $S_i$.
   - **Description:** Construct a "classical" CAD of $\R^n$, compatible with $\{ F_1, \ldots, F_k \}$ and all cells of $\mathcal{D}$ using classical CAD algorithm (see Proposition \@ref(prp:collins)).
-  - **Complexity:** $(sd)^{O(1)^{n}}$.
+  - **Complexity:** $(sd)^{\O(1)^{n}}$.
 
 - $G := \fr{F}$
   - **Input:** $F$, a QFF defining a semialgebraic set $X \subset \R^n$. Formula $F$ contains $s$ different polynomials of maximum degree $d$ in $\Z[x_1,\ldots,x_n]$.
   - **Output:** $G$, a QFF defining a semialgebraic set $Y \subset \R^n$ such that $Y$ is the frontier of $X$.
   - **Description:** Represent the frontier of $X$ as a first-order formula and apply quantifier elimination to obtain $G$ (see Lemma \@ref(lem:frontier)).
-  - **Complexity:** $(sd)^{O(n^2)}$.
+  - **Complexity:** $(sd)^{\O(n^2)}$.
 
 - $N := \rm{Decrement}(M)$
   - **Input:** $M \in \{0,1\}^k, k > 0$.
   - **Output:** $N \in \{0,1\}^k$ is the index immediately prior to $M$ with respect to $\lex$.
   - **Description:** Straightforward. E.g., view $M$ as an unsigned integer in binary and subtract 1.
-  - **Complexity:** $O(1)$.
+  - **Complexity:** $\O(1)$.
 
 We now present the algorithm from Theorem \@ref(thm:main).
 
@@ -256,7 +257,7 @@ $F$: a QFF representing a semialgebraic set $S \subset \R^n$.
 A CAD $\mathcal D$ of $\R^n$ compatible with $S$ and satisfying the frontier condition.
 
 **Complexity:**
-$$(sd)^{O(1)^{n2^n}}$$
+$$(sd)^{\O(1)^{n2^n}}$$
 where $F$ contains $s$ different polynomials of maximum degree $d$ in $\Z[x_1,\ldots,x_n]$.
 
 - Initialise $M = (i_1,\ldots,i_{n-1}) := (1,\ldots,1) \in \{0,1\}^{n-1}$.
@@ -475,32 +476,32 @@ It follows that every cell of $\mathcal{D}$ satisfies the frontier condition.
 ### Complexity
 
 The number of different indices $(i_1, \ldots, i_n)$, where each $i_k \in \{ 0,1 \}$, is $2^n$.
-Therefore, the algorithm makes $O(2^n)$ "steps": computing successive pairs $({\mathcal E}_M, \mathcal{F}_M)$ in the sequence (\ref{eq:sequence}).
+Therefore, the algorithm makes $\O(2^n)$ "steps": computing successive pairs $({\mathcal E}_M, \mathcal{F}_M)$ in the sequence (\ref{eq:sequence}).
 In each step, we compute the next pair $(\mathcal{E}_N,\ \mathcal{F}_N)$ from $(\mathcal{E}_M,\ \mathcal{F}_M)$, using Proposition \@ref(prp:collins) and Lemma \@ref(lem:frontier).
 
 First, Proposition \@ref(prp:collins) is applied to compute $\mathcal{E}_N$, the CAD of $\R^n$ compatible with all cells of $\mathcal{E}_M$ and the sets defined by formulas in $\mathcal{F}_M$. The complexity of this operation depends on the number of polynomials, $s_M$, and their maximum degree, $d_M$, defining $(\mathcal{E}_M,\ \mathcal{F}_M)$.
 The complexity of this operation is
 $$
-(s_Md_M)^{O(1)^n}.
+(s_Md_M)^{\O(1)^n}.
 $$
 Since this is also an upper bound on the number of cells, number of polynomials and their degrees defining $\mathcal{E}_N$, let
 $$
-s_N:=(s_Md_M)^{O(1)^n} \text{ and } d_N:=(s_Md_M)^{O(1)^n}.
+s_N:=(s_Md_M)^{\O(1)^n} \text{ and } d_N:=(s_Md_M)^{\O(1)^n}.
 $$
 
 We now compute the set of frontiers $\mathcal{F}_N$ of cells of $\mathcal{E}_M$ with index $(i_1,\ldots,i_{n-1},i_n)$.
 The complexity of applying Lemma \@ref(lem:frontier) is
-$(s_Md_M)^{n^2O(1)^n},$
-which is asymptotically the same as $(s_Md_M)^{O(1)^n}$.
-Thus, the overall complexity of this "step" is again $$(s_Md_M)^{O(1)^n}.$$
+$(s_Md_M)^{n^2\O(1)^n},$
+which is asymptotically the same as $(s_Md_M)^{\O(1)^n}$.
+Thus, the overall complexity of this "step" is again $$(s_Md_M)^{\O(1)^n}.$$
 
 The overall complexity is obtained by iterating this process for each index. E.g., the complexity of passing from $(\mathcal{E}_M\, \mathcal{F}_M)$ to $(\mathcal{E}_L\, \mathcal{F}_L)$, where $M \lex N \lex L$ are subsequent indices in the lexicographical order, would be
 $$
-(s_Nd_N)^{O(1)^n} = \left((s_Md_M)^{O(1)^n}(s_Md_M)^{O(1)^n}\right)^{O(1)^n}
+(s_Nd_N)^{\O(1)^n} = \left((s_Md_M)^{\O(1)^n}(s_Md_M)^{\O(1)^n}\right)^{\O(1)^n}
 $$
 Iterating this $2^n$ times, with initial parameters $s_{(1, \ldots,1)}=s$ and $d_{(1, \ldots,1)}=d$ being the number of input polynomials and their maximum degree, we obtain an overall complexity of
 $$
-(sd)^{O(1)^{n2^n}}.
+(sd)^{\O(1)^{n2^n}}.
 $$
 According to Proposition \@ref(prp:collins) and Lemma \@ref(lem:frontier), this is also an upper bound on the number of cells in $\mathcal D={\mathcal E}_{\mathbf{0}}$, the number of polynomials defining cells and their degrees.
 

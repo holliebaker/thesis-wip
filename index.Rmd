@@ -85,6 +85,7 @@ A description, including pseudo-code, and implementation of an algorithm, presen
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\A}{\mathbb{A}}
 
+\renewcommand{\O}{\mathcal{O}}
 \newcommand{\sign}{\operatorname{sign}}
 \newcommand{\proj}{\operatorname{proj}}
 \newcommand{\lcm}{\operatorname{lcm}}
@@ -272,7 +273,7 @@ such that, if $X$ is nonsingular, $X_0 = X$ and all other sets are empty.
 Otherwise, $X_0 = \emptyset$ and each $X_k, 1 \le k \le n$ is a possibly empty, effectively nonsingular stratum of codimension $k$.
 This algorithm has complexity
 $$
-3^{s}\left(s(d+1)\right)^{O(n)^{2}}.
+3^{s}\left(s(d+1)\right)^{\O(n)^{2}}.
 $$
 The number of strata does not exceed $s^{n} (d + 1)^2$, and each stratum is defined by at most $s (d + 1)^2$ polynomial equations and inequalities of maximum degree $(d + 1)^2$.
 :::
@@ -299,7 +300,7 @@ be quantifier-free Boolean formulas containing $s$ different polynomials $\mathb
 Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs a cylindrical algebraic decomposition $\mathcal{D}$ of $\R^n$ satisfying the frontier condition, and monotone with respect to each $V_1, \ldots, V_k$.
 This algorithm has complexity
 $$
-\left(s\left(d+1\right)\right)^{O(1)^n},
+\left(s\left(d+1\right)\right)^{\O(1)^n},
 $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
@@ -320,7 +321,7 @@ be quantifier-free Boolean formulas containing $s$ different polynomials $\mathb
 Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$, which is obviously compatible with each $V_1,\ldots,V_k$, such that each cell $C \subset V_1\cup \ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
 This algorithm has complexity
 $$
-\left(s\left(d+1\right)\right)^{O(1)^n},
+\left(s\left(d+1\right)\right)^{\O(1)^n},
 $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
@@ -338,7 +339,7 @@ Let $\mathbf{F} = \{f_1,\ldots,f_s\}$ be a set of polynomials in $\Z[x_1,\ldots,
 Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ monotone with respect to each $V_1, \ldots, V_k$.
 This algorithm has complexity
 $$
-\left(s\left(d+1\right)\right)^{O(1)^n},
+\left(s\left(d+1\right)\right)^{\O(1)^n},
 $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
@@ -357,7 +358,7 @@ Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$, monotone with resp
 Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ of $\mathcal{D'}$ satisfies the frontier condition.
 This algorithm has complexity...
 $$
-\left(s\left(d+1\right)\right)^{O(1)^n},
+\left(s\left(d+1\right)\right)^{\O(1)^n},
 $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
@@ -371,7 +372,7 @@ The final contribution, in Chapter \@ref(sec:novel-frontier), is a novel algorit
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$ with $s$ different polynomials of maximum degree $d$ in $\R[x_1,\ldots,x_n]$.
 There is an algorithm, taking $F$ as input, which outputs a cylindrical decomposition $\mathcal D$ of $\R^n$ compatible with $S$ and
 satisfying the frontier condition.
-The complexity of this algorithm is $(sd)^{O(1)^{n2^n}}$.
+The complexity of this algorithm is $(sd)^{\O(1)^{n2^n}}$.
 This is also an upper bound on the number of cells in $\mathcal D$, number of polynomials defining cells and their degrees.
 :::
 

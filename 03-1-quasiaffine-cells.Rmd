@@ -23,7 +23,7 @@ be quantifier-free Boolean formulas containing $s$ different polynomials $\mathb
 Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map. $\mathcal{D}$ is obviously compatible with each $V_1,\ldots,V_K$.
 This algorithm has complexity
 $$
-\left(s\left(d+1\right)\right)^{2^{O(n)}},
+\left(s\left(d+1\right)\right)^{2^{\O(n)}},
 $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
@@ -194,7 +194,7 @@ critical points of projections of the smooth $2$-dimensional locus of $V_1\cup \
 Let us examine the complexity by supposing that the smooth stratification algorithm is used to find the smooth $2$-dimensional locus of $V = V_1\cup \ldots \cup V_k \subset \R^n$, defined by $s$ polynomials having maximum degree $d$.
 By the result from Section \@ref(sec:strat-complexity), the smooth stratification step with emptiness checking has complexity
 $$
-3^{s}\left(s(d+1)\right)^{O(n)^{2}}
+3^{s}\left(s(d+1)\right)^{\O(n)^{2}}
 $$
 The critical points of $1$- and $2$- dimensional strata are then computed. This is done by computing determinants of $(n-1)$- and $(n-2)$-dimensional Jacobi matrices, containing the $n-1$ and $n-2$ polynomial equations which define the strata of codimension $1$ and $2$ respectively.
 These polynomials have maximum degree $(d + 1)^{2}$.
@@ -210,30 +210,30 @@ Accordirg to Section \@ref(sec:strat-complexity), the smooth stratification algo
 A classical CAD, having constant sign on the $s$ input polynomials along with the $n \left(s^n (d+1)^2\right)$ Jacobi determinants, which have maximum degree $n(d + 1)^{2}$, is then constructed.
 According to Proposition \@ref(prp:collins) (@bpr2006, Algorithm 11.2), classical CAD has complexity
 $$
-\left(s'd'\right)^{O(1)^{n}},
+\left(s'd'\right)^{\O(1)^{n}},
 $$
 where $s'$ is the number of input polynomials and $d'$ their maximum degree.
 Using the bounds obtained from the application of smooth stratification, we get
 $$
-\left(\left(s+n\left(s^{n}(d+1)^{2}\right)\right)n\left(d+1\right)^{2}\right)^{O(1)^{n}},
+\left(\left(s+n\left(s^{n}(d+1)^{2}\right)\right)n\left(d+1\right)^{2}\right)^{\O(1)^{n}},
 $$
 Which can be simplified to
 $$
-\left(n s^n \left(d+1\right)\right)^{O(1)^n}.
+\left(n s^n \left(d+1\right)\right)^{\O(1)^n}.
 $$
-Since the expression $n^{O(1)^{n}}$ can be simplified to $2^{O(1)^{n}}$ we get an upper complexity bound, for constructing a quasi-affine CAD, of
+Since the expression $n^{\O(1)^{n}}$ can be simplified to $2^{\O(1)^{n}}$ we get an upper complexity bound, for constructing a quasi-affine CAD, of
 $$
-\left(s(d+1)\right)^{O(1)^{n}}.
+\left(s(d+1)\right)^{\O(1)^{n}}.
 $$
 By Proposition \@ref(prp:collins), this is also an upper bound on the number of cells, number of polynomials defining the CAD and their maximum degree.
 
 Adding the stratification step, we get a total complexity of
 $$
-3^{s}\left(s(d+1)\right)^{O(n)^{2}}
-+ \left(s(d+1)\right)^{O(1)^{n}},
+3^{s}\left(s(d+1)\right)^{\O(n)^{2}}
++ \left(s(d+1)\right)^{\O(1)^{n}},
 $$
 which is bounded from above by the doubly exponential CAD computation, leading to a complexity upper bound of
 $$
-\left(s(d+1)\right)^{O(1)^{n}}.
+\left(s(d+1)\right)^{\O(1)^{n}}.
 $$
 

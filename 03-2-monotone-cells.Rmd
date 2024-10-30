@@ -78,7 +78,7 @@ Let $\mathbf{F} = \{f_1,\ldots,f_s\}$ be a set of polynomials in $\Z[x_1,\ldots,
 Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ monotone with respect to each $V_1, \ldots, V_k$.
 This algorithm has complexity
 $$
-\left(s\left(d+1\right)\right)^{{O(1)^n}},
+\left(s\left(d+1\right)\right)^{{\O(1)^n}},
 $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
@@ -728,11 +728,11 @@ The Jacobi determinant, defined in Equation \@ref(eq:jacobi-det-2), is computed 
 As discussed in Section \@ref(sec:quasi-complexity), the determinant of a $(k \times k)$-matrix of polynomials with maximum degree $d$ is a polynomial of maximum degree $kd$.
 Also from Section \@ref(sec:quasi-complexity), the complexity of computing the CAD with quasi-affine cells is
 $$
-(s(d+1))^{O(1)^{n}},
+(s(d+1))^{\O(1)^{n}},
 $$
 which, according to Proposition \@ref(prp:collins), is also an upper bound on the number of polynomials, their degree and the number of cells in this CAD.
-Thus, the degree of the polynomial defined in Equation \@ref(eq:jacobi-det) is at most $n\cdot(s(d+1))^{O(1)^{n}}$, which is asymptotically the same as
-$(s(d+1))^{O(1)^{n}}$.
+Thus, the degree of the polynomial defined in Equation \@ref(eq:jacobi-det) is at most $n\cdot(s(d+1))^{\O(1)^{n}}$, which is asymptotically the same as
+$(s(d+1))^{\O(1)^{n}}$.
 
 We then compute the $x_1$-coordinates of the solutions to the $0$-dimensional system of equations (defined in Equations \@ref(eq:lagrange-solve)), subject to the inequalities (defined in Equation \@ref(eq:lagrange-solve-ineqs)). In the implementation, CAD projection is used to compute a family of polynomials ${\cal F}$, defined in Equation \@ref(eq:lagrange-solve-projected), such that the required refinement points contain their roots.
 As we are well aware, the number of polynomials and their degrees will be doubly exponential in $n$. However, a better bound on the number of refinement points can be obtained.
@@ -745,25 +745,25 @@ For a semialgebraic set $S \subset \R^n$ defined by a conjunction of any number 
 This bound is sufficient for our situation because the inequalities define a subset of these roots.
 Using the upper bound on the degrees of polynomials defining the CAD and the determinant of the matrix, along with the bound on the number of roots given by Bezout's theorem, we get a bound for the number of refinement points of
 $$
-\left(s(d+1)\right)^{n \cdot O(1)^{n}}.
+\left(s(d+1)\right)^{n \cdot \O(1)^{n}}.
 $$
 This is asymptotically the same as
 $$
-(s(d+1))^{O(1)^{n}}.
+(s(d+1))^{\O(1)^{n}}.
 $$
 
 For the cell $C$, this process is repeated at most $2(n-2)$ times, and then repeated for each $2$-dimensional cell in the CAD contained in the input set $V$.
 There are at most
 $$
-(s(d+1))^{O(1)^{n}}
+(s(d+1))^{\O(1)^{n}}
 $$
 cells in total, which is obviously an upper bound on the cells of dimension $2$. Thus, we get an upper bound on the number of refinement points of
 $$
-\left((s(d+1))^{O(1)^{n}}\right)^2
+\left((s(d+1))^{\O(1)^{n}}\right)^2
 $$
 which is asymptotically the same as
 $$
-(s(d+1))^{O(1)^{n}}.
+(s(d+1))^{\O(1)^{n}}.
 $$
 Thus, we obtain a bound on the total number of refinement points, which is asymptotically the same as the bound on the number of cells in the CAD containing quasi-affine cells. This gives us an upper bound on the complexity, number of cells, number of polynomials and degrees defining a CAD which is monotone with respect to all $V_1,\ldots,V_k$.
 

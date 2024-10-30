@@ -62,7 +62,7 @@ The most computationally difficult part of implementing this construction is com
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$
 containing $s$ different polynomials in $\R [x_1, \ldots ,x_n]$ having maximum degree $d$.
 There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr{ S }$ by a quantifier-free Boolean formula $F'$ with complexity
-$$(sd)^{O(n^2)}.
+$$(sd)^{\O(n^2)}.
 $$
 This is also an upper bound on the number of polynomials in $F'$ and their degrees.
 :::
@@ -99,7 +99,7 @@ Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$, compatible with so
 Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ of $\mathcal{D'}$ satisfies the frontier condition.
 This algorithm has complexity
 $$
-\left(s\left(d+1\right)\right)^{O(1)^{n}},
+\left(s\left(d+1\right)\right)^{\O(1)^{n}},
 $$
 which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
 :::
@@ -703,28 +703,28 @@ bottom, which are $1$-dimensional cells, satisfy the frontier condition.
 #### Complexity
 
 We will see, in Section \@ref(sec:novel-frontier), that there is an algorithm for obtaining the frontier condition on a
-CAD compatible with a semialgebraic set of arbitrary dimension. This algorithm has complexity $(sd)^{O(1)^{n2^n}}$ --
+CAD compatible with a semialgebraic set of arbitrary dimension. This algorithm has complexity $(sd)^{\O(1)^{n2^n}}$ --
 triply exponential in the number of variables. However, in the particular case of semialgebraic sets having dimension at
 most $2$, the complexity may be lower. This is now discussed.
 
 Let us first discuss complexity in relation to the procedure described by @bgv15 in Theorem 3.20. Given the family $V_1,\ldots,V_k$, $\fr{C}$ is computed for each $2$-dimensional cell $C \subset V_1\cup \ldots \cup V_k$ According to Lemma \@ref(lem:frontier), there is an algorithm, which uses @bpr2006 Algorithm 14.21 as its main subroutine, for computing $\fr{C}$, having complexity $$
-(sd)^{O(n^2)},
+(sd)^{\O(n^2)},
 $$
 where $C$ is defined by $s$ different polynomials of maximum degree $d$.
 $C$ has constant sign on all polynomials defining the CAD, so, using the bounds discussed in Sections \@ref(sec:quasi-complexity) and \@ref(sec:monotone-complexity), the complexity upper bound for computing $\fr{C}$ is
 $$
-\left(\left(s(d+1)\right)^{O(1)^{n}}\cdot\left(s(d+1)\right)^{O(1)^{n}}\right)^{O(n^2)},
+\left(\left(s(d+1)\right)^{\O(1)^{n}}\cdot\left(s(d+1)\right)^{\O(1)^{n}}\right)^{\O(n^2)},
 $$
 which is asymptotically the same as
 $$
-(s(d+1))^{O(1)^{n}}..
+(s(d+1))^{\O(1)^{n}}..
 $$
-Note that, in some cases, only some of the $\left(s(d+1)\right)^{O(1)^{n}}$ polynomials are required to define the cell $C$.
+Note that, in some cases, only some of the $\left(s(d+1)\right)^{\O(1)^{n}}$ polynomials are required to define the cell $C$.
 This is, according to Lemma \@ref(lem:frontier), an upper bound on the number of polynomials and their degrees in the QFF defining $\fr{C}$.
 The procedure requires us to partition $\fr{C}$ into points and monotone curve intervals.
 In order to do this, a similar process  that used to obtain monotone cells (see Section \@ref(sec:monotone-cells)) can be used. This will be repeated for each of the $2$-dimensional cells contained in $V_1\cup \ldots \cup V_k$. As such, the overall complexity will be the same as that presented in Section \@ref(sec:monotone-complexity). I.e.,
 $$
-(s(d+1))^{O(1)^{n}}.
+(s(d+1))^{\O(1)^{n}}.
 $$
 
 Now let us consider the extension of @lazard10, discussed in Section \@ref(sec:lazard-n).
@@ -736,27 +736,30 @@ Groebner basis is doubly exponential in the number of variables -- $2^{2^n}$ [@m
 $$
 n \cdot 2^{2^n} = 2^{n 2^n}.
 $$
-The bound on the number of bad cells is unknown, but it is obviously bounded from above by the total number of cells in the induced decomposition of $\R^{n-1}$. I.e., $(s(d+1))^{O(1)^{n-1}}$.
+The bound on the number of bad cells is unknown, but it is obviously bounded from above by the total number of cells in
+the induced decomposition of $\R^{n-1}$. I.e., $(s(d+1))^{\O(1)^{n-1}}$.
 It follows that the complexity of the algorithm arising from the generalisation of Lazard is
 $$
-(s(d+1))^{O(1)^{n-1}} \cdot 2^{n 2^n},
+(s(d+1))^{\O(1)^{n-1}} \cdot 2^{n 2^n},
 $$
 which is bounded from above by
 $$
-(s(d+1))^{O(1)^{n}}.
+(s(d+1))^{\O(1)^{n}}.
 $$
 
 Both approaches -- @bgv15 and the generalisation of @lazard10 -- have the same complexity upper bound.
 
-To summarise, each of the three stages -- quasi-affine, monotone and frontier condition -- of the algorithm for computing a CAD which is monotone with respect to all $V_1,\ldots,V_k$, such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, and satisfying the frontier condition each has complexity $(s(d+1))^{O(1)^{n}}$.
+To summarise, each of the three stages -- quasi-affine, monotone and frontier condition -- of the algorithm for
+computing a CAD which is monotone with respect to all $V_1,\ldots,V_k$, such that $\dim(V_i) \le 2$ for all $1 \le i \le
+k$, and satisfying the frontier condition each has complexity $(s(d+1))^{\O(1)^{n}}$.
 Thus, the overall complexity of this algorithm is
 $$
-(s(d+1))^{O(1)^{n}}.
+(s(d+1))^{\O(1)^{n}}.
 $$
 By Proposition \@ref(prp:collins), this is also an upper bound on the number of cells, number of polynomials and their degrees defining this CAD.
 
 Recall that the complexity of computing a "classical" CAD (from Proposition \@ref(prp:collins)) is $$
-(sd)^{O(1)^n}.
+(sd)^{\O(1)^n}.
 $$
 Therefore, the monotone CAD algorithm has, as expected, a slightly higher complexity than that of the classical algorithm.
 However, the complexity is not significantly worse, still being doubly exponential in the number of variables.

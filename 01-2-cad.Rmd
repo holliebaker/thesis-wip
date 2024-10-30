@@ -315,7 +315,7 @@ present the bounds, along with some variations, from @bpr2006.
 Let $\mathbf{F} := f_1,\ldots,f_s$ be a set of polynomials in $\Z[x_1, \ldots ,x_n]$ with maximum degree $d$.
 There is an algorithm, taking $\mathbf{F}$ as input, which produces an $\mathbf{F}$-invariant CAD $\cal D$ of $\R^n$.
 The complexity of the algorithm is
-$$(sd)^{O(1)^{n}}.
+$$(sd)^{\O(1)^{n}}.
 $$
 This is also an upper bound on the number of cells in $\cal D$, number of polynomials defining cells and their degrees.
 :::

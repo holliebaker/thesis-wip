@@ -69,7 +69,7 @@ such that, if $X$ is nonsingular, $X_0 = X$ and all other sets are empty.
 Otherwise, $X_0 = \emptyset$ and each $X_k, 1 \le k \le n$ is a possibly empty, effectively nonsingular stratum of codimension $k$.
 This algorithm has complexity
 $$
-3^{s}\left(s(d+1)\right)^{O(n)^{2}}.
+3^{s}\left(s(d+1)\right)^{\O(n)^{2}}.
 $$
 The number of strata does not exceed $s^{n} (d + 1)^2$, and each stratum is defined by at most $s (d + 1)^2$ polynomial equations and inequalities of maximum degree $(d + 1)^2$.
 :::
@@ -221,8 +221,13 @@ The second of these is $\rm{Empty}(S)$, where $S \subset \R^n$ is a semialgebrai
 & s_1(\mathbf{x}) \ne 0, \ldots, s_k(\mathbf{x}) \ne 0,\\
 & g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0.
 \end{align*}
-This problem can be decided using the singly-exponential quantifier elimination algorithm from Proposition \@ref(prp:bpr-qe) (@bpr2006, Algorithm 14.21), which, with one quantifier alternation, has complexity $(sd)^{O(n)}$ where $s$ is the number of different polynomials defining the set and $d$ their maximum degree -- singly exponential in the number of variables. Alternatively, the algorithm presented by @bpr98, which produces a witness point in every cell in a decomposition of the input set, may be used to decide emptiness. This algorithm also has complexity $(sd)^{O(n)}$.
-In practice, quantifier elimination can be performed using CAD. This, of course, has complexity doubly exponential in the number of variables: $(sd)^{O(1)^n}$ (see Proposition \@ref(prp:collins)).
+This problem can be decided using the singly-exponential quantifier elimination algorithm from Proposition
+\@ref(prp:bpr-qe) (@bpr2006, Algorithm 14.21), which, with one quantifier alternation, has complexity $(sd)^{\O(n)}$
+where $s$ is the number of different polynomials defining the set and $d$ their maximum degree -- singly exponential in
+the number of variables. Alternatively, the algorithm presented by @bpr98, which produces a witness point in every cell
+in a decomposition of the input set, may be used to decide emptiness. This algorithm also has complexity $(sd)^{\O(n)}$.
+In practice, quantifier elimination can be performed using CAD. This, of course, has complexity doubly exponential in
+the number of variables: $(sd)^{\O(1)^n}$ (see Proposition \@ref(prp:collins)).
 
 The algorithm may be implemented as above, but with some small tweaks to simplify the code and make the algorithm work slightly more efficiently.
 First, observe that not all derivatives are needed to define the candidate stratum $Y_k$. One obvious situation is when a derivative $s_k$ turns out to be a nonzero constant $c \in \A$.
@@ -258,7 +263,8 @@ From this, we can introduce an "index chasing" method as follows. Let ${\cal G}_
   - If $\mathbf{m} = (0,\ldots,0,1,0,\ldots,0)$, then $\mathbf{j} = (0,\ldots,0)$ and we set ${\cal G}'_j$ to the head of ${\cal G}_j$.
   - Otherwise, let ${\cal G}'_j$ be the tail of ${\cal G}'_j$.
 
-The "index chasing" method works efficiently in `SACLIB`, which uses linked lists. However, we do need to append new derivatives to the end of ${\cal G}_j$, which takes $O(n)$ steps.
+The "index chasing" method works efficiently in `SACLIB`, which uses linked lists. However, we do need to append new
+derivatives to the end of ${\cal G}_j$, which takes $\O(n)$ steps.
 To avoid this, we keep a pointer to the last-but-one element in the list, i.e., suppose $G_j = (a_1,(\ldots,(a_{r-1},(a_r,(\rm{NIL})))\ldots)$ then $G_{j,\rm{append}} = (a_{r-1},(a_r,(\rm{NIL})))$. Then, if we wish to append $b$ to the end of $G_j$, we simply need to set the tail of $G_{j,\rm{append}}$ to $(a_r,(b,(NIL)))$.
 
 We can also optimise the construction of the matrix associated to the partial differential operator $\partial_{\mathbf{h},\mathbf{i},j} f$. In this matrix,
@@ -868,7 +874,7 @@ $$
 $$
 where
 $$
-{\cal B} = (\alpha + \beta + 1)^{(r+1)^{O(n)}}.
+{\cal B} = (\alpha + \beta + 1)^{(r+1)^{\O(n)}}.
 $$
 Without the Oracle, the total number of strata, some of which may be empty, does not exceed $N^{n+r}{\cal B}$, each of which has format $(r, N{\cal B},\alpha, {\cal B}, n)$.
 If the Oracle, used for checking emptiness, is allowed, then the algorithm has complexity not exceeding $N^{n+r}{\cal B}$.
@@ -897,29 +903,29 @@ There are $s^{n} (d + 1)^2$ candidate strata $Y_k$, and the algorithm determines
 In the implementation, the check is done using CAD (a call to `QEPCAD-B`).
 For the purposes of complexity analysis, we will use a theoretical algorithm, having singly exponential complexity in the number of variables.
 @bpr98 propose an algorithm which takes a semialgebraic set $S \subset \R^n$ defined by $s$ polynomials with maximum degree $d$ in $n < s$ variables and produces a "witness" -- a point contained in every cell in a decomposition of $S$.
-The algorithm can be used to determine the emptiness of $S$ and requires $s(s/n)^n d^{O(n)}$ arithmetic operations.
-This is asymptotically the same as $$(sd)^{O(n)}.$$
+The algorithm can be used to determine the emptiness of $S$ and requires $s(s/n)^n d^{\O(n)}$ arithmetic operations.
+This is asymptotically the same as $$(sd)^{\O(n)}.$$
 Using the bounds for the number and degrees of polynomials defining strata, each emptiness check costs
 $$
-\left(s(d+1)^{2}(d+1)^{2}\right)^{O(n)}=\left(s(d+1)^{4}\right)^{O(n)},
+\left(s(d+1)^{2}(d+1)^{2}\right)^{\O(n)}=\left(s(d+1)^{4}\right)^{\O(n)},
 $$
 which is asymptotically the same as
 $$
-\left(s(d+1)\right)^{O(n)}
+\left(s(d+1)\right)^{\O(n)}
 $$
 This operation must be performed for all of the
 $s^{n} (d + 1)^{2}$
 candidate strata, resulting in a total complexity for emptiness checking of
 $$
-\left(s(d+1)\right)^{O(n)^{2}}.
+\left(s(d+1)\right)^{\O(n)^{2}}.
 $$
 The total complexity of stratification, given by the sum of the complexity of applying the algorithm and performing the emptiness checks, is
 $$
-3^{s}s^{n+1}(d+1)^{2}+\left(s(d+1)\right)^{O(n)^{2}}.
+3^{s}s^{n+1}(d+1)^{2}+\left(s(d+1)\right)^{\O(n)^{2}}.
 $$
-Since $s^{n+1}(d+1)^{2}$ is bounded from above by $\left(s(d+1)\right)^{O(n)^{2}}$, we get a total complexity upper bound of
+Since $s^{n+1}(d+1)^{2}$ is bounded from above by $\left(s(d+1)\right)^{\O(n)^{2}}$, we get a total complexity upper bound of
 $$
-3^{s}\left(s(d+1)\right)^{O(n)^{2}}.
+3^{s}\left(s(d+1)\right)^{\O(n)^{2}}.
 $$
 
 ## Test cases

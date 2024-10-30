@@ -131,15 +131,15 @@ where each $f_{i,j,\ell}$ is a polynomial in $\R[x_1,\ldots,x_n]$ and $\ast_{i,j
 
 The quantifier-free Boolean formula $F'$ has the following bounds:
 \begin{align*}
-I &\le s^{(k_w + 1) \ldots (k_1 + 1)(n+1)}d^{O(k_w) \ldots O(k_1)O(n)}, \\
-J_i &\le s^{(k_w + 1) \ldots (k_1 + 1)}d^{O(k_w) \ldots O(k_1)}, \\
-L_{i,j} &\le d^{O(k_w) \ldots O(k_1)}, \\
-\text{Each polynomial } f_{i,j,\ell} &\text{ has maximum degree } d^{O(k_w) \ldots O(k_1)}.
+I &\le s^{(k_w + 1) \ldots (k_1 + 1)(n+1)}d^{\O(k_w) \ldots \O(k_1)\O(n)}, \\
+J_i &\le s^{(k_w + 1) \ldots (k_1 + 1)}d^{\O(k_w) \ldots \O(k_1)}, \\
+L_{i,j} &\le d^{\O(k_w) \ldots \O(k_1)}, \\
+\text{Each polynomial } f_{i,j,\ell} &\text{ has maximum degree } d^{\O(k_w) \ldots \O(k_1)}.
 \end{align*}
 
 This algorithm has complexity
 $$
-s^{(k_w + 1) \ldots (k_1 + 1)(n+1)}d^{O(k_w) \ldots O(k_1)O(n)}.
+s^{(k_w + 1) \ldots (k_1 + 1)(n+1)}d^{\O(k_w) \ldots \O(k_1)\O(n)}.
 $$
 :::
 
@@ -327,7 +327,7 @@ We finally revise the definition of Big O notation, following @gv2009, Definitio
 [@gv2009, Definition 6.1]
 Let $f,g,h \colon \N^\ell \to \N$ be functions and $n \in \N$.
 
-- The expression $f \le O(g)^n$ means that there exists $c \in \N$ such that $f < (cg)^n$ at every point in $\N^\ell$.
-- The expression $f \le g^{O(h)}$ means that there exists a $c \in \N$ such that $f \le g^{ch}$ at every point in $\N^\ell$.
+- The expression $f \le \O(g)^n$ means that there exists $c \in \N$ such that $f < (cg)^n$ at every point in $\N^\ell$.
+- The expression $f \le g^{\O(h)}$ means that there exists a $c \in \N$ such that $f \le g^{ch}$ at every point in $\N^\ell$.
 :::
 
