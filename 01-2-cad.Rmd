@@ -48,7 +48,8 @@ the graph of a continuous function $g \colon C' \to \R$, then $C_T$ is the graph
 
 Now let $C$ be an $(i_1,\ldots,i_{k},0,\ldots,0)$-cell, where $i_{k}=1$, and $C' := \projop{k}(C)$. Since $C'$ is a sector cell, $C'_B$ and $C'_T$ are cylindrical section cells. The bottom $C_B$ of $C$ is the pre-image of $C'_B$ by the projection map $\projop{k}\vert_{\cl{C}}$ and the top $C_T$ of $C$ is the pre-image of $C'_T$ by the projection map $\projop{k}\vert_{\cl{C}}$.
 It may be simpler to think of $C_B$ as the definable set $\cl{C} \cap (C'_B \times \R^{n - k + 1})$ and $C_T$ as the definable set $\cl{C} \cap (C'_T \times \R^{n - k + 1})$.
-It is important to note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of continuous functions (see Definition \@ref(def:blow-up-point) and Example \@ref(exm:top-bottom-not-cylindrical).
+It is important to note that $C_B$ and $C_T$ may not be cylindrical cells. Indeed, they may fail to be graphs of
+continuous functions (see Definition \@ref(def:blow-up-point) and Example \@ref(exm:top-bottom-not-cylindrical)).
 
 For both section and sector cells, let the side-walls, $C_W$, be $\fr{C} \setminus (C_B \cup C_T)$.
 There is no requirement that $C_W$ will be (a union of) cylindrical cells.
