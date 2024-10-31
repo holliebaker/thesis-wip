@@ -35,7 +35,7 @@ which is also an upper bound on the number of cells in the CAD, number of polyno
 
 The proof of @bgv15, Theorem 3.19 begins by introducing $W$, the smooth $2$-dimensional locus of $V = V_1 \cup \ldots \cup V_k$.
 Since $V$ is a semialgebraic set, it can be represented by a quantifier-free Boolean formula $F$.
-$W$ can be computed using the smooth stratification algorithm described in \@ref(sec:smooth-strat).
+$W$ can be computed using the smooth stratification algorithm described in Section \@ref(sec:smooth-strat).
 In order to apply the algorithm, consider the sign sets $S_{(\ast_1,\ldots,\ast_s)} \subset \R^n$ of polynomials $f_1,\ldots,f_s$ appearing in the formula $F$, as described in Section \@ref(sec:strat-semialgebraic). Observe that a finite number of these sign-sets $S_1,\ldots,S_m$ form a partition of $V$.
 For each $S_i \subset V$, apply the smooth stratification algorithm to obtain a family $(X_{i,1}, \ldots X_{i,n})$ of strata, where each $X_{i,j}$ is a smooth subset of $S_i$ of codimension $j$.
 We have $\dim(S_i) \le 2$, since each of the sets in the union $V$ has dimension at most $2$. Hence, every stratum $X_{i,j}$ of codimension $j < n-2$ will be empty.
@@ -45,7 +45,7 @@ the strata of codimension $n-1$, as each $1$-dimensional cell must also be the g
 
 ### An alternative approach
 
-Recall from Section \@ref(sec:cad-construction)) that smooth cells can be guaranteed by choosing a certain projection operator.
+Recall from Section \@ref(sec:cad-construction) that smooth cells can be guaranteed by choosing a certain projection operator.
 More precisely, according to @mccallum1988, Theorems 2.2.3 and 2.2.4, if there is a finite number of blow-up points, then the McCallum projection operator will result in a CAD where all cells are analytic submanifolds.
 Since $\dim(V_i) \le 2$ for all $1 \le i \le k$, blow-up points in $\cl(V_i)$ have dimension at most $0$ (see the Remark after Definition \@ref(def:blow-up-point)).
 Hence, the McCallum projection operator is sufficient to produce smooth cells.
