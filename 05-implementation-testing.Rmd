@@ -1200,7 +1200,7 @@ Return: /* Prepare for return. */
 - Lines 55-61 remain unchanged, and construct a truth-invariant CAD. If monotone cells are to be produced, the CAD will have constant sign on the projection factors, as the option `full-cad` will be enabled.
 - Lines 61-88 define a new step, where refinements for monotone cells and frontier condition are performed. Lines 70-71 compute the refinement points for monotone cells, by calling `MONOTONE` and Line 74 calls `REFINE` to compute the refinement. Line 84 calls `FRONTIER` to complete the refinement points above bad cells and Line 85 calls computes the refinement.
 
-### Additional modifications and additions
+### Additional modifications and additions { #sec:additional-modifications }
 
 A brief summary of new and modified functions is now presented.
 
