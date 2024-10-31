@@ -92,9 +92,12 @@ Thus, we can compute the critical points $W'_{i,j}$ of $\projops{x_i,x_j}$ by fi
 
 Note that, for $W'_{i,j}$, the corresponding $J_{\{1,\ldots,n\} \setminus \{i,j\}}$ will be a $((n-2) \times (n-2))$-matrix, so we simply need to find the points at which $\det(J_{\{1\ldots,n\} \setminus \{i,j\}}) = 0$.
 On the other hand, $J_{\{1,\ldots,n\} \setminus \{i\}}$ will be an $((n-2) \times (n-1))$-matrix. It will fail to have
-full rank if the determinants of all of the $((n-2) \times (n-2))$-minors are zero. Observe that the minors of $J_{\{1,\ldots,n\} \setminus \{i\}}, i \in \{1,\ldots,n\}$ are the $((n-2)\times (n-2))$-Jacobi matrices $J_{\{1,\ldots,n\} \setminus \{i,j\}}, j \in \{1,\ldots,n\} \setminus \{i\}$. I.e., they will coincide with the square matrices associated with $W'_{i,j}$. Thus, we need to make the CAD have constant sign on the determinants of each of the matrices
+full rank if the determinants of all of the $((n-2) \times (n-2))$-minors are zero. Observe that the minors of
+$J_{\{1,\ldots,n\} \setminus \{i\}}, i \in \{1,\ldots,n\}$ are the $((n-2)\times (n-2))$-Jacobi matrices
+$J_{\{1,\ldots,n\} \setminus \{i,j\}}, j \in \{1,\ldots,n\} \setminus \{i\}$. I.e., they will coincide with the square matrices associated with $W'_{i,j}$.
+Thus, the CAD should have constant sign on each of the determinants
 $$
-J_{\{1,\ldots,n\} \setminus \{i,j\}} \text{ for all } 1 \le i < j \le n,
+\det(J_{\{1,\ldots,n\} \setminus \{i,j\}}) \text{ for all } 1 \le i < j \le n,
 $$
 for all $2$-dimensional smooth strata (or cells) of $V$, whose definition includes $n-2$ polynomial equations.
 
