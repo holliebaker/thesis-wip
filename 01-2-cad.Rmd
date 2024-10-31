@@ -423,7 +423,7 @@ be a cylindrical cell in $\R^2$ such that $C' := \projop{1}(C) = \{ x \in \R \mi
 $$
 \varphi(x) = +\sqrt{x}
 $$
-such that $C$ is the graph of $\varphi\vert_{C'}$. However, it's clear that $\varphi$ is not a polynomial.
+such that $C$ is the graph of $\varphi\vert_{C'}$. However, it is clear that $\varphi$ is not a polynomial.
 
 In computations, we work exclusively with section cells. When dealing with sector cells, we will consider the graphs of functions defining their top and bottom.
 Since we will be using `SACLIB` and sometimes `Singular`, which are polynomial libraries, we will not be able to use the functions $\varphi$ in computations. We will instead use a different representation for a section cell $C$ in $\R^n$. Let $C$ be the root of a polynomial $f \in \Z[x_1,\ldots,x_n]$ and $C' := \projop{n-1}(C)$ satisfy the conditions in Proposition \@ref(prp:coste-polynomial-to-cell). Then

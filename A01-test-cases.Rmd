@@ -15,34 +15,34 @@ $$
 
 Note that two refinement polynomials are produced, but only one refinement point. `M_1_4` lies outside of $-1 < x < 1$, so it is ignored.
 
-Example \@ref(exm:qanm-4-rat), which follows, demonstrates what happens on sub-CADs above 0-dimensional cells. 
+Example \@ref(exm:qanm-4-rat), which follows, demonstrates what happens on sub-CADs above 0-dimensional cells.
 
 ::: {.example #qanm-4-rat }
 Let $n = 4$ and consider the semialgebraic set defined by the QFF
 $$
 F := ( ( 4 w = 7 \lor w^2 = 36 ) \land x > 0 \land x < 1 \land y > 0 \land x + y < 1 \land z = w x^2 + y^2 ).
 $$
-It has three connected components, $C_1$, $C_2$ and $C_3$, each of which is a cylindrical section cell in a sub-CAD of $\R^3$ above a $0$-dimensional cell ($\mathbf{b}_1$, $\mathbf{b}_2$, $\mathbf{b}_3$ respectively). 
+It has three connected components, $C_1$, $C_2$ and $C_3$, each of which is a cylindrical section cell in a sub-CAD of $\R^3$ above a $0$-dimensional cell ($\mathbf{b}_1$, $\mathbf{b}_2$, $\mathbf{b}_3$ respectively).
 \begin{align}
 \mathbf{b}_1 &= 7/4, &C_1 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 7/4 x^2 + y^2 \}.\\
 \mathbf{b}_2 &= -6, &C_3 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = -6 x^2 + y^2 \}.\\
 \mathbf{b}_3 &= 6, &C_3 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 6 x^2 + y^2 \}.
 \end{align}
 
-$C_2$ is already monotone. This can be seen by examining the projections of its top and bottom onto $\opspan{x,z}$: 
+$C_2$ is already monotone. This can be seen by examining the projections of its top and bottom onto $\opspan{x,z}$:
 \begin{align}
 C_{2,B} &= \{ -1 < x < 1, z = -6x^2 \},\\
 C_{2,T} &= \{ -1 < x < 1, z = -5x - 2x + 1 \}.
 \end{align}
 
-$C_1$ and $C_3$ are of the same kind as the cell presented in Example \@ref(exm:qanm) and require refinement. 
+$C_1$ and $C_3$ are of the same kind as the cell presented in Example \@ref(exm:qanm) and require refinement.
 :::
 
 ``` {r, child="test-cases/qanm-4-rat.Rmd"}
 
 ```
 
-The following example requires a rational refinement above an algebraic zero-cell. 
+The following example requires a rational refinement above an algebraic zero-cell.
 
 ::: {.example #qanm-4-above-alg }
 Let $n = 4$ and consider the section cell
@@ -51,13 +51,13 @@ C := \{ (w,x,y,z) \in \R^4 \mid w > 0, w^2 = 2, 0 < x < 1, y > 0, x + y < 1, z =
 $$
 :::
 
-This cell lies in the sub-cad of $\R^3$ above $\sqrt{2}$. `QEPCAD` output is presented below. Note that the sample points remain in extended representation, which is how they were generated in the lifting phase. 
+This cell lies in the sub-cad of $\R^3$ above $\sqrt{2}$. `QEPCAD` output is presented below. Note that the sample points remain in extended representation, which is how they were generated in the lifting phase.
 
 ``` {r, child="test-cases/qanm-4-above-alg.Rmd"}
 
 ```
 
-We now show a similar example, requiring an algebraic refinement. 
+We now show a similar example, requiring an algebraic refinement.
 
 ::: {.example #qanm-4-alg }
 Let $n = 4$ and consider the section cell
@@ -66,13 +66,13 @@ C := \{ (w,x,y,z) \in \R^4 \mid w > 0, w^2 = 3, 0 < x < 1, y > 0, y < (x-1)^2, z
 $$
 :::
 
-Note that the sample points of the refined cells have been converted into primitive representation. 
+Note that the sample points of the refined cells have been converted into primitive representation.
 
 ``` {r, child="test-cases/qanm-4-alg.Rmd"}
 
 ```
 
-Now consider a $(1,1,0,0)$-cell in $\R^4$ requiring two refinements. 
+Now consider a $(1,1,0,0)$-cell in $\R^4$ requiring two refinements.
 
 ::: {.example #qanm-4-multi }
 Let $n = 4$ and consider the section cell
@@ -85,7 +85,7 @@ $$
 
 ```
 
-The following example, in $\R^5$ presents a $(1,0,1,0,0)$-cell, which requires two algebraic refinements of the CAD induced on $\R^1$. When running this test, `SACLIB` ran out of memory, so the number of available cells was doubled. 
+The following example, in $\R^5$ presents a $(1,0,1,0,0)$-cell, which requires two algebraic refinements of the CAD induced on $\R^1$. When running this test, `SACLIB` ran out of memory, so the number of available cells was doubled.
 
 ::: {.example #qanm-5-101 }
 Let $n = 5$ and consider the $(1,0,1,0,0)$-cell
@@ -106,10 +106,10 @@ $$
 :::
 
 The QFF defines two cylindrical cells in $\R^3$ (equipped with $(x,y,z)$), similar to those defined in Example \@ref(exm:whitney-jhd).
-The following refinement points are obtained. 
+The following refinement points are obtained.
 
 ``` {test-fr-4-whitney-multi)
-M_4,2  = input  *** Refinement of cell (6,2,2,5) ***  
+M_4,2  = input  *** Refinement of cell (6,2,2,5) ***
        = The sample point is in a PRIMITIVE representation.
 
 alpha = the unique root of x between 0 and 0
@@ -125,7 +125,7 @@ Coordinate 4 = 3
              = 3.0000
 
 
-M_4,1  = input  *** Refinement of cell (4,2,2,3) ***  
+M_4,1  = input  *** Refinement of cell (4,2,2,3) ***
        = The sample point is in a PRIMITIVE representation.
 
 alpha = the unique root of x between 0 and 0
@@ -151,7 +151,7 @@ $$
 THe following algebraic refinement points are produced.
 
 ``` {test-fr-4-whitney-alg}
-M_4,3  = input  *** Refinement of cell (8,2,2,1) ***  
+M_4,3  = input  *** Refinement of cell (8,2,2,1) ***
        = The sample point is in an EXTENDED representation.
 
 alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
@@ -168,7 +168,7 @@ Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
              = -0.4142+
 
 
-M_4,2  = input  *** Refinement of cell (2,2,2,3) ***  
+M_4,2  = input  *** Refinement of cell (2,2,2,3) ***
        = The sample point is in an EXTENDED representation.
 
 alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
@@ -185,7 +185,7 @@ Coordinate 4 = the unique root of x^2 - 2 x - 1 between 0 and 4
              = 2.4142+
 
 
-M_4,1  = input  *** Refinement of cell (2,2,2,3) ***  
+M_4,1  = input  *** Refinement of cell (2,2,2,3) ***
        = The sample point is in an EXTENDED representation.
 
 alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
@@ -202,7 +202,7 @@ Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
              = -0.4142+
 ```
 
-This results in the following cells above, respectively, $2,2,2)$ and $(8,2,2)$. 
+This results in the following cells above, respectively, $2,2,2)$ and $(8,2,2)$.
 
 ``` {r, child="test-cases/fr-4-whitney-alg.Rmd"}
 
@@ -220,7 +220,7 @@ More examples
 
   - algebraic refinement point?
   - multiple levels refinement (stacked whitneys)
-  
+
 
 - whitney in a sub-CAD
 
@@ -229,7 +229,7 @@ More examples
 3D multi: multi-3.txt. many unnecesary refinements computed resulting from quasi-affine. had to use +N5000000
 
 4D multi: it's similar, but requiring algebraic refinements. this required +N50000000 for saclib and look at how many cells it produced!
-we should probably associate the quasi polynomials with the true cell so that we don't make a truly tsign-invariant CAD 
+we should probably associate the quasi polynomials with the true cell so that we don't make a truly tsign-invariant CAD
 
 
 
