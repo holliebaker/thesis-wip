@@ -46,7 +46,7 @@ the strata of codimension $n-1$, as each $1$-dimensional cell must also be the g
 ### An alternative approach
 
 Recall from Section \@ref(sec:cad-construction) that smooth cells can be guaranteed by choosing a certain projection operator.
-More precisely, according to @mccallum1988, Theorems 2.2.3 and 2.2.4, if there is a finite number of blow-up points
+More precisely, according to @mccallum1998, Theorems 2.2.3 and 2.2.4, if there is a finite number of blow-up points
 (i.e., if the set of input polynomials is well-oriented), then the McCallum
 projection operator is guaranteed not to fail and will result in a CAD
 where all cells are analytic submanifolds.
@@ -102,8 +102,8 @@ $$
 for all $2$-dimensional smooth strata (or cells) of $V$, whose definition includes $n-2$ polynomial equations.
 
 Now consider the critical points $Z$ of $\projops{x_i,x_j}(W'_1)$, where $W'_1$ is a smooth $1$-dimensional stratum. If
-$\dim(Z) = 1$, then every point of $\projops{x_i,x_j}(W'_1)$ is critical as $W'_1$ is smooth. Note that $z$ may contain
-$0$-dimensional critical points of $\projops{x_i}$ and $\projops{x_j}$.
+$\dim(Z) = 1$, then every point of $\projops{x_i,x_j}(W'_1)$ is critical as $W'_1$ is smooth. Note that $Z$ may contain
+isolated critical points of $\projops{x_i}$ and $\projops{x_j}$.
 Otherwise, $\dim(Z) = 0$, so $Z$ is a collection of isolated points $(c_i,c_j)$. $c_i$ is also a critical point of
 $\projops{x_i}(W'_1)$ and $c_j$ is also a critical point of $\projops{x_j}(W'_1)$. Therefore, it is sufficient to
 consider only critical points of projections onto $1$-dimensional coordinate subspaces. Hence, we only consider Jacobi matrices
@@ -198,30 +198,37 @@ be the set of polynomials appearing in the formulas $F_1,\ldots,F_k$.
 ## Correctness and complexity
 
 Correctness of Theorem \@ref(thm:bgv-quasi-algorithm) follows from the proof of @bgv15, Lemma 3.19. Let $\mathcal{E}$ be the CAD computed by the algorithm from Section \@ref(sec:quasiaffine-algorithm), using the McCallum projection operator, in which each cell has constant sign on the polynomials defining sets $V_1,\ldots,V_k$.
-By @mccallum1988, Theorems 2.2.3 and 2.2.4, each cell $C \subset V$ of $\cal E$ will be an analytic submanifold, since $\dim(V_i) \le 2, 1\le i \le k$.
+By @mccallum1998, Theorems 2.2.3 and 2.2.4, each cell $C \subset V$ of $\cal E$ will be an analytic submanifold, since $\dim(V_i) \le 2, 1\le i \le k$.
 The algorithm then makes the CAD compatible with the determinants of matrices $J_{C_2,\mathbf{m}}$ and
 $J_{C_1,\mathbf{m}}$, defined in Equations \@ref(eq:jacobi-two) and \@ref(eq:jacobi-one) respectively. These are the
 critical points of projections of $2$- and $1$- dimensional smooth cylindrical cells $C \subset V_1,\ldots,V_k$. Thus,
 $\mathcal{D}$, the CAD output by the algorithm from Section \@ref(sec:quasiaffine-algorithm) is compatible with the
-critical points of projections of the smooth $2$-dimensional locus of $V_1\cup \ldots \cup V_k$ onte one- and $2$-dimensional coordinate subspaces, as required in the proof of @bgv15, Lemma 3.19.
+critical points of projections of the smooth $2$-dimensional locus of $V_1\cup \ldots \cup V_k$ onto one- and $2$-dimensional coordinate subspaces, as required in the proof of @bgv15, Lemma 3.19.
 
 ### Complexity { #sec:quasi-complexity }
 
 Let us examine the complexity by supposing that the smooth stratification algorithm is used to find the smooth $2$-dimensional locus of $V = V_1\cup \ldots \cup V_k \subset \R^n$, defined by $s$ polynomials having maximum degree $d$.
 By the result from Section \@ref(sec:strat-complexity), the smooth stratification step with emptiness checking has complexity
 $$
-3^{s}\left(s(d+1)\right)^{\O(n)^{2}}
+3^{s}\left(s(d+1)\right)^{\O(n)^{2}}.
 $$
-The critical points of $1$- and $2$- dimensional strata are then computed. This is done by computing determinants of $(n-1)$- and $(n-2)$-dimensional Jacobi matrices, containing the $n-1$ and $n-2$ polynomial equations which define the strata of codimension $1$ and $2$ respectively.
+The critical points of $1$- and $2$- dimensional strata are then computed. This is done by computing determinants of $(n-1)$- and $(n-2)$-dimensional
+Jacobi matrices, containing the $n-1$ and $n-2$ polynomial equations which define the strata of codimension $1$ and $2$ respectively.
 These polynomials have maximum degree $(d + 1)^{2}$.
-In order to estimate the maximum degree of polynomials appearing in the Jacobi determinant of a $(k \times k)$-matrix, suppose that elementary row operations -- swapping two rows, multiplying a row by a number and adding one row to another -- will be used to convert the matrix into upper triangular form, then the elements on the main diagonal will be multiplied. Note that the complexity of performing these row operations to transform the matrix into row echelon form has complexity $O\left(n^2\right)$.
+In order to estimate the maximum degree of polynomials appearing in the Jacobi determinant of a $(k \times k)$-matrix,
+suppose that elementary row operations -- swapping two rows, multiplying a row by a number and adding one row to another
+-- will be used to convert the matrix into row echelon form.
+Then the determinant can be computed by multiplying the elements on the main diagonal of the row echelon matrix
+together.
+Note that the complexity of performing these row operations to transform the matrix into row echelon form is
+$\O\left(n^2\right)$.
 Elementary row operationns do not change the upper bound on degree. For the determinant, multiplying $k$ polynomials of maximum degree $d$ will result in a polynomial of maximum degree $kd$. Thus, the maximum degree of the determinant of the $((n-2)\times (n-2))$-matrix will be $(n-2)(d + 1)^{2}$ and the $((n-1) \times (n-1))$-matrix will be $(n-1)(d + 1)^{2}$. These are both bounded from above by
 $$
-n (d + 1)^{2},
+n (d + 1)^{2}.
 $$
 
 For the critical points of $\projops{x_i}, 1 \le i \le n$, there will be $n$ Jacobi determinants, and for $\projops{x_i,x_j}, 1 \le i < j \le n$, there will be $(n-1) + (n-2) + \cdots + 1 = \tfrac{1}{2} (n-1)n$, which is asymptotically the same as $n^2$.
-Accordirg to Section \@ref(sec:strat-complexity), the smooth stratification algorithm will produce at most $s^n (d+1)^2$. The bound on the number of strata of each codimension is not known, but the total number of strata is, of course, an upper bound. Therefore, there will be at most $n \left(s^n (d+1)^2\right)$ additional polynomials.
+According to Section \@ref(sec:strat-complexity), the smooth stratification algorithm will produce at most $s^n (d+1)^2$. The bound on the number of strata of each codimension is not known, but the total number of strata is, of course, an upper bound. Therefore, there will be at most $n \left(s^n (d+1)^2\right)$ additional polynomials.
 
 A classical CAD, having constant sign on the $s$ input polynomials along with the $n \left(s^n (d+1)^2\right)$ Jacobi determinants, which have maximum degree $n(d + 1)^{2}$, is then constructed.
 According to Proposition \@ref(prp:collins) (@bpr2006, Algorithm 11.2), classical CAD has complexity
@@ -233,7 +240,7 @@ Using the bounds obtained from the application of smooth stratification, we get
 $$
 \left(\left(s+n\left(s^{n}(d+1)^{2}\right)\right)n\left(d+1\right)^{2}\right)^{\O(1)^{n}},
 $$
-Which can be simplified to
+which can be simplified to
 $$
 \left(n s^n \left(d+1\right)\right)^{\O(1)^n}.
 $$
