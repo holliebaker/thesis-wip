@@ -8,19 +8,22 @@ $0$-dimensional cells are the graphs of quasi-affine maps. This is the first ste
 
 Let $V_1,\ldots,V_k$ be bounded deﬁnable subsets in $\R^n$ with $\dim (V_i) \le 2$ for each
 $1 \le i \le k$.
-Then there is a cylindrical cell decomposition of $\R^n$, compatible with each $V_i$ such that every cylindrical cell contained in $V := V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map.
+Then there is a cylindrical cell decomposition of $\R^n$, compatible with each $V_i$, such that every cylindrical cell contained in $V := V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map.
 :::
 
 The following will be proved.
 
 ::: { .theorem #bgv-quasi-algorithm }
 Let
-$$
-F_1,\ldots,F_k
-$$
-be quantifier-free Boolean formulas containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \subset \Z[x_1,\ldots,x_n]$, having maximum degree $d$, such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
+$F_1,\ldots,F_k$
+be quantifier-free Boolean formulas containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \subset
+\Z[x_1,\ldots,x_n]$, having maximum degree $d$, such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i
+\subset \R^n$ of dimension at most $2$.
 
-Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD $\mathcal{D}$ of $\R^n$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map. $\mathcal{D}$ is obviously compatible with each $V_1,\ldots,V_K$.
+Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD
+$\mathcal{D}$ of $\R^n$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a
+quasi-affine map.
+In particular, $\mathcal{D}$ is compatible with each $V_1,\ldots,V_k$.
 This algorithm has complexity
 $$
 \left(s\left(d+1\right)\right)^{2^{\O(n)}},
