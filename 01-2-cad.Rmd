@@ -377,8 +377,9 @@ similar construction is possible in dimension $3$.
 
 ::: {.definition}
 [@mccallum1998, 6.1]
-Let $\mathbf{F} \subset \Z[x_1, \ldots, x_n]$ be a set of polynomials and denote by $\prim(\mathbf{F})$ the set of all primitive parts of $\mathbf{F}$
-$\mathbf{F}$ is called well-oriented if, when $n > 1$,
+Let $\mathbf{F} \subset \Z[x_1, \ldots, x_n]$ be a set of polynomials and denote by $\prim(\mathbf{F})$ the set of all
+primitive parts of $\mathbf{F}$.
+We say that $\mathbf{F}$ is well-oriented if, when $n > 1$,
 
 - for each element $f \in \prim(A)$, $f(\mathbf{x},y) = 0$ for all $y\in \R$ on a finite number of points $\mathbf{x} \in \R^{n-1}$. [@mccallum1998, condition WO1]
 
@@ -390,7 +391,10 @@ $\mathbf{F}$ is called well-oriented if, when $n > 1$,
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a well-oriented set of polynomials and $\cal D$ be an $\mathbf{F}$-invariant CAD constructed using the McCallum projection operator [@mccallum1998]. Then, by @mccallum1988 Theorems 2.2.3 and 2.2.4, every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$. Informally, if $\dim(C) = k$, thent $C$ is a non-empty subset of $\R^n$ which "looks locally like $\R^k$" (see Definition \@ref(def:analytic-submanifold) for the precise definition).
 
 ::: {.definition #analytic-submanifold}
-$S \subset \R^n$ such that $\dim(S) = k$ is an analytic submanifold if, for every point $\mathbf{x} \in S$, there is an analytic coordinate system about $\mathbf{x}$ with respect to which $S$ is locally the intersection of $n-k$ coordinate hyperplanes.
+Let $S \subset \R^n$.
+If, for every point $\mathbf{x} \in S$, there is an analytic coordinate system about $\mathbf{x}$ with respect to which
+$S$ is locally the intersection of $n-k$ coordinate hyperplanes, then $S$ is called an analytic submanifold of
+dimension $k$.
 :::
 
 ::: {.corollary #mc-smooth}
