@@ -69,7 +69,7 @@ equal to $0$. It follows that we can find $n-1$ polynomials, in a similar way, w
 It is possible to compute $W$ using either technique. Theoretically speaking, using the smooth stratification algorithm seems cleaner, as it is the correct tool for the job. In addition, the bound on number of strata is singly exponential, while the bound on number of CAD cells is doubly exponential. An estimate for the number of cells of strata having a certain dimension is not currently known, but it seems likely that the number of strata will be less than the number of CAD cells.
 @gv04, Theorem 3.7 gives a method (which can be turned into an algorithm) for efficiently listing all sign sets associated with a set of polynomials and @bpr2006, Algorithm 14.21 describes how quantifier elimination can be performed in singly exponential time.
 However, in the implementation
-CAD is used to perform the emptiness check. Thus, the second option seems more appealing because a single recomputation of the CAD is preferrable to many calls to the CAD algorithm, which would be required for the stratification-based approach in the form that it has been implemented.
+CAD is used to perform the emptiness check. Thus, the second option seems more appealing because a single recomputation of the CAD is preferable to many calls to the CAD algorithm, which would be required for the stratification-based approach in the form that it has been implemented.
 In addition, @kremer2020 propose an algorithm, along with its implementation, for refining a CAD to be compatible with new polynomials. This gives us hope that we may be able to avoid a full re-computation. In conclusion, the second option, where we compute an initial CAD consisting of smooth cells, is more tractable in practice.
 
 ## Cells as graphs of quasi-affine maps
@@ -83,15 +83,16 @@ Consider the Jacobi matrix
 $$
 J_{i_1,\ldots,i_\ell}:=\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} & \ldots & \partial f_{1}/\partial x_{i_{\ell}}\\
 \vdots &  & \vdots\\
-\partial f_{k}/\partial x_{i_{1}} & \ldots & \partial f_{n-k}/\partial x_{i_{\ell}}
+\partial f_{n-k}/\partial x_{i_{1}} & \ldots & \partial f_{n-k}/\partial x_{i_{\ell}}
 \end{pmatrix},
 $$
 where $\{i_1,\ldots,i_\ell\} \subset \{ 1, \ldots, n \}$. Let $\{j_1,\ldots,j_{n-\ell}\} = \{ 1 , \ldots, n \} \setminus \{ i_1,\ldots,i_\ell \}$.
-Regular points of the projection of $W'$ onto $\opspan{j_1,\ldots,j_{n - \ell}}$ are those at which the matrix $J_{i_1,\ldots,i_\ell}$ has full rank.
+Regular points of the projection of $W_k'$ onto $\opspan{j_1,\ldots,j_{n - \ell}}$ are those at which the matrix $J_{i_1,\ldots,i_\ell}$ has full rank.
 Thus, we can compute the critical points $W'_{i,j}$ of $\projops{x_i,x_j}$ by finding the points at which the Jacobi matrix $J_{\{1,\ldots,n\} \setminus \{i,j\}}$ does not have full rank.
 
 Note that, for $W'_{i,j}$, the corresponding $J_{\{1,\ldots,n\} \setminus \{i,j\}}$ will be a $((n-2) \times (n-2))$-matrix, so we simply need to find the points at which $\det(J_{\{1\ldots,n\} \setminus \{i,j\}}) = 0$.
-On the other hand, $J_{\{1,\ldots,n\} \setminus \{i\}}$ will be an $((n-2) \times (n-1))$-matrix. It will fail to have full rank if the determinants of all of the $((n-2) \times (n-2))$-minors is zero. Observe that the minors of $J_{\{1,\ldots,n\} \setminus \{i\}}, i \in \{1,\ldots,n\}$ are the $((n-2)\times (n-2))$-jacobi matrices $J_{\{1,\ldots,n\} \setminus \{i,j\}}, j \in \{1,\ldots,n\} \setminus \{i\}$. I.e., they will coincide with the square matrices associated with $W'_{i,j}$. Thus, we need to make the CAD have constant sign on the determinants of each of the matrices
+On the other hand, $J_{\{1,\ldots,n\} \setminus \{i\}}$ will be an $((n-2) \times (n-1))$-matrix. It will fail to have
+full rank if the determinants of all of the $((n-2) \times (n-2))$-minors are zero. Observe that the minors of $J_{\{1,\ldots,n\} \setminus \{i\}}, i \in \{1,\ldots,n\}$ are the $((n-2)\times (n-2))$-jacobi matrices $J_{\{1,\ldots,n\} \setminus \{i,j\}}, j \in \{1,\ldots,n\} \setminus \{i\}$. I.e., they will coincide with the square matrices associated with $W'_{i,j}$. Thus, we need to make the CAD have constant sign on the determinants of each of the matrices
 $$
 J_{\{1,\ldots,n\} \setminus \{i,j\}} \text{ for all } 1 \le i < j \le n,
 $$
