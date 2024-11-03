@@ -81,23 +81,25 @@ critical points, $W_{i}$ and $W_{i,j}$, of projections of $W$ onto one and $2$-d
 Let $W'_k$ be one of the strata (or smooth cylindrical cells) computed in the previous section, with $k\in \{1,2\}$. Since $W'_k$ has codimension $n-k$ and is a basic semialgebraic set, its formula contains $n-k$ polynomial equations and, possibly, some inequalities.
 Consider the Jacobi matrix
 $$
-J_{i_1,\ldots,i_\ell}:=\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} & \ldots & \partial f_{1}/\partial x_{i_{\ell}}\\
+J_{\hat{w}}:=\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} & \ldots & \partial f_{1}/\partial x_{i_{\ell}}\\
 \vdots &  & \vdots\\
 \partial f_{n-k}/\partial x_{i_{1}} & \ldots & \partial f_{n-k}/\partial x_{i_{\ell}}
 \end{pmatrix},
 $$
-where $\{i_1,\ldots,i_\ell\} \subset \{ 1, \ldots, n \}$. Let $\{j_1,\ldots,j_{n-\ell}\} = \{ 1 , \ldots, n \} \setminus \{ i_1,\ldots,i_\ell \}$.
-Regular points of the projection of $W_k'$ onto $\opspan{j_1,\ldots,j_{n - \ell}}$ are those at which the matrix $J_{i_1,\ldots,i_\ell}$ has full rank.
-Thus, we can compute the critical points $W'_{i,j}$ of $\projops{x_i,x_j}$ by finding the points at which the Jacobi matrix $J_{\{1,\ldots,n\} \setminus \{i,j\}}$ does not have full rank.
+where $\{i_1,\ldots,i_\ell\} \subset \{1,\ldots,n\}$. 
+Let $w := \{j_1,\ldots,j_{n-\ell}\}$ be the complement $\{ 1 , \ldots, n \} \setminus \{ i_1,\ldots,i_\ell \}$
+so that $\hat{w}$ denotes the complement $\{i_1,\ldots,i_\ell\} = \{1,\ldots,n\} \setminus w$.
+Regular points of the projection of $W_k'$ onto $\opspan{w}$ are those at which the matrix $J_{w}$ has full rank.
+Thus, we can compute the critical points $W'_{i,j}$ of $\projops{x_i,x_j}$ by finding the points at which the Jacobi matrix $J_{\hat{ij}}$ does not have full rank.
 
-Note that, for $W'_{i,j}$, the corresponding $J_{\{1,\ldots,n\} \setminus \{i,j\}}$ will be a $((n-2) \times (n-2))$-matrix, so we simply need to find the points at which $\det(J_{\{1\ldots,n\} \setminus \{i,j\}}) = 0$.
-On the other hand, $J_{\{1,\ldots,n\} \setminus \{i\}}$ will be an $((n-2) \times (n-1))$-matrix. It will fail to have
+Note that, for $W'_{i,j}$, the corresponding $J_{\hat{ij}}$ will be a $((n-2) \times (n-2))$-matrix, so we simply need to find the points at which $\det(J_{\hat{ij}}) = 0$.
+On the other hand, $J_{\hat{i}}$ will be an $((n-2) \times (n-1))$-matrix. It will fail to have
 full rank if the determinants of all of the $((n-2) \times (n-2))$-minors are zero. Observe that the minors of
-$J_{\{1,\ldots,n\} \setminus \{i\}}, i \in \{1,\ldots,n\}$ are the $((n-2)\times (n-2))$-Jacobi matrices
-$J_{\{1,\ldots,n\} \setminus \{i,j\}}, j \in \{1,\ldots,n\} \setminus \{i\}$. I.e., they will coincide with the square matrices associated with $W'_{i,j}$.
+$J_{\hat{i}}, i \in \{1,\ldots,n\}$ are the $((n-2)\times (n-2))$-Jacobi matrices
+$J_{\hat{ij}}, j \in \{1,\ldots,n\} \setminus \{i\}$. I.e., they will coincide with the square matrices associated with $W'_{i,j}$.
 Thus, the CAD should have constant sign on each of the determinants
 $$
-\det(J_{\{1,\ldots,n\} \setminus \{i,j\}}) \text{ for all } 1 \le i < j \le n,
+\det(J_{\hat{ij}}) \text{ for all } 1 \le i < j \le n,
 $$
 for all $2$-dimensional smooth strata (or cells) of $V$, whose definition includes $n-2$ polynomial equations.
 
@@ -107,7 +109,7 @@ isolated critical points of $\projops{x_i}$ and $\projops{x_j}$.
 Otherwise, $\dim(Z) = 0$, so $Z$ is a collection of isolated points $(c_i,c_j)$. $c_i$ is also a critical point of
 $\projops{x_i}(W'_1)$ and $c_j$ is also a critical point of $\projops{x_j}(W'_1)$. Therefore, it is sufficient to
 consider only critical points of projections onto $1$-dimensional coordinate subspaces. Hence, we only consider Jacobi matrices
-$J_{\{1,\ldots,n\} \setminus \{i\}}$ for all $1\le i \le n$, for the $n-1$ polynomials defining $W'_1$. Critical points are those at which their determinants are equal to zero.
+$J_{\hat{i}}$ for all $1\le i \le n$, for the $n-1$ polynomials defining $W'_1$. Critical points are those at which their determinants are equal to zero.
 
 ### Pseudo-code { #sec:quasiaffine-algorithm }
 
@@ -115,92 +117,89 @@ We now present pseudo-code for the quasi-affine part of the algorithm.
 
 ::: {.algorithm data-latex="Quasi-Affine CAD"}
 **Input:**
-$$(F_1,\ldots,F_k)$$
 
-  - $F_1,\ldots,F_k$: a quantifier-free Boolean formula defining
+- $F_1,\ldots,F_k$: a quantifier-free Boolean formula defining
   $$
   V = V_1 \cup \ldots \cup V_k
   $$
   where $V \subset \R^n$ and $\dim(V_i) \le 2, 1 \le i \le k$.
 
 **Output:**
-$$
-({\cal D})
-$$
-  - $\cal D$: an $\mathbf{F'}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots,V_k$ such that each cell $C
-    \subset V$ is the graph of a quasi-affine map, where $\mathbf{F'}  \subset \Z[x_1,\ldots,x_n]$ contains all
-    polynomials from formulas $F_1,\ldots,F_k$ and, possibly, some additional polynomials which are zero at singular
-    points of $V_1\cup \ldots, \cup V_k$ and the critical points of projections of $Y_1 \cup \ldots \cup V_k$ onto $1$-
-    and $2$- dimensional coordinate subspaces.
 
-- Let $$
-\mathbf{F} \subset \Z[x_1,\ldots,x_n]
-$$
+- $\cal D$: an $\mathbf{F'}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots V_k$ such that each cell $C
+  \subset V$ is the graph of a quasi-affine map, where $\mathbf{F'} \subset \Z[x_1,\ldots,x_n]$ contains all
+  polynomials from formulas $F_1,\ldots,F_k$ and, possibly, some additional polynomials which are zero at singular
+  points of $V_1\cup \ldots, \cup V_k$ and the critical points of projections of $Y_1 \cup \ldots \cup V_k$ onto $1$-
+  and $2$-dimensional coordinate subspaces.
+
+Algorithm *QuasiAffineCAD($\{F_1,\ldots,F_k\}$)*:
+
+1. Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$
 be the set of polynomials appearing in the formulas $F_1,\ldots,F_k$.
 
-- Compute $\cal E$, an $\mathbf{F}$-invariant CAD of $\R^n$ (obviously compatible with each $V_1,\ldots,V_k$) using the McCallum projection operator.
+1. Compute $\cal E$: an $\mathbf{F}$-invariant CAD of $\R^n$ using the McCallum projection operator. This operation is guaranteed to succeed since each $V_1,\ldots,V_k$ has dimension at most two and, therefore $\mathbf{F}$ is well-oriented.
 
-- Let ${\cal A} = ({\cal A}_1,\ldots,{\cal A}_{n})$ be the family of projection polynomials for $\cal E$, where each ${\cal A}_k \subset \Z[x_1,\ldots,x_k]$.
+1. Let ${\cal A} = ({\cal A}_1,\ldots,{\cal A}_{n})$ be the family of projection polynomials for $\cal E$, where each ${\cal A}_k \subset \Z[x_1,\ldots,x_k]$.
 
-- For each cell $C_k \subset V$ with binary index $(i_1,\ldots,i_n) \in \{0,1\}^n$, such that $i_{j_1} = \ldots =
-  i_{j_k} = 1$ while all other elements of the binary index are equal to $0$ (since $\dim(V) \le 2$, $k \le 2$ and $\dim(C_k) = k$):
+1. For each cell $C \subset V$
 
-  - Let $f_1,\ldots,f_{n-k}$ be a set of projection polynomials, where $f_i \in \mathcal{A}_i$, which are equal to $0$ on the cell $C_k$.
+    do:
 
-  - For each $i \in \{1,\ldots,n\} \setminus \{j_1,\ldots,j_k\}$, find a polynomial in ${\cal A}_i$ which is $0$ at every point $\mathbf{x} \in C_k$. This can be done by checking the set of signs of projection factors.
+    - Observe that the binary index $(i_1,\ldots,i_n) \in \{0,1\}^n$ of $C$ contains $k \le 2$ elements $i_{j_1}, \ldots, i_{j_k}$ which are equal to $1$, while all other elements of the binary index are equal to $0$.
 
-- For each $2$-dimensional cell $C_2 \subset V$ and pair $1 \le i_1 < i_2 \le n$:
+    - For each $i \in \{1,\ldots,n\} \setminus \{j_1,\ldots,j_k\}$, find a polynomial in ${\cal A}_i$ which is equal to $0$ at every point $\mathbf{x} \in C$. This can easily be done by checking the set of signs of projection factors associated with $C_k$.
 
-  - Find the set of polynomials $f_1,\ldots,f_{n-2}$ defining $C_2$ as described above.
+1. For each $2$-dimensional cell $C_2 \subset V$ and each pair $1 \le i_1 < i_2 \le n$,
 
-  - Let $\mathbf{m} = \{j_1,\ldots,j_{n-2}\} = \{1\ldots,n\} \setminus \{i_1,i_2\}$.
+    do:
 
-  - Define
+    - Find the set of polynomials $f_1,\ldots,f_{n-2}$ defining $C_2$ as described above.
+
+    - Define the $((n-2) \times (n-2)$ Jacobi matrix
     \begin{equation}
-    J_{C_2,\mathbf{m}} :=
+    J_{C_2,\hat{i_1 i_2}} :=
 \begin{pmatrix}\partial f_{1}/\partial x_{j_{1}} & \ldots & \partial f_{1}/\partial x_{j_{n-2}}\\
 \vdots &  & \vdots\\
 \partial f_{n-2}/\partial x_{j_{1}} & \ldots & \partial f_{n-2}/\partial x_{j_{n-2}}
-\end{pmatrix},
+\end{pmatrix}.
 (\#eq:jacobi-two)
     \end{equation}
-    an $((n-2)\times (n-2))$ Jacobi matrix.
 
-    $\det(J_{C_2,\mathbf{m}}) = 0$ at the critical points of $\projops{i_1,i_2}$.
+    - $\det(J_{C_2,\hat{i_1 i_2}}) = 0$ at critical points of $\projops{i_1,i_2}$.
 
-- For each $1$-dimensional cell $C_1 \subset V$ and each $1 \le i \le n$:
+1. For each $1$-dimensional cell $C_1 \subset V$ and each $1 \le i \le n$:
 
-  - Find the set of polynomials $f_1,\ldots,f_{n-1}$ defining $C_1$.
+    do:
 
-  - Let $\mathbf{m} = \{j_1,\ldots,j_{n-1}\} = \{1\ldots,n\} \setminus \{i\}$.
+    - Find the set of polynomials $f_1,\ldots,f_{n-1}$ defining $C_1$.
 
-  - Define
+    - Define the $((n-1)\times (n-1))$ Jacobi matrix
   \begin{equation}
-  J_{C_1,\mathbf{m}} :=
+  J_{C_1,\hat{i}} :=
 \begin{pmatrix}\partial f_{1}/\partial x_{j_{1}} & \ldots & \partial f_{1}/\partial x_{j_{n-1}}\\
 \vdots &  & \vdots\\
 \partial f_{n-1}/\partial x_{j_{1}} & \ldots & \partial f_{n-1}/\partial x_{j_{n-1}}
-\end{pmatrix},
+\end{pmatrix}.
 (\#eq:jacobi-one)
   \end{equation}
-  an $((n-1)\times (n-1))$ Jacobi matrix.
 
-  $\det(J_{C_1,\mathbf{m}}) = 0$ at the critical points of $\projops{i}$.
+    - $\det(J_{C_1,\hat{i}}) = 0$ at the critical points of $\projops{i}$.
 
-  - Construct $\cal D$, an $\mathcal{F'}$-invariant CAD of $\R^n$, where
-    \begin{align*}
-    \mathbf{F}' =\ & & \mathbf{F}\\
-    \cup\ & \bigcup_{C_2 \subset V,\dim(C_2) = 2,\mathbf{m} = \{1,\ldots,n\} \setminus \{i_1,i_2\}, 1 \le i_1 < i_2 \le n} & \det\left(J_{C_2,\mathbf{m}}\right)\\
-    \cup\ & \bigcup_{C_1 \subset V,\dim(C_1) = 1,\mathbf{m} = \{1,\ldots,n\} \setminus \{i\}, 1 \le i \le n} & \det\left(J_{C_1,\mathbf{m}}\right).\\
-    \end{align*}
+-  Compute $\cal D$, an $\mathbf{F`}$-invariant CAD of $\R^n$, for
+$$
+\mathbf{F}' := \mathbf{F} \cup\ \bigcup_{C_2,1\le i < j \le n} \det\left(J_{C_2,\hat{ij}}\right) \cup \bigcup_{C_1, 1 \le i \le n} \det\left(J_{C_1,\hat{i}}\right),
+$$
+where $C_1$ (resp. $C_2$) ranges over the $1$-dimensional (resp. $2$-dimensional) cells of $\mathcal{E}$ contained in $V$ and $\hat{w}$ denotes the complement $\{1, \ldots, n\} \setminus w$. 
+
+1. Return $\mathcal{D}$.
 :::
 
 ## Correctness and complexity
 
 Correctness of Theorem \@ref(thm:bgv-quasi-algorithm) follows from the proof of @bgv15, Lemma 3.19. Let $\mathcal{E}$ be the CAD computed by the algorithm from Section \@ref(sec:quasiaffine-algorithm), using the McCallum projection operator, in which each cell has constant sign on the polynomials defining sets $V_1,\ldots,V_k$.
 By @mccallum1998, Theorems 2.2.3 and 2.2.4, each cell $C \subset V$ of $\cal E$ will be an analytic submanifold, since $\dim(V_i) \le 2, 1\le i \le k$.
-The algorithm then makes the CAD compatible with the determinants of matrices $J_{C_2,\mathbf{m}}$ and
-$J_{C_1,\mathbf{m}}$, defined in Equations \@ref(eq:jacobi-two) and \@ref(eq:jacobi-one) respectively. These are the
+The algorithm then makes the CAD compatible with the determinants of matrices $J_{C_2,\hat{ij}}$ and
+$J_{C_1,\hat{i}}$, defined in Equations \@ref(eq:jacobi-two) and \@ref(eq:jacobi-one) respectively. These are the
 critical points of projections of $2$- and $1$- dimensional smooth cylindrical cells $C \subset V_1,\ldots,V_k$. Thus,
 $\mathcal{D}$, the CAD output by the algorithm from Section \@ref(sec:quasiaffine-algorithm) is compatible with the
 critical points of projections of the smooth $2$-dimensional locus of $V_1\cup \ldots \cup V_k$ onto one- and $2$-dimensional coordinate subspaces, as required in the proof of @bgv15, Lemma 3.19.

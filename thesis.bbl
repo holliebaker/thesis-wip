@@ -62,14 +62,11 @@ Blum, L., Shub, M., and Smale, S. (1998).
 \newblock {\em Complexity and Real Computation}.
 \newblock Springer New York : Imprint: Springer, New York, NY.
 
-\bibitem[Bradford et~al., 2014]{bradford2014}
-Bradford, R., Chen, C., Davenport, J.~H., England, M., Moreno~Maza, M., and
-  Wilson, D. (2014).
-\newblock Truth table invariant cylindrical algebraic decomposition by regular
-  chains.
-\newblock In {\em Computer Algebra in Scientific Computing: 16th International
-  Workshop, CASC 2014, Warsaw, Poland, September 8-12, 2014. Proceedings 16},
-  pages 44--58. Springer.
+\bibitem[Bradford et~al., 2016]{bradford2016}
+Bradford, R., Davenport, J.~H., England, M., McCallum, S., and Wilson, D.
+  (2016).
+\newblock Truth table invariant cylindrical algebraic decomposition.
+\newblock {\em Journal of Symbolic Computation}, 76:1--35.
 
 \bibitem[Brown and Hong, 2004]{qepcadDocs}
 Brown, C. and Hong, H.~Q. (2004).
