@@ -83,7 +83,7 @@ A description, including pseudo-code, and implementation of an algorithm, presen
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\A}{\mathbb{A}}
+\newcommand{\A}{\overline{\mathbb{Q}}}
 
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\sign}{\operatorname{sign}}
