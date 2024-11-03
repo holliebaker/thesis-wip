@@ -230,7 +230,6 @@ Critical points can be found by solving the system of equations
 (\#eq:lagrange)
 \end{equation}
 where $1\le i \le n-1$,
-
 for $\lambda_1,\ldots,\lambda_k$.
 :::
 
@@ -249,8 +248,8 @@ $$
 \end{pmatrix}
 $$
 
-It is clear that, if a solution exists, then the last column
-$\left(\tfrac{\partial h}{\partial x_{1}},\ldots, \tfrac{\partial h}{\partial x_{\alpha-1}}\right)^T$
+It is clear that, if a solution exists, then the column vector on the right-hand side,
+$\left(\tfrac{\partial h}{\partial x_{1}},\ldots, \tfrac{\partial h}{\partial x_{\alpha-1}}\right)^T$,
 will be a linear combination of the first $\alpha - 1$ columns (in $g_2,\ldots,g_{\alpha - 1}$).
 Hence, optimal values for $(x_1,\ldots,x_{\alpha-1})$ exist and satisfy the equation
 \begin{equation}
@@ -295,7 +294,7 @@ where $J'_T$ is the matrix from Equation \@ref(eq:jacobi-det) with the $\partial
 J'_T = \det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{1}} & \dfrac{\partial g_\alpha}{\partial x_{1}}\\
 \vdots &  &  & \vdots\\
 \dfrac{\partial g_{2}}{\partial x_{\alpha-1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{\alpha-1}} & \dfrac{\partial g_\alpha}{\partial x_{\alpha-1}}
-\end{pmatrix}=0.
+\end{pmatrix}.
 (\#eq:jacobi-det-2)
 \end{equation}
 
@@ -303,17 +302,18 @@ Observe that $J_T$ is a rational function: a fraction in which the numerator and
 \{ J'_T = 0, d_T \ne 0 \}
 $$ should be found.
 This is clearly a semialgebraic set.
-Also note that, when $\deg(d_T) = 0$, $d_T$ is a constant and therefore has no solutions. Thus, the condition $d_T = 0$ can be dropped in this case.
+Also note that, when $\deg(d_T) = 0$, $d_T$ is a constant and therefore has no solutions. Thus, the condition $d_T \ne 0$ can be dropped in this case.
 
 Repeating this process to obtain $J'_B$ and $d_B$, if sector cell $C$ is bounded from below, we have two systems of polynomial equations
 \begin{align}
-\{ g_2,\ldots,g_{\alpha-1}, J'_B \},\\
-\{ g_2,\ldots,g_{\alpha-1}, J'_T \}
-(\#eq:lagrange-solve)
+g_2 = 0,\ldots,g_{\alpha-1} = 0, J'_B = 0,
+(\#eq:lagrange-solve-bot) \\
+g_2 = 0,\ldots,g_{\alpha-1} = 0, J'_T = 0
+(\#eq:lagrange-solve-top) \\
 \end{align}
 and inequalities
 \begin{equation}
-\{ s_1 g_{1,1} > 0, \ldots, s_\ell g_{1,\ell} > 0, d_B \ne 0, d_T \ne 0 \}
+s_1 g_{1,1} > 0, \ldots, s_\ell g_{1,\ell} > 0, d_B \ne 0, d_T \ne 0
 (\#eq:lagrange-solve-ineqs)
 \end{equation}
 where $\{ g_{1,1},\ldots,g_{1,\ell} \} \subset \Z[x_1]$ are polynomials from ${\cal A}_1$ and $s_1,\ldots,s_\ell \in \{-1,1\}$ such that $$
@@ -325,37 +325,40 @@ We can easily find pairs $(s_j, g_{1,j}) \in \{-1,1\} \times {\cal A}_1$ by cons
 - If $g_{1.j}(c) < 0$, then $s_j = -1$.
 - The final case, $g_{1,j}(c) = 0$, is impossible since an irreducible univariate polynomial cannot be zero over an interval.
 
-Perhaps an easier way, if the information available, is to examine the signs of polynomials from $\mathcal{A}$ on the cell $X'$. Clearly, if the sign on $g_j$ is positive, $s_i = 1$ and if the sign is negative $s_i = -1$.
+Perhaps an easier way, if the information is available, is to examine the signs of polynomials from $\mathcal{A}$ on the cell $X'$. Clearly, if the sign on $g_j$ is positive, $s_i = 1$ and if the sign is negative $s_i = -1$.
 
-For the refinement points $(c_1,\ldots,c_t)$, we want to find $x_1$-coordinates of the roots of polynomials from Equation \@ref(eq:lagrange-solve) subject to the constraints from Equation \@ref(eq:lagrange-solve-ineqs).
+For the refinement points $(c_1,\ldots,c_t)$, we want to find $x_1$-coordinates of the roots of the polynomials from
+Equations \@ref(eq:lagrange-solve-bot) and Equation \@ref(eq:lagrange-solve-top), separately, subject to the constraints from Equation \@ref(eq:lagrange-solve-ineqs).
 
 CAD can, of course, be used to do this, since we are really solving the quantifier elimination problem
 $$
-\exists x_2,\ldots,x_{\alpha - 1},x_\alpha \mid P(x_1,\ldots,x_\alpha)
+\exists x_2,\ldots,x_{\alpha - 1},x_\alpha P(x_1,\ldots,x_\alpha)
 $$ where
 \begin{align}
-P(x_1,\ldots,x_\alpha) =\ & s_1 g_{1,1}(x_1) > 0 \land \ldots \land s_\ell g_{1,\ell}(x_1) > 0
-(\#eq:lagrange-solve-qe-ineqs) \\
-\land\ & g_2(x_1,x_2) = 0 \land \ldots \land g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1}) = 0
-(\#eq:lagrange-solve-qe-constraints) \\
-\land\ & d_B(x_1,\ldots,x_\alpha) \ne 0 \land d_T(x_1,\ldots,x_\alpha) \ne 0
-(\#eq:lagrange-solve-qe-denominators) \\
-\land\ & ( J'_B(x_1,\ldots,x_{\alpha - 1}) = 0 \lor J'_T(x_1,\ldots,x_{\alpha - 1}) = 0 ).
-(\#eq:lagrange-solve-qe-jacobis)
+\begin{split}
+P(x_1,\ldots,x_\alpha) =\ & s_1 g_{1,1}(x_1) > 0 \land \ldots \land s_\ell g_{1,\ell}(x_1) > 0 \\
+\land\ & g_2(x_1,x_2) = 0 \land \ldots \land g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1}) = 0 \\
+\land\ & d_B(x_1,\ldots,x_\alpha) \ne 0 \land d_T(x_1,\ldots,x_\alpha) \ne 0 \\
+\land\ & ( J'_B(x_1,\ldots,x_{\alpha - 1}) = 0 \lor J'_T(x_1,\ldots,x_{\alpha - 1}) = 0 ) \\.
+(\#eq:lagrange-solve-qe)
+\end{split}
 \end{align}
-Computing the projection onto $\R^1$ of polynomials $\{g_2,\ldots,g_{\alpha - 1} J'_B, J'_T \}$ from Equations \@ref(eq:lagrange-solve-qe-constraints) and \@ref(eq:lagrange-solve-qe-jacobis), a system
+Computing the projection onto $\R^1$ of polynomials $\{g_2,\ldots,g_{\alpha - 1}, J'_B, J'_T \}$ from Equations \@ref(eq:lagrange-solve-qe-constraints) and \@ref(eq:lagrange-solve-qe-jacobis), a system
 \begin{equation}
 \mathcal{F} := \{ f_1=0 ,\ldots,f_r=0 \} \subset \Z[x_1]
 (\#eq:lagrange-solve-projected)
 \end{equation}
 is obtained, whose real roots include the refinement points $(c_1,\ldots,c_t)$.
-Let ${\cal E} \subset \Z[x_1]$ be the set of polynomials obtained by computing the projection onto $\R^1$ of $\{ d_B, d_T \}$ (from Equation \@ref(eq:lagrange-solve-qe-denominators)) and
+Let ${\cal E} \subset \Z[x_1]$ be the set of polynomials obtained by computing the projection onto $\R^1$ of $\{ d_B,
+d_T \}$ (from Equation \@ref(eq:lagrange-solve-qe), line 3) and
 $${\cal G} := \{ s_1 g_{1,1}, \ldots, s_\ell g_{1,\ell} \}
 $$
-from Equation \@ref(eq:lagrange-solve-qe-ineqs).
+from Equation \@ref(eq:lagrange-solve-qe), line 1.
 $(c_1,\ldots,c_t)$ can be found by computing the real roots of $\cal F$ subject to the inequalities $\cal G$, then discarding those such that a polynomial in $\cal E$ is zero.
 
-It is clear that $(c_1,\ldots,c_t)$ lie in an open interval $X' = (a,b) \subset \R \cup \{ -\infty, \infty \}$, where $a$ and $b$ (if finite) are section cells. Thus, rather than using strict inequalities from Equation \@ref(eq:lagrange-solve-qe-ineqs), we could find the roots of $\cal F$ in the interval $(a,b)$.
+It is clear that $(c_1,\ldots,c_t)$ lie in an open interval $X' = (a,b) \subset \R \cup \{ -\infty, \infty \}$, where
+$a$ and $b$ (if finite) are section cells. Thus, rather than using strict inequalities from Equation
+\@ref(eq:lagrange-solve-qe), line 1, we could find the roots of $\cal F$ in the interval $(a,b)$.
 
 Each real root will be represented by a pair
 \begin{equation}
@@ -555,7 +558,9 @@ Theoretically speaking, [@bpr2006, Algorithm 14.21] provides a singly exponentia
 Eliminating the $j-1$ quantifiers, we obtain the desired points $(b_{i,1},\ldots,b_{i,k_i})$, where each $b_{i,j}$ is the $x_1$-coordinate of a blow-up point of $g_j$.
 Now we can assume that $C^j_T\cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ is the graph of a continuous function. More precisely, the implicit function $g_j$ can be considered as a function from $C'_T \cap \{ b_{i,j} < x_1 < b_{i,j+1}\}$ to $\R$. We have a very similar construction as in Section \@ref(sec:lagrange-refinement).
 That is, polynomials $g_2,\ldots,g_{j-1}$ will provide the constraints in the first $j-2$ columns of the matrix in Equation \@ref(eq:jacobi-det), while $\partial h / \partial x_i, 1 \le i \le j - 1$ in the last column should be replaced with $\partial g_j / \partial x_i$
-Denote this polynomial by $J_T$, and repeat with $C^j_B$ if appropriate. Inequalities $s_1 g_{1,1} > 0, \ldots, s_1 g_{1,\ell} > 0$ (from Equation \@ref(eq:lagrange-solve-qe-ineqs)), $d_T \ne 0$ and $d_B$ (from Equation \@ref(eq:lagrange-solve-qe-denominators)) are obtained and solved for $x_1$ in a very similar way as in Section \@ref(sec:lagrange-refinement). We obtain a set of refinement points
+Denote this polynomial by $J_T$, and repeat with $C^j_B$ if appropriate. Inequalities $s_1 g_{1,1} > 0, \ldots, s_1
+g_{1,\ell} > 0$ (from Equation \@ref(eq:lagrange-solve-qe), line 1), $d_T \ne 0$ and $d_B$ (from Equation
+\@ref(eq:lagrange-solve-qe), line 3) are obtained and solved for $x_1$ in a very similar way as in Section \@ref(sec:lagrange-refinement). We obtain a set of refinement points
 $$
 \{ b_{j,1}, \ldots, b_{j,r_j} \} \subset (c_i,c_{i+1})
 $$
