@@ -462,7 +462,7 @@ As before, only refinements of the kind
 $$
 \{ x_1 < c \}, \{ x_1 = c \}, \{ x_1 > c \},
 $$
-$c \in \R$, which preserves both the cylindrical structure and existing monotone cells will be performed.
+$c \in \R$, which preserves both the cylindrical structure and existing monotone cells, will be performed.
 
 ### Case 1: $2 \le j \le \alpha - 1$
 
@@ -510,7 +510,7 @@ $$ is $1$-dimensional.
 It follows that $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ coincide. Since $Z$ is $1$-dimensional, connected and the graph of a quasi-affine map, Lemma \@ref(lem:one-dim-qa-is-monotone) implies that $f_j$ is already monotone and no refinement is needed.
 
 On the other hand, if $\dim(Z) = 2$, since $\mathbf{f}$ is quasi-affine, $\projops{x_1,x_j}\vert_C$ is injective.
-Let $Z_T$ be the graph of $\sup_{x_\alpha} f_j$. Despite the notation, $Z_T$ is not necesarily the top of $Z$. In particular, $Z_T$ may have non-empty intersection with $Z$.
+Let $Z_T$ be the graph of $\sup_{x_\alpha} f_j$. Despite the notation, $Z_T$ is not necessarily the top of $Z$. In particular, $Z_T$ may have non-empty intersection with $Z$.
 Since semialgebraic sets are closed under intersection and projection, there exist points
 $$\{b_1,\ldots,b_k\} \subset (c_i,c_{i+1})
 $$ such that for all $1 \le i < k$ $$
@@ -540,7 +540,7 @@ $$
 $$
 be the projection factor set as defined in Equation \@ref(eq:proj-fac-set) and
 $$
-C' := \projop{j-1}(C), C^j := \projop{j}(C),
+C' := \projop{j-1}(C), C^j := \projop{j}(C).
 $$
 Begin with $j := \alpha+1$ so that $C'$ is a cylindrical sector cell and there exists an algebraic variety $V$ containing polynomials $g_2,\ldots,g_{j-1}$ with each $g_i \in {\cal A}_i, 2 \le i \le j-1$, defined in Equation \@ref(eq:c-alpha-top), such that $C'_T\subset V$.
 By definition $$
@@ -593,7 +593,9 @@ $$
 where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
 Let $C$ be a $2$-dimensional section cell of the decomposition induced by $\cal D$ on $\R^{j}$ such that $\projopinv{j}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$ and $\projop{j-1}(C)$ is monotone.
 
-Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_r)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i \le r$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
+Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers
+$(c_1,\ldots,c_r)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i \le r$ is represented by
+a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number)).
 :::
 
 ::: {.Remark #monotone-sub-cad }
