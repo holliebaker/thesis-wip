@@ -39,7 +39,7 @@ The construction of monotone cells is based on the following result due to @bgv1
 [@bgv15, Lemma 3.18]
 
 Let $X \subset \R^2$ be an open, bounded set and $f \colon X \to \R$ be a quasi-affine function.
-Then there is a cylindrical decomposition of $\R^2$ compatible with $X$, obtained by intersecting $X$ with straight lines $$\{x_1 = c\}$$ and half-planes $$\{x_1 < c\},\{x_1 > c\}$$ such that the restriction $f\vert_B$ for every cell $B \subset X$ is a monotone function.
+Then there is a cylindrical decomposition of $\R^2$ compatible with $X$, obtained by intersecting $X$ with straight lines $\{x_1 = c\}$ and half-planes $\{x_1 < c\},\{x_1 > c\}$ such that the restriction $f\vert_B$ for every cell $B \subset X$ is a monotone function.
 :::
 
 We now summarise the construction presented by @bgv15 in the proof of Theorem 3.20.
