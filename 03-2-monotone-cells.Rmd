@@ -378,7 +378,9 @@ $$
 where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
 Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projopinv{\alpha}(C)$ is a cell of $\mathcal{D}$ contained in $V_1,\ldots,V_k$.
 
-Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i < t$ is represented by a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number).
+Then there is an algorithm, taking $\mathcal{D}$ and $\mathcal{A}$ as input, which produces a set of algebraic numbers
+$(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone. Each $c_i, 1 \le i < t$ is represented by a
+pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-number)).
 :::
 
 ### Working in sub-decompositions { #sec:sub-cad }
