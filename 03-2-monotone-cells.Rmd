@@ -11,7 +11,7 @@ We first present a motivating example, of a $2$-dimensional cylindrical cell whi
 
 Let
 $$
-\Delta := \{ (x,y) \in \R^2 \mid 0 < x < 1, y > 0, x + y < 1 \} \subset \R^2
+\Delta := \{ (x,y) \in \R^2 \mid 0 < x, 0 < y, x + y < 1 \} \subset \R^2
 $$ and
 $$
 \varphi(x,y) = x^2 + y^2.
