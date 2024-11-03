@@ -45,7 +45,8 @@ Then there is a cylindrical decomposition of $\R^2$ compatible with $X$, obtaine
 We now summarise the construction presented by @bgv15 in the proof of Theorem 3.20.
 Their proof proceeds by induction on $n$.
 
-- The base case, $n=1$ is straightforward, since $(0)$ and $(1)$-cells are already monotone.
+- The base case, $n=1$ is straightforward, since cells of a CAD of $\R^1$, which are points and open intervals, are
+  already monotone.
 
 - When $n>1$, consider each $2$-dimensional cell $C$ of $\cal D$ and let $C'' := \projop{1}(C)$
 
