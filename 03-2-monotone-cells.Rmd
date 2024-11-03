@@ -71,10 +71,9 @@ In the following sections, we will apply the construction given in the proof of 
 develop an algorithm for finding the set of refinement points in the semialgebraic case, starting with the CAD $\mathcal{D}$ and its set of input polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. The following will be proved.
 
 ::: { .theorem #bgv-monotone-algorithm }
-Let
-$$
+Let $
 F_1,\ldots,F_k
-$$
+$
 be quantifier-free Boolean formulas such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
 Let $\mathbf{F} = \{f_1,\ldots,f_s\}$ be a set of polynomials in $\Z[x_1,\ldots,x_n]$ of maximum degree $d$ and $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots,V_k$ and such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
 
@@ -102,7 +101,7 @@ Although the cell $X$ under consideration is a $2$-dimensional cylindrical cell 
 
 Let $C\subset \R^\alpha$ be a $(1,0,\ldots,0,1)$-cell, $X := \projops{x_1,x_\alpha} (C)$ and $X' := \projop{1}(C)$.
 Suppose we have the family ${\cal I}(c), c \in X'$ and $\gamma$ be the set of $1$-dimensional curves associated with $C$.
-Then
+Then:
 
 1. $X$ is a $(1,1)$-cell.
 
@@ -126,10 +125,10 @@ $$
 where $\varphi,\psi \colon X' \to \R$ are continuous definable functions such that $\varphi(x_1) < \psi(x_1)$ for all $x_1 \in X'$.
 Note that $X$ may not be bounded from below (resp. above).
 In this case, $\varphi$ (resp. $\psi$) are omitted from the definition of $X$, as in Definition \@ref(def:cells).
-It is clear that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving (3).
+It is clear that ${\cal I}(c)$ contains a single open interval $(\varphi(c), \psi(c))$, proving Property (3).
 It follows that $\gamma$, which consists of the endpoints of intervals in ${\cal I}(c)$, consists of $1$-dimensional curve intervals which are the graphs of $\varphi$ and $\psi$ (if they exist).
 
-We now prove (4) by defining $\varphi$ and $\psi$ using the definition of cylindrical cells.
+We now prove Property (4) by defining $\varphi$ and $\psi$ using the definition of cylindrical cells.
 Since $C' := \projop{\alpha - 1}(C)$ is a $(1,\ldots,0,0)$-cell, it is the graph of a continuous definable map
 $\mathbf{h} = (h_1,\ldots,h_{\alpha - 2}) \colon X' \to \R^{\alpha - 2}$ and $$
 C = \{ (\mathbf{x},t) \mid \mathbf{x} \in C', f(\mathbf{x}) < t < g(\mathbf{x})\}
@@ -138,18 +137,17 @@ where $f,g \colon \R^{\alpha - 1} \to \R$ are continuous definable functions suc
 Again, if not bounded from below (resp. above), $f$ (resp. $g$) are omitted.
 
 Finally, we write $C$ in terms of $x_1 \in X'$, $f$, $g$ and $\mathbf{h}$, we obtain the functions
-\begin{align}
+\begin{align*}
 \varphi &\colon C'' \to \R & \psi &:\colon C'' \to \R\\
 \varphi(x_1) &= f(x_1,\mathbf{h}(x_1)) & \psi(x_1) &= g(x_1,\mathbf{h}(x_1))
-(\#eq:phi-psi)
-\end{align}
+\end{align*}
 :::
 
 The refinement is achieved by finding a set of real numbers
-$$
+$
 (c_1,\ldots,c_t)
-$$
-such that, for each $1 \le i < t$,
+$
+be such that, for each $1 \le i < t$,
 $$
 X \cap \{c_i < x_1 < c_{i+1}\}
 $$
@@ -157,12 +155,12 @@ is a monotone cell. By [@bgv13, Theorem 1.7], this can be achieved by ensuring t
 $$
 \gamma \cap \{ c_i < x_1 < c_{i+1}\}
 $$
-contains only monotone curve intervals. [@bgv15 [Theorem 3.18].
+contains only monotone curve intervals. [@bgv15 Theorem 3.18].
 
 Applying Corollary \@ref(cor:gamma-top-bottom) to $C$, we obtain continuous definable functions $\varphi,\psi \colon X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively.
-Let $$
+Let $
 (c_1,\ldots,c_t)
-$$
+$
 such that the graphs of $\varphi\vert_{\{ c_i < x_1 < c_{i+1} \}}$ and $\psi\vert_{\{ c_i < x_1 < c_{i+1} \}}$ for all $1 \le i < t$ are monotone curve intervals. By @bgv15, Theorem 1.7, $X \cap \{ c_i < x_1 < c_{i+1} \}$ for all $1\le i < t$ is a semi-monotone set [@bgv15, proof of Lemma 3.18].
 For the graphs of $\varphi$ and $\psi$ to be monotone curve intervals, we require that $\varphi$ and $\psi$ are either strictly increasing in, strictly decreasing in or independent of $x_1$. Thus, $(c_1,\ldots,c_t)$ are the critical points of $\varphi$ and $\psi$.
 Note that if $X$ is not bounded from below, then $\varphi$ does not exist and does not have a graph.
@@ -170,7 +168,7 @@ In this case, it is clear that no refinement of $X_B$ is required.
 
 ### Finding the critical points {#sec:lagrange-refinement}
 
-We now discuss how to find these critical points starting with the polynomials defining cells in $\cal D$.
+We now discuss how to find these critical points of $\phi$ and $\psi$ starting with the polynomials defining cells in $\cal D$.
 
 Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ such that every $2$-dimensional cell contained in $V = V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map. Let
 \begin{equation}
@@ -197,7 +195,7 @@ $$
 and, since $C'$ is a section cell, there exist polynomials
 $$
 g_2 \in {\cal A}_2,\ldots,g_{\alpha - 1} \in {\cal A}_{\alpha - 1}
-$$ such that $g_i(\mathbf{x}) = 0$ for all $1\le i \le \alpha - 1$ and $\mathbf{x} \in (C')$.
+$$ such that $g_i(\mathbf{x}) = 0$ for all $1\le i \le \alpha - 1$ and $\mathbf{x} \in C'$.
 Therefore, there exists a $1$-dimensional algebraic variety
 $$
 V' := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha - 1}(\mathbf{x}) = 0 \right\}
@@ -216,7 +214,7 @@ In the second case, $C_T$ can be written as
 where $\mathbf{x}$ is shorthand for $(x_1,\ldots,x_\alpha)$.
 By the construction of $\cal D$ (e.g., using Corollary \@ref(cor:mc-smooth)) $C_T$ is $C^\infty$ smooth, therefore $h$ is a differentiable function everywhere in $C'$.
 
-This representation lends itself naturally to the problem of optimisation with constraints -- Lagrange multipliers.
+This representation lends itself naturally to the problem of optimisation with constraints and the method of Lagrange multipliers.
 
 ::: {.proposition #lagrange-multipliers}
 Let $f \colon \R^n \to \R$ and $g_1,\ldots,g_k \colon \R^n \to \R$ be continuous functions with continuous first partial derivatives.
