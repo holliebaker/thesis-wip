@@ -823,7 +823,8 @@ Thus, we obtain a bound on the total number of refinement points, which is asymp
 
 We now describe how to refine the CAD $\cal D$ to be compatible with the refinement points in $\cal R$.
 
-For $0 \le k \le n$, consider each refinement point $\mathbf{c} = (c_1,\ldots,c_{k-1}, c_k) \in {\cal R}_k$. It is important to note that refinement points aappear in ascending order.
+For $1 \le k \le n$, and each $0$-dimensional cell $\mathbf{c}' = (c_1,\ldots,c_{k-1}) \in \R^{k-1}$, consider each
+refinement point $\mathbf{c} = (c_1,\ldots,c_{k-1}, c_k) \in {\cal R}_(\mathbf{c'})$. It is important to note that refinement points aappear in ascending order.
 Let ${\cal D}'$ be the sub-CAD of $\R^{n-k}$ above $(c_1,\ldots,c_k)$, which is a $(0,\ldots,0)$-cell of the CAD induced by $\cal D$ on $\R^k$ and let ${\cal D}''$ be the CAD induced by ${\cal D}'$ on $\R^{k+1}$. We want to refine ${\cal D}''$ such that $\mathbf{c}$ is a new $(0)$-cell.
 We need only to consider coordinate $k+1$ of $\mathbf{c}$. Denote it by $c_{k+1}$.
 For each $(0)$-cell $b_{k+1}$ of ${\cal D}''$, compute $s := \sign(b_{k+1} - c_{k+1})$. If $s \le 0$, consider the next $(0)$-cell in ${\cal D}''$. Otherwise, $s > 0$ and there is a $(1)$-cell $C$ in ${\cal D}''$ such that $c_{k+1} \in C$. This is the cell we need to refine.
@@ -836,5 +837,5 @@ index $(l_1,\ldots,l_k,l_{k+1})$ with $l_k+1 > j_{k+1}$, the positional index sh
 Let $C$ be the open interval $(a_1,a_2)$. If the sample point of $C_1$ needs to be updated, then set it to $(a_1 + c_{k+1}) / 2$ and if the sample point of $C_3$ needs updating, then set it to $(c_{k+1} + a_2) / 2$. Observe that, if we have updated the sample point of a cell $C$, then the sample points of every cell which projects on $C$ are now incorrect.
 Since polynomials are delineable over the original cell, then they will be delineable over the smaller cells in the refinement, so we simply need to run the sample point computation part of the lifting phase recursively on the stack above $C$. This involves evaluating each level $k+1$ projection factor $f$ at the new sample point $\mathbf{b}$ and finding the roots of the (possibly algebraic) univariate polynomial $f(\mathbf{b},x_n)$.
 
-Repeating this process with each refinement point in $\mathbf{R}_k$, we obtain the refinement described in [@bgv15, Lemma 3.11].
+Repeating this process with each refinement point in $\mathcal{R}_{\mathbf{c}'}$, we obtain the refinement described in [@bgv15, Lemma 3.11].
 
