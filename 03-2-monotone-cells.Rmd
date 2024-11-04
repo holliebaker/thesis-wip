@@ -760,6 +760,24 @@ End loop over $(1)$-cells in the decomposition induced by $\mathcal{D}$ on $\R^1
   $$
   \mathcal{R} := \mathcal{R} \cup \{ \mathcal{R}_\mathbf{b} \}.
   $$
+
+The algorithm for computing a monotone CAD can now be presented, making use of *MonotoneCADHelper()*.
+
+Algorithm *MonotoneCAD()*:
+
+- Initialise $\mathcal{F}$ and $\mathcal{R}$ as above.
+
+- Let $\mathbf{b}$ be the unique CAD cell in $\R^0$ (see Definition \@ref(def:cells)).
+
+- Call
+$$
+\mathrm{MonotoneCADHelper(\mathcal{D}, \mathcal{A}, \mathbf{0})}.
+$$
+
+- Return $\mathcal{R}$.
+
+- Although not returned here, $\mathcal{F}$ may also be useful in practice.
+
 :::
 
 ## Correctness and complexity
