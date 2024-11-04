@@ -531,7 +531,8 @@ $$\{ b_{i,1}, \ldots, b_{i,k_i} \} \subset (b_i, b_{i+1})
 $$ such that, for all $1 \le j < k_i$, $C_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}$ is the graph of a continuous map.
 In particular, $C_T \cap \{ b_{i,j} < x_i < b_{i,j+1} \}$ is the graph of $\mathbf{f}\vert_{Y_T \cap \{ b_{i,j} < x_1 < b_{i,j+1} \}}$.
 
-Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$) so that, $C_T$ and $C_B$, if non-empty, are split into $1$-dimensional continuous curves which are graphs of continuous functions, and the intervals above $0$-dimensional blow-up points. Once this property has been satisfied, we are left with a similar construction of optimisation with constraints as in Section \@ref(sec:lagrange-refinement).
+Apply the same argument to $\inf_{x_\alpha} f_j$ (for $C_B$) so that, $C_T$ and $C_B$, if non-empty, are split into
+connected curve intervals which are graphs of continuous functions, and the intervals above $0$-dimensional blow-up points. Once this property has been satisfied, we are left with a similar construction of optimisation with constraints as in Section \@ref(sec:lagrange-refinement).
 
 ### Critical points of the top and bottom
 
