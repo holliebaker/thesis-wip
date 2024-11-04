@@ -86,7 +86,7 @@ J_{\hat{w}}:=\begin{pmatrix}\partial f_{1}/\partial x_{i_{1}} & \ldots & \partia
 \partial f_{n-k}/\partial x_{i_{1}} & \ldots & \partial f_{n-k}/\partial x_{i_{\ell}}
 \end{pmatrix},
 $$
-where $\{i_1,\ldots,i_\ell\} \subset \{1,\ldots,n\}$. 
+where $\{i_1,\ldots,i_\ell\} \subset \{1,\ldots,n\}$.
 Let $w := \{j_1,\ldots,j_{n-\ell}\}$ be the complement $\{ 1 , \ldots, n \} \setminus \{ i_1,\ldots,i_\ell \}$
 so that $\hat{w}$ denotes the complement $\{i_1,\ldots,i_\ell\} = \{1,\ldots,n\} \setminus w$.
 Regular points of the projection of $W_k'$ onto $\opspan{w}$ are those at which the matrix $J_{w}$ has full rank.
@@ -118,15 +118,15 @@ We now present pseudo-code for the quasi-affine part of the algorithm.
 ::: {.algorithm data-latex="Quasi-Affine CAD"}
 **Input:**
 
-- $F_1,\ldots,F_k$: a quantifier-free Boolean formula defining
+$F_1,\ldots,F_k$: a quantifier-free Boolean formula defining
   $$
   V = V_1 \cup \ldots \cup V_k
   $$
-  where $V \subset \R^n$ and $\dim(V_i) \le 2, 1 \le i \le k$.
+where $V \subset \R^n$ and $\dim(V_i) \le 2, 1 \le i \le k$.
 
 **Output:**
 
-- $\cal D$: an $\mathbf{F'}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots V_k$ such that each cell $C
+$\cal D$: an $\mathbf{F'}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots V_k$ such that each cell $C
   \subset V$ is the graph of a quasi-affine map, where $\mathbf{F'} \subset \Z[x_1,\ldots,x_n]$ contains all
   polynomials from formulas $F_1,\ldots,F_k$ and, possibly, some additional polynomials which are zero at singular
   points of $V_1\cup \ldots, \cup V_k$ and the critical points of projections of $Y_1 \cup \ldots \cup V_k$ onto $1$-
@@ -189,7 +189,7 @@ be the set of polynomials appearing in the formulas $F_1,\ldots,F_k$.
 $$
 \mathbf{F}' := \mathbf{F} \cup\ \bigcup_{C_2,1\le i < j \le n} \det\left(J_{C_2,\hat{ij}}\right) \cup \bigcup_{C_1, 1 \le i \le n} \det\left(J_{C_1,\hat{i}}\right),
 $$
-where $C_1$ (resp. $C_2$) ranges over the $1$-dimensional (resp. $2$-dimensional) cells of $\mathcal{E}$ contained in $V$ and $\hat{w}$ denotes the complement $\{1, \ldots, n\} \setminus w$. 
+where $C_1$ (resp. $C_2$) ranges over the $1$-dimensional (resp. $2$-dimensional) cells of $\mathcal{E}$ contained in $V$ and $\hat{w}$ denotes the complement $\{1, \ldots, n\} \setminus w$.
 
 1. Return $\mathcal{D}$.
 :::

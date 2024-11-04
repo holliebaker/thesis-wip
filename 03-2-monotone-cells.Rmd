@@ -612,115 +612,154 @@ We now present psuedo-code for the monotone part of the algorithm.
 
 ::: {.algorithm data-latex="Monotone CAD"}
 **Input:**
-$$({\cal E}, {\cal A})$$
 
-  - $\cal E$: a cylindrical algebraic decomposition of $\R^{k+n}$, such that each cell is the graph of a quasi-affine map. Each cell $C$ of $\cal E$ has a truth-value (*true* or *false* attached.
-
-  - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_{k+n}$ is the family of projection polynomials where each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$.
+  - $\cal E$: a cylindrical algebraic decomposition of $\R^{r}$. Each cell $C$ of $\cal E$ has a truth-value (*true* or *false*) associated with it and each *true* cell such that $\dim(C) \le 2$ is the graph of a quasi-affine map. 
+  
+  - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_{r}$ is the family of projection polynomials associated with $\mathcal{E}$. Each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$.
 
 **Output:**
 $$
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1}  \}
+{\cal R} := \{ {\cal R}_{\mathbf{b}} := \{c_1,\ldots,c_t\} \subset \A \mid \mathbf{b} \in \R^{k}, k \ge 0 \}
 $$
-where $\mathbf{b} \in \R^{k-1}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^k$,
-such that, for each ${\cal R}_\mathbf{b}$, intersecting the sub-CAD $\cal D$ above $\mathbf{b}$ with straight lines and half-planes of the kind $\{x_1 < c_i \}, \{x_1 = c_i \}, \{x_1 > c_i\}, 1 \le i \le t$ results in a refinement of $\cal D$ such that each true cell of $\cal D$ with dimension at most $2$ is monotone.
+such that $\mathbf{b} \in \A^k$ is a $(0,\ldots,0)$-cell of the CAD induced by $\mathcal{E}$ on $\R^k$ and intersecting cells of the sub-CAD of $\mathcal{E}$ above $\mathbf{b}$ with straight lines and half-planes of the kind $\{x_{k+1} < c_i \}, \{x_{k+1} = c_i \}, \{x_{k+1} > c_i\}, 1 \le i \le t$ results in a refinement of the original CAD $\cal E$ of $\R^r$ such that every *true* cell of dimension at most $2$ is monotone.  
 
-First, define a subroutine
-$$
-{\rm sub}_{\mathbf{y}} (g) \mid g \in \Z[y_1,\ldots,y_m,x_1,\ldots,x_n], \mathbf{y} \in \A^m, n > 0,
-$$
-which computes $h := g(\mathbf{y}) \in \A[x_{1},\ldots,x_m]$ and returns the normalised polynomial of $h$, in
-$\Z[x_{m+1},\ldots,x_n]$ (see Section \@ref(sec:sub-cad)).
+The following simple subroutine will be needed.
 
-It will be convenient to overload this operator and write ${\rm sub}_{\mathbf{y}} (L)$, where $L$ is a set (or list) of polynomials to mean $\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}$.
+Subroutine $h := {\rm sub}_{\mathbf{y}} (g)$, where 
 
-Now define a structure to store refinement polynomials
+- $\mathbf{y} \in \A^m$,
+- $g \in \Z[y_1,\ldots,y_n,x_1,\ldots,x_n]$, and 
+- $h := g(\mathbf{y}) \in \Z[x_1,\ldots,x_n]$ is the normalised polynomial obtained by evaluating $g$ at $\mathbf{y}$ (see Section \@ref(sec:sub-cad)). 
+
+It will be convenient to overload this operator and write ${\rm sub}_{\mathbf{y}} (L)$, where $L \subset \Z[y_1,\ldots,y_m,x_1,\ldots,x_n]$ is a set of polynomials, to mean 
+$$\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}.$$
+
+Refinement polynomials will be stored in the following structure
 $$
 {\cal F} := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \},
 $$
-$\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k-1}$.
 and a similar structure to store refinement points
 $$
 {\cal R} := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \}
 $$
-$\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k-1}$.
-*(Note: for each $(0,\ldots,0)$-cell $\mathbf{b}$, ${\cal F}_\mathbf{b}$ is a set of univariate polynomials, ${\cal R}_{\mathbf{b}}$ is the set of roots of polynomials ${\cal F}_\mathbf{b}$. When $k=1$, then the CAD of $\R^0$ consisting of the unique point of $\R^0$ is used -- practically speaking, we work directly with the CAD $\cal E$.)*
+where $\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k-1}$.
+Each ${\cal R}_{\mathbf{b}} \subset \A$ will be a set of algebraic numbers, a subset of the real roots of ${\cal F}_{\mathbf{b}} \subset \Z[x_k]$, which is a set of univariate integer polynomials.  
 
-Let $\mathbf{b}$ be a $(0,\ldots,0)$-cell of the decomposition induced by $\cal E$ on $\R^{k-1}, k > 0$. Let $\cal D$ be the sub-decomposition of $\R^n$ of $\cal E$ above $\mathbf{b}$.
+The following helper function will be used, enabling recursion to be performed on the tree-like structure of the input CAD. 
 
-Consider each cell $C$ of $\cal D$ with truth value *true*. Let $C$ have binary index
+**Input:**
+
+  - $\cal D$: a cylindrical algebraic decomposition of $\R^{n}$. Each cell $C$ of $\cal D$ has a truth-value (*true* or *false*) associated with it and each *true* cell such that $\dim(C) \le 2$ is the graph of a quasi-affine map. 
+  
+  - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_{n}$ is the family of projection polynomials associated with $\mathcal{D}$. Each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$.
+
+  - $\mathbf{b} \in \A^k$. There is a cad $\mathcal{E}$ of $\R^{k+n}$ such that $\mathcal{D}$ is the sub-cad of $\mathcal{E}$ above $\mathbf{b}$.
+
+**Side-effects:**
+
+- The set of refinement points
 $$
-(0,\ldots,0,1,i_{k+1},\ldots,i_{k+n})
+\{ c_1,\ldots,c_t \} \subset \A
 $$
-in $\cal E$. If $i_{k+1} + \cdots + i_n > 2$, then $\dim(C) > 2$ and the algorithm will fail. Otherwise, let $\alpha$ be the smallest among $x+1,\ldots,k+n$ such that $i_{k+1} = \ldots = i_{\alpha - 1} = 0$ and $i_\alpha = 1$.
-Then:
+such that intersecting cells of $\mathcal{D}$ with straight lines and half-planes of the kind $\{x_1 < c_i \}, \{x_1 = c_i \}, \{x_1 > c_i\}, 1 \le i \le t$ results in a refinement of $\cal D$ such that each *true* $(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monotone. 
 
-- Let
+- Refinement polynomials are added to the structure $\mathcal{F}$.
 
-  - $\mathbf{b} := \projop{k-1}(C)$,
+- Refinement points are added to the structure $\mathcal{R}$. 
 
-    *(Note: observe that $\mathbf{b} \in A^{k-1}$. If $k = 1$, then $\mathbf{b}$ is the unique cell, $\mathbf{0}$, in the CAD of $\R^0$. In this case, it is clear that ${\rm sub}_\mathbf{0} (g) \equiv g$.)*
+Subroutine *MonotoneCADHelper($\mathcal{D}$, $\mathcal{A}$, $\mathbf{b}$)*
 
-  - $C'' \subset \A := \projop{k}(C)$ ($(1)$-cell), and let $(C''_B, C''_T)$ be $(0)$-cells which are the endpoints of $C''$,
+- If $n \le 2$, 
 
-  - ${\cal G} := {\rm sub}_{\mathbf{b}} \{ g_i \mid k+1 \le i \le \alpha - 1, g_i \in {\cal A}_i, g_i(\mathbf{x}) = 0 \ \forall \mathbf{x} \in \projop{\alpha-1}(C) \}$,
+    then:
+    
+    - Return immediately. 
 
-  - $C' := \projop{\alpha}(C)$.
+    End if.
 
-- $C'_T$ and $C'_B$ be the top and bottom, respectively, $C'$.
-
-(*Note: If $C'$ is not bounded from above (resp. below) by a continuous definable function, i.e., there is no section above (resp. below) $C'$, then let $C'_T := \emptyset$ (resp $C'_B$) and skip any computations involving $C'_T$ (resp $C'_B$).)*
-
-- Let $j = \alpha$ and do:
-
-  - **(*)** For $\delta \in \{B, T\}$, if $C_\delta$ is not empty, do:
-
-    - Let $\rm{sub}_{\mathbf{b}} (g_j) \in \Z[x_{k+1,\ldots,x_j}]$ be such that $g_\alpha(\mathbf{x}) = 0$ for all $\mathbf{x} \in C'_\delta$.
+- For each $(0)$-cell $\mathbf{c}$ of the decomposition induced by $\mathcal{D}$ on $\R^1$, which is the projection of a *true* cell of dimension at most $2$,
+    
+    do:
 
     - Compute
     $$
-f_\delta := \det\begin{pmatrix}\dfrac{\partial g_{k+1}}{\partial x_{k}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{k}} & \dfrac{\partial g_{j}}{\partial x_{k}}\\
+    {\cal A'} := \{ \mathcal{ A'}_{i-1} := \mathrm{sub}_{\mathbf{c}} (\mathcal{A}_i) \mid 2 \le i \le n \}.
+    $$     
+
+    - Let $\mathcal{E'}$ be the sub-CAD of $\mathcal{D}$ in $\R^{n-1}$ above $\mathbf{c}$.
+
+    - Proceed by induction by calling
+    $$
+    \mathrm{MonotoneCADHelper}(E', A', \mathbf{c}).
+    $$    
+
+    End for.
+    
+- Initialise $\mathcal{F}_\mathbf{b} = \emptyset, \mathcal{G}_\mathbf{b} = \emptyset, \mathcal{R}_\mathbf{b} = \emptyset$
+
+- For each $(1)$-cell $C''$ of the decomposition induced by $\mathcal{D}$ on $\R^1$ which is the projection of a *true* cell of dimension at most $2$,
+
+    do:
+
+    - For each *true* cell $C$ of $\mathcal{D}$ such that $\dim(C) \le 2$ and $\projop{1} = C''$,
+    
+        do:
+        - The cell $C$ has binary index $(1,0,\ldots,0,i_\alpha,0,\ldots,0)$ where $i_\alpha = 1$. 
+
+        - Let $j := \alpha$.
+         
+        - While $j \le n$, 
+            
+            do:
+
+            - Let $C' := \projop{j} (C)$ and $C'_B$ (resp. $C'_T$) be the bottom (resp. top) of $C'$.
+
+            - If $C'$ is not bounded from below (resp. above), then $C'_B = \emptyset$ (resp. $C'_T = \emptyset$) and any computations involving $C'_B$ (resp, $C'_T$) will be skipped.   
+
+            - For $\delta \in \{B, T\}$, 
+                
+                do: 
+  
+                - Let $(g_2,\ldots,g_{j})$ such that each $(g_i) \in \Z[x_1,\ldots,x_j], 2 \le i \le j$ is equal to zero at every point $\mathbf{x} \in C'_\delta$.
+
+                - Compute
+    $$
+f_\delta := \det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{1}} & \dfrac{\partial g_{j}}{\partial x_{1}}\\
 \vdots &  &  & \vdots\\
-\dfrac{\partial g_{k+1}}{\partial x_{j-1}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{j-1}} & \dfrac{\partial g_{j}}{\partial x_{j-1}}
+\dfrac{\partial g_{1}}{\partial x_{j-1}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{j-1}} & \dfrac{\partial g_{j}}{\partial x_{j-1}}
 \end{pmatrix},
     $$
-from Equation \@ref(eq:jacobi-det), using constraints $g_{k+1},\ldots,g_{\alpha+1}$, and discarding denominators $\partial g_\alpha / \partial x_\alpha$ of the total derivatives in the last column.
+                from Equation \@ref(eq:jacobi-det), using constraints $g_{2},\ldots,g_{j-1}$, and optimisation function $g_j$. Denominators $\partial g_j / \partial x_j$ of the total derivatives of $g_j$ in the last column will be delt with later.
 
-  - Let $${\cal H} := \{ g_{k+1},\ldots,g_{j-1}, f_B, f_T \}$$
-be a set of polynomials and compute
-$$
-{\cal F}_{\mathbf{b}} := {\cal F}_{\mathbf{b}} \cup \projop{1}({\cal H}) \subset \Z[x_k].
-$$
+                - let $d_\delta := \partial g_j / \partial x_j$
 
-  - If $j < n$, then
+            End for $\delta \in \{B, T\}$.
 
-    - Add $g_j$ to $\cal G$, i.e., let
-      $$
-      {\cal G} := {\cal G} \cup \{ g_j \}.
-      $$
+          - Compute $$\mathcal{F'} := \projop{1}(\{ g_{2},\ldots,g_{j-1}, f_B, f_T \}) \subset \Z[x_1].$$
 
-    - Let $j := j+1$.
+          - Let $\mathcal{F}_\mathbf{b} := \mathcal{F}_\mathbf{b} \cup \mathcal{F'}$. 
 
-    - Let
-      $$
-      C' := \projop{j}(C)
-      $$
-      $C'$ is a section cell, and its top and bottom may not be graphs of continuous functions. Use QE to compute
-      $$
-      ...
-      $$
+          - Let $\mathcal{G}_\mathbf{b} := \mathcal{G}_\mathbf{b} \cup \projop{1}(\{ d_T, d_B \})$.
+                
+          - Let $j := j+1$.
 
-- For each $(0,\ldots,0)$-cell $\mathbf{b} \in \A^k$, consider
-$$
-{\cal F}_{\mathbf{b}} \in {\cal F} \in \Z[k],
-$$
-compute
-$$
-{\cal R}_{\mathbf{b}} := (c_1,\ldots,c_t)
-$$
-by isolating the real roots of polynomials in ${\cal F}_{\mathbf{b}}$.
+        End while $j \le n$. 
 
-- Return the family ${\cal R}$ of refinement points.
+    End loop over *true* cells of $\mathcal{D}$. 
+
+End loop over $(1)$-cells in the decomposition induced by $\mathcal{D}$ on $\R^1$.
+
+- Let $\mathcal{R}_\mathbf{b}$ be the union of the real roots of polynomials in $\mathcal{F}_{\mathbf{b}}$ and the real roots of polynomials in $\mathcal{F}_{\mathbf{b}}$.
+  
+- Add refinement polynomials
+  $$
+  \mathcal{F} := \mathcal{F} \cup \{ \mathcal{F}_\mathbf{b} \}.
+  $$
+
+- Add refinement points
+  $$
+  \mathcal{R} := \mathcal{R} \cup \{ \mathcal{R}_\mathbf{b} \}.
+  $$
 :::
 
 ## Correctness and complexity
@@ -784,7 +823,7 @@ Thus, we obtain a bound on the total number of refinement points, which is asymp
 
 We now describe how to refine the CAD $\cal D$ to be compatible with the refinement points in $\cal R$.
 
-For $0 \le k \le n$, consider each refinement point $\mathbf{c} = (c_1,\ldots,c_{k-1}, c_k) \in {\cal R}_k$. It is important to note that refinement points appear in ascending order.
+For $0 \le k \le n$, consider each refinement point $\mathbf{c} = (c_1,\ldots,c_{k-1}, c_k) \in {\cal R}_k$. It is important to note that refinement points aappear in ascending order.
 Let ${\cal D}'$ be the sub-CAD of $\R^{n-k}$ above $(c_1,\ldots,c_k)$, which is a $(0,\ldots,0)$-cell of the CAD induced by $\cal D$ on $\R^k$ and let ${\cal D}''$ be the CAD induced by ${\cal D}'$ on $\R^{k+1}$. We want to refine ${\cal D}''$ such that $\mathbf{c}$ is a new $(0)$-cell.
 We need only to consider coordinate $k+1$ of $\mathbf{c}$. Denote it by $c_{k+1}$.
 For each $(0)$-cell $b_{k+1}$ of ${\cal D}''$, compute $s := \sign(b_{k+1} - c_{k+1})$. If $s \le 0$, consider the next $(0)$-cell in ${\cal D}''$. Otherwise, $s > 0$ and there is a $(1)$-cell $C$ in ${\cal D}''$ such that $c_{k+1} \in C$. This is the cell we need to refine.
