@@ -11,7 +11,8 @@ We first present a motivating example, of a $2$-dimensional cylindrical cell whi
 
 Let
 $$
-\Delta := \{ (x,y) \in \R^2 \mid 0 < x, 0 < y, x + y < 1 \} \subset \R^2
+\Delta := \{ (x,y
+) \in \R^2 \mid 0 < x, 0 < y, x + y < 1 \} \subset \R^2
 $$ and
 $$
 \varphi(x,y) = x^2 + y^2.
@@ -309,7 +310,7 @@ Repeating this process to obtain $J'_B$ and $d_B$, if sector cell $C$ is bounded
 g_2 = 0,\ldots,g_{\alpha-1} = 0, J'_B = 0,
 (\#eq:lagrange-solve-bot) \\
 g_2 = 0,\ldots,g_{\alpha-1} = 0, J'_T = 0
-(\#eq:lagrange-solve-top) \\
+(\#eq:lagrange-solve-top)
 \end{align}
 and inequalities
 \begin{equation}
@@ -343,7 +344,7 @@ P(x_1,\ldots,x_\alpha) =\ & s_1 g_{1,1}(x_1) > 0 \land \ldots \land s_\ell g_{1,
 (\#eq:lagrange-solve-qe)
 \end{split}
 \end{align}
-Computing the projection onto $\R^1$ of polynomials $\{g_2,\ldots,g_{\alpha - 1}, J'_B, J'_T \}$ from Equations \@ref(eq:lagrange-solve-qe-constraints) and \@ref(eq:lagrange-solve-qe-jacobis), a system
+Computing the projection onto $\R^1$ of polynomials $\{g_2,\ldots,g_{\alpha - 1}, J'_B, J'_T \}$ from Equation \@ref(eq:lagrange-solve-qe), a system
 \begin{equation}
 \mathcal{F} := \{ f_1=0 ,\ldots,f_r=0 \} \subset \Z[x_1]
 (\#eq:lagrange-solve-projected)
@@ -653,6 +654,7 @@ The following helper function enables recursion on the tree-like structure of ce
 
   - $\mathbf{b} \in \A^k$. There is a cad $\mathcal{E}$ of $\R^{k+n}$ such that $\mathcal{D}$ is the sub-cad of $\mathcal{E}$ above $\mathbf{b}$.
 
+**Output:**
 
 - The set of refinement points
 $$
@@ -811,14 +813,16 @@ Thus, the degree of the polynomial defined in Equation \@ref(eq:jacobi-det) is a
 $(s(d+1))^{\O(1)^{n}}$.
 
 We then compute the $x_1$-coordinates of the solutions to the $0$-dimensional system of equations (defined in Equations \@ref(eq:lagrange-solve)), subject to the inequalities (defined in Equation \@ref(eq:lagrange-solve-ineqs)). In the implementation, CAD projection is used to compute a family of polynomials ${\cal F}$, defined in Equation \@ref(eq:lagrange-solve-projected), such that the required refinement points contain their roots.
-As we are well aware, the number of polynomials and their degrees will be doubly exponential in $n$. However, a better bound on the number of refinement points can be obtained.
-Equation \@ref(eq:lagrange-solve) defines two systems of $\alpha - 1$ equations in $\alpha - 1$ unknowns and both systems have a finite number of solutions.
-A generalisation of Bezout's Theorem states that, over an algebraically closed field, if a system of $n$ polynomial equations, having degrees $d_1,\ldots,d_n$, in $n$ unknowns has a finite number of solutions, then this number, counted with multiplicities, is at most the product $d_1 \cdots d_n$. This will be an upper bound on the number of different real solutions to the system of polynomials. Since we only have an upper bound on the maximum degree $d$ of polynomials appearing in the systems from Equation \@ref(eq:lagrange-solve), then there are at most $d^n$ distinct real solutions to the system.
-An even tighter bound can be obtained by considering the number of connected components of the algebraic set defined by this system of equations.
-Indeed, the number of connected components of a definable set is given by the $0$-th Betti number, $b_0$, of the set.
-@gv2009 Section 6.1 present some bounds on the total Betti number -- sum of Betti numbers of all orders -- ${\tt{b}}(S)$ of a semialgebraic set $S \subset \R^n$.
+As we are well aware, the number of polynomials and their degrees will be at most doubly exponential in $n$.
+However, a better bound on the number of refinement points could be obtained by considering the number of connected components in the set defined by the roots of the refinement polynomials, i.e., the $0$-th Betti number, $b_0$.
+@gv2009 Section 6.1 present some bounds on the total Betti number (sum of Betti numbers of all orders) ${\tt{b}}(S)$ of a semialgebraic set $S \subset \R^n$.
 For a semialgebraic set $S \subset \R^n$ defined by a conjunction of any number of polynomials having maximum degree $d$, ${\tt{b}}(S) \le d(2d - 1)^{n-1}$ [@gv2009, Section 6.1 (a)].
+Note that Equation \@ref(eq:lagrange-solve-bot) (and Equation \@ref(eq:lagrange-solve-top)) defines two systems of $\alpha - 1$ equations in $\alpha - 1$ unknowns and both systems have a finite number of solutions.
+Thus, a generalisation of Bezout's Theorem states that, over an algebraically closed field, if a system of $n$ polynomial equations, having degrees $d_1,\ldots,d_n$, in $n$ unknowns has a finite number of solutions, then this number, counted with multiplicities, is at most the product $d_1 \cdots d_n$.
+This will be an upper bound on the number of different real solutions to the system of polynomials. Hence, given maximum
+degreee $d$ of polynomials appearing in Equation \@ref(eq:lagrange-solve-bot) (and Equation \@ref(eq:lagrange-solve-top)), there will be at most $d^n$ real roots.
 This bound is sufficient for our situation because the inequalities define a subset of these roots.
+
 Using the upper bound on the degrees of polynomials defining the CAD and the determinant of the matrix, along with the bound on the number of roots given by Bezout's theorem, we get a bound for the number of refinement points of
 $$
 \left(s(d+1)\right)^{n \cdot \O(1)^{n}}.
