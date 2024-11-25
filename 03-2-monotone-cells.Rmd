@@ -628,24 +628,22 @@ The following simple subroutine will be needed.
 Subroutine $h := {\rm sub}_{\mathbf{y}} (g)$, where
 
 - $\mathbf{y} \in \A^m$,
-- $g \in \Z[y_1,\ldots,y_n,x_1,\ldots,x_n]$, and
+- $g \in \Z[y_1,\ldots,y_m,x_1,\ldots,x_n]$, and
 - $h := g(\mathbf{y}) \in \Z[x_1,\ldots,x_n]$ is the normalised polynomial obtained by evaluating $g$ at $\mathbf{y}$ (see Section \@ref(sec:sub-cad)).
 
 It will be convenient to overload this operator and write ${\rm sub}_{\mathbf{y}} (L)$, where $L \subset \Z[y_1,\ldots,y_m,x_1,\ldots,x_n]$ is a set of polynomials, to mean
 $$\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}.$$
 
-Refinement polynomials will be stored in the following structure
-$$
-{\cal F} := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \},
-$$
-and a similar structure to store refinement points
-$$
-{\cal R} := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k-1}, k > 0 \}
-$$
-where $\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k-1}$.
-Each ${\cal R}_{\mathbf{b}} \subset \A$ will be a set of algebraic numbers, a subset of the real roots of ${\cal F}_{\mathbf{b}} \subset \Z[x_k]$, which is a set of univariate integer polynomials.
+The following structures will be used to store, respectively, refinement polynomials and refinement points:
+\begin{align*}
+{\cal F} & := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k}, k \ge 0 \},\\
+{\cal R} & := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k}, k \ge 0 \}.\\
+\end{align*}
+where $\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k}$.
+Each ${\cal R}_{\mathbf{b}} \subset \A$ will be a set of algebraic numbers, a subset of the real roots of somee of the
+polynomials in ${\cal F}_{\mathbf{b}} \subset \Z[x_{k+1}]$.
 
-The following helper function will be used, enabling recursion to be performed on the tree-like structure of the input CAD.
+The following helper function enables recursion on the tree-like structure of cells in $\mathcal{E}$.
 
 **Input:**
 
@@ -655,29 +653,33 @@ The following helper function will be used, enabling recursion to be performed o
 
   - $\mathbf{b} \in \A^k$. There is a cad $\mathcal{E}$ of $\R^{k+n}$ such that $\mathcal{D}$ is the sub-cad of $\mathcal{E}$ above $\mathbf{b}$.
 
-**Side-effects:**
 
 - The set of refinement points
 $$
-\{ c_1,\ldots,c_t \} \subset \A
+\mathcal{R}_\mathbf{b} := \{ c_1,\ldots,c_t \} \subset \A
 $$
-such that intersecting cells of $\mathcal{D}$ with straight lines and half-planes of the kind $\{x_1 < c_i \}, \{x_1 = c_i \}, \{x_1 > c_i\}, 1 \le i \le t$ results in a refinement of $\cal D$ such that each *true* $(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monotone.
+such that intersecting cells of $\mathcal{D}$ with straight lines and half-planes of the kind $\{x_1 < c_i \}, \{x_1 =
+c_i \}, \{x_1 > c_i\}, 1 \le i \le t$ results in a refinement of $\cal D$ such that each *true*
+$(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monotone, will be computed.
+
+**Side-effects:**
 
 - Refinement polynomials are added to the structure $\mathcal{F}$.
 
-- Refinement points are added to the structure $\mathcal{R}$.
+- Refinement points $\mathcal{R}_\mathbf{b}$ are added to the structure $\mathcal{R}$.
 
-Subroutine *MonotoneCADHelper($\mathcal{D}$, $\mathcal{A}$, $\mathbf{b}$)*
+Subroutine *MonotoneCadHelper($\mathcal{D}$, $\mathcal{A}$, $\mathbf{b}$)*
 
 - If $n \le 2$,
 
     then:
 
-    - Return immediately.
+    - Return immediately: all cells in the CAD are already monotone.
 
     End if.
 
-- For each $(0)$-cell $\mathbf{c}$ of the decomposition induced by $\mathcal{D}$ on $\R^1$, which is the projection of a *true* cell of dimension at most $2$,
+- For each $(0)$-cell $\mathbf{c}$ of the decomposition induced by $\mathcal{D}$ on $\R^1$, which is the projection of a
+  *true* cell of $\cal D$ of dimension $2$,
 
     do:
 
@@ -686,25 +688,26 @@ Subroutine *MonotoneCADHelper($\mathcal{D}$, $\mathcal{A}$, $\mathbf{b}$)*
     {\cal A'} := \{ \mathcal{ A'}_{i-1} := \mathrm{sub}_{\mathbf{c}} (\mathcal{A}_i) \mid 2 \le i \le n \}.
     $$
 
-    - Let $\mathcal{E'}$ be the sub-CAD of $\mathcal{D}$ in $\R^{n-1}$ above $\mathbf{c}$.
+    - Let $\mathcal{D'}$ be the sub-CAD of $\mathcal{D}$ in $\R^{n-1}$ above $\mathbf{c}$.
 
     - Proceed by induction by calling
     $$
-    \mathrm{MonotoneCADHelper}(E', A', \mathbf{c}).
+    \mathrm{MonotoneCadHelper}(D', A', \mathbf{c}).
     $$
 
     End for.
 
 - Initialise $\mathcal{F}_\mathbf{b} = \emptyset, \mathcal{G}_\mathbf{b} = \emptyset, \mathcal{R}_\mathbf{b} = \emptyset$
 
-- For each $(1)$-cell $C''$ of the decomposition induced by $\mathcal{D}$ on $\R^1$ which is the projection of a *true* cell of dimension at most $2$,
+- For each $(1)$-cell $C''$ of the decomposition induced by $\mathcal{D}$ on $\R^1$ which is the projection of a *true*
+  cell of $\cal D$ of dimension $2$,
 
     do:
 
-    - For each *true* cell $C$ of $\mathcal{D}$ such that $\dim(C) \le 2$ and $\projop{1} = C''$,
+    - For each *true* cell $C$ of $\mathcal{D}$ such that $\dim(C) = 2$ and $\projop{1} = C''$,
 
         do:
-        - The cell $C$ has binary index $(1,0,\ldots,0,i_\alpha,0,\ldots,0)$ where $i_\alpha = 1$.
+        - Observe that the cell $C$ has binary index $(1,0,\ldots,0,i_\alpha,0,\ldots,0)$ where $i_\alpha = 1$.
 
         - Let $j := \alpha$.
 
@@ -729,11 +732,13 @@ f_\delta := \det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots &
 \dfrac{\partial g_{1}}{\partial x_{j-1}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{j-1}} & \dfrac{\partial g_{j}}{\partial x_{j-1}}
 \end{pmatrix},
     $$
-                from Equation \@ref(eq:jacobi-det), using constraints $g_{2},\ldots,g_{j-1}$, and optimisation function $g_j$. Denominators $\partial g_j / \partial x_j$ of the total derivatives of $g_j$ in the last column will be delt with later.
+                from Equation \@ref(eq:jacobi-det), using constraints $g_{2},\ldots,g_{j-1}$, and optimisation function $g_j$.
+
 
                 - let $d_\delta := \partial g_j / \partial x_j$
+                These denominators of the total derivatives of $g_j$ in the last column will be delt with later.
 
-            End for $\delta \in \{B, T\}$.
+                End for $\delta \in \{B, T\}$.
 
           - Compute $$\mathcal{F'} := \projop{1}(\{ g_{2},\ldots,g_{j-1}, f_B, f_T \}) \subset \Z[x_1].$$
 
@@ -743,41 +748,42 @@ f_\delta := \det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots &
 
           - Let $j := j+1$.
 
-        End while $j \le n$.
+          End while $j \le n$.
 
-    End loop over *true* cells of $\mathcal{D}$.
+      End loop over *true* cells of $\mathcal{D}$.
 
-End loop over $(1)$-cells in the decomposition induced by $\mathcal{D}$ on $\R^1$.
+  End loop over $(1)$-cells in the decomposition induced by $\mathcal{D}$ on $\R^1$.
 
-- Let $\mathcal{R}_\mathbf{b}$ be the union of the real roots of polynomials in $\mathcal{F}_{\mathbf{b}}$ and the real roots of polynomials in $\mathcal{F}_{\mathbf{b}}$.
+- Let $\mathcal{R}_\mathbf{b}$ be the union of the real roots of polynomials in $\mathcal{F}_{\mathbf{b}}$ and the real roots of polynomials in $\mathcal{G}_{\mathbf{b}}$.
 
 - Add refinement polynomials
   $$
-  \mathcal{F} := \mathcal{F} \cup \{ \mathcal{F}_\mathbf{b} \}.
+  \mathcal{F} := \mathcal{F} \cup \{ \mathcal{F}_\mathbf{b} \},
   $$
 
-- Add refinement points
+  and refinement points
   $$
   \mathcal{R} := \mathcal{R} \cup \{ \mathcal{R}_\mathbf{b} \}.
   $$
 
+- Return $\cal{R}_\mathbf{b}$.
+
 The algorithm for computing a monotone CAD can now be presented, making use of *MonotoneCADHelper()*.
 
-Algorithm *MonotoneCAD()*:
+Algorithm $\mathrm{MonotoneCad(\mathcal{D}, \mathcal{A})}$:
 
-- Initialise $\mathcal{F}$ and $\mathcal{R}$ as above.
+- Initialise $\mathcal{F}$ and $\mathcal{R}$ as above, for use with *MonotoneCadHelper*.
 
 - Let $\mathbf{b}$ be the unique CAD cell in $\R^0$ (see Definition \@ref(def:cells)).
 
 - Call
 $$
-\mathrm{MonotoneCADHelper(\mathcal{D}, \mathcal{A}, \mathbf{0})}.
+\mathrm{MonotoneCadHelper(\mathcal{D}, \mathcal{A}, \mathbf{0})}.
 $$
 
 - Return $\mathcal{R}$.
 
-- Although not returned here, $\mathcal{F}$ may also be useful in practice.
-
+Note that, although not returned here, refinement polynomials $\mathcal{F}$ may be useful in practice.
 :::
 
 ## Correctness and complexity
