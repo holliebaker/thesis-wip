@@ -297,53 +297,6 @@ where $F_{1,B}$ (resp. $F_{1,T}$) is a QFF defining the bottom (resp. top) of th
 
 ### Worked example { #sec:worked-example }
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Illustrates the initial decomposition constructed in Step 1 (projection onto the $(x,y)$-plane).", label="initial-cad" }
-knitr::include_graphics(rep("gnuplot/r3-initial.png"))
-```
-
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Illustrates how $\\fr{S}$ interacts with the cells of $\\mathcal{E}$. The frontier is indicated by a dashed line, with the blow-up subset above the origin represented by a node.", label="initial-fr" }
-knitr::include_graphics(rep("gnuplot/r3-initial-fr.png"))
-```
-
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Shows cells of $\\mathcal{E}_{(0,1)}$, the refinement of $\\mathcal{E}$ compatible with $\\fr{S}$ computed in Step 4.", label="final-cad" }
-knitr::include_graphics(rep("gnuplot/r3-refined.png"))
-```
-
-Table: (\#tab:cells-of-e) All cells of the CAD $\mathcal{E}$, the initial CAD computed in Section \@ref(sec:worked-example).}
-
-|Label | Index | Formula |
-|------|-------|---------|
-|      | $(1,1,1)$ | $\{ x < -1 \}$ |
-| $C_1$ | $(0,1,1)$ | $\{ x = -1 \}$ |
-|      | $(1,1,1)$ | $\{ -1 < x < 1, y < \vert x \vert \}$ |
-| $C_2$ | $(1,0,1)$ | $\{ -1 < x < 1, y = \vert x \vert \}$ |
-|      | $(1,1,1)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z < \vert x/y \vert \}$ |
-| $S$  | $(1,1,0)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z = \vert x/y \vert \}$ |
-|      | $(1,1,1)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z > \vert x/y \vert \}$ |
-| $C_3$ | $(1,0,1)$ | $\{ -1 < x < 1, y = 1 \}$ |
-|       | $(1,1,1)$ | $\{ -1 < x < 1, y > 1 \}$ |
-| $C_4$ | $(0,1,1)$ | $\{ x = 1 \}$ |
-|       | $(1,1,1)$ | $\{ x > 1 \}$ |
-
-Table: (\#tab:cells-of-e-refined) Cells of the CAD $\mathcal{E}_{(0,1)}$ computed in step 3 of Section \@ref(sec:worked-example). Note that only cells which are part of $\cl{S}$ are listed.
-
-| Label | Index | Formula |
-|-------|-------|---------|
-| ${C'_1}$ | $(0,0,0)$ | $\{ x = -1, y = 1, z = 1 \}$ |
-| ${C'_2}$ | $(1,0,0)$ | $\{ -1 < x < 0, y = -x, z = 1 \}$ |
-| ${C''_{2,1}}$ | $(0,0,0)$ | $\{ x = y = 0, z = 0 \}$ |
-| ${C''_{2,2}}$ | $(0,0,1)$ | $\{ x = y = 0, 0 < z < 1 \}$ |
-| ${C''_{2,3}}$ | $(0,0,0)$ | $\{ x = y = 0, z = 1 \}$ |
-| ${C'''_2}$ | $(1,0,0)$ | $\{ 0 < x < 1, y = x, z = 1 \}$ |
-| $S'$ | $(1,1,0)$ | $\{ -1 < x < 0, -x < y < 1, z =  -x/y \}$ |
-| $S''$ | $(0,1,0)$ | $\{ x = 0, 0 < y < 1, z = 0 \}$ |
-| $S'''$ | $(1,1,0)$ | $\{ 0 < x < 1, x < y < 1, z = x/y \}$ |
-| $C'_3$ | $(1,0,0)$ | $\{ -1 < x < 0, y = 1, z = -x \}$ |
-| $C''_3$ | $(0,0,0)$ | $\{ x = 0, y = 1, z = 0\}$ |
-| $C'''_3$ | $(1,0,0)$ | $\{ 0 < x < 1, y = 1, z = x \}$ |
-| ${C'_4}$ | $(0,0,0)$ | $\{ x = 1, y = 1, z = 1 \}$ |
-
-
 We demonstrate the $\mathrm{CadFC}$ algorithm by applying it to the set
 $$
 S := \{ -1 < x < 1, \vert x\vert <y <1, z=\vert x/y\vert \}
@@ -352,7 +305,7 @@ from Example \@ref(exm:top-bottom-not-cylindrical).
 
 1. Let $F$ be a QFF defining $S$ and compute $\mathcal{E} := \mathbf{true}\ \&\ \{F\}$, a CAD of $\R^3$ compatible with
 $S$ (see Table \@ref(tab:cells-of-e) and Figure \@ref(fig:initial-cad)). Observe that $S$ is a single $2$-dimensional cylindrical $(1,1,0)$-cell of $\mathcal{E}$.
-The initial pair $$
+The initial pair is $$
 (\mathcal{E}_{(1,1)}, \mathcal{F}_{(1,1)}) = (\mathcal{E}, \emptyset).
 $$
 
@@ -389,7 +342,53 @@ $X_{(0,0)}$ contains $\fr{S'}$.
 
 5. $X_{(0,0)}$ is already a union of cells of $\mathcal{E}_{(0,0)}$, so no further refinement of $\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}$ is needed. The algorithm terminates and returns $\mathcal{D} := \mathcal{E}_{(0,1)}$.
 
-Well-known implementations of cylindrical algebraic decomposition such as `QEPCAD-B` [@brownQepcad] and Maple's `CylindricalAlgebraicDecompose` [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example \@ref(exm:top-bottom-not-cylindrical), both 'CylindricalAlgebraicDecompose' and 'QEPCAD-B' create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr{S} \ne \emptyset$, but $B''' \not \subset \fr{S}$ so the frontier of $S$ is not a union of cells in the decomposition.
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Illustrates the initial decomposition constructed in Step 1 (projection onto the $(x,y)$-plane).", label="initial-cad" }
+knitr::include_graphics(rep("gnuplot/r3-initial.png"))
+```
+
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Illustrates how $\\fr{S}$ interacts with the cells of $\\mathcal{E}$. The frontier is indicated by a dashed line, with the blow-up subset above the origin represented by a node.", label="initial-fr" }
+knitr::include_graphics(rep("gnuplot/r3-initial-fr.png"))
+```
+
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Shows cells of $\\mathcal{E}_{(0,1)}$, the refinement of $\\mathcal{E}$ compatible with $\\fr{S}$ computed in Step 4.", label="final-cad" }
+knitr::include_graphics(rep("gnuplot/r3-refined.png"))
+```
+
+Table: (\#tab:cells-of-e) All cells of the CAD $\mathcal{E}$, the initial CAD computed in Section \@ref(sec:worked-example).
+
+|Label | Index | Formula |
+|------|-------|---------|
+|      | $(1,1,1)$ | $\{ x < -1 \}$ |
+| $C_1$ | $(0,1,1)$ | $\{ x = -1 \}$ |
+|      | $(1,1,1)$ | $\{ -1 < x < 1, y < \vert x \vert \}$ |
+| $C_2$ | $(1,0,1)$ | $\{ -1 < x < 1, y = \vert x \vert \}$ |
+|      | $(1,1,1)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z < \vert x/y \vert \}$ |
+| $S$  | $(1,1,0)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z = \vert x/y \vert \}$ |
+|      | $(1,1,1)$ | $\{ -1 < x < 1, \vert x \vert < y < 1, z > \vert x/y \vert \}$ |
+| $C_3$ | $(1,0,1)$ | $\{ -1 < x < 1, y = 1 \}$ |
+|       | $(1,1,1)$ | $\{ -1 < x < 1, y > 1 \}$ |
+| $C_4$ | $(0,1,1)$ | $\{ x = 1 \}$ |
+|       | $(1,1,1)$ | $\{ x > 1 \}$ |
+
+Table: (\#tab:cells-of-e-refined) Cells of the CAD $\mathcal{E}_{(0,1)}$ computed in step 3 of Section \@ref(sec:worked-example). Note that only cells which are part of $\cl{S}$ are listed.
+
+| Label | Index | Formula |
+|-------|-------|---------|
+| ${C'_1}$ | $(0,0,0)$ | $\{ x = -1, y = 1, z = 1 \}$ |
+| ${C'_2}$ | $(1,0,0)$ | $\{ -1 < x < 0, y = -x, z = 1 \}$ |
+| ${C''_{2,1}}$ | $(0,0,0)$ | $\{ x = y = 0, z = 0 \}$ |
+| ${C''_{2,2}}$ | $(0,0,1)$ | $\{ x = y = 0, 0 < z < 1 \}$ |
+| ${C''_{2,3}}$ | $(0,0,0)$ | $\{ x = y = 0, z = 1 \}$ |
+| ${C'''_2}$ | $(1,0,0)$ | $\{ 0 < x < 1, y = x, z = 1 \}$ |
+| $S'$ | $(1,1,0)$ | $\{ -1 < x < 0, -x < y < 1, z =  -x/y \}$ |
+| $S''$ | $(0,1,0)$ | $\{ x = 0, 0 < y < 1, z = 0 \}$ |
+| $S'''$ | $(1,1,0)$ | $\{ 0 < x < 1, x < y < 1, z = x/y \}$ |
+| $C'_3$ | $(1,0,0)$ | $\{ -1 < x < 0, y = 1, z = -x \}$ |
+| $C''_3$ | $(0,0,0)$ | $\{ x = 0, y = 1, z = 0\}$ |
+| $C'''_3$ | $(1,0,0)$ | $\{ 0 < x < 1, y = 1, z = x \}$ |
+| ${C'_4}$ | $(0,0,0)$ | $\{ x = 1, y = 1, z = 1 \}$ |
+
+Well-known implementations of cylindrical algebraic decomposition such as `QEPCAD-B` [@brownQepcad] and Maple's `CylindricalAlgebraicDecompose` [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example \@ref(exm:top-bottom-not-cylindrical), both `CylindricalAlgebraicDecompose` and `QEPCAD-B` create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr{S} \ne \emptyset$, but $B''' \not \subset \fr{S}$ so the frontier of $S$ is not a union of cells in the decomposition.
 
 ### Mathematical description
 
@@ -401,7 +400,7 @@ The algorithm computes a sequence of pairs
 (\#eq:pair)
 \end{equation}
 where $M = (i_1,\ldots,i_{n-1}) \in \{0,1\}^{n-1}$ is a binary index, $\mathcal{E}_M$ is a CAD of $\R^n$ which is a refinement of $\mathcal{E}$ and $\mathcal{F}_M$ is a family of quantifier-free Boolean formulas, each defining a semialgebraic set which is contained in the union of all cells of ${\mathcal E}_M$ with indices $\lexeq (i_1,\ldots,i_{n-1},1)$. We will denote this family of cells by $\mathcal{U}_M$.
-In equation \@ref(eq:pair), the binary index $M$ refers to the pair rather than its elements.
+In Notation \@ref(eq:pair), the binary index $M$ refers to the pair rather than its elements.
 
 The sequence of pairs is computed recursively, starting with binary index $M=(1,1, \ldots ,1)$,
 in descending order of indices $M=(i_1, \ldots, i_{n-1})$ with respect to $\lex$.
@@ -419,7 +418,7 @@ where $\mathbf{0} = (0,\ldots,0)$ and $\mathcal{F}_{\mathbf{0}} := \{ F \mid F \
 
 For a given binary index $M=(i_1,\ldots,i_{n-1})$, assume that the algorithm has computed the pair $(\mathcal{E}_M,\ \mathbf{F}_M)$.
 Now we describe how the next pair, $({\mathcal E}_N,\ \mathcal{F}_N)$, where $N=(j_1, \ldots ,j_{n-1})$ is the binary index immediately prior to $M$ with respect to $\lex$, is computed.
-Applying algorithm from Proposition \@ref(prp:collins) to ${\mathcal E}_M$ and $\mathcal{F}_M$, we obtain a CAD
+Applying the algorithm from Proposition \@ref(prp:collins) to ${\mathcal E}_M$ and $\mathcal{F}_M$, we obtain a CAD
 ${\mathcal E}_{N}$ of $\R^n$ compatible with every cell of ${\mathcal E}_M$ and each set defined by QFFs in $\mathcal{F}_M$
 (see construction of $\mathcal{E}_{(0,1)}$ in Step 2 of the worked example).
 Consider the family ${\mathcal A}_0$ of cells in ${\mathcal E}_{N}$ with indices $(i_1,\ldots,i_{n-1},0)$
@@ -446,7 +445,7 @@ with $\mathcal{F}_{\mathbf{0}}$ and every cell of ${\mathcal E}_{\mathbf{0}}$. T
 
 Let $L=(k_1, \ldots ,k_{n-1})$ be the binary index immediately prior to $N=(j_1, \ldots ,j_{n-1} )$ with respect to $\lex$.
 The algorithm computes ${\mathcal E}_L$ as the refinement of ${\mathcal E}_N$ compatible with each set represented by a formula in $\mathcal{F}_N$. This is the set $X_N$ defined in Equation \@ref(eq:front).
-Suppose that the algorithm has computed the final decomposition $\mathcal{D}$, as the refinement of $\mathcal{E}_{\mathbf{0}}$ compatible with $\mathcal{F}_{\mathbf{0}}$ in the sequence \ref{eq:sequence}. Now construct a new sequence of decompositions (from left to right)
+Suppose that the algorithm has computed the final decomposition $\mathcal{D}$, as the refinement of $\mathcal{E}_{\mathbf{0}}$ compatible with $\mathcal{F}_{\mathbf{0}}$ in the Sequence \ref{eq:sequence}. Now construct a new sequence of decompositions (from left to right)
 \begin{equation}
 \mathcal{E}'_{\mathbf{0}} \lex \cdots \lex \mathcal{E}'_L \lex \mathcal{E}'_N \lex \mathcal{E}'_M \lex \cdots \lex \mathcal{E}'_{(1,\ldots,1)}
 (\#eq:seq-ind-hyp)
@@ -477,14 +476,14 @@ A similar argument to that used for section cells shows that each cell $C'$ in t
 having binary index $(i_1, \ldots ,i_{n-1} ,1)$, satisfies the frontier condition in $\mathcal{E}'_L$. Note that when using
 Lemma \@ref(lem:section-split) we consider sector cell $C$ as a graph of a constant function over itself.
 
-Finally, each decomposition $\mathcal{E}'_I$, $I \in \{0,1\}^{n-1}$, in the sequence \ref{eq:seq-ind-hyp} coincides with $\mathcal{D}$. Indeed, $\mathcal{D}$ is a refinement of $\mathcal{E}_I$ and $\mathcal{E}'_I$ is a refinement of $\mathcal{E}_I$ compatible with all cells of $\mathcal{D}$. In other words, no refinement of $\mathcal{D}$ is required to obtain $\mathcal{E}'_{(1,\ldots,1)}$.
+Finally, each decomposition $\mathcal{E}'_I$, $I \in \{0,1\}^{n-1}$, in the Sequence \ref{eq:seq-ind-hyp} coincides with $\mathcal{D}$. Indeed, $\mathcal{D}$ is a refinement of $\mathcal{E}_I$ and $\mathcal{E}'_I$ is a refinement of $\mathcal{E}_I$ compatible with all cells of $\mathcal{D}$. In other words, no refinement of $\mathcal{D}$ is required to obtain $\mathcal{E}'_{(1,\ldots,1)}$.
 It follows that every cell of $\mathcal{D}$ satisfies the frontier condition.
 :::
 
 ### Complexity
 
 The number of different indices $(i_1, \ldots, i_n)$, where each $i_k \in \{ 0,1 \}$, is $2^n$.
-Therefore, the algorithm makes $\O(2^n)$ "steps": computing successive pairs $({\mathcal E}_M, \mathcal{F}_M)$ in the sequence (\ref{eq:sequence}).
+Therefore, the algorithm makes $\O(2^n)$ steps: computing successive pairs $({\mathcal E}_M, \mathcal{F}_M)$ in the sequence (\ref{eq:sequence}).
 In each step, we compute the next pair $(\mathcal{E}_N,\ \mathcal{F}_N)$ from $(\mathcal{E}_M,\ \mathcal{F}_M)$, using Proposition \@ref(prp:collins) and Lemma \@ref(lem:frontier).
 
 First, Proposition \@ref(prp:collins) is applied to compute $\mathcal{E}_N$, the CAD of $\R^n$ compatible with all cells of $\mathcal{E}_M$ and the sets defined by formulas in $\mathcal{F}_M$. The complexity of this operation depends on the number of polynomials, $s_M$, and their maximum degree, $d_M$, defining $(\mathcal{E}_M,\ \mathcal{F}_M)$.
@@ -501,11 +500,11 @@ We now compute the set of frontiers $\mathcal{F}_N$ of cells of $\mathcal{E}_M$ 
 The complexity of applying Lemma \@ref(lem:frontier) is
 $(s_Md_M)^{n^2\O(1)^n},$
 which is asymptotically the same as $(s_Md_M)^{\O(1)^n}$.
-Thus, the overall complexity of this "step" is again $$(s_Md_M)^{\O(1)^n}.$$
+Thus, the overall complexity of this step is again $$(s_Md_M)^{\O(1)^n}.$$
 
 The overall complexity is obtained by iterating this process for each binary index. E.g., the complexity of passing from $(\mathcal{E}_M\, \mathcal{F}_M)$ to $(\mathcal{E}_L\, \mathcal{F}_L)$, where $M \lex N \lex L$ are subsequent indices in the lexicographical order, would be
 $$
-(s_Nd_N)^{\O(1)^n} = \left((s_Md_M)^{\O(1)^n}(s_Md_M)^{\O(1)^n}\right)^{\O(1)^n}
+(s_Nd_N)^{\O(1)^n} = \left((s_Md_M)^{\O(1)^n}(s_Md_M)^{\O(1)^n}\right)^{\O(1)^n}.
 $$
 Iterating this $2^n$ times, with initial parameters $s_{(1, \ldots,1)}=s$ and $d_{(1, \ldots,1)}=d$ being the number of input polynomials and their maximum degree, we obtain an overall complexity of
 $$
@@ -520,18 +519,18 @@ This can be achieved by constructing a CAD, using Proposition \@ref(prp:collins)
 
 Fewer cells may be produced by computing a CAD compatible with $\{F_1,\ldots,F_k, C_1,\ldots,C_r\}$ where $C_i,1\le i \le r$ is a cell of $\mathcal{E}$ such that $\bigcup_{1\le i \le r} C_i = \R^n$. This CAD is obviously compatible with all cells of $\mathcal{E}_M$ and is compatible with the required sets.
 
-Both options have the same asymptotic complexity. Therefore, the choice of CAD subroutine does not change the complexity bound obtained in the proof of Theorem \@ref(thm:main). We apply Proposition \@ref(prp:collins) to compute a CAD compatible with the input set $S\subset \R^n$ for the initial decomposition $\mathcal{E}$
+Both options have the same asymptotic complexity. Therefore, the choice of CAD subroutine does not change the complexity bound obtained in the proof of Theorem \@ref(thm:main). We apply Proposition \@ref(prp:collins) to compute a CAD compatible with the input set $S\subset \R^n$ for the initial decomposition $\mathcal{E}$.
 The refinements are computed by applying a variant of the classical CAD algorithm which constructs a decomposition compatible with a family of sets.
 
 In the algorithm description, we pass from semialgebraic sets (and CAD cells) to quantifier-free Boolean formulas.
-This is clearly possible by Thom's Lemma. However, the signs of polynomials on which each CAD cell has constant sign may not be sufficient to properly define every cell in the CAD. Signs of polynomials defining the CAD will be sufficient to define every cell if Collins' augmented projection is used {@collins1975]. The drawback, of course, is that more polynomials will be produced in the projection phase, which leads to more work during the lifting phase.
+This is clearly possible by Thom's Lemma. However, the signs of polynomials on which each CAD cell has constant sign may not be sufficient to properly define every cell in the CAD. Signs of polynomials defining the CAD will be sufficient to define every cell if Collins' augmented projection is used [@collins1975]. The drawback, of course, is that more polynomials will be produced in the projection phase, which leads to more work during the lifting phase.
 @brown99 also presents an algorithm that ensures every cell can be represented by a formula containing projection polynomials and, possibly, a small number of derivatives. This may be preferable since fewer extra polynomials are needed.
 
 ## Generalisations and further work
 
 ### Pfaffian functions { #sec:pfaffian }
 
-Theorem \@ref(thm:main) can be extended to restricted sub-Pfaffian sets as described by @gv04.
+Theorem \@ref(thm:main) can be extended to restricted sub-Pfaffian sets, which are defined by @gv04.
 In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by *fewnomials* [@gv04, Section 2.6], whose structure is destroyed by a change of coordinates, and obtain a bound on the number of cells in these decompositions.
 
 The idea of the proof is still valid. Only a modification to the subroutines for computing the frontier, and for constructing a classical CAD, is needed. For the former, replace the quantifier elimination algorithm in Lemma \@ref(lem:frontier) with the result of [@gv04, Section 5]. In the latter case, the classical CAD algorithm from Proposition \@ref(prp:collins) should be replaced by the main result of @gv01 (see also [@gv04, Section 7]). The rest of the proof can be reproduced almost identically.
@@ -545,7 +544,7 @@ Note that it is not currently clear how this result can be implemented since in 
 The complexity upper bound of the algorithm from Theorem \@ref(thm:main) is significantly worse than the bound
 for classical CAD algorithm due to @collins1975 (and @wuthrich1976).
 This is caused by the parameter of its recursive loop: the binary index of a cylindrical cell, which is exponential in the ambient dimension.
-It is difficult to see another parameter that could make the recursion significantly shorter. Thus, if any progress is to be made towards a better asymptotic complexity, the method used may need to be based on a completely different ideas.
+It is difficult to see another parameter that could make the recursion significantly shorter. Thus, if any progress is to be made towards a better asymptotic complexity, the method used may need to be based on completely different ideas.
 On the other hand, there is a lower bound on complexity of the classical CAD algorithm due to @davenportHeintz1988. However, it is not yet known whether the lower bound for CAD with frontier condition is greater than that of the classical CAD.
 Another strand of research could be to explore this question, possibly by attempting to raise this lower bound for CAD with frontier condition.
 
@@ -556,5 +555,7 @@ cylindrical structure.
 We may be able to exploit this structure by factorising the equational part of the formula
 representing a cell into irreducible components, generalising a method due to @lazard10.
 
-Finally, since some initial CAD is refined repeatedly, the classical CAD algorithm from Proposition \@ref(prp:collins) could be replaced with an incremental algorithm, E.g., the algorithm presented by @kremer2020. It is not clear whether substituting the CAD algorithm will reduce the complexity bound. The set $X_N$ is still computed at each step, using a singly exponential algorithm, and the initial CAD may need to be refined at every step and this refinement may result in the incremental algorithm backtracking all the way to the decomposition induced on $\R^1$. However, this change would be very useful in practice as unnecessary CAD re-computations could be avoided, E.g., if $\mathcal{E}_N$ is already compatible with the set $X_N$, the algorithm in its current form will compute the refinement even though it is not needed.
+Finally, since some initial CAD is refined repeatedly, the classical CAD algorithm from Proposition \@ref(prp:collins) could be replaced with an incremental algorithm, E.g., the algorithm presented by @kremer2020. 
+It is conjectured that substituting the CAD algorithm will reduce the average-case complexity. 
+However, it is worth noting that the set $X_N$ is still computed at each step, using a singly exponential algorithm, and the initial CAD may need to be refined at every step and this refinement may result in the incremental algorithm backtracking all the way to the decomposition induced on $\R^1$. This change is likely to be very useful in practice as unnecessary CAD re-computations could be avoided, e.g., if $\mathcal{E}_N$ is already compatible with the set $X_N$, the algorithm in its current form will compute the refinement even though it is not needed.
 
