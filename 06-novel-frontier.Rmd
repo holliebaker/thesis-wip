@@ -4,6 +4,8 @@ So far, we have been concerned only with cylindrical algebraic decompositions wh
 dimension at most $2$. 
 We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
 
+## Theory
+
 We begin by presenting some examples of cylindrical cells and their frontiers. Example \@ref(exm:top-bottom-not-cylindrical) provides motivation for this novel algorithm.
 Many cylindrical section cells are well-behaved, with their top and bottom being cylindrical section cells.
 For example, consider
@@ -47,8 +49,6 @@ knitr::include_graphics(rep("gnuplot/frontier.svg"))
 As discussed above, in relation to Example \@ref(exm:top-bottom-not-cylindrical), the frontier of a cylindrical cell
 can be geometrically nontrivial, e.g., it may contain a blow-up.
 
-## Statement of the problem
-
 Semialgebraic sets will usually be represented by Quantifier-Free Boolean formulas (QFFs) (see Definition \@ref(def:qff)).
 Occasionally they will be represented by First-Order formulas, a wider class of formula in which some variables may be bound by quantifiers $\forall$ and $\exists$ (see Definition \@ref(def:first-order-formula)).
 
@@ -75,7 +75,6 @@ Then the decomposition induced by $\mathcal{D}$ on $\R^{k}$ for all $1\le k < n$
 
 This will allow us to apply Theorem \@ref(thm:main) to semialgebraic sets represented by first-order Boolean formulas (with quantifiers) and obtain a decomposition compatible with $S$ and satisfying the frontier condition.
 
-## Theory
 
 ### Frontiers of semialgebraic sets {#sec:novel-frontier-fr}
 
@@ -480,8 +479,7 @@ Finally, each decomposition $\mathcal{E}'_I$, $I \in \{0,1\}^{n-1}$, in the Sequ
 It follows that every cell of $\mathcal{D}$ satisfies the frontier condition.
 :::
 
-### Complexity
-
+We now discuss the complexity of this algorithm.
 The number of different indices $(i_1, \ldots, i_n)$, where each $i_k \in \{ 0,1 \}$, is $2^n$.
 Therefore, the algorithm makes $\O(2^n)$ steps: computing successive pairs $({\mathcal E}_M, \mathcal{F}_M)$ in the sequence (\ref{eq:sequence}).
 In each step, we compute the next pair $(\mathcal{E}_N,\ \mathcal{F}_N)$ from $(\mathcal{E}_M,\ \mathcal{F}_M)$, using Proposition \@ref(prp:collins) and Lemma \@ref(lem:frontier).
