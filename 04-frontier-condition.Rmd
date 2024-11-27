@@ -7,7 +7,7 @@ defining formulas for sets $V_i$, along with some additional polynomials which e
 \ldots \cup V_k$ is monotone.
 In this section, we describe how to refine $\mathcal{D'}$ in order that it satisfies the frontier condition. A refinement, $\mathcal{D''}$ of $\mathcal{D'}$ satisfies the frontier condition if $\fr{C}$ is a union of cells of $\mathcal{D''}$, for each cell $C \subset V_1 \cup \ldots \cup V_k$ of $\mathcal{D''}$ (Definition \@ref(def:frontier-condition)).
 
-We first present a motivating example due to @jhd20.
+We first present a motivating example, a subset of the Whitney umbrella, presented by @jhd20.
 
 ::: { .example #whitney-jhd }
 [@jhd20, Example 2.1]
@@ -29,18 +29,18 @@ Due to the blow-up point above the origin, $\fr{W}$ contains the subset $B := \{
 A CAD having constant sign on the polynomials
 $$
 \{ x, x - 1, x + y, x - y, y^2 - x^2 z \}
-$$ defining $W$ will not contain the blow-up subset $B$, because two additional polynomials, $z$ and $z-1$, are needed to define it.
+$$ defining $W$ will not isolate the blow-up subset $B$, because two additional polynomials, $z$ and $z-1$, are needed to define it.
 :::
 
 It is clear from Example \@ref(exm:whitney-jhd) that a sign-invariant CAD may not always be sufficient to construct a CAD with frontier condition. @pianomovers1983 proved that it is always possible to construct a sign-invariant CAD which satisfies the frontier condition if a linear rotation of coordinates is permitted. @jhd20 also proved that a sign-invariant CAD will always satisfy the frontier condition if polynomials containing blow-up points are not allowed. In the following sections, we discuss what to do when a rotation of coordinates is not permitted and when blow-up points may be present.
 
 Note that $W$, from Example \@ref(exm:whitney-jhd), is a $(1,1,0)$-cell, but it is not monotone. In fact, $W$ is not
-even the graph of a quasi-affine map, since $\projops{x,z}(W)$ is $2$-dimensional, but the projection map $\projops{x,z}\vert_W$ is not injective. The blow-up subset $B$, contained in $\fr{W}$ means that $W$ is not a topologically regular cell, since $\fr(W)$ is not homeomorphic to a circle.
+even the graph of a quasi-affine map, since $\projops{x,z}(W)$ is $2$-dimensional, but the projection map $\projops{x,z}\vert_W$ is not injective. The blow-up subset $B$, contained in $\fr{W}$ means that $W$ is not a topologically regular cell, since $\fr{W}$ is not homeomorphic to a circle.
 In the procedures described in the following sections, due to @bgv15 and @lazard10, the cells on which the frontier condition is to be satisfied must be topologically regular cells.
 
 ## Frontier condition construction { #sec:frontier-bgv }
 
-Given the monotone CAD $\mathcal{D'}$ computed in the algorithm from Section \@ref(sec:monotone-algorithm), our final step, according to [@bgv15, Theorem 3.20] is to compute a refinement $\mathcal{D''}$ of $\mathcal{D'}$ such that the frontier $\fr{C} = \cl{C} \setminus C$ of every cell $C \subset V = V_1\cup \ldots, \cup V_k$ is a union of cells of $\cal D''$.
+Given the monotone CAD $\mathcal{D'}$ computed in the algorithm from Section \@ref(sec:monotone-algorithm), our final step, according to [@bgv15, Theorem 3.20] is to compute a refinement $\mathcal{D''}$ of $\mathcal{D'}$ such that the frontier $\fr{C} = \cl{C} \setminus C$ of every cell $C \subset V = V_1\cup \ldots \cup V_k$ is a union of cells of $\cal D''$.
 
 The construction from @bgv15, Theorem 3.20 proceeds as follows. For each $2$-dimensional cell $C \subset V$, consider
 the semialgebraic set $\fr{C}$. Since $C$ is monotone, we can assume that $\fr{C}$ is homeomorphic to a circle.
@@ -68,9 +68,10 @@ This is also an upper bound on the number of polynomials in $F'$ and their degre
 :::
 
 Lemma \@ref(lem:frontier) is proved and discussed in more detail in Section \@ref(sec:novel-frontier-fr).
-The "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier alternations. Using an efficient algorithm, e.g., [@bpr2006, Algorithm 14.21], this procedure has complexity singly exponential in the number of variables. $\partial C$ is represented by a quantifier-free Boolean formula $F$.
+The "obvious" way of computing the frontier involves solving a quantifier elimination problem with two quantifier
+alternations. Using a theoretically efficient algorithm, e.g., [@bpr2006, Algorithm 14.21], this procedure has complexity singly exponential in the number of variables. $\partial C$ is represented by a quantifier-free Boolean formula $F$.
 
-Once $\fr(C)$ has been computed, we first construct the family $\cal U$ of $1$-dimensional curve intervals $T$ and the
+Once $\fr{C}$ has been computed, we first construct the family $\cal U$ of $1$-dimensional curve intervals $T$ and the
 points between them $\mathbf{c}$. By Lemma \@ref(lem:one-dim-qa-is-monotone), $1$-dimensional quasi-affine cells are
 always monotone. Thus, we may apply the method described in Section \@ref(sec:quasi-affine) to obtain Jacobi matrices
 whose determinants are zero at the critical points of projections onto one and $2$-dimensional coordinate subspaces.
@@ -94,7 +95,8 @@ We have proved that the following algorithm exists, and will discuss its complex
 
 ::: { .theorem #lazard-rn }
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of $s$ polynomials with maximum degree $d$.
-Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$, compatible with some bounded definable semialgebraic sets $V_1,\ldots,V_k$, which $\dim(V_i) \le 2$ and such that each cell $C \subset V_i$ is monotone.
+Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$, compatible with some bounded definable semialgebraic sets
+$V_1,\ldots,V_k$, which have $\dim(V_i) \le 2$ and such that each cell $C \subset V_i$ is monotone.
 
 Then there is an algorithm, taking $\mathcal{D}$ as input, which produces a refinement $\mathcal{D'}$ of $\mathcal{D}$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ of $\mathcal{D'}$ satisfies the frontier condition.
 This algorithm has complexity

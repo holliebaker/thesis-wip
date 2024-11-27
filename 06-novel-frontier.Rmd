@@ -1,7 +1,8 @@
 # Novel Algorithm for Frontier Condition { #sec:novel-frontier }
 
-So far, we have been concerned only with cylindrical algebraic decompositions compatible with subsets of $\R^n$ having
-dimension at most $2$. We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
+So far, we have been concerned only with cylindrical algebraic decompositions which aree compatible with subsets of $\R^n$ of
+dimension at most $2$. 
+We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
 
 We begin by presenting some examples of cylindrical cells and their frontiers. Example \@ref(exm:top-bottom-not-cylindrical) provides motivation for this novel algorithm.
 Many cylindrical section cells are well-behaved, with their top and bottom being cylindrical section cells.
@@ -39,7 +40,7 @@ Due to the blow-up of $\varphi$ at the origin, $C_B$ is not a cylindrical cell.
 Note that $C_B$ does not contain all points at which $\varphi$ vanishes.
 :::
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="$C$, with $\\fr{C}$ superimposed, from Example \ref{exm:top-bottom-not-cylindrical}, demonstrating that $C_B$ is not the graph of a continuous function."}
+```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="$C$, with $\\fr{C}$ superimposed, from Example \\ref{exm:top-bottom-not-cylindrical}, demonstrating that $C_B$ is not the graph of a continuous function."}
 knitr::include_graphics(rep("gnuplot/frontier.svg"))
 ```
 
@@ -49,7 +50,7 @@ can be geometrically nontrivial, e.g., it may contain a blow-up.
 ## Statement of the problem
 
 Semialgebraic sets will usually be represented by Quantifier-Free Boolean formulas (QFFs) (see Definition \@ref(def:qff)).
-Occasionally, First-Order formulas, a wider class of formulas in which some variables may be bound by quantifiers $\forall$ and $\exists$ (see Definition \@ref(def:first-order-formula)).
+Occasionally they will be represented by First-Order formulas, a wider class of formula in which some variables may be bound by quantifiers $\forall$ and $\exists$ (see Definition \@ref(def:first-order-formula)).
 
 ::: {.theorem #main}
 Let $S \subset \R^n$ be a semialgebraic set defined by a QFF $F$ with $s$ different polynomials of maximum degree $d$ in $\R[x_1,\ldots,x_n]$.
@@ -78,14 +79,14 @@ This will allow us to apply Theorem \@ref(thm:main) to semialgebraic sets repres
 
 ### Frontiers of semialgebraic sets {#sec:novel-frontier-fr}
 
-We presentd the classical CAD algorithm due to @collins1975, as formulated in @bpr2006, Algorithm 11.2, in \@ref(prp:collins).
-Given a set of $s$ different polynomials with maximum degree $d$ in $\Z[x_1,\ldots,x_n$, this algorithm has complexity
+We presented the classical CAD algorithm due to @collins1975, as formulated in @bpr2006, Algorithm 11.2, in Proposition \@ref(prp:collins).
+Given a set of $s$ different polynomials with maximum degree $d$ in $\Z[x_1,\ldots,x_n]$, this algorithm has complexity
 $$
 (sd)^{\O(1)^{n}}.
 $$
 This is also an upper bound on the number of polynomials, their maximum degree, and the number of cells in the CAD it produces.
 Several variants of the classical CAD algorithm exist. The most convenient version for our situation takes as input a set $\{ F_1,\ldots,F_k \}$ of QFF and returns a CAD compatible with each set $S_i \subset \R^n$ represented by the formula $F_i$, $1 \le i \le k$. The same bounds on complexity, number of cells, number of polynomials and degrees as obtained in Proposition \@ref(prp:collins) is obtained, where $s$ is the number of different polynomials appearing in formulas $F_1,\ldots,F_k$ and $d$ is their maximum degree.
-An algorithm for constructing such a CAD is presented by @collins1991, and an alternative approach is presented by @bradford2016.
+Various algorithms exist for constructing such a CAD. For example the algorithm due to @collins1991. Another approach is presented by @bradford2016.
 
 The following algorithm allows us to compute the frontier of $S$: $\fr{S}=\cl {S} \setminus S$
 It is a straightforward application of a singly exponential quantifier elimination algorithm.
@@ -114,7 +115,7 @@ Recall that, according to Definition \@ref(def:cells), to each cylindrical cell 
 $(i_1, \ldots ,i_n) \in \{ 0,1 \}^n$ is assigned.
 Introduce a lexicographic order $\lex$ on the set of all cell indices as follows.
 For any two indices, $M:=(i_1,\ldots,i_n)$ and $N:=(j_1,\ldots,j_n)$, we set $M \lex N$
-iff for the maximal $k,\ 0 \le k <n$, such that $i_1=j_1, \ldots, i_k=j_k$ we have $i_{k+1} < j_{k+1}$.
+if and only if, for the maximal $k,\ 0 \le k <n$, such that $i_1=j_1, \ldots, i_k=j_k$ we have $i_{k+1} < j_{k+1}$.
 If $M \lex N$ or $M = N$, we write $M \lexeq N$.
 
 ::: {.lemma #fr-lex-less}
@@ -285,7 +286,7 @@ $({\mathcal E}_M, \mathcal{F}_M):=({\mathcal E}, \emptyset)$.
 \begin{align*}
 {\mathcal F}_{N,0} =\ & \left\{ \fr{F_0} \mid F_0 \in \mathcal{A}_0 \right\}, \\
 {\mathcal F}_{N,1} =\ & \left\{ \fr{F_1 \land \neg( F_{1,B} \lor F_{1,T} )} \mid F_1 \in \mathcal{A}_1, F_{1,B}, F_{1,T} \in \mathcal{A}_0 \right\}, \\
-{\mathcal F}_N =\ & {\mathcal F}_{N,0} \cup {\mathcal F}_{N,1}, \\
+{\mathcal F}_N =\ & {\mathcal F}_{N,0} \cup {\mathcal F}_{N,1},
 \end{align*}
 where $F_{1,B}$ (resp. $F_{1,T}$) is a QFF defining the bottom (resp. top) of the sector cell defined by $F_1$, or $\mathbf{false}$ if the bottom (resp. top) does not exist.
 
