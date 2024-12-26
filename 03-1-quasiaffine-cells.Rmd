@@ -134,64 +134,64 @@ $\cal D$: an $\mathbf{F'}$-invariant CAD of $\R^n$ compatible with each $V_1,\ld
 
 Algorithm *QuasiAffineCAD($\{F_1,\ldots,F_k\}$)*:
 
-1. Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$
-be the set of polynomials appearing in the formulas $F_1,\ldots,F_k$.
+\begin{algorithmic}[1]
 
-1. Compute $\cal E$: an $\mathbf{F}$-invariant CAD of $\R^n$ using the McCallum projection operator. This operation is guaranteed to succeed since each $V_1,\ldots,V_k$ has dimension at most two and, therefore $\mathbf{F}$ is well-oriented.
+\Procedure{ZeroPolynomials}{$C$}
+\For {$i \in \{i_1,\ldots,i_{n-k}\} = \{1,\ldots,n\} \setminus \{j_1,\ldots,j_k\}$}
+    \State Let $f_i \in {\cal A}_i$ such that $f_{C,i}(\mathbf{x}) = 0$ for all $\mathbf{x} \in C$
+\EndFor
 
-1. Let ${\cal A} = ({\cal A}_1,\ldots,{\cal A}_{n})$ be the family of projection polynomials for $\cal E$, where each ${\cal A}_k \subset \Z[x_1,\ldots,x_k]$.
+\State \Return $\{f_{i_1},\ldots,f_{i_{n-k}}\}$
+\EndProcedure
 
-1. For each cell $C \subset V$
+\Procedure{QuasiAffineCad}{$\{F_1,\ldots,F_k\}$}
+\State \Comment{get polynomials appearing in input sets}
+\State $\mathbf{F} \gets \rm{ExtractPolynomials}(\{F_1,\ldots,F_k\}) \subset \Z[x_1,\ldots,x_n]$
+\State \Comment{construct a classical $\mathbf{F}$-invariant CAD}
+\State $\cal{E} \gets \rm{CadMc}(\mathbf{F})$ \Comment{guaranteed to succeed, since $\mathbf{F}$ is well-oriented}
+\State ${\cal A} = ({\cal A}_1,\ldots,{\cal A}_{n}), \mathcal{A}_i \in \Z[x_1,\ldots,x_i]$ \Comment{projection polynomials for $\mathcal{E}$}
 
-    do:
-
-    - Observe that the binary index $(i_1,\ldots,i_n) \in \{0,1\}^n$ of $C$ contains $k \le 2$ elements $i_{j_1}, \ldots, i_{j_k}$ which are equal to $1$, while all other elements of the binary index are equal to $0$.
-
-    - For each $i \in \{1,\ldots,n\} \setminus \{j_1,\ldots,j_k\}$, find a polynomial in ${\cal A}_i$ which is equal to $0$ at every point $\mathbf{x} \in C$. This can easily be done by checking the set of signs of projection factors associated with $C_k$.
-
-1. For each $2$-dimensional cell $C_2 \subset V$ and each pair $1 \le i_1 < i_2 \le n$,
-
-    do:
-
-    - Find the set of polynomials $f_1,\ldots,f_{n-2}$ defining $C_2$ as described above.
-
-    - Define the $((n-2) \times (n-2)$ Jacobi matrix
+\For {each cell $C_2 \subset V$ s.t. $\dim(C_2) = 2$ of $\mathcal{E}$ and pair $1 \le i_1 < i_2 \le n$}
+    \State $\{ f_1,\ldots,f_{n-2} \} \gets \rm{ZeroPolynomials}(C_2)$
+    \State Define the $((n-2) \times (n-2)$ Jacobi matrix
     \begin{equation}
     J_{C_2,\hat{i_1 i_2}} :=
 \begin{pmatrix}\partial f_{1}/\partial x_{j_{1}} & \ldots & \partial f_{1}/\partial x_{j_{n-2}}\\
 \vdots &  & \vdots\\
 \partial f_{n-2}/\partial x_{j_{1}} & \ldots & \partial f_{n-2}/\partial x_{j_{n-2}}
-\end{pmatrix}.
-(\#eq:jacobi-two)
-    \end{equation}
+\end{pmatrix}
+\label{eq:jacobi-two}
+\end{equation}
+    \State Compute $\det(J_{C_2,\hat{i_1 i_2}})$
+    \State \Comment{$\det(J_{C_2,\hat{i_1 i_2}}) = 0$ at critical points of $\projops{i_1,i_2}$}
+\EndFor
 
-    - $\det(J_{C_2,\hat{i_1 i_2}}) = 0$ at critical points of $\projops{i_1,i_2}$.
-
-1. For each $1$-dimensional cell $C_1 \subset V$ and each $1 \le i \le n$:
-
-    do:
-
-    - Find the set of polynomials $f_1,\ldots,f_{n-1}$ defining $C_1$.
-
-    - Define the $((n-1)\times (n-1))$ Jacobi matrix
+\For {each cell $C_1 \subset V$ s.t. $\dim(C_1) = 1$ of $\mathcal{E}$ and $1 \le i_1 \le n$}
+    \State $\{ f_1,\ldots,f_{n-1} \} \gets \rm{ZeroPolynomials}(C_1)$
+    \State Define the $((n-1)\times (n-1))$ Jacobi matrix
   \begin{equation}
   J_{C_1,\hat{i}} :=
 \begin{pmatrix}\partial f_{1}/\partial x_{j_{1}} & \ldots & \partial f_{1}/\partial x_{j_{n-1}}\\
 \vdots &  & \vdots\\
 \partial f_{n-1}/\partial x_{j_{1}} & \ldots & \partial f_{n-1}/\partial x_{j_{n-1}}
 \end{pmatrix}.
-(\#eq:jacobi-one)
-  \end{equation}
+\label{eq:jacobi-one}
+\end{equation}
+    \State Compute $\det(J_{C_1,\hat{i}})$
+    \Comment{$\det(J_{C_1,\hat{i}}) = 0$ at the critical points of $\projops{i}$}
+\EndFor
 
-    - $\det(J_{C_1,\hat{i}}) = 0$ at the critical points of $\projops{i}$.
-
--  Compute $\cal D$, an $\mathbf{F`}$-invariant CAD of $\R^n$, for
+\State Compute $\mathcal{D} \gets \rm{CadMc}(\mathbf{F}')$ for
 $$
 \mathbf{F}' := \mathbf{F} \cup\ \bigcup_{C_2,1\le i < j \le n} \det\left(J_{C_2,\hat{ij}}\right) \cup \bigcup_{C_1, 1 \le i \le n} \det\left(J_{C_1,\hat{i}}\right),
 $$
-where $C_1$ (resp. $C_2$) ranges over the $1$-dimensional (resp. $2$-dimensional) cells of $\mathcal{E}$ contained in $V$ and $\hat{w}$ denotes the complement $\{1, \ldots, n\} \setminus w$.
+where $C_1$ (resp. $C_2$) ranges over the $1$-dimensional (resp. $2$-dimensional) cells of $\mathcal{E}$ contained in $V$ and $\hat{w}$ denotes the complement $\{1, \ldots, n\} \setminus w$
 
-1. Return $\mathcal{D}$.
+\State \Return $\mathcal{D}$
+
+
+\EndProcedure
+\end{algorithmic}
 :::
 
 ## Correctness and complexity

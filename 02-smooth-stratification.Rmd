@@ -2,22 +2,26 @@
 
 Before turning our attention to cylindrical decompositions, we will present another useful algorithm for decomposing a semialgebraic set.
 A smooth stratification is a finite partition of a set into smooth manifolds.
-This algorithm will form part of the later work in constructing a CAD with monotone cells, which requires the input sets to first be partitioned into smooth smooth manifolds (see Section \@ref(sec:quasi-affine). However, the algorithm and implementation described in this section are useful in their own right.
+This algorithm will form part of the later work in constructing a CAD with monotone cells, which requires the input sets to first be partitioned into smooth manifolds (see Section \@ref(sec:quasi-affine)). However, the algorithm and implementation described in this section are useful in their own right.
 
-In 1957, @whitney1992 proved that every algebraic variety -- the set of real solutions to a system of multivariate polynomial equations -- can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set.
+In 1957, @whitney1992 proved that every real algebraic variety -- the set of real solutions to a system of multivariate polynomial equations -- can be partitioned into a finite set of smooth manifolds, each of which is a semialgebraic set.
 Lojasiewicz extended this result by proving that every real semianalytic set admits a smooth stratification, such that every stratum is a semianalytic set [@lojasiewicz1964]. However, the proof was non-constructive and did not provide any information on the class of functions defining the strata.
-As part of his Complement Theorem, @gabrielov1996 proved that the strata of a semianalytic set can be defined by functions belonging to the smallest extensions of a family of functions defining the set which is closed under addition, multiplication and taking partial derivatives. One such class of functions is the Pfaffian functions.
-@gv1995 present an algorithm for computing a smooth stratification of a semi-Pfaffian set, along with an estimate of its complexity and bounds on the formats of the strata it produces. This algorithm (also summarised in @gv04, Section 6) will be presented.
+As part of his Complement Theorem, @gabrielov1996 proved that the strata of a semianalytic set can be defined by functions belonging to the smallest extension of a family of functions defining the set which is closed under addition, multiplication and taking partial derivatives. One such class of functions is the Pfaffian functions.
+@gv1995 present an algorithm for computing a smooth stratification of a semi-Pfaffian set, along with an estimate of its complexity and bounds on the formats of the strata it produces. This algorithm (also summarised in @gv04, Section 6) will be presented with a focus on the semialgebraic case.
+As far as we are aware, this is the first time this algorithm has been presented in the form of pseudo-code. In addition the implementation described in this chapter, along with the optimisations used for tracking the partial derivatives and constructing the matrix associated with the partial differential operator, is the first of its kind. Bounds, specific to the semialgebraic case, are also obtained.
 
-::: {.definition}
-[@gv04, Definition 6.2]
-A weak stratification of a semi-Pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of non-singular manifolds $X_k, 0 \le k \le n$ called strata. Strata need not be connected (or even have a finite number of connected components) and may be empty.
-
-The stratification is called basic if all strata are basic semi-Pfaffian sets which are effectively nonsingular.
-I.e., the system of equations and inequalities defining each stratum $X_k$ of codimension $k$ includes a set of $k$ Pfaffian functions
+::: {.definition #eff-non-sing}
+A smooth manifold $X_k \subset \R^n$ of codimension $k$ is called effectively nonsingular if the system of equations and inequalities defining it includes a set of $k$ Pfaffian functions
 $$
 h_{i_1}, \ldots , h_{i_k}
 $$ such that the restriction $h_{i_j}\vert_{X_i} = 0$ and $d h_{i_j} \ne 0$ at every point $\mathbf{x} \in X_k$, for each $1 \le j \le k$.
+:::
+
+::: {.definition #weak-strat}
+[@gv04, Definition 6.2]
+A weak stratification of a semi-Pfaffian set $X \subset \R^n$ is a partition of $X$ into a finite number of smooth manifolds $X_k, 0 \le k \le n$ called strata. Strata need not be connected (or even have a finite number of connected components) and may be empty.
+
+The stratification is called basic if all strata are basic semi-Pfaffian sets (see Definition \@ref(def:semi-pfaff)) which are effectively nonsingular (see Definition \@ref(def:eff-non-sing)).
 :::
 
 Note that this definition does not guarantee any other desirable properties of the manifolds $X_k$. E.g., the closure of a stratum may not be a union of strata.
@@ -25,32 +29,36 @@ Note that this definition does not guarantee any other desirable properties of t
 ## Algorithm desccription { #sec:strat-alg-description }
 
 Since every semialgebraic set is a semi-Pfaffian set, this algorithm can be applied to the semialgebraic sets with almost no modifications.
-Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too.  Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an Oracle will not be needed in this variation of the algorithm.
+The algorithm described by @gv95 makes use of an oracle -- a hypothetical black-box function which performs a given computation in one step -- to determine whether a semi-Pfaffian set is empty.
+Since each stratum is defined by sign conditions on partial derivatives of input functions, it is clear that if the input set is semialgebraic, then each stratum will be semialgebraic, too.  Furthermore, as emptiness of semialgebraic sets can be decided, e.g., using the cylindrical algebraic decomposition algorithm, an oracle will not be needed in this variation of the algorithm.
 The algorithm relies on computing partial derivatives of the functions defining the input set. In the semi-Pfaffian case, the number of partial derivatives which must be considered is bounded by the format of the input set. As every polynomial has  a finite number of partial derivatives, the bound for the semialgebraic case will simply be the degree of the polynomial.
 
 We will need the following notation for partial derivatives and the partial differential operator defined by @gv1995.
 
 ::: {.definition #pdo }
 [@gv1995, Definition 2]
-Let $f \in \Z[x_1,\ldots,x_n]$ be a polynomial and let $(m_1,\ldots,m_n) \subset \Z_{\ge 0}^n$ be a multi-index associated to one of its partial derivatives.
-I.e., we write
+
+Let $f \in \Z[x_1,\ldots,x_n]$ be a polynomial and let $(m_1,\ldots,m_n) \subset \Z_{\ge 0}^n$.
+The partial derivative with index $(m_1,\ldots,m_n)$ is defined as follows.
 $$
 \partial f^{(m_1,\ldots,m_n)} =
 \dfrac{\partial^{m_1} f}{\partial x_1} \cdots \dfrac{\partial^{m_n} f}{\partial x_n}.
 $$
 :::
 
-::: {.definition}
+::: {.definition #pdo-matrix}
 [@gv1995, Definition 2]
-We define the partial differential operator $\partial_{\mathbf{h}, \mathbf{i}, j} f$ (where the argument $f$ is a polynomial) as the determinant
+
+Let $\mathbf{h} = (h_1,\ldots,h_k) \subset \Z[x_1,\ldots,x_n]$, $\mathbf{i} = (i_1,\ldots,i_k) \subset \{1,\ldots,n\}^k$, $j \in \{1,\ldots,n\} \setminus \{i_1,\ldots,i_k\}$ and $f \in \Z[x_1,\ldots,x_n]$.
+We define the partial differential operator $\partial_{\mathbf{h}, \mathbf{i}, j} f$ as the determinant
 $$
 \det\begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial h_{1}}{\partial x_{i_{k}}} & \dfrac{\partial h_{1}}{\partial x_{j}}\\
  & \vdots\\
 \dfrac{\partial h_{k}}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial h_{k}}{\partial x_{i_{k}}} & \dfrac{\partial h_{k}}{\partial x_{j}}\\
 \dfrac{\partial f}{\partial x_{i_{1}}} & \cdots & \dfrac{\partial f}{\partial x_{i_{k}}} & \dfrac{\partial f}{\partial x_{j}}
-\end{pmatrix}.
+\end{pmatrix}
 $$
-We write $\partial^m_{\mathbf{h}, \mathbf{i}, j}$ to mean the $m$-th iteration of $\partial_{\mathbf{h}, \mathbf{i}, j}$.
+and write $\partial^m_{\mathbf{h}, \mathbf{i}, j}$ to mean the $m$-th iteration of $\partial_{\mathbf{h}, \mathbf{i}, j}$.
 :::
 
 We can now present the algorithm from @gv1995, Theorem 2.
@@ -58,9 +66,9 @@ We can now present the algorithm from @gv1995, Theorem 2.
 ::: {.theorem #strat }
 Let
 $$
-X := \{ \mathbf{x} \in \R^n \mid f_1 = 0, \ldots, f_k = 0, g_1 > 0, \ldots, g_\ell > 0 \},
+X := \{ \mathbf{x} \in \R^n \mid f_1 = 0, \ldots, f_q = 0, g_1 > 0, \ldots, g_r > 0 \},
 $$
-be a semialgebraic set defined by $s = k + \ell$ different polynomials of maximum degree $d$.
+be a semialgebraic set defined by $s := q + r$ different polynomials of maximum degree $d$.
 Then there is an algorithm, without oracle, which partitions $X$ into a family
 $$
 {\cal X} = (X_0, \ldots, X_n)
@@ -74,120 +82,67 @@ $$
 The number of strata does not exceed $s^{n} (d + 1)^2$, and each stratum is defined by at most $s (d + 1)^2$ polynomial equations and inequalities of maximum degree $(d + 1)^2$.
 :::
 
-
-Let $$
-X = \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = 0,\ldots,f_s(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \ldots, g_t(\mathbf{x}) > 0 \}.
-$$
-
 ::: {.algorithm data-latex="Smooth Stratification"}
 $${\cal X} := \rm{Stratify}(k, F, \mathbf{h}, \mathbf{i}, G)$$
 
 **Input:**
 
-  - $0 \le k \le n$,
-  - $F = (f_1,\ldots,f_s) \in \Z[x_1,\ldots,z_n]$ is a list of polynomials,
-  - $\mathbf{h} = (h_k, \ldots,h_1, h_0) \in \Z[x_1,\ldots,x_n]$ such that $h_0 = 0$,
-  - $\mathbf{i} = (i_k, \ldots, i_1,i_0) \in \Z_{\ge 0}$ such that $i_0 = 0$,
-  - $G = \{g_1,\ldots,g_t\} \subset \Z[x_1,\ldots,x_n]$.
+  - $0 \le k \le n$
+  - $F = (f_1,\ldots,f_q)$, with each $f_i \in \Z[x_1,\ldots,x_n], 1 \le i \le q$ is a list of polynomials,
+  - $\mathbf{h} = (h_k, \ldots,h_1, h_0)$ with each $h_i \in \Z[x_1,\ldots,x_n], 1 \le i \le k$ and $h_0 = 0$,
+  - $\mathbf{i} = (i_k, \ldots, i_1,i_0)$ with each $i_j \in \Z_{\ge 0}, 1 \le j \le k$ and $i_0 = 0$,
+  - $G = \{g_1,\ldots,g_r\} \subset \Z[x_1,\ldots,x_n]$.
 
 **Output:**
 $$
 {\cal X} = (X_{k+1}, \ldots, X_n)
 $$
 $X_i, k+1 \le i \le n$ is a possibly empty, effectively nonsingular stratum of codimension $i$.
-Note that ${\cal X}_{n+1} = ()$.
+Note that the output ${\cal X}_{n+1} = ()$.
 
-Proceed by induction on $i_k$.
+\begin{algorithmic}[1]
+\Procedure{Stratify}{$k, F, \mathbf{h}, \mathbf{i}, G$}
+\If{$i_k = n$} \Comment{base case}
+    \State \Return ${\cal X}_{k+1} = (\emptyset, \ldots, \emptyset)$
+\Else
+    \State \Comment{initialise: polynomials and indices, strata of codimension $k+1$}
+    \State $X' \gets X = \{ f_1 = 0,\ldots,f_q = 0, g_1 > 0, \ldots, g_r > 0 \}$,
+    \State ${\cal F} \gets \{ ((0,\ldots,0,1), f_1), \ldots, ((0,\ldots,0,q), f_q) \}$
+    \State $Z \gets \{ \mathbf{x} \in \R^n \mid g_1(\mathbf{x}) > 0, \ldots, g_r(\mathbf{x}) > 0 \}$
+    \State $X_{k+1} \gets \emptyset$ 
+    \State $\mathbf{m} = (i_n,\ldots,i_{k+1},j) \gets (0,\ldots,0,1) \in \Z_{\ge 0}^{n-k+1}$
+    \While {$\mathbf{m} \prec \rm{MaxIndex}$}
+        \State $(0,\ldots,0,i_\ell,\ldots,i_{k+1},j) = \mathbf{m}$
+        \State $\mathbf{j} \gets (0, \ldots, 0, i_{\ell} - 1, i_{\ell - 1}, \ldots, i_{k+1},j).$
+        \State Let $s_{k+1} \gets \partial_{(h_{1,},\ldots,,h_{k}),(i_{1},\ldots,i_{k}),\ell}^{i_{\ell}}\ldots\partial_{(h_{1,},\ldots,,h_{k}),(i_{1},\ldots,i_{k}),i_{k}+1}^{i_{i}+1}f_{j}$ 
+        \State \Comment{where $f_j$ is the polynomial in $\cal F$ with index $(0,\ldots,0,j)$}
+        \State \Comment {$h_{k+1}$ is a polynomial in $\cal F$: can be found by index.}
+        \State Compute $s_{k+1} \gets \partial_{(h_1,\ldots,h_k), (i_1,\ldots,i_k), i_\ell} h_{k+1}.$
+        \State
+        \State Define the sets $Y_{k+1}$ and $U_{k+1}$ as follows:
+        \State $Y_{k+1} \gets \{ \mathbf{x} \in X' \mid s_{k+1}(\mathbf{x}) \ne 0 \}$
+        \State $U_{k+1} \gets \{ \mathbf{x} \in \R^n \mid h_{k+1}(\mathbf{x}) = 0, s_{k+1}(\mathbf{x}) \ne 0 \} \cap Z$
 
-- Base case: $i_k = n$.
+        \If {$Y_{k+1}$ is an open subset of $U_{k+1}$}
+            \State $X_{k+1} \gets X_{k+1} \cup Y$
+            \Comment{smooth and has codimension $k+1$}
+        \Else \Comment{proceed by induction}
+            \State Compute $(X^{\mathbf{m}}_{k+2},\ldots,X^{\mathbf{m}}_n) \gets {\rm Stratify}(k+1, F, (s,\mathbf{h}), (i_\ell,\mathbf{i}), G)$
+            \If {$\rm{Empty}(X,s)$}
+                \State \Return ${\cal X}_{k+1} = (X_{k+1}, X_{k+1}, \ldots, X_n)$ 
+                \State \Comment{each $X_i, k+2\le i \le n$ is the union of all strata $X^{\mathbf{m}}_i$}
+            \Else \Comment{proceed to the next lexicographical index}
+                \State $X' \gets \{ \mathbf{x} \in \R^n \mid s(\mathbf{x}) = 0 \}$,
+                \State ${\cal F} := {\cal F} \cup \{ ((0,\ldots,0,i_\ell,\ldots,i_{k+1},j), s) \}$,
+                \State $F := (F,s)$
+                \State $\mathbf{m} \gets \rm{NextIndex}(\mathbf{m})$.            
+            \EndIf
+        \EndIf
 
-  - Return ${\cal X}_{x+1} = (\emptyset, \ldots, \emptyset)$.
-
-- Otherwise
-
-  - Initialise
-
-    - $X' := X = \{ f_1 = 0,\ldots,f_s = 0, g_1 > 0, \ldots, g_t > 0 \}$,
-
-    - ${\cal F} := \{ ((0,\ldots,0,1), f_1), \ldots, ((0,\ldots,0,s), f_s) \}$
-      (the set of input polynomials equipped with initial indices),
-
-    - $X_{k+1} = \emptyset$ be the initial set of strata of codimension $k+1$.
-
-  - For indices $\mathbf{i},\mathbf{j} \in \Z_{\ge 0}^n$,
-    - let $\mathbf{i} \prec \mathbf{j}$ mean that $\mathbf{i}$ is lexicographically less than $\mathbf{j}$
-    - and $\mathbf{i} \preceq \mathbf{j}$ denote $\mathbf{i}\prec \mathbf{j}$ or $\mathbf{i} = \mathbf{j}$.
-
-  - We will iterate over each index $\mathbf{m} = (i_n,\ldots,i_{k+1},j) \in \Z_{\ge 0}^{n-k+1}$ in ascending lexicographical order, beginning with $(0,\ldots,0,1)$.
-
-  - Partial derivatives $\partial^{(0,\ldots,0,i_{k+1},\ldots,i_n)}$ of functions $f$ in ${\cal F}$ will be computed.
-
-  - For each $f\in {\cal F}$, maximal index $$M := (\deg_n(f), \ldots, \deg_{k+1}(f)).$$
-
-  - Each index $(i_n,\ldots,i_{k+1},j)$ has the property that
-  $$
-  (0,\ldots,1) \preceq (i_n,\ldots,i_{k+1}) \preceq M_j.
-  $$
-
-    - Let $\mathbf{m} = (0,\ldots,0,i_\ell,\ldots,i_{k+1},j)$ be one of these indices and define
-    $$
-    \mathbf{j} = (0, \ldots, 0, i_{\ell} - 1, i_{\ell - 1}, \ldots, i_{k+1},j).
-    $$
-
-    - Let
-    $$
-    s_{k+1} := \partial_{(h_{1,},\ldots,,h_{k}),(i_{1},\ldots,i_{k}),\ell}^{i_{\ell}}\ldots\partial_{(h_{1,},\ldots,,h_{k}),(i_{1},\ldots,i_{k}),i_{k}+1}^{i_{i}+1}f_{j}
-    $$
-    where $f_j$ is the polynomial in $\cal F$ with index $(0,\ldots,0,j)$, i.e., the $j$-th input polynomial.
-
-    - In practice, let $h_{k+1}$ be the polynomial in $\cal F$ with index $\mathbf{i}$ and compute
-    $$
-    s_{k+1} := \partial_{(h_1,\ldots,h_k), (i_1,\ldots,i_k), i_\ell} h_{k+1}.
-    $$
-
-    - Define the sets
-
-      - $Y_{k+1} := \{ \mathbf{x} \in X' \mid s_{k+1}(\mathbf{x}) \ne 0 \}$ and
-
-      - $U_{k+1} := \{ \mathbf{x} \in \R^n \mid h_{k+1}(\mathbf{x}) = 0, s_{k+1}(\mathbf{x}) \ne 0, g_1(\mathbf{x}) > 0 , \ldots, g_t(\mathbf{x}) > 0 \}$.
-
-      - Note
-
-        - Clearly $Y_{k+1} \subset X'$ and $Y_{k+1} \subset U_{k+1}$
-        - $h_{k+1}(\mathbf{x}) = 0$ for all $\mathbf{x} \in Y_{k+1}$.
-        - $U_{k+1}$ is a nonsingular subset of $\R^n$ having codimension $k+1$.
-
-      - If $Y_{k+1}$ is an open subset of $U_{k+1}$, then $Y_{k+1}$ is smooth and has codimension $k+1$.
-
-        - Let $X_{k+1} := X_{k+1} \cup Y$,
-
-      - Otherwise, proceed by induction.
-
-        - Compute
-        $$(X^{\mathbf{m}}_{k+2},\ldots,X^{\mathbf{m}}_n) := {\rm Stratify}(k+1, F, (s,:\mathbf{h}), (i_\ell:\mathbf{i}), G)$$
-        where $x:L$ denotes the `cons` operator. I.g., add $x$ to the beginning of list $L$.
-
-      - Let $\rm{Empty}(X,s)$ be a subroutine returning *true* if $s \in \Z[x_1,\ldots,x_n]$ is identically zero on the set $X \subset \R^n$.
-
-      - If $\rm{Empty}(X,s)$, we are finished.
-
-        - Return
-        $${\cal X}_{k+1} = (X_{k+1}, X_{k+1}, \ldots, X_n).$$
-        where $X_i, k+2\le i \le n$ is the union of all strata $X^{\mathbf{m}}_i$ computed in the recursive calls.
-
-      - Otherwise,
-
-        - Let
-
-          - $X' := \{ \mathbf{x} \in \R^n \mid s(\mathbf{x}) = 0 \}$,
-
-          - ${\cal F} := {\cal F} \cup \{ ((0,\ldots,0,i_\ell,\ldots,i_{k+1},j), s) \}$,
-
-        - $F := F:s$ (i.e., append $s$ to the end of list $F$).
-
-      - Then proceed to the index immediately after $\mathbf{m}$ with respect to $\prec$.
-
-      - The algorithm terminates when maximal index $M_j$ for every polynomial $f_j \in F$ has been considered.
+    \EndWhile
+\EndIf
+\EndProcedure
+\end{algorithmic}
 :::
 
 To call this algorithm on a semialgebraic set $X \subset \R^n$ defined by equations $F \subset \Z[x_1,\ldots,x_n]$ and $G \subset \Z[x_1,\ldots,z_n]$, compute
@@ -876,8 +831,8 @@ where
 $$
 {\cal B} = (\alpha + \beta + 1)^{(r+1)^{\O(n)}}.
 $$
-Without the Oracle, the total number of strata, some of which may be empty, does not exceed $N^{n+r}{\cal B}$, each of which has format $(r, N{\cal B},\alpha, {\cal B}, n)$.
-If the Oracle, used for checking emptiness, is allowed, then the algorithm has complexity not exceeding $N^{n+r}{\cal B}$.
+Without the oracle, the total number of strata, some of which may be empty, does not exceed $N^{n+r}{\cal B}$, each of which has format $(r, N{\cal B},\alpha, {\cal B}, n)$.
+If the oracle, used for checking emptiness, is allowed, then the algorithm has complexity not exceeding $N^{n+r}{\cal B}$.
 
 Now consider this algorithm applied to the semialgebraic set
 \begin{equation}
@@ -885,14 +840,14 @@ X := \{ \mathbf{x} \in \R^n \mid f_1 = 0, \ldots, f_k = 0, g_1 > 0, \ldots, g_\e
 (\#eq:strat-imput-set)
 \end{equation}
 where all $s := k + \ell$ functions $f_i,g_j$ are polynomials with maximum degree $d$ -- Pfaffian functions of order $0$ and degree $(\alpha, \beta)$.
-The upper complexity bound for the algorithm without Oracle is
+The upper complexity bound for the algorithm without oracle is
 $$
 3^{s} s^{n+1} (d + 1)^2.
 $$
 The number of strata, some of which may be empty, does not exceed
 $$s^{n} (d + 1)^2.$$
 Each stratum is defined by at most $s (d + 1)^2$ polynomial equations and inequalities of maximum degree $(d + 1)^2$.
-If the Oracle is allowed, no empty strata will be produced and the algorithm has complexity not exceeding
+If the oracle is allowed, no empty strata will be produced and the algorithm has complexity not exceeding
 $$
 s^{n+1} (d + 1)^2.
 $$

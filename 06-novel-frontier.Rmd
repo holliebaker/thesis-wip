@@ -1,8 +1,24 @@
 # Novel Algorithm for Frontier Condition { #sec:novel-frontier }
 
 So far, we have been concerned only with cylindrical algebraic decompositions which aree compatible with subsets of $\R^n$ of
-dimension at most $2$. 
+dimension at most $2$.
 We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
+
+The following algorithm, proved by Theorem \@ref(thm:main), is proposed.
+
+$$
+{\mathcal D} := \mathrm{CadFC}(F)
+$$
+
+**Input:**
+$F$: a QFF representing a semialgebraic set $S \subset \R^n$.
+
+**Output:**
+A CAD $\mathcal D$ of $\R^n$ compatible with $S$ and satisfying the frontier condition.
+
+**Complexity:**
+$$(sd)^{\O(1)^{n2^n}}$$
+where $F$ contains $s$ different polynomials of maximum degree $d$ in $\Z[x_1,\ldots,x_n]$.
 
 ## Theory
 
@@ -72,9 +88,6 @@ The following result, which is somewhat natural and is also mentioned by @bgv15 
 Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with a semialgebraic set $S\subset \R^n$ and satisfying the frontier condition.
 Then the decomposition induced by $\mathcal{D}$ on $\R^{k}$ for all $1\le k < n$ is a cylindrical decomposition of $\R^k$ compatible with $\proj_{\R^k}(S)$ and satisfying the frontier condition.
 :::
-
-This will allow us to apply Theorem \@ref(thm:main) to semialgebraic sets represented by first-order Boolean formulas (with quantifiers) and obtain a decomposition compatible with $S$ and satisfying the frontier condition.
-
 
 ### Frontiers of semialgebraic sets {#sec:novel-frontier-fr}
 
@@ -154,47 +167,40 @@ All of these indices are lexicographically less than $M$.
 In the proof of Theorem \@ref(thm:main), we will need the following technical statement.
 
 ::: {.lemma #section-split}
-Let $f \colon X \to \R$ be a continuous definable function on a set
-$X \subset \R^n$ having the graph $F \subset \R^{n+1}$, such that $F$ is a semialgebraic set.
-Let $G$ be a semialgebraic subset, closed in $F$, of dimension less than $\dim (F)=n$.
-Then $\frt_{F}(F \setminus G) = G$, where $\frt_F$ denotes the frontier in $F$.
+Let $X \subset \R^n$ be a semialgebraic set which is semialgebraically homeomorphic to the
+$d$-dimensional cube $(0, 1)^d$ and $Y \subset X$ be a semialgebraic set of dimension strictly less than $\dim(X)$.
+Then $\fr{X\setminus Y} \cap X = Y$..
 :::
 
 ::: {.proof}
-Let $Y = \proj_{\R^{n}}(G)$ and observe that $X = \proj_{\R^{n}}(F)$ and, since semialgebraic sets are closed under projection, observe that both $X$ and $Y$ are semialgebraic.
-We will prove that $\frt_X(X \setminus Y) = Y$.
 By the definition of frontier, we have
-$$\frt_X(X \setminus Y)=\cls_X(X \setminus Y) \setminus (X \setminus Y),$$
-where $\cls_X$ denotes the closure in $X$.
+$$\fr{X \setminus Y} \cap X =\left( \cl{X \setminus Y} \cap X \right) \setminus (X \setminus Y),$$
 
-We need to prove that $\cls_X(X \setminus Y) = X$.
-Since $Y$ is a semialgebraic set, it is the union of some basic semialgebraic sets
+We need to prove that $\cl{X \setminus Y} \cap X = X$.
+Since $X$ is semialgebraically homeomorphic to the $d$-dimensional open cube $(0,1)^d$, it suffices to prove that $\cl{\R^d \setminus Y} = \R^d$.
+$Y$ is a semialgebraic set, so it is the union of some basic semialgebraic sets
 \begin{equation}
-S_i = \{ \mathbf{x} \in \R^n \mid f_1(\mathbf{x}) = 0, \ldots, f_k(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \ldots, g_\ell(\mathbf{x}) > 0 \}
-(\#eq:basic-semialgebraic)
+\label{eq:basic-semialgebraic}
+S_i = \{ \mathbf{x} \in \R^d \mid f_1(\mathbf{x}) = 0, \ldots, f_k(\mathbf{x}) = 0, g_1(\mathbf{x}) > 0, \ldots, g_\ell(\mathbf{x}) > 0 \}
 \end{equation}
-of dimension $< n$.
-Each $S_i$ is contained in a hypersurface $V_i = V(f_{i})$, where $f_i$ is one of the polynomial equations defining $S_i$ in Equation \@ref(eq:basic-semialgebraic).
+of dimension strictly less than $d$.
+Each $S_i$ is contained in a hypersurface $V_i = V(f_{i})$, where $f_i$ is one of the polynomial equations defining $S_i$ in Equation \ref{eq:basic-semialgebraic}.
 Let $Z = \bigcup_i V_i = \bigcup_i V(f_{i}) = V(\prod f_i)$ be a closed set which contains $Y$.
 We may replace $Y$ with $Z$, and prove that
 $$
-\cls_X(X \setminus Z) = X \supset Z \cap X
+\cl{\R^d \setminus Z} = \R^d \supset Z
 $$
-because $(X \setminus Z) \subset (X \setminus Y)$ implies $\cls_X(X \setminus Z) \subset \cls_X(X \setminus Y)$.
-
-When considering $\cls_X$, we view $X$ as a topological space and consider only the points of $Z$ which are contained in $X$.
+because $(\R^d \setminus Z) \subset (\R^d \setminus Y)$ implies $\cl{\R^d \setminus Z} \subset \cl{\R^d \setminus Y}$.
 
 We prove that
 $$
-Z \cap \cls_X(X \setminus Z) \supset Z \cap X
+Z \cap \cl{\R^d \setminus Z} \supset Z
 $$
-and claim that every $\mathbf{x} \in X \cap Z$ is a point of $\cls_X(X \setminus Z)$.
-I.e., since we view $X$ as a topological space, even if $X$ is not an open set, by the definition of closure, there is a small real number $r > 0$ such that the open ball $B(\mathbf{x},r)$ is contained in $X \setminus Z$.
-Assume for contradiction that this is false. Then $B(\mathbf{x}, r) \cap (X \setminus Z) = \emptyset$.
-It follows that $B(\mathbf{x},r)$ must be contained in $Z$, but this is impossible because a set of dimension $< n$ cannot contain an $n$-dimensional open ball.
-
-Finally, since $f$ is a continuous function, and therefore $Y$ and $X$ are homeomorphic to $G$ and $F$
-respectively, we obtain the required formula $\frt_{F}(F \setminus G) = G$.
+and claim that every $\mathbf{x} \in Z$ is a point of $\cl{\R^d \setminus Z}$.
+By the definition of closure, there is a small real number $\varepsilon > 0$ such that the open ball $B(\mathbf{x},\varepsilon)$ is contained in $\R^d \setminus Z$.
+Assume for contradiction that this is false. Then $B(\mathbf{x},\varepsilon) \cap (\R^d \setminus Z) = \emptyset$.
+It follows that $B(\mathbf{x},\varepsilon)$ must be contained in $Z$, but this is impossible because a set of dimension
+strictly less than $d$ cannot contain a $d$-dimensional open ball.
 :::
 
 We now prove that the decomposition induced on $\R^k, 1 \le k \le n-1$ by any CAD satisfying the frontier condition also satisfies the frontier condition.
@@ -205,20 +211,13 @@ We now prove that the decomposition induced on $\R^k, 1 \le k \le n-1$ by any CA
 Let $\mathcal{D}$ be the cylindrical decomposition of $\R^n$ which satisfies the frontier condition and let $\mathcal{D}'$ be the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$.
 Let $C'$ be a cell of $\mathcal{D}'$. We claim that $C'$ satisfies the frontier condition and prove that $\cl{C'}$ is a union of cells of $\mathcal{D'}$.
 Consider the cylinder $C' \times \R$.
-$\cl{C' \times \R}$ can be written as a first-order Boolean formula
-\begin{equation}
-(\mathbf{x'},x_n) \in \R^n \mid \forall \varepsilon > 0\> \exists (\mathbf{y'},y_n) \in C' \times \R \> (\Vert (\mathbf{x'},x_n) - (\mathbf{y'},y_n) \Vert < \varepsilon ).
-(\#eq:closure-quantifiers)
-\end{equation}
-Since $C' \times \R$ is a union of cells of $\mathcal{D}$ and $\mathcal{D}$ satisfies the frontier condition,
-it follows that every point $(\mathbf{x'},x_n) \in \cl{C' \times \R}$ belongs to $\cl{C}$ for some cell $C$ of $\mathcal{D}$ in $C' \times \R$. Hence, $\cl{C' \times \R}$ is a union of cells of $\mathcal{D}$.
-
-It is clear that, if $(\mathbf{x'}, x_n) \in \cl{C' \times \R}$, then $\proj_{\R^{n-1}}((\mathbf{x'}, x_n)) = \mathbf{x'} \in \proj_{\R^{n-1}}(\cl{C' \times \R})$. Hence $\proj_{\R^{n-1}}(\cl{C' \times \R}) = \cl{C'}$ and, by the cylindrical property, since $\cl{C' \times \R}$ is a union of cells of $\mathcal{D}$, $\cl{C'}$ is a union of cells of $\mathcal{D'}$.
+Since $C' \times \R$ is a union of some cells $\{C_1, \ldots, C_r\}$ of $\mathcal{D}$ and $\mathcal{D}$ satisfies the frontier condition, it follows that $\cl{C_1} \cup \ldots \cup \cl{C_r} = \cl{C_1 \cup \ldots \cup C_r} = \cl{C' \times \R}$ is a union of cells of $\mathcal{D}$.
+By the cylindrical structure of $\mathcal{D}$, $\proj_{\R^{n-1}}\left(\cl{C' \times \R}\right) = \cl{C'}$ is a union of cells in $\mathcal{D'}$. Hence, $\fr{C'} = \cl{C'} \setminus C'$ is a union of cells of $\mathcal{D'}$.
 
 The proof is completed, for decompositions induced by $\mathcal{D}$ on $\R^k, 1 \le k \le n-1$, by iterating this argument for successive projections.
 :::
 
-## Main result
+## Algorithm and Complexity Analysis
 
 ### Psuedo-code
 
@@ -246,52 +245,49 @@ First some basic subroutines are defined.
 We now present the algorithm from Theorem \@ref(thm:main).
 
 ::: {.algorithm #algorithm-main data-latex="CadFC"}
-$$
-{\mathcal D} := \mathrm{CadFC}(F)
-$$
 
-**Input:**
+${\mathcal D} := \rm{Frontier}(F)$
+
+\begin{itemize}[noitemsep]
+\item \textbf{Input:}
 $F$: a QFF representing a semialgebraic set $S \subset \R^n$.
 
-**Output:**
-A CAD $\mathcal D$ of $\R^n$ compatible with $S$ and satisfying the frontier condition.
+\item \textbf{Output:}
+CAD $\mathcal D$ of $\R^n$ compatible with $S$ and satisfying the frontier condition.
 
-**Complexity:**
+\item \textbf{Complexity:}
 $$(sd)^{\O(1)^{n2^n}}$$
 where $F$ contains $s$ different polynomials of maximum degree $d$ in $\Z[x_1,\ldots,x_n]$.
+\end{itemize}
 
-- Initialise $M = (i_1,\ldots,i_{n-1}) := (1,\ldots,1) \in \{0,1\}^{n-1}$.
+\begin{algorithmic}[1]
+\State $M = (i_1,\ldots,i_{n-1}) \gets (1,\ldots,1) \in \{0,1\}^{n-1}$. % \Comment{be the initial index.}
+\State $\mathcal{E}_M \gets \rm{Refine}(\mathbf{true}, \{ F \})$.
+\State \Comment{Define the initial pair.}
+\State $(\mathcal{E}_M, \mathcal{F}_M) = (\mathcal{E}, \emptyset)$.
 
-- Let $\mathcal{E}_M :=  \bf{true} \ \&\ \{ F \}$, where $\bf{true}$ is the trivial CAD of $\R^n$, be the initial CAD.
+\While{$(0,\ldots,0) \lex M = (i_1,\ldots,i_{n-1})$}
+    \State $N \gets \rm{Decrement}(M)$.
+    \State \Comment{Refine}
+    \State \Comment{Refine $\mathcal{E}_M$ to be compatible with a semialgebraic set contained in the cells of $\mathcal{E}_M$ with index $\lexeq (i_1,\ldots,i_{n-1},1)$.}
+    \State $\mathcal{E}_N \gets \rm{Refine}(\mathcal{E}_M, \mathcal{F}_M)$.
+    \State \Comment{Compute set of frontiers.}
+    \State $\mathcal{A}_0 \gets \{ F_0 \mid \text{a QFF defining all cells of $\mathcal{E}_N$ with index }(i_1,\ldots,i_{n-1},0) \}$.
+    \State $\mathcal{A}_1 \gets \{ F_1 \mid \text{a QFF defining all cells of $\mathcal{E}_N$ with index }(i_1,\ldots,i_{n-1},1) \}$.
+%    \State $\mathcal{A}_1 \gets \{\}$ be the family of QFFs defining all cells of $\mathcal{E}_N$ with index $(i_1,\ldots,i_{n-1},1)$.
+    \State ${\mathcal F}_{N,0} \gets \left\{ \fr(F_0) \mid F_0 \in \mathcal{A}_0 \right\}$.
+    \State ${\mathcal F}_{N,1} \gets \left\{ \fr(F_1 \land \neg( F_{1,B} \lor F_{1,T} )) \mid F_1 \in \mathcal{A}_1, F_{1,B}, F_{1,T} \in \mathcal{A}_0 \right\}$.
+    \State \Comment{$F_{1,B},F_{1,T} \in \mathcal{A}_0$ are QFFs defining the bottom / top of cell defined by $ F_1 \in \mathcal{A}_1$.}
+%    \State where $F_{1,B}$ (resp. $F_{1,T}$) is a QFF defining the bottom (resp. top) of the cell defined by $F_1$, or $\mathbf{false}$ if the bottom (resp. top) does not exist.
+    \State ${\mathcal F}_N \gets {\mathcal F}_{N,0} \cup {\mathcal F}_{N,1}$.
+    \State \Comment{$\mathcal{F}_N$ is contained in a union of cells of $\mathcal{E}_M$ with index $\lex(i_1,\ldots,i_{n-1},0)$.}
+    \State
+    \State $M \gets N$.
+\EndWhile
+\State \Return $\mathcal{E}_{(0,\ldots,0)}$.
+\end{algorithmic}
 
-- Define the initial pair
-$({\mathcal E}_M, \mathcal{F}_M):=({\mathcal E}, \emptyset)$.
 
-  $\mathcal{E}_M$ is a refinement of $\mathcal{E}$ and $\mathcal{F}_M$ is a set of QFFs, each defining a semialgebraic
-  set contained in a union of cells of $\mathcal{E}_M$ with binary index $\lexeq (i_1,\ldots,i_{n-1},1)$.
-
-- While $(0,\ldots,0) \lex M$, do
-
-
-  - Let $N := {\rm Decrement} (M)$.
-
-  - Compute $\mathcal{E}_N := \mathcal{E}_M\ \&\ {\mathcal F}_M$.
-
-  - Let $\mathcal{A}_0$ be the family of QFFs defining all cells of $\mathcal{E}_N$ with binary index $(i_1,\ldots,i_{n-1},0)$
-
-  - and $\mathcal{A}_1$ be the family of QFFs defining all cells of $\mathcal{E}_N$ with binary index $(i_1,\ldots,i_{n-1},1)$.
-
-  - Compute the set of frontiers
-\begin{align*}
-{\mathcal F}_{N,0} =\ & \left\{ \fr{F_0} \mid F_0 \in \mathcal{A}_0 \right\}, \\
-{\mathcal F}_{N,1} =\ & \left\{ \fr{F_1 \land \neg( F_{1,B} \lor F_{1,T} )} \mid F_1 \in \mathcal{A}_1, F_{1,B}, F_{1,T} \in \mathcal{A}_0 \right\}, \\
-{\mathcal F}_N =\ & {\mathcal F}_{N,0} \cup {\mathcal F}_{N,1},
-\end{align*}
-where $F_{1,B}$ (resp. $F_{1,T}$) is a QFF defining the bottom (resp. top) of the sector cell defined by $F_1$, or $\mathbf{false}$ if the bottom (resp. top) does not exist.
-
-  - Let $M := N$.
-
-- Return ${\mathcal E}_{(0,\ldots,0)}$.
 :::
 
 ### Worked example { #sec:worked-example }
@@ -437,7 +433,7 @@ When the algorithm reaches the final pair $({\mathcal E}_{\mathbf{0}}, \mathcal{
 it computes a CAD $\mathcal D$, using the algorithm from Proposition \@ref(prp:collins), compatible
 with $\mathcal{F}_{\mathbf{0}}$ and every cell of ${\mathcal E}_{\mathbf{0}}$. The algorithm terminates by returning $\mathcal D$.
 
-### Proof of correctness
+### Correctness and Complexity
 
 ::: {.proof}
 (of Theorem \@ref(thm:main))
@@ -454,17 +450,19 @@ each cell of $\mathcal{D}$ and each $\mathcal{E}'_I$ is the refinement of $\math
 $\mathcal{E}'_J$, where $J$ is the binary index immediately prior to $I$ with respect to $\lex$.
 We want to prove that every cell in $\mathcal{E}'_L$ with binary index $\lexeq (i_1,\ldots,i_{n-1},1)$ satisfies the frontier condition.
 
-If $C$ is a cell in ${\mathcal E}_N$ with binary index $(i_1, \ldots ,i_{n-1},0)$ (section cell),
+If $C$ is a cell in ${\mathcal E}_N$ with index $(i_1, \ldots ,i_{n-1},0)$ (section cell),
 then $C$ is a union of cells of ${\mathcal E}_L$ and, hence, of $\mathcal{E}'_L$, with indices $\lexeq (i_1, \ldots ,i_{n-1} ,0)$.
-Let $C' \subset C$ be one of the cells in this refinement of $C$ with binary index $(i_1, \ldots ,i_{n-1} ,0)$ and $B$ be
+We claim that the frontiers in $C$ of the $(i_1,\ldots,i_{n-1},0)$-cells contained in $C$ is the union of the cells of $\mathcal{E}_L$ contained in $C$ with index $\lex (i_1,\ldots,i_{n-1},0)$.
+Let $C' \subset C$ be one of the cells in this refinement of $C$ with index $(i_1, \ldots ,i_{n-1} ,0)$ and $B$ be
 the union of cells contained in the refinement of $C$ with indices $\lex (i_1, \ldots ,i_{n-1} ,0)$.
-Let $B' \subset B$ be a cell of ${\mathcal E}_L$ with binary index $(m_1,\ldots,m_{n-1},0) \lex (i_1,\ldots,i_{n-1},0)$. We claim that $\dim(B') < \dim(C)$.
+Let $B' \subset B$ be a cell of ${\mathcal E}_L$ with index $(m_1,\ldots,m_{n-1},0) \lex (i_1,\ldots,i_{n-1},0)$, then $\dim(B') < \dim(C)$.
 Indeed, on the one hand, if $i_k = 0$, for some $1\le k \le n-1$, then $m_k = 0$ as well. Otherwise, $\proj_{\R^k}(C)$ is a section cell which must contain $\proj_{\R^k}(B')$, which is a sector cell, but this is impossible.
-On the other hand, by the definition of $\lex$, there exists some $1\le \ell \le n-1$ such that $m_1 = i_1, \ldots, m_{\ell-1} = i_{\ell-1}$ and $m_\ell = 0, i_\ell = 1$. This implies that $\dim(B') = m_1 + \cdots + m_{n-1} < i_1 + \cdots + m_{n-1} = \dim(C)$ as required. It follows that $\dim(B) < \dim(C)$ and $B$ is closed in $C$.
-According to Lemma \@ref(lem:section-split), $\frt_C (C \setminus B)=B$ where $\frt_X(Y)$ denotes the frontier of $Y$ in $X$.
-Hence, $\frt_C (C') \subset B$.
-On the other hand, $\fr{C'} \setminus \frt_C (C')$ is a subset of $\fr{C}$, which is a union of cells of $\mathcal{E}_L$
-(and of the refinement $\mathcal{E}'_L$) with binary index $\lex (i_1,\ldots,i_{n-1},0)$.
+On the other hand, by the definition of $\lex$, there exists some $1 \le \ell \le n-1$ such that $m_1 = i_1, \ldots, m_{\ell-1} = i_{\ell-1}$ and $m_\ell = 0, i_\ell = 1$. This implies that $\dim(B') = m_1 + \cdots + m_{n-1} < i_1 + \cdots + m_{n-1} = \dim(C)$ as required. It follows that $\dim(B) < d = \dim(C)$ and $B$ is closed in $C$.
+Since $C$ is a cylindrical cell, it is semialgebraically homeomorphic to the $d$-dimensional open cube $(0,1)^d$.
+According to Lemma \ref{lem:section-split}, $\fr (C \setminus B) \cap C = B$.
+Since $C \setminus B$ is a disjoint union of $(i_1,\ldots,i_{n-1},0)$-cells, $C' \subset C \setminus B$ is a connected component of $C \setminus B$.
+It follows that $\fr{C'} \cap C \subset B$.
+On the other hand, $\fr (C') \setminus (\fr (C') \cap C) = \fr{C'} \setminus C$ is a subset of $\fr (C)$, which is a union of cells of $\mathcal{E}_L$ (and of the refinement $\mathcal{E}'_L$) with index $\lex (i_1,\ldots,i_{n-1},0)$.
 
 By the induction hypothesis, all cells of $\mathcal{E}'_L$ with binary index $\lex (i_1,\ldots,i_{n-1},0)$ satisfy the frontier condition. In particular, $\fr{C}$ and $\fr{B}\subset \fr{C}$ is a union of cells of $\mathcal{E}'_L$.
 It follows from the cylindrical structure of $\mathcal{E}'_L$ that $C'$ satisfies the frontier condition.
@@ -475,7 +473,7 @@ A similar argument to that used for section cells shows that each cell $C'$ in t
 having binary index $(i_1, \ldots ,i_{n-1} ,1)$, satisfies the frontier condition in $\mathcal{E}'_L$. Note that when using
 Lemma \@ref(lem:section-split) we consider sector cell $C$ as a graph of a constant function over itself.
 
-Finally, each decomposition $\mathcal{E}'_I$, $I \in \{0,1\}^{n-1}$, in the Sequence \ref{eq:seq-ind-hyp} coincides with $\mathcal{D}$. Indeed, $\mathcal{D}$ is a refinement of $\mathcal{E}_I$ and $\mathcal{E}'_I$ is a refinement of $\mathcal{E}_I$ compatible with all cells of $\mathcal{D}$. In other words, no refinement of $\mathcal{D}$ is required to obtain $\mathcal{E}'_{(1,\ldots,1)}$.
+Finally, each decomposition $\mathcal{E}'_I$, $I \in \{0,1\}^{n-1}$, in the Sequence \@ref(eq:seq-ind-hyp) coincides with $\mathcal{D}$. Indeed, $\mathcal{D}$ is a refinement of $\mathcal{E}_I$ and $\mathcal{E}'_I$ is a refinement of $\mathcal{E}_I$ compatible with all cells of $\mathcal{D}$. In other words, no refinement of $\mathcal{D}$ is required to obtain $\mathcal{E}'_{(1,\ldots,1)}$.
 It follows that every cell of $\mathcal{D}$ satisfies the frontier condition.
 :::
 
@@ -532,8 +530,9 @@ Theorem \@ref(thm:main) can be extended to restricted sub-Pfaffian sets, which a
 In particular, it can be used to prove the existence of decompositions with frontier condition compatible with semialgebraic sets defined by *fewnomials* [@gv04, Section 2.6], whose structure is destroyed by a change of coordinates, and obtain a bound on the number of cells in these decompositions.
 
 The idea of the proof is still valid. Only a modification to the subroutines for computing the frontier, and for constructing a classical CAD, is needed. For the former, replace the quantifier elimination algorithm in Lemma \@ref(lem:frontier) with the result of [@gv04, Section 5]. In the latter case, the classical CAD algorithm from Proposition \@ref(prp:collins) should be replaced by the main result of @gv01 (see also [@gv04, Section 7]). The rest of the proof can be reproduced almost identically.
-Care must be taken to ensure that Lemma \@ref(lem:section-split) is still applicable to restricted sub-Pfaffian sets. The projection of a sub-Pfaffian set is a semi-Pfaffian set, which admits the representation as a finite union of basic semi-Pfaffian sets.
-In fact, basic sets can be defined using any functions definable in $\R^n$ and it is clear that any finite union of sets defined by conjunctions of strict or non-strict inequalities is the finite union of basic sets. The representation of $Z$ as the union of hypersurfaces containing basic sets is also possible, and the argument that open balls cannot be contained in a set of smaller dimension is geometric and still holds. Thus, the proof of Lemma \@ref(lem:section-split) can be reproduced almost identically, too.
+Care must be taken to ensure that Lemma \ref{lem:section-split} is still applicable to restricted sub-Pfaffian sets.
+Every sub-Pfaffian set admits the representation as a finite union of basic sub-Pfaffian sets.
+In fact, basic sets can be defined using any functions definable in $\R^n$ and it is clear that any finite union of sets defined by conjunctions of strict or non-strict inequalities is the finite union of basic sets. The representation of $Z$ as the union of hypersurfaces containing basic sets is also possible, and the argument that open balls cannot be contained in a set of smaller dimension is geometric and still holds. Thus, the proof of Lemma \ref{lem:section-split} can be reproduced almost identically, too.
 
 Note that it is not currently clear how this result can be implemented since in the algorithm for cylindrical decomposition by @gv01 the oracle is needed to decide whether a sub-Pfaffian set is empty or not.
 
@@ -553,7 +552,7 @@ cylindrical structure.
 We may be able to exploit this structure by factorising the equational part of the formula
 representing a cell into irreducible components, generalising a method due to @lazard10.
 
-Finally, since some initial CAD is refined repeatedly, the classical CAD algorithm from Proposition \@ref(prp:collins) could be replaced with an incremental algorithm, E.g., the algorithm presented by @kremer2020. 
-It is conjectured that substituting the CAD algorithm will reduce the average-case complexity. 
+Finally, since some initial CAD is refined repeatedly, the classical CAD algorithm from Proposition \@ref(prp:collins) could be replaced with an incremental algorithm, E.g., the algorithm presented by @kremer2020.
+It is conjectured that substituting the CAD algorithm will reduce the average-case complexity.
 However, it is worth noting that the set $X_N$ is still computed at each step, using a singly exponential algorithm, and the initial CAD may need to be refined at every step and this refinement may result in the incremental algorithm backtracking all the way to the decomposition induced on $\R^1$. This change is likely to be very useful in practice as unnecessary CAD re-computations could be avoided, e.g., if $\mathcal{E}_N$ is already compatible with the set $X_N$, the algorithm in its current form will compute the refinement even though it is not needed.
 

@@ -181,7 +181,7 @@ A function $f(\mathbf{x}) = P(\mathbf{x},f_1(\mathbf{x}),\ldots,f_r(\mathbf{x}))
 
 Examples of Pfaffian functions include the exponential, logarithmic, reciprocal and trigonometric functions, as well as the polynomials.
 
-::: {.definition}
+::: {.definition #semi-pfaff}
 [@gv04, Definition 2.7]
 
 A set $X \subset \R^n$ is called semi-Pfaffian in an open domain
