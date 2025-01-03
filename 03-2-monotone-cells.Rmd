@@ -694,7 +694,7 @@ $(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monoton
         \State \Comment{$C$ has binary index $(1,0,\ldots,0,i_\alpha,0,\ldots,0)$ where $i_\alpha = 1$}
         \State $j \gets \alpha$
         \While {$j \le n$}
-            \State $C' := \projop{j} (C)$ 
+            \State $C' := \projop{j} (C)$
             \State $C'_B \gets \rm{Bottom}(C')$ \Comment{bottom of $C'$ or $\emptyset$ if it does not exist}
             \State $C'_T \gets \rm{Top}(C')$ \Comment{top of $C'$ or $\emptyset$ if it does not exist}
             \State \Comment{If $C'_B$ (resp. $C'_T$) $= \emptyset$,}
@@ -766,7 +766,8 @@ which, according to Proposition \@ref(prp:collins), is also an upper bound on th
 Thus, the degree of the polynomial defined in Equation \@ref(eq:jacobi-det) is at most $n\cdot(s(d+1))^{\O(1)^{n}}$, which is asymptotically the same as
 $(s(d+1))^{\O(1)^{n}}$.
 
-We then compute the $x_1$-coordinates of the solutions to the $0$-dimensional system of equations (defined in Equations \@ref(eq:lagrange-solve)), subject to the inequalities (defined in Equation \@ref(eq:lagrange-solve-ineqs)). In the implementation, CAD projection is used to compute a family of polynomials ${\cal F}$, defined in Equation \@ref(eq:lagrange-solve-projected), such that the required refinement points contain their roots.
+We then compute the $x_1$-coordinates of the solutions to the $0$-dimensional system of equations (defined in Equations
+\@ref(eq:lagrange-solve-bot) and \@ref(eq:lagrange-solve-top)), subject to the inequalities (defined in Equation \@ref(eq:lagrange-solve-ineqs)). In the implementation, CAD projection is used to compute a family of polynomials ${\cal F}$, defined in Equation \@ref(eq:lagrange-solve-projected), such that the required refinement points contain their roots.
 As we are well aware, the number of polynomials and their degrees will be at most doubly exponential in $n$.
 However, a better bound on the number of refinement points could be obtained by considering the number of connected components in the set defined by the roots of the refinement polynomials, i.e., the $0$-th Betti number, $b_0$.
 @gv2009 Section 6.1 present some bounds on the total Betti number (sum of Betti numbers of all orders) ${\tt{b}}(S)$ of a semialgebraic set $S \subset \R^n$.
