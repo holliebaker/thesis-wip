@@ -275,8 +275,8 @@ where $F$ contains $s$ different polynomials of maximum degree $d$ in $\Z[x_1,\l
     \State $\mathcal{A}_0 \gets \{ F_0 \mid \text{a QFF defining all cells of $\mathcal{E}_N$ with index }(i_1,\ldots,i_{n-1},0) \}$.
     \State $\mathcal{A}_1 \gets \{ F_1 \mid \text{a QFF defining all cells of $\mathcal{E}_N$ with index }(i_1,\ldots,i_{n-1},1) \}$.
 %    \State $\mathcal{A}_1 \gets \{\}$ be the family of QFFs defining all cells of $\mathcal{E}_N$ with index $(i_1,\ldots,i_{n-1},1)$.
-    \State ${\mathcal F}_{N,0} \gets \left\{ \fr(F_0) \mid F_0 \in \mathcal{A}_0 \right\}$.
-    \State ${\mathcal F}_{N,1} \gets \left\{ \fr(F_1 \land \neg( F_{1,B} \lor F_{1,T} )) \mid F_1 \in \mathcal{A}_1, F_{1,B}, F_{1,T} \in \mathcal{A}_0 \right\}$.
+    \State ${\mathcal F}_{N,0} \gets \left\{ \fr{F_0} \mid F_0 \in \mathcal{A}_0 \right\}$.
+    \State ${\mathcal F}_{N,1} \gets \left\{ \fr{F_1 \land \neg( F_{1,B} \lor F_{1,T} )} \mid F_1 \in \mathcal{A}_1, F_{1,B}, F_{1,T} \in \mathcal{A}_0 \right\}$.
     \State \Comment{$F_{1,B},F_{1,T} \in \mathcal{A}_0$ are QFFs defining the bottom / top of cell defined by $ F_1 \in \mathcal{A}_1$.}
 %    \State where $F_{1,B}$ (resp. $F_{1,T}$) is a QFF defining the bottom (resp. top) of the cell defined by $F_1$, or $\mathbf{false}$ if the bottom (resp. top) does not exist.
     \State ${\mathcal F}_N \gets {\mathcal F}_{N,0} \cup {\mathcal F}_{N,1}$.
@@ -328,7 +328,7 @@ $$
 The blow-up subset $\{ x = y = 0, 0 \le z \le 1 \}$ in $X_{(1,0)}$ results in a refinement of the decomposition induced by $\mathcal{E}_{(1,0)}$ on $\R^1$ such that it includes the cells $\{-1 < x < 0\}, (0), \{ 0 < x < 1 \}$. Thus $\mathcal{E}_{(0,1)}$ includes a cell $S'' = \{ x = 0, 0 < y < 1, z = 0 \}$ and $S$ is split into three cells $S', S'', S'''$ with indices $(1,1,0),(1,0,0)$ and $(1,1,0)$ respectively.
 Cells $C_1,C_2,C_3$ and $C_4$ of $\mathcal{E}_{(1,0)} = \mathcal{E}$ are also refined in this step so that they are
 compatible with $\fr{S}$ (see Table \@ref(tab:cells-of-e-refined) and Figure \@ref(fig:final-cad)). As we will argue in
-the Correctness section, frontiers $\frt_S(S')$ and $\frt_S(S''')$ coincide with $S''$, so no further refinements of
+the Correctness section, frontiers $\fr{S'} \cap S$ and $\fr{S'''} \cap S$ coincide with $S''$, so no further refinements of
 cells with binary index $(1,1,1)$ and $(1,1,0)$ are needed.
 $X_{(0,1)}$ contains $\fr{C'_2}, \fr{C'''_2}, \fr{C'_3}$ and $\fr{C'''_3}$. Thus, $\mathcal{F}_{(0,1)}$ contains QFFs defining $X_{(0,1)}$.
 
@@ -459,10 +459,10 @@ Let $B' \subset B$ be a cell of ${\mathcal E}_L$ with index $(m_1,\ldots,m_{n-1}
 Indeed, on the one hand, if $i_k = 0$, for some $1\le k \le n-1$, then $m_k = 0$ as well. Otherwise, $\proj_{\R^k}(C)$ is a section cell which must contain $\proj_{\R^k}(B')$, which is a sector cell, but this is impossible.
 On the other hand, by the definition of $\lex$, there exists some $1 \le \ell \le n-1$ such that $m_1 = i_1, \ldots, m_{\ell-1} = i_{\ell-1}$ and $m_\ell = 0, i_\ell = 1$. This implies that $\dim(B') = m_1 + \cdots + m_{n-1} < i_1 + \cdots + m_{n-1} = \dim(C)$ as required. It follows that $\dim(B) < d = \dim(C)$ and $B$ is closed in $C$.
 Since $C$ is a cylindrical cell, it is semialgebraically homeomorphic to the $d$-dimensional open cube $(0,1)^d$.
-According to Lemma \ref{lem:section-split}, $\fr (C \setminus B) \cap C = B$.
+According to Lemma \ref{lem:section-split}, $\fr {C \setminus B} \cap C = B$.
 Since $C \setminus B$ is a disjoint union of $(i_1,\ldots,i_{n-1},0)$-cells, $C' \subset C \setminus B$ is a connected component of $C \setminus B$.
 It follows that $\fr{C'} \cap C \subset B$.
-On the other hand, $\fr (C') \setminus (\fr (C') \cap C) = \fr{C'} \setminus C$ is a subset of $\fr (C)$, which is a union of cells of $\mathcal{E}_L$ (and of the refinement $\mathcal{E}'_L$) with index $\lex (i_1,\ldots,i_{n-1},0)$.
+On the other hand, $\fr {C'} \setminus (\fr {C'} \cap C) = \fr{C'} \setminus C$ is a subset of $\fr {C}$, which is a union of cells of $\mathcal{E}_L$ (and of the refinement $\mathcal{E}'_L$) with index $\lex (i_1,\ldots,i_{n-1},0)$.
 
 By the induction hypothesis, all cells of $\mathcal{E}'_L$ with binary index $\lex (i_1,\ldots,i_{n-1},0)$ satisfy the frontier condition. In particular, $\fr{C}$ and $\fr{B}\subset \fr{C}$ is a union of cells of $\mathcal{E}'_L$.
 It follows from the cylindrical structure of $\mathcal{E}'_L$ that $C'$ satisfies the frontier condition.

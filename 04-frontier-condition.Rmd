@@ -219,7 +219,7 @@ ensure that every cell is smooth and the graph of a quasi-affine map. Hence, eve
 The algorithm for obtaining monotone cells, described in Section \@ref(sec:monotone-algorithm) requires us to compute
 refinements of the kind $\{ x_1 < c \}, \{ x_1 = c \}, \{ x_1 > c \}$ of a $(1)$-cell $C'$ in the sub-decomposition
 above a $0$-dimensional cell.
-This refinement is also applied to every cell $C$ in this sub-decomposition such that $C' := \projop{1}(C)$. Thus, the refined CAD is sign-invariant on $\mathbf{F'}$ and the cells $C$ projecting on $C'$ are sign-invariant with respect to polynomials $x_1 - c$, defining each refinement point $c$.
+This refinement is also applied to every cell $C$ in this sub-decomposition such that $C' := \projop{1}(C)$. Thus, the refined CAD is sign-invariant on $\mathbf{F'}$ and the cells $C$ projecting onto $C'$ are sign-invariant with respect to polynomials $x_1 - c$, defining each refinement point $c$.
 Cells which were not refined are either already monotone or lie outside of the input sets $V_1,\ldots,V_k$.
 As a result, we are able to apply Lazard's method for lifting with bad points to the CAD produced by the algorithm from Section \@ref(sec:monotone-algorithm).
 
@@ -466,18 +466,17 @@ Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^3$ such that the decom
 ::: {.proof}
 If $\dim(C) < 2$, then $C$ is well-bordered by @lazard10, Lemma 5.1.
 
-If $\dim(C) = 2$ and $C$ is a $(1,1,0)$-cell, then its boundary consists of some section cells which project onto $1$-dimensional cells in $\mathcal{D}$ and which are contained in $\fr{C'}$ and points or intervals projecting on some $0$-cells in $\fr{C'}$ by Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2).
+If $\dim(C) = 2$ and $C$ is a $(1,1,0)$-cell, then its boundary consists of some section cells which project onto $1$-dimensional cells in $\mathcal{D}$ and which are contained in $\fr{C'}$ and points or intervals projecting onto some $0$-cells in $\fr{C'}$ by Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2).
 We need to prove that these points belong to the boundary of some of the $1$-cells contained in $\fr{C}$.
 Let $\mathbf{c}$ be a $0$-cell of $\mathcal{D'}$ contained in $\fr{C'}$ such that $\mathbf{c}$ is the projection of exactly one point, $\mathbf{p}$, in $\fr{C}$.
 Since $C'$ is well-bordered (as $\mathcal{D'}$ is strong), there is a $1$-dimensional cell $C'_1 \subset \fr{C'}$ such that $\mathbf{c}$ is an endpoint.
 If $C'_1$ is the projection of a $1$-dimensional cell contained in $\fr{C}$, we are done -- the boundary of this $1$-dimensional cell consists of some isolated points including $\mathbf{p}$.
-$C'_1$ is not the projection of a section cell, then the limits of the sequences of points in $C$, whose projections
-tend to $C'_1$, tend to $-\infty$ or $\infty$. Therefore $\mathbf{p}$ is either $-\infty$ or $\infty$, being an endpoint
+If $C'_1$ is not the projection of a section cell, then the limits of the sequences of points in $C$, which project onto $C'_1$, tend to $-\infty$ or $\infty$. Therefore $\mathbf{p}$ is either $-\infty$ or $\infty$, being an endpoint
 of the interval $I$ associated to $C$ by Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2). This
 contradicts the assumption that $\projopinv{2}(\mathbf{c}) \cap \fr{C}$ contains only $\mathbf{p}$.
 
-If $\dim(C) = 2$ and it is a sector ($(i_1,i_2,1)$-cell), then $\fr{C}$ consists of the two $(i_1,i_2,0)$-cells $C_B$
-and $C_T$ which project onto $C'$ the side-walls $W = \fr{C} \setminus (C_B \cup C_T)$ which consists of points or intervals projecting on the endpoints of $C'$.
+If $\dim(C) = 2$ and $C$ is a sector ($(i_1,i_2,1)$-cell), then $\fr{C}$ consists of the two $(i_1,i_2,0)$-cells $C_B$
+and $C_T$ which project onto $C'$ the side-walls $W = \fr{C} \setminus (C_B \cup C_T)$ which consists of points or intervals projecting onto the endpoints of $C'$.
 If $W$ contains an isolated point above an endpoint $\mathbf{c}$ of $C'$. Then Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2) asserts that it belongs to the boundary of a section bounding $C$ from below or above (i.e., $C_B$ or $C_T$), and we are done.
 
 Finally, suppose that $C$ is a $(1,1,1)$-cell.
@@ -510,11 +509,11 @@ side-walls of $C$. Since $C_B$ and $C_T$ are $1$-dimensional cells of $\mathcal{
 If $\dim(C) = 2$ and it is not a sector cell, it is an $(i_1,\ldots,i_{n-1},0)$-cell and $C'$ is a well-bordered $2$-dimensional $(i_1,\ldots,i_{n-1})$-cell of $\mathcal{D'}$. Let us consider the cylinder $C' \times \R$, which is a union of $2$- and $3$-dimensional cells of $\mathcal{D}$.
 
 For the $2$-dimensional $(i_1,\ldots,i_{n-1})$-cell $C$, the same situation as in Proposition \@ref(prp:lazard-5-3)
-(@lazard10, Theorem 5.3) occurs -- $\fr{C}$ consists of some $1$-dimensional $(j_1,\ldots,j_{n-1},0)$-cells of $\mathcal{D}$ which project onto some $(j_1,\ldots,j_{n-1})$-cells of $\mathcal{D}$ which are contained in $\fr{C'}$, and some points and open intervals projecting on some $(0,\ldots,0)$-cells contained in $\fr{C}$.
+(@lazard10, Theorem 5.3) occurs -- $\fr{C}$ consists of some $1$-dimensional $(j_1,\ldots,j_{n-1},0)$-cells of $\mathcal{D}$ which project onto some $(j_1,\ldots,j_{n-1})$-cells of $\mathcal{D}$ which are contained in $\fr{C'}$, and some points and open intervals projecting onto some $(0,\ldots,0)$-cells contained in $\fr{C}$.
 We will prove in Lemma \@ref(lem:fr-lex-less) that $(j_1,\ldots,j_{n-1},0)$ is lexicographically less than $(i_1,\ldots,i_{n-1},0)$.
 The same argument as in Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) can be applied to show that $C$ is well-bordered.
 
-$(i_1,\ldots,i_{n-1},1)$-cells of $\mathcal{D}$ contained in $C' \times \R$ also have the same arrangement as $(1,1,1)$ cells in from Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3). Being careful to take blow-up points into accont, the same argument as in the proof of Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) shows that these cells are also well-bordered.
+$(i_1,\ldots,i_{n-1},1)$-cells of $\mathcal{D}$ contained in $C' \times \R$ also have the same arrangement as $(1,1,1)$ cells in from Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3). Being careful to take blow-up points into account, the same argument as in the proof of Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) shows that these cells are also well-bordered.
 :::
 
 By Proposition \@ref(prp:no-blow-up), if no cells which intersect $\fr{C}$ project onto a bad cell and the induced decomposition is strong, $C$ is well-bordered, locally boundary connected and satisfies the frontier condition. Since the proof of Proposition \@ref(prp:no-blow-up) only considers cells contained in $\projop{n-1}(\cl{C}) \times \R$ this property is also true for the weaker condition that the induced decomposition is strong about $\projop{n-1}(C)$.
@@ -524,7 +523,7 @@ If there is a blow-up point, then we claim that the following situation, similar
 ::: {.lemma #ext-lazard-5-13 }
 (Extension of Proposition \@ref(prp:lazard-5-13) [@lazard10, Proposition 5.13])
 
-Let $\mathcal{D}$ be a sign-invarient decomposition of $\R^n$ and $C$ be a cell of $\mathcal{D}$ of dimension at most
+Let $\mathcal{D}$ be a sign-invariant decomposition of $\R^n$ and $C$ be a cell of $\mathcal{D}$ of dimension at most
 $2$, such that the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$ is strong about $\projop{n-1}(C)$. Let $D$ be a cell of $\mathcal{D}$ such that $B := D \cap \fr{ C } \neq \emptyset$ and $B \neq D$. Then either
 
   1. $C$ is a $1$-dimensional section cell whose endpoint, $B$, projects onto a bad cell, or
@@ -552,7 +551,7 @@ Let $V_r$ be a small neighbourhood (with radius $r > 0$) centred around $D'$ and
 ::: {.remark}
 Let $C$ be a $(i_1,\ldots,i_{n-1},0)$-cell as described in Lemma \@ref(lem:ext-lazard-5-13) such that $i_1=i_k = 1$ for
 some $1 \le k \le n$ and all other elements of the binary index are equal to zero.
-The cell $D$, which projects onto a bad-cell is necessarily a $(0,\ldots,0,1)$-cell and the cell $E$, which has dimension
+The cell $D$, which projects onto a bad cell is necessarily a $(0,\ldots,0,1)$-cell and the cell $E$, which has dimension
 $1$, is contained in $\cl{C}$. Hence, $E$ must have binary index either $(i_1,0\ldots,0)$ or $(0,\ldots,0,i_k,0,\ldots,0)$.
 By Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3), the images of $C$, $D$ and $E$ under the projection map $\projops{i_1,i_k,i_n}$ are cylindrical cells and satisfy Proposition \@ref(prp:lazard-5-13) (@lazard10, Lemma 5.13).
 :::
@@ -560,7 +559,7 @@ By Proposition \@ref(prp:delete-zero-index) (@bgv15, Lemma 3.3), the images of $
 This implies that we should be able to use a similar technique to that described in Proposition \@ref(prp:lazard-5-14)
 (@lazard10, Proposition 5.14) to lift above bad cells and satisfy the frontier condition on $2$-dimensional section cells in decompositions of arbitrary dimension.
 
-::: {.conjecture #ext-lazard-5-14}
+::: {.theorem #ext-lazard-5-14}
 (Extension of @lazard10, Proposition 5.14)
 
 Let $f \in \Q[x_1,\ldots,x_n]$ be an irreducible polynomial of the kind
@@ -593,8 +592,8 @@ Therefore, the ideal generated by $S$, the coefficients $h_0,\ldots,h_d$ of $f$ 
 $g_{i_1},\ldots,g_{i_{n-2}}$ is $0$-dimensional and the limits of $\{ f = 0, g_{i_1} = 0, \ldots, g_{i_{n-n}} = 0 \}$ as $(x_1,\ldots,x_{n-1}) \to \mathbf{p}$ can be computed as the solutions of $S$.
 :::
 
-Let $\mathcal{D}$ be an $\mathbf{F}$ invariant CAD of $\R^n$ as constructed by the algorithm in Section \@ref(sec:monotone-algorithm).
-Recall that, for the previous results, we require the decomposition induced on $\R^{n-1}$ to be strong about the projections of some cells of $\mathcal{D}$. Therefore, we need to proceed by induction on decompositions induced by $\mathcal{D}$ on $\R^k, k \ge 1$ to be able to apply Lemma \@ref(lem:ext-lazard-5-13) and Conjecture \@ref(cnj:ext-lazard-5-14).
+Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ as constructed by the algorithm in Section \@ref(sec:monotone-algorithm).
+Recall that, for the previous results, we require the decomposition induced on $\R^{n-1}$ to be strong about the projections of some cells of $\mathcal{D}$. Therefore, we need to proceed by induction on decompositions induced by $\mathcal{D}$ on $\R^k, k \ge 1$ to be able to apply Lemma \@ref(lem:ext-lazard-5-13) and Theorem \@ref(thm:ext-lazard-5-14).
 
 For $k\le 2$, we have a $\projop{k}(\mathbf{F})$-invariant CAD which already satisfies the frontier condition by @lazard10, Corollary 4.7.
 For $k=3$, recall that every cell is well-bordered by Proposition \@ref(prp:lazard-5-4) (@lazard10, Corollary 5.4). We already described how to construct a $\projop{3}(\mathbf{F})$-invariant CAD of $\R^3$ satisfying the frontier condition using @lazard10, Algorithm 5.15.
@@ -617,7 +616,7 @@ C \subset \{ \mathbf{x} \in \R^k \mid g_{j_1}(\mathbf{x}) = 0, \ldots, g_{j_{k-2
 $$
 where each $g_i \in \mathcal{A}_i$ for $i \in \{j_1,\ldots,j_{k-2}\} = \{1,\ldots,k-1\} \setminus \{{\ell_1}, {\ell_2} \}$ and $f \in \mathcal{A}_k$.
 Suppose that there is a $(0,\ldots,0,1)$-cell $D$ such that $D \cap \fr{C}$ and $f(\mathbf{x}) = 0$ for all $\mathbf{x} \in D$. I.e., $\mathbf{b} := \projop{k-1}(D)$ is a bad cell and is a common root of $g_{j_1}, \ldots, g_{j_{k-2}}$ and some $g_{\ell_1} \in \mathcal{A}_{\ell_1}, g_{\ell_2} \in \mathcal{A}_{\ell_2}$.
-Apply a method similar to that described in @lazard10, Algorithm 5.15 to $C$ and $D$ -- using Conjecture \@ref(cnj:ext-lazard-5-14), compute the saturations by $g_{\ell_1}$ and $g_{\ell_2}$, respectively:
+Apply a method similar to that described in @lazard10, Algorithm 5.15 to $C$ and $D$ -- using Theorem \@ref(thm:ext-lazard-5-14), compute the saturations by $g_{\ell_1}$ and $g_{\ell_2}$, respectively:
 \begin{equation}
 I_1 := \langle f, g_{j_1}, \ldots, g_{j_{k-2}}, g_{\ell_2}, 1 - z g_{\ell_1} \rangle \cap \Z[x_1,\ldots,x_k]
 (\#eq:lazard-n-1)
@@ -628,18 +627,18 @@ I_2 := \langle f, g_{j_1}, \ldots, g_{j_{k-2}}, g_{\ell_1}, 1 - z g_{\ell_2} \ra
 (\#eq:lazard-n-2)
 \end{equation}
 where $z$ is a new variable.
-Let $S_1, S_2$ be Groebner bases for $I_1,I_2$ respectively. The union of $0$-dimensional solutions to $S_1,S_2$ forms the set of refinement points $\mathcal{R}_\mathbf{b}$ whiche contains the endpoints of the open interval $D \cap \fr{C}$, By considering each bad cell in $\fr(\projop{k-1}(C))$, $\mathcal{D}'$ can be refined such that $C$ satisfies the frontier condition.
+Let $S_1, S_2$ be Groebner bases for $I_1,I_2$ respectively. The union of $0$-dimensional solutions to $S_1,S_2$ forms the set of refinement points $\mathcal{R}_\mathbf{b}$ which contains the endpoints of the open interval $D \cap \fr{C}$, By considering each bad cell in $\fr{\projop{k-1}(C)}$, $\mathcal{D}'$ can be refined such that $C$ satisfies the frontier condition.
 
-On the other hand, if $\ell_2 = k$, $C$ is a sector cell. In this case, $C$ already satisfies the frontier condition
+On the other hand, if $\ell_2 = k$, then $C$ is a sector cell. In this case, $C$ already satisfies the frontier condition
 since its top and bottom, which are $1$-dimensional section cells, already satisfy the frontier condition and its
 side-walls consists of at most two connected components -- points or closed intervals, whose endpoints coincide with the endpoints of the top and bottom of $C$.
 
 Finaly, if $\ell_1 > 1$ then $C$ is a $(0,\ldots,0,i_{\ell_1},\ldots,i_k)$-cell. Apply the method described above to the
-$(i_{\ell_1 + 1},\ldots,i_k)$-cell in the sub-CAD above $\projop{i_\ell - 1}(C)$.
+$(i_{\ell_1 + 1},\ldots,i_k)$-cell in the sub-CAD above $\projop{i_\ell}(C)$.
 
 Compute a refinement of $\mathcal{D}$ so that it is compatible with the set of refinement points $\mathcal{R}_\mathbf{b}$. These are refinements of the kind described in @bgv15, Lemma 3.11, and preserve the cylindrical structure and monotone cells in $\mathcal{D}$.
 By repeating this process for each bad cell $\mathbf{b}$, $\mathcal{D'}$ is refined such that it satisfies the frontier
-condition, hence it is strong about each cell $C$ such that $\projopinv{k}(C) \subset V_1\cup \ldots, \cup V_k$. This completes the inductive step and, by induction, a cylindrical decomposition monotone with respect to each set $V_1,\ldots,V_k$ and satisfying the frontier condition has been constructed.
+condition, hence it is strong about each cell $C$ such that $\projopinv{k}(C) \subset V_1\cup \ldots \cup V_k$. This completes the inductive step and, by induction, a cylindrical decomposition monotone with respect to each set $V_1,\ldots,V_k$ and satisfying the frontier condition has been constructed.
 
 ### Pseudo-code { #sec:ext-lazard-algorithm }
 
@@ -653,7 +652,8 @@ First, prepare $\mathcal{D}$ by marking each cell $C' := \projop{r}(C)$, such th
 **Input:**
 $$({\cal D}, {\cal A})$$
 
-  - $\cal D$: a CAD of $\R^k$, each cell having constant sign on $\mathcal{A}$, A collection of cells $\mathcal{C} := \{ C_1,\ldots,C_m \}$ of $\mathcal{D}$ are marked as being projections of $V_1,\ldots,V_k$.
+  - $\cal D$: a CAD of $\R^k$, each cell having constant sign on $\mathcal{A}$. 
+A collection of cells $\mathcal{C} := \{ C_1,\ldots,C_m \}$ of $\mathcal{D}$ are marked as being projections of $V_1,\ldots,V_q$, a family of sets having $\dim(V_i) \le 2, 1 \le i \le q$.
 
   - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_k$ is the family of projection polynomials for $\mathcal{D}$, each ${\cal A}_k \subset \Z[x_1,\ldots,x_k]$.
 
@@ -663,7 +663,6 @@ $$
 {\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \}
 $$
 where $\mathbf{b} \in \R^{k-1}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^k$.
-
 A set of refinement points, as described in Section \@ref(sec:monotone-algorithm).
 
 - Let $\cal D'$ be the decomposition induced by $\cal D$ on $\R^{n-1}$.
@@ -689,7 +688,7 @@ A set of refinement points, as described in Section \@ref(sec:monotone-algorithm
 
     I.e., all of $g_{j_1},\ldots,g_{j_{k - \ell_1 + 1}},f$ should be equal to zero on $D$.
 
-  - For each $D$ projecting on a bad cell, let $\mathbf{b} := \projop{k-1}(D)$.
+  - For each $D$ projecting onto a bad cell, let $\mathbf{b} := \projop{k-1}(D)$.
 
     Since $\mathbf{b}$ is a $(0,\ldots,0)$-cell, polynomials $g_{j_1},\ldots,g_{j_{k - \ell_1 + 1}}$ are equal to zero on $\mathbf{b}$ and there are two more polynomials $g_{\ell_1} \in \mathcal{A'}_{\ell_1}, g_{\ell_2} \in \mathcal{A'}_{\ell_2}$ which are equal to zero on $\mathbf{b}$.
 
@@ -727,28 +726,28 @@ A set of refinement points, as described in Section \@ref(sec:monotone-algorithm
 
 Apply this procedure to each decomposition, for $3 \le k \le n$ induced by $\mathcal{D}$ on $\R^k$ and compute the refinement of sections above bad cells using the same method described in Section \@ref(sec:compute-refinement) to obtain a refinement $\mathcal{E}$ of $\mathcal{D}$. Note that, since refinement points are algebraic numbers splitting $(1)$-cells in induced decompositions, @bgv15, Lemma 3.11 asserts that the cylindrical structure and monotone cells are preserved in $\mathcal{E}$.
 
-### Correctness and complexity
+### Correctness
 
 Since zero- and $1$-dimensional cells already satisfy the frontier condition, it suffices to consider cells of dimension
 $2$.
 Let $\mathcal{D}$ be a CAD of $\R^k$ and $C$ be a $2$-dimensional section cell of $\mathcal{D}$ such that the
 decomposition induced by $\mathcal{D}$ on $\R^{k-1}$ is strong about $C$. Corollary \@ref(cor:ext-lazard-5-3) asserts
 that $C$ is well-bordered, so its frontier consists of the closure of some $1$-dimensional cells of $\mathcal{D}$. The frontier condition fails in the region of sector cells of $\mathcal{D}$ above $0$-dimensional bad cells in the decomposition induced by $\mathcal{D}$ on $\R^{k-1}$.
-The procedure described above explains how to obtain some new polynomials which allow these $1$-dimensional sectors to be refined such that they are compatible with the frontier of $C$. By performing this refinement, $C$ is made to satisfy the forntier condition.
+The procedure described above explains how to obtain some new polynomials which allow these $1$-dimensional sectors to be refined such that they are compatible with the frontier of $C$. By performing this refinement, $C$ is made to satisfy the frontier condition.
 
 If $C$ is a $2$-dimensional sector cell, then its top and bottom are $1$-dimensional sector cells of $\mathcal{D}$ and
 the side-walls of $C$ is contained in cylinders $\mathbf{c} \times \R$, where $\mathbf{c}$ is a $0$-dimensional cell
 which is an endpoint of $\projop{k-1}(C)$. It follows that $C$ satisfies the frontier condition since its top and
 bottom, which are $1$-dimensional cells, satisfy the frontier condition.
 
-#### Complexity
+### Complexity
 
 We will see, in Section \@ref(sec:novel-frontier), that there is an algorithm for obtaining the frontier condition on a
 CAD compatible with a semialgebraic set of arbitrary dimension. This algorithm has complexity $(sd)^{\O(1)^{n2^n}}$ --
 triply exponential in the number of variables. However, in the particular case of semialgebraic sets having dimension at
 most $2$, the complexity may be lower. This is now discussed.
 
-Let us first discuss complexity in relation to the procedure described by @bgv15 in Theorem 3.20. Given the family $V_1,\ldots,V_k$, $\fr{C}$ is computed for each $2$-dimensional cell $C \subset V_1\cup \ldots \cup V_k$ According to Lemma \@ref(lem:frontier), there is an algorithm, which uses @bpr2006 Algorithm 14.21 as its main subroutine, for computing $\fr{C}$, having complexity $$
+Let us first discuss complexity in relation to the procedure described by @bgv15 in Theorem 3.20. Given the family $V_1,\ldots,V_k$, $\fr{C}$ is computed for each $2$-dimensional cell $C \subset V_1\cup \ldots \cup V_k$. According to Lemma \@ref(lem:frontier), there is an algorithm, which uses @bpr2006 Algorithm 14.21 as its main subroutine, for computing $\fr{C}$, having complexity $$
 (sd)^{\O(n^2)},
 $$
 where $C$ is defined by $s$ different polynomials of maximum degree $d$.
@@ -758,7 +757,7 @@ $$
 $$
 which is asymptotically the same as
 $$
-(s(d+1))^{\O(1)^{n}}..
+(s(d+1))^{\O(1)^{n}}.
 $$
 Note that, in some cases, only some of the $\left(s(d+1)\right)^{\O(1)^{n}}$ polynomials are required to define the cell $C$.
 This is, according to Lemma \@ref(lem:frontier), an upper bound on the number of polynomials and their degrees in the QFF defining $\fr{C}$.
@@ -773,10 +772,7 @@ For each $1$-dimensional sector cell which projects onto a $0$-dimensional bad c
 According to @lakshman1991, if the ideal $I = \langle f_1,\ldots,f_k\rangle$ where $f_1,\ldots,f_k$ are polynomials in $n$ variables, then a Groebner basis for $I$ can be computed in time singly exponential in $n$.
 However, in our case, only the saturation of the ideal over the real numbers is $0$-dimensional, rather than the
 original ideal over complex numbers before eliminating the new variable $z$. Therefore, the complexity of computing a
-Groebner basis is doubly exponential in the number of variables -- $2^{2^n}$ [@mayr1997]. In the worst case, we may be considering a $(1,1,0,\ldots,0)$-cell, part of whose frontier projects onto a bad $(0,0)$-cell in the induced decomposition of $\R^2$. It follows that at most $n-2$ Groebner basis computations will be required. Thus, the total complexity for lifting above a bad cell is at most
-$$
-n \cdot 2^{2^n} = 2^{n 2^n}.
-$$
+Groebner basis is doubly exponential in the number of variables -- $2^{2^n}$ [@mayr1997]. In the worst case, we may be considering a $(1,1,0,\ldots,0)$-cell, part of whose frontier projects onto a bad $(0,0)$-cell in the induced decomposition of $\R^2$. It follows that at most $n-2$ Groebner basis computations will be required. Thus, the total complexity for lifting above a bad cell is at most $n \cdot 2^{2^n}$, which is asymptotically the same as $2^{n 2^n}$.
 The bound on the number of bad cells is unknown, but it is obviously bounded from above by the total number of cells in
 the induced decomposition of $\R^{n-1}$. I.e., $(s(d+1))^{\O(1)^{n-1}}$.
 It follows that the complexity of the algorithm arising from the generalisation of Lazard is

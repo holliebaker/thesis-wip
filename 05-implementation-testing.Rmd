@@ -1389,7 +1389,7 @@ Quasi-affine**:
   This CAD does not satisfy the frontier condition.
   Indeed, we have
   $$
-  B := B_3 \cap \fr(C_1) = B_3 \cap \fr(C_2)
+  B := B_3 \cap \fr{C_1} = B_3 \cap \fr{C_2}
   $$ which is not a cell of the CAD.
   According to Proposition \@ref(prp:lazard-5-13) (@lazard10, Proposition 5.13), the following situation should occur:
 
