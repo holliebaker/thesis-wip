@@ -388,7 +388,7 @@ We say that $\mathbf{F}$ is well-oriented if, when $n > 1$,
 
 @brown2001 then observed that even more polynomials can be discarded, creating the Reduced McCallum Projection Operator. This is commonly used in practice, e.g., in `QEPCAD-B` [@brownQepcad].
 
-Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a well-oriented set of polynomials and $\cal D$ be an $\mathbf{F}$-invariant CAD constructed using the McCallum projection operator [@mccallum1998]. Then, by @mccallum1988 Theorems 2.2.3 and 2.2.4, every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$. Informally, if $\dim(C) = k$, thent $C$ is a non-empty subset of $\R^n$ which "looks locally like $\R^k$" (see Definition \@ref(def:analytic-submanifold) for the precise definition).
+Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a well-oriented set of polynomials and $\cal D$ be an $\mathbf{F}$-invariant CAD constructed using the McCallum projection operator [@mccallum1998]. Then, by @mccallum1988 Theorems 2.2.3 and 2.2.4, every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$. Informally, if $\dim(C) = k$, then $C$ is a non-empty subset of $\R^n$ which "looks locally like $\R^k$" (see Definition \@ref(def:analytic-submanifold) for the precise definition).
 
 ::: {.definition #analytic-submanifold}
 Let $S \subset \R^n$.
