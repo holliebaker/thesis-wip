@@ -435,7 +435,8 @@ $$
 \end{pmatrix} \ne 0,
 $$
 where the functions $h_1,\ldots,h_k$ appear in the definition of $Y$.
-The property that this determinant is not equal to zero at every point in $Y$ ensures that $Y$ is an analytic submanifold of codimension $k$ (see Definition \ref(def:analytic-submanifold)). I.e., in the neighbourhood of each point $\mathbf{x}\in Y$, $Y$ is the intersection of $k$ coordinate hyperplanes. In fact, these hyperplanes are the algebraic sets $\{h_j = 0\}$ for $1\le j \le k$ because $h_1,\ldots,h_k$ are chosen such that they are algebraically independent. Note that the set $\{ h_1 = 0,\ldots,h_k = 0 \}$ itself may be singular. It could even consist of several connected components having different dimensions. However, the property holds at every point in the input set $X$.
+The property that this determinant is not equal to zero at every point in $Y$ ensures that $Y$ is an analytic
+submanifold of codimension $k$ (see Definition \@ref(def:analytic-submanifold)). I.e., in the neighbourhood of each point $\mathbf{x}\in Y$, $Y$ is the intersection of $k$ coordinate hyperplanes. In fact, these hyperplanes are the algebraic sets $\{h_j = 0\}$ for $1\le j \le k$ because $h_1,\ldots,h_k$ are chosen such that they are algebraically independent. Note that the set $\{ h_1 = 0,\ldots,h_k = 0 \}$ itself may be singular. It could even consist of several connected components having different dimensions. However, the property holds at every point in the input set $X$.
 We now work to minimise the set of defining equations for each stratum $Y \subset X_k$, starting with the required polynomials $h_1,\ldots,h_k$.
 
 ### Discarding redundant equations
