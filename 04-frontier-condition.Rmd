@@ -801,4 +801,22 @@ classical CAD (from Proposition \@ref(prp:collins)) is $$
 $$
 Therefore, the monotone CAD algorithm has, as expected, a slightly higher complexity than that of the classical algorithm.
 However, the complexity is not significantly worse, still being doubly exponential in the number of variables.
-This discussion completes the proof of Theorem \@ref(thm:bgv-algorithm).
+
+Overall we have proved the following 
+
+::: { .theorem #bgv-algorithm }
+Let
+$$
+F_1,\ldots,F_k
+$$
+be quantifier-free Boolean formulas containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \in \Z[x_1,\ldots,x_n]$, having maximum degree $d$, such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
+
+Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs a cylindrical algebraic decomposition $\mathcal{D}$ of $\R^n$ satisfying the frontier condition, and monotone with respect to each $V_1, \ldots, V_k$.
+This algorithm has complexity
+$$
+\left(s\left(d+1\right)\right)^{\O(1)^n},
+$$
+which is also an upper bound on the number of cells in the CAD, number of polynomials and their degrees.
+:::
+
+
