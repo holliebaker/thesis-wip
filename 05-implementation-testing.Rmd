@@ -4,19 +4,19 @@
 
 There are several well-known implementations of CAD. For example, Maple's `CylindricalAlgebraicDecompose`, which uses
 regular chains instead of the classical projection and lifting algorithm of @collins1975, is reported to work very
-efficiently [@chen2014]. Another efficient implementation of CAD is available in Mathematica. However, `QEPCAD-B`, a
+efficiently [@chen2014]. Another efficient implementation of CAD is available in Mathematica [@strzebonski2006, @strzebonski2016]. However, `QEPCAD-B`, a
 quantifier elimination and cylindrical algebraic decomposition program written in C++ and built on top of the polynomial
 library `SACLIB`, was chosen as the starting point for the monotone CAD algorithm.
 
-`QEPCAD` stands for Quantifier Elimination by Partial Cylindrical Algebraic Decomposition. It takes as input a first-order Boolean formula $F$, containing $k$ free variables and $n-k$ variables bound by quantifiers, along with a variable ordering $x_1 < \cdots < x_n$. It then constructs a CAD compatible with the set $S \subset \R^k$ defined by $F$ and returns a quantifier-free Boolean formula defining $S$. As well as the output formula, the user is able to examine the polynomials generated in the projection phase and view information about each cell of the CAD, including their dimension, signs of projection factors, multiplicities of roots of polynomials and the sample point associated with the cell. `QEPCAD-B` is an extended version of `QEPCAD` developed by @brownQepcad.
+`QEPCAD` stands for Quantifier Elimination by Partial Cylindrical Algebraic Decomposition. It takes as input a first-order Boolean formula $F$, containing $k$ free variables and $n-k$ variables bound by quantifiers, along with a variable ordering $x_1 \prec\cdots\prec x_n$. It then constructs a CAD compatible with the set $S \subset \R^k$ defined by $F$ and returns a quantifier-free Boolean formula defining $S$. As well as the output formula, the user is able to examine the polynomials generated in the projection phase and view information about each cell of the CAD, including their dimension, signs of projection factors, multiplicities of roots of polynomials and the sample point associated with the cell. `QEPCAD-B` is an extended version of `QEPCAD` developed by @brownQepcad.
 As well as $\forall$ and $\exists$, `QEPCAD-B` introduces some special quantifiers which allow the user to specify "exists exactly $k$", "exists infinitely many" and "for all but finitely many", allowing the problem to be solved in a more efficient way. `QEPCAD-B` is also able to plot and determine cell adjacencies for decompositions of $\R^2$. An extended language for output formulas, which uses "$i$-th root of polynomial $f$", somewhat similar to the output given by Maple's `CylindricalAlgebraicDecompose`, is also included.
 
 `QEPCAD-B` and `SACLIB` are open-source, meaning it is easy to extend their functionality. The computer algebra library
-`Singular` is also integrated, which gives the developer access to more efficient algorithms, e.g., for polynomial factorisation. Integration with `Singular` also gives the developer access to additional computer algebra tools, such as Groebner bases, which are leveraged for the first time in the implementation of Lazard Lifting algorithm.
+`Singular` [@singular] was also integrated by the original developers, which gives the developer access to more efficient algorithms, e.g., for polynomial factorisation. Integration with `Singular` also gives the developer access to additional computer algebra tools, such as Groebner bases, which are leveraged for the first time in the implementation of the Lazard Lifting algorithm.
 `QEPCAD-B` by default provides the output as a
 quantifier-free (Tarski) formula, which is the most convenient representation for our purposes. As shown by @collins1975, it is not always possible to obtain such formulas using only the polynomials produced in the projection phase.
 For this reason, Maple's `CylindricalAlgebraicDecompose` is only able to produce formulas in the extended language. `QEPCAD-B` implements an algorithm to add additional defining polynomials [@brown99]. A small modification to this algorithm allows every cell in the CAD to be defined by a quantifier-free Boolean formula (see Section \@ref(sec:cell-formula)).
-This was the main realon for choosing `QEPCAD-B`, along with the fact that `QEPCAD-B` is open-source which allows the algorithm to easily be modified.
+This was the main reason for choosing `QEPCAD-B`, along with the fact that `QEPCAD-B` is open-source which allows the algorithm to easily be modified.
 
 ### Background {#sec:qepcad}
 
@@ -26,12 +26,12 @@ The `QEPCAD-B` algorithm proceeds in five stages:
 
     The user is prompted to enter the following information:
 
-    - *Informal problem description*, for the user's benefit
-    - *Variable list* $(v_1,\ldots,v_n)$ where $v_i, 1 \le i \le n$ are variable names. Note that this list specifies the variable ordering $v_1 < \cdots < v_n$.
-    - *Number of free variables* $0 \le k \le n$ appearing in the first-order formula (free variables are those not bound by quantifiers)
-    - *Prenex formula* a first order Boolean formula $(Q_1 v_1), \ldots, (Q_k v_k) F$, where $F$ is a quantifier-free Boolean formula defined by induction such that
-      - atoms are polynomial equations, inequations, strict or non-strict inequalities, with polynomials in $\Z[v_1,\ldots,v_n]$,
-      - Suppose that quantifier-free Boolean formulas $F_1, F_2,\ldots,F_k$ are defined, then
+    - *Informal problem description*, for the user's benefit.
+    - *Variable list* $(v_1,\ldots,v_n)$ where $v_i, 1 \le i \le n$ are variable names. Note that this list specifies the variable ordering $v_1 \prec \cdots \prec v_n$.
+    - *Number of free variables* $0 \le k \le n$ appearing in the first-order formula (free variables are those not bound by quantifiers).
+    - *Prenex formula* a first order Boolean formula $(Q_1 v_1), \ldots, (Q_k v_k) F$, where $F$ is a quantifier-free Boolean formula defined by induction as follows.
+      - Atoms are polynomial equations, inequations, strict or non-strict inequalities where polynomials are in $\Z[v_1,\ldots,v_n]$.
+      - Suppose that quantifier-free Boolean formulas $F_1, F_2$ are defined, then
       $$
       \neg F_1,\> F_1 \Rightarrow F_2,\> F_1 \Leftarrow F_2,\> F_1 \Leftrightarrow F_2,\> F_1 \land \ldots \land F_k,\> F_1 \lor \ldots \lor F_k
       $$
@@ -40,18 +40,18 @@ The `QEPCAD-B` algorithm proceeds in five stages:
       $$
       Q_i \in \{ \exists, \exists_k, \exists_\infty, \forall, \forall_\neg \}
       $$
-      quantify the first $k$ variables in the list $(v_1,\ldots,v_n)$. Quantifiers $\forall, \exists$ are defined as expected. New quantifiers are defined as follows
+      quantify the first $k$ variables in the list $(v_1,\ldots,v_n)$. Quantifiers $\forall, \exists$ are defined as expected. New quantifiers are defined as follows:
       - $\exists_k v_i$: there are exactly $k \in \N$ values of $v_i$ satisfying $F$.
-      - $\exists_\infty v_i$: there are infinitely many values of $v_i$ satisfying $F$,
+      - $\exists_\infty v_i$: there are infinitely many values of $v_i$ satisfying $F$, and
       - $\forall_\neg$: all but a finite number of values of $v_i$ satisfy $F$.
 
 1. **Normalisation**
 
     Let $(Q_1,v_1),\ldots,(Q_k,v_k) F$ be the input formula. The normalisation phase uses logical equivalences and polynomial factorisation to transform $F$ into a "normalised" formula $G$, defined by induction as follows:
     - atoms are of the form $f \ast 0$ where $f \in \Z[v_1,\ldots,v_n]$ is a primitive, irreducible polynomial and $\ast \in \{=, \ne, <, \le, >, \ge \}$.
-    - Suppose that normalised formulas $G_1,\ldots,G_k$ are already defined, then
+    - Suppose that normalised formulas $G_1,G_1$ are already defined, then
     $$
-    G_1 \land \cdots \land G_k \text{ and } G_1 \lor \cdots \lor G_k
+    G_1 \land G_k \text{ and } G_1 \lor G_k
     $$
     are normalised formulas.
     - The family
@@ -63,13 +63,13 @@ The `QEPCAD-B` algorithm proceeds in five stages:
 1. **Projection**
 
     The projection phase of CAD is then performed. The user is able to specify the projection operator to be used at each level. Implemented operators are
-    - Collins' projection,
-    - McCallum's projection,
-    - Hong's projection,
-    - Lazard's projection,
+    - Collins' projection [@collins1975],
+    - McCallum's projection [@mccallum1998],
+    - Hong's projection [@hong1990],
+    - Lazard's projection [@mccallum2019],
     - "Partial" reduced McCallum projection
-      (only adds the leading coefficient if it can be proved that lifting is never performed over a cell on which the polynomial vanishes identically),
-    - McCallum's projection excluding leading coefficients.
+      (only adds the leading coefficient if it can be proved that lifting is never performed over a cell on which the polynomial vanishes identically) [@brown2001],
+    - McCallum's projection excluding leading coefficients [@brown2001].
 
     By default, the *partial reduced McCallum* projection operator is used. It is noted in the documentation that McCallum's projection operator is preferred, as it produces fewer projection polynomials, but can sometimes fail during the lifting phase. In this case, an error is printed and the user is advised to use Hong's projection operator, which is guaranteed to succeed, but produces more polynomials.
 
@@ -112,33 +112,34 @@ A `QEPCAD-B` cell $C$ includes the following information
 - **Truth value** (and how it was determined), $t \in \{ \rm{TRUE, FALSE, UNDET} \}$, truth values may be determined by trial evaluation, propagation or equational constraints;
 - **Degrees after substitution**, $(d_1,\ldots,d_m) \in \Z_{\ge 0}^m$ such that $d_i$ is the degree of the $i$-th level $k$ projection factor after substitution;
 - **Multiplicities**, $((i_1,m_1),\ldots,(i_{\ell},m_{\ell})) \in (\N \times \N)^\ell$, where $m_j$ is the multiplicity of the root of the $i_j$-th substituted level-$k$ projection factor;
-- **Signs of Projection Factors** (for each level) $(S_1,\ldots,S_k)$, where each $S_i = (s_1,\ldots,s_{m_k}) \in \{ 1,-1,0 \}^m$ indicates the signs of level-$(k-i+1)$  projection factors
+- **Signs of Projection Factors** (for each level) $(S_1,\ldots,S_k)$, where each $S_i = (s_1,\ldots,s_{m_k}) \in \{ 1,-1,0 \}^m$ indicates the signs of level-$(k-i+1)$  projection factors;
 - **Sample Point** $\mathbf{x} \in \A^k$.
 
-A sample point of a cell $C$ is an algebraic number $\mathbf{x} = (x_1,\ldots,x_k) \in C$. This may be represented in
-one of two forms in `QEPCAD-B`.
+A sample point of a cell $C$ is a point $\mathbf{x} = (x_1,\ldots,x_k) \in C$ defined over the number field $\Q(\alpha)$.
+It may be represented in
+one of two ways in `QEPCAD-B`.
 A primitive sample point $\mathbf{x}$ is an element of the algebraic extension field $\Q(\alpha)$ and is represented by the triple
 $$
 (M, I, \mathbf{c})
 $$
 where
 
-- $M \in \Z[x]$ is a primitive, irreducible polynomial having $\alpha \in \A$ as a root,
+- $M \in \Z[t]$ is a primitive, irreducible polynomial having $\alpha \in \A$ as a root,
 - $I \subset \Q$ is an isolating interval for $\alpha$ as a root of $M$,
 - $\mathbf{c} = (x_1,\ldots,x_n) \in \Q(\alpha)^n$.
 
 The `SACLIB` representation for rational and algebraic numbers is used. A rational number $x = a/b$ is stored as a $2$-element list $(a,b)$. An element $x \in \Q(\alpha)$ is stored as a two-element list $(q, g) \in \Q \times \Z[\alpha]$, where $x = q \cdot g(\alpha)$. If $x \in \Q(\alpha)$ is rational, then it is stored as $x = x \cdot \alpha^0 = x \cdot 1$. Likewise, if the sample point $\mathbf{x} \in \Q^k$, i.e., it only contains rational numbers, the minimal polynomial $M := x$ and isolating interval $I = (0,0)$.
 
-For a sample point $\mathbf{x} = (x_1,\ldots,x_{k-1},x_k) \in \A^k$ with coordinates $(x_1,\ldots,x_{k-1}) \in \Q(\alpha)$ (where at least one of $x_1,\ldots,x_{k-1}$ is irrational) and irrational $x_k \not \in \Q(\alpha)$, the sample point is stored in extended (non-primitive) form.
-This representation splits $\mathbf{x}$ into $\mathbf{y} = (x_1,\ldots,x_{k-1}) \in \Q(\alpha)$ and $x_k = \beta$ and is stored as the quintuple
+For a sample point $\mathbf{x} = (x_1,\ldots,x_{k-1},x_k) \in \A^k$ with coordinates $x_1,\ldots,x_{k-1} \in \Q(\alpha)$ (where at least one of $x_1,\ldots,x_{k-1}$ is irrational) and irrational $x_k \not \in \Q(\alpha)$, the sample point is stored in extended (non-primitive) form.
+This representation splits $\mathbf{x}$ into $\mathbf{y} = (x_1,\ldots,x_{k-1}) \in \Q(\alpha)^{k-1}$ and $x_k = \beta$ and is stored as the quintuple
 $$
 (M_\alpha, I_\alpha, \mathbf{c}, M_\beta, J_\beta),
 $$
 where
 
 - $M_\alpha, I_\alpha, \mathbf{c}$ represents $\mathbf{y} \in \Q(\alpha)$ as described in the primitive representation
-- $M_\beta \in \Q(\alpha)[y]$ is a primitive, irreducible polynomial having $\beta \in \A$ as a root,
-- $I_\beta \subset \Q$ is an isolating interval for $\beta$ as a root of $M_\beta$,
+- $M_\beta \in \Q(\alpha)[t]$ is a primitive, irreducible polynomial having $\beta \in \A$ as a root,
+- $I_\beta \subset \Q$ is an isolating interval for $\beta$ as a root of $M_\beta$.
 
 Since any finite set of algebraic numbers belongs to a single algebraic extension field $\Q(\gamma)$, it is always
 possible to convert a sample point in extended form to primitive form. The `QEPCAD-B` function ${\mathrm{CONVERT}}(\mathbf{c}, k)$ converts a non-primitive sample point $\mathbf{c} \in \A^k$ into primitive representation by computing an appropriate $(M_\gamma, I_\gamma)$ so that $\mathbf{c} \in \Q(\gamma)$.
@@ -149,11 +150,11 @@ Full source code can be found here: https://github.com/monotone-cad/qepcad-monot
 
 The `QEPCAD-B` algorithm has been modified to include construction of quasi-affine cells, refinement of the CAD to produce monotone cells, and refinement of sectors above "bad cells" to obtain the frontier condition. A new option, `mct <y / n>` has been added, to enable or disable (respectively) the construction of a monotone CAD. The algorithm now proceeds as follows.
 
-1. Input
+1. **Input**
 
-    Let $F$ be a Prenex formula defining a semialgebraic set $V = V_1 \cup \ldots V_k$ where each $V_i, 1 \le i \le k$ has dimension $\le 2$.
+    Let $F$ be a prenex formula defining a semialgebraic set $V = V_1 \cup \ldots \cup V_k$ where each $V_i, 1 \le i \le k$ has dimension $\le 2$.
 
-2. Normalisation
+2. **Normalisation**
 
     Normalise the formula $F$ and construct the set of input polynomials $$
    \mathcal{A} = (\mathcal{A}_1, \ldots,\mathcal{A}_n)
@@ -167,7 +168,7 @@ The `QEPCAD-B` algorithm has been modified to include construction of quasi-affi
     If `mct` is enabled, proceed as described in Section \@ref(sec:quasi-affine). Every $1$- and $2$- dimensional cell
     will be smooth and polynomials which are zero at the critical points of projections to $2$- and $1$-dimensional coordinate subspaces will be added to $\mathcal{A}$. As the projections of polynomials in $\mathcal{A}$ are computed as part of the algorithm in Section \@ref(sec:quasiaffine-algorithm), this stage also constructs the projection polynomials $\mathcal{P}$ and projection factor set $\mathcal{F}$. In order to ensure smooth and quasi-affine cells, new polynomials and their projections are included in the projection factor set $\mathcal{F}$.
 
-     ~~Projection~~ (has already been completed)
+     Note that this step replaces the usual projection phase.
 
 4. **Lifting**
 
@@ -180,7 +181,7 @@ The `QEPCAD-B` algorithm has been modified to include construction of quasi-affi
       Following the algorithm described in Section \@ref(sec:monotone-algorithm), construct the family of refinement points $$
       {\cal R} := \{ {\cal R}_{\mathbf{b}} =  (c_1,\ldots,c_t ) \subset \A \mid \mathbf{b} \in \R^{k-1}  \}
       $$
-      where is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^k$,
+      where $\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^k$,
       and add new polynomials (to $\mathcal{A}$, along with their factors to $\mathcal{F}$) which are equal to zero at these refinement points.
 
       For each refinement point $c \in \A$ in each family $\mathcal{R}_\mathbf{b}$, refine the sub-CAD of $\R^{n-k}$ $\mathcal{D}$ above the $0$-cell $\mathbf{b}$ by intersecting it with straight lines and half-planes
@@ -191,9 +192,9 @@ The `QEPCAD-B` algorithm has been modified to include construction of quasi-affi
 
     - *Frontier Condition*
 
-      Applies the method, similar to that described in @lazard10, to $0$-dimensional "bad cells" (see Section \@ref(sec:ext-lazard-algorithm)). Groebner bases are constructed using `Singular`, which is already used for faster polynomial factorisation in `QEPCAD-B`.
+      Applies the method, similar to that described in @lazard10, to $0$-dimensional bad cells (see Section \@ref(sec:ext-lazard-algorithm)). Groebner bases are constructed using `Singular`, which is already used for faster polynomial factorisation in `QEPCAD-B`.
 
-5. Solution formula construction
+5. **Solution formula construction**
 
     Proceeds unchanged -- prints the solution formula and exits the program.
 
@@ -290,7 +291,7 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
 ```
 
 - On line 4, the function `SmoothOneTwoDim` is called. It constructs a CAD $\mathcal{E}$ of $\R^r$, compatible with the
-  set $V = V_1\cup\ldots\cup V_K \subset \R^r$ defined by the input formula $F$ using the McCallum projection operator
+  set $V = V_1\cup\ldots\cup V_k \subset \R^r$ defined by the input formula $F$ using the McCallum projection operator
   so that every $1$- and $2$-dimensional cell of $\mathcal{E}$ contained in $V$ is a smooth manifold. In fact, $\mathcal{E}$ is sign-invariant on the polynomials in $F$, so $\mathcal{E}$ is compatible with each $V_1,\ldots,V_k$. It returns
   - `C1s`: set of $1$-dimensional cells of $\mathcal{E}$ contained in $V$,
   - `C2s`: set of $2$-dimensional cells of $\mathcal{E}$ contained in $V$,
@@ -298,7 +299,7 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
   - `Pps`: set of projection polynomials defining $\mathcal{E}$,
   - `Pfs`: set of projection factors (factorised projection polynomials) defining $\mathcal{E}$.
 - Lines 10-23 compute the critical points of projections of $1$-dimensional cells in `C1s` onto $1$-dimensional coordinate subspaces $\opspan{x_i}, 1 \le i \le r$.
-- Lines 37-42 compute the critical points of projections of $2$-dimensional cells an `C2s` onto $2$-dimensional coordinate subspaces $\opspan{x_i,x_j}, 1 \le i < j \le n$.
+- Lines 37-42 compute the critical points of projections of $2$-dimensional cells in `C2s` onto $2$-dimensional coordinate subspaces $\opspan{x_i,x_j}, 1 \le i < j \le n$.
 - The `JACOBI(r, f, j, Hs, Is)` function computes a Jacobi determinant $$
   \det \begin{pmatrix}\dfrac{\partial h_{1}}{\partial x_{i_{1}}} & \ldots & \dfrac{\partial h_{1}}{\partial x_{i_{k}}} & \dfrac{\partial h_{1}}{\partial x_{j}}\\
 \vdots & \vdots & \vdots & \vdots\\
@@ -307,18 +308,18 @@ void QepcadCls::QUASIAFFINE(Word r, Word V, Word F, Word* A_, Word* P_, Word* J_
 \end{pmatrix}
   $$ with parameters
 
-  - $r \in N$,
+  - $r \in \N$,
   - $f \in \Z[x_1,\ldots,x_r]$,
-  - $j \in \Z_{\ge 0}$
-  - $\rm{Hs} = (h_1,\ldots,h_k), h_i \in \Z[x_1,\ldots,x_r], 1 \le i \le k$
-  - $\rm{Is} = (i_1,\ldots,i_k) \in \Z^k$.
+  - $j \in \Z_{\ge 0}$,
+  - $\mathrm{Hs} = (h_1,\ldots,h_k), h_i \in \Z[x_1,\ldots,x_r], 1 \le i \le k$,
+  - $\mathrm{Is} = (i_1,\ldots,i_k) \in \Z^k$.
 
   This is similar to the partial differential operator from Definition \@ref(def:pdo), except that if $j = 0$, the last row and column is omitted from the matrix.
 
 - The rest of the function sets up the input polynomials, projection polynomials and projection factors necessary to
   define a sign-invariant CAD compatible with $V$ and critical points of projections of $1$- and $2$-dimensional cells
   onto $1$- and $2$-dimensional coordinate subspaces. Projections of the new polynomials computed in the previous two steps are computed and added to the projection polynomial and projection factor sets.
-The lifting phase proceeds, using these polynomials, us usual.
+The lifting phase proceeds, using these polynomials, as usual.
 
 ### Monotone
 
@@ -346,7 +347,7 @@ Word QepcadCls::MONOTONE(Word* A_, Word* J_, Word D, Word r)
     Word TrueCells, junk;
     LISTOFCWTV(D, &TrueCells, &junk);
     Word Ds = LELTI(D, CHILD); // cells of D, for searching cells
-    Word AA = INV(LCOPY(*A_)); // in reverse order, to match SIGNPF. for later.
+    Word AA = INV(LCOPY(*A_)); // in reverse order, to match SIGNPF, for later.
 
     while (TrueCells != NIL) {
         Word C;
@@ -422,7 +423,7 @@ Word QepcadCls::MONOTONE(Word* A_, Word* J_, Word D, Word r)
         // find polynomials in sub-CAD
         // (note they will be in Z[x_i,...,x_l] after substitution):
         // Gs = g_2,...,g_{k-1} define proj_{k-1}(C).
-        // TODO can we save the polynomials, maybe using cell position, to save duplicating work?
+
         Word Gs = ZeroPolsSub(AA, r, C, Ij + 1, Ik - 1, S0, Ij1, nv);
 
         // Fk (f_{k,T}, f_{k,B}) are 0 on CT and CB respectively.
@@ -458,7 +459,7 @@ $(i_1,\ldots,i_r)$-cell such that $i_j = i_k = 1$ and all other elements of its 
   $$
   \mathrm{Gs} := \{ g_\ell \in \Q[x_j,\ldots,x_\ell] \mid g_\ell(\mathbf{x}) = 0, \mathbf{x} \in C, j < \ell < k \}.
   $$
-- Lines 92 and 93 find and substitute polynomials $f_T$ and $f_B$ in $\Q[x_j, \ldots, f_k$ respectively such that $f_T(\mathbf{x}) = 0 \forall \mathbf{x} \in \projop{k}(C)_T$ and $f_T(\mathbf{x}) = 0 \forall \mathbf{x} \in \projop{k}(C)_T$
+- Lines 92 and 93 find and substitute polynomials $f_T$ and $f_B$ in $\Q[x_j, \ldots, x_n]$ respectively such that $f_T(\mathbf{x}) = 0\> \forall \mathbf{x} \in \projop{k}(C)_T$ and $f_T(\mathbf{x}) = 0 \> \forall \mathbf{x} \in \projop{k}(C)_T$.
 - Line 96 finds and substitutes polynomials
   $$
   \mathrm{Fs} := \{ f_\ell \in \Q[x_j,\ldots,x_\ell] \mid f_\ell(\mathbf{x}) = 0 \forall \mathbf{x} \in C, k < \ell < r \}.
@@ -553,7 +554,7 @@ This function identifies bad $0$-dimensional cells and adds refinement points, i
 - `Word r` $\in \N$,
 - `Word k` $\in \N, k \le r$ the level of the cell `D` $+ 1$,
 - `Word D`: $0$-dimensional level-$(k-1)$ `QEPCAD-B` cell,
-- `Word As` $= (\mathcal{A}_k,\ldots,\mathcal{A}_r)$: the projection factor set,
+- `Word As` $= (\mathcal{A}_k,\ldots,\mathcal{A}_r)$: the projection factor set.
 
 **Output:**
 
@@ -704,13 +705,13 @@ $$
 I_2 := \langle f, g_{j_1}, \ldots, g_{j_{k-3}}, g_{\ell_1}, 1 - z g_{\ell_2} \rangle \cap \Z[x_1,\ldots,x_k],
 $$
 as described in Section \@ref(sec:lazard-n). To obtain a refinement polynomial in $\Z[x_r]$, the sample point of the bad $(0,\ldots,0)$-cell is substituted.
-`ADDREFINEMENTPOINTS` is then called, taking these polynomials as input, the add the refinement points above this bad cell.
+`ADDREFINEMENTPOINTS` is then called, taking these polynomials as input, then add the refinement points above this bad cell.
 
 ### Refinement { #sec:implementation-refinement }
 
 Given the CAD $\mathcal{D}$ of $\R^n$ constructed in the lifting phase, both `MONOTONE()` and `FRONTIER()` produces a set of refinement points
 $$
-{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \}.
+{\cal R} := \{ {\cal R}_{\mathbf{b}} = \{ c_1,\ldots,c_t \} \subset \A \mid \mathbf{b} \in \R^{k-1} \}
 $$
 where
 $\mathbf{b} \in \R^{k-1}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal D}$ on $\R^k$.
@@ -718,7 +719,7 @@ The function `REFINE()` computes refinements of $\mathcal{D}$ to be compatible w
 $$
 ((b_1,\ldots,b_{k-1},c), (m_1,\ldots,m_{k-1},m_k))
 $$
-where $(b_1,\ldots,b_{k-1})$ is the sample point, and $(m_1,\ldots,m_{k-1})$ is the positional index of the $0$-cell $\mathbf{b}$ and $c$ refines the $(1)$-cell in the sub-CAD of $\mathcal{D}$ above $\mathcal{b}$ with positional index $(m_k)$.
+where $(b_1,\ldots,b_{k-1})$ is the sample point, and $(m_1,\ldots,m_{k-1})$ is the positional index of the $0$-cell $\mathbf{b}$ and $c$ refines the $(1)$-cell in the sub-CAD of $\mathcal{D}$ above $\mathbf{b}$ with positional index $(m_k)$.
 $(b_1,\ldots,b_{k-1},c)$ is stored as a `QEPCAD-B` sample point.
 If all of $(b_1,\ldots,b_{k-1})$ are rational, or are elements of the same algebraic extension, $\Q(\alpha)$, as the
 sample point of the cell $\mathbf{b}$, as $c$, then $(b_1,\ldots,b_{k-1},c)$ is a `QEPCAD-B` sample point in the
@@ -811,9 +812,9 @@ The function `RefineSubcad` does all the heavy lifting.
 
 - `Word k` $\in \N$
 - `Word Ch`: list of children -- level-$k$ `QEPCAD-B` cells, in ascending order of sample points, which project on a
-  single level-$k-1$ `QEPCAD-B` cell,
+  single level-$(k-1)$ `QEPCAD-B` cell,
 - `Word Ps`: list of refinement points (in ascending order) of the children,
-- `Word PFs`: projection factor set $(\mathcal{A}_{k+1},\ldots,\mathcal{A_n})$, used for recomputing sample points.
+- `Word PFs`: projection factor set $(\mathcal{A}_{k+1},\ldots,\mathcal{A}_n)$, used for recomputing sample points.
 
 **Output:**
 
@@ -977,15 +978,20 @@ The comments explain how the function works. The helper function `LDCOPY` (list 
 As discussed in Section \@ref(sec:cell-formula), the projection factors may not be sufficient to produce a quantifier-free Boolean formula for every cell $C$ in a CAD.
 We would like to be able to examine every cell $C \subset V_1,\ldots,V_k$ using its defining formula.
 As such, a new command, `d-cell-tarski` has been implemented.
-This uses Brown's solution formula construction algorithm for guaranteed solution formula construction. Given a CAD $\mathcal{D}$, the algorithm builds an RCad $\mathcal{D}_R$, which is a refinement of $\mathcal{D}$ such that each cell can be expressed as a disjoint union of basic semialgebraic sets using only polynomials from the projection factor set.
+This uses Brown's solution formula construction algorithm for guaranteed solution formula construction.
+Given a CAD $\mathcal{D}$, the algorithm builds a new CAD $\mathcal{D}_R$, which is a refinement of $\mathcal{D}$ such
+that each cell can be expressed as a disjoint union of basic semialgebraic sets using only polynomials from the
+projection factor set. Each cell of $\mathcal{R}$ stores the same information as an ordinary `QEPCAD-B` cells (signs of
+projection facters, sample point, positional index, etc) as well as the cell of $\mathcal{D}$ which it is a subset of.
+In `QEPCAD-B` parlance, $\mathcal{R}$ is called an RCAD.
 In most cases, each cell can be written as a basic semialgebraic set (conjunction of sign conditions on polynomials), but occasionally, a cell $C$ of $\mathcal{D}$ is refined in $\mathcal{D}_R$.
 In both cases, every cell $C$ of $\mathcal{D}$ can be expressed as a quantifier-free Boolean formula
 $$
 F_1 \lor \ldots \lor F_k
 $$
 where $F_1,\ldots,F_k$ are conjunctions of polynomial equations and inequalities defining the cells $C_1,\ldots,C_k$ of $\mathcal{D}_R$ such that $C = C_1\cup\ldots\cup C_k$.
-The RCad is constructed when `d-cell-tarski` is used and then it is cached. If refinements to the original CAD are
-performed, e.g., because of `MONOTONE` or `FRONTIER`, the RCad is invalidated and must be reconstructed (see Line 77 of
+The RCAD is constructed when `d-cell-tarski` is used and then it is cached. If refinements to the original CAD are
+performed, e.g., because of `MONOTONE` or `FRONTIER`, the RCAD is invalidated and must be reconstructed (see Line 77 of
 the `QEPCAD-B` function).
 
 To demonstrate `d-cell-tarski`, construct a CAD compatible with $$
@@ -1003,7 +1009,8 @@ A_2,1  = input
        = y^3 - 2 y - x
 ```
 
-Let $a,b \in \A$ be the unique roots of $27x^2 - 32$ in the intervals $(-1115/1024,-557/512)$ and $(557/512, 1115/1024)$ respectively. The cylinder $(a,b) \times \R$ contains three true cells, on which $x = y^3 - 2y$ is equal to zero. It is not possible to represent these three cells as QFFs containing only the projection factors, although their positional indices and sample points may be used to distinguish them. We show the output of `d-cell-tarski` for the true cell with positional index $(3,2)$.
+Let $a = -4\sqrt{2}/3\sqrt{3}$ and $b = 4\sqrt{2}/3\sqrt{3}$ be algebraic numbers. They may be represented as the unique roots of $27x^2 - 32$ in the intervals $(-1115/2^10,-1114/2^10)$ and $(1114/2^10, 1115/2^10)$ respectively. 
+The cylinder $(a,b) \times \R$ contains three true cells, on which $x = y^3 - 2y$ is equal to zero. It is not possible to represent these three cells as QFFs containing only the projection factors, although their positional indices and sample points may be used to distinguish them. We show the output of `d-cell-tarski` for the true cell with positional index $(3,2)$.
 
 ```
 d-cell-tarski(3,2)
@@ -1071,7 +1078,7 @@ Coordinate 2 = alpha
 
 ```
 
-The cell $C$ has been refined into three cells in the RCad, and it can be represented by the QFF
+The cell $C$ has been refined into three cells in the RCAD, and it can be represented by the QFF
 \begin{align*}
 & (g < 0 \ \land\ x > 0\ \land\ f = 0\ \land\ y < 0)\ \lor\\
 & (x = 0\ \land\ f = 0\ \land\ y < 0)\ \lor \\
@@ -1088,7 +1095,7 @@ void QepcadCls::QEPCAD(Word Fs, Word *t_, Word *F_e_, Word *F_n_, Word *F_s_)
 {
     Word A,D,F,F_e,F_n,F_s,Fh,J,P,Q,Ths,f,i,r,t, T;
     /* hide Ths,i,t; */
-    Word cL,**cC,cr,ce,ci,*cT,cj,cs,cl,ct; /* Chris variables. */
+    Word cL,**cC,cr,ce,ci,*cT,cj,cs,cl,ct; /* Chris [Brown] variables. */
     Word Cs,Ps,Qs,Pps,Cps,Qps,SF; /* Chris variables. */
     char c1,c2; /* Chris variables. */
 
@@ -1180,7 +1187,7 @@ Step6: /* Solution. */
     /*Int*/ if (PCCONTINUE == TRUE) { goto Return; }
     T = ACLOCK();
     if (!PCMZERROR)
-        SFC3(GVPC,GVPF,GVPJ,GVNFV,CCONC(LIST10(0,0,0,1,0,3,2,4,1,5),LIST1(-1)));
+        SFC3(GVPC, GVPF, GVPJ, GVNFV, CCONC(LIST10(0, 0, 0, 1, 0, 3, 2, 4, 1, 5), LIST1(-1)));
     else
         SFCFULLD(GVPC,GVPF,GVPJ,GVNFV);
     T = ACLOCK() - T;
@@ -1249,13 +1256,13 @@ A brief summary of new and modified functions is now presented.
 - `source/ticad/MONOTONE.c`: finds the set of refinement points required for each $2$-dimensional cell in the CAD to be monotone.
 - `source/ticad/FRONTIER.c`: implements the function `FRONTIER()`, responsible for refining the CAD such that it satisfies teh frontier condition.
 - `source/ticad/LazardLifting.c`: helper function for `FRONTIER()`, responsible for implementing the extension of Lazard's algorithm for lifting with bad points.
-- `source/ticad/REFINE.c`:: responsible for computing the refinements, defined in `GVREFL`.
+- `source/ticad/REFINE.c`: responsible for computing the refinements, defined in `GVREFL`.
 
 - `source/util/ADDREFINEMENTPOINTS.c`: adds refinement points (see above).
 - `source/util/GETSAMPLEK.c`: retrieves $k$-th coordinate of a cell's sample point.
 - `source/util/IPFRPmod.c`: the original "integral polynomial from rational polynomial" assumes that the input is in rational representation but always has integer coefficients. This version converts an arbitrary rational polynomial into an integral polynomial.
 - `source/util/JACOBI.c`: given a list of polynomials and variable indices, construct a Jacobi matrix.
-` `source/util/LDCOPY.c`: list "deep" (recursive) copy.
+- `source/util/LDCOPY.c`: list "deep" (recursive) copy.
 - `source/util/LEVELIDX.c`: helper function. Given a positional index for a cell $C$ with binary index $(i_1,\ldots,i_n)$, return $(j_1,\ldots,j_k)$, where $j\le n$ such that $i_{j_\ell} = 1, 1 \le \ell \le k$.
 - `source/util/PADDVS.c`: append variables. Given $f \in \Z[x_1,\ldots,x_k]$, output $f$ as a polynomial in $\Z[x_1,\ldots,x_k,y_1,\ldots,y_\ell]$.
 - `source/util/PPREPVS.c`: prepend variables. Given $f \in \Z[x_1,\ldots,x_k]$, output $f$ as a polynomial in $\Z[y_1,\ldots,y_\ell,x_1,\ldots,x_k]$.
@@ -1320,7 +1327,7 @@ knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 
     - The $(1,1)$-cell $C' := \projop{2}(C)$ is already monotone, since its bottom $C'_B = \{ -1 < x < 1, y = 0 \}$ and top $C'_T = \{ -1 < x < 1, y = 1 - x \}$ are independent of and strictly decreasing in $x$ respectively.
 
-    - $C_B = \{ -1 < x < 1, y = 0, z = x^2 \}$ is already monotone,
+    - $C_B = \{ -1 < x < 1, y = 0, z = x^2 \}$ is already monotone.
 
     - $C_T = \{ -1 < x < 1, y = 1-x, z = x^2 + y^2 \}$ is not monotone, since it intersects the plane $\{z = c\}, 1/2 < c < 1$ in two points. The algorithm will find the critical points of $f := z - y^2 - x^2 = 0$ subject to $g := y + x - 1 = 0$ in the interval $0 < x < 1$. These are the points at which
     $$
@@ -1361,31 +1368,32 @@ C = \{ (x,y,z) \in \R^3 \mid 0 < x < 1, -x < y < x, y^2 - x^2 z = 0 \}.
 $$
 :::
 
-Quasi-affine**:
+- **Quasi-affine**:
 
   critical points of
   - $\projops{x,y}: z = 0$
   - $\projops{x,z}: y = 0$
   - $\projops{y,z}: x = 0$
+
 - **Monotone**:
 
   $C$ is partitioned, in the quasi-affine step, into three cells
-  \begin{align}
+  \begin{align*}
   C_1 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, -x < y < 0, y^2 - x^2 z = 0 \},\\
   C_2 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = 0, y^2 - x^2 z = 0 \},\\
-  C_3 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, 0 < y < x, y^2 - x^2 z = 0 \},\\
-  \end{align}
+  C_3 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, 0 < y < x, y^2 - x^2 z = 0 \},
+  \end{align*}
   each of which is already monotone.
 
 - **Frontier Condition**:
 
   there is one bad point, $\mathbf{b} = (0,0)$ in the decomposition induced on $\R^2$, above which the polynomial $y^2 - x^2 z$ vanishes identically.
   The CAD contains three cells projecting on $\mathbf{b}$:
-  \begin{align}
+  \begin{align*}
   B_1 &= \{ (0,0,z) \in \R^3 \mid z < 0 \},\\
   B_2 &= \{ (0,0,z) \in \R^3 \mid z = 0 \},\\
-  B_3 &= \{ (0,0,z) \in \R^3 \mid z > 0 \}.\\
-  \end{align}
+  B_3 &= \{ (0,0,z) \in \R^3 \mid z > 0 \}.
+  \end{align*}
   This CAD does not satisfy the frontier condition.
   Indeed, we have
   $$
@@ -1396,18 +1404,18 @@ Quasi-affine**:
   > there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C_1) = \dim((C_2)$ and $\emptyset \neq B_3 \cap \fr{ E } \neq B_3$.
 
   For $C_1$, the cell $E$ in question is the $(1,0,0)$-cell $\{ 0 < x < 1, x + y = 0, z = 1 \}$,
-  and for $C_3$, $E$ is the $(1,0,0)$-cell $\{ 0 < x < 1, x - y = 0, z = 1 \}$
-  In both cases, $\fr(E) \cap B_3 = (0,0,1)$ -- the required refinement point.
+  and for $C_3$, $E$ is the $(1,0,0)$-cell $\{ 0 < x < 1, x - y = 0, z = 1 \}$.
+  In both cases, $\fr{E} \cap B_3 = (0,0,1)$ -- the required refinement point.
 
   @lazard10, Algorithm 5.15 is then applied, resulting in the computation of the following saturations:
-  \begin{align}
+  \begin{align*}
   I_1 &:= \{ y^2 - x^2 z, x, 1 - y t \} \cap \Z[x,y,z], \\
   I_2 &:= \{ y^2 - x^2 z, y, 1 - x t \} \cap \Z[x,y,z], \\
   I_3 &:= \{ y^2 - x^2 z, x, 1 - (x + y) t \} \cap \Z[x,y,z], \\
   I_4 &:= \{ y^2 - x^2 z, x + y, 1 - x t \} \cap \Z[x,y,z], \\
   I_5 &:= \{ y^2 - x^2 z, x, 1 - (x - y) t \} \cap \Z[x,y,z], \\
-  I_6 &:= \{ y^2 - x^2 z, x - y, 1 - x t \} \cap \Z[x,y,z], \\
-  \end{align}
+  I_6 &:= \{ y^2 - x^2 z, x - y, 1 - x t \} \cap \Z[x,y,z],
+  \end{align*}
   where $t$ is a new variable.
 
   The Groebner basis for $I_2$ contains the polynomial $z$, which defines the refinement point $(0,0,0)$, which is already a cell in the CAD.
