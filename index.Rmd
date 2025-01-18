@@ -148,7 +148,7 @@ More recently, alternative methods for performing quantifier elimination have be
 Other notable uses include determining whether a semialgebraic set is empty, computing the real roots of a system of multivariate polynomials and determining the dimension of a semialgebraic set. @bpr98 applies the critical point method to the emptiness problem, obtaining a bound singly exponential in the number of variables.
 CAD can also be used to deduce topological properties of semialgebraic sets, for example by computing homology groups.
 
-Cylindrical algebraic decompositions and algorithms forcomputing them are still active and interesting areas of study. Due to the wide range of applications, there are several directions of research. A few of these are now discussed.
+Cylindrical algebraic decompositions and algorithms for computing them are still active and interesting areas of study. Due to the wide range of applications, there are several directions of research. A few of these are now discussed.
 
 ### Pushing back the doubly exponential wall
 
