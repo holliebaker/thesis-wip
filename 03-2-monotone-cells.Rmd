@@ -609,7 +609,7 @@ $2$-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CA
 
 ## Pseudo-code {#sec:monotone-algorithm}
 
-We now present psuedo-code for the monotone part of the algorithm.
+We now present pseudo-code for the monotone part of the algorithm.
 
 ::: {.algorithm data-latex="Monotone CAD"}
 

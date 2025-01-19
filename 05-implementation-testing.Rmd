@@ -1009,7 +1009,7 @@ A_2,1  = input
        = y^3 - 2 y - x
 ```
 
-Let $a = -4\sqrt{2}/3\sqrt{3}$ and $b = 4\sqrt{2}/3\sqrt{3}$ be algebraic numbers. They may be represented as the unique roots of $27x^2 - 32$ in the intervals $(-1115/2^10,-1114/2^10)$ and $(1114/2^10, 1115/2^10)$ respectively. 
+Let $a = -4\sqrt{2}/3\sqrt{3}$ and $b = 4\sqrt{2}/3\sqrt{3}$ be algebraic numbers. They may be represented as the unique roots of $27x^2 - 32$ in the intervals $(-1115/2^10,-1114/2^10)$ and $(1114/2^10, 1115/2^10)$ respectively.
 The cylinder $(a,b) \times \R$ contains three true cells, on which $x = y^3 - 2y$ is equal to zero. It is not possible to represent these three cells as QFFs containing only the projection factors, although their positional indices and sample points may be used to distinguish them. We show the output of `d-cell-tarski` for the true cell with positional index $(3,2)$.
 
 ```
@@ -1254,7 +1254,8 @@ A brief summary of new and modified functions is now presented.
 - `source/proj/ProjMcxUtil.c`: Stripped down version of McCallum projection, used as a utility function, e.g., to compute the $x_1$-coordinates of refinement points in `MONOTONE()`.
 - `source/proj/QUASIAFFINE.c`: computes a quasi-affine CAD, as discussed above.
 - `source/ticad/MONOTONE.c`: finds the set of refinement points required for each $2$-dimensional cell in the CAD to be monotone.
-- `source/ticad/FRONTIER.c`: implements the function `FRONTIER()`, responsible for refining the CAD such that it satisfies teh frontier condition.
+- `source/ticad/FRONTIER.c`: implements the function `FRONTIER()`, responsible for refining the CAD so that it satisfies
+  thefrontier condition.
 - `source/ticad/LazardLifting.c`: helper function for `FRONTIER()`, responsible for implementing the extension of Lazard's algorithm for lifting with bad points.
 - `source/ticad/REFINE.c`: responsible for computing the refinements, defined in `GVREFL`.
 
