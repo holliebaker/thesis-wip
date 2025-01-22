@@ -74,7 +74,7 @@ alternations. Using a theoretically efficient algorithm, e.g., [@bpr2006, Algori
 Once $\fr{C}$ has been computed, we first construct the family $\cal U$ of $1$-dimensional curve intervals $T$ and the
 points between them $\mathbf{c}$. By Lemma \@ref(lem:one-dim-qa-is-monotone), $1$-dimensional quasi-affine cells are
 always monotone. Thus, we may apply the method described in Section \@ref(sec:quasi-affine) to obtain Jacobi matrices
-whose determinants are zero at the critical points of projections onto one and $2$-dimensional coordinate subspaces.
+whose determinants are zero at the critical points of projections onto $1$# and $2$-dimensional coordinate subspaces.
 If CAD with the McCallum projection operator is used to solve the QE problem, then each smooth $1$-dimensional cell $D$ in $\fr{C}$ will be defined by $n-1$ polynomials. We refine $\fr{C}$ to be compatible with the critical points of $\projops{x_i}(D), 1\le i \le n$ defined by $\det(J_{\{1,\ldots,n\}\setminus \{i\}}) = 0$.
 
 A further refinement of each $1$-dimensional component $T$ of $\cal U$ to be compatible with existing cells of $\cal D'$ may also be required.
@@ -182,7 +182,7 @@ Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ and $\mathcal{D'}$ 
 :::
 
 According to @lazard10, Corollary 4.7, in dimension $\le 2$, there is nothing to do as Collins' algorithm already produces these strong decompositions.
-In fact, any decomposition in dimension $\le 2$ is well-based so, according to @jhd20, a strong decomposition will be obtained regardless of the method used to construct it. 
+In fact, any decomposition in dimension $\le 2$ is well-based so, according to @jhd20, a strong decomposition will be obtained regardless of the method used to construct it.
 For a cylindrical decomposition of $\R^3$, the process works in three steps:
 
 1. Obtain well-bordered cells
@@ -256,7 +256,7 @@ We will only consider the case where $C \cap \{ \mathbf{x} \times \R \}$ is an o
 Let $\dim(C) = d + 1$. $\fr{C}$ consists of
 
 - the cells in $\fr{C_B}$ and $\fr{C_T}$, which have dimension $< d$ and are contained in $\fr{C'} \times \R$,
-- the intervals (which may be empty) bounded by the points in $\fr{C_B}$ and $\fr{C_T}$, contained in $C' \times \R$. 
+- the intervals (which may be empty) bounded by the points in $\fr{C_B}$ and $\fr{C_T}$, contained in $C' \times \R$.
 
 Since $C_B$ and $C_T$ are section cells, they are roots of polynomials $f$ and $g$ and, if finite, the points in $\fr{C_B}$ and $\fr{C_T}$ are also roots of $f$ and $g$ (respectively).
 Therefore, these intervals are contained in some cells of $\cal D$. More precisely, the cells with dimension $d$ contained in $\fr{C'} \times \R$ are exactly those lying over a cell $C'' \subset \fr{C'}$ with dimension $d-1$.
@@ -643,7 +643,7 @@ First, prepare $\mathcal{D}$ by marking each cell $C' := \projop{r}(C)$, such th
 **Input:**
 $$({\cal D}, {\cal A})$$
 
-  - $\cal D$: a CAD of $\R^k$, each cell having constant sign on $\mathcal{A}$. 
+  - $\cal D$: a CAD of $\R^k$, each cell having constant sign on $\mathcal{A}$.
 A collection of cells $\mathcal{C} := \{ C_1,\ldots,C_m \}$ of $\mathcal{D}$ are marked as being projections of $V_1,\ldots,V_q$, a family of sets having $\dim(V_i) \le 2, 1 \le i \le q$.
 
   - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_k$ is the family of projection polynomials for $\mathcal{D}$, each ${\cal A}_k \subset \Z[x_1,\ldots,x_k]$.
@@ -793,7 +793,7 @@ $$
 Therefore, the monotone CAD algorithm has, as expected, a slightly higher complexity than that of the classical algorithm.
 However, the complexity is not significantly worse, still being doubly exponential in the number of variables.
 
-Overall we have proved the following 
+Overall we have proved the following
 
 ::: { .theorem #bgv-algorithm }
 Let
