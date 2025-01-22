@@ -58,7 +58,7 @@ monotone with respect to each bounded semialgebraic set of dimension at most $2$
 
 The most computationally difficult part of implementing this construction is computing $\fr{C}$.
 
-::: {.lemma #frontier}
+::: {.lemma}
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula $F$
 containing $s$ different polynomials in $\R [x_1, \ldots ,x_n]$ having maximum degree $d$.
 There is an algorithm, taking $F$ as input, which represents the semialgebraic set $\fr{ S }$ by a quantifier-free Boolean formula $F'$ with complexity
@@ -67,7 +67,7 @@ $$
 This is also an upper bound on the number of polynomials in $F'$ and their degrees.
 :::
 
-Lemma \@ref(lem:frontier) is proved and discussed in more detail in Section \@ref(sec:novel-frontier-fr).
+The above, as Lemma \@ref(lem:frontier), is proved, proved and discussed in more detail in Section \@ref(sec:novel-frontier-fr).
 The obvious way of computing the frontier involves solving a quantifier elimination problem with two quantifier
 alternations. Using a theoretically efficient algorithm, e.g., [@bpr2006, Algorithm 14.21], this procedure has complexity singly exponential in the number of variables. $\partial C$ is represented by a quantifier-free Boolean formula $F$.
 

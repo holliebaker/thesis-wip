@@ -17,8 +17,8 @@ $$ and
 $$
 \varphi(x,y) = x^2 + y^2.
 $$
-Let $Y \subset \R^3$ be the graph of function $\varphi$ on $\Delta$. Observe that $Y$ is a cylindrical cell and $\varphi\vert_\Delta$ is a quasi-affine map, since it is strictly increasing in both $x$ and $y$.
-However, $y \cap \{ z = 3/4 \}$ is not connected, hence $\varphi\vert_\Delta$ is not a monotone function and $Y$ is not a monotone cell.
+Let $Y \subset \R^3$ be the graph of function $\phi$ on $\Delta$. Observe that $Y$ is a cylindrical cell and $\varphi\vert_\Delta$ is a quasi-affine map, since it is strictly increasing in both $x$ and $y$.
+However, $y \cap \{ z = 3/4 \}$ is not connected, hence $\phi\vert_\Delta$ is not a monotone function and $Y$ is not a monotone cell.
 :::
 
 ```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Plot of the $2$-dimensional quasi-affine cylindrical cell $Y$ defined in Example \\ref{exm:monotone-cells}."}
@@ -169,7 +169,7 @@ In this case, it is clear that no refinement of $X_B$ is required.
 
 ### Finding the critical points {#sec:lagrange-refinement}
 
-We now discuss how to find these critical points of $\varphi$ and $\psi$ starting with the polynomials defining cells in $\cal D$.
+We now discuss how to find these critical points of $\phi$ and $\psi$ starting with the polynomials defining cells in $\cal D$.
 
 Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ such that every $2$-dimensional cell contained in $V = V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map. Let
 \begin{equation}

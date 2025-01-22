@@ -390,13 +390,6 @@ We say that $\mathbf{F}$ is well-oriented if, when $n > 1$,
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a well-oriented set of polynomials and $\cal D$ be an $\mathbf{F}$-invariant CAD constructed using the McCallum projection operator [@mccallum1998]. Then, by @mccallum1988 Theorems 2.2.3 and 2.2.4, every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$. Informally, if $\dim(C) = k$, then $C$ is a non-empty subset of $\R^n$ which "looks locally like $\R^k$" (see Definition \@ref(def:analytic-submanifold) for the precise definition).
 
-::: {.definition #analytic-submanifold}
-Let $S \subset \R^n$.
-If, for every point $\mathbf{x} \in S$, there is an analytic coordinate system about $\mathbf{x}$ with respect to which
-$S$ is locally the intersection of $n-k$ coordinate hyperplanes, then $S$ is called an analytic submanifold of
-dimension $k$.
-:::
-
 ::: {.corollary #mc-smooth}
 Let $S \subset \R^n$ be a semialgebraic set defined by a quantifier-free Boolean formula constructed from the set of polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$, such that $\mathbf{F}$ is well-oriented.
 Then a CAD $\cal D$ of $\R^n$ compatible with $S$ and such that every cell $C$ of $\cal D$ is an analytic submanifold of $\R^n$ can be obtained by constructing an $\mathbf{F}$-invariant CAD of $\R^n$ using the McCallum projection operator.

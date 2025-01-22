@@ -227,6 +227,32 @@ $$
 where $N \ge (I_1 + J_1) + \cdots + (I_M + J_M)$.
 :::
 
+We now define two concepts which will be used extensively in this thesis.
+The first, of an analytic submanifold, comes from @mccallum1998 and gives us the notion of smoothness.
+Informally, an analytic submanifold of dimension $k$ is a subset which "looks locally like $\R^k$". Formally, it is defined as follows:
+
+::: {.definition #analytic-submanifold}
+[@mccallum1998, Definition, Theorem 2.2]
+
+Let $S \subset \R^n$.
+If, for every point $\mathbf{x} \in S$, there is an analytic coordinate system about $\mathbf{x}$ with respect to which
+$S$ is locally the intersection of $n-k$ coordinate hyperplanes, then $S$ is called an analytic submanifold of
+dimension $k$.
+:::
+
+We will also need the idea of a critical point of a function because we will need to find local maxima and minima of cylindrical cells, e.g., in order to onstruct quasi-affine (see Definition \@ref(def:quasi-affine)) and monotone (see Definition \@ref(def:monotone-cell)) cylindrical cells. Critical poitns of a differentiable function are defined as follows:
+
+::: {.definition #critical-point}
+[@firststeps, Definition 4.4]
+
+Let $S \subset \R^n$.
+If, for every point $\mathbf{x} \in S$, there is an analytic coordinate system about $\mathbf{x}$ with respect to which
+$S$ is locally the intersection of $n-k$ coordinate hyperplanes, then $S$ is called an analytic submanifold of
+dimension $k$.
+:::
+
+
+
 ### Monotone cells
 
 We now present, closely following @bgv15, some useful properties of definable sets. These properties also apply to semialgebraic sets and are fundamental to the work presented in this thesis.
@@ -289,7 +315,7 @@ The set $Y \subset \opspan{x_1,\ldots,x_n}$ is called a monotone cell if it is t
 Let $X \subset \opspan{x_1,\ldots,x_n}$ be a monotone cell and $\mathbf{f} \colon X \to \opspan{y_1,\ldots,y_k}$ be a continuous map having graph $Y \subset \opspan{x_1,\ldots,x_n,y_1,\ldots,y_k}$. If $Y$ is a monotone cell, then $\mathbf{f}$ is called monotone on $X$.
 :::
 
-::: { .example #monotone-cells }
+::: { .example #monotone-cells-defs }
 1. Observe that any quasi-affine map defined on a connected subset and having the graph in $\R^2$ is also monotone. This quasi-affine map will fail to be monotone if the set it is defined on is not connected.
 
 2. Let $\Delta := \{ 0 < x < 1, y > 0, x + y < 1 \} \subset \R^2$ and $\varphi(x,y) = x^2 + y^2$. Let $Y \subset \R^3$
