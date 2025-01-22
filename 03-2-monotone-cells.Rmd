@@ -218,6 +218,8 @@ By the construction of $\cal D$ (e.g., using Corollary \@ref(cor:mc-smooth)) $C_
 This representation lends itself naturally to the problem of optimisation with constraints and the method of Lagrange multipliers.
 
 ::: {.proposition #lagrange-multipliers}
+(see, e.g., @bertsekas99, Chapter 3)
+
 Let $f \colon \R^n \to \R$ and $g_1,\ldots,g_k \colon \R^n \to \R$ be continuous functions with continuous first partial derivatives.
 Local maxima and minima of $f$, subject to the constraints $g_1=0,\ldots,g_k=0$ can be found by computing the critical points of the function
 $$
@@ -443,8 +445,8 @@ If at least one of $f$ and $m$ is monic, then
 $$
 It follows that $(x_1,\ldots,x_n) \in K^n$ is a common root of the elements of $I \cap \R$ if and only if it is a root of $\res_y (f,m)$.
 
-In this way, a polynomial in an algebraic extension field can be converted into a polynomial with rational coefficients and then, if necessary, into a polynomial with integer coefficients.
-<!-- TODO this property came from the wiki page on resultants. does it need proving? -->
+In this way, a polynomial in an algebraic extension field can be converted into a polynomial with rational coefficients and then, if necessary, into a polynomial with integer coefficients. (See, e.g., @cox2013, Chapter 3 §6.)
+
 :::
 
 ## Section cells { #sec:monotone-sections }
