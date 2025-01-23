@@ -4,7 +4,7 @@
 
 ### Sets definable over O-minimal structures
 
-We will be working mostly in the category *SemialgebraicSet* of semialgebraic sets and sometimes in the more general category of sets definable over an O-minimal structure.
+We will be working mostly in the category *SemialgebraicSet* of semialgebraic sets and sometimes in the more general category of *definable sets* and, occasionally, sets definable over an O-minimal structure.
 
 We first define the O-minimal structures over the reals.
 
@@ -91,7 +91,7 @@ A quantifier-free Boolean formula $F$ is constructed using the following rules:
 
 ::: { .definition #first-order-formula }
 A first-order Boolean formula $F$ is constructed using rules 1 and 2 from Definition \@ref(def:qff) and the following
-rule.
+rule:
 
 3. If $F'$ is a first-order Boolean formula and $y$ is a variable ranging over $\R$, then $\exists y\ F'$ and $\forall
 y\ F'$ are first-order Boolean formulas.
@@ -163,9 +163,9 @@ This follows from the fact that the class of finite unions of this kind satisfy 
 [@gv04, Definition 2.1]
 
 A Pfaffian chain of order $r \ge 0$ and degree $\alpha \ge 1$ in an open domain $G \subset \R^n$ is a sequence of analytic functions
-$$
+$
 f_1, \ldots , f_r
-$$
+$
 in $G$ satisfying the differential equations
 $$
 {df}_j(\mathbf{x}) = \sum^n_{i=1} g_{ij}(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_j(\mathbf{x})) dx_i
@@ -227,9 +227,9 @@ $$
 where $N \ge (I_1 + J_1) + \cdots + (I_M + J_M)$.
 :::
 
-We now define two concepts which will be used extensively in this thesis.
-The first, of an analytic submanifold, comes from @mccallum1998 and gives us the notion of smoothness.
-Informally, an analytic submanifold of dimension $k$ is a subset which "looks locally like $\R^k$". Formally, it is defined as follows:
+We now recall two definitions which will be used throughout this thesis. 
+The first, of an analytic submanifold, is reproduced from @mccallum1998 and gives us the notion of smoothness.
+Informally, an analytic submanifold of dimension $k$ is a subset which looks locally like $\R^k$. It is defined as follows:
 
 ::: {.definition #analytic-submanifold}
 [@mccallum1998, Definition, Theorem 2.2]
@@ -240,18 +240,20 @@ $S$ is locally the intersection of $n-k$ coordinate hyperplanes, then $S$ is cal
 dimension $k$.
 :::
 
-We will also need the idea of a critical point of a function because we will need to find local maxima and minima of cylindrical cells, e.g., in order to onstruct quasi-affine (see Definition \@ref(def:quasi-affine)) and monotone (see Definition \@ref(def:monotone-cell)) cylindrical cells. Critical poitns of a differentiable function are defined as follows:
+We will also need the notion of a critical point of a function, which is defined, following @@firststeps, as follows:
 
 ::: {.definition #critical-point}
 [@firststeps, Definition 4.4]
 
-Let $S \subset \R^n$.
-If, for every point $\mathbf{x} \in S$, there is an analytic coordinate system about $\mathbf{x}$ with respect to which
-$S$ is locally the intersection of $n-k$ coordinate hyperplanes, then $S$ is called an analytic submanifold of
-dimension $k$.
+Let $M$ be an $n$-dimensional smooth manifold (see Definition \@ref(def:analytic-submanifold)) and $f$ be a smooth function on $M$. 
+At each point $\mathbf{x}$ of $M$, local coordinates are defined, by the definition of a smooth manifold. 
+Consider a local neighbourhood $U$ of $\mathbf{x}$. 
+If all of the first partial derivatives of $f$ with respect to each local coordinate vanish at $\mathbf{x}$, then $\mathbf{x}$ is called a critical point of $f$. 
 :::
 
-
+The smooth manifolds we will be working with here are mostly defined by polynomial equations, such that at each point the Jacobian matrix of these polynomials has full rank (or parts of these sets defined by some strict polynomial inequalities). 
+In this case, the critical points of a function on the manifold can be defined in terms of points at which minors of the Jacobian matrix made from the function and the polynomials defining the manifold vanish.
+We will use this definition of critical point in Chapter \@ref(sec:quasi-affine). 
 
 ### Monotone cells
 
@@ -277,7 +279,7 @@ subset $X \subset \R^n$ having the graph $Y \subset \R^{n+k}$. Then $\mathbf{f}$
 ::: {.remark}
 The term quasi-affine map is not to be confused with quasi-affine variety.
 Rather, it is a generalisation of the concept of an affine map from linear algebra.
-Every affine map satisfies the definition of a quasi-affine map, but the definition also allows non-linear maps.
+Every affine map satisfies the definition of a quasi-affine map, but the definition also allows non-linear maps. The author apologises for the confusing terminology.
 :::
 
 ::: { .definition #monotone-map }

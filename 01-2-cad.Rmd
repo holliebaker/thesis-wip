@@ -6,11 +6,9 @@ We now give some background on Cylindrical Algebraic Decomposition (CAD).
 Before describing Collins' algorithm, we will first define, closely following @bgv15, a cylindrical cell and cylindrical decomposition. Note that @bgv15 work in the broader class of definable sets.
 
 ::: { .definition #cells }
+[@bgv15, Definition 3.1]
 Cylindrical cells are defined by induction on $n\ge 1$. Each cylindrical cell $C$ is a connected definable subset of
-$\R^n$ with a binary index
-$$
-(i_1,\ldots,i_n) \in \{0,1\}^n.
-$$
+$\R^n$ with a binary index $(i_1,\ldots,i_n) \in \{0,1\}^n$.
 
 - When $n = 0$, there is a unique cylindrical cell $\mathbf{0} \in \R^0$.
 
@@ -88,7 +86,7 @@ $\cal D$ is a cylindrical decomposition of $\R^n$ if $\cal D'$ is a cylindrical 
 :::
 
 Less formally, a partition $\cal D$ of $\R^n$ into definable subsets is cylindrical if the projection of any two cells
-of $\cal D$ onto $\R^{n-1}$ is either disjoint or identical.
+of $\cal D$ onto $\R^{n-1}$ is either disjoint or coincides completely.
 
 ::: {.definition}
 Let $S \subset \R^n$ be a definable set. A cylindrical decomposition $\cal D$ is compatible with $S$ if every cell $C$ of $\cal D$ is either a subset of $S$ or disjoint from $S$.
@@ -174,7 +172,10 @@ Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of poly
 :::
 
 ::: {.remark}
-The fundamental theorem of algebra implies that for the coefficients of $\mathbf{F}$, we may choose any ring $K \subset \R$. $\Z$ has been chosen for convenience, but some authors (e.g., @pianomovers1983) choose $\Q$ instead. It is also common to take polynomials with coefficients over $\R$. However, the choice has been made to avoid this so as to work over the algebraic numbers $\mathcal{A}$, whose elements are easily represented in, and manipulated by, computers.
+It is theoretically possible to work over the reals, having polynomials with coefficients in $\R$, and we do so in Chapter \@ref(sec:novel-frontier) (see Remark after Theorem \@ref(thm:main)). 
+However, we will be working over the algebraic numbers throughout Chapters \@ref(sec:smooth-strat)-\@ref(sec:frontier), $\A$, which are easy to represent and manipulate in a computer. 
+It is possible to represent any algebraic number as the root of a polynomial with either algebraic, rational or integer coefficients. 
+For convenience, we chose to let input polynomials have coefficients in $\Z$. 
 :::
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm proposed by @collins1975, closely following @coste2000, for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
@@ -266,14 +267,10 @@ Let $f,g \in \Z[x_1,\ldots,x_{n-1}][x_n]$ be polynomials with degrees $d$ and $e
 Let $f,g \in \Z[x_1,\ldots,x_{n-1}][x_n]$ and $X \subset \Z[x_1,\ldots,x_n]$.
 
 - $f$ has a constant number of complex roots over $X$ if
-$$
-\psrc_k(f, \partial f / \partial x_n),
-$$
+$\psrc_k(f, \partial f / \partial x_n),$
 for $1 \le k \le \deg(f)$, is either zero or nonzero everywhere in $X$.
 - $f$ and $g$ have constant GCD in $X$ if
-$$
-\psrc_k(f, g),
-$$
+$\psrc_k(f, g),$
 for $1 \le k \le \min(\deg(f),\deg(g))$, is either zero or nonzero and $\deg(f) = \deg(g)$ everywhere in $X$.
 - If the leading term of $f$ (or $g$) vanishes at some points in $\Z[x_1,\ldots,x_{n-1}]$, we need to take the principal subresultant coefficients of the reductum of $f$ (or $g$).
 [@coste2000, pp36]
@@ -291,30 +288,22 @@ Let $\lc{f} = a_d$ denote the leading coefficient of $f$ and $\red(f) = a_{d-1}x
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. We define the projection operator, $\proj(\mathbf{F})$ as follows:
 
 - Let $d := \deg(f_i)$. If $d > 1$, then $\proj(f_1,\ldots,f_i,\ldots,f_s)$ contains
-$$
-\psrc_k(f_i, \partial f_i / \partial x_n)
-$$
+$\psrc_k(f_i, \partial f_i / \partial x_n)$
 for all $1\le k \le d$.
 
 - Let $d := \min(\deg(f_i), \deg(f_j))$. If $d > 0$, then $\proj(f_1,\ldots,f_i,\ldots,f_j,\ldots,f_s)$ contains
-$$
-\psrc_k(f_i, f_j)
-$$
+$\psrc_k(f_i, f_j)$
 for all $1 \le k \le d$.
 
 - If $\deg(f_i) > 0$ and $\lc(f_i)$ is non-constant, then $\proj(f_1,\ldots,f_i,\ldots,f_s)$ contains
-$$
-\lc(f_i) \text{ and } \proj(f_1,\ldots,\red(f_i),\ldots,f_n).
-$$
+$\lc(f_i) \text{ and } \proj(f_1,\ldots,\red(f_i),\ldots,f_n).$
 :::
 
 ::: {.theorem #cad-lift}
 [@coste2000, Theorem 2.19]
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a family of polynomials and let $C'$ be a connected $\proj(\mathbf{F})$-invariant semialgebraic subset of $\R^{n-1}$ -- an $(i_1,\ldots,i_{n-1})$-cell.
 Then there exist continuous definable functions
-$$
-\psi_1,\ldots, \psi_\ell \colon C' \to \R
-$$
+$\psi_1,\ldots, \psi_\ell \colon C' \to \R$
 such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) \}$ coincides with the real roots of polynomials in $\mathbf{F}$, defining the $(i_1,\ldots,i_{n-1},0)$-cells in the cylinder $C' \times \R$ and $\{ -\infty < t < \psi_1(\mathbf{x}), \ldots, \psi_i(\mathbf{x}) < t < \psi_{i+1}(\mathbf{x}), \ldots, \psi_k(\mathbf{x}) < t < \infty \}$ are the $(i_1,\ldots, i_{n-1},1)$-cells in the cylinder $C' \times \R$.
 :::
 
