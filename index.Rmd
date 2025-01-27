@@ -129,7 +129,7 @@ Since then, there have been many advances in these areas, both in extending the 
 ## Cylindrical algebraic decomposition
 
 A fundamental result in real algebraic geometry is Tarski's Theorem [@tarski1951], which states that semialgebraic sets are closed under projection.
-Tarski's paper can be obtained online here: \url{https://doi.org/10.1007/978-3-7091-9459-1\_3} and @vdd1988tarski discuss Tarski's Theorem further. 
+Tarski's paper can be obtained online here: \url{https://doi.org/10.1007/978-3-7091-9459-1\_3} and @vdd1988tarski discuss Tarski's Theorem further.
 This result is not true for algebraic sets, neither real nor complex. Indeed, consider the projection of the solutions of the polynomial $xy = 1$ onto the $x$-axis. We get $\R \setminus \{ 0 \}$, which is not an algebraic set, but could be represented if we are allowed to use inequalities. Thus, we will be working over the category of semialgebraic sets: sets of points defined by Boolean combinations of polynomial equations and inequalities.
 Alfred Tarski first alluded, without proof, to his famous theorem in the abstract of @sierpinski1930. He then proved the
 theorem in [@tarski1951] whose planned publication in 1939 was delayed due to the war. @seidenberg1954 published "A New
@@ -145,8 +145,8 @@ CAD has wide ranging applications in real algebraic geometry.
 Perhaps the most famous application is the one Collins was thinking of -- quantifier elimination: given a Boolean formula where literals are polynomial equations and inequalities where some variables are bound by $\forall$ and $\exists$ quantifiers, return a Boolean formula without quantifiers representing the same set.
 A similar problem uses CAD to decide whether a formula in which all variables are quantified is true or false -- the decision problem.
 More recently, alternative methods for performing quantifier elimination have been proposed, e.g., the critical point method (see @safeldin2013).
-Other notable uses include determining whether a semialgebraic set is empty, computing the real roots of a system of multivariate polynomials and determining the dimension of a semialgebraic set. 
-As observed by @qepcadOverview, once one understands the CAD structure and is aware of the data associated with each cylindrical cell, the answers to these problems can be read immediately from the CAD. 
+Other notable uses include determining whether a semialgebraic set is empty, computing the real roots of a system of multivariate polynomials and determining the dimension of a semialgebraic set.
+As observed by @qepcadOverview, once one understands the CAD structure and is aware of the data associated with each cylindrical cell, the answers to these problems can be read immediately from the CAD.
 For more discussion, see, e.g., @bpr2006, Chapters 5 and 11.
 @bpr98 applies the critical point method to the emptiness problem, obtaining a bound singly exponential in the number of variables.
 CAD can also be used to deduce topological properties of semialgebraic sets, for example by computing homology groups (see, e.g., @pianomovers1983).
@@ -164,29 +164,29 @@ In some applications, we may be able to change the coordinate ordering. E.g., wh
 In addition, modern artificial intelligence and machine learning techniques are being investigated as a means of finding the best coordinate ordering. For example, @huang2014 employed support vector machines and @chen2020 used artificial neural networks to identify an optimal ordering.
 Both of these techniques outperformed classical heuristics, making this a promising application of AI and ML.
 
-However, in many cases we cannot change the coordinate ordering and, even if we could, @brown07 showed that for some inputs all coordinate orderings yield a doubly exponential number of cells. As such, making optimisations in the CAD algorithm itself has been an active area of study since Collins published his original algorithm in the 70s. 
+However, in many cases we cannot change the coordinate ordering and, even if we could, @brown07 showed that for some inputs all coordinate orderings yield a doubly exponential number of cells. As such, making optimisations in the CAD algorithm itself has been an active area of study since Collins published his original algorithm in the 70s.
 
 Collins' algorithm works on the principal of projection and lifting. First, successive projections of input polynomials are performed, until we obtain a set of polynomials in one variable. The roots of these polynomials are isolated and then "stacks" of cells above each root and each interval in between the roots are constructed. The CAD of $n$-dimensional space is obtained by iterating this process, called the "lifting phase".
 Minimising the number of polynomials produced by the projection operation means fewer computations are needed during the lifting phase. @mccallum1998 proposed an improved projection operator, observing that some polynomials included in Collins' original projection operator can be removed. Many other projection operators, e.g., Hong's (see @hong1990) and Lazard's (see @mccallum2019) projection operators have been proposed, each offering different properties. Another optimisation is to construct a "partial CAD", proposed by @collins1991. The idea is to use truth evaluation while constructing cells, taking quantifiers into account, so that only the cells we care about will be computed. As we do not have to ensure constant sign on every polynomial, this approach leads to savings during the lifting phase and often a reduced number of cells. The CAD algorithm has also been modified, often by weakening its properties, to solve specific problems. E.g., @mccallum1993 presents an algorithm, based on CAD, for deciding the consistency of a system of strict polynomial inequalities. These modifications often have much better complexity than the classical CAD, while producing sufficient decompositions to solve the problem at hand.
 
 ### Satisfiability modulo nonlinear arithmetic
 
-Given a Boolean formula where atoms are Boolean variables as input, the satisfiability (SAT) problem asks whether there is an assignment of values true and false to the variables appearing in the input formula which makes the formula true. An extension of the SAT problem is the satisfiability modulo theories (SMT) problem. In this case, atoms are some class of expression which can be evaluated to yield true or false. CAD is well-suited to solving SMT problems where input formulas are Boolean combinations of polynomial equations and inequalities. Indeed, a witness, which is a point at which the input formula is true, can be taken as the sample point of a true cell in the CAD. If no true cells exist, we can conclude that the formula is unsatisfiable. 
+Given a Boolean formula where atoms are Boolean variables as input, the satisfiability (SAT) problem asks whether there is an assignment of values true and false to the variables appearing in the input formula which makes the formula true. An extension of the SAT problem is the satisfiability modulo theories (SMT) problem. In this case, atoms are some class of expression which can be evaluated to yield true or false. CAD is well-suited to solving SMT problems where input formulas are Boolean combinations of polynomial equations and inequalities. Indeed, a witness, which is a point at which the input formula is true, can be taken as the sample point of a true cell in the CAD. If no true cells exist, we can conclude that the formula is unsatisfiable.
 However, a CAD contains far more information than necessary to decide whether the input formula is satisfiable.
-A recent strand of research aims to use ideas from CAD to efficiently solve this problem. 
+A recent strand of research aims to use ideas from CAD to efficiently solve this problem.
 
-One approach is to try to guess the sample point and use parts of the CAD algorithm to refine the guess until either a valid witness is found or it can be concluded that none exists. 
+One approach is to try to guess the sample point and use parts of the CAD algorithm to refine the guess until either a valid witness is found or it can be concluded that none exists.
 A well-known example of this was the NLSAT algorithm developed by @jovanovic2012, which uses a conflict-driven clause learning approach informed by CAD projection. The high complexity of CAD arises from the number of projection polynomials produced and the NLSAT algorithm represented a moderate reduction in the number of these polynomials.
-@brown2015 made significant progress in reducing the number of polynomials by developing an algorithm which constructs a single CAD cell. 
-However, this algorithm takes polynomials one at a time, and the order in which polynomials are chosen has a significant affect on the size and shape of the CAD cell produced. 
-@nalbach2024 designed and implemented the SMT-RAT solver which further improves on NLSAT and Brown's single cell construction. 
-Instead of adding polynomials one at a time, @nalbach2024 constructs a single CAD cell level by level, according to some variable ordering, using a reduced set of projection polynomials. 
-This level-wise construction has the advantage that a variety of different reductions can be considered and heuristics can be used to select the optimal projection polynomial in order to make the CAD cell under construction as simple as possible. 
-SMT-RAT has been validated using the SMT-LIB library and the authors report significant efficiency improvements over NLSAT. 
+@brown2015 made significant progress in reducing the number of polynomials by developing an algorithm which constructs a single CAD cell.
+However, this algorithm takes polynomials one at a time, and the order in which polynomials are chosen has a significant affect on the size and shape of the CAD cell produced.
+@nalbach2024 designed and implemented the SMT-RAT solver which further improves on NLSAT and Brown's single cell construction.
+Instead of adding polynomials one at a time, @nalbach2024 constructs a single CAD cell level by level, according to some variable ordering, using a reduced set of projection polynomials.
+This level-wise construction has the advantage that a variety of different reductions can be considered and heuristics can be used to select the optimal projection polynomial in order to make the CAD cell under construction as simple as possible.
+SMT-RAT has been validated using the SMT-LIB library and the authors report significant efficiency improvements over NLSAT.
 
-Since only a witness point is needed, another approach is to weaken the CAD structure. 
-@abraham2021 find a sample point (witness) incrementally, refining their search by considering the input constraints and previous conflicts. 
-The algorithm begins with some coordinates of a candidate sample point and then proves that this point cannot be extended to a full sample. Using the reasons for this, the algorithm eliminates larger and larger chunks of ambient space until a cylindrical algebraic covering is constructed. 
+Since only a witness point is needed, another approach is to weaken the CAD structure.
+@abraham2021 find a sample point (witness) incrementally, refining their search by considering the input constraints and previous conflicts.
+The algorithm begins with some coordinates of a candidate sample point and then proves that this point cannot be extended to a full sample. Using the reasons for this, the algorithm eliminates larger and larger chunks of ambient space until a cylindrical algebraic covering is constructed.
 While each cell in a cylindrical algebraic covering has constant truth value on the input formula, a cylindrical algebraic covering is weaker than a cylindrical algebraic decomposition because cells are allowed to overlap.
 
 ### Constructing CADs with desirable properties { #sec:cad-des-prop }
@@ -196,7 +196,7 @@ Indeed, @pianomovers1983 apply cylindrical algebraic decomposition to a motion p
 These CADs are also useful if we wish to compute topological properties of semialgebraic sets. For example, @reif1979 gives an algorithm for computing the homology groups of an arbitrary real algebraic variety. As we alluded to earlier, over the reals, a formula cannot tell us much about the set it defines, so this is useful for deducing properties of semialgebraic sets, e.g., how many "holes" it has, or whether it is connected.
 Along similar lines, @arnon1984 present an algorithm to compute a CAD of the plane along with information about which
 cells "touch each other". They extend this result to $3$-dimensional space in [@arnon1987].
-In order to compute these cell adjacencies, we again need the property that the closure of every cell is a union of some cells in the decomposition. @arnon1987 achieve this without making a change of coordinates. More recently, @strzebonski2017 published an algorithm for computing cell adjacencies for CADs in arbitrary dimension. However, their algorithm only works if the CAD is well-based. I.e., no input polynomial vanishes identically over a CAD cell. 
+In order to compute these cell adjacencies, we again need the property that the closure of every cell is a union of some cells in the decomposition. @arnon1987 achieve this without making a change of coordinates. More recently, @strzebonski2017 published an algorithm for computing cell adjacencies for CADs in arbitrary dimension. However, their algorithm only works if the CAD is well-based. I.e., no input polynomial vanishes identically over a CAD cell.
 
 Another desirable property is that every cell in a cylindrical decomposition is a topologically regular cell. Loosely speaking, this means that each $k$-dimensional cell $C$ and its closure $\cl{C}$ is homeomorphic to the pair $(B, \cl{B})$, where $B$ is the $k$-dimensional open ball and $\cl{B}$ is its closure.
 This property can fail in the region of points where polynomials are not "well behaved".
@@ -236,11 +236,12 @@ such that $\dim(V_i) \le 2$ for all $1 \le i \le k$, there exists a cylindrical 
 i \le k$ is a union of cells, such that every cell contained in $V_i$ is monotone and its closure is the union of cells
 in the decomposition. A monotone cell is a stronger property than topological regularity and, by @bgv13 Theorem 1, all
 monotone cells are topologically regular. Their proof explains how such a decomposition can be constructed and depends
-on classical CAD and simple tools such as refinements by linear equations and splitting $2$-dimensional cells by intersecting it with a given curve interval.
+on classical CAD and simple tools such as refinements by linear equations and splitting $2$-dimensional cells by
+intersecting them with a given curve interval.
 The main goal of this thesis will be to design and implement an algorithm, based on this result, for constructing such a decomposition in the semialgebraic case.
 The constructive proof works for more general definable sets and, in contrast to e.g. @collins1975 or @lazard10, is
 geometric in nature. As such, the properties we need to satisfy in order to complete the construction are described in
-detail. However, methods to obtain these properties are not given. The bulk of this thesis is concerned with transforming this constructive proof into an algorithm, presented as pseudo-code, and then implementing it. We wil also perform complexity analysis. (TODO and benchmarking?) 
+detail. However, methods to obtain these properties are not given. The bulk of this thesis is concerned with transforming this constructive proof into an algorithm, presented as pseudo-code, and then implementing it. We wil also perform complexity analysis. (TODO and benchmarking?)
 We will use a combination of fundamental tools in differential geometry, e.g., partial derivatives and Jacobi determinants, well-known algorithms in algebraic geometry such as smooth stratification and quantifier elimination, and ideas from optimisation, such as Lagrange multipliers.
 
 A similar idea to that presented by @bgv15 is discussed by @vdd1998 (Section 2.19), who introduces the concept of a Van-den-Dries regular cell.
@@ -248,7 +249,7 @@ We say that a cylindrical cell $C \subset \R^n$ is Van-den-Dries regular if, for
 All $2$-dimensional Van-den-Dries regular cells are topologically regular, so if $\dim(V_1\cup\ldots\cup V_k) \le 2$, the
 decomposition described by @vdd1998 will consist of topologically regular cells. The result of @bgv15 is stronger in that the monotone decomposition is obtained for a family of sets which individually have dimension at most two.
 
-Part of the result from @bgv15 will be generalised to sets of arbitrary dimension. In particular, given a semialgebraic set, we wil present a novel algorithm for constructing a cylindrical decomposition such that the input set consists of a union of cells of that decomposition and the closure of every cell is the union of some cells in the decomposition. We call the latter property, that the closure of cells is a union of cells in the same decomposition the "frontier condition". 
+Part of the result from @bgv15 will be generalised to sets of arbitrary dimension. In particular, given a semialgebraic set, we wil present a novel algorithm for constructing a cylindrical decomposition such that the input set consists of a union of cells of that decomposition and the closure of every cell is the union of some cells in the decomposition. We call the latter property, that the closure of cells is a union of cells in the same decomposition the "frontier condition".
 (This work was presented, in extended abstract form, at CASC 2023 and has been submitted for journal publication.)
 We prove that such a decomposition can be constructed in any dimension and without a preliminary change of coordinates even in the presence of blow-ups. To our knowledge, this is the first proof that such a CAD exists without the change of coordinates.
 The proof takes the form of an algorithm, given as pseudo-code and a mathematical description, which constructs a CAD compatible with a semialgebraic set $S \subset \R^n$ and satisfying the frontier condition.
@@ -256,7 +257,7 @@ We also obtain an upper bound on the complexity of this algorithm. This is also 
 degree of polynomials in the CAD. The algorithm has elementary complexity (in the sense of L. Kalmar, see e.g.,
 [@kleene1952, $\S 57$]). This means that the complexity can be expressed as a power tower of finite height.
 
-As discussed in Section \@ref(sec:cad-des-prop), the frontier condition is useful in many applications including motion planning, computing homology groups and determining cell adjacencies. 
+As discussed in Section \@ref(sec:cad-des-prop), the frontier condition is useful in many applications including motion planning, computing homology groups and determining cell adjacencies.
 In addition, we show how this result can be applied to other categories, e.g., semialgebraic sets defined by *fewnomials* (see Section \@ref(sec:pfaffian)), whose structure is destroyed by a change of coordinates.
 The result can also be easily extended to semialgebraic sets defined by first-order Boolean formulas with quantifiers.
 Indeed, by Theorem \@ref(thm:proj), the projection of a CAD with frontier condition to any dimension also satisfies the frontier condition, and quantifier elimination requires considering projections of the CAD.
@@ -290,54 +291,61 @@ The algorithm also ensures that only the $k$ functions required to define a stra
 Chapter \@ref(sec:background) gives some necessary definitions, then presents some useful results from @bgv15. The CAD
 is then formally defined, and the flow of the algorithm, following the description given by @coste2000, is outlined.
 
-We now detail the contributions made in each chapter and how the work is differentiated from @gv1995 and @bgv15, on which much of the research is based. 
+We now detail the contributions made in each chapter and how the work is differentiated from @gv1995 and @bgv15, on which much of the research is based.
 
 ### Smooth stratification algorithm
 
 Chapter \@ref(sec:smooth-strat) presents the smooth stratification algorithm from @gv1995, Theorem 2.
-The proof of @gv1995, Theorem 2 describes a procedure for constructing a smooth stratification of a semi-Pfaffian set. 
-We formulate this construction as pseudo-code and specialise it to the case of semialgebraic sets where it is possible to implement the subroutine of checking whether a candidate stratum is empty.
+The proof of @gv1995, Theorem 2 describes a procedure for constructing a smooth stratification of a semi-Pfaffian set.
+We formulate this construction as pseudo-code and specialise it to the case of semialgebraic sets where it is possible
+to implement the subroutine for checking whether a candidate stratum is empty.
 This algorithm has been implemented in C on top of `SACLIB`. `SACLIB` is an open-source C/C++ library for manipulating real polynomials and real algebraic numbers and working with their solutions as real algebraic numbers (see @saclib).
-Although this construction has been described at least twice (in @gv1995 and @gv04), this is the first presentation of the procedure as pseudo-code and the first implementation of the algorithm. We also contribute complexity results for the semialgebraic case. 
+Although this construction has been described at least twice (in @gv1995 and @gv04), this is the first presentation of the procedure as pseudo-code and the first implementation of the algorithm. We also contribute complexity results for the semialgebraic case.
 
 ### Monotone and frontier condition
 
 In Chapters \@ref(sec:quasi-affine), \@ref(sec:monotone-cells) and \@ref(sec:frontier), we present an algorithm for constructing a CAD of $\R^n$, monotone with respect to a family of semialgebraic sets $V = (V_1,\ldots,V_k)$ such that $\dim(V_i) \le 2$ for $1\le i \le k$ and satisfying the frontier condition.
-I.e., each cell of the decomposition produced by this algorithm is a topologically regular cell and its closure is a union of cells in the same decomposition. 
+I.e., each cell of the decomposition produced by this algorithm is a topologically regular cell and its closure is a union of cells in the same decomposition.
 This algorithm is based on the proof of @bgv15, Theorem 3.20. which gives a mathematical description of how such a decomposition can be constructed.
-The proof is constructive in the sense that it outlines a series of steps required to pass from the family of input sets to the resulting cylindrical decomposition. However, it does not explain how each step should be completed. For example, the first step is to construct a cylindrical decomposition compatible with the smooth $2$-dimensional locus of $V$ and the critical points of projections of each $V_i$ onto $1$- and $2$-dimensional coordinate subspaces of $\R^n$, but it does not explain how the smooth locus should be computed or the critical points found. 
-The main goal of Chapters \@ref(sec:quasi-affine), \@ref(sec:monotone-cells) and \@ref(sec:frontier-bgv) is to convert the constructive proof from @bgv15 into an algorithm by explaining how the required constructions can be achieved. Thee algorithm is presented as pseudo-code and we obtain complexity upper bounds for the algorithm. This turns the proof that such a decomposition exists into a sequence of steps which can be implemented in a computer.
-The algorithm has been implemented on top of `QEPCAD-B`. 
-@bgv15, Theorem 3.20 supposes that $V$ is a family of bounded definable sets. We specialise the construction to the semialgebraic case. 
+The proof is constructive in the sense that it outlines a series of steps required to pass from the family of input sets to the resulting cylindrical decomposition. However, it does not explain how each step should be completed. For example, the first step is to construct a cylindrical decomposition compatible with the smooth $2$-dimensional locus of $V$ and the critical points of projections of each $V_i$ onto $1$- and $2$-dimensional coordinate subspaces of $\R^n$, but it does not explain how the smooth locus should be computed or the critical points found.
+The main goal of Chapters \@ref(sec:quasi-affine), \@ref(sec:monotone-cells) and \@ref(sec:frontier-bgv) is to convert
+the constructive proof from @bgv15 into an algorithm by explaining how the required constructions can be achieved. Thee
+algorithm is presented as pseudo-code and we obtain complexity upper bounds for the algorithm. This turns the proof that
+such a decomposition exists into a sequence of steps which can be run on a computer.
+The algorithm has been implemented on top of `QEPCAD-B`.
+@bgv15, Theorem 3.20 supposes that $V$ is a family of bounded definable sets. We specialise the construction to the semialgebraic case.
 
-According to the proof of @bgv15, Theorem 3.20, the construction proceeds in three stages. 
+According to the proof of @bgv15, Theorem 3.20, the construction proceeds in three stages.
 Chapter \@ref(sec:quasi-affine) explains how to implement the construction described in @bgv15, Theorem 3.19.
 We present an algorithm wich takes a family $V = (V_1,\ldots,V_k)$ of bounded semialgebraic sets, each of which has dimension at most two as input and constructs a CAD compatible with each $V_i, 1\le i \le k$. Each cell $C \subset V$ of this decomposition is smooth, i.e., if it has dimension $k$, then it looks locally like $\R^k$ (see Definition \@ref(def:analytic-submanifold)).
-The decomposition is also constructed such that each cell contained in $V$ is the graph of a quasi-affine map. 
+The decomposition is also constructed such that each cell contained in $V$ is the graph of a quasi-affine map.
 This is a technical notion due to @bgv15 (see Definition \@ref(def:quasi-affine)) predominantly used as an intermediate step needed to obtain topologically regular cells and has nothing to do with quasi-affine sets in algebraic geometry. The author apologises for any confusion caused by overloading terms.
 It requires that, for the projection map from $\R^n$ onto each subspace defined by a subset of the coordinates $x_1,\ldots,x_n$, if the image of $C$ under the projection map has the same dimension as $C$, then the projection map must be injective. Intuitively, if $C$ fails to be quasi-affine, then $C$ "curls" or "folds" over itself.
-The proof of @bgv15, Theorem 3.19 instructs us to compute a CAD, compatible with each $V_1,\ldots,V_k$, the smooth locus of $V$ and the critical points of projections onto $1$- and $2$-dimensional coordinate subspaces. 
-We observe that the smooth locus can be found using the smooth stratification algorithm from Chapter \@ref(sec:smooth-strat) and then use results from @mccallum1998 to achieve smooth cells by using a certain projection operator. 
-Then, starting with the relationship between the ranks of Jacobi matrices and critical points, we compute some new polynomials, based on the projection polynomials defining each $1$- and $2$-dimensional cell, which are equal to zero at the required critical points of projections. 
+The proof of @bgv15, Theorem 3.19 instructs us to compute a CAD, compatible with each $V_1,\ldots,V_k$, the smooth locus of $V$ and the critical points of projections onto $1$- and $2$-dimensional coordinate subspaces.
+We observe that the smooth locus can be found using the smooth stratification algorithm from Chapter
+\@ref(sec:smooth-strat). The smooth stratification algorithm also gives us, for each cylindrical cell of codimension
+$k$, a set of polynomial equations $h_1 = 0,\ldots,h_k = 0$ which define an algebraic set which has codimension $k$ on
+the cell in question. This will be important in later steps.
+Next, starting with the relationship between the ranks of Jacobi matrices and critical points, we compute some new polynomials, based on the projection polynomials defining each $1$- and $2$-dimensional cell, which are equal to zero at the required critical points of projections.
 
-Next, Chapter \@ref(sec:monotone-cells) discusses, following the proofs of @bgv15, Theorem 3.20 and Theorem 3.18, how the CAD constructed in Chapter \@ref(sec:quasi-affine) can be refined such that each CAD cell contained in the input set is a topologically regular cell. Actually, the construction from @bgv15 guarantees a stronger property which turned out to be easier to obtain: that the refinement is monotone with respect to each $V_1,\ldots,V_k$. Informally, the cell $C$ is monotone if its intersection with every possible coordinate subspace, if non-empty, consists of exactly one connected component (see Definition \@ref(def:monotone-cell)). All monotone cells are graphs of quasi-affine maps, but not all graphs of quasi-affine maps are monotone (see Example \@ref(exm:monotone-cells) for further explanation). 
-@bgv13, Theorem 1, proved that any monotone cell is also topologically regular. 
-The CAD constructed in Chapter \@ref(sec:quasi-affine) has been prepared so that monotone cells can be obtained by performing some simple refinements. These refinements involve intersecting cells of the CAD with straight lines and half-planes and they only require chopping a $1$-dimensional sector cell (an open interval) in some induced decomposition into two intervals and a point. It is relatively easy to propagate this refinement to cells projecting on these refined cells because the expensive process of lifting need not be redone. Instead, cells can just be copied. Only the positional index and sample points have to be updated. 
-The contribution of this chapter is a method for finding these refinement points. 
-@bgv15, Theorem 3.18 instructs us to find critical points of the tops and bottoms of two-dimensional cells. We found that Lagrange multipliers, which allow us to find local maxima and minima on a surface subject to polynomial constraints, lend themselves well to solving this problem. We discuss how to apply this method, taking care to handle points where the tops and bottoms of section cells are not defined. Again, determinants of Jacobi-like matrices come in very useful. 
+Next, Chapter \@ref(sec:monotone-cells) discusses, following the proofs of @bgv15, Theorem 3.20 and Theorem 3.18, how the CAD constructed in Chapter \@ref(sec:quasi-affine) can be refined such that each CAD cell contained in the input set is a topologically regular cell. Actually, the construction from @bgv15 guarantees a stronger property which turned out to be easier to obtain: that the refinement is monotone with respect to each $V_1,\ldots,V_k$. Informally, the cell $C$ is monotone if its intersection with every possible coordinate subspace, if non-empty, consists of exactly one connected component (see Definition \@ref(def:monotone-cell)). All monotone cells are graphs of quasi-affine maps, but not all graphs of quasi-affine maps are monotone (see Example \@ref(exm:monotone-cells) for further explanation).
+@bgv13, Theorem 1, proved that any monotone cell is also topologically regular.
+The CAD constructed in Chapter \@ref(sec:quasi-affine) has been prepared so that monotone cells can be obtained by performing some simple refinements. These refinements involve intersecting cells of the CAD with straight lines and half-planes and they only require chopping a $1$-dimensional sector cell (an open interval) in some induced decomposition into two intervals and a point. It is relatively easy to propagate this refinement to cells projecting on these refined cells because the expensive process of lifting need not be redone. Instead, cells can just be copied. Only the positional index and sample points have to be updated.
+The contribution of this chapter is a method for finding these refinement points.
+@bgv15, Theorem 3.18 instructs us to find critical points of the tops and bottoms of $2$-dimensional cells. We found that Lagrange multipliers, which allow us to find local maxima and minima on a surface subject to polynomial constraints, lend themselves well to solving this problem. We discuss how to apply this method, taking care to handle points where the tops and bottoms of section cells are not defined. Again, determinants of Jacobi-like matrices come in very useful.
 
-By the end of Chapter \@ref(sec:monotone-cells), we have a CAD which is monotone with respect to each $V_1,\ldots,V_k$. 
+By the end of Chapter \@ref(sec:monotone-cells), we have a CAD which is monotone with respect to each $V_1,\ldots,V_k$.
 Chapter \@ref(sec:frontier) describes how to complete the construction required by @bgv15, Theorem 3.20, by refining this CAD so that it satisfies the frontier condition. I.e., the closure of each cell $C \subset V$ is a union of cells in the same decomposition.
-Section \@ref(sec:frontier-bgv) describes how the construction given in the last part of the proof of @bgv15, Theorem 3.20 can be applied to obtain the frontier condition. 
+Section \@ref(sec:frontier-bgv) describes how the construction given in the last part of the proof of @bgv15, Theorem 3.20 can be applied to obtain the frontier condition.
 This algorithm requires the closure of each $2$-dimensional cell to be computed.
-Assuming that we have a fast quantifier elimination algorithm, we discuss how this procedure can be implemented using the tools we have already developed in Chapter \@ref(sec:monotone-cells). 
-Then, searching for a computationally cheaper method, we explore an alternative approach, based on results from @lazard10. 
-In Section \@ref(sec:lazard-3), an algorithm, due to @lazard10, for constructing a CAD of ambient dimension less than or equal to 3, such that each cell is topologically regular and satisfies the frontier condition, is presented. 
+Assuming that we have a fast quantifier elimination algorithm, we discuss how this procedure can be implemented using the tools we have already developed in Chapter \@ref(sec:monotone-cells).
+Then, searching for a computationally cheaper method, we explore an alternative approach, based on results from @lazard10.
+In Section \@ref(sec:lazard-3), an algorithm, due to @lazard10, for constructing a CAD of ambient dimension less than or equal to 3, such that each cell is topologically regular and satisfies the frontier condition, is presented.
 Section \@ref(sec:lazard-n) explores how this method can be generalised to our situation. In order to do this, the results of
 @lazard10, Section 5.3 are generalised from $\R^3$ to the $2$-dimensional cells in a CAD of $\R^n, n > 3$.
 
 Each stage of the algorithm has been presented as pseudo-code, along with a complexity upper bound, and Chapter \@ref(sec:implementation-and-testing) discusses its implementation on top of Brown's `QEPCAD-B` [@brownQepcad] and presents some test cases.
-This extends the result that such a CAD exists (@bgv15, Theorem 3.20) into a tangible implementation of an algorithm for constructing one. 
+This extends the result that such a CAD exists (@bgv15, Theorem 3.20) into a tangible implementation of an algorithm for constructing one.
 
 ### Frontier condition in arbitrary dimension
 

@@ -21,7 +21,10 @@ We also presented complexity bounds, based on @gv1995 and a singly exponential a
 
 First, we constructed a CAD, compatible with each of $V_1,\ldots,V_k$ and such that each cell $C \subset V_1 \cup \ldots \cup V_k$ is the graph of a quasi-affine map, following @bgv15 Lemma 3.19. This lemma first instructs us to consider $W$, the smooth $2$-dimensional locus of $V_1 \cup \ldots \cup V_k$.
 We achieved this by applying the smooth stratification algorithm, as presented in Section \@ref(sec:smooth-strat), and collecting the strata of codimension $n-2$.
-We then observed that, according to @mccallum1998 Theorems 2.2.3 and 2.2.4, if McCallum's projection operator is used and there is only a finite number of blow-up points, smooth cells are obtained automatically.
+We then observed that, according to @mccallum1998 Theorems 2.2.3 and 2.2.4, if McCallum's projection operator is used
+and there is only a finite number of blow-up points, smooth cells are obtained automatically.
+However, we chose to take the smooth stratification route because we will need the $k$ equations defining each cell of
+codimension $k$ produced by the smooth stratification algorithm.
 @bgv15, Lemma 3.19 then tells us to construct a CAD which is compatible with all $V_1,\ldots,V_k$ and the critical
 points of the projections of $W$ onto one- and $2$-dimensional coordinate subspaces.
 We did this by ensuring that the CAD has constant sign on all polynomials defining the sets $V_1,\ldots,V_k$, along with some additional polynomials which arise from computing the determinants of Jacobi matrices defining either the (smooth) $2$-dimensional cells, or $2$-dimensional strata.
@@ -88,10 +91,16 @@ It is not currently clear how this can be done, but one might want to start with
 In @bgvII an algorithm-like procedure was proposed for constructing a decomposition of a $3$-dimensional set $K$
 into topologically regular cylindrical cells which may not form an overall cylindrical decomposition, as cells may be cylindrical with respect to different orderings of variables.
 The first step in solving this problem may be to implement this procedure or, possibly, strengthen it to obtain a decomposition which is cylindrical with respect to the given coordinate ordering.
-The results in Section \@ref(sec:novel-frontier) make some strides towards the generalisation, allowing us to obtain the frontier condition in CADs compatible with sets of any dimension.
+The results in Chapter \@ref(sec:novel-frontier) make some strides towards the generalisation, allowing us to obtain the frontier condition in CADs compatible with sets of any dimension.
 
 In addition, there are open questions, both theoretical and practical, relating to the novel algorithm for obtaining the frontier condition, presented in Section \@ref(sec:novel-frontier). For example, one might try to tighten the triply exponential complexity bound, by exploring whether it could be lowered, or by proving that the bound on CAD with frontier condition is higher than the doubly exponential bound obtained by @davenportHeintz1988. Practically speaking, the algorithm presented in Section \@ref(sec:novel-frontier) should be implemented, following the suggestions made in Section \@ref(sec:novel-frontier-fw), and tested with some examples of small dimension.
 
 Finally, the implementation of the monotone CAD algorithm is a proof of concept and, as such, there is plenty of room for improvement where efficiency is concerned. For example, in order to compute the $x_1$-coordinates of the solutions to a system of multivariate polynomial equations, CAD projection is used. It is well-known that a doubly exponential number of polynomials may result. It may be more efficient to use other tools, e.g., Groebner bases, to compute these $x_1$-coordinates.
-
+Another possible improvement relates to computing the smooth $2$-dimensional locus required to obtain quasi-affine
+cells.
+As discussed in Section \@ref(sec:quasi-projop), certain CAD projection operators guarantee that smooth cells will
+be produced. However, the operators do not guarantee that we will get the $k$ defining equations for each cell of codimension $k$ which we rely on
+in later steps.
+A possible direction of further research may be to investigate whether such a projection operator exists and prove that
+it does indeed give us the required polynomials.
 
