@@ -971,8 +971,9 @@ Word ISEMPTY(Word r, Word V, Word Fs, Word Gs, Word Ineqs)
 ```
 
 The function constructs $F$, the defining formula for $S$ and uses `QEPCAD-B` to build a truth-invariant CAD of $\R^r$ compatible with $S$.
-Since `QEPCAD-B` assigns a truth value to each cell by evaluating its sample point against the input formula, if $S$ is
-empty, then this CAD will contain no true cells. Therefore, the function checks whether there are any true cells.
+`QEPCAD-B` evaluates the input formula at the sample point of each cell to determine its truth value.
+This function checks whether there are any true cells since, if $S$ is empty, all cells in the CAD constructed by
+`QEPCAD-B` will be false.
 
 ## Complexity {#sec:strat-complexity}
 
