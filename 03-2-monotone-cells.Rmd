@@ -159,17 +159,15 @@ $$
 contains only monotone curve intervals. [@bgv15 Theorem 3.18].
 
 Applying Corollary \@ref(cor:gamma-top-bottom) to $C$, we obtain continuous definable functions $\varphi,\psi \colon X' \to \R$ defining the bottom, $X_B$, and top, $X_T$, of $X$ respectively.
-Let $
-(c_1,\ldots,c_t)
-$
-such that the graphs of $\varphi\vert_{\{ c_i < x_1 < c_{i+1} \}}$ and $\psi\vert_{\{ c_i < x_1 < c_{i+1} \}}$ for all $1 \le i < t$ are monotone curve intervals. By @bgv15, Theorem 1.7, $X \cap \{ c_i < x_1 < c_{i+1} \}$ for all $1\le i < t$ is a semi-monotone set [@bgv15, proof of Lemma 3.18].
+Let $(c_1,\ldots,c_t)$
+be such that the graphs of $\varphi\vert_{\{ c_i < x_1 < c_{i+1} \}}$ and $\psi\vert_{\{ c_i < x_1 < c_{i+1} \}}$ for all $1 \le i < t$ are monotone curve intervals. By @bgv15, Theorem 1.7, $X \cap \{ c_i < x_1 < c_{i+1} \}$ for all $1\le i < t$ is a semi-monotone set [@bgv15, proof of Lemma 3.18].
 For the graphs of $\varphi$ and $\psi$ to be monotone curve intervals, we require that $\varphi$ and $\psi$ are either strictly increasing in, strictly decreasing in or independent of $x_1$. Thus, $(c_1,\ldots,c_t)$ are the critical points of $\varphi$ and $\psi$.
 Note that if $X$ is not bounded from below, then $\varphi$ does not exist and does not have a graph.
 In this case, it is clear that no refinement of $X_B$ is required.
 
 ### Finding the critical points {#sec:lagrange-refinement}
 
-We now discuss how to find these critical points of $\phi$ and $\psi$ starting with the polynomials defining cells in $\cal D$.
+We now discuss how to find the critical points of $\phi$ and $\psi$ starting with the polynomials defining cells in $\cal D$.
 
 Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ such that every $2$-dimensional cell contained in $V = V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map. Let
 \begin{equation}
@@ -275,7 +273,8 @@ V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0, g_\alpha
 \end{equation}
 such that $C_T \subset V$, where $g_2,\ldots,g_{\alpha - 1}$ are the same polynomials appearing in Equation \@ref(eq:c-alpha-top).
 
-Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$ -- it is a multivariate polynomial -- while $h$ from Equation \@ref(eq:jacobi-det) is expected to be a continuous differentiable function from $\R^{\alpha - 1} \to \R$. In order to use the above construction, we have to be careful only to consider points at which $g_\alpha$ is differentiable.
+Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$ is a multivariate polynomial while $h$ (from Equation
+\@ref(eq:jacobi-det)) is expected to be a continuous differentiable function from $\R^{\alpha - 1} \to \R$. In order to use the above construction, we have to be careful only to consider points at which $g_\alpha$ is differentiable.
 In other words, we need to compute derivatives of the implicit function $g_\alpha$:
 \begin{equation}
 \dfrac{d x_\alpha}{d x_i} = \dfrac{\partial g_\alpha / \partial x_i}{\partial g_\alpha / \partial x_\alpha}
@@ -331,7 +330,7 @@ We can easily find pairs $(s_j, g_{1,j}) \in \{-1,1\} \times {\cal A}_1$ by cons
 Perhaps an easier way, if the information is available, is to examine the signs of polynomials from $\mathcal{A}$ on the cell $X'$. Clearly, if the sign on $g_j$ is positive, $s_i = 1$ and if the sign is negative $s_i = -1$.
 
 For the refinement points $(c_1,\ldots,c_t)$, we want to find $x_1$-coordinates of the roots of the polynomials from
-Equations \@ref(eq:lagrange-solve-bot) and Equation \@ref(eq:lagrange-solve-top), separately, subject to the constraints from Equation \@ref(eq:lagrange-solve-ineqs).
+Equations \@ref(eq:lagrange-solve-bot) and \@ref(eq:lagrange-solve-top), separately, subject to the constraints from Equation \@ref(eq:lagrange-solve-ineqs).
 
 CAD can, of course, be used to do this, since we are really solving the quantifier elimination problem
 $$
@@ -419,8 +418,7 @@ Each coefficient in $g$ will be an integer number since $M$ is divisible by all 
 Let $K$ be a field and $L$ a finite (algebraic) extension of $K$.
 The field $L$ can be thought of as a finite dimensional vector space over $K$.
 
-Let $f, m \in L[x_1,\ldots,x_n]$.
-$f$ and $m$ can be thought of as univariate polynomials in $y$ with coefficients in $K[x_1,\ldots,x_n]$.
+Let $f, m \in L[x_1,\ldots,x_n]$ and view $f$ and $m$ as univariate polynomials in $y$ with coefficients in $K[x_1,\ldots,x_n]$.
 We are able to compute the norm of $f$, in $K[x_1,\ldots,x_n]$, by computing $\res_y(f,m)$. I.e., the resultant of $f$ and $m$ with respect to the variable $y$.
 
 Thus, let $m \in \Z[y]$ be a univariate polynomial having $\gamma \in \A$ as a root, where $\gamma \not \in \Q$ and
@@ -432,9 +430,7 @@ where each $m_i = x_1^{d_{i,1}} \cdots x_n^{d_{i,n}}$ is a monomial and $a_i$ is
 
 The minimal polynomial $m$ can be written as an element of $\Q[x_1,\ldots,x_n,y]$ which is independent of all variables $x_1,\ldots,x_n$, and $f$ can be expressed as a polynomial in $\Q[x_1,\ldots,x_n,y]$.
 By computing
-$$
-\res_y (f,m),
-$$
+$\res_y (f,m),$
 a polynomial $g \in \Q[x_1,\ldots,x_n]$ is obtained.
 The property that $f(x_1,\ldots,x_n) = 0$ if and only if $g(x_1,\ldots,x_n) = 0$ follows from a property of resultants:
 
@@ -614,6 +610,7 @@ $2$-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CA
 We now present pseudo-code for the monotone part of the algorithm.
 
 ::: {.algorithm data-latex="Monotone CAD"}
+$$\mathcal{R} := \textproc{MonotoneCad}(\mathcal{D}, \mathcal{A})$$
 
 **Input:**
 
@@ -622,32 +619,30 @@ We now present pseudo-code for the monotone part of the algorithm.
   - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_{r}$ is the family of projection polynomials associated with $\mathcal{E}$. Each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$.
 
 **Output:**
-$$
-{\cal R} := \{ {\cal R}_{\mathbf{b}} := \{c_1,\ldots,c_t\} \subset \A \mid \mathbf{b} \in \R^{k}, k \ge 0 \}
-$$
+- ${\cal R} := \{ {\cal R}_{\mathbf{b}} := \{c_1,\ldots,c_t\} \subset \A \mid \mathbf{b} \in \R^{k}, k \ge 0 \}$
 such that $\mathbf{b} \in \A^k$ is a $(0,\ldots,0)$-cell of the CAD induced by $\mathcal{E}$ on $\R^k$ and intersecting cells of the sub-CAD of $\mathcal{E}$ above $\mathbf{b}$ with straight lines and half-planes of the kind $\{x_{k+1} < c_i \}, \{x_{k+1} = c_i \}, \{x_{k+1} > c_i\}, 1 \le i \le t$ results in a refinement of the original CAD $\cal E$ of $\R^r$ such that every *true* cell of dimension at most $2$ is monotone.
 
 The following simple subroutine will be needed.
 
-Subroutine $h := {\rm sub}_{\mathbf{y}} (g)$, where
+Subroutine $h := \textproc{sub}_{\mathbf{y}} (g)$, where
 
 - $\mathbf{y} \in \A^m$,
 - $g \in \Z[y_1,\ldots,y_m,x_1,\ldots,x_n]$, and
 - $h := g(\mathbf{y}) \in \Z[x_1,\ldots,x_n]$ is the normalised polynomial obtained by evaluating $g$ at $\mathbf{y}$ (see Section \@ref(sec:sub-cad)).
 
-It will be convenient to overload this operator and write ${\rm sub}_{\mathbf{y}} (L)$, where $L \subset \Z[y_1,\ldots,y_m,x_1,\ldots,x_n]$ is a set of polynomials, to mean
-$$\{ {\rm sub}_{\mathbf{y}} (g) \mid g \in L \}.$$
-
+It will be convenient to overload this operator and write $\textproc{sub}_{\mathbf{y}} (L)$, where $L \subset \Z[y_1,\ldots,y_m,x_1,\ldots,x_n]$ is a set of polynomials, to mean
+$$\{ \textproc{sub}_{\mathbf{y}} (g) \mid g \in L \}.$$
 The following structures will be used to store, respectively, refinement polynomials and refinement points:
-\begin{align*}
-{\cal F} & := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k}, k \ge 0 \},\\
-{\cal R} & := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k}, k \ge 0 \}.\\
-\end{align*}
+
+- ${\cal F} := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k}, k \ge 0 \}$,
+- ${\cal R} := \{ {\cal R}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k}, k \ge 0 \}$.
+
 where $\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k}$.
 Each ${\cal R}_{\mathbf{b}} \subset \A$ will be a set of algebraic numbers, a subset of the real roots of somee of the
 polynomials in ${\cal F}_{\mathbf{b}} \subset \Z[x_{k+1}]$.
 
-The following helper function enables recursion on the tree-like structure of cells in $\mathcal{E}$.
+We will use the following helper function to perform recursion on the tree-like structure of cells in $\mathcal{E}$:
+$$\mathcal{R}_{\mathbf{b}} := \textproc{MonotoneCadHelper}(\mathcal{D, A}, \mathbf{b})$$
 
 **Input:**
 
@@ -655,7 +650,7 @@ The following helper function enables recursion on the tree-like structure of ce
 
   - ${\cal A} = {\cal A}_1,\ldots,{\cal A}_{n}$ is the family of projection polynomials associated with $\mathcal{D}$. Each ${\cal A}_i \subset \Z[x_1,\ldots,x_i]$.
 
-  - $\mathbf{b} \in \A^k$. There is a cad $\mathcal{E}$ of $\R^{k+n}$ such that $\mathcal{D}$ is the sub-cad of $\mathcal{E}$ above $\mathbf{b}$.
+  - $\mathbf{b} \in \A^k$ such that there is a CAD $\mathcal{E}$ of $\R^{k+n}$ having $\mathcal{D}$ as a sub-cad above $\mathbf{b}$.
 
 **Output:**
 
@@ -684,9 +679,9 @@ $(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monoton
 \State $\mathcal{C}_1 \gets \{ C'' \subset \A \mid \dim(C'') = 1 \}$
 
 \For {$\mathbf{c} \in \mathcal{C}_0$}
-    \State Compute ${\cal A'} \gets \{ \mathcal{ A'}_{i-1} := \mathrm{sub}_{\mathbf{c}} (\mathcal{A}_i) \mid 2 \le i \le n \}$
+    \State Compute ${\cal A'} \gets \{ \mathcal{ A'}_{i-1} := \textproc{sub}_{\mathbf{c}} (\mathcal{A}_i) \mid 2 \le i \le n \}$
     \State $\mathcal{D'} \gets $ sub-CAD of $\mathcal{D}$ in $\R^{n-1}$ above $\mathbf{c}$
-    \State $\mathrm{MonotoneCadHelper}(\mathcal{D', A'}, \mathbf{c})$ \Comment{proceed by induction}
+    \State $\textproc{MonotoneCadHelper}(\mathcal{D', A'}, \mathbf{c})$ \Comment{proceed by induction}
 \EndFor
 
 \State $\mathcal{F}_\mathbf{b} \gets \emptyset, \mathcal{G}_\mathbf{b} \gets \emptyset, \mathcal{R}_\mathbf{b} \gets \emptyset$ \Comment{initialise}
@@ -697,12 +692,12 @@ $(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monoton
         \State $j \gets \alpha$
         \While {$j \le n$}
             \State $C' := \projop{j} (C)$
-            \State $C'_B \gets \rm{Bottom}(C')$ \Comment{bottom of $C'$ or $\emptyset$ if it does not exist}
-            \State $C'_T \gets \rm{Top}(C')$ \Comment{top of $C'$ or $\emptyset$ if it does not exist}
+            \State $C'_B \gets \textproc{Bottom}(C')$ \Comment{bottom of $C'$ or $\emptyset$ if it does not exist}
+            \State $C'_T \gets \textproc{Top}(C')$ \Comment{top of $C'$ or $\emptyset$ if it does not exist}
             \State \Comment{If $C'_B$ (resp. $C'_T$) $= \emptyset$,}
             \State \Comment {then computations involving them will be skipped}
             \For {$C_\delta \in \{ C_B, C_T$ if not empty $\}$}
-                \State $\{g_2,\ldots,g_{j}\} \gets \rm{ZeroPolynomials}(C_\delta)$
+                \State $\{g_2,\ldots,g_{j}\} \gets \textproc{ZeroPolynomials}(C_\delta)$
                 \State Compute
 $$
 f_\delta \gets \det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{1}} & \dfrac{\partial g_{j}}{\partial x_{1}}\\
@@ -723,7 +718,7 @@ $$
     \EndFor
 \EndFor
 
-\State $\mathcal{R}_\mathbf{b} \gets \rm{RealRoots}(\mathcal{F}_{\mathbf{b}}) \cup \rm{RealRoots}(\mathcal{G}_{\mathbf{b}})$ \Comment{compute roots}
+\State $\mathcal{R}_\mathbf{b} \gets \textproc{RealRoots}(\mathcal{F}_{\mathbf{b}}) \cup \textproc{RealRoots}(\mathcal{G}_{\mathbf{b}})$ \Comment{compute roots}
 \State $\mathcal{F} \gets \mathcal{F} \cup \{ \mathcal{F}_\mathbf{b} \}$ \Comment{add refinement polynomials}
 \State $\mathcal{R} \gets \mathcal{R} \cup \{ \mathcal{R}_\mathbf{b} \}$ \Comment{add refinement points}
 \State \Return $\cal{R}_\mathbf{b}$
@@ -736,7 +731,7 @@ The algorithm for computing a monotone CAD can now be presented, making use of *
 \Procedure{MonotoneCad}{$\mathcal{D}, \mathcal{A}$}
 \State Initialise $\mathcal{F}$ and $\mathcal{R}$ as above for use with *MonotoneCadHelper*.
 \State $\mathbf{b} \gets \mathbf{0}$ \Comment{the unique CAD cell in $\R^0$}
-\State $\mathrm{MonotoneCadHelper(\mathcal{D}, \mathcal{A}, \mathbf{0})}$ \Comment{use helper function to populate $\mathcal{F}$ and $\mathcal{R}$}
+\State $\textproc{MonotoneCadHelper}(\mathcal{D}, \mathcal{A}, \mathbf{0})$ \Comment{use helper function to populate $\mathcal{F}$ and $\mathcal{R}$}
 \State \Return $\mathcal{R}$.
 \EndProcedure
 \end{algorithmic}

@@ -227,7 +227,7 @@ $$
 where $N \ge (I_1 + J_1) + \cdots + (I_M + J_M)$.
 :::
 
-We now recall two definitions which will be used throughout this thesis. 
+We now recall two ideas which will be used throughout this thesis.
 The first, of an analytic submanifold, is reproduced from @mccallum1998 and gives us the notion of smoothness.
 Informally, an analytic submanifold of dimension $k$ is a subset which looks locally like $\R^k$. It is defined as follows:
 
@@ -240,20 +240,30 @@ $S$ is locally the intersection of $n-k$ coordinate hyperplanes, then $S$ is cal
 dimension $k$.
 :::
 
-We will also need the notion of a critical point of a function, which is defined, following @@firststeps, as follows:
+We also recall, from @gv1995, the definition of an effectively nonsingular manifold. This is an analytic submanifold of $\R^n$,
+having dimension $k$, which includes $n-k$ polynomial equations in its definition.
+
+::: {.definition #eff-non-sing}
+A smooth manifold $X_k \subset \R^n$ of codimension $k$ is called effectively nonsingular if the system of equations and inequalities defining it includes a set of $k$ Pfaffian functions
+$h_{i_1}, \ldots , h_{i_k}$ such that the restriction $h_{i_j}\vert_{X_i} = 0$ and $d h_{i_j} \ne 0$ at every point $\mathbf{x} \in X_k$, for each $1 \le j \le k$.
+:::
+
+
+
+In addition, we will need the notion of a critical point of a function, which is defined, following @@firststeps, as follows:
 
 ::: {.definition #critical-point}
 [@firststeps, Definition 4.4]
 
-Let $M$ be an $n$-dimensional smooth manifold (see Definition \@ref(def:analytic-submanifold)) and $f$ be a smooth function on $M$. 
-At each point $\mathbf{x}$ of $M$, local coordinates are defined, by the definition of a smooth manifold. 
-Consider a local neighbourhood $U$ of $\mathbf{x}$. 
-If all of the first partial derivatives of $f$ with respect to each local coordinate vanish at $\mathbf{x}$, then $\mathbf{x}$ is called a critical point of $f$. 
+Let $M$ be an $n$-dimensional smooth manifold (see Definition \@ref(def:analytic-submanifold)) and $f$ be a smooth function on $M$.
+At each point $\mathbf{x}$ of $M$, local coordinates are defined, by the definition of a smooth manifold.
+Consider a local neighbourhood $U$ of $\mathbf{x}$.
+If all of the first partial derivatives of $f$ with respect to each local coordinate vanish at $\mathbf{x}$, then $\mathbf{x}$ is called a critical point of $f$.
 :::
 
-The smooth manifolds we will be working with here are mostly defined by polynomial equations, such that at each point the Jacobian matrix of these polynomials has full rank (or parts of these sets defined by some strict polynomial inequalities). 
+The smooth manifolds we will be working with here are mostly defined by polynomial equations, such that at each point the Jacobian matrix of these polynomials has full rank (or parts of these sets defined by some strict polynomial inequalities).
 In this case, the critical points of a function on the manifold can be defined in terms of points at which minors of the Jacobian matrix made from the function and the polynomials defining the manifold vanish.
-We will use this definition of critical point in Chapter \@ref(sec:quasi-affine). 
+We will use this definition of critical point in Chapter \@ref(sec:quasi-affine).
 
 ### Monotone cells
 

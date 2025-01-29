@@ -15,10 +15,11 @@ The following will be proved.
 
 ::: { .theorem #bgv-quasi-algorithm }
 Let
+$V_1,\ldots,V_k$ be
+bounded semialgebraic subsets of $\R^n$, each of which has dimension at most $2$, defined, respectively, by quantifier-free Boolean formulas
 $F_1,\ldots,F_k$
-be quantifier-free Boolean formulas containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \subset
-\Z[x_1,\ldots,x_n]$, having maximum degree $d$, such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i
-\subset \R^n$ of dimension at most $2$.
+containing $s$ different polynomials $\mathbf{F} = \{ f_1,\ldots, f_s \} \subset
+\Z[x_1,\ldots,x_n]$, having maximum degree $d$.
 
 Then there is an algorithm, taking $F_1,\ldots,F_k$ as input, which constructs an $\mathbf{F}$-invariant CAD
 $\mathcal{D}$ of $\R^n$ such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a
@@ -37,7 +38,8 @@ The proof of @bgv15, Theorem 3.19 begins by introducing $W$, the smooth $2$-dime
 Since $V$ is a semialgebraic set, it can be represented by a quantifier-free Boolean formula $F$.
 $W$ can be computed using the smooth stratification algorithm described in Section \@ref(sec:smooth-strat).
 In order to apply the algorithm, consider the sign sets $S_{(\ast_1,\ldots,\ast_s)} \subset \R^n$ of polynomials $f_1,\ldots,f_s$ appearing in the formula $F$, as described in Section \@ref(sec:strat-semialgebraic). Observe that a finite number of these sign-sets $S_1,\ldots,S_m$ form a partition of $V$.
-For each $S_i \subset V$, apply the smooth stratification algorithm to obtain a family $(X_{i,1}, \ldots X_{i,n})$ of strata, where each $X_{i,j}$ is a smooth subset of $S_i$ of codimension $j$.
+For each $S_i \subset V$, apply the smooth stratification algorithm to obtain a family $(X_{i,1}, \ldots X_{i,n})$ of
+strata, where each $X_{i,j}$ is an effectively nonsingular subset of $S_i$ of codimension $j$.
 We have $\dim(S_i) \le 2$, since each of the sets in the union $V$ has dimension at most $2$. Hence, every stratum $X_{i,j}$ of codimension $j < n-2$ will be empty.
 We obtain the smooth $2$-dimensional locus of $V$ by taking the union of strata of codimension $n-2$. For each stratum,
 it is important to keep the set of $n-2$ polynomials defining it, as these will be needed in the next step. We will need
@@ -63,14 +65,18 @@ Recall from Definition \@ref(def:cells) that each cell has a binary index $(i_1,
 Since cylindrical cells are disjoint and the McCallum projection ensures that they are smooth, the smooth $2$-dimensional locus of $V$ can be found by taking the union of all cells whose binary index sums to $n-2$.
 
 However, we also need a convenient way of defining each cell.
-More precisely, for each cell $C \subset \R^n$ of codimension $k$, we would like to find an algebraic set $V \supset C$ defined by $k$ polynomial equations. Although the McCallum projection guarantees smoothness, it does not guarantee that these $k$ polynomial equations will appear in the set of projection factors.
+More precisely, for each cell $C \subset \R^n$ of codimension $k$, we would like to find an algebraic set $V \supset C$
+of codimension $k$ which contains $k$ polynomial equations in its definition. I.e., we would like $C$ to be effectively
+nonsingular (see Definition \@ref(def:eff-non-sing)).
+Although the McCallum projection guarantees smoothness, it does not guarantee that ceells are effectively nonsingular,
+thus we cannot be certain that the $k$ functions required to define $V$ will appear in the set of projection polynomials.
 Therefore, we will need to use the smooth stratification algorithm and keep a note of the polynomials $h_1 = 0,\ldots,h_{n-k} = 0$ corresponding to each stratum (see the discussion of @gv1995, Theorem 1 in Section \@ref(sec:strat-basic-formula)).
 Using the stratification algorithm also seems cleaner, being the correct tool for the job.
 In addition, the bound on the number of strata is singly exponential, while the bound on the number of CAD cells is doubly exponential. An estimate for the number of cells, or the number of strata, with a given dimension is not currently known, but it seems likely that the number of strata will be less than the number of CAD cells.
 @gv04, Theorem 3.7 gives a method (which can be turned into an algorithm) for efficiently listing all sign sets associated with a set of polynomials and @bpr2006, Algorithm 14.21 (presented in Proposition \@ref(prp:bpr-qe)) describes how quantifier elimination can be performed in singly exponential time.
 
 In terms of the implementation, we currently use a CAD algorithm to perform emptiness checking. This is because the singly exponential algorithm from Proposition \@ref(prp:bpr-qe) has not yet been implemented.
-Thus, using a projection operator which produces smooth cells and gives us the $k$ defining equations for a cell of codimension $k$ would be very appealing.
+Thus, using a projection operator, which produces smooth cells which aree also effectively nonsingular, would be very appealing.
 Only a single recomputation of the initial smooth CAD would be needed, as opposed to multiple calls to the CAD algorithm, which is required for the emptiness check in the stratification algorithm in its current implementation.
 In addition, @kremer2020 propose an algorithm, along with its implementation, for refining a CAD to be compatible with some new polynomials. This gives us hope that we may be able to avoid a full re-computation. Investigating whether such a projection operator exists would be an interesting strand of further research.
 
@@ -81,7 +87,7 @@ In order to satisfy this property, @bgv15, Lemma 3.19 states that the CAD $\cal 
 critical points (see Definition \@ref(def:critical-point)), $W_{i}$ and $W_{i,j}$, of projections of $W$ onto one and $2$-dimensional coordinate subspaces $\opspan{x_i,x_j}$ and $\opspan{x_i}$.
 
 Let $W'_k$ be one of the smooth strata of dimension $k$ computed in the previous section, with $k\in \{1,2\}$.
-Since $W'_k$ has codimension $n-k$ and is a basic semialgebraic set, its formula contains $n-k$ polynomial equations and, possibly, some inequalities.
+Since $W'_k$ is effectively nonsingular and has codimension $n-k$, its defining formula contains $n-k$ polynomial equations and, possibly, some inequalities.
 Let $h_1,\ldots,h_{n-k}$ be the polynomials from @gv1995, Theorem 1. As discussed in Section
 \@ref(sec:strat-basic-formula)), the algebraic set $h_1 = 0, \ldots, h_{n-k} = 0$ has dimension $k$ at every point in $W'_k$.
 Consider the Jacobi matrix
@@ -224,7 +230,7 @@ This completes the construction required by the proof of @bgv15, Lemma 3.19.
 ### Complexity { #sec:quasi-complexity }
 
 We now analyse the complexity of the algorithm from Section \@ref(sec:quasi-affine-algorithm). Let $V_1,\ldots,V_k \subset
-\R^n$ be the family of input sets defined by quantifier-free Boolean formulas $F_1,\ldots,F_k$ which contain $s$
+\R^n$ be the family of input sets defined by the quantifier-free Boolean formulas $F_1,\ldots,F_k$ which contain $s$
 different polynomials having maximum degree $d$.
 By the result from Section \@ref(sec:strat-cotmplexity), the smooth stratification step with emptiness checking has complexity
 $$

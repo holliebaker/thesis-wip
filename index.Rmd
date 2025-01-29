@@ -317,7 +317,11 @@ The algorithm has been implemented on top of `QEPCAD-B`.
 
 According to the proof of @bgv15, Theorem 3.20, the construction proceeds in three stages.
 Chapter \@ref(sec:quasi-affine) explains how to implement the construction described in @bgv15, Theorem 3.19.
-We present an algorithm wich takes a family $V = (V_1,\ldots,V_k)$ of bounded semialgebraic sets, each of which has dimension at most two as input and constructs a CAD compatible with each $V_i, 1\le i \le k$. Each cell $C \subset V$ of this decomposition is smooth, i.e., if it has dimension $k$, then it looks locally like $\R^k$ (see Definition \@ref(def:analytic-submanifold)).
+We present an algorithm wich takes a family $V = (V_1,\ldots,V_k)$ of bounded semialgebraic sets, each of which has
+dimension at most two as input and constructs a CAD compatible with each $V_i, 1\le i \le k$. Each cell $C \subset V$ of
+this decomposition is smooth, i.e., if it has dimension $k$, then it looks locally like $\R^k$ (see Definition
+\@ref(def:analytic-submanifold)) and includes in its definition $k$ defining polynomials (see Definition
+\@ref(def:eff-non-sing)).
 The decomposition is also constructed such that each cell contained in $V$ is the graph of a quasi-affine map.
 This is a technical notion due to @bgv15 (see Definition \@ref(def:quasi-affine)) predominantly used as an intermediate step needed to obtain topologically regular cells and has nothing to do with quasi-affine sets in algebraic geometry. The author apologises for any confusion caused by overloading terms.
 It requires that, for the projection map from $\R^n$ onto each subspace defined by a subset of the coordinates $x_1,\ldots,x_n$, if the image of $C$ under the projection map has the same dimension as $C$, then the projection map must be injective. Intuitively, if $C$ fails to be quasi-affine, then $C$ "curls" or "folds" over itself.
