@@ -186,8 +186,8 @@ where $V \subset \R^n$ and $\dim(V_i) \le 2, 1 \le i \le k$.
 \State $\mathbf{F} \gets \textproc{ExtractPolynomials}(\{F_1,\ldots,F_k\}) \subset \Z[x_1,\ldots,x_n]$
 \State compute $\mathcal{D} \gets \textproc{ClassicalCad}(\mathbf{F}')$ for
 $$
-\mathbf{F}' := \mathbf{F} \cup\ \bigcup_{W'_2,1\le i < j \le n} \det\left(J_{W'_2,\hat{ij}}\right) \cup \bigcup_{W'_1, 1
-\le i \le n} \det\left(J_{W'_1,\hat{i}}\right),
+\mathbf{F}' := \mathbf{F}\ \cup\ \bigcup_{W'_2,1\le i < j \le n} W'_2 \cup \det\left(J_{W'_2,\hat{ij}}\right) \cup \bigcup_{W'_1, 1
+\le i \le n} W'_1 \cup \det\left(J_{W'_1,\hat{i}}\right),
 $$
 where $W'_1 \in \mathcal{W}_1$ and $W'_2 \in \mathcal{W}_2$ and $\hat{w}$ denotes the complement $\{1, \ldots, n\} \setminus w$
 
@@ -203,11 +203,15 @@ As described in Section \@ref(sec:strat-semialgebraic), $\textproc{SmoothTwoLocu
 basic semialgebraic sets so that $\textproc{Stratify}$ can be applied to each of them.
 Once the stratification has been computed, the strata of codimension $n-1$ and $n-2$ are collected.
 The subroutine returns a pair $(\mathcal{W}_1, \mathcal{W}_2)$, where $\mathcal{W}_k, k \in \{1,2\}$ is a family of
-sets of polynomials $W'_k = \{h_1,\ldots, h_{n-k}\} \subset \Z[x_1,\ldots,x_n]$ which can be used to define some
-algebraic sets of codimension $n-k$.
+sets of polynomials $W'_k = \{h_1,\ldots, h_{n-k}\} \subset \Z[x_1,\ldots,x_n]$ which define each stratum as an
+effectiveely nonsingular manifold of codimension $k$.
+stratum as an effectively nonsingular set.
 The second subroutine, $\textproc{ExtractPolynomials}$, simply returns the set of polynomials appearing in a collection
 of quantifier-free Boolean formulas.
 Finally, given a set of polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$, the $\textproc{ClassicalCad}$ subroutine returns an $\mathbf{F}$-invariant CAD of $\R^n$.
+Note that the $\textproc{ClassicalCad}$ is sign-invariant with respect to the polynomials $W'_k$ defining effectively
+nonsingular strata. This ensures that these polynomials are included in the set of projection polynomials for
+$\mathcal{D}$, and will be important in later steps.
 
 ## Correctness and complexity
 
@@ -229,10 +233,10 @@ This completes the construction required by the proof of @bgv15, Lemma 3.19.
 
 ### Complexity { #sec:quasi-complexity }
 
-We now analyse the complexity of the algorithm from Section \@ref(sec:quasi-affine-algorithm). Let $V_1,\ldots,V_k \subset
+We now analyse the complexity of the algorithm from Section \@ref(sec:quasiaffine-algorithm). Let $V_1,\ldots,V_k \subset
 \R^n$ be the family of input sets defined by the quantifier-free Boolean formulas $F_1,\ldots,F_k$ which contain $s$
 different polynomials having maximum degree $d$.
-By the result from Section \@ref(sec:strat-cotmplexity), the smooth stratification step with emptiness checking has complexity
+By the result from Section \@ref(sec:strat-complexity), the smooth stratification step with emptiness checking has complexity
 $$
 3^{s}\left(s(d+1)\right)^{\O(n)^{2}}.
 $$
