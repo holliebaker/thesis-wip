@@ -72,9 +72,7 @@ In the following sections, we will apply the construction given in the proof of 
 develop an algorithm for finding the set of refinement points in the semialgebraic case, starting with the CAD $\mathcal{D}$ and its set of input polynomials $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$. The following will be proved.
 
 ::: { .theorem #bgv-monotone-algorithm }
-Let $
-F_1,\ldots,F_k
-$
+Let $F_1,\ldots,F_k$
 be quantifier-free Boolean formulas such that $F_i, 1\le i \le k$ defines a bounded semialgebraic set $V_i \subset \R^n$ such that $\dim(V_i) \le 2$.
 Let $\mathbf{F} = \{f_1,\ldots,f_s\}$ be a set of polynomials in $\Z[x_1,\ldots,x_n]$ of maximum degree $d$ and $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ compatible with each $V_1,\ldots,V_k$ and such that each cell $C \subset V_1\cup\ldots\cup V_k$ is a smooth manifold and the graph of a quasi-affine map.
 
@@ -145,10 +143,8 @@ Finally, we write $C$ in terms of $x_1 \in X'$, $f$, $g$ and $\mathbf{h}$, we ob
 :::
 
 The refinement is achieved by finding a set of real numbers
-$
-(c_1,\ldots,c_t)
-$
-be such that, for each $1 \le i < t$,
+$(c_1,\ldots,c_t)$
+such that, for each $1 \le i < t$,
 $$
 X \cap \{c_i < x_1 < c_{i+1}\}
 $$
@@ -167,26 +163,37 @@ In this case, it is clear that no refinement of $X_B$ is required.
 
 ### Finding the critical points {#sec:lagrange-refinement}
 
-We now discuss how to find the critical points of $\phi$ and $\psi$ starting with the polynomials defining cells in $\cal D$.
-
-Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ such that every $2$-dimensional cell contained in $V = V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map. Let
-\begin{equation}
-{\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
-(\#eq:proj-fac-set)
-\end{equation}
-where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$, be the projection polynomials defining $\cal D$.
-I.e., polynomials in $\mathcal{A}_k$ have constant sign on every cell in the decomposition induced by $\mathcal{D}$ on $\R^k$.
+We now discuss how to find the critical points of $\varphi$ and $\psi$.
+Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ such that every $2$-dimensional cell contained in $V = V_1\cup\ldots\cup V_k$ is the graph of a quasi-affine map.
 
 Let $C$ be a $(1,0,\ldots,0,1)$-cell of the decomposition induced by $\cal D$ on $\R^{\alpha}$ such that $\projopinv{\alpha}(C)$ is a $2$-dimensional cell of $\mathcal{D}$ contained in $V$.
 We now describe how to find the numbers $(c_1,\ldots,c_t)$ such that $C \cap \{ c_i < x_1 < c_{i+1} \}$ is monotone.
 
+Given $\projopinv{\alpha}(C)$, we start by defining an algebraic variety which has
+codimension $n-2$ at every point in $\projopinv{\alpha}(C)$.
+Recall thatt $\mathcal{D}$ has been constructed so that each cylindrical cell contained in $V$ is the graph of a
+quasi-affine map, produced by the algorithm from Section \@ref(sec:quasiaffine-algorithm). Hence,
+$\projopinv{\alpha}(C)$ is contained in a smooth stratum of codimension $n-2$ and is effectively nonsingular (see
+Definition \@ref(def:eff-non-sing)), with its defining formula containing $n-2$ equations, $h_1 = 0,\ldots,h_{n-2} = 0$.
+By @gv1995, Theorem 1, the algebraic variety defined by these equations has dimension $2$ at every point in
+$\projopinv{\alpha}(C)$.
+Observe that each of these equations reduces the dimension of the variety it defines by $1$.
+Furthermore, since these equations appear in the defining formulas for strata, they will be included in the set of
+polynomials on which $\mathcal{D}$ is sign-invariant.
+I.e., for each smooth $2$-dimensional cell of $\mathcal{D}$, the $n-2$ polynomials defining the effectively nonsingular
+stratum containing it will appear as (factorised) projection polynomials for $\mathcal{D}$:
+\begin{equation}
+{\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
+(\#eq:proj-fac-set)
+\end{equation}
+where ${\cal A}_k \subset \Z[x_1,\ldots,x_k], 1 \le k \le n$.
 For convenience, we write $g(\mathbf{x}) = 0$ for some $g \in A_k$ and $\mathbf{x} \in \R^n$, such that $k < n$, if $g(\projop{k}(\mathbf{x})) = 0$.
+
 Consider the $(1,0,\ldots,0)$-cell
 $$
 C' := \projop{\alpha - 1}(C)
 $$
 of the decomposition induced by $\cal D$ on $\R^{\alpha - 1}$.
-
 Observe that
 $$
 \projop{1}(C) = (a,b) \subset \R
@@ -194,12 +201,13 @@ $$
 and, since $C'$ is a section cell, there exist polynomials
 $$
 g_2 \in {\cal A}_2,\ldots,g_{\alpha - 1} \in {\cal A}_{\alpha - 1}
-$$ such that $g_i(\mathbf{x}) = 0$ for all $1\le i \le \alpha - 1$ and $\mathbf{x} \in C'$.
-Therefore, there exists a $1$-dimensional algebraic variety
+$$ such that $g_i(\mathbf{x}) = 0$ for all $2\le i \le \alpha - 1$ and $\mathbf{x} \in C'$.
+In particular, $\{ g_2,\ldots,g_{\alpha - 1} \} \subset \{ h_1,\ldots,h_{n-2} \}$, and they define an algebraic variety
 $$
-V' := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha - 1}(\mathbf{x}) = 0 \right\}
+V' := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha - 1}(\mathbf{x}) = 0 \right\},
 $$
-such that $C' \subset V'$.
+such that $C' \subset V'$,
+which has codimension $\alpha - 2$ in $\R^{\alpha - 1}$ (dimension $1$) at every point in $C'$.
 
 Now consider the top of $C$, denoted by $C_T$.
 By definition, if $C$ is not bounded from above, then $C_T$ does not exist. Otherwise, $C_T$ is the graph of a
@@ -211,7 +219,8 @@ In the second case, $C_T$ can be written as
 (\#eq:c-alpha-top)
 \end{equation}
 where $\mathbf{x}$ is shorthand for $(x_1,\ldots,x_\alpha)$.
-By the construction of $\cal D$ (e.g., using Corollary \@ref(cor:mc-smooth)) $C_T$ is $C^\infty$ smooth, therefore $h$ is a differentiable function everywhere in $C'$.
+Since $C_T$ is one-dimensional, it is a subset of some smooth stratum of codimension $1$ and is therefore $C^\infty$
+smooth and effectively nonsingular. Therefore $h$ is a differentiable function everywhere in $C'$.
 
 This representation lends itself naturally to the problem of optimisation with constraints and the method of Lagrange multipliers.
 
@@ -264,14 +273,14 @@ Hence, optimal values for $(x_1,\ldots,x_{\alpha-1})$ exist and satisfy the equa
 
 Equation \@ref(eq:jacobi-det) gives a direct formula to solve Equation \@ref(eq:lagrange) for $x_1,\ldots,x_{\alpha - 1}$. Refinement points $(c_1,\ldots,c_t)$ are the $x_1$-coordinates of these solutions.
 
-Since $C_T$ is a section cell, there exists a polynomial $g_\alpha \in {\cal A}_\alpha$ such that $$
+Since $C_T$ is an effectively nonsingular section cell, there exists a polynomial $g_\alpha \in {\cal A}_\alpha$ such that $$
 C_T := \{ \mathbf{x} \in \R^\alpha \mid \projop{\alpha - 1}(\mathbf{x}) \in C', g_\alpha(\mathbf{x}) = 0 \}.
 $$ Thus, there exists an algebraic variety
 \begin{equation}
 V := \left\{ g_2(\mathbf{x}) = 0, \ldots, g_{\alpha-1}(\mathbf{x}) = 0, g_\alpha(\mathbf{x}) = 0 \right\}
 (\#eq:variety-v)
 \end{equation}
-such that $C_T \subset V$, where $g_2,\ldots,g_{\alpha - 1}$ are the same polynomials appearing in Equation \@ref(eq:c-alpha-top).
+of codimension $\alpha - 1$ and such that $C_T \subset V$, where $g_2,\ldots,g_{\alpha - 1}$ are the same polynomials appearing in Equation \@ref(eq:c-alpha-top).
 
 Note that $g_\alpha \in \Z[x_1,\ldots,x_\alpha]$ is a multivariate polynomial while $h$ (from Equation
 \@ref(eq:jacobi-det)) is expected to be a continuous differentiable function from $\R^{\alpha - 1} \to \R$. In order to use the above construction, we have to be careful only to consider points at which $g_\alpha$ is differentiable.
@@ -288,9 +297,7 @@ $$
 \dfrac{1}{d_T} \left( \partial g_{\alpha} / x_1 , \ldots , \partial g_{\alpha} / x_{\alpha - 1}\right)^T.
 $$
 This results in the determinant
-$$
-J_T = \frac{1}{d_T} J'_T,
-$$
+$J_T = \frac{1}{d_T} J'_T,$
 where $J'_T$ is the matrix from Equation \@ref(eq:jacobi-det) with the $\partial h / \partial x_i$ replaced with $\partial g_\alpha / \partial x_i$ for $1\le i \le \alpha - 1$. I.e.,
 \begin{equation}
 J'_T = \det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial g_{\alpha-1}}{\partial x_{1}} & \dfrac{\partial g_\alpha}{\partial x_{1}}\\
@@ -341,7 +348,7 @@ $$ where
 P(x_1,\ldots,x_\alpha) =\ & s_1 g_{1,1}(x_1) > 0 \land \ldots \land s_\ell g_{1,\ell}(x_1) > 0 \\
 \land\ & g_2(x_1,x_2) = 0 \land \ldots \land g_{\alpha - 1}(x_1,\ldots,x_{\alpha - 1}) = 0 \\
 \land\ & d_B(x_1,\ldots,x_\alpha) \ne 0 \land d_T(x_1,\ldots,x_\alpha) \ne 0 \\
-\land\ & ( J'_B(x_1,\ldots,x_{\alpha - 1}) = 0 \lor J'_T(x_1,\ldots,x_{\alpha - 1}) = 0 ) \\.
+\land\ & ( J'_B(x_1,\ldots,x_{\alpha - 1}) = 0 \lor J'_T(x_1,\ldots,x_{\alpha - 1}) = 0 ).
 (\#eq:lagrange-solve-qe)
 \end{split}
 \end{align}
@@ -469,9 +476,7 @@ $c \in \R$, which preserves both the cylindrical structure and existing monotone
 
 ::: {.lemma #one-dim-qa-is-monotone}
 Let $Y \subset \R^n$ be the graph of a quasi-affine map
-$$
-\mathbf{f} \colon (a,b) \to \R^{n-1}
-$$
+$\mathbf{f} \colon (a,b) \to \R^{n-1}$
 such that $(a,b) \subset \R$. Then $Y$ is a monotone cell.
 :::
 
@@ -485,9 +490,7 @@ This contradicts the assumption that $Y$ is the graph of a quasi-affine map.
 
 Suppose that $2 \le j \le \alpha - 1$.
 Since
-$$
-\projops{x_j,x_\alpha}(C)
-$$
+$\projops{x_j,x_\alpha}(C)$
 is $1$-dimensional, connected and the graph of a quasi-affine map, it follows from Lemma \@ref(lem:one-dim-qa-is-monotone) that $\projops{x_j,x_\alpha}(C)$ is a monotone cell and $f_j\vert_Y$ is already a monotone function. No refinement is needed.
 
 ### Case 2: $\alpha + 1 \le j \le n$
@@ -496,25 +499,22 @@ Now suppose that $\alpha + 1 \le j \le n$.
 By [@bgv13, Theorem 3], if functions $$\inf_{x_\alpha} f_j \colon \opspan{x_1} \to \opspan{x_j} \text{ and }
 \sup_{x_\alpha} f_j \colon \opspan{x_1} \to \opspan{x_j}$$ are monotone, then $f_j$ itself is monotone.
 Hence, we need to find refinement points
-$$
-\{ b_1,\ldots,b_r \} \subset (c_i,c_{i+1})
-$$
+$\{ b_1,\ldots,b_r \} \subset (c_i,c_{i+1})$
 such that, for each $1\le \ell < r$, the restrictions of both $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ to $B := \{ b_\ell < x_1 < b_{\ell + 1} \}$ are monotone.
 
 Consider $$
 Z := \projops{x_1,x_j}(C).
 $$
 If $\dim(Z) < 2$, then it is clear that $\dim(Z) = 1$, because
-$$
-Y' := \projop{1}(C)
-$$ is $1$-dimensional.
+$Y' := \projop{1}(C)$
+is $1$-dimensional.
 It follows that $\inf_{x_\alpha} f_j$ and $\sup_{x_\alpha} f_j$ coincide. Since $Z$ is $1$-dimensional, connected and the graph of a quasi-affine map, Lemma \@ref(lem:one-dim-qa-is-monotone) implies that $f_j$ is already monotone and no refinement is needed.
 
 On the other hand, if $\dim(Z) = 2$, since $\mathbf{f}$ is quasi-affine, $\projops{x_1,x_j}\vert_C$ is injective.
 Let $Z_T$ be the graph of $\sup_{x_\alpha} f_j$. Despite the notation, $Z_T$ is not necessarily the top of $Z$. In particular, $Z_T$ may have non-empty intersection with $Z$.
 Since semialgebraic sets are closed under intersection and projection, there exist points
-$$\{b_1,\ldots,b_k\} \subset (c_i,c_{i+1})
-$$ such that for all $1 \le i < k$ $$
+$\{b_1,\ldots,b_k\} \subset (c_i,c_{i+1})$
+such that for all $1 \le i < k$ $$
 Z^{b_i,b_{i+1}}_T := Z_T \cap \{ b_i < x_1 < b_{i+1} \}
 $$
 is either a subset of $Z$ or is disjoint from $Z$.
@@ -537,19 +537,25 @@ connected curve intervals which are graphs of continuous functions, and the inte
 
 We now discuss how to perform this refinement on the CAD structure. Let us assume that $C_T\ne \emptyset$, otherwise no refinement is needed. We must construct subsets $W \subset Y$ such that $f_j\vert_{W_T}$ is a smooth, continuous function.
 Let
-$$
-{\cal A} = ({\cal A}_1, \ldots, {\cal A}_n)
-$$
+${\cal A} = ({\cal A}_1, \ldots, {\cal A}_n)$
 be the projection factor set as defined in Equation \@ref(eq:proj-fac-set) and
 $$
 C' := \projop{j-1}(C), C^j := \projop{j}(C).
 $$
-Begin with $j := \alpha+1$ so that $C'$ is a cylindrical sector cell and there exists an algebraic variety $V$ containing polynomials $g_2,\ldots,g_{j-1}$ with each $g_i \in {\cal A}_i, 2 \le i \le j-1$, defined in Equation \@ref(eq:c-alpha-top), such that $C'_T\subset V$.
+Begin with $j := \alpha+1$ so that $C'$ is a cylindrical sector cell and there exists an algebraic variety, namely $V$
+(from Equation \@ref(eq:variety-v)), containing polynomials $g_2,\ldots,g_{j-1}$ with each $g_i \in {\cal A}_i, 2 \le i
+\le j-1$, such that $C'_T\subset V$ and $V$ has dimension $1$ at every point in $C'_T$.
 By definition $$
 C^j_T = \cl{C^j} \cap (C'_T \times \R)
-$$ and there exists a polynomial $g_j \in {\cal A}_j$ such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} \in C^j_T$. Since $C^j_T$ is either empty or the graph of a continuous function everywhere except, possibly, over a finite number of blow-up points, we need to find $x_1$-coordinates of points in $C'_T$ such that $g_j$ vanishes over an open interval.
+$$ and there exists a polynomial $g_j \in {\cal A}_j$ such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} \in C^j_T$.
+More specifically, since $C^j$ is part of (the projection of) an effectively nonsingular manifold of codimension $2$,
+let $g_j$ be one of the $n-2$ polynomials defining the smooth stratum containing the cylindrical cell
+$\projopinv{n}(C^j)$. Since $C^j$ is a section cell, it is a real root of $g_j(\mathbf{x})$ for all $\mathbf{x} \in C'$.
+Since $C^j$ has dimension $2$, $C^j_T$ is a root of $g_j(\mathbf{x})$ for all $\mathbf{x} \in C'_T$ except, possibly, at
+a finite number of isolated blow-up points (see Remark after Definition \@ref(def:blow-up-point))
+Thus, we need to find $x_1$-coordinates of points in $C'_T$ such that $g_j$ vanishes over an open interval.
 Since $C^j_T$ is $1$-dimensional, one way to achieve this is by computing a smooth stratification of $C^j_T$. If the
-projection of a $1$-dimensional stratum onto $x_1$ is a $0$-dimensional point $b \in \R$, then $b$ is the $x_1$-coordinate of a blow-up point.
+projection of a $1$-dimensional stratum onto $x_1$ is an isolated point $b \in \R$, then $b$ is the $x_1$-coordinate of a blow-up point.
 
 Alternatively, since the refinement points form a $0$-dimensional semialgebraic subset of $\R$, this set can be represented as a first-order Boolean formula
 $$
@@ -583,12 +589,12 @@ is obtained.
 The union of sets of refinement points $$
 \{b_{\alpha + 1,1}, \ldots, b_{\alpha + 1,r_{\alpha + 1}}\} \cup \ldots \cup \{b_{n,1}, \ldots, b_{n,r_n}\}
 $$
-forms the refinement of $C$ into $2$-dimensional monotone cells.
+will result in the refinement of $C$ into $2$-dimensional monotone cells.
 
 Altogether, we have proved the following.
 
 ::: {.lemma #monotone-section-algorithm}
-Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ with $\dim(V_i) \le 2$ and such that each cell $C \subset V_i$ is the graph of a quasi-affine map, for $1\le i \le k$. Let
+Let $\mathcal{D}$ be a CAD of $\R^n$ compatible with each set $V_1,\ldots,V_k \subset \R^n$ with $\dim(V_i) \le 2$ and such that each cell $C \subset V_i$ is the graph of a quasiaffine map, for $1\le i \le k$. Let
 $$
 {\cal A} = ({\cal A}_1,\ldots,{\cal A}_n),
 $$
@@ -602,15 +608,17 @@ a pair $(m_i, J_i) \in \Z[x_1] \times \Q$ (see Equation \@ref(eq:algebraic-numbe
 
 ::: {.Remark #monotone-sub-cad }
 Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm) can also be applied to
-$2$-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CAD of $\R^{n-k+1}$ above a zero-cell, as described in Section \@ref(sec:sub-cad).
+$2$-dimensional $(0,\ldots,0,1,i_{k+1},\ldots,i_n)$-cells by working in a sub-CAD of $\R^{n-k+1}$ above a
+$0$-dimensional cell, as described in Section \@ref(sec:sub-cad).
 :::
 
 ## Pseudo-code {#sec:monotone-algorithm}
 
 We now present pseudo-code for the monotone part of the algorithm.
 
+\newpage
 ::: {.algorithm data-latex="Monotone CAD"}
-$$\mathcal{R} := \textproc{MonotoneCad}(\mathcal{D}, \mathcal{A})$$
+$$\mathcal{R} := \textproc{MonotoneCad}(\mathcal{E}, \mathcal{A})$$
 
 **Input:**
 
@@ -623,8 +631,8 @@ $$\mathcal{R} := \textproc{MonotoneCad}(\mathcal{D}, \mathcal{A})$$
 such that $\mathbf{b} \in \A^k$ is a $(0,\ldots,0)$-cell of the CAD induced by $\mathcal{E}$ on $\R^k$ and intersecting cells of the sub-CAD of $\mathcal{E}$ above $\mathbf{b}$ with straight lines and half-planes of the kind $\{x_{k+1} < c_i \}, \{x_{k+1} = c_i \}, \{x_{k+1} > c_i\}, 1 \le i \le t$ results in a refinement of the original CAD $\cal E$ of $\R^r$ such that every *true* cell of dimension at most $2$ is monotone.
 
 The following simple subroutine will be needed.
-
-Subroutine $h := \textproc{sub}_{\mathbf{y}} (g)$, where
+$$h := \textproc{sub}_{\mathbf{y}} (g),$$
+where
 
 - $\mathbf{y} \in \A^m$,
 - $g \in \Z[y_1,\ldots,y_m,x_1,\ldots,x_n]$, and
@@ -632,6 +640,27 @@ Subroutine $h := \textproc{sub}_{\mathbf{y}} (g)$, where
 
 It will be convenient to overload this operator and write $\textproc{sub}_{\mathbf{y}} (L)$, where $L \subset \Z[y_1,\ldots,y_m,x_1,\ldots,x_n]$ is a set of polynomials, to mean
 $$\{ \textproc{sub}_{\mathbf{y}} (g) \mid g \in L \}.$$
+
+We will need to identify the $n-k$ polynomials which define an algebraic variety which has codimension $n-k$ at every
+point in a $k$-dimensional cylindrical cell which is part of an effectively nonsingular manifold. Define the subroutine
+$$
+\{h_{2},\ldots,h_{\alpha - 1}, h_{\alpha,B}, h_{\alpha,T},h_{\alpha + 1}, \ldots, h_n\} := \textproc{DefiningPolynomials}(C,\mathcal{A})
+$$
+where
+
+- $C$ is an $(i_1 = 1,i_2 = 0,\ldots,i_{\alpha - 1} = 0, i_\alpha = 1, i_{\alpha + 1} = 0, \ldots, i_n = 0)$-cell of a
+  sign-invariant CAD defined by the projection polynomials $\mathcal{A} = (\mathcal{A}_1,\ldots,\mathcal{A}_n)$.
+  $C$ has dimension $2$ and has been constructed so that it is part of an effectively nonsingular manifold.
+- $\{ h_2,\ldots,h_{\alpha - 1}, h_{\alpha,B}, h_{\alpha,T}, h_{\alpha + 1}, \ldots, h_n \}$: the $n-2$ polynomials
+  $h_2, \ldots, h_{\alpha - 1}, h_{\alpha + 1}, \ldots h_n$ come from the definition of the effectively nonsingular
+  manifold containing $C$, so the algebraic variety defined by these polynomials has codimension $n-2$ at every point in
+  $C$. The polynomials $h_{\alpha,B}$ and $h_{\alpha,T}$ come from the definition of the algebraic variety containing the effectively
+  nonsingular manyfold containing the $1$-dimensional section cells $\left(\projop{\alpha}(C)\right)_B$ and
+  $\left(\projop{\alpha}(C)\right)_T$, respectively. If $\projop{\alpha}(C)$ is not bounded from below (resp above),
+  these polynomials will be equal to zero.
+
+
+
 The following structures will be used to store, respectively, refinement polynomials and refinement points:
 
 - ${\cal F} := \{ {\cal F}_{\mathbf{b}} := \emptyset \mid \mathbf{b} \in \R^{k}, k \ge 0 \}$,
@@ -640,6 +669,9 @@ The following structures will be used to store, respectively, refinement polynom
 where $\mathbf{b}$ is a $(0,\ldots,0)$-cell in the decomposition induced by ${\cal E}$ on $\R^{k}$.
 Each ${\cal R}_{\mathbf{b}} \subset \A$ will be a set of algebraic numbers, a subset of the real roots of somee of the
 polynomials in ${\cal F}_{\mathbf{b}} \subset \Z[x_{k+1}]$.
+
+The subroutine $\textproc{CellsAbove}(C'')$ returns a set of cells $\{ C \in \mathcal{D} \mid C = \projopinv{n}(C''),
+\dim(C) = 2, \textproc{Truth}(C) = \mathrm{true} \}$, where $\textproc{Truth}$ retrieves the truth value of a cell.
 
 We will use the following helper function to perform recursion on the tree-like structure of cells in $\mathcal{E}$:
 $$\mathcal{R}_{\mathbf{b}} := \textproc{MonotoneCadHelper}(\mathcal{D, A}, \mathbf{b})$$
@@ -675,8 +707,8 @@ $(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monoton
 \EndIf
 
 \State $\mathcal{C} \gets \{ D \subset \A \mid D = \projop{1}(C) \text{ where } C \text{ is a true cell of } \mathcal{D} \text{ of dimension } 2 \}$
-\State $\mathcal{C}_0 \gets \{ \mathbf{c} \in \A \mid \dim(\mathbf{c}) = 0 \}$
-\State $\mathcal{C}_1 \gets \{ C'' \subset \A \mid \dim(C'') = 1 \}$
+\State $\mathcal{C}_0 \gets \{ \mathbf{c} \in \mathcal{C} \mid \dim(\mathbf{c}) = 0 \}$
+\State $\mathcal{C}_1 \gets \{ C'' \in \mathcal{C} \mid \dim(C'') = 1 \}$
 
 \For {$\mathbf{c} \in \mathcal{C}_0$}
     \State Compute ${\cal A'} \gets \{ \mathcal{ A'}_{i-1} := \textproc{sub}_{\mathbf{c}} (\mathcal{A}_i) \mid 2 \le i \le n \}$
@@ -687,8 +719,9 @@ $(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monoton
 \State $\mathcal{F}_\mathbf{b} \gets \emptyset, \mathcal{G}_\mathbf{b} \gets \emptyset, \mathcal{R}_\mathbf{b} \gets \emptyset$ \Comment{initialise}
 
 \For {$C'' \in \mathcal{C}_1$}
-    \For {$C \in \text{true cells of } \mathcal{D} \text{ such that} \dim(C) = 2 \text{ and } C = \projop{1}(C)$}
+    \For {$C \in \textproc{CellsAbove}(C'')$}
         \State \Comment{$C$ has binary index $(1,0,\ldots,0,i_\alpha,0,\ldots,0)$ where $i_\alpha = 1$}
+        \State $H := \textproc{DefiningPolynomials}(C,\mathcal{A})$
         \State $j \gets \alpha$
         \While {$j \le n$}
             \State $C' := \projop{j} (C)$
@@ -697,12 +730,14 @@ $(1,i_2,\ldots,i_n)$-cell of $\mathcal{D}$ with dimension at most $2$ is monoton
             \State \Comment{If $C'_B$ (resp. $C'_T$) $= \emptyset$,}
             \State \Comment {then computations involving them will be skipped}
             \For {$C_\delta \in \{ C_B, C_T$ if not empty $\}$}
-                \State $\{g_2,\ldots,g_{j}\} \gets \textproc{ZeroPolynomials}(C_\delta)$
+                \State \Comment{retrieve the appropriate deefining polynomials}
+                \State $\{g_2,\ldots,g_{j}\} \subset H = \{ h_2, \ldots, h_{\alpha - 1}, h_{\alpha,\delta}, h_{\alpha + 1},
+                \ldots, h_n\}$
                 \State Compute
 $$
 f_\delta \gets \det\begin{pmatrix}\dfrac{\partial g_{2}}{\partial x_{1}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{1}} & \dfrac{\partial g_{j}}{\partial x_{1}}\\
 \vdots &  &  & \vdots\\
-\dfrac{\partial g_{1}}{\partial x_{j-1}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{j-1}} & \dfrac{\partial g_{j}}{\partial x_{j-1}}
+\dfrac{\partial g_{2}}{\partial x_{j-1}} & \cdots & \dfrac{\partial g_{j-1}}{\partial x_{j-1}} & \dfrac{\partial g_{j}}{\partial x_{j-1}}
 \end{pmatrix}
 $$
                 \Comment{see Equation \ref{eq:jacobi-det}, constraints $g_{2},\ldots,g_{j-1}$ and optimisation function $g_j$}
@@ -730,8 +765,8 @@ The algorithm for computing a monotone CAD can now be presented, making use of *
 \begin{algorithmic}[1]
 \Procedure{MonotoneCad}{$\mathcal{D}, \mathcal{A}$}
 \State Initialise $\mathcal{F}$ and $\mathcal{R}$ as above for use with *MonotoneCadHelper*.
-\State $\mathbf{b} \gets \mathbf{0}$ \Comment{the unique CAD cell in $\R^0$}
 \State $\textproc{MonotoneCadHelper}(\mathcal{D}, \mathcal{A}, \mathbf{0})$ \Comment{use helper function to populate $\mathcal{F}$ and $\mathcal{R}$}
+\State \Comment{the unique CAD cell in $\R^0$}
 \State \Return $\mathcal{R}$.
 \EndProcedure
 \end{algorithmic}
@@ -745,10 +780,14 @@ The correctness of the algorithm from Theorem \@ref(thm:bgv-monotone-algorithm) 
 Lemma 3.19, and is proved in Lemmas \@ref(lem:monotone-sector-algorithm) and \@ref(lem:monotone-section-algorithm).
 The algorithm described in Section \@ref(sec:monotone-algorithm) considers each $2$-dimensional cell in a sub-CAD $\mathcal{E}$ of $\R^n$ above a $0$-dimensional cell $\mathbf{b} \in \R^{k-1}$. This is exactly the inductive step of @bgv15, Theorem 3.20, where an $(i_1,0,\ldots,0,i_{\alpha},0,\ldots,0)$-cell, where $i_1 = i_\alpha = 1$, is considered.
 By Corollary \@ref(cor:gamma-top-bottom) to $C$, the $2$-dimensional subset $X \subset \opspan{x_1,x_\alpha}$ is
-obtained. The first part of @bgv15, Lemma 3.18 describes how $X$ should be refined into $2$-dimensional semi-monotone sets. The construction described in Section \@ref(sec:quasi-affine) explains how to obtain the set of refinement points $(c_1,\ldots,c_t) \subset \A$.
+obtained. The first part of @bgv15, Lemma 3.18 explains how $X$ should be refined into $2$-dimensional semi-monotone sets. The construction described in Section \@ref(sec:quasi-affine) explains how to obtain the set of refinement points $(c_1,\ldots,c_t) \subset \A$.
 $C$ is the graph of a quasi-affine map $\mathbf{f} = (f_{i_1},\ldots,f_{i_{n-2}})$ where each component $f_j \colon X \to \opspan{x_j}$ for $j \in \{1,\ldots,n\} \setminus \{1,\alpha\}$ is a quasi-affine function. The second part of @bgv15, Lemma 3.18 describes how to refine $X$ such that each function $f_j$ is monotone. By @bgv15, Lemma 3.16, if every component $f_i$ is monotone on a subset in the refinement of $X$, then the map $\mathbf{f}$ itself is monotone on that subset of $X$.
 The construction described in Section \@ref(sec:monotone-sections) describes how to find the refinement points to ensure that $\mathbf{f}$ is a monotone map.
-Thus, the construction in this section satisfies the properties required in the proof of @bgv15, Lemma 3.18 for $C$ to be monotone.
+When applying Lagrange multipliers, care had to be taken to identify polynomials which define an algebraic variety of
+the correct dimension. The fact that the cell $C$ is part of an effectively nonsingular manifold of codimension $n-2$,
+produced by the smooth stratification algorithm from Chapter \@ref(sec:smooth-strat), takes care of this.
+Thus, the construction in this section satisfies the properties required in the proof of @bgv15, Lemma 3.18, and $C$ has
+been refined into a disjoint union of monotone cells.
 
 ### Complexity { #sec:monotone-complexity }
 
