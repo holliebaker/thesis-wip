@@ -163,9 +163,7 @@ This follows from the fact that the class of finite unions of this kind satisfy 
 [@gv04, Definition 2.1]
 
 A Pfaffian chain of order $r \ge 0$ and degree $\alpha \ge 1$ in an open domain $G \subset \R^n$ is a sequence of analytic functions
-$
-f_1, \ldots , f_r
-$
+$f_1, \ldots , f_r$
 in $G$ satisfying the differential equations
 $$
 {df}_j(\mathbf{x}) = \sum^n_{i=1} g_{ij}(\mathbf{x}, f_1(\mathbf{x}), \ldots, f_j(\mathbf{x})) dx_i
