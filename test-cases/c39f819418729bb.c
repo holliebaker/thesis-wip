@@ -1,4 +1,3 @@
-``` {label="qepcad-sample"}
 =======================================================
 Enter an informal description  between '[' and ']':
 [ Unit Circle ]
@@ -31,6 +30,9 @@ P_1,2  = fac(J_1,1) = fac(dis(A_2,1))
 
 A_2,1  = input
        = y^2 + x^2 - 1
+
+
+
 Before Solution >
 d-true-cells
 ---------- Information about the cell (4,2) ----------
@@ -140,12 +142,10 @@ y^2 + x^2 - 1 = 0
 
 =====================  The End  =======================
 
--------------------------------------------------------
-0 Garbage collections, 0 Cells and 0 Arrays reclaimed,
-in 0 milliseconds.
+-----------------------------------------------------------------------------
+0 Garbage collections, 0 Cells and 0 Arrays reclaimed, in 0 milliseconds.
 488853 Cells in AVAIL, 500000 Cells in SPACE.
 
 System time: 9 milliseconds.
 System time after the initialization: 3 milliseconds.
--------------------------------------------------------
-```
+-----------------------------------------------------------------------------

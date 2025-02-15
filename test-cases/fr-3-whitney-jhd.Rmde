@@ -52,8 +52,7 @@ Coordinate 3 = 1
 
 
 Before Solution >
-d-cell-t(3,2,2)---------- Information about the cell (3,2,2) 
-  (Dimension (1,0,0) (1))
+d-cell-t(3,2,2)---------- Information about the cell (3,2,2) (Dimension (1,0,0) (1))
 
 Signs of projection factors ------------------------
 
@@ -102,8 +101,7 @@ Coordinate 3 = 0
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(3,6,2)---------- Information about the cell (3,6,2) 
-  (Dimension (1,0,0) (1))
+d-cell-t(3,6,2)---------- Information about the cell (3,6,2) (Dimension (1,0,0) (1))
 
 Signs of projection factors ------------------------
 
@@ -150,8 +148,7 @@ Coordinate 3 = 0
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(4,2,2)---------- Information about the cell (4,2,2) 
-  (Dimension (0,0,0) (0))
+d-cell-t(4,2,2)---------- Information about the cell (4,2,2) (Dimension (0,0,0) (0))
 
 Signs of projection factors ------------------------
 
@@ -198,8 +195,7 @@ Coordinate 3 = 0
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(4,3,2)---------- Information about the cell (4,3,2) 
-  (Dimension (0,1,0) (1))
+d-cell-t(4,3,2)---------- Information about the cell (4,3,2) (Dimension (0,1,0) (1))
 
 Signs of projection factors ------------------------
 
@@ -246,8 +242,7 @@ Coordinate 3 = 0
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(4,4,2)---------- Information about the cell (4,4,2) 
-  (Dimension (0,0,0) (0))
+d-cell-t(4,4,2)---------- Information about the cell (4,4,2) (Dimension (0,0,0) (0))
 
 Signs of projection factors ------------------------
 
@@ -294,8 +289,7 @@ Coordinate 3 = 0
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(4,5,2)---------- Information about the cell (4,5,2) 
-  (Dimension (0,1,0) (1))
+d-cell-t(4,5,2)---------- Information about the cell (4,5,2) (Dimension (0,1,0) (1))
 
 Signs of projection factors ------------------------
 
@@ -342,8 +336,7 @@ Coordinate 3 = 0
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(4,6,2)---------- Information about the cell (4,6,2) 
-  (Dimension (0,0,0) (0))
+d-cell-t(4,6,2)---------- Information about the cell (4,6,2) (Dimension (0,0,0) (0))
 
 Signs of projection factors ------------------------
 
@@ -390,8 +383,7 @@ Coordinate 3 = 0
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(2,2,2)---------- Information about the cell (2,2,2) 
-  (Dimension (0,0,0) (0))
+d-cell-t(2,2,2)---------- Information about the cell (2,2,2) (Dimension (0,0,0) (0))
 
 Signs of projection factors ------------------------
 
@@ -440,8 +432,7 @@ Coordinate 3 = 0
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(2,2,3)---------- Information about the cell (2,2,3) 
-  (Dimension (0,0,1) (1))
+d-cell-t(2,2,3)---------- Information about the cell (2,2,3) (Dimension (0,0,1) (1))
 
 Signs of projection factors ------------------------
 
@@ -490,8 +481,7 @@ Coordinate 3 = 1/2
 ----------------------------------------------------
 
 Before Solution >
-d-cell-t(2,2,4)---------- Information about the cell (2,2,4) 
-  (Dimension (0,0,0) (0))
+d-cell-t(2,2,4)---------- Information about the cell (2,2,4) (Dimension (0,0,0) (0))
 
 Signs of projection factors ------------------------
 

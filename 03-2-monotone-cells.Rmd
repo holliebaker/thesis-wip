@@ -233,7 +233,6 @@ $$
 \mathcal{L}(\mathbf{x}, \lambda_1,\ldots,\lambda_k) = f(\mathbf{x}) - \lambda_1 g_1(\mathbf{x}) - \cdots - \lambda_k g_k(\mathbf{x}),
 $$
 where $\mathbf{x} \in \R^n$ and $(\lambda_1,\ldots,\lambda_k) \in \R^k$ are new variables.
-
 Critical points can be found by solving the system of equations
 \begin{equation}
 \dfrac{\partial f}{\partial x_i} - \lambda_1 \dfrac{\partial g_1}{\partial x_i} - \cdots - \lambda_k \dfrac{\partial g_k}{\partial x_i}= 0,
@@ -341,7 +340,7 @@ Equations \@ref(eq:lagrange-solve-bot) and \@ref(eq:lagrange-solve-top), separat
 
 CAD can, of course, be used to do this, since we are really solving the quantifier elimination problem
 $$
-\exists x_2,\ldots,x_{\alpha - 1},x_\alpha P(x_1,\ldots,x_\alpha)
+\exists x_2,\ldots,x_{\alpha - 1},x_\alpha \left(P(x_1,\ldots,x_\alpha)\right)
 $$ where
 \begin{align}
 \begin{split}
@@ -808,7 +807,7 @@ As we are well aware, the number of polynomials and their degrees will be at mos
 However, a better bound on the number of refinement points could be obtained by considering the number of connected components in the set defined by the roots of the refinement polynomials, i.e., the $0$-th Betti number, $b_0$.
 @gv2009 Section 6.1 present some bounds on the total Betti number (sum of Betti numbers of all orders) ${\tt{b}}(S)$ of a semialgebraic set $S \subset \R^n$.
 For a semialgebraic set $S \subset \R^n$ defined by a conjunction of any number of polynomials having maximum degree $d$, ${\tt{b}}(S) \le d(2d - 1)^{n-1}$ [@gv2009, Section 6.1 (a)].
-Note that Equation \@ref(eq:lagrange-solve-bot) (and Equation \@ref(eq:lagrange-solve-top)) defines two systems of $\alpha - 1$ equations in $\alpha - 1$ unknowns and both systems have a finite number of solutions.
+Note that Equation \@ref(eq:lagrange-solve-bot) \@ref(eq:lagrange-solve-top) define two systems of $\alpha - 1$ equations in $\alpha - 1$ unknowns and both systems have a finite number of solutions.
 Thus, a generalisation of Bezout's Theorem states that, over an algebraically closed field, if a system of $n$ polynomial equations, having degrees $d_1,\ldots,d_n$, in $n$ unknowns has a finite number of solutions, then this number, counted with multiplicities, is at most the product $d_1 \cdots d_n$.
 This will be an upper bound on the number of different real solutions to the system of polynomials. Hence, given maximum
 degreee $d$ of polynomials appearing in Equation \@ref(eq:lagrange-solve-bot) (and Equation \@ref(eq:lagrange-solve-top)), there will be at most $d^n$ real roots.
@@ -836,14 +835,14 @@ which is asymptotically the same as
 $$
 (s(d+1))^{\O(1)^{n}}.
 $$
-Thus, we obtain a bound on the total number of refinement points, which is asymptotically the same as the bound on the number of cells in the CAD containing quasi-affine cells. This gives us an upper bound on the complexity, number of cells, number of polynomials and degrees defining a CAD which is monotone with respect to all $V_1,\ldots,V_k$.
+We obtain a bound on the total number of refinement points, which is asymptotically the same as the bound on the number of cells in the CAD containing quasi-affine cells. This gives us an upper bound on the complexity, number of cells, number of polynomials and degrees defining a CAD which is monotone with respect to all $V_1,\ldots,V_k$.
 
 ## Computing the refinements { #sec:compute-refinement }
 
 We now describe how to refine the CAD $\cal D$ to be compatible with the refinement points in $\cal R$.
 
 For $1 \le k \le n$, and each $0$-dimensional cell $\mathbf{c}' = (c_1,\ldots,c_{k-1}) \in \R^{k-1}$, consider each
-refinement point $\mathbf{c} = (c_1,\ldots,c_{k-1}, c_k) \in {\cal R}_(\mathbf{c'})$. It is important to note that refinement points aappear in ascending order.
+refinement point $\mathbf{c} = (c_1,\ldots,c_{k-1}, c_k) \in {\cal R}_(\mathbf{c'})$. It is important to note that refinement points appear in ascending order.
 Let ${\cal D}'$ be the sub-CAD of $\R^{n-k}$ above $(c_1,\ldots,c_k)$, which is a $(0,\ldots,0)$-cell of the CAD induced by $\cal D$ on $\R^k$ and let ${\cal D}''$ be the CAD induced by ${\cal D}'$ on $\R^{k+1}$. We want to refine ${\cal D}''$ such that $\mathbf{c}$ is a new $(0)$-cell.
 We need only to consider coordinate $k+1$ of $\mathbf{c}$. Denote it by $c_{k+1}$.
 For each $(0)$-cell $b_{k+1}$ of ${\cal D}''$, compute $s := \sign(b_{k+1} - c_{k+1})$. If $s \le 0$, consider the next $(0)$-cell in ${\cal D}''$. Otherwise, $s > 0$ and there is a $(1)$-cell $C$ in ${\cal D}''$ such that $c_{k+1} \in C$. This is the cell we need to refine.

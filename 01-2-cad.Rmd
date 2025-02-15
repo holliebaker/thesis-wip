@@ -156,9 +156,11 @@ Let $C \subset \R^n$ be a $2$-dimensional cylindrical cell which is the graph of
 :::
 
 ::: {.remark}
-It was proved by @pianomovers1983 that a cylindrical decomposition, compatible with a semialgebraic set and satisfying the frontier condition, can be obtained following a linear rotation of coordinates.
-@jhd20 prove that a cylindrical decomposition having constant sign on a set of input polynomials will contain topologically regular cells and satisfy the frontier condition, regardless of the method used to construct it, as long as the input polynomials do not blow-up anywhere.
-Proposition \@ref(prp:monotone-topologically-regular) (@bgv13, Theorem 1) asserts that every monotone cell is topologically regular, so @bgv15, Theorem 3.20 describes the construction of a CAD, compatible with a family $V_1,\ldots,V_k$ of definable subsets of $\R^n$, each having dimension at most $2$, in the potential presence of blow-up points and without the need to make a change of coordinates.
+Proposition \@ref(prp:monotone-topologically-regular) (@bgv13, Theorem 1) asserts that every monotone cell is
+topologically regular, so @bgv15, Theorem 3.20 describes the construction of a CAD, compatible with a family
+$V_1,\ldots,V_k$ of definable subsets of $\R^n$, each having dimension at most $2$, in the potential presence of blow-up
+points and without the need to make a change of coordinates (see Section \@ref(sec:well-based) for a discussion of
+related work).
 :::
 
 ### Constructing a CAD {#sec:cad-construction}
@@ -172,10 +174,10 @@ Let $\mathbf{F} := (f_1,\ldots,f_s) \subset \Z[x_1,\ldots,x_n]$ be a set of poly
 :::
 
 ::: {.remark}
-It is theoretically possible to work over the reals, having polynomials with coefficients in $\R$, and we do so in Chapter \@ref(sec:novel-frontier) (see Remark after Theorem \@ref(thm:main)). 
-However, we will be working over the algebraic numbers throughout Chapters \@ref(sec:smooth-strat)-\@ref(sec:frontier), $\A$, which are easy to represent and manipulate in a computer. 
-It is possible to represent any algebraic number as the root of a polynomial with either algebraic, rational or integer coefficients. 
-For convenience, we chose to let input polynomials have coefficients in $\Z$. 
+It is theoretically possible to work over the reals, having polynomials with coefficients in $\R$, and we do so in Chapter \@ref(sec:novel-frontier) (see Remark after Theorem \@ref(thm:main)).
+However, we will be working over the algebraic numbers throughout Chapters \@ref(sec:smooth-strat)-\@ref(sec:frontier), $\A$, which are easy to represent and manipulate in a computer.
+It is possible to represent any algebraic number as the root of a polynomial with either algebraic, rational or integer coefficients.
+For convenience, we chose to let input polynomials have coefficients in $\Z$.
 :::
 
 Let $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$ be a set of polynomials with integer coefficients. We will now describe the algorithm proposed by @collins1975, closely following @coste2000, for constructing an $\mathbf{F}$-invariant CAD of $\R^n$.
@@ -308,6 +310,8 @@ such that for all $\mathbf{x} \in C'$, the set $\{ \psi_i(\mathbf{x}), \ldots, \
 :::
 
 This follows from the results previously proved. Applying Theorem \@ref(thm:cad-lift), we are able to pass from a $\projop{k-1}(\mathbf{F})$-invariant CAD of $\R^{k-1}$ to a $\projop{k}(\mathbf{F})$-invariant CAD of $\R^k$. Thus, by iterating the projection operation until we obtain a set of polynomials in $\Z[x_1]$, isolating their roots, and then iteratively applying Theorem \@ref(thm:cad-lift), we are able to obtain an $\mathbf{F}$-invariant CAD of $\R^n$.
+
+
 
 ### Complexity bounds and variations
 
@@ -460,4 +464,42 @@ construction algorithm may be applied unchanged. In order to represent a cell by
 may be necessary to split a cell into several disjoint semialgebraic sets. Thus, each cell will be represented in
 disjunctive normal form, where each literal is a sign condition on a projection polynomial or one of its derivatives.
 The modification to `QEPCAD-B` is described in Section \@ref(sec:additional-modifications).
+
+### Well-based CADs and their properties { #sec:well-based }
+
+We now return briefly to the desirable desirable topological properties of cylindrical decompositions.
+Recall from Example \@ref(exm:top-bottom-not-cylindrical) (see also Example \@ref(exm:whitney-jhd)) that blow-up points
+can cause cylindrical cells and their boundaries to have
+undesirable properties.
+In general, sign-invariant CADs may contain cells which are not topologically regular and may fail to satisfy the
+frontier condition.
+In this thesis, we will mainly be concerned with modifying the algorithm used to construct a CAD to obtain these properties. However,
+@pianomovers1983 and @jhd20 prove that, if an additional condition is imposed on the CAD, these properties will be
+obtained automatically. Such a CAD will be called well-based and is
+defined as follows:
+
+::: {.definition #well-based}
+[@pianomovers1983, Definition 5]
+
+Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$, with $\mathbf{F} \subset \Z[x_1,\ldots,x_n]$, and let
+$\mathcal{D'}$ be the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$.
+$\mathcal{D}$ is called well-based if, for every cell $C'$ of $\mathcal{D}'$ no polynomial in $\mathbf{F}$ is
+identically zero over a point in $C'$.
+:::
+
+@pianomovers1983, Section 4, proved that it is always possible, and presented an algorithm, to construct a sign-invariant
+CAD, produced by Collins' algorithm, which satisfies the frontier condition if a linear
+rotation of coordinates is permitted.
+This change of coordinates allows the authors to force a well-based CAD to be produced.
+It is proved in @pianomovers1983, Lemma 2, that a well-based decomposition will always satisfy the frontier
+condition.
+Furthermore, @pianomovers1983, Theorem 2, asserts that the cells in a well-based decomposition form a regular cell complex.
+
+@jhd20 later generalised the results of @pianomovers1983 by proving that the cells of any strong (see Definition
+\@ref(def:laz-strong)), well-based, $\mathbf{F}$-invariant CAD form a regular cell complex, regardless of the method
+used to construct the CAD [@jhd20, Theorem 3.11]. A strong CAD is one which contains only topologically regular cells
+and satisfies the frontier condition.
+In other words, if the set of input polynomials $\mathbf{F} \subset
+\Z[x_1,\ldots,x_n]$ contains no blow-up points, then the $\mathbf{F}$-invariant CAD will be strong.
+
 
