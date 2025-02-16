@@ -1,8 +1,7 @@
-# Appendix A: Test Cases { - #sec:appendix }
+# (APPENDIX) Other stuff {-}
+# QEPCAD-B output
 
-## QEPCAD-B output for test cases
-
-### Quasi-affine
+## Quasi-affine { #sec:quasi-output }
 
 The `QEPCAD-B` output from Example \@ref(exm:sphere) is shown below.
 
@@ -10,7 +9,7 @@ The `QEPCAD-B` output from Example \@ref(exm:sphere) is shown below.
 
 ```
 
-### Monotone
+## Monotone { #sec:monotone-output }
 
 The `QEPCAD-B` output from Example \@ref(exm:qanm) is shown below.
 
@@ -18,7 +17,7 @@ The `QEPCAD-B` output from Example \@ref(exm:qanm) is shown below.
 
 ```
 
-### Frontier Condition
+## Frontier Condition { #sec:frontier-output }
 
 The `QEPCAD-B` output from Example \@ref(exm:fr-3-whitney-jhd) is shown below.
 
@@ -26,7 +25,7 @@ The `QEPCAD-B` output from Example \@ref(exm:fr-3-whitney-jhd) is shown below.
 
 ```
 
-## Additional test cases
+# More Test Cases { #sec:more-tests }
 
 We first present a few variations of Example \@ref(exm:qanm), to test various situations. The following Example \@ref(exm:qanm-3-alg) requires an algebraic refinement point.
 
@@ -37,7 +36,8 @@ C := \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y > 0, y - x^2 + 2x < 1, z = x^2 + y^2 
 $$
 :::
 
-The following projection and refinement polynomials are produced, along with one refinement point. 
+Below are the projection and refinement polynomials produced by `QEPCAD-B`. The resulting refinement point is also
+shown, along with the original and refined cells.
 \begin{align*}
 \text{Projection polynomials:}\\
 A_{1,1} & = input\\
@@ -54,13 +54,13 @@ A_{2,2} & = input\\
         & = y - x^2 + 2 x - 1\\
 A_{3,1} & = input\\
         & = z - y^2 - x^2
+\end{align*} \begin{align*}
 \text{Refinement points:}\\
 R_{1,1} & = input \text{ *** Refinement of cell (3) ***}\\
         & = \text{The sample point is in a PRIMITIVE representation.}\\
 \alpha  & = \text{the unique root of } 2 x^3 - 6 x^2 + 7 x - 2 \text{ between } 1/4 \text{ and } 1/2\\
-\text{Coordinate }1 & = \alpha \approx 0.4102\ldots
-\end{align*} \begin{align*}
-\text{Original cell:}
+\text{Coordinate }1 & = \alpha \approx 0.4102\ldots\\
+\text{Original cell: }
 & C_{(3,3,2)} \\
 & \text{The sample point is in a PRIMITIVE representation.}\\
 \text{Coordinate }1 & = 1/2 = 0.5000000000\\
@@ -96,9 +96,9 @@ F := ( ( 4 w = 7 \lor w^2 = 36 ) \land x > 0 \land x < 1 \land y > 0 \land x + y
 $$
 It has three connected components, $C_1$, $C_2$ and $C_3$, each of which is a cylindrical section cell in a sub-CAD of $\R^3$ above a $0$-dimensional cell ($\mathbf{b}_1$, $\mathbf{b}_2$, $\mathbf{b}_3$ respectively).
 \begin{align*}
-\mathbf{b}_1 &= 7/4, &C_1 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 7/4 x^2 + y^2 \}.\\
-\mathbf{b}_2 &= -6, &C_3 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = -6 x^2 + y^2 \}.\\
-\mathbf{b}_3 &= 6, &C_3 = \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 6 x^2 + y^2 \}.
+\mathbf{b}_1 &= 7/4,& &C_1 &= \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 7/4 x^2 + y^2 \}.\\
+\mathbf{b}_2 &= -6,& &C_3 &= \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = -6 x^2 + y^2 \}.\\
+\mathbf{b}_3 &= 6,& C_3 &= \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 6 x^2 + y^2 \}.
 \end{align*}
 
 $C_2$ is already monotone. This can be seen by examining the projections of its top and bottom onto $\opspan{x,z}$:
@@ -135,7 +135,7 @@ A_{3,1} & = input\\
         & = y\\
 A_{3,2} & = input\\
         & = y + x - 1
-\end{align*} 
+\end{align*}
 \begin{align*}
 \text{Refinement points:}\\
 R_{2,2} & = input \text{ *** Refinement of cell (8,3) ***}\\
@@ -147,20 +147,13 @@ R_{2,1} & = input \text{ *** Refinement of cell (6,3) ***}\\
 \text{Coordinate }1 & = 7/4 = 1.7500\\
 \text{Coordinate }2 & = 1/8 = 0.1250
 \end{align*} \begin{align*}
-\text{Original cells: }
+\text{Original cell: } C_1
 & C_{(6,3,3,2)} \\
 & \text{The sample point is in a PRIMITIVE representation.}\\
 \text{Coordinate }1 & = 7/4 = 1.7500000000\\
 \text{Coordinate }2 & = 1/4 = 0.2500000000\\
 \text{Coordinate }3 & = 1/4 = 0.2500000000\\
 \text{Coordinate }4 & = 11/64 = 0.1718750000\\
-& C_{(8,3,3,2)} \\
-& \text{The sample point is in a PRIMITIVE representation.}\\
-\text{Coordinate }1 & = 6 = 6.0000000000\\
-\text{Coordinate }2 & = 1/4 = 0.2500000000\\
-\text{Coordinate }3 & = 1/4 = 0.2500000000\\
-\text{Coordinate }4 &= 7/16 = 0.4375000000\\
-\end{align*} \begin{align*}
 \text{Refined cells: }
 & C_{(6,3,3,2)} \\
 & \text{The sample point is in a PRIMITIVE representation.}\\
@@ -180,6 +173,15 @@ R_{2,1} & = input \text{ *** Refinement of cell (6,3) ***}\\
 \text{Coordinate }2 & = 1/4 = 0.2500000000\\
 \text{Coordinate }3 & = 1/4 = 0.2500000000\\
 \text{Coordinate }4 & = 11/64 = 0.1718750000\\
+\end{align*} \begin{align*}
+\text{Original cell: }
+C_3 & C_{(8,3,3,2)} \\
+& \text{The sample point is in a PRIMITIVE representation.}\\
+\text{Coordinate }1 & = 6 = 6.0000000000\\
+\text{Coordinate }2 & = 1/4 = 0.2500000000\\
+\text{Coordinate }3 & = 1/4 = 0.2500000000\\
+\text{Coordinate }4 &= 7/16 = 0.4375000000\\
+\text{Refined cells: }
 & C_{(8,3,3,2)} \\
 & \text{The sample point is in a PRIMITIVE representation.}\\
 \text{Coordinate }1 & = 6 = 6.0000000000\\
@@ -205,8 +207,9 @@ The following example requires a rational refinement above an algebraic zero-cel
 ::: {.example #qanm-4-above-alg }
 Let $n = 4$ and consider the section cell
 $$
-C := \{ (w,x,y,z) \in \R^4 \mid w > 0, w^2 = 2, 0 < x < 1, y > 0, x + y < 1, z = 3x^2 + 2y^2 \}.
+C := \{ (w,x,y,z) \in \R^4 \mid w = +\sqrt{3}, 0 < x < 1, y > 0, x + y < 1, z = 3x^2 + 2y^2 \}.
 $$
+Note thet $w = +\sqrt{3}$ is represented as the QFF $\{ w > 0, w^2 = 3 \}$.
 :::
 
 This cell lies in the sub-cad of $\R^3$ above $\sqrt{2}$. `QEPCAD` output is presented below. Note that the sample points remain in extended representation, which is how they were generated in the lifting phase. Polynomials and refinement points are as follows:
@@ -237,19 +240,21 @@ R_{2,1} & = input \text{ *** Refinement of cell (6,3) ***}\\
 \text{Coordinate }2 & = 2/5 = 0.4000\\
 \end{align*}
 
-A rational refinement of the cell with positional index $(6,3)$ takes place. The sample points of new cells are recomputed and are stored in thee extended representation, as with the original cell. 
+A rational refinement of the cell with positional index $(6,3)$ takes place. The sample points of new cells are recomputed and are stored in the extended representation, as with the original cell.
 
 We now show a similar example, requiring an algebraic refinement.
 
 ::: {.example #qanm-4-alg }
 Let $n = 4$ and consider the section cell
 $$
-C := \{ (w,x,y,z) \in \R^4 \mid w > 0, w^2 = 3, 0 < x < 1, y > 0, y < (x-1)^2, z = 3x^2 + 2y^2 \}.
+C := \{ (w,x,y,z) \in \R^4 \mid w = + \sqrt{3}, 0 < x < 1, y > 0, y < (x-1)^2, z = 3x^2 + 2y^2 \}.
 $$
+Note that $w = + \sqrt{3}$ is represented by the QFF $\{ w > 0, w^2 = 3 \}$.
 :::
 
-The following polynomials and one refinement point are output by `QEPCAD-B`. The refineement point is stored in the extended represeentation. 
+The following polynomials and one refinement point are output by `QEPCAD-B`. The refinement point is stored in the extended represeentation.
 \begin{align*}
+\text{Projection polynomials:}\\
 A_{1,1} & = input\\
         & = w\\
 A_{1,2} & = input\\
@@ -268,15 +273,16 @@ A_{3,2} & = input\\
         & = y - x^2 + 2 x - 1\\
 A_{4,1} & = input\\
         & = z - y^2 - x^2\\
+\text{Refinement points:}\\
 R_{2,1} & = input \text{ *** Refinement of cell (6,3) ***}\\
         & = \text{The sample point is in an EXTENDED representation.}\\
 \alpha  & = \text{the unique root of } x^2 - 3 \text{ between } 1773/1024 \text{ and } 887/512\\
 \text{Coordinate }1 & = \alpha \approx 1.7321\ldots\\
-\text{Coordinate }2 & = \text{the unique root of } 2 x^3 - 6 x^2 + 7 x - 2 \text{ between } 1/4 \text{ and } 1/2
+\text{Coordinate }2 & = \text{the unique root of } 2 x^3 - 6 x^2 + 7 x - 2 \text{ between } 1/4 \text{ and } 1/2\\
 & \approx 0.4102\ldots\\
 \end{align*}
 
-An algebraic refinement is performed. In order to recompute sample points of the refined cells, the sample points of the cells contained in $C_{(6,3)}$ (in the decomposition induced on $\R^2$) are converted back into primitive representation. For example, a new cell $C_{(6,4,3,2)}$ has thee sample point
+An algebraic refinement is performed. In order to recompute sample points of the refined cells, the sample points of the cells contained in $C_{(6,3)}$ (in the decomposition induced on $\R^2$) are converted back into primitive representation. For example, a new cell $C_{(6,4,3,2)}$ has the sample point
 \begin{align*}
 & \text{The sample point is in an EXTENDED representation.}\\
 \alpha & = \text{the unique root of } 4 x^6 - 24 x^5 + 28 x^4 + 52 x^3 - 35 x^2 - 64 x - 107\\
@@ -309,7 +315,7 @@ A_{1,2} & = fac(J_{1,1}) = fac(res(A_{2,1}|A_{2,2}))\\
 M_{1,3} & = fac(K_{1,4}) = fac(input)\\
         & = 3 w - 1\\
 M_{1,4} & = fac(K_{1,5}) = fac(input)\\
-        & = 2 w - 1
+        & = 2 w - 1\\
 A_{2,1} & = input\\
         & = x\\
 A_{2,2} & = input\\
@@ -317,7 +323,8 @@ A_{2,2} & = input\\
 A_{3,1} & = input\\
         & = y - x^2 - w^2\\
 A_{4,1} & = input\\
-        & = z - x^2 - 2 w^2\\
+        & = z - x^2 - 2 w^2
+\end{align*} \begin{align*}
 \text{Refinement points:}\\
 R_{1,2} & = input \text{ *** Refinement of cell (3) ***}\\
         & = \text{The sample point is in a PRIMITIVE representation.}\\
@@ -332,13 +339,94 @@ The following example, in $\R^5$ presents a $(1,0,1,0,0)$-cell, which requires t
 ::: {.example #qanm-5-101 }
 Let $n = 5$ and consider the $(1,0,1,0,0)$-cell
 $$
-C = \{ (w,x,y,z) \in \R^4 \mid 0 < w < 1, x = 1 - w, y > 0, w + y < 1, z = w^2 + x y^2, t = 3 w^2 + x^2 y^2 \}.
+C = \{ 0 < w < 1, x = 1 - w, y > 0, w + y < 1, z = w^2 + x y^2, t = 3 w^2 + x^2 y^2 \}.
 $$
+The CAD will be constructed with variable ordering $w \prec x \prec y \prec z \prec t$.
 :::
 
-``` {r, child="test-cases/qanm-5-101.Rmd"}
+The projection polynomials produced by `QEPCAD-B` are as follows:
+\begin{align*}
+A_{1,1} & = fac(J_{2,2}) = fac(ldcf(red(Q_{3,4})) = res(A_{3,1}|Q_{3,4})) = fac(J_{2,3})\\
+        & = fac(ldcf(red(Q_{3,5})) = res(A_{3,1}|Q_{3,5})) = fac(J_{2,4}) = fac(dis(Q_{3,3}))\\
+        & = fac(J_{2,5}) = fac(dis(Q_{3,4})) = fac(J_{2,6}) = fac(dis(Q_{3,5})) = fac(J_{2,8})\\
+        & = fac(res(A_{3,1}|Q_{3,3})) = fac2(J_{2,12}) = fac2(res(Q_{3,3}|Q_{3,4})) = fac2(J_{2,13})\\
+        & = fac2(res(Q_{3,3}|Q_{3,5})) = fac2(J_{2,14}) = fac2(res(Q_{3,4}|Q_{3,5})) = fac(J_{1,7})\\
+        & = fac(res(S_{2,2}|P_{2,4})) = fac(J_{1,8}) = fac(res(S_{2,2}|P_{2,5})) = fac(J_{1,11})\\
+        & = fac(res(P_{2,4}|P_{2,5}))\\
+        & = w\\
+A_{1,2} & = fac(J_{2,1}) = fac(res(A_{3,1}|A_{3,2})) = fac(J_{1,1}) = fac(res(A_{2,1}|S_{2,2}))\\
+        & = fac(J_{2,7}) = fac(res(A_{3,1}|A_{3,2})) = fac2(J_{1,1}) = fac2(ldcf(P_{2,4}))\\
+        & = fac(J_{1,2}) = fac(res(A_{2,1}|S_{2,2})) = fac2(J_{1,10}) = fac2(res(P_{2,3}|P_{2,5}))\\
+        & = w - 1\\
+P_{1,3} & = fac(J_{2,9}) = fac(res(A_{3,2}|Q_{3,3})) = fac(J_{1,11}) = fac(res(P_{2,4}|P_{2,5}))\\
+        & = fac(J_{1,12}) = fac(res(P_{2,4}|P_{2,6}) = res(P_{2,5}|P_{2,6}))\\
+        & = w^2 - 4 w + 1\\
+P_{1,4} & = fac(J_{1,3}) = fac(res(A_{2,1}|P_{2,3}))\\
+        & = w + 2\\
+P_{1,5} & = fac(J_{1,4}) = fac(res(A_{2,1}|P_{2,4}))\\
+        & = w^3 - 3 w^2 + 6 w - 1\\
+P_{1,6} & = fac(J_{1,5}) = fac(res(A_{2,1}|P_{2,5}))\\
+        & = w^3 - w^2 + 7 w - 1
+P_{1,7} & = fac(J_{1,6}) = fac(res(A_{2,1}|P_{2,6}))\\
+        & = 2 w + 1\\
+P_{1,8} & = fac(J_{1,9}) = fac(res(P_{2,3}|P_{2,4}))\\
+        & = w^2 - 3 w + 1\\
+M_{1,9} & = fac(K_{1,15}) = fac(input)\\
+        & = w + 1\\
+M_{1,10} &= fac(K_{1,16}) = fac(input)\\
+         &= 2 w^3 - 6 w^2 + 9 w - 2\\
+M_{1,11} &= fac(K_{1,17}) = fac(input)\\
+         &= w + 6\\
+M_{1,12} &= fac(K_{1,19}) = fac(input)\\
+         &= 3176 w - 4353\\
+M_{1,13} &= fac(K_{1,20}) = fac(input)\\
+         &= 3 w^2 - 8 w + 3
+\end{align*} \begin{align*}
+A_{2,1} & = input\\
+        & = x + w - 1\\
+S_{2,2} & = fac(input) = fac(J_{2,1}) = fac(ldcf(Q_{3,4}) = ldcf(Q_{3,5}))\\
+        & = fac(J_{2,5}) = fac(dis(Q_{3,4})) = fac(J_{2,6})\\
+        & = fac(dis(Q_{3,5})) = fac2(J_{2,14}) = fac2(res(Q_{3,4}|Q_{3,5}))\\
+        & = x\\
+P_{2,3} & = fac(J_{2,3}) = fac(ldcf(red(Q_{3,5})) = res(A_{3,1}|Q_{3,5}))\\
+        & = fac(J_{2,6}) = fac(dis(Q_{3,5}))\\
+        & = x - 3\\
+P_{2,4} & = fac(J_{2,10}) = fac(res(A_{3,2}|Q_{3,4}))\\
+        & = w^2 x - 2 w x + x - 3 w\\
+P_{2,5} & = fac(J_{2,11}) = fac(res(A_{3,2}|Q_{3,5}))\\
+        & = w^2 x + x - 6 w\\
+P_{2,6} & = fac2(J_{2,12}) = fac2(res(Q_{3,3}|Q_{3,4}))\\
+        & = fac2(J_{2,13}) = fac2(res(Q_{3,3}|Q_{3,5})) = fac2(J_{2,14}) = fac2(res(Q_{3,4}|Q_{3,5}))\\
+        & = 2 x - 3
+\end{align*} \begin{align*}
+A_{3,1} & = input\\
+        & = y\\
+A_{3,2} & = input\\
+        & = y + w - 1\\
+Q_{3,3} & = input\\
+        & = y^2 - 2 w\\
+Q_{3,4} & = input\\
+        & = x y^2 - 3 w\\
+Q_{3,5} & = input\\
+        & = x y^2 + 2 w x - 6 w\\
+A_{4,1} & = input\\
+        & = z - x y^2 - w^2\\
+A_{5,1} & = input\\
+        & = t - x^2 y^2 - 3 w^2
+\end{align*}
+Note the large number of polynomials. In particular, those indexed by $Q$ and $S$, resulting from the quasi-affine step of the algorithm.
 
-```
+The refinement polynomials (labelled by $M$) define two refinement points in the true cell $C_{(7)}$:
+\begin{align*}
+R_{1,1} & = input \text{ *** Refinement of cell (7) ***}\\
+        & = \text{The sample point is in a PRIMITIVE representation.}\\
+\alpha_{1}  & = \text{the unique root of } 2 x^3 - 6 x^2 + 9 x - 2 \text{ between } 1/4 \text{ and } 5/16\\
+\text{Coordinate }1 & = \alpha \approx 0.2649\ldots\\
+R_{1,2} & = input \text{ *** Refinement of cell (11) ***}\\
+        & = \text{The sample point is in a PRIMITIVE representation.}\\
+\alpha_{2}  & = \text{the unique root of } 3 x^2 - 8 x + 3 \text{ between } 3/8 \text{ and } 1/2\\
+\text{Coordinate }1 & = \alpha \approx 0.4514\ldots
+\end{align*}
 
 ::: {.example #fr-4-whitney-multi }
 Let $n = 4$ and consider the semialgebraic set defined by the QFF, containing polynomials in $Z[t,x,y,z]$,
@@ -349,39 +437,22 @@ $$
 
 The QFF defines two cylindrical cells in $\R^3$ (equipped with $(x,y,z)$), similar to those defined in Example \@ref(exm:whitney-jhd).
 The following refinement points are obtained.
+\begin{align*}
+R_{4,2} & = input \text{ *** Refinement of cell (6,2,2,5) ***}\\
+        & = \text{The sample point is in a PRIMITIVE representation.}\\
+\text{Coordinate }1 & = 2 = 2.0000\\
+\text{Coordinate }2 & = 0 = 0.0000\\
+\text{Coordinate }3 & = 0 = 0.0000\\
+\text{Coordinate }4 & = 3 = 3.0000\\
+R_{4,1} & = input \text{ *** Refinement of cell (4,2,2,3) ***}\\
+        & = \text{The sample point is in a PRIMITIVE representation.}\\
+\text{Coordinate }1 & = 0 = 0.0000\\
+\text{Coordinate }2 & = 0 = 0.0000\\
+\text{Coordinate }3 & = 0 = 0.0000\\
+\text{Coordinate }4 & = 1 = 1.0000
+\end{align*}
 
-``` {test-fr-4-whitney-multi)
-M_4,2  = input  *** Refinement of cell (6,2,2,5) ***
-       = The sample point is in a PRIMITIVE representation.
-
-alpha = the unique root of x between 0 and 0
-      = 0.0000
-
-Coordinate 1 = 2
-             = 2.0000
-Coordinate 2 = 0
-             = 0.0000
-Coordinate 3 = 0
-             = 0.0000
-Coordinate 4 = 3
-             = 3.0000
-
-
-M_4,1  = input  *** Refinement of cell (4,2,2,3) ***
-       = The sample point is in a PRIMITIVE representation.
-
-alpha = the unique root of x between 0 and 0
-      = 0.0000
-
-Coordinate 1 = 0
-             = 0.0000
-Coordinate 2 = 0
-             = 0.0000
-Coordinate 3 = 0
-             = 0.0000
-Coordinate 4 = 1
-             = 1.0000
-```
+A similar example is presented below.
 
 ::: {.example #fr-4-whitney-alg }
 Let $n = 4$ and consider the twe $2$-diemnsional subsets of the Whitney whitney umbrella defined by the QFF
@@ -390,92 +461,34 @@ F = \{ (t,x,y,z) \in \R^4 \mid t^2 = 0 \land 0 < x < 1 \land -x < y < x \land y^
 $$
 :::
 
-THe following algebraic refinement points are produced.
+This time, algebraic refinements are required:
+\begin{align*}
+R_{4,3} & = input \text{ *** Refinement of cell (8,2,2,1) ***}\\
+        & = \text{The sample point is in an EXTENDED representation.}\\
+\alpha  & = \text{the unique root of } x^2 - 2 \text{ between } 181/128 \text{ and } 1449/1024\\
+\text{Coordinate }1 & = \alpha \approx 1.4142\ldots\\
+\text{Coordinate }2 & = 0 = 0.0000\\
+\text{Coordinate }3 & = 0 = 0.0000\\
+\text{Coordinate }4 & = \text{the unique root of } x^2 - 2 x - 1 \text{ between } -1/2 \text{ and } -1/4\\
+                    & \approx -0.4142\ldots
+\end{align*} \begin{align*}
+R_{4,2} & = input \text{ *** Refinement of cell (2,2,2,3) ***}\\
+        & = \text{The sample point is in an EXTENDED representation.}\\
+\alpha  & = \text{the unique root of } x^2 - 2 \text{ between } -1449/1024 \text{ and } -181/128\\
+\text{Coordinate }1 & = \alpha \approx -1.4142\ldots\\
+\text{Coordinate }2 & = 0 = 0.0000\\
+\text{Coordinate }3 & = 0 = 0.0000\\
+\text{Coordinate }4 & = \text{the unique root of } x^2 - 2 x - 1 \text{ between } 0 \text{ and } 4\\
+                    & \approx 2.4142\ldots\\
+R_{4,1} & = input \text{ *** Refinement of cell (2,2,2,3) ***}\\
+        & = \text{The sample point is in an EXTENDED representation.}\\
+\alpha  & = \text{the unique root of } x^2 - 2 \text{ between } -1449/1024 \text{ and } -181/128\\
+\text{Coordinate }1 & = \alpha\approx -1.4142\ldots\\
+\text{Coordinate }2 & = 0 = 0.0000\\
+\text{Coordinate }3 & = 0 = 0.0000\\
+\text{Coordinate }4 & = \text{the unique root of } x^2 - 2 x - 1 \text{ between } -1/2 \text{ and } -1/4\\
+                    & \approx -0.4142\ldots
+\end{align*}
 
-``` {test-fr-4-whitney-alg}
-M_4,3  = input  *** Refinement of cell (8,2,2,1) ***
-       = The sample point is in an EXTENDED representation.
-
-alpha = the unique root of x^2 - 2 between 181/128 and 1449/1024
-      = 1.4142+
-
-Coordinate 1 = alpha
-             = 1.4142+
-Coordinate 2 = 0
-             = 0.0000
-Coordinate 3 = 0
-             = 0.0000
-Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
-             = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
-             = -0.4142+
-
-
-M_4,2  = input  *** Refinement of cell (2,2,2,3) ***
-       = The sample point is in an EXTENDED representation.
-
-alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
-      = -1.4142+
-
-Coordinate 1 = alpha
-             = -1.4142+
-Coordinate 2 = 0
-             = 0.0000
-Coordinate 3 = 0
-             = 0.0000
-Coordinate 4 = the unique root of x^2 - 2 x - 1 between 0 and 4
-             = the unique root of x^2 - 2 x - 1 between 0 and 4
-             = 2.4142+
-
-
-M_4,1  = input  *** Refinement of cell (2,2,2,3) ***
-       = The sample point is in an EXTENDED representation.
-
-alpha = the unique root of x^2 - 2 between -1449/1024 and -181/128
-      = -1.4142+
-
-Coordinate 1 = alpha
-             = -1.4142+
-Coordinate 2 = 0
-             = 0.0000
-Coordinate 3 = 0
-             = 0.0000
-Coordinate 4 = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
-             = the unique root of x^2 - 2 x - 1 between -1/2 and -1/4
-             = -0.4142+
-```
-
-This results in the following cells above, respectively, $2,2,2)$ and $(8,2,2)$.
-
-``` {r, child="test-cases/fr-4-whitney-alg.Rmd"}
-
-```
-
-
-
-More examples
-
-- large sub-CAD, maybe R^5
-
-- cel ls in sub-CAD of different levels
-
-- some variations on the whitney umbrella
-
-  - algebraic refinement point?
-  - multiple levels refinement (stacked whitneys)
-
-
-- whitney in a sub-CAD
-
-- whitney with multiple refinement points above it
-
-3D multi: multi-3.txt. many unnecesary refinements computed resulting from quasi-affine. had to use +N5000000
-
-4D multi: it's similar, but requiring algebraic refinements. this required +N50000000 for saclib and look at how many cells it produced!
-we should probably associate the quasi polynomials with the true cell so that we don't make a truly tsign-invariant CAD
-
-
-
-
-
-
+This will result in refinements of $1$-dimensional sector cells above, respectively, the cells with positional indices $(2,2,2)$ and $(8,2,2)$.
 

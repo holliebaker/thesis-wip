@@ -1292,10 +1292,12 @@ A brief summary of new and modified functions is now presented.
 - `source/util/SUBSTITUTE.c`: takes a polynomial $f \in \Z[x_1,\ldots,x_n]$ and a sample point $\mathbf{b} \in \A^k$, compute $f(\mathbf{b}) \in \Z[x_{k+1},\ldots,x_n]$.
 - `source/util/TwoDimensionalIndex.c`: Given a cell's positional index, which corresponds to the $(i_1,\ldots,i_k) \in \{0,1\}^n$, return $j,k$ such that $i_j = i_k = 1$. If $(i_1,\ldots,i_n)$ does not have exactly two elements equal to $1$, the function returns an error.
 
-Note that some other files show changes, when using git diff, but these are just formatting and whitespace changes which made the code more readable.
+Note that some other files show changes, when using `git diff`, but these are just formatting and whitespace changes which made the code more readable.
 
-\newpage
 ## Test cases
+
+In the examples which follow, the variable ordering for CAD will be the order in which variables appear in the
+definition of the input set.
 
 ::: {.example #sphere}
 Let $n = 3$ and consider the unit sphere
@@ -1329,7 +1331,7 @@ P_{1,2} & = fac(J_{1,1}) = fac(dis(P_{2,1}))\\
         & = x - 1\\
 Q_{1,3} & = fac(Q_{3,2}) = fac(input)\\
         & = x\\
-P_{2,1} & = fac(J_2,1) = fac(dis(A_{3,1}))\\
+P_{2,1} & = fac(J_{2,1}) = fac(dis(A_{3,1}))\\
         & = y^2 + x^2 - 1\\
 Q_{2,2} & = fac(Q_{3,1}) = fac(input)\\
         & = y\\
@@ -1341,7 +1343,7 @@ Q_{3,2} & = fac(Q_{3,1}) = fac(input)\\
 
 The sphere is decomposed into 26 cylindrical cells: 8 $2$-dimensional cells, 12 $1$-dimensional cells and 6
 $0$-dimensional cells. The `QEPCAD-B` output, showing these cells represented as Tarski formulas, is shown in Appendix
-A.
+\@ref(sec:quasi-output).
 
 In Example \@ref(exm:qanm), we present a $2$-dimensional section cell which is the graph of a quasi-affine map, but is not a monotone cell.
 
@@ -1384,7 +1386,9 @@ knitr::include_graphics(rep("gnuplot/qanm-surf.svg"))
 knitr::include_graphics(rep("gnuplot/qanm.svg"))
 ```
 
-Polynomials and refinement points output by `QEPCAD-B` are presented below and full output appears in Appendix A. Note the projection factor `M_1_3` defines the refinement point $x = 1/2$.
+\newpage
+Polynomials and refinement points output by `QEPCAD-B` are presented below and full output appears in Appendix
+\@ref(sec:monotone-output). Note the projection factor `M_1_3` defines the refinement point $x = 1/2$.
 \begin{align*}
 \text{Projection polynomials:}\\
 A_{1,1} & = input\\
@@ -1402,11 +1406,10 @@ A_{3,1} & = input\\
 \text{Refinement points:}\\
 R_{1,1} & = input \text{ *** Refinement of cell (3) ***}\\
         & = \text{The sample point is in a PRIMITIVE representation.}\\
-\alpha  & = \text{the unique root of } x \text{ between 0 and 0} = 0.0000\\
 \text{Coordinate }1 & = 1/2 = 0.5000
 \end{align*}
 
-Example \@ref(exm:whitney-jhd) (@jhd20, Example 2.1), repreduced below, illustrates a CAD which fails to satisfy the frontier condition due to a blow-up point.
+Example \@ref(exm:whitney-jhd) (@jhd20, Example 2.1), reproduced below, illustrates a CAD which fails to satisfy the frontier condition due to a blow-up point.
 The cell shown in the example is part of the Whitney umbrella, and, unlike the examples considered so far, its frontier is not homeomorphic to a circle.
 
 ::: {.example #fr-3-whitney-jhd }
@@ -1472,7 +1475,8 @@ $$
   The Groebner bases for $I_4$ and $I_6$ both contain $z-1$, defining the refinement point $(0,0,1)$, which was
   identified by Proposition \@ref(prp:lazard-5-13).
 
-The projection factors and refinement points produced by `QEPCAD-B` are now presented. An excerpt of the output, including the collection of cells which comprises the frontier of $C$ is presented in Appendix A.
+The projection factors and refinement points produced by `QEPCAD-B` are now presented. An excerpt of the output,
+including the collection of cells which comprises the frontier of $C$ is presented in Appendix \@ref(sec:frontier-output).
 \begin{align*}
 \text{Projection polynomials:}\\
 A_{1,1} & = fac2(J_{2,1}) = fac2(ldcf(A_{3,1}))\\
@@ -1493,8 +1497,7 @@ A_{3,1} & = input\\
 Q_{3,2} & = fac(Q_{3,1}) = fac(input)\\
         & = z\\
 M_{3,3} & = fac(K_{3,3}) = fac(input)\\
-        & = z - 1
-\end{align*} \begin{align*}
+        & = z - 1\\
 \text{Refinement points:}\\
 R_{3,1} & = input \text{ *** Refinement of cell (2,2,3) ***}\\
         & = \text{The sample point is in a PRIMITIVE representation.}\\
@@ -1504,5 +1507,5 @@ R_{3,1} & = input \text{ *** Refinement of cell (2,2,3) ***}\\
 \text{Coordinate }3 & = 1 = 1.0000
 \end{align*}
 
-Additional test cases and benchmarks are presented in Appendix A. TODO!
+Additional test cases and benchmarks are presented in Appendix \@ref(sec:more-tests). TODO!
 
