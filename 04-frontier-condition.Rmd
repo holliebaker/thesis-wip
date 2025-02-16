@@ -17,14 +17,13 @@ $$
 W := \{ (x,y,z) \in \R^3 \mid (x,y) \in \Delta, f(x,y,z) = 0 \}.
 $$
 Consider $\fr{W}$, which can be expressed as the disjoint union of four basic semialgebraic sets:
-\begin{align}
+\begin{align*}
 \fr{W} =&\ \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = x, z = 1 \} \\
 \cup&\ \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = -x, z = 1 \} \\
 \cup&\ \{ (x,y,z) \in \R^3 \mid x = 1, -1 < y < 1, z = y^2 \} \\
 \cup&\ \{ (0,0,z) \in \R^3 \mid 0 \le z \le 1 \}.
-(\#eq:jhd-whitney-blow-up)
-\end{align}
-Due to the blow-up point above the origin, $\fr{W}$ contains the subset $B := \{ (0,0,z) \in \R^3 \mid 0 \le z \le 1 \}$ (from Equation \@ref(eq:jhd-whitney-blow-up)).
+\end{align*}
+Due to the blow-up point above the origin, $\fr{W}$ contains the subset $B := \{ (0,0,z) \in \R^3 \mid 0 \le z \le 1 \}$.
 
 A CAD having constant sign on the polynomials
 $$
