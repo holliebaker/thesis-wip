@@ -76,7 +76,7 @@ In addition, the bound on the number of strata is singly exponential, while the 
 @gv04, Theorem 3.7 gives a method (which can be turned into an algorithm) for efficiently listing all sign sets associated with a set of polynomials and @bpr2006, Algorithm 14.21 (presented in Proposition \@ref(prp:bpr-qe)) describes how quantifier elimination can be performed in singly exponential time.
 
 In terms of the implementation, we currently use a CAD algorithm to perform emptiness checking. This is because the singly exponential algorithm from Proposition \@ref(prp:bpr-qe) has not yet been implemented.
-Thus, using a projection operator, which produces smooth cells which aree also effectively nonsingular, would be very appealing.
+Thus, using a projection operator, which produces smooth cells which are also effectively nonsingular, would be very appealing.
 Only a single recomputation of the initial smooth CAD would be needed, as opposed to multiple calls to the CAD algorithm, which is required for the emptiness check in the stratification algorithm in its current implementation.
 In addition, @kremer2020 propose an algorithm, along with its implementation, for refining a CAD to be compatible with some new polynomials. This gives us hope that we may be able to avoid a full re-computation. Investigating whether such a projection operator exists would be an interesting strand of further research.
 

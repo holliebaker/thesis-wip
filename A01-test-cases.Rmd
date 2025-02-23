@@ -96,8 +96,8 @@ F := ( ( 4 w = 7 \lor w^2 = 36 ) \land x > 0 \land x < 1 \land y > 0 \land x + y
 $$
 It has three connected components, $C_1$, $C_2$ and $C_3$, each of which is a cylindrical section cell in a sub-CAD of $\R^3$ above a $0$-dimensional cell ($\mathbf{b}_1$, $\mathbf{b}_2$, $\mathbf{b}_3$ respectively).
 \begin{align*}
-\mathbf{b}_1 &= 7/4,& &C_1 &= \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 7/4 x^2 + y^2 \}.\\
-\mathbf{b}_2 &= -6,& &C_3 &= \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = -6 x^2 + y^2 \}.\\
+\mathbf{b}_1 &= 7/4,& C_1 &= \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 7/4 x^2 + y^2 \}.\\
+\mathbf{b}_2 &= -6,& C_2 &= \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = -6 x^2 + y^2 \}.\\
 \mathbf{b}_3 &= 6,& C_3 &= \{ (x,y,z) \in \R^3 \mid x > 0 ,x < 1 ,y > 0 ,x + y < 1 ,z = 6 x^2 + y^2 \}.
 \end{align*}
 

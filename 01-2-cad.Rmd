@@ -146,7 +146,7 @@ Thus, a decomposition in in which the side-walls of $V$ and $W$ are single $1$-d
 Let $C$ be an $(i_1,\ldots,i_{k-1},0,i_{k+1},\ldots,i_n)$-cell. Then
 $$C' := \projops{x_1,\ldots,x_{k-1},x_{k+1},\ldots,x_n}(C)
 $$
-is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a monotone map $f \colon C' \to \opspan{x_k}$.
+is a cylindrical $(i_1,\ldots,i_{k-1},i_{k+1},\ldots,i_n)$-cell and $C$ is the graph of a continuous definable map $f \colon C' \to \opspan{x_k}$.
 :::
 
 ::: { .proposition }

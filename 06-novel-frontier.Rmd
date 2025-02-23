@@ -1,6 +1,6 @@
-# Novel Algorithm for Frontier Condition { #sec:novel-frontier }
+# Novel Frontier Condition Algorithm { #sec:novel-frontier }
 
-So far, we have been concerned only with cylindrical algebraic decompositions which aree compatible with subsets of $\R^n$ of
+So far, we have been concerned only with cylindrical algebraic decompositions which are compatible with subsets of $\R^n$ of
 dimension at most $2$.
 We will now present a novel algorithm for obtaining the frontier condition on a cylindrical algebraic decomposition of $\R^n$ compatible with a set of arbitrary dimension.
 
@@ -337,17 +337,27 @@ $X_{(0,0)}$ contains $\fr{S'}$.
 
 5. $X_{(0,0)}$ is already a union of cells of $\mathcal{E}_{(0,0)}$, so no further refinement of $\mathcal{E}_{(0,0)} = \mathcal{E}_{(0,1)}$ is needed. The algorithm terminates and returns $\mathcal{D} := \mathcal{E}_{(0,1)}$.
 
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Illustrates the initial decomposition constructed in Step 1 (projection onto the $(x,y)$-plane).", label="initial-cad" }
-knitr::include_graphics(rep("gnuplot/r3-initial.png"))
-```
-
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Illustrates how $\\fr{S}$ interacts with the cells of $\\mathcal{E}$. The frontier is indicated by a dashed line, with the blow-up subset above the origin represented by a node.", label="initial-fr" }
-knitr::include_graphics(rep("gnuplot/r3-initial-fr.png"))
-```
-
-```{r, echo=FALSE, fig.align = "center", out.width="60%", fig.cap="Shows cells of $\\mathcal{E}_{(0,1)}$, the refinement of $\\mathcal{E}$ compatible with $\\fr{S}$ computed in Step 4.", label="final-cad" }
-knitr::include_graphics(rep("gnuplot/r3-refined.png"))
-```
+\begin{figure}
+\centering
+\begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{gnuplot/r3-initial.png}
+    \caption{Illustrates the initial decomposition constructed in the first step of the worked example (projection onto the $(x,y)$-plane).}
+    \label{fig:initial-cad}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{gnuplot/r3-initial-fr.png}
+    \caption{Illustrates how $\fr{S}$ interacts with the cells of $\mathcal{E}$. The frontier is indicated by a dashed line, with the blow-up subset above the origin represented by a node. }
+    \label{fig:initial-fr}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{gnuplot/r3-refined.png}
+    \caption{Shows cells of $\mathcal{E}_{(0,1)}$, the refinement of $\mathcal{E}$ compatible with $\fr{S}$ computed in
+    the third.}
+    \label{fig:final-cad}
+\end{subfigure}
+\end{figure}
 
 Table: (\#tab:cells-of-e) All cells of the CAD $\mathcal{E}$, the initial CAD computed in Section \@ref(sec:worked-example).
 
@@ -369,19 +379,19 @@ Table: (\#tab:cells-of-e-refined) Cells of the CAD $\mathcal{E}_{(0,1)}$ compute
 
 | Label | Index | Formula |
 |-------|-------|---------|
-| ${C'_1}$ | $(0,0,0)$ | $\{ x = -1, y = 1, z = 1 \}$ |
-| ${C'_2}$ | $(1,0,0)$ | $\{ -1 < x < 0, y = -x, z = 1 \}$ |
+| ${C'_1}$      | $(0,0,0)$ | $\{ x = -1, y = 1, z = 1 \}$ |
+| ${C'_2}$      | $(1,0,0)$ | $\{ -1 < x < 0, y = -x, z = 1 \}$ |
 | ${C''_{2,1}}$ | $(0,0,0)$ | $\{ x = y = 0, z = 0 \}$ |
 | ${C''_{2,2}}$ | $(0,0,1)$ | $\{ x = y = 0, 0 < z < 1 \}$ |
 | ${C''_{2,3}}$ | $(0,0,0)$ | $\{ x = y = 0, z = 1 \}$ |
-| ${C'''_2}$ | $(1,0,0)$ | $\{ 0 < x < 1, y = x, z = 1 \}$ |
-| $S'$ | $(1,1,0)$ | $\{ -1 < x < 0, -x < y < 1, z =  -x/y \}$ |
-| $S''$ | $(0,1,0)$ | $\{ x = 0, 0 < y < 1, z = 0 \}$ |
-| $S'''$ | $(1,1,0)$ | $\{ 0 < x < 1, x < y < 1, z = x/y \}$ |
-| $C'_3$ | $(1,0,0)$ | $\{ -1 < x < 0, y = 1, z = -x \}$ |
-| $C''_3$ | $(0,0,0)$ | $\{ x = 0, y = 1, z = 0\}$ |
-| $C'''_3$ | $(1,0,0)$ | $\{ 0 < x < 1, y = 1, z = x \}$ |
-| ${C'_4}$ | $(0,0,0)$ | $\{ x = 1, y = 1, z = 1 \}$ |
+| ${C'''_2}$    | $(1,0,0)$ | $\{ 0 < x < 1, y = x, z = 1 \}$ |
+| $S'$          | $(1,1,0)$ | $\{ -1 < x < 0, -x < y < 1, z =  -x/y \}$ |
+| $S''$         | $(0,1,0)$ | $\{ x = 0, 0 < y < 1, z = 0 \}$ |
+| $S'''$        | $(1,1,0)$ | $\{ 0 < x < 1, x < y < 1, z = x/y \}$ |
+| $C'_3$        | $(1,0,0)$ | $\{ -1 < x < 0, y = 1, z = -x \}$ |
+| $C''_3$       | $(0,0,0)$ | $\{ x = 0, y = 1, z = 0\}$ |
+| $C'''_3$      | $(1,0,0)$ | $\{ 0 < x < 1, y = 1, z = x \}$ |
+| ${C'_4}$      | $(0,0,0)$ | $\{ x = 1, y = 1, z = 1 \}$ |
 
 Well-known implementations of cylindrical algebraic decomposition such as `QEPCAD-B` [@brownQepcad] and Maple's `CylindricalAlgebraicDecompose` [@chen2014] are unable to obtain the frontier condition in general. In particular, when applied to set $S$ from Example \@ref(exm:top-bottom-not-cylindrical), both `CylindricalAlgebraicDecompose` and `QEPCAD-B` create three cells above the origin: $B' = \{ x = y = 0, z < 0\}$, $B'' = \{ x = y = 0, z = 0\}$ and $B''' = \{ x = y = 0, z > 0\}$. Observe that $B''' \cap \fr{S} \ne \emptyset$, but $B''' \not \subset \fr{S}$ so the frontier of $S$ is not a union of cells in the decomposition.
 
@@ -409,7 +419,9 @@ The algorithm will construct the sequence (from right to left):
 \lex ({\mathcal E} , \emptyset),
 (\#eq:sequence)
 \end{equation}
-where $\mathbf{0} = (0,\ldots,0)$ and $\mathcal{F}_{\mathbf{0}} := \{ F \mid F \text{ is a QFF defining } C \in{\mathcal U}_{(0, \ldots ,0)} \}$. Note that the $\lex$ notation is naturally extended to elements of the sequence defined in Equation \@ref(eq:sequence).
+where $\mathbf{0} = (0,\ldots,0)$ and $\mathcal{F}_{\mathbf{0}} := \{ F \mid F \text{ is a QFF defining } C \in{\mathcal
+U}_{(0, \ldots ,0)} \}$. Note that the $\lex$ notation is naturally extended to elements of the sequence defined in
+Notation \@ref(eq:sequence).
 
 For a given binary index $M=(i_1,\ldots,i_{n-1})$, assume that the algorithm has computed the pair $(\mathcal{E}_M,\ \mathbf{F}_M)$.
 Now we describe how the next pair, $({\mathcal E}_N,\ \mathcal{F}_N)$, where $N=(j_1, \ldots ,j_{n-1})$ is the binary index immediately prior to $M$ with respect to $\lex$, is computed.
