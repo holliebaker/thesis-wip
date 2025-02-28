@@ -299,7 +299,10 @@ Chapter \@ref(sec:smooth-strat) presents the smooth stratification algorithm fro
 The proof of @gv1995, Theorem 2 describes a procedure for constructing a smooth stratification of a semi-Pfaffian set.
 We formulate this construction as pseudo-code and specialise it to the case of semialgebraic sets where it is possible
 to implement the subroutine for checking whether a candidate stratum is empty.
-This algorithm has been implemented in C on top of `SACLIB`. `SACLIB` is an open-source C/C++ library for manipulating real polynomials and real algebraic numbers and working with their solutions as real algebraic numbers (see @saclib).
+This algorithm has been implemented in C on top of `SACLIB`. `SACLIB` is an open-source C/C++ library for manipulating
+real polynomials and real algebraic numbers and working with their solutions as real algebraic numbers (see @saclib).
+The source code is hosted on
+Zenodo.^[[https://zenodo.org/records/14944918?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU1ZjgxYmVhLWJkYTEtNDM5MS04OTIxLWM4ZDYyYzA4YzUyNSIsImRhdGEiOnt9LCJyYW5kb20iOiJlYzk0NTA3YjUwYTM5MDhlOTZiYzcyNDFlYjIxZGFlOCJ9.TGZ59ufWzjdWGGnpsvZJm4Hy340ke3rzYAg2utBShywKaQn62XXS-gTpZrCJinKSXSYG81PwgV42VE3s0cfqKg](https://zenodo.org/records/14944918?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU1ZjgxYmVhLWJkYTEtNDM5MS04OTIxLWM4ZDYyYzA4YzUyNSIsImRhdGEiOnt9LCJyYW5kb20iOiJlYzk0NTA3YjUwYTM5MDhlOTZiYzcyNDFlYjIxZGFlOCJ9.TGZ59ufWzjdWGGnpsvZJm4Hy340ke3rzYAg2utBShywKaQn62XXS-gTpZrCJinKSXSYG81PwgV42VE3s0cfqKg)]
 Although this construction has been described at least twice (in @gv1995 and @gv04), this is the first presentation of the procedure as pseudo-code and the first implementation of the algorithm. We also contribute complexity results for the semialgebraic case.
 
 ### Monotone and frontier condition
@@ -348,7 +351,9 @@ In Section \@ref(sec:lazard-3), an algorithm, due to @lazard10, for constructing
 Section \@ref(sec:lazard-n) explores how this method can be generalised to our situation. In order to do this, the results of
 @lazard10, Section 5.3 are generalised from $\R^3$ to the $2$-dimensional cells in a CAD of $\R^n, n > 3$.
 
-Each stage of the algorithm has been presented as pseudo-code, along with a complexity upper bound, and Chapter \@ref(sec:implementation-and-testing) discusses its implementation on top of Brown's `QEPCAD-B` [@brownQepcad] and presents some test cases.
+Each stage of the algorithm has been presented as pseudo-code, along with a complexity upper bound, and Chapter
+\@ref(sec:implementation-and-testing) discusses its implementation on top of Brown's `QEPCAD-B` [@brownQepcad] and
+presents some illustrative examples of the software at work. The source code is available on Zenodo.^[[https://zenodo.org/records/14945076?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjkwMGJmNGI4LWUyNGQtNGMyYi04ZDdmLTA5M2U5MGI2NGE1ZSIsImRhdGEiOnt9LCJyYW5kb20iOiI3ZGI0YmJkYmY2NThkYzU2ZjU2OTQ3NThlMzUzNWU5NiJ9.dQkkmIqid5YJSepoo9D0PV2FBdBkbl-Xw8AqoITmt3fZ9JZG4QKDAGEZk0yGufgEmTDYxwZxPo0HB8t1-JaaCw](https://zenodo.org/records/14945076?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjkwMGJmNGI4LWUyNGQtNGMyYi04ZDdmLTA5M2U5MGI2NGE1ZSIsImRhdGEiOnt9LCJyYW5kb20iOiI3ZGI0YmJkYmY2NThkYzU2ZjU2OTQ3NThlMzUzNWU5NiJ9.dQkkmIqid5YJSepoo9D0PV2FBdBkbl-Xw8AqoITmt3fZ9JZG4QKDAGEZk0yGufgEmTDYxwZxPo0HB8t1-JaaCw)]
 This extends the result that such a CAD exists (@bgv15, Theorem 3.20) into a tangible implementation of an algorithm for constructing one.
 
 ### Frontier condition in arbitrary dimension

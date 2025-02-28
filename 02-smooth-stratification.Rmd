@@ -401,7 +401,7 @@ As expected, the algorithm outputs the set of strata
 
 ### Codimension and basic formula { #sec:strat-basic-formula }
 
-@gv1995, Theorem 2 assert that each stratum of codimension $k$ can be represented by a conjunction containing at least $k$
+@gv1995, Theorem 2 asserts that each stratum of codimension $k$ can be represented by a conjunction containing at least $k$
 equations and, possibly, some inequalities. The condition that each stratum can be written as a conjunction means that
 it is a basic semi-Pfaffian set (see Definition \@ref(def:semi-pfaff))
 A naive implementation of the procedure can lead to an inefficient representation of strata, as
@@ -516,7 +516,8 @@ If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_
 
 ### Implementation with SACLIB
 
-Full source code can be found here: https://github.com/monotone-cad/smooth-stratification.
+Full source code is available on Zenodo at the following link:
+[https://zenodo.org/records/14944918?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU1ZjgxYmVhLWJkYTEtNDM5MS04OTIxLWM4ZDYyYzA4YzUyNSIsImRhdGEiOnt9LCJyYW5kb20iOiJlYzk0NTA3YjUwYTM5MDhlOTZiYzcyNDFlYjIxZGFlOCJ9.TGZ59ufWzjdWGGnpsvZJm4Hy340ke3rzYAg2utBShywKaQn62XXS-gTpZrCJinKSXSYG81PwgV42VE3s0cfqKg](https://zenodo.org/records/14944918?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU1ZjgxYmVhLWJkYTEtNDM5MS04OTIxLWM4ZDYyYzA4YzUyNSIsImRhdGEiOnt9LCJyYW5kb20iOiJlYzk0NTA3YjUwYTM5MDhlOTZiYzcyNDFlYjIxZGFlOCJ9.TGZ59ufWzjdWGGnpsvZJm4Hy340ke3rzYAg2utBShywKaQn62XXS-gTpZrCJinKSXSYG81PwgV42VE3s0cfqKg).
 
 This algorithm has been implemented in C, using the computer algebra library `SACLIB`. `QEPCAD-B` is used to perform emptiness checks using cylindrical algebraic decomposition. Below is an example of the new program's output, given the basic semialgebraic set
 $$

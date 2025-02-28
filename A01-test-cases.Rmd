@@ -25,7 +25,7 @@ The `QEPCAD-B` output from Example \@ref(exm:fr-3-whitney-jhd) is shown below.
 
 ```
 
-# More Test Cases { #sec:more-tests }
+# More Illustrative Examples { #sec:more-tests }
 
 We first present a few variations of Example \@ref(exm:qanm), to test various situations. The following Example \@ref(exm:qanm-3-alg) requires an algebraic refinement point.
 

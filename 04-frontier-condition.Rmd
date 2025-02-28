@@ -265,7 +265,9 @@ Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ and $C$ be a cell o
 ::: {.proof}
 This result follows from the following fact about roots of multivariate polynomials: given a polynomial $f  \in \Q[x_1,\ldots,x_{n-1}][x_n]$, i.e., considered as a univariate polynomial with polynomial coefficients, its complex roots depend continuously on the parameters in the region of the parameter space where the polynomial does not vanish identically. In fact, this is only true in the projective closure of $\mathbb{C}$ as some roots may pass through the point at infinity if the leading coefficient is zero.
 
-First suppose that $C$ is a section cell. I.e., it is a root of some polynomial $f$ and $\fr{C}$ is defined as the limit of this root over the boundary of $C'$. Thus $\projop{n-1}$ is a continuous, injective map from $\fr{C}$ to $\fr{C'}$. This follows from the condition that the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong and that if the root defining the section $C$ is infinite over some cell $C'' \subset \fr{C'}$, then it is also infinite over $\fr{C''}$.
+First suppose that $C$ is a section cell. I.e., it is a root of some polynomial $f$ and $\fr{C}$ is defined as the limit
+of this root over the boundary of $C'$. Thus $\projop{n-1}$ is a continuous, injective map from $\fr{C}$ to $\fr{C'}$.
+This follows from the condition that the decomposition induced by $\cal D$ on $\R^{n-1}$ is strong, and the property that if the root defining the section $C$ is infinite over some cell $C'' \subset \fr{C'}$, then it is also infinite over $\fr{C''}$.
 
 Now suppose that $C$ is a sector cell. If nonempty, the top $C_T$ and bottom $C_B$ of $C$ are section cells. We complete the proof by describing $W := \fr{C} \setminus (C_T \cup C_B)$.
 We will only consider the case where $C \cap \{ \mathbf{x} \times \R \}$ is an open interval bounded from below by a point in $C_B$ and above by a point in $C_T$.
@@ -339,7 +341,7 @@ as solutions of a $0$-dimensional polynomial system.
 ::: {.proof}
 Since $f$ is irreducible, it has at least two coefficients in $\Q[x_1,x_2]$ and their GCD is a constant.
 Take $h \in \Q[x_1,x_2]$ to be a coefficient of $f$ which is not a multiple of $g$. Note that $h$ is irreducible so
-$\{ g = 0, h = 0 \} \in \R^2$ is zero-dimensional and contains $\mathbf{p}$.
+$\{ g = 0, h = 0 \} \subset \R^2$ is zero-dimensional and contains $\mathbf{p}$.
 The saturation by $h$ of the ideal $\langle f,g \rangle$ is defined as
 $$
 S := \langle f, g, 1 - zh \rangle \cap \Q[x_1,x_2,x_3].
@@ -532,8 +534,9 @@ Let $\mathcal{D}$ be a CAD of $\R^n$ and $C$ be a cell of $\mathcal{D}$. $\mathc
 if $C$ is well-bordered, closuree finite and every cell contained in $\cl{C}$ is locally boundary connected.
 :::
 
-We first extend Proposition \@ref(prp:lazard-5-4) (@lazard10, Corollary 5.4) to cells of dimension $\le 2$ in a sign-invariant CAD of $\R^n$.
-This can be done by extending @lazard10, Theorem 5.3.
+We first consider Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3), which states that any cell in $\R^3$
+which projects on a topologically regular, closure finite cell, is well-bordered. This is essential to Lazard's method,
+since it relies on blow-up points being zero-dimensional. @lazard10, Theorem 5.3 is presented below:
 
 ::: {.proposition #lazard-5-3}
 [@lazard10, Theorem 5.3]
@@ -570,13 +573,19 @@ contains $B$.
 As all cases have been considered, this completes the proof.
 :::
 
-::: {.corollary #ext-lazard-5-3 }
-(Corollary to @lazard10, Theorem 5.3)
+We conjecturee that this result can be extended to cells of dimension $\le 2$ in a sign-invariant CAD of $\R^n$, as long
+as the CAD is strong about the projection of the cell. In $\R^n, n > 3$, blow-ups may have dimension greater than $0$.
+However, we claim that is a blow-up of dimension $1$ occurs in the frontier of the projection of a cell, the cell tends
+to $-\infty$ or $\infty$ as it approaches the blow-up.
+
+::: {.conjecture #ext-lazard-5-3 }
+(extension to @lazard10, Theorem 5.3)
 
 Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ and $C$ be a cell of $\mathcal{D}$ of dimension $\le 2$ such that the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$ is strong about $C' := \projop{n-1}(C)$. Then $C$ is well-bordered.
 :::
 
-::: {.proof}
+A proof is now proposed.
+
 If $\dim(C) < 2$, then $C$ is well-bordered by @lazard10, Lemma 5.1.
 
 Since $\mathcal{D'}$ is strong about $C'$, Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2) can be
@@ -603,8 +612,15 @@ a $1$-dimensional sector cell in $\fr{C'}$.
 Since $C$ is $2$-dimensional, a $2$-dimensional cell cannot be part of $\fr{C}$. If such a cell, projecting on a $1$-dimensional cell in $\mathcal{D}'$ exists, then $C$ approaches $-\infty$ and $\infty$ as it approaches this cell.
 
 The $(i_1,\ldots,i_{n-1},1)$-cells of $\mathcal{D}$ contained in $C' \times \R$ also have the same arrangement as $(1,1,1)$ cells in from Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3). Being careful to take blow-up points into account, the same argument as in the proof of Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) shows that these cells are also well-bordered.
-:::
 
+Conjecture \@ref(cnj:ext-lazard-5-3) always holds if the frontier of the projection of the cell in question contains
+only $0$-dimensional blow-ups. If $1$-dimensional blow-ups exist above which the frontier of the cell should contain an
+open interval, the conjecture fails. However, the algorithm due to @bgv15, presented in Section \@ref(sec:frontier-bgv)
+will still work. Since it is easy to check the dimension of a blow-up by checking the dimension of the cell and the
+signs of projection polynomials on it, we can easily revert to the approach from @bgv15 if a situation arises where
+Conjecture \@ref(cnj:ext-lazard-5-3) fails.
+
+Now let us suppose the conjecture is true.
 By Proposition \@ref(prp:no-blow-up), if no cells which intersect $\fr{C}$ project onto a bad cell and the induced decomposition is strong, $C$ is well-bordered, locally boundary connected and satisfies the frontier condition. Since the proof of Proposition \@ref(prp:no-blow-up) only considers cells contained in $\projop{n-1}(\cl{C}) \times \R$ this property is also true for the weaker condition that the induced decomposition is strong about $\projop{n-1}(C)$.
 Thus, we need to look at what happens in the neighbourhood of bad cells (blow-up points) only.
 If there is a blow-up point, then we claim that the following situation, similar to that described in Proposition \@ref(prp:lazard-5-13) (@lazard10, Lemma 5.13), occurs.
@@ -650,14 +666,7 @@ applied to $(i_1,\ldots,i_{n-1},0)$-cells, where $1 \le i_{\ell_1} < i_{\ell_2} 
 elements are equal to $0$.
 :::
 
-Note that Lazard's method for cylindrical decomposition of $\R^3$ relies on blow-ups in the frontier of $\projop{2}(C)$ having dimension at most $0$.
-This is always true in $\R^3$.
-However, in dimension greater than $3$, blow-ups of dimension greater than $0$ are possible.
-This may occur in a $1$-dimensional cell $D'$ which is part of $\fr{\projop{n-1}(C)}$.
-In this case, as described in Corollary \@ref(cor:ext-lazard-5-3), $C$ tends to $-\infty$
-or $\infty$ as it approaches $D' \times \R$.
-
-This implies that we should be able to use a similar technique to that described in Proposition \@ref(prp:lazard-5-14)
+This implies that, if Conjecture \@ref(cnj:ext-lazard-5-3) holds, we should be able to use a similar technique to that described in Proposition \@ref(prp:lazard-5-14)
 (@lazard10, Proposition 5.14) to lift above bad cells and satisfy the frontier condition on $2$-dimensional section cells in decompositions of arbitrary dimension.
 
 Let us begin weth the situation described in Proposition \@ref(prp:lazard-5-14) to see how it can be extended.
@@ -713,7 +722,8 @@ using @lazard10, Algorithm 5.15 in Section \@ref(sec:lazard-algorithm).
 For $k>3$ let $\mathcal{D'}$ be the decomposition induced by $\mathcal{D}$ on $\R^k$ and let $C$ be a cell of
 $\mathcal{D'}$ such that $\projopinv{k}(C) \subset V_1 \cup \ldots \cup V_k$.
 By the induction hypothesis, the decomposition induced by $\mathcal{D'}$ on $\R^{k-1}$ is strong about $\projop{k-1}(C)$.
-The cell $C$ is topologically regular since the projection of a monotone cell is monotone and $C$ is well-bordered by Corollary \@ref(cor:ext-lazard-5-3) since $\dim(C) \le 2$.
+The cell $C$ is topologically regular since the projection of a monotone cell is monotone and $C$ is well-bordered by
+Conjecture \@ref(cnj:ext-lazard-5-3) since $\dim(C) \le 2$.
 If $\dim(C) < 2$, $C$ already satisfies the frontier condition since it is well-bordered.
 If $\dim(C') = 2$, then $C$ is an $(i_1,\ldots,i_k)$-cell such that $i_{\ell_1} = i_{\ell_2} = 1$, for some
 $1 \le i_{\ell_1} < i_{\ell_2} \le n$,
@@ -798,16 +808,22 @@ A set of refinement points, as described in Section \@ref(sec:monotone-algorithm
   \textproc{DefiningPolynomials}(C,\mathcal{A})$
   \State \Comment{algebraically independent defining polynomials for $C$}
   \State \Comment{determine whether it is a bad cell}
-  \For {$\mathbf{b} \in \fr{\projop{k-1}(C)}, \dim(\mathbf{b}) = 0$}
-  \If {$\textproc{IsBad}(\mathcal{D},\mathbf{b})$}
-    \State $\mathcal{R}_{\mathbf{b}} \gets \emptyset$
+  \For {$E' \in \fr{\projop{k-1}(C)}$}
+  \If {$\textproc{IsBad}(\mathcal{D},E')$}
+    \If {$\dim(E') > 0$} \Comment{high-dimensional blow-up}
+        \State fall back to @bgv15 or fail gracefully
+    \EndIf
+    \State $\mathbf{b} \gets E'$ \Comment {only $0$-dimensional blow-ups allowed}
+    \State $\mathcal{R}_{\mathbf{b}} \gets \emptyset$ \Comment{initialise set of refinement points above $\mathbf{b}$}
     \State $g_{\ell_1} \in {\cal A}_{\ell_1}, g_{\ell_2} \in {\cal A}_{\ell_2}$ such that $g_{\ell_1}(\mathbf{b}) = 0$
     and $g_{\ell_2}(\mathbf{b}) = 0$
     \For {each $f_{\ell_1} \in \mathcal{A}_{\ell_1},f_{\ell_2} \in \mathcal{A}_{\ell_2}$}
       \State \Comment{compute saturations}
-      \State $I_1 \gets \langle h_k,\ldots,h_{\ell_2 + 1}, g_{\ell_2}, h_{\ell_2 - 1}, \ldots, h_{\ell_1 + 1}, 1 - z f_{\ell_1} \rangle \cap \Z[x_1,\ldots,x_k]$
-      \State $I_2 \gets \langle h_k,\ldots,h_{\ell_2 + 1}, h_{\ell_2 - 1}, \ldots, h_{\ell_1 + 1}, g_{\ell_1}, 1 - z f_{\ell_2} \rangle \cap \Z[x_1,\ldots,x_k]$
-      \State \Comment{where $z$ is a new variable}
+      \State $I_1 \gets \langle h_k,\ldots,h_{\ell_2 + 1}, g_{\ell_2}, h_{\ell_2 - 1}, \ldots, h_{\ell_1 + 1}, 1 - z
+      f_{\ell_1} \rangle \cap R$
+      \State $I_2 \gets \langle h_k,\ldots,h_{\ell_2 + 1}, h_{\ell_2 - 1}, \ldots, h_{\ell_1 + 1}, g_{\ell_1}, 1 - z
+      f_{\ell_2} \rangle \cap R$
+      \State \Comment{where $z$ is a new variable and $R = \Z[x_1,\ldots,x_k]$}
       \State \Comment{saturation of ideal by $h$}
       \State Let $S_1, S_2$ be generator systems for the ideals $I_1$ and $I_2$
       \State $L \gets \{ {\textproc{sub}}_{\mathbf{b}}(f') \in \Q[x_k] \mid f' \in S_1 \cup S_2 \}$
@@ -832,7 +848,7 @@ Apply this procedure to each decomposition, for $3 \le k \le n$ induced by $\mat
 Since zero- and $1$-dimensional cells already satisfy the frontier condition, it suffices to consider cells of dimension
 $2$.
 Let $\mathcal{D}$ be a CAD of $\R^k$ and $C$ be a $2$-dimensional section cell of $\mathcal{D}$ such that the
-decomposition induced by $\mathcal{D}$ on $\R^{k-1}$ is strong about $C$. Corollary \@ref(cor:ext-lazard-5-3) asserts
+decomposition induced by $\mathcal{D}$ on $\R^{k-1}$ is strong about $C$. Conjecture \@ref(cnj:ext-lazard-5-3) asserts
 that $C$ is well-bordered, so its frontier consists of the closure of some $1$-dimensional cells of $\mathcal{D}$. The frontier condition fails in the region of sector cells of $\mathcal{D}$ above $0$-dimensional bad cells in the decomposition induced by $\mathcal{D}$ on $\R^{k-1}$.
 The procedure described above explains how to obtain some new polynomials which allow these $1$-dimensional sectors to be refined such that they are compatible with the frontier of $C$. By performing this refinement, $C$ is made to satisfy the frontier condition.
 

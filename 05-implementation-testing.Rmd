@@ -150,7 +150,8 @@ possible to convert a sample point in extended form to primitive form. The `QEPC
 
 ### Modifications to QEPCAD-B
 
-Full source code can be found here: https://github.com/monotone-cad/qepcad-monotone.
+Full source code can be found on Zenodo, at the following link:
+[https://zenodo.org/records/14945076?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjkwMGJmNGI4LWUyNGQtNGMyYi04ZDdmLTA5M2U5MGI2NGE1ZSIsImRhdGEiOnt9LCJyYW5kb20iOiI3ZGI0YmJkYmY2NThkYzU2ZjU2OTQ3NThlMzUzNWU5NiJ9.dQkkmIqid5YJSepoo9D0PV2FBdBkbl-Xw8AqoITmt3fZ9JZG4QKDAGEZk0yGufgEmTDYxwZxPo0HB8t1-JaaCw](https://zenodo.org/records/14945076?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjkwMGJmNGI4LWUyNGQtNGMyYi04ZDdmLTA5M2U5MGI2NGE1ZSIsImRhdGEiOnt9LCJyYW5kb20iOiI3ZGI0YmJkYmY2NThkYzU2ZjU2OTQ3NThlMzUzNWU5NiJ9.dQkkmIqid5YJSepoo9D0PV2FBdBkbl-Xw8AqoITmt3fZ9JZG4QKDAGEZk0yGufgEmTDYxwZxPo0HB8t1-JaaCw).
 
 The `QEPCAD-B` algorithm has been modified to include construction of quasi-affine cells, refinement of the CAD to produce monotone cells, and refinement of sectors above bad cells to obtain the frontier condition. A new option, `mct <y / n>` has been added, to enable or disable (respectively) the construction of a monotone CAD. The algorithm now proceeds as follows.
 
@@ -619,10 +620,15 @@ Word QepcadCls::FRONTIER(Word r, Word k, Word D, Word As, Word* A_, Word* J_, Wo
 }
 ```
 
-- Lines 6-12 determine if bad cells are possible. I.e., if the dimension of the sub-CAD above `D` is greater than $3$ and if there is more than one child cell, since bad cells can only occur above $0$-cells.
-- A note is kept of cells which were already refined (line 14). This information is stored in the form $(j,i_1,\ldots,i_{k+1})$, where $(i_1,\ldots,i_{k+1})$ is the positional index of the cell $C$ to be refined and $j$ the index of the level-$(k+1)$ polynomial which vanishes identically over $C$. This prevents the program computing the same refinement points multiple times, as the same bad cell may lie in the projection of the boundary of multiple $2$-dimensional cells.
+- Lines 6-12 determine if bad cells are possible. I.e., if the dimension of the sub-CAD above `D` is greater than $3$
+  and if there is more than one child cell. Note that we ensure that bad cells may only occur above $0$-dimensional cells.
+- A record is kept of cells which were already refined (variable declared on line 14). This information is stored in the form $(j,i_1,\ldots,i_{k+1})$, where $(i_1,\ldots,i_{k+1})$ is the positional index of the cell $C$ to be refined and $j$ the index of the level-$(k+1)$ polynomial which vanishes identically over $C$. This prevents the program computing the same refinement points multiple times, as the same bad cell may lie in the projection of the boundary of multiple $2$-dimensional cells.
 - The loop (lines 24-36) considers each $2$-dimensional section cell $C$ in this sub-CAD, with binary index $(0,\ldots,0,m_k,0,\ldots,0,m_\ell,0,\ldots,0)$ in the CAD of $\R^r$ (ambient space) where $m_k=m_\ell = 1$.
-- `SI` (line 31) is a list $(i_{k+1},\ldots,i_r)$ where each $i_j \in \Z$ is equal to the index of the first polynomial in $\mathcal{A}_j$ which is equal to zero on $C$, or $-1$ if no such polynomial exists. In particular, $i_k = i_\ell = 1$.
+- `SI` (line 31) is a list $(i_{k+1},\ldots,i_r)$ where each $i_j \in \Z$ is equal to the index of a polynomial in $\mathcal{A}_j$ which is equal to zero on $C$, or $-1$ if no such polynomial exists.
+In particular, $i_k = i_\ell = 1$. Note that we are considering the $1$-dimensional cylinders above $0$-dimensional
+bad cells in the frontiers of $2$-dimensional sections which are contained in effectively nonsingular manifolds.
+Therefore we can conclude that these polynomials define an algebraic set whose dimension is at most $1$ (due to the bad
+cell, the $r$-th polynomial may vanish identically on this set.
 - Bad cells, in $\fr{\projop{\ell}(C)}$, may lie in the sub-CADs above the $(0,\ldots,0)$-cells $\projop{k}(C)_B$ and $\projop{k}(C)_T$. The function `ProcessBadCells` (called on lines 34 and 35) identifies bad cells and adds refinement points. This function is described next.
 
 **Input:**
@@ -1182,6 +1188,11 @@ Step5: /* Monotone cells, if needed */
         // refine the CAD
         D = REFINE(1, D, GVREFL, P);
 
+        /* Perform badness check */
+        if (BADCHECK(D)) {
+            FAIL("QEPCAD", "A bad cell of dimension > 0 exists.");
+        }
+
         // if we cached an ESPCAD, it will no longer be valid. If CAD was projection definable before, it will be still
         // be projection definable now.
         if (GVTD != NIL && FIRST(GVTD) == 0) {
@@ -1221,7 +1232,12 @@ Return: /* Prepare for return. */
 - The variable `PCMCT` indicates that a monotone CAD should be computed if it is equal to $1$, and runs the standard algorithm otherwise.
 - The first modification occurs on lines 41-51, where standard projection is replaced by quasi-affine projection. The function `QUASIAFFINE` is called and the input polynomials, projection polynomials and projection factors are updated as necessary.
 - Lines 55-61 remain unchanged, and construct a truth-invariant CAD. If monotone cells are to be produced, the CAD will have constant sign on the projection factors, as the option `full-cad` will be enabled.
-- Lines 61-88 define a new step, where refinements for monotone cells and frontier condition are performed. Lines 70-71 compute the refinement points for monotone cells, by calling `MONOTONE` and line 74 calls `REFINE` to compute the refinement. Line 84 calls `FRONTIER` to complete the refinement points above bad cells and line 85 calls computes the refinement.
+- Lines 61-93 define a new step, where refinements for monotone cells and frontier condition are performed. Lines 70-71 compute the refinement points for monotone cells, by calling `MONOTONE` and line 74 calls `REFINE` to compute the refinement.
+On lines 77-79, a check to verify whether Conjecture \@ref(cnj:ext-lazard-5-3) is valid. The function `BADCHECK`
+determines if there exists a $2$-dimensional sector cell of level $k > 3$ on which a lever-$k$ polynomial vanishes
+identically -- i.e., whether there exists a blow-up of dimension $> 0$. In this case, the implementation will fail
+gracefully.
+Line 88 calls `FRONTIER` to complete the refinement points above bad cells and line 85 calls computes the refinement.
 
 ### Additional modifications and additions { #sec:additional-modifications }
 
@@ -1266,6 +1282,7 @@ A brief summary of new and modified functions is now presented.
 
 - `source/util/ADDPOL.c`: refactoring of `ADD2A`.
 - `source/util/ADDPOLS.c`: bulk call to `ADDPOL`.
+- `source/util/BADCHECK.c`: determines whetheer there exist a blaw-up of dimension $> 0$.
 
 - `source/proj/ProjMcxUtil.c`: Stripped down version of McCallum projection, used as a utility function, e.g., to compute the $x_1$-coordinates of refinement points in `MONOTONE()`.
 - `source/proj/STRAT.c`: computes a smooth stratification using the algorithm described in Chapter
@@ -1294,7 +1311,7 @@ A brief summary of new and modified functions is now presented.
 
 Note that some other files show changes, when using `git diff`, but these are just formatting and whitespace changes which made the code more readable.
 
-## Test cases
+## Illustrative Examples
 
 In the examples which follow, the variable ordering for CAD will be the order in which variables appear in the
 definition of the input set.
@@ -1507,5 +1524,6 @@ R_{3,1} & = input \text{ *** Refinement of cell (2,2,3) ***}\\
 \text{Coordinate }3 & = 1 = 1.0000
 \end{align*}
 
-Additional test cases and benchmarks are presented in Appendix \@ref(sec:more-tests). TODO!
+Additional illustrative examples are preesented in Appendix \@ref(sec:more-tests).
+Benchmarks are presented in Appendix TODO!
 
