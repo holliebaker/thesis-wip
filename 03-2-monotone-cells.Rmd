@@ -577,7 +577,7 @@ such that each of $C^j_T$ and $C^j_B$ is either empty or the graph of a continuo
 
 The process is completed by induction on $j$. Suppose that the refinement has been performed for $\alpha + 1 \le j$. If $j = n$ we are done, and $C$ is now monotone. Otherwise, we proceed to $j+1$. By the induction hypothesis, we know that $C^{j}_T \cap \{b_{j-1,i} < x_1 < b_{j-1,i+1}\}, 1 \le i < r_{j}$ is either empty or the graph of a continuous (monotone) function.
 If $C^{j}_T = \emptyset$, there is nothing to do as $C^{j+1}_T$ is empty, too, and the process will terminate.
-Otherwise, the new constraint $g_{j} \in {\cal A}_{j}$ is the polynomial defining $C^{j}_T$ and $g_j \in {\cal A}_j$ can be found such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} \in C^{j+1}_T$.
+Otherwise, the new constraint $g_{j} \in {\cal A}_{j}$ is the polynomial having $C^{j}_T$ as one of its roots and $g_j \in {\cal A}_j$ can be found such that $g_j(\mathbf{x}) = 0$ for all $\mathbf{x} \in C^{j+1}_T$.
 Perform the same computation described above, to refine $C^{j+1}_T$ such that $1$-dimensional components are graphs of continuous, monotone functions. Repeat with $C^{j+1}_B$.
 As before, a set of refinement points
 $$
