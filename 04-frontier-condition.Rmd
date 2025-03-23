@@ -141,7 +141,7 @@ smallest number of cells required for it to be cylindrical and compatible with e
 
 - refine the $(1,0,1)$-cell $\{ 0 < x < 1, y = -x \}$ to be compatible with $C_{1,1}$,
 - refine the $(1,0,1)$-cell $\{ 0 < x < 1, y = x \}$ to be compatible with $C_{2,1}$,
-- refine the $(0,1,1)$-cell $\{ x = 1 \}$, which is actually a sub-CAD of $\R^2$ above $x=1$ to be compatible weth the
+- refine the $(0,1,1)$-cell $\{ x = 1 \}$, which is actually a sub-CAD of $\R^2$ above $x=1$ to be compatible with the
   cells $\mathbf{d}$, $C_{1,2}$, $\mathbf{c}$, $C_{2,2}$ and $\mathbf{e}$i, and
 - refine the $(0,1,1)$-cell $\{ x = 0 \}$ to be compatible with $\mathbf{a}$, $C$ and $\mathbf{b}$.
 
@@ -313,15 +313,11 @@ Consider each case for $C$ by the cell's binary index.
 - $(1,1,1)$-cell: since $C$ is well-bordered, its boundary is the closure of some $2$-dimensional cells of $\cal D$ and
   $B$ is contained in the union of the boundaries of the 2-cells. Thus, case 2 applies and we can choose an appropriate
   $2$-dimensional cell in $\fr{C}$ for $E$.
-
 - $(1,0,1)$- or $(0,1,1)$-cell, we write $(i,j,1)$-cell where $i+j=1$: observe that $C$ (if bounded) is delineated by
   some $(i,j,0)$-cells ($1$-dimensional curve intervals). Take $B$ to be the $1$-dimensional interval delineated by the endpoints of these cells. Since $B \neq C$, at least one of these endpoints is not a $(0,0,0)$-cell of $\cal D$. Case 2 applies, taking as $E$ the delineating $(i,j,0)$-cell.
-
 - $(1,0,0)$- or $(0,1,0)$-cells: consider the previous case, letting $C = E$.
-
 - $(1,1,0)$-cell: these are necessarily the root of a polynomial $f \in \Q[x_1,x_2,x_3]$ which vanishes identically on $D'$, a $(0,0)$ cell in the decomposition induced by $\cal D$ on $\R^2$.
 Let $V_r$ be a small neighbourhood (with radius $r > 0$) centred around $D'$ and consider $V_r'$, the cylinder above the boundary of $V_r$. Since $C$ is a monotone cell, the maximum and minimum values of $x_3$ in this intersection are reached on the boundary of $C$, for sufficiently small $r$. The limits, as $r$ tends to $0$, of this maximum and minimum clearly belong to the boundary of $B$, even if these limits are not finite. Note that both the maximum and minimum cannot be infinite, since this would imply that either $B$ is empty, or coincides with $D$. Therefore, the non-infinite limits are the endpoints of some $1$-dimensional cell belonging to the boundary of $C$. Case 2 applies, taking $E$ to be this $1$-dimensional cell.
-
 - $(0,0,1)$- or $(0,0,0)$-cells: do not satisfy the hypothesis, there is nothing to do.
 :::
 
@@ -558,7 +554,7 @@ of the interval $I$ associated to $C$ by Proposition \@ref(prp:lazard-5-2) (@laz
 contradicts the assumption that $\projopinv{2}(\mathbf{c}) \cap \fr{C}$ contains only $\mathbf{p}$.
 
 If $\dim(C) = 2$ and $C$ is a sector ($(i_1,i_2,1)$-cell), then $\fr{C}$ consists of the two $(i_1,i_2,0)$-cells $C_B$
-and $C_T$ which project onto $C'$ the side-walls $W = \fr{C} \setminus (C_B \cup C_T)$ which consists of points or intervals projecting onto the endpoints of $C'$.
+and $C_T$ which project onto $C'$ the side-walls $W = \fr{C} \setminus (C_B \cup C_T)$ which consist of points or intervals projecting onto the endpoints of $C'$.
 If $W$ contains an isolated point above an endpoint $\mathbf{c}$ of $C'$. Then Proposition \@ref(prp:lazard-5-2) (@lazard10, Proposition 5.2) asserts that it belongs to the boundary of a section bounding $C$ from below or above (i.e., $C_B$ or $C_T$), and we are done.
 
 Finally, suppose that $C$ is a $(1,1,1)$-cell.
@@ -609,9 +605,13 @@ cell is not closure finite.
 The same argument as in Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) can be applied to show that $C$ is
 well-bordered. In particular, no points in $\fr{C}$ can be contained in a $(j_1,\ldots,j_{n-1},1)$-cell which projects onto
 a $1$-dimensional sector cell in $\fr{C'}$.
-Since $C$ is $2$-dimensional, a $2$-dimensional cell cannot be part of $\fr{C}$. If such a cell, projecting on a $1$-dimensional cell in $\mathcal{D}'$ exists, then $C$ approaches $-\infty$ and $\infty$ as it approaches this cell.
+This follows from the fact that the Zariski closure of $C$ is an algebraic subvariety of dimension $2$ so it cannot
+contain a proper subvariety which has dimension $2$.
+If the polynomial which is equal to $0$ at all points of $C$ vanishes identically in a $2$-dimensional cell contained in
+$\fr{C'}\times \R$, then $C$ tends to $-\infty$ and $\infty$ as it approaches this cell.
 
-The $(i_1,\ldots,i_{n-1},1)$-cells of $\mathcal{D}$ contained in $C' \times \R$ also have the same arrangement as $(1,1,1)$ cells in from Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3). Being careful to take blow-up points into account, the same argument as in the proof of Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) shows that these cells are also well-bordered.
+The $(i_1,\ldots,i_{n-1},1)$-cells of $\mathcal{D}$ contained in $C' \times \R$ also have the same arrangement as
+$(1,1,1)$ cells from Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3). Being careful to take blow-up points into account, the same argument as in the proof of Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) shows that these cells are also well-bordered.
 
 Conjecture \@ref(cnj:ext-lazard-5-3) always holds if the frontier of the projection of the cell in question contains
 only $0$-dimensional blow-ups. If $1$-dimensional blow-ups exist above which the frontier of the cell should contain an
@@ -632,7 +632,6 @@ Let $\mathcal{D}$ be a sign-invariant decomposition of $\R^n$ and $C$ be a cell 
 $2$, such that the decomposition induced by $\mathcal{D}$ on $\R^{n-1}$ is strong about $\projop{n-1}(C)$. Let $D$ be a cell of $\mathcal{D}$ such that $B := D \cap \fr{ C } \neq \emptyset$ and $B \neq D$. Then either
 
   1. $C$ is a $1$-dimensional section cell whose endpoint, $B$, projects onto a bad cell, or
-
   2. there exists a cell $E$ of $\mathcal{D}$ such that $\dim(E) < \dim(C)$ and $\emptyset \neq D \cap \fr{ E } \neq D$.
 :::
 
@@ -669,7 +668,7 @@ elements are equal to $0$.
 This implies that, if Conjecture \@ref(cnj:ext-lazard-5-3) holds, we should be able to use a similar technique to that described in Proposition \@ref(prp:lazard-5-14)
 (@lazard10, Proposition 5.14) to lift above bad cells and satisfy the frontier condition on $2$-dimensional section cells in decompositions of arbitrary dimension.
 
-Let us begin weth the situation described in Proposition \@ref(prp:lazard-5-14) to see how it can be extended.
+Let us begin with the situation described in Proposition \@ref(prp:lazard-5-14) to see how it can be extended.
 Let $f \in \Q[x_{\ell_1},x_{\ell_2},x_n]$ be an irreducible polynomial and $\mathbf{p} \in \opspan{x_{\ell_1},
 x_{\ell_2}}$ be a common root of the coefficients of $f$. Let $g \in \Q[x_{\ell_1}, x_{\ell_2}]$ be an irreducible
 polynomial having $\mathbf{p}$ as a root.
