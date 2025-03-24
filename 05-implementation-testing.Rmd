@@ -50,7 +50,7 @@ The `QEPCAD-B` algorithm proceeds in five stages:
 1. **Normalisation**
 
     Let $(Q_1,v_1),\ldots,(Q_k,v_k) F$ be the input formula. The normalisation phase uses logical equivalences and polynomial factorisation to transform $F$ into a "normalised" formula $G$, defined by induction as follows:
-    - atoms are of the form $f \ast 0$ where $f \in \Z[v_1,\ldots,v_n]$ is a primitive, irreducible polynomial and $\ast \in \{=, \ne, <, \le, >, \ge \}$.
+    - atoms are of the form $f \ast 0$ where $f \in \Z[v_1,\ldots,v_n]$ is a primitive, irreducible polynomials and $\ast \in \{=, \ne, <, \le, >, \ge \}$.
     - Suppose that normalised formulas $G_1$ and $G_2$ are already defined, then
     $$
     G_1 \land G_2 \text{ and } G_1 \lor G_2
@@ -175,11 +175,11 @@ The `QEPCAD-B` algorithm has been modified to include construction of quasi-affi
 
      Note that this step replaces the usual projection phase.
 
+\newpage
+
 4. **Lifting**
 
     Constructs an $\mathcal{A}$-invariant CAD $\mathcal{D}$. If `mct` is enabled, each cell $C \subset V_1\cup \ldots \cup V_k$ of $\mathcal{D}$ will be the graph of a quasi-affine map, due to the polynomials added in the previous step.
-
-\newpage
 
 5. **Refinement Phase**
 
@@ -209,6 +209,7 @@ The `QEPCAD-B` algorithm has been modified to include construction of quasi-affi
 
 In the forthcoming sections, the new code added to `QEPCAD-B` is presented and discussed.
 
+\newpage
 ### Quasi-affine
 
 The function responsible for constructing a CAD containing quasi-affine cells is `QUASIAFFINE`
@@ -482,6 +483,7 @@ $(i_1,\ldots,i_r)$-cell such that $i_j = i_k = 1$ and all other elements of its 
 
 The function `Refinement` is responsible for computing the refinement polynomials using an iterative application of the method of Lagrange multipliers.
 
+\newpage
 - **Input:**
   - `Gs`, `P`, `Fs` as defined above, for $\projop{k}(C)_T$ or $\projop{k}(C)_B$.
 - **Output:**
@@ -562,6 +564,7 @@ The frontier condition is obtained by using the generalisation of Lazard's metho
 described in section \@ref(sec:lazard-n), the entry point for computing a CAD with frontier condition is `FRONTIER`.
 This function identifies bad $0$-dimensional cells and adds refinement points, in the same format as that used in the construction of monotone cells.
 
+\newpage
 **Input:**
 
 - `Word r` $\in \N$,
@@ -631,6 +634,7 @@ Therefore we can conclude that these polynomials define an algebraic set whose d
 cell, the $r$-th polynomial may vanish identically on this set.
 - Bad cells, in $\fr{\projop{\ell}(C)}$, may lie in the sub-CADs above the $(0,\ldots,0)$-cells $\projop{k}(C)_B$ and $\projop{k}(C)_T$. The function `ProcessBadCells` (called on lines 34 and 35) identifies bad cells and adds refinement points. This function is described next.
 
+\newpage
 **Input:**
 
 - `Word r` $\in \N$,
@@ -836,6 +840,7 @@ The function `RefineSubcad` does all the heavy lifting.
 - `Word Ps`: list of refinement points (in ascending order) of the children,
 - `Word PFs`: projection factor set $(\mathcal{A}_{k+1},\ldots,\mathcal{A}_n)$, used for recomputing sample points.
 
+\newpage
 **Output:**
 
 - `Word Ch'`: `Ch`, refined to be compatible with refinement points `Ps`, indices, sample points and data for all child cells has been updated.
@@ -1233,7 +1238,7 @@ Return: /* Prepare for return. */
 - The first modification occurs on lines 41-51, where standard projection is replaced by quasi-affine projection. The function `QUASIAFFINE` is called and the input polynomials, projection polynomials and projection factors are updated as necessary.
 - Lines 55-61 remain unchanged, and construct a truth-invariant CAD. If monotone cells are to be produced, the CAD will have constant sign on the projection factors, as the option `full-cad` will be enabled.
 - Lines 61-93 define a new step, where refinements for monotone cells and frontier condition are performed. Lines 70-71 compute the refinement points for monotone cells, by calling `MONOTONE` and line 74 calls `REFINE` to compute the refinement.
-On lines 77-79, a check to verify whether Conjecture \@ref(cnj:ext-lazard-5-3) is valid. The function `BADCHECK`
+On lines 77-79, a check to verify whether Corollary \@ref(cor:ext-lazard-5-3) is valid. The function `BADCHECK`
 determines if there exists a $2$-dimensional sector cell of level $k > 3$ on which a lever-$k$ polynomial vanishes
 identically -- i.e., whether there exists a blow-up of dimension $> 0$. In this case, the implementation will fail
 gracefully.
@@ -1361,6 +1366,7 @@ Q_{3,2} & = fac(Q_{3,1}) = fac(input)\\
 The sphere is decomposed into 26 cylindrical cells: 8 $2$-dimensional cells, 12 $1$-dimensional cells and 6
 $0$-dimensional cells. The `QEPCAD-B` output, showing these cells represented as Tarski formulas, is shown in Appendix
 \@ref(sec:quasi-output).
+Table \@ref(tab:test-sphere) compares the running time, number of projection polynomials, number of true cells and total number of cells produced by `QEPCAD-B` when constructing a classical and a monotone CAD.
 
 In Example \@ref(exm:qanm), we present a $2$-dimensional section cell which is the graph of a quasi-affine map, but is not a monotone cell.
 
@@ -1404,7 +1410,7 @@ knitr::include_graphics(rep("gnuplot/qanm.svg"))
 ```
 
 \newpage
-Polynomials and refinement points output by `QEPCAD-B` are presented below and full output appears in Appendix
+Polynomials and refinement points output by `QEPCAD-B` are presented below. Full output and a comparison of running time, number of polynomials and number of cells appears in Appendix
 \@ref(sec:monotone-output). Note the projection factor `M_1_3` defines the refinement point $x = 1/2$.
 \begin{align*}
 \text{Projection polynomials:}\\
@@ -1448,6 +1454,7 @@ $$
 - **Monotone**:
 
   $C$ is partitioned, in the quasi-affine step, into three cells
+
   \begin{align*}
   C_1 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, -x < y < 0, y^2 - x^2 z = 0 \},\\
   C_2 &= \{ (x,y,z) \in \R^3 \mid 0 < x < 1, y = 0, y^2 - x^2 z = 0 \},\\
@@ -1493,7 +1500,7 @@ $$
   identified by Proposition \@ref(prp:lazard-5-13).
 
 The projection factors and refinement points produced by `QEPCAD-B` are now presented. An excerpt of the output,
-including the collection of cells which comprises the frontier of $C$ is presented in Appendix \@ref(sec:frontier-output).
+including the collection of cells which comprises the frontier of $C$ is presented in Appendix \@ref(sec:frontier-output), where a comparison of runtime, number of polynomials and number of cells can also be found.
 \begin{align*}
 \text{Projection polynomials:}\\
 A_{1,1} & = fac2(J_{2,1}) = fac2(ldcf(A_{3,1}))\\
@@ -1524,6 +1531,6 @@ R_{3,1} & = input \text{ *** Refinement of cell (2,2,3) ***}\\
 \text{Coordinate }3 & = 1 = 1.0000
 \end{align*}
 
-Additional illustrative examples are preesented in Appendix \@ref(sec:more-tests).
-Benchmarks are presented in Appendix TODO!
+Additional illustrative examples are presented in Appendix \@ref(sec:more-tests) along with a comparison of the number of cells, number of polynomial and average running time taken to construct a monotone CAD vs a classical CAD in `QEPCAD-B`. 
+
 
