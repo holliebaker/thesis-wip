@@ -612,7 +612,7 @@ $\fr{C'}\times \R$, then $C$ tends to $-\infty$ or $\infty$ as it approaches thi
 The $(i_1,\ldots,i_{n-1},1)$-cells of $\mathcal{D}$ contained in $C' \times \R$ also have the same arrangement as
 $(1,1,1)$ cells from Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3). Being careful to take blow-up points into account, the same argument as in the proof of Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) shows that these cells are also well-bordered.
 :::
-
+<!--
 Corollary \@ref(cor:ext-lazard-5-3) always holds if the frontier of the projection of the cell in question contains
 only $0$-dimensional blow-ups. If $1$-dimensional blow-ups exist above which the frontier of the cell should contain an
 open interval, the conjecture fails. However, the algorithm due to @bgv15, presented in Section \@ref(sec:frontier-bgv)
@@ -621,10 +621,12 @@ signs of projection polynomials on it, we can easily revert to the approach from
 Corollary \@ref(cor:ext-lazard-5-3) fails.
 
 Now let us suppose the conjecture is true.
+-->
 By Proposition \@ref(prp:no-blow-up), if no cells which intersect $\fr{C}$ project onto a bad cell and the induced decomposition is strong, $C$ is well-bordered, locally boundary connected and satisfies the frontier condition. Since the proof of Proposition \@ref(prp:no-blow-up) only considers cells contained in $\projop{n-1}(\cl{C}) \times \R$ this property is also true for the weaker condition that the induced decomposition is strong about $\projop{n-1}(C)$.
 Thus, we need to look at what happens in the neighbourhood of bad cells (blow-up points) only.
 If there is a blow-up point, then we claim that the following situation, similar to that described in Proposition \@ref(prp:lazard-5-13) (@lazard10, Lemma 5.13), occurs.
 
+\newpage
 ::: {.lemma #ext-lazard-5-13 }
 (Extension of Proposition \@ref(prp:lazard-5-13) [@lazard10, Proposition 5.13])
 
@@ -665,9 +667,25 @@ applied to $(i_1,\ldots,i_{n-1},0)$-cells, where $1 \le i_{\ell_1} < i_{\ell_2} 
 elements are equal to $0$.
 :::
 
-This implies that, if Corollary \@ref(cor:ext-lazard-5-3) holds, we should be able to use a similar technique to that described in Proposition \@ref(prp:lazard-5-14)
+<!--This implies that, if Corollary \@ref(cor:ext-lazard-5-3) holds, -->
+This implies that we should be able to use a similar technique to that described in Proposition \@ref(prp:lazard-5-14)
 (@lazard10, Proposition 5.14) to lift above bad cells and satisfy the frontier condition on $2$-dimensional section cells in decompositions of arbitrary dimension.
 
+::: {.corollary #ext-lazard-5-14}
+(Extension of @lazard10, Proposition 5.14)
+
+Let $f \in \Q[x_1,\ldots,x_n]$ and $g_{j_1},\ldots,g_{j_{n-3}} \in \Q[x_1,\ldots,x_{n-1}]$ be a set of irreducible
+polynomials which define an algebraic set of dimension $2$ the neighbourhood of a point $\mathbf{p}\in
+\R^{n-1}$ except, perhaps, for $\mathbf{p}$ itself (where $f$ may blow up). Suppose that $\mathbf{p}$ is a common root of $g_{j_1},\ldots,g_{j_{n-3}}$ and
+the coefficients of $f$.
+Let $g\in \Q[x_1,\ldots,x_{n-1}]$ be an irreducible polynomial which is algebraically independent of all of $f, g_{j_1},
+\ldots, g_{j_{n-3}}$.
+Then there exists a polynomial $h \in \Q[x_1,\ldots,x_{n-1}]$ such that the limit of the common
+roots of $f, g, g_{j_1}, \ldots, g_{j_{n-3}}$ as $(x_1,\ldots,x_{n-1})$ approaches $\mathbf{p}$ can be computed as the
+zero set of the saturation of the ideal $\langle f, g, g_{i_1}, \ldots, g_{i_{n-3}} \rangle$ by $h$.
+:::
+
+::: {.proof}
 Let us begin with the situation described in Proposition \@ref(prp:lazard-5-14) to see how it can be extended.
 Let $f \in \Q[x_{\ell_1},x_{\ell_2},x_n]$ be an irreducible polynomial and $\mathbf{p} \in \opspan{x_{\ell_1},
 x_{\ell_2}}$ be a common root of the coefficients of $f$. Let $g \in \Q[x_{\ell_1}, x_{\ell_2}]$ be an irreducible
@@ -691,27 +709,14 @@ S := \langle f, g, g_{j_1}, \ldots, g_{j_{n-3}}, 1 - z h \rangle \cap \Q[x_1,\ld
 $$
 defines the required refinement point.
 As before, $h$ can be taken to be a coefficient of $f$ which is not a multiple of any of $g, g_{j_1}, \ldots,
-g_{j_{n-3}}$. This leads to the following conjecture:
-
-::: {.conjecture #ext-lazard-5-14}
-(Extension of @lazard10, Proposition 5.14)
-
-Let $f \in \Q[x_1,\ldots,x_n]$ and $g_{j_1},\ldots,g_{j_{n-3}} \in \Q[x_1,\ldots,x_{n-1}]$ be a set of irreducible
-polynomials which define an algebraic set of dimension $2$ in every point of the neighbourhood of a point $\mathbf{p}\in
-\R^{n-1}$ (except, perhaps, for $\mathbf{p}$ itself, where $f$ may blow up). Suppose that $\mathbf{p}$ is a common root of $g_{j_1},\ldots,g_{j_{n-3}}$ and
-the coefficients of $f$.
-Let $g\in \Q[x_1,\ldots,x_{n-1}]$ be an irreducible polynomial which is algebraically independent of all of $f, g_{j_1},
-\ldots, g_{j_{n-3}}$.
-Then there exists a polynomial $h \in \Q[x_1,\ldots,x_{n-1}]$ such that the limit of the common
-roots of $f, g, g_{j_1}, \ldots, g_{j_{n-3}}$ as $(x_1,\ldots,x_{n-1})$ approaches $\mathbf{p}$ can be computed as the
-zero set of the saturation of the ideal $\langle f, g, g_{i_1}, \ldots, g_{i_{n-3}} \rangle$ by $h$.
+g_{j_{n-3}}$.
 :::
 
 We now describe how this result can be applied.
 Let $\mathcal{D}$ be an $\mathbf{F}$-invariant CAD of $\R^n$ as constructed by the algorithm in Section \@ref(sec:monotone-algorithm).
 Recall that, for the previous results, we require the decomposition induced on $\R^{n-1}$ to be strong about the
 projections of some cells of $\mathcal{D}$. Therefore, we need to proceed by induction on decompositions induced by
-$\mathcal{D}$ on $\R^k, k \ge 1$ to be able to apply Lemma \@ref(lem:ext-lazard-5-13) and Conjecture \@ref(cnj:ext-lazard-5-14).
+$\mathcal{D}$ on $\R^k, k \ge 1$ to be able to apply Lemma \@ref(lem:ext-lazard-5-13) and Corollary \@ref(cor:ext-lazard-5-14).
 
 For $k\le 2$, we have a $\projop{k}(\mathbf{F})$-invariant CAD which already satisfies the frontier condition by @lazard10, Corollary 4.7.
 For $k=3$, recall that every cell is well-bordered by Proposition \@ref(prp:lazard-5-4) (@lazard10, Corollary 5.4). We
@@ -743,8 +748,8 @@ where each $g_i \in \mathcal{A}_i$ for $i \in \{j_1,\ldots,j_{k-3}\} = \{1,\ldot
 Since $C$ is effectively nonsingular, these polynomials are algebraically independent and therefore they define an
 algebraic set of dimension $2$ at every point in $C$.
 Suppose that there is a $(0,\ldots,0,1)$-cell $D$ such that $D \cap \fr{C}$ and $f(\mathbf{x}) = 0$ for all $\mathbf{x} \in D$. I.e., $\mathbf{b} := \projop{k-1}(D)$ is a bad cell and is a common root of $g_{j_1}, \ldots, g_{j_{k-3}}$ and some $g_{\ell_1} \in \mathcal{A}_{\ell_1}, g_{\ell_2} \in \mathcal{A}_{\ell_2}$.
-Apply a method similar to that described in @lazard10, Algorithm 5.15 to $C$ and $D$ -- using Conjecture
-\@ref(cnj:ext-lazard-5-14), compute the saturations by $g_{\ell_1}$ and $g_{\ell_2}$, respectively as follows:
+Apply a method similar to that described in @lazard10, Algorithm 5.15 to $C$ and $D$ -- using Corollary
+\@ref(cor:ext-lazard-5-14), compute the saturations by $g_{\ell_1}$ and $g_{\ell_2}$, respectively as follows:
 \begin{equation}
 I_1 := \langle f, g_{j_1}, \ldots, g_{j_{k-3}}, g_{\ell_2}, 1 - z g_{\ell_1} \rangle \cap \Z[x_1,\ldots,x_k]
 (\#eq:lazard-n-1)
