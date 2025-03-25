@@ -9,6 +9,20 @@ The `QEPCAD-B` output from Example \@ref(exm:sphere) is shown below.
 
 ```
 
+Table \@ref(tab:test-sphere) shows a comparison of the number of projection factors, number of true cells and total number of cells produced by `QEPCAD-B` when constructing a classical and a monotone CAD. Over 10 runs, the minimum, maximum and mean running time, in milliseconds, is also presented, along with the standard deviation of the runtime. 
+
+Table: (\#tab:test-sphere) Comparison of runtimes of `QEPCAD-B` on Example \@ref(exm:sphere) when constructing a classical vs monotone CAD.
+
+|              | Classical | Monotone |
+|--------------|-----------|----------|
+| Proj factors | 4         | 7        | 
+| True Cells   | 6         | 26       |
+| Total Cells  | 25        | 135      |
+| Min runtime  | 1         | 5        |
+| Max runtime  | 7         | 14       |
+| Mean runtime | 3.1       | 9.5      |
+| Std dev      | 1.10      | 2.12     |
+
 ## Monotone { #sec:monotone-output }
 
 The `QEPCAD-B` output from Example \@ref(exm:qanm) is shown below.
@@ -17,6 +31,18 @@ The `QEPCAD-B` output from Example \@ref(exm:qanm) is shown below.
 
 ```
 
+Table: (\#tab:test-qanm) Comparison of runtimes of `QEPCAD-B` on Example \@ref(exm:qanm) when constructing a classical vs monotone CAD.
+
+|              | Classical | Monotone |
+|--------------|-----------|----------|
+| Proj factors | 5         | 6        | 
+| True Cells   | 1         | 3        |
+| Total Cells  | 11        | 99       |
+| Min runtime  | 2         | 3        |
+| Max runtime  | 5         | 6        |
+| Mean runtime | 3         | 4.4      |
+| Std dev      | 1.05      | 1.07     |
+
 ## Frontier Condition { #sec:frontier-output }
 
 The `QEPCAD-B` output from Example \@ref(exm:fr-3-whitney-jhd) is shown below.
@@ -24,6 +50,19 @@ The `QEPCAD-B` output from Example \@ref(exm:fr-3-whitney-jhd) is shown below.
 ``` {r, child="test-cases/fr-3-whitney-jhd.Rmd"}
 
 ```
+
+Table: (\#tab:fr-3-whitney-jhd) Comparison of runtimes of `QEPCAD-B` on Example \@ref(exm:fr-3-whitney-jhd) when constructing a classical vs monotone CAD.
+
+|              | Classical | Monotone |
+|--------------|-----------|----------|
+| Proj factors | 6         | 8        | 
+| True Cells   | 3         | 3        |
+| Total Cells  | 17        | 143      |
+| Min runtime  | 2         | 4        |
+| Max runtime  | 6         | 11       |
+| Mean runtime | 3.9       | 7.8      |
+| Std dev      | 1.20      | 2.39     |
+
 
 # More Illustrative Examples { #sec:more-tests }
 
@@ -86,6 +125,18 @@ R_{1,1} & = input \text{ *** Refinement of cell (3) ***}\\
 \text{Coordinate }2 & = 1/16 = 0.0625000000\\
 \text{Coordinate }3 & = 65/256 = 0.2539062500
 \end{align*}
+
+Table: (\#tab:qanm-3-alg) Comparison of runtimes of `QEPCAD-B` on Example \@ref(exm:qanm-3-alg) when constructing a classical vs monotone CAD.
+
+|              | Classical | Monotone |
+|--------------|-----------|----------|
+| Proj factors | 5         | 7        | 
+| True Cells   | 1         | 3        |
+| Total Cells  | 11        | 99       |
+| Min runtime  | 3         | 4        |
+| Max runtime  | 6         | 9        |
+| Mean runtime | 3.8       | 6.5      |
+| Std dev      | 1.03      | 1.51     |
 
 Example \@ref(exm:qanm-4-rat), which follows, demonstrates what happens on sub-CADs above 0-dimensional cells.
 
@@ -202,6 +253,18 @@ C_3 & C_{(8,3,3,2)} \\
 \text{Coordinate }4 & = 7/16 = 0.4375000000\\
 \end{align*}
 
+Table: (\#tab:qanm-4-rat) Comparison of runtimes of `QEPCAD-B` on Example \@ref(exm:qanm-4-rat) when constructing a classical vs monotone CAD.
+
+|              | Classical | Monotone |
+|--------------|-----------|----------|
+| Proj factors | 8         | 12       | 
+| True Cells   | 3         | 7        |
+| Total Cells  | 37        | 681      |
+| Min runtime  | 2         | 12       |
+| Max runtime  | 5         | 19       |
+| Mean runtime | 3.8       | 14.4     |
+| Std dev      | 1.03      | 2.32     |
+
 The following example requires a rational refinement above an algebraic zero-cell.
 
 ::: {.example #qanm-4-above-alg }
@@ -241,6 +304,14 @@ R_{2,1} & = input \text{ *** Refinement of cell (6,3) ***}\\
 \end{align*}
 
 A rational refinement of the cell with positional index $(6,3)$ takes place. The sample points of new cells are recomputed and are stored in the extended representation, as with the original cell.
+
+Table: (\#tab:qanm-4-above-alg) Comparison of runtimes of `QEPCAD-B` on Example \@ref(exm:qanm-4-above-alg) when constructing a classical vs monotone CAD.
+
+|           | Runtime (ms) | Projection factors | True cells | Total cells |
+|-----------|--------------|--------------------|------------|-------------|
+| Classical | 5    | 7    | 1   | 17    |
+| Monotone  | 22   | 8    | 3   | 513   |
+
 
 We now show a similar example, requiring an algebraic refinement.
 
@@ -295,6 +366,14 @@ An algebraic refinement is performed. In order to recompute sample points of the
 \text{Coordinate }4 & = \text{the unique root of } 262144 x^3 - 536576 x^2 + 1654976 x - 287873 \\
                     & \text{ between } 0 \text{ and } 4 \approx 0.1839263602\ldots
 \end{align*}
+
+Table: (\#tab:qanm-4-alg) Comparison of runtimes of `QEPCAD-B` on Example \@ref(exm:qanm-4-alg) when constructing a classical vs monotone CAD.
+
+|           | Runtime (ms) | Projection factors | True cells | Total cells |
+|-----------|--------------|--------------------|------------|-------------|
+| Classical | 11   | 7    | 1   | 17    |
+| Monotone  | 27   | 9    | 3   | 513   |
+
 
 Now consider a $(1,1,0,0)$-cell in $\R^4$ requiring two refinements.
 
@@ -427,6 +506,13 @@ R_{1,2} & = input \text{ *** Refinement of cell (11) ***}\\
 \alpha_{2}  & = \text{the unique root of } 3 x^2 - 8 x + 3 \text{ between } 3/8 \text{ and } 1/2\\
 \text{Coordinate }1 & = \alpha \approx 0.4514\ldots
 \end{align*}
+
+Table: (\#tab:qanm-4-multi) Comparison of runtimes of `QEPCAD-B` on Example \@ref(exm:qanm-4-multi) when constructing a classical vs monotone CAD.
+
+|           | Runtime (ms) | Projection factors | True cells | Total cells |
+|-----------|--------------|--------------------|------------|-------------|
+| Classical | 5    | 6    | 1   | 13    |
+| Monotone  | 18   | 8    | 5   | 387   |
 
 ::: {.example #fr-4-whitney-multi }
 Let $n = 4$ and consider the semialgebraic set defined by the QFF, containing polynomials in $Z[t,x,y,z]$,
