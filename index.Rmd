@@ -47,13 +47,14 @@ I am the author of this thesis, and the work described therein was carried out b
 
 ## Acknowledgements { .unlisted .unnumbered }
 
-I wish to thank my supervisor, Prof Nicolai Vorobjov, for all his help, guidance and advice throughout my studies and for encouraging me to pursue a PhD.
-I would also like to thank Prof James H. Davenport for his help and for being my lead examiner at my PhD Confirmation where he provided excellent guidance and feedback.
-Thanks also to Dr Thomas Powell, my second Confirmation examiner, for his great advice and feedback, and for providing a perspective from a different area of theoretical computer science.
+I wish to thank my supervisor, Nicolai Vorobjov, for all his help, guidance and advice throughout my studies and for encouraging me to pursue a PhD.
+I would also like to thank James H. Davenport for his help and for being my lead examiner at my PhD Confirmation where he provided excellent guidance and feedback.
+Thanks also to Thomas Powell, my second Confirmation examiner, for his great advice and feedback, and for providing a perspective from a different area of theoretical computer science.
 Thanks to all members of the Mathematical Foundations of Computer Science group, both staff and students, for listening to my talks and generally supporting me throughout my PhD.
-In addition, I would like to thank Dr Matthew England, Tereso del Rio Almajano and the "Pushing Back the Doubly Exponential Wall" research group at the Universities of Bath and Coventry for insightful informal discussions in relation to the novel algorithm for computing a CAD with frontier condition.
+In addition, I would like to thank Matthew England, Tereso del Rio Almajano and the "Pushing Back the Doubly Exponential Wall" research group at the Universities of Bath and Coventry for insightful informal discussions in relation to the novel algorithm for computing a CAD with frontier condition.
 This PhD research was funded by an EPSRC DTP grant, without which I would not have been able to complete my studies.
-Finally, I would like to thank my viva examiners, Dr Gregory Sankaran and Dr Matthew England.
+Finally, I would like to thank my viva examiners, Gregory Sankaran and Matthew England for a thorough, constructive and thoughtful
+examination of my work, and for all their support throughout the corrections process.
 
 ```{=latex}
 \newpage
@@ -302,7 +303,7 @@ to implement the subroutine for checking whether a candidate stratum is empty.
 This algorithm has been implemented in C on top of `SACLIB`. `SACLIB` is an open-source C/C++ library for manipulating
 real polynomials and real algebraic numbers and working with their solutions as real algebraic numbers (see @saclib).
 The source code is hosted on
-Zenodo.^[[https://zenodo.org/records/14944918?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU1ZjgxYmVhLWJkYTEtNDM5MS04OTIxLWM4ZDYyYzA4YzUyNSIsImRhdGEiOnt9LCJyYW5kb20iOiJlYzk0NTA3YjUwYTM5MDhlOTZiYzcyNDFlYjIxZGFlOCJ9.TGZ59ufWzjdWGGnpsvZJm4Hy340ke3rzYAg2utBShywKaQn62XXS-gTpZrCJinKSXSYG81PwgV42VE3s0cfqKg](https://zenodo.org/records/14944918?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU1ZjgxYmVhLWJkYTEtNDM5MS04OTIxLWM4ZDYyYzA4YzUyNSIsImRhdGEiOnt9LCJyYW5kb20iOiJlYzk0NTA3YjUwYTM5MDhlOTZiYzcyNDFlYjIxZGFlOCJ9.TGZ59ufWzjdWGGnpsvZJm4Hy340ke3rzYAg2utBShywKaQn62XXS-gTpZrCJinKSXSYG81PwgV42VE3s0cfqKg)]
+Zenodo.^[[https://zenodo.org/records/14944918](https://zenodo.org/records/14944918)]
 Although this construction has been described at least twice (in @gv1995 and @gv04), this is the first presentation of the procedure as pseudo-code and the first implementation of the algorithm. We also contribute complexity results for the semialgebraic case.
 
 ### Monotone and frontier condition
@@ -353,7 +354,7 @@ Section \@ref(sec:lazard-n) explores how this method can be generalised to our s
 
 Each stage of the algorithm has been presented as pseudo-code, along with a complexity upper bound, and Chapter
 \@ref(sec:implementation-and-testing) discusses its implementation on top of Brown's `QEPCAD-B` [@brownQepcad] and
-presents some illustrative examples of the software at work. The source code is available on Zenodo.^[[https://zenodo.org/records/14945076?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjkwMGJmNGI4LWUyNGQtNGMyYi04ZDdmLTA5M2U5MGI2NGE1ZSIsImRhdGEiOnt9LCJyYW5kb20iOiI3ZGI0YmJkYmY2NThkYzU2ZjU2OTQ3NThlMzUzNWU5NiJ9.dQkkmIqid5YJSepoo9D0PV2FBdBkbl-Xw8AqoITmt3fZ9JZG4QKDAGEZk0yGufgEmTDYxwZxPo0HB8t1-JaaCw](https://zenodo.org/records/14945076?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjkwMGJmNGI4LWUyNGQtNGMyYi04ZDdmLTA5M2U5MGI2NGE1ZSIsImRhdGEiOnt9LCJyYW5kb20iOiI3ZGI0YmJkYmY2NThkYzU2ZjU2OTQ3NThlMzUzNWU5NiJ9.dQkkmIqid5YJSepoo9D0PV2FBdBkbl-Xw8AqoITmt3fZ9JZG4QKDAGEZk0yGufgEmTDYxwZxPo0HB8t1-JaaCw)]
+presents some illustrative examples of the software at work. The source code is available on Zenodo.^[[https://zenodo.org/records/15095148](https://zenodo.org/records/15095148)]
 This extends the result that such a CAD exists (@bgv15, Theorem 3.20) into a tangible implementation of an algorithm for constructing one.
 
 ### Frontier condition in arbitrary dimension

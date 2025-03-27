@@ -604,7 +604,7 @@ cell is not closure finite.
 The same argument as in Proposition \@ref(prp:lazard-5-3) (@lazard10, Theorem 5.3) can be applied to show that $C$ is
 well-bordered. In particular, no points in $\fr{C}$ can be contained in a $(j_1,\ldots,j_{n-1},1)$-cell which projects onto
 a $1$-dimensional sector cell in $\fr{C'}$.
-This follows from the fact that the Zariski closure of $C$ is an algebraic subvariety of dimension $2$ so it cannot
+This follows from the fact that the Zariski closure of $C$ is an irreducible algebraic variety of dimension $2$ so it cannot
 contain a proper subvariety which also has dimension $2$.
 If the polynomial which is equal to $0$ at all points of $C$ vanishes identically in a $2$-dimensional cell contained in
 $\fr{C'}\times \R$, then $C$ tends to $-\infty$ or $\infty$ as it approaches this cell.
@@ -708,7 +708,7 @@ We need to find a polynomial $h \in \Q[x_1,\ldots,x_{n-1}]$ such that the satura
 S := \langle f, g, g_{j_1}, \ldots, g_{j_{n-3}}, 1 - z h \rangle \cap \Q[x_1,\ldots,x_n]
 $$
 defines the required refinement point.
-As before, $h$ can be taken to be a coefficient of $f$ which is not a multiple of any of $g, g_{j_1}, \ldots,
+As described in the proof of Proposition \@ref(prp:lazard-5-14), $h$ can be taken to be a coefficient of $f$ which is not a multiple of any of $g, g_{j_1}, \ldots,
 g_{j_{n-3}}$.
 :::
 

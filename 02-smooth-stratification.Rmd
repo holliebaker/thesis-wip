@@ -517,7 +517,7 @@ If we apply the smooth stratification algorithm to each $S_{(\ast_1,\ldots,\ast_
 ### Implementation with SACLIB
 
 Full source code is available on Zenodo at the following link:
-[https://zenodo.org/records/14944918?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU1ZjgxYmVhLWJkYTEtNDM5MS04OTIxLWM4ZDYyYzA4YzUyNSIsImRhdGEiOnt9LCJyYW5kb20iOiJlYzk0NTA3YjUwYTM5MDhlOTZiYzcyNDFlYjIxZGFlOCJ9.TGZ59ufWzjdWGGnpsvZJm4Hy340ke3rzYAg2utBShywKaQn62XXS-gTpZrCJinKSXSYG81PwgV42VE3s0cfqKg](https://zenodo.org/records/14944918?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU1ZjgxYmVhLWJkYTEtNDM5MS04OTIxLWM4ZDYyYzA4YzUyNSIsImRhdGEiOnt9LCJyYW5kb20iOiJlYzk0NTA3YjUwYTM5MDhlOTZiYzcyNDFlYjIxZGFlOCJ9.TGZ59ufWzjdWGGnpsvZJm4Hy340ke3rzYAg2utBShywKaQn62XXS-gTpZrCJinKSXSYG81PwgV42VE3s0cfqKg).
+[https://zenodo.org/records/14944918](https://zenodo.org/records/14944918).
 
 This algorithm has been implemented in C, using the computer algebra library `SACLIB`. `QEPCAD-B` is used to perform emptiness checks using cylindrical algebraic decomposition. Below is an example of the new program's output, given the basic semialgebraic set
 $$
