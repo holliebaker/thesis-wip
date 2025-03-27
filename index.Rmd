@@ -122,7 +122,7 @@ semialgebraic sets, which are defined by a Boolean combination of polynomial equ
 Computational algebraic geometry spans both mathematics and computer science and involves developing algorithms for working with the fundamental objects of algebraic geometry, e.g., algebraic varieties, polynomial ideals and semialgebraic sets.
 Some fundamental results in this area were presented at the International Symposium on Symbolic and Algebraic Manipulation which was held in Marseille in 1979 (now part of ISSAC).
 @buchberger1979 presented his criterion and an algorithm for computing a Groebner basis for a polynomial ideal defined over an algebraically closed field, which is still one of the most efficient methods for finding the complex solutions of a system of multivariate polynomial equations.
-@lazard1979 also presented an algorithm, based on Macalay's multivariate resultants, for solving systems of homogeneous polynomial equations over any field (algebraically closed or otherwise), which has complexity singly exponential in the number of unknowns.
+@lazard1979 also presented an algorithm, based on Macaulay's multivariate resultants, for solving systems of homogeneous polynomial equations over any field (algebraically closed or otherwise), which has complexity singly exponential in the number of unknowns.
 @arnon1979 described an extension to Collins' algorithm [@collins1975] for computing cylindrical decompositions of real space, which allows one to determine the dimension of a semialgebraic set and deduce some of its topological properties.
 
 Since then, there have been many advances in these areas, both in extending the applications of these algorithms and making them more efficient.
