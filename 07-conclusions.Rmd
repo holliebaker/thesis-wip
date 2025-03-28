@@ -93,7 +93,7 @@ It is conjectured that this classification can be extended to $n$-dimensional se
 Another direction of research would be to prove this conjecture by generalising the results of @bgv15, and design an algorithm for computing such a triangulation in the case of sets with arbitrary dimension.
 The first step would be to generalise the monotone CAD algorithm to sets with higher dimension.
 It is not currently clear how this can be done, but one might want to start with sets of dimension $3$.
-In @bgvII an algorithm-like procedure was proposed for constructing a decomposition of a $3$-dimensional set $K$
+In @bgv2 an algorithm-like procedure was proposed for constructing a decomposition of a $3$-dimensional set $K$
 into topologically regular cylindrical cells which may not form an overall cylindrical decomposition, as cells may be cylindrical with respect to different orderings of variables.
 The first step in solving this problem may be to implement this procedure or, possibly, strengthen it to obtain a decomposition which is cylindrical with respect to the given coordinate ordering.
 The results in Chapter \@ref(sec:novel-frontier) make some strides towards the generalisation, allowing us to obtain the frontier condition in CADs compatible with sets of any dimension.
@@ -108,4 +108,6 @@ be produced. However, the operators do not guarantee that we will get the $k$ de
 in later steps.
 A possible direction of further research may be to investigate whether such a projection operator exists and prove that
 it does indeed give us the required polynomials.
+
+\DeclareRobustCommand{\VAN}[3]{#3}
 

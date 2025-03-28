@@ -9,6 +9,8 @@
   \thm@preskip=8pt plus 2pt minus 4pt
   \thm@postskip=\thm@preskip
 }
+\usepackage{url}
+\usepackage{xurl}
 
 % code wrapping
 \usepackage{fvextra}
@@ -31,3 +33,9 @@
 \setlist[itemize,7]{label=$\bullet$}
 
 \renewlist{itemize}{itemize}{7}
+
+% here we change the meaning of \VAN to use the prefix for the bibliography
+\DeclareRobustCommand{\VAN}[3]{#3}
+
+% #1: sorting key, #2: prefix for citation, #3: prefix for bibliography
+\DeclareRobustCommand{\VAN}[3]{#2} % set up for citation
