@@ -130,7 +130,8 @@ Since then, there have been many advances in these areas, both in extending the 
 ## Cylindrical algebraic decomposition
 
 A fundamental result in real algebraic geometry is Tarski's Theorem [@tarski1951], which states that semialgebraic sets are closed under projection.
-Tarski's paper can be obtained online here: \url{https://doi.org/10.1007/978-3-7091-9459-1\_3} and @vdd1988tarski discuss Tarski's Theorem further.
+Tarski's paper can be obtained online here: \url{https://doi.org/10.1007/978-3-7091-9459-1\_3} and @vdd1988tarski
+discusses Tarski's Theorem further.
 This result is not true for algebraic sets, neither real nor complex. Indeed, consider the projection of the solutions of the polynomial $xy = 1$ onto the $x$-axis. We get $\R \setminus \{ 0 \}$, which is not an algebraic set, but could be represented if we are allowed to use inequalities. Thus, we will be working over the category of semialgebraic sets: sets of points defined by Boolean combinations of polynomial equations and inequalities.
 Alfred Tarski first alluded, without proof, to his famous theorem in the abstract of @sierpinski1930. He then proved the
 theorem in [@tarski1951] whose planned publication in 1939 was delayed due to the war. @seidenberg1954 published "A New
