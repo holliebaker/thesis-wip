@@ -69,7 +69,7 @@ about the input set -- e.g., to deduce its topological properties. The main resu
 building on the work of @bgv15 and utilising some of the tools employed by @lazard10, which constructs a CAD compatible
 with a family of semialgebraic sets, each having dimension at most two, and such that each cylindrical cell is
 topologically regular and the closure of each cell is a union of cells in the decomposition. Both pseudo-code and an
-implementation on top of the well-known program `QEPCAD-B`, are presented. This algorithm has complexity only slightly worse than the "classical" CAD algorithm.
+implementation on top of the well-known program `QEPCAD-B` are presented. This algorithm has complexity only slightly worse than the "classical" CAD algorithm.
 In addition, a novel algorithm for computing a CAD, compatible with a semialgebraic set of arbitrary dimension and such that the closure of each cell is the union of some cells in the decomposition, is presented. This algorithm has complexity triply exponential in the number of variables -- significantly worse than that of classical CAD.
 For both algorithms, blow-up points may be present and no rotation of coordinates is required.
 A description, including pseudo-code, and implementation of an algorithm, presented by @gv1995, for computing a smooth stratification -- a partition into nonsingular manifolds -- of a semialgebraic set, is also given.
