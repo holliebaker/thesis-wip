@@ -243,7 +243,7 @@ intersecting them with a given curve interval.
 The main goal of this thesis will be to design and implement an algorithm, based on this result, for constructing such a decomposition in the semialgebraic case.
 The constructive proof works for more general definable sets and, in contrast to e.g. @collins1975 or @lazard10, is
 geometric in nature. As such, the properties we need to satisfy in order to complete the construction are described in
-detail. However, methods to obtain these properties are not given. The bulk of this thesis is concerned with transforming this constructive proof into an algorithm, presented as pseudo-code, and then implementing it. We wil also perform complexity analysis. (TODO and benchmarking?)
+detail. However, methods to obtain these properties are not given. The bulk of this thesis is concerned with transforming this constructive proof into an algorithm, presented as pseudo-code, and then implementing it. We wil also perform complexity analysis.
 We will use a combination of fundamental tools in differential geometry, e.g., partial derivatives and Jacobi determinants, well-known algorithms in algebraic geometry such as smooth stratification and quantifier elimination, and ideas from optimisation, such as Lagrange multipliers.
 
 A similar idea to that presented by @bgv15 is discussed by @vdd1998 (Section 2.19), who introduces the concept of a van-den-Dries regular cell.
@@ -257,7 +257,7 @@ We prove that such a decomposition can be constructed in any dimension and witho
 The proof takes the form of an algorithm, given as pseudo-code and a mathematical description, which constructs a CAD compatible with a semialgebraic set $S \subset \R^n$ and satisfying the frontier condition.
 We also obtain an upper bound on the complexity of this algorithm. This is also an upper bound on the number of cells, number of polynomials and
 degree of polynomials in the CAD. The algorithm has elementary complexity (in the sense of L. Kalmar, see e.g.,
-[@kleene1952, $\S 57$]). This means that the complexity can be expressed as a power tower of finite height.
+[@kleene1952, $\S 57$]). This means that the complexity can be expressed as a tower of exponents of finite height.
 
 As discussed in Section \@ref(sec:cad-des-prop), the frontier condition is useful in many applications including motion planning, computing homology groups and determining cell adjacencies.
 In addition, we show how this result can be applied to other categories, e.g., semialgebraic sets defined by *fewnomials* (see Section \@ref(sec:pfaffian)), whose structure is destroyed by a change of coordinates.
@@ -311,7 +311,7 @@ Although this construction has been described at least twice (in @gv1995 and @gv
 
 In Chapters \@ref(sec:quasi-affine), \@ref(sec:monotone-cells) and \@ref(sec:frontier), we present an algorithm for constructing a CAD of $\R^n$, monotone with respect to a family of semialgebraic sets $V = (V_1,\ldots,V_k)$ such that $\dim(V_i) \le 2$ for $1\le i \le k$ and satisfying the frontier condition.
 I.e., each cell of the decomposition produced by this algorithm is a topologically regular cell and its closure is a union of cells in the same decomposition.
-This algorithm is based on the proof of @bgv15, Theorem 3.20. which gives a mathematical description of how such a decomposition can be constructed.
+This algorithm is based on the proof of @bgv15, Theorem 3.20, which gives a mathematical description of how such a decomposition can be constructed.
 The proof is constructive in the sense that it outlines a series of steps required to pass from the family of input sets to the resulting cylindrical decomposition. However, it does not explain how each step should be completed. For example, the first step is to construct a cylindrical decomposition compatible with the smooth $2$-dimensional locus of $V$ and the critical points of projections of each $V_i$ onto $1$- and $2$-dimensional coordinate subspaces of $\R^n$, but it does not explain how the smooth locus should be computed or the critical points found.
 The main goal of Chapters \@ref(sec:quasi-affine), \@ref(sec:monotone-cells) and \@ref(sec:frontier-bgv) is to convert
 the constructive proof from @bgv15 into an algorithm by explaining how the required constructions can be achieved. Thee

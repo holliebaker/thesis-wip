@@ -1515,6 +1515,7 @@ R_{3,1} & = input \text{ *** Refinement of cell (2,2,3) ***}\\
 \text{Coordinate }3 & = 1 = 1.0000
 \end{align*}
 
-Additional illustrative examples are presented in Appendix \@ref(sec:more-tests) along with a comparison of the number of cells, number of polynomial and average running time taken to construct a monotone CAD vs a classical CAD in `QEPCAD-B`.
+Additional illustrative examples are presented in Appendix \@ref(sec:more-tests) along with a comparison of the number
+of cells, number of polynomials and average running time taken to construct a monotone CAD vs a classical CAD in `QEPCAD-B`.
 
 
